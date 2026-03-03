@@ -114,9 +114,12 @@ def detect_all(analysis: StaticAnalysis, graph: nx.DiGraph,
     if config is None:
         config = QSEConfig()
 
-    domain_dir = os.path.join(repo_dir, "domain")
-    if os.path.isdir(domain_dir):
-        zombie = detect_zombie_v2(repo_dir, mode="conservative")
+    layer_map = config.layer_map if config else {}
+    # v2 when any directory maps to "domain" (including via layer_map)
+    domain_dirs = [os.path.join(repo_dir, d) for d, l in (layer_map or {}).items() if l == "domain"]
+    domain_dirs.append(os.path.join(repo_dir, "domain"))
+    if any(os.path.isdir(d) for d in domain_dirs):
+        zombie = detect_zombie_v2(repo_dir, mode="conservative", layer_map=layer_map or None)
     else:
         zombie = detect_zombie(analysis, graph, repo_dir)
 

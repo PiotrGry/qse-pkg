@@ -43,10 +43,23 @@ def _normalize(name: str) -> str:
     return name.lower().replace("_", "")
 
 
-def _collect_domain_symbols(base_dir: str) -> Dict[str, str]:
+def _effective_layer(parts: list, layer_map: dict = None) -> str:
+    """Resolve the effective DDD layer for a file given its path parts."""
+    if not parts:
+        return ""
+    top = parts[0].lower()
+    if layer_map and top in layer_map:
+        return layer_map[top]
+    return top
+
+
+def _collect_domain_symbols(base_dir: str, layer_map: dict = None) -> Dict[str, str]:
     """
-    Walk repo and collect all class names defined in domain/ layer.
+    Walk repo and collect all class names defined in domain layer.
     Returns {class_name: file_path}.
+
+    layer_map: optional custom directory→layer mapping,
+               e.g. {"common": "domain", "audit": "application"}
     """
     symbols: Dict[str, str] = {}
     for root, _dirs, files in os.walk(base_dir):
@@ -56,7 +69,7 @@ def _collect_domain_symbols(base_dir: str) -> Dict[str, str]:
             fpath = os.path.join(root, fname)
             rel = os.path.relpath(fpath, base_dir)
             parts = rel.split(os.sep)
-            if not parts or parts[0].lower() != "domain":
+            if _effective_layer(parts, layer_map) != "domain":
                 continue
             try:
                 with open(fpath) as f:
@@ -101,18 +114,20 @@ def _extract_import_names(tree: ast.AST) -> Set[str]:
     return names
 
 
-def build_symbol_map(base_dir: str, mode: str = "conservative") -> SymbolMap:
+def build_symbol_map(base_dir: str, mode: str = "conservative",
+                     layer_map: dict = None) -> SymbolMap:
     """
     Build symbol map for all domain entities in base_dir.
 
     Args:
         base_dir: root of repo
         mode: "conservative" (import-based only) or "strict" (any AST usage)
+        layer_map: optional custom directory→layer mapping
 
     Returns:
         SymbolMap with direct_refs and transitive_refs populated.
     """
-    domain_symbols = _collect_domain_symbols(base_dir)
+    domain_symbols = _collect_domain_symbols(base_dir, layer_map=layer_map)
     smap = SymbolMap(domain_symbols=set(domain_symbols.keys()))
 
     # Initialize empty ref sets
@@ -128,7 +143,7 @@ def build_symbol_map(base_dir: str, mode: str = "conservative") -> SymbolMap:
             rel = os.path.relpath(fpath, base_dir)
             parts = rel.split(os.sep)
             # Skip domain files (they define, not reference)
-            if parts and parts[0].lower() == "domain":
+            if _effective_layer(parts, layer_map) == "domain":
                 continue
 
             try:
@@ -184,7 +199,8 @@ def build_symbol_map(base_dir: str, mode: str = "conservative") -> SymbolMap:
 
 
 def detect_zombie_v2(base_dir: str,
-                     mode: str = "conservative") -> Set[str]:
+                     mode: str = "conservative",
+                     layer_map: dict = None) -> Set[str]:
     """
     Detect zombie domain entities using AST symbol map (v2).
 
@@ -193,17 +209,16 @@ def detect_zombie_v2(base_dir: str,
     Args:
         base_dir: repository root
         mode: "conservative" or "strict"
+        layer_map: optional custom directory→layer mapping
 
     Returns:
         Set of relative file paths containing zombie domain entities.
     """
-    smap = build_symbol_map(base_dir, mode=mode)
+    smap = build_symbol_map(base_dir, mode=mode, layer_map=layer_map)
     zombies: Set[str] = set()
+    domain_symbols = _collect_domain_symbols(base_dir, layer_map=layer_map)
     for sym, refs in smap.transitive_refs.items():
-        if not refs:
-            # Find the file for this symbol
-            domain_symbols = _collect_domain_symbols(base_dir)
-            if sym in domain_symbols:
-                rel = os.path.relpath(domain_symbols[sym], base_dir)
-                zombies.add(rel)
+        if not refs and sym in domain_symbols:
+            rel = os.path.relpath(domain_symbols[sym], base_dir)
+            zombies.add(rel)
     return zombies
