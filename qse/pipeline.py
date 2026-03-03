@@ -16,7 +16,7 @@ def analyze_repo(path: str, config: QSEConfig = None) -> QSEReport:
     if config is None:
         config = QSEConfig()
 
-    analysis = scan_repo(path)
+    analysis = scan_repo(path, layer_map=config.layer_map or None)
 
     if config.enable_trace:
         trace = trace_repo(path)

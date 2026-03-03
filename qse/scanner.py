@@ -34,12 +34,18 @@ class StaticAnalysis:
     files: List[str] = field(default_factory=list)
 
 
-def _detect_layer(file_path: str, base_dir: str) -> Optional[str]:
-    """Determine DDD layer from file path relative to base_dir."""
+def _detect_layer(file_path: str, base_dir: str,
+                  layer_map: dict = None) -> Optional[str]:
+    """Determine DDD layer from file path relative to base_dir.
+
+    layer_map: optional custom mapping e.g. {"common": "domain", "audit": "application"}
+    """
     rel = os.path.relpath(file_path, base_dir)
     parts = rel.split(os.sep)
     if parts:
         candidate = parts[0].lower()
+        if layer_map and candidate in layer_map:
+            return layer_map[candidate]
         if candidate in LAYER_ORDER:
             return candidate
     return None
@@ -97,7 +103,7 @@ def _extract_classes(tree: ast.AST, file_path: str,
     return classes
 
 
-def scan_repo(base_dir: str) -> StaticAnalysis:
+def scan_repo(base_dir: str, layer_map: dict = None) -> StaticAnalysis:
     """
     Perform static analysis on all .py files under base_dir.
 
@@ -105,6 +111,9 @@ def scan_repo(base_dir: str) -> StaticAnalysis:
     - Import dependency graph (DiGraph)
     - Per-class metadata
     - File list
+
+    layer_map: optional custom directory→layer mapping,
+               e.g. {"common": "domain", "audit": "application"}
     """
     graph = nx.DiGraph()
     all_classes: Dict[str, ClassInfo] = {}
@@ -119,7 +128,7 @@ def scan_repo(base_dir: str) -> StaticAnalysis:
     for fpath in sorted(py_files):
         all_files.append(fpath)
         mod = _module_path(fpath, base_dir)
-        layer = _detect_layer(fpath, base_dir)
+        layer = _detect_layer(fpath, base_dir, layer_map=layer_map)
         graph.add_node(mod, layer=layer, file=fpath)
 
         try:

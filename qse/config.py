@@ -17,6 +17,7 @@ class QSEConfig:
     fat_threshold: int = 8
     fat_steepness: float = 1.0
     enable_trace: bool = True
+    layer_map: dict = field(default_factory=dict)  # e.g. {"common": "domain", "audit": "application"}
 
     @classmethod
     def from_file(cls, path: str) -> "QSEConfig":
@@ -35,4 +36,6 @@ class QSEConfig:
             cfg.fat_steepness = float(data["fat_steepness"])
         if "enable_trace" in data:
             cfg.enable_trace = bool(data["enable_trace"])
+        if "layer_map" in data:
+            cfg.layer_map = {k.lower(): v.lower() for k, v in data["layer_map"].items()}
         return cfg
