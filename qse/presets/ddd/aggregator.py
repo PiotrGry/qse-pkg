@@ -10,7 +10,7 @@ where w_i ≥ 0, Σ w_i = 1, and all m_i ∈ [0, 1].
 import numpy as np
 from typing import List, Optional
 
-from qse.metrics import SubMetrics
+from qse.presets.ddd.metrics import SubMetrics
 
 # Default equal weights (5 metrics)
 DEFAULT_WEIGHTS = np.array([0.2, 0.2, 0.2, 0.2, 0.2])

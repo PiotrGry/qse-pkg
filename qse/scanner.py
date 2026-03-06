@@ -24,6 +24,9 @@ class ClassInfo:
     n_init_only: bool = False  # True if only __init__ exists
     n_attributes: int = 0
     dependencies: List[str] = field(default_factory=list)  # imported class names
+    is_exception: bool = False  # True if class inherits from Exception/BaseException
+    is_abstract: bool = False   # True if class uses ABC, Protocol, or @abstractmethod
+    method_attrs: List[tuple] = field(default_factory=list)  # [(method_name, {attr1, ...}), ...]
 
 
 @dataclass
@@ -91,6 +94,46 @@ def _extract_classes(tree: ast.AST, file_path: str,
                     if isinstance(stmt, ast.Attribute) and isinstance(stmt.ctx, ast.Store):
                         n_attrs += 1
 
+        # Extract method->attribute map for LCOM4
+        # Includes both self.attr reads/writes AND self.method() calls
+        method_attrs = []
+        for m in methods:
+            attrs = set()
+            for stmt in ast.walk(m):
+                if isinstance(stmt, ast.Attribute) and isinstance(getattr(stmt, 'value', None), ast.Name):
+                    if stmt.value.id == 'self':
+                        attrs.add(stmt.attr)
+            method_attrs.append((m.name, attrs))
+
+        # Detect abstract classes: ABC, Protocol, @abstractmethod
+        _abstract_bases = {"ABC", "ABCMeta", "Protocol"}
+        base_names = {b.id for b in node.bases if isinstance(b, ast.Name)}
+        # Also check dotted bases like abc.ABC
+        for b in node.bases:
+            if isinstance(b, ast.Attribute):
+                base_names.add(b.attr)
+
+        is_abstract = bool(base_names & _abstract_bases)
+        # Check for @abstractmethod on any method
+        if not is_abstract:
+            for m in methods:
+                for dec in m.decorator_list:
+                    dec_name = ""
+                    if isinstance(dec, ast.Name):
+                        dec_name = dec.id
+                    elif isinstance(dec, ast.Attribute):
+                        dec_name = dec.attr
+                    if dec_name == "abstractmethod":
+                        is_abstract = True
+                        break
+                if is_abstract:
+                    break
+
+        _exception_bases = {"Exception", "BaseException", "ValueError", "RuntimeError",
+                            "TypeError", "KeyError", "IOError", "OSError", "AttributeError"}
+        base_names = {b.id for b in node.bases if isinstance(b, ast.Name)}
+        is_exception = bool(base_names & _exception_bases) or node.name.endswith("Error") or node.name.endswith("Exception")
+
         info = ClassInfo(
             name=node.name,
             file_path=file_path,
@@ -98,6 +141,9 @@ def _extract_classes(tree: ast.AST, file_path: str,
             n_methods=n_methods,
             n_init_only=n_init_only,
             n_attributes=n_attrs,
+            is_exception=is_exception,
+            is_abstract=is_abstract,
+            method_attrs=method_attrs,
         )
         classes.append(info)
     return classes

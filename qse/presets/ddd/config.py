@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from qse.aggregator import DEFAULT_WEIGHTS
+from qse.presets.ddd.aggregator import DEFAULT_WEIGHTS
 
 
 @dataclass

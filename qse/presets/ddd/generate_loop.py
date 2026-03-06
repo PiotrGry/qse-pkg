@@ -5,8 +5,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, List, Optional, Tuple
 
-from qse.config import QSEConfig
-from qse.gate import GateResult, GateRules, quality_gate
+from qse.presets.ddd.config import QSEConfig
+from qse.presets.ddd.gate import GateResult, GateRules, quality_gate
 
 
 @dataclass

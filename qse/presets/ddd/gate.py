@@ -4,9 +4,9 @@ import json
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
-from qse.config import QSEConfig
-from qse.pipeline import analyze_repo
-from qse.report import QSEReport
+from qse.presets.ddd.config import QSEConfig
+from qse.presets.ddd.pipeline import analyze_repo
+from qse.presets.ddd.report import QSEReport
 
 
 @dataclass

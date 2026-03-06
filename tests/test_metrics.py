@@ -4,10 +4,10 @@ import math
 import numpy as np
 import pytest
 
-from qse.metrics import (
+from qse.presets.ddd.metrics import (
     compute_S, compute_G, compute_E, compute_Risk, SubMetrics,
 )
-from qse.aggregator import (
+from qse.presets.ddd.aggregator import (
     compute_qse_total, validate_weights, normalize_weights, DEFAULT_WEIGHTS,
 )
 
@@ -145,7 +145,7 @@ class TestNamingConvention:
         return StaticAnalysis(graph=nx.DiGraph(), classes=classes, files=[])
 
     def test_good_naming_scores_high(self):
-        from qse.metrics import compute_T_ddd
+        from qse.presets.ddd.metrics import compute_T_ddd
         import networkx as nx
         a = self._make_analysis_with_names(
             ["Order", "Invoice", "Customer"],
@@ -156,7 +156,7 @@ class TestNamingConvention:
         assert t > 0.0  # Should have non-trivial T_naming component
 
     def test_bad_domain_naming_penalized(self):
-        from qse.metrics import compute_T_ddd
+        from qse.presets.ddd.metrics import compute_T_ddd
         import networkx as nx
         # Domain entities with verb prefixes — bad naming
         a_bad = self._make_analysis_with_names(

@@ -1,26 +1,25 @@
 # QSE — Quality Score Engine
 
-Automatic DDD architecture quality validator for Python codebases.
-Detects structural defects in Domain-Driven Design code and computes a composite quality score.
+Automatic architecture quality validator for Python codebases.
+Two-layer design: **Core AGQ** (architecture-agnostic graph metrics) + optional **DDD preset** (domain-specific detectors).
 
-## What it measures
+## Architecture
 
-| Metric | Description | Range |
-|--------|-------------|-------|
-| **QSE4** | Composite architecture score (S + T_ddd + G + E) | [0, 1] |
-| **QSE_test** | Test suite quality score | [0, 1] |
-| **QSE_combined** | 0.7 × QSE4 + 0.3 × QSE_test | [0, 1] |
+### Level 1: Core AGQ (zero-config)
 
-### Sub-metrics
+Graph-based metrics computed on any Python project — no assumptions about architecture style.
 
-| Symbol | Name | What it measures |
-|--------|------|-----------------|
-| S | Structure | Ratio of non-anemic domain entities |
-| T_ddd | DDD Conformance | Layer compliance + zombie detection + naming |
-| G | Graph Coupling | Import graph density (lower = better) |
-| E | Excess Complexity | Absence of fat services |
+| Metric | Algorithm | Range |
+|--------|-----------|-------|
+| **Modularity** | Louvain community detection | [0, 1] |
+| **Acyclicity** | 1 − (SCC nodes / total nodes), Tarjan | [0, 1] |
+| **Stability** | Martin DMS + abstractness detection | [0, 1] |
+| **Cohesion** | 1 − penalty(LCOM4), absolute scale | [0, 1] |
+| **Coupling variance** | Instability distribution uniformity | [0, 1] |
 
-### Defect detectors
+### Level 2: DDD Preset (opt-in via `layer_map`)
+
+DDD-specific detectors activated when `layer_map` is configured or `domain/` directory exists.
 
 | Detector | Method | F1 (mutation study, n=900) |
 |----------|--------|---------------------------|
@@ -32,27 +31,28 @@ Detects structural defects in Domain-Driven Design code and computes a composite
 ## Installation
 
 ```bash
-pip install git+https://github.com/PiotrGry/qse.git
+pip install git+https://github.com/PiotrGry/qse-pkg.git
 ```
 
 ## Usage
 
-### Scan a repository (report only)
-
-```bash
-qse scan path/to/repo
-qse scan path/to/repo --format json
-qse scan path/to/repo --format json --output-json report.json
-```
-
 ### Quality gate (exits non-zero on failure)
 
 ```bash
-# Fail if QSE4 < 0.80 or any anemic/zombie/layer defects found
+qse gate path/to/repo --threshold 0.80 --output-json report.json
+
+# With DDD defect checks
 qse gate path/to/repo \
   --threshold 0.80 \
   --fail-on-defects anemic_entity,zombie_entity,layer_violation \
   --output-json gate_report.json
+```
+
+### Scan (report only)
+
+```bash
+qse scan path/to/repo
+qse scan path/to/repo --format json --output-json report.json
 ```
 
 ### Options
@@ -63,50 +63,24 @@ qse gate path/to/repo \
 | `--fail-on-defects LIST` | — | Comma-separated defect types that must be zero |
 | `--output-json FILE` | — | Write JSON report to file |
 | `--no-trace` | off | Skip dynamic tracing (faster, static only) |
-| `--format table\|json` | table | Output format (scan command) |
+| `--config FILE` | — | JSON config with weights, layer_map, thresholds |
 
-## GitHub Actions integration
-
-Three pipelines available in `.github/workflows/`:
-
-- **pipeline-qse.yml** — QSE gate only
-- **pipeline-analyzers.yml** — Static + dynamic analyzers (ruff, mypy, bandit, radon, pylint, pytest-cov)
-- **pipeline-full.yml** — QSE + all analyzers combined
-
-Example for QSE gate in your workflow:
+## GitHub Actions
 
 ```yaml
 - name: Install QSE
-  run: pip install git+https://github.com/PiotrGry/qse.git
+  run: pip install git+https://github.com/PiotrGry/qse-pkg.git
 
 - name: QSE gate
-  run: |
-    qse gate src/ \
-      --threshold 0.80 \
-      --fail-on-defects anemic_entity,zombie_entity,layer_violation \
-      --output-json qse_report.json \
-      --no-trace
+  run: qse gate src/ --threshold 0.80 --output-json qse_report.json --no-trace
 ```
 
-## Expected repository structure
+## Empirical validation (TRL 3)
 
-QSE detects layers from directory names:
-
-```
-your_project/
-  domain/        ← domain entities, value objects, aggregates
-  application/   ← services, use cases, commands/queries
-  infrastructure/← repositories, external APIs, DB adapters
-  presentation/  ← controllers, CLI, API handlers
-```
-
-## Empirical validation
-
-Validated on a mutation study (900 runs, 4 defect types × 6 doses × 30 seeds):
-
-- Monotonicity: Spearman ρ = -0.986, p < 10⁻¹⁴⁰
-- Discrimination: Mann-Whitney U = 900 (max), p < 10⁻¹¹
-- Effect size: Cohen's d = 6.8–129.2
+- **EXP1**: Smoke test on 5 OSS repos (httpx, fastapi, black, flask, pyjwt) — all produce valid AGQ scores
+- **EXP2**: Mutation testing — 4/4 mutations detected (cycle, cross-module, god class, spaghetti)
+- **EXP3**: Sensitivity analysis — 10 synthetic repos, monotonic AGQ degradation (std 0.11–0.43)
+- **EXP4**: Constraints engine — forbidden edges with glob matching, 4/4 scenarios pass
 
 ## License
 

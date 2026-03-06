@@ -6,9 +6,9 @@ import sys
 
 import numpy as np
 
-from qse.config import QSEConfig
-from qse.pipeline import analyze_repo
-from qse.report import format_json, format_table
+from qse.presets.ddd.config import QSEConfig
+from qse.presets.ddd.pipeline import analyze_repo
+from qse.presets.ddd.report import format_json, format_table
 
 DEFECT_TYPES = ["anemic_entity", "fat_service", "zombie_entity", "layer_violation"]
 

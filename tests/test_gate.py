@@ -6,8 +6,8 @@ import tempfile
 
 import pytest
 
-from qse.gate import GateRules, GateResult, quality_gate, _build_feedback
-from qse.generate_loop import generate_and_validate, _read_specs
+from qse.presets.ddd.gate import GateRules, GateResult, quality_gate, _build_feedback
+from qse.presets.ddd.generate_loop import generate_and_validate, _read_specs
 
 
 class TestGateRules:

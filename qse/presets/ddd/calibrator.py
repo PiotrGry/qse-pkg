@@ -9,8 +9,8 @@ import numpy as np
 from scipy.optimize import minimize
 from typing import List, Tuple
 
-from qse.metrics import SubMetrics
-from qse.aggregator import normalize_weights, DEFAULT_WEIGHTS
+from qse.presets.ddd.metrics import SubMetrics
+from qse.presets.ddd.aggregator import normalize_weights, DEFAULT_WEIGHTS
 
 
 def _objective(w_raw: np.ndarray, M: np.ndarray, y: np.ndarray) -> float:

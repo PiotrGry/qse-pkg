@@ -7,15 +7,15 @@ from typing import Dict, Set
 import networkx as nx
 
 from qse.scanner import StaticAnalysis, detect_layer_violations
-from qse.config import QSEConfig
-from qse.symbol_map import detect_zombie_v2
+from qse.presets.ddd.config import QSEConfig
+from qse.presets.ddd.symbol_map import detect_zombie_v2
 
 
 def detect_anemic(analysis: StaticAnalysis, repo_dir: str) -> Set[str]:
     """Detect anemic domain entities (only __init__, no domain methods)."""
     result = set()
     for cls in analysis.classes.values():
-        if cls.layer == "domain" and cls.n_init_only:
+        if cls.layer == "domain" and cls.n_init_only and not cls.is_exception:
             result.add(os.path.relpath(cls.file_path, repo_dir))
     return result
 
@@ -41,7 +41,7 @@ def detect_zombie(analysis: StaticAnalysis, graph: nx.DiGraph,
                   repo_dir: str) -> Set[str]:
     """Detect zombie domain entities not referenced by any service."""
     all_domain = {cls.name for cls in analysis.classes.values()
-                  if cls.layer == "domain"}
+                  if cls.layer == "domain" and not cls.is_exception}
     referenced = set()
 
     def _matches(entity_name: str, dep_string: str) -> bool:

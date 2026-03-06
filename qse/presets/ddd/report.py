@@ -6,7 +6,7 @@ from typing import Dict, Set
 
 import numpy as np
 
-from qse.metrics import SubMetrics
+from qse.presets.ddd.metrics import SubMetrics
 
 
 @dataclass
