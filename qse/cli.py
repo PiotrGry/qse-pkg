@@ -9,6 +9,7 @@ import numpy as np
 from qse.presets.ddd.config import QSEConfig
 from qse.presets.ddd.pipeline import analyze_repo
 from qse.presets.ddd.report import format_json, format_table
+from qse.trl4_gate import TRL4Rules, run_trl4_gate
 
 DEFECT_TYPES = ["anemic_entity", "fat_service", "zombie_entity", "layer_violation"]
 
@@ -54,13 +55,57 @@ def main():
     gate.add_argument("--no-trace", action="store_true")
     gate.add_argument("--config", type=str, default=None)
 
+    # ── qse trl4 ──────────────────────────────────────────────────────────────
+    trl4 = sub.add_parser("trl4", help="Run TRL4 gate (QSE + constraints + ratchet)")
+    trl4.add_argument("path", help="Path to the repository root")
+    trl4.add_argument("--config", type=str, default=None, help="JSON config path")
+    trl4.add_argument("--output-json", type=str, default=None, metavar="FILE")
+    trl4.add_argument("--threshold", type=float, default=None,
+                      help="Override QSE threshold from config/default")
+    trl4.add_argument("--min-constraint-score", type=float, default=None,
+                      help="Override minimum constraints score from config/default")
+    trl4.add_argument("--ratchet", action="store_true", help="Force enable ratchet")
+    trl4.add_argument("--no-ratchet", action="store_true", help="Force disable ratchet")
+    trl4.add_argument("--baseline-file", type=str, default=None,
+                      help="Ratchet baseline JSON file path")
+    trl4.add_argument("--no-trace", action="store_true")
+
     args = parser.parse_args()
 
-    if args.command not in ("scan", "gate"):
+    if args.command not in ("scan", "gate", "trl4"):
         parser.print_help()
         sys.exit(1)
 
     config = _build_config(args)
+    if args.command == "trl4":
+        rules = TRL4Rules.from_file(args.config) if args.config else TRL4Rules()
+        if args.threshold is not None:
+            rules.threshold = args.threshold
+        if args.min_constraint_score is not None:
+            rules.min_constraint_score = args.min_constraint_score
+        if args.ratchet:
+            rules.ratchet_enabled = True
+        if args.no_ratchet:
+            rules.ratchet_enabled = False
+        if args.baseline_file:
+            rules.ratchet_baseline_file = args.baseline_file
+
+        result = run_trl4_gate(args.path, rules=rules, qse_config=config)
+        payload = result.to_dict()
+
+        if args.output_json:
+            with open(args.output_json, "w") as f:
+                json.dump(payload, f, indent=2)
+
+        if result.passed:
+            print(f"TRL4 GATE PASS  qse4={result.qse4:.4f}  constraint_score={result.constraint_score:.4f}")
+            sys.exit(0)
+
+        print("TRL4 GATE FAIL", file=sys.stderr)
+        for failure in result.failures:
+            print(f"  - {failure}", file=sys.stderr)
+        sys.exit(1)
+
     report = analyze_repo(args.path, config)
 
     # ── scan ──────────────────────────────────────────────────────────────────

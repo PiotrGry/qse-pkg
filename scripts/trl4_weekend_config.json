@@ -1,0 +1,19 @@
+{
+  "enable_trace": false,
+  "threshold": 0.8,
+  "min_constraint_score": 0.95,
+  "constraints": [
+    {
+      "name": "no_api_to_core",
+      "from": "api/*",
+      "to": "core/*",
+      "type": "forbidden"
+    }
+  ],
+  "ratchet": {
+    "enabled": true,
+    "baseline_file": ".qse/ratchet_baseline.json",
+    "delta": 0.01,
+    "update_on_pass": true
+  }
+}

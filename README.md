@@ -46,6 +46,12 @@ qse gate path/to/repo \
   --threshold 0.80 \
   --fail-on-defects anemic_entity,zombie_entity,layer_violation \
   --output-json gate_report.json
+
+# TRL4 gate (QSE + constraints + ratchet)
+qse trl4 path/to/repo \
+  --config scripts/trl4_weekend_config.json \
+  --output-json trl4_gate_report.json \
+  --no-trace
 ```
 
 ### Scan (report only)
@@ -64,6 +70,25 @@ qse scan path/to/repo --format json --output-json report.json
 | `--output-json FILE` | — | Write JSON report to file |
 | `--no-trace` | off | Skip dynamic tracing (faster, static only) |
 | `--config FILE` | — | JSON config with weights, layer_map, thresholds |
+
+## TRL4 Weekend Pack
+
+Integrated validation suite (constraints detection, ratchet regression block, reproducibility, benchmark snapshot):
+
+```bash
+python3 scripts/trl4_weekend_validation.py \
+  --config scripts/trl4_weekend_config.json \
+  --output-json artifacts/trl4/validation.json \
+  --output-md artifacts/trl4/validation.md
+```
+
+Heavy benchmark (comparable legacy vs exp4 baseline):
+
+```bash
+python3 scripts/trl4_heavy_benchmark.py \
+  --output-json artifacts/trl4/heavy_benchmark.json \
+  --output-md artifacts/trl4/heavy_benchmark.md
+```
 
 ## GitHub Actions
 
