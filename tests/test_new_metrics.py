@@ -34,14 +34,15 @@ class TestHierarchicalModularity:
         assert compute_hierarchical_modularity(G) == 0.5
 
     def test_isolated_packages_high_score(self):
-        """Two isolated first-level packages → high modularity."""
+        """Two packages with ONLY internal edges → high isolation.
+        Uses 3-level paths so modules group under a shared second-level package."""
         G = nx.DiGraph()
-        # services.* internal edges only
-        G.add_edges_from([("services.a", "services.b"),
-                          ("services.b", "services.c")])
-        # domain.* internal edges only
-        G.add_edges_from([("domain.x", "domain.y"),
-                          ("domain.y", "domain.z")])
+        # All flask.http.* → grouped as flask.http → internal edges only
+        G.add_edges_from([("flask.http.request", "flask.http.response"),
+                          ("flask.http.response", "flask.http.utils")])
+        # All domain.order.* → grouped as domain.order → internal edges only
+        G.add_edges_from([("domain.order.model", "domain.order.service"),
+                          ("domain.order.service", "domain.order.repo")])
         m = compute_hierarchical_modularity(G)
         assert m > 0.5, f"isolated packages should score > 0.5, got {m}"
 

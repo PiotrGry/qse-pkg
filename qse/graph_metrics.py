@@ -224,19 +224,20 @@ def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
     if not nodes:
         return 1.0
 
-    # Group by first-level package (e.g. "flask.app" → "flask").
-    # First-level is the right granularity here: we measure whether flask's
-    # internal modules are tightly coupled vs well-isolated from other packages.
-    # Second-level grouping (used in stability) would leave each file as its
-    # own package for 2-level paths, giving trivially 0 within-density.
+    # Group by second-level package (e.g. "flask.app" → "flask.app",
+    # "django.db.models" → "django.db"). Each Python module or sub-package
+    # is its own unit. For single-file packages (n=1), within-density is
+    # always 0 and is excluded from the mean — only cross_ratio matters.
     packages: Dict[str, List[str]] = {}
     for node in nodes:
-        pkg = node.split(".")[0]
+        parts = node.split(".")
+        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
         packages.setdefault(pkg, []).append(node)
 
     if len(packages) < 2:
         return 0.5  # can't measure modularity with one package
 
+    # Only measure within-density for multi-member packages (sub-packages)
     within_densities = []
     cross_ratios = []
 
@@ -244,33 +245,33 @@ def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
         member_set = set(members)
         n_m = len(members)
 
-        # Internal edges (within package)
-        internal_edges = sum(
-            1 for u in members for v in G.successors(u) if v in member_set
-        )
-        max_internal = n_m * (n_m - 1)
-        within_density = internal_edges / max_internal if max_internal > 0 else 0.0
+        # Within-density: only meaningful when package has >1 member
+        if n_m > 1:
+            internal_edges = sum(
+                1 for u in members for v in G.successors(u) if v in member_set
+            )
+            max_internal = n_m * (n_m - 1)
+            within_densities.append(
+                internal_edges / max_internal if max_internal > 0 else 0.0
+            )
 
-        # Cross-package edges
+        # Cross-package ratio: meaningful for all packages
         cross_out = sum(
             1 for u in members for v in G.successors(u) if v not in member_set
         )
         total_out = sum(G.out_degree(u) for u in members)
         cross_ratio = cross_out / total_out if total_out > 0 else 0.0
-
-        within_densities.append(within_density)
         cross_ratios.append(cross_ratio)
 
-    mean_within = sum(within_densities) / len(within_densities)
+    mean_within = sum(within_densities) / len(within_densities) if within_densities else 0.5
     mean_cross = sum(cross_ratios) / len(cross_ratios)
 
-    # High within-density + low cross-ratio = good modularity
-    # Normalize: (1 - mean_cross) is the "isolation" score [0,1]
-    # Combined: geometric mean of within_density and isolation
+    # Low cross-ratio = modules are well-isolated = good modularity
+    # within_density = bonus for sub-packages with internal cohesion
     isolation = 1.0 - mean_cross
-    if mean_within == 0 and isolation == 0:
-        return 0.0
-    return (mean_within * isolation) ** 0.5  # geometric mean
+    if not within_densities:
+        return isolation  # flat project: only cross-ratio matters
+    return (mean_within * isolation) ** 0.5
 
 
 def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
@@ -290,10 +291,11 @@ def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
     if not nodes:
         return 1.0
 
-    # First-level grouping: "flask.app" → "flask", "requests.models" → "requests"
+    # Second-level grouping: "flask.app" → "flask.app", "django.db.models" → "django.db"
     packages: Dict[str, str] = {}
     for node in nodes:
-        packages[node] = node.split(".")[0]
+        parts = node.split(".")
+        packages[node] = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
 
     internal = {n for n, d in G.nodes(data=True) if d.get("file")}
     if not internal:
