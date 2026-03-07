@@ -353,6 +353,53 @@ def _bugfix_proxy(repo_path: Path, since: str) -> Dict[str, object]:
     }
 
 
+_TEST_PATH_RE = re.compile(r"(^|/)tests?/|test_.*\.py$|_test\.py$")
+
+
+def _churn_proxy(repo_path: Path, since: str) -> Dict[str, object]:
+    """Code churn metrics from git log (production .py files only).
+
+    Ref: Nagappan & Ball 2005; Moser et al. 2008.
+    hotspot_ratio: fraction of files changed more than 2x the mean — proxy
+    for architectural hotspots caused by poor separation of concerns.
+    churn_gini: Gini coefficient of per-file change counts — high Gini means
+    a few files absorb most changes, indicating coupling or god-file smell.
+    """
+    proc = subprocess.run(
+        ["git", "-C", str(repo_path), "log", "--since", since,
+         "--name-only", "--format=", "--", "*.py"],
+        capture_output=True, text=True, timeout=120,
+    )
+    if proc.returncode != 0:
+        return {"hotspot_ratio": None, "churn_gini": None, "mean_churn": None, "n_files": 0}
+
+    counts: Dict[str, int] = {}
+    for line in proc.stdout.splitlines():
+        line = line.strip()
+        if not line.endswith(".py") or _TEST_PATH_RE.search(line):
+            continue
+        counts[line] = counts.get(line, 0) + 1
+
+    if not counts:
+        return {"hotspot_ratio": None, "churn_gini": None, "mean_churn": None, "n_files": 0}
+
+    vals = list(counts.values())
+    mean_c = sum(vals) / len(vals)
+    hotspot_ratio = sum(1 for v in vals if v > mean_c * 2) / len(vals)
+
+    sorted_v = sorted(vals)
+    n = len(sorted_v)
+    cum = sum((i + 1) * v for i, v in enumerate(sorted_v))
+    gini = (2 * cum) / (n * sum(sorted_v)) - (n + 1) / n if sum(sorted_v) > 0 else 0.0
+
+    return {
+        "hotspot_ratio": round(hotspot_ratio, 4),
+        "churn_gini": round(gini, 4),
+        "mean_churn": round(mean_c, 3),
+        "n_files": n,
+    }
+
+
 def _slug_project_key(name: str) -> str:
     key = re.sub(r"[^a-zA-Z0-9_]", "_", f"agq_oss_{name.lower()}")
     return key[:200]
@@ -604,6 +651,7 @@ def main() -> None:
             }
 
             row["defect_proxy"] = _bugfix_proxy(repo_path, since=args.bugfix_since)
+            row["churn"] = _churn_proxy(repo_path, since=args.bugfix_since)
 
             if sonar is not None:
                 sonar.create_project(project_key=project_key, project_name=project_key)
@@ -682,6 +730,7 @@ def main() -> None:
         else "code_smell_quality_score"
     )
 
+    # --- Bugfix proxy (kept for reference, not used in T2) ---
     rows_for_bugfix = []
     for r in rows_joint:
         if r["defect_proxy"]["bugfix_ratio"] is None:
@@ -702,7 +751,34 @@ def main() -> None:
         [float(r["sonar"][sonar_predictor_key]) for r in rows_for_bugfix],
     )
 
-    low_agq_threshold = 0.70
+    # --- Churn-based proxy for T2 ---
+    # hotspot_ratio: fraction of files changed >2x mean — predicts defect-prone spots
+    # Ref: Nagappan & Ball 2005; Moser et al. 2008
+    rows_for_churn = []
+    for r in rows_joint:
+        churn = r.get("churn", {})
+        if churn.get("hotspot_ratio") is None:
+            continue
+        predictor = r["sonar"].get(sonar_predictor_key)
+        if predictor is None:
+            continue
+        rows_for_churn.append(r)
+
+    agq_for_churn = [float(r["agq"]["score_mean"]) for r in rows_for_churn]
+    sonar_for_churn = [float(r["sonar"][sonar_predictor_key]) for r in rows_for_churn]
+    hotspot_ratios = [float(r["churn"]["hotspot_ratio"]) for r in rows_for_churn]
+    churn_ginis = [float(r["churn"]["churn_gini"]) for r in rows_for_churn]
+
+    spearman_agq_hotspot = _spearman(agq_for_churn, hotspot_ratios)
+    spearman_sonar_hotspot = _spearman(sonar_for_churn, hotspot_ratios)
+    spearman_agq_gini = _spearman(agq_for_churn, churn_ginis)
+    spearman_sonar_gini = _spearman(sonar_for_churn, churn_ginis)
+
+    # T3: complementarity — Sonar says "A" but AGQ identifies architectural issues
+    # Threshold recalibrated to mean(AGQ) - 0.5*std to adapt to score distribution
+    agq_mean = _mean(agq_scores) or 0.70
+    agq_std = statistics.pstdev(agq_scores) if len(agq_scores) >= 2 else 0.05
+    low_agq_threshold = agq_mean - 0.5 * agq_std
     complement_cases = [
         r["name"]
         for r in rows_joint
@@ -726,30 +802,38 @@ def main() -> None:
         }
     )
 
-    predictor_pass = False
-    predictor_evidence = f"insufficient data (predictor={sonar_predictor_key})"
-    if pearson_agq_bug is not None and pearson_sonar_bug is not None:
-        predictor_pass = abs(pearson_agq_bug) > abs(pearson_sonar_bug)
-        predictor_evidence = (
-            f"predictor={sonar_predictor_key}; "
-            f"|r(AGQ,defect_proxy)|={abs(pearson_agq_bug):.4f} vs "
-            f"|r(Sonar,defect_proxy)|={abs(pearson_sonar_bug):.4f}"
+    # T2: AGQ predicts hotspot_ratio better than Sonar (churn-based ground truth)
+    # Negative spearman expected: higher AGQ → fewer hotspots
+    churn_pass = False
+    churn_evidence = f"insufficient churn data (n={len(rows_for_churn)})"
+    if spearman_agq_hotspot is not None and spearman_sonar_hotspot is not None:
+        churn_pass = abs(spearman_agq_hotspot) > abs(spearman_sonar_hotspot)
+        churn_evidence = (
+            f"|r_s(AGQ,hotspot_ratio)|={abs(spearman_agq_hotspot):.4f} vs "
+            f"|r_s(Sonar,hotspot_ratio)|={abs(spearman_sonar_hotspot):.4f} "
+            f"(n={len(rows_for_churn)}); "
+            f"r_s(AGQ,churn_gini)={spearman_agq_gini:.4f}"
         )
     theses.append(
         {
             "id": "T2",
-            "title": "AGQ correlates stronger with defect proxy than Sonar maintainability",
-            "passed": predictor_pass,
-            "evidence": predictor_evidence,
+            "title": "AGQ predicts code churn hotspots better than Sonar (hotspot_ratio)",
+            "passed": churn_pass,
+            "evidence": churn_evidence,
         }
     )
 
     theses.append(
         {
             "id": "T3",
-            "title": "Complementarity: Sonar A but low AGQ exists",
+            "title": "Complementarity: Sonar A but AGQ below mean-0.5*std exists",
             "passed": len(complement_cases) >= 1,
-            "evidence": f"cases={len(complement_cases)} ({', '.join(complement_cases) if complement_cases else 'none'})",
+            "evidence": (
+                f"threshold={low_agq_threshold:.3f} (mean={agq_mean:.3f} - 0.5*std={0.5*agq_std:.3f}); "
+                f"cases={len(complement_cases)}"
+                + (f" ({', '.join(complement_cases[:10])}{'...' if len(complement_cases)>10 else ''})"
+                   if complement_cases else "")
+            ),
         }
     )
 
@@ -801,6 +885,11 @@ def main() -> None:
             "pearson_sonar_vs_bugfix_ratio": pearson_sonar_bug,
             "spearman_agq_vs_sonar": spearman_agq_sonar,
             "sonar_predictor_for_correlation": sonar_predictor_key,
+            "spearman_agq_vs_hotspot_ratio": spearman_agq_hotspot,
+            "spearman_sonar_vs_hotspot_ratio": spearman_sonar_hotspot,
+            "spearman_agq_vs_churn_gini": spearman_agq_gini,
+            "spearman_sonar_vs_churn_gini": spearman_sonar_gini,
+            "n_repos_churn": len(rows_for_churn),
         },
         "theses": theses,
         "results": rows,

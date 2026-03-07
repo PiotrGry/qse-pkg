@@ -109,33 +109,43 @@ def compute_acyclicity(G: nx.DiGraph) -> float:
 def compute_stability(G: nx.DiGraph,
                       abstract_modules: Optional[Set[str]] = None) -> float:
     """
-    Architectural layering quality via instability variance.
+    Architectural layering quality via package-level instability variance.
 
-    Measures how well the codebase differentiates stable core modules
-    (low instability I≈0, many dependents) from unstable leaf modules
-    (high instability I≈1, many dependencies).
+    Nodes are grouped into second-level packages (e.g. "a.b.c" → "a.b"),
+    then instability I = Ce/(Ca+Ce) is computed per package using only
+    cross-package edges. Variance of I across packages is the score.
 
-    Clean layered architecture  → high I variance (core I≈0, leaves I≈1) → score≈1
-    Tangled / flat architecture → low I variance (all modules I≈0.5)     → score≈0
+    Package-level grouping prevents leaf-module inflation: a repo with
+    1000 isolated extractor files (all I=1.0) collapses to one "extractor"
+    package, correctly reflecting flat structure instead of false high variance.
+
+    Clean layered architecture  → packages have differentiated I → high score
+    Flat / plugin-heavy repo    → few packages, similar I         → low score
+    Tangled (everything→hub)    → all I≈0.5                      → low score
 
     stability = var(I) / 0.25   clamped to [0, 1]
-
-    The max possible variance for values in [0,1] is 0.25 (bimodal 0/1 split).
-
-    Replaces Martin's Distance from Main Sequence which degenerates to
-    mean(I) when abstractness data is unavailable (A=0 for all modules),
-    incorrectly rewarding flat/leaf-heavy codebases.
 
     abstract_modules: retained for API compatibility, not used.
     """
     nodes = list(G.nodes())
-    if len(nodes) <= 1:
+    if not nodes:
         return 1.0
 
-    instabilities = []
+    # Group nodes by second-level package
+    packages: Dict[str, List[str]] = {}
     for node in nodes:
-        ca = G.in_degree(node)
-        ce = G.out_degree(node)
+        parts = node.split(".")
+        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
+        packages.setdefault(pkg, []).append(node)
+
+    if len(packages) <= 1:
+        return 0.0  # single package: no layering structure to measure
+
+    instabilities = []
+    for pkg, members in packages.items():
+        member_set = set(members)
+        ca = sum(1 for m in members for p in G.predecessors(m) if p not in member_set)
+        ce = sum(1 for m in members for s in G.successors(m) if s not in member_set)
         total = ca + ce
         I = ce / total if total > 0 else 0.5
         instabilities.append(I)
