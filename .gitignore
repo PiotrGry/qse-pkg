@@ -27,3 +27,7 @@ evaluation/
 generator/
 templates/
 artifacts/
+!artifacts/
+!artifacts/benchmark/
+!artifacts/benchmark/*.json
+!artifacts/benchmark/*.md

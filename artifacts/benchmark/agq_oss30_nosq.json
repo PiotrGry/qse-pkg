@@ -1,0 +1,1385 @@
+{
+  "generated_at": "2026-03-07T11:37:16.953106+00:00",
+  "repos_target": 30,
+  "repos": [
+    {
+      "name": "httpx",
+      "url": "https://github.com/encode/httpx.git"
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git"
+    },
+    {
+      "name": "flask",
+      "url": "https://github.com/pallets/flask.git"
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git"
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git"
+    },
+    {
+      "name": "fastapi",
+      "url": "https://github.com/fastapi/fastapi.git"
+    },
+    {
+      "name": "rich",
+      "url": "https://github.com/Textualize/rich.git"
+    },
+    {
+      "name": "pytest",
+      "url": "https://github.com/pytest-dev/pytest.git"
+    },
+    {
+      "name": "sanic",
+      "url": "https://github.com/sanic-org/sanic.git"
+    },
+    {
+      "name": "scrapy",
+      "url": "https://github.com/scrapy/scrapy.git"
+    },
+    {
+      "name": "urllib3",
+      "url": "https://github.com/urllib3/urllib3.git"
+    },
+    {
+      "name": "aiohttp",
+      "url": "https://github.com/aio-libs/aiohttp.git"
+    },
+    {
+      "name": "django",
+      "url": "https://github.com/django/django.git"
+    },
+    {
+      "name": "starlette",
+      "url": "https://github.com/encode/starlette.git"
+    },
+    {
+      "name": "celery",
+      "url": "https://github.com/celery/celery.git"
+    },
+    {
+      "name": "tornado",
+      "url": "https://github.com/tornadoweb/tornado.git"
+    },
+    {
+      "name": "typer",
+      "url": "https://github.com/fastapi/typer.git"
+    },
+    {
+      "name": "arrow",
+      "url": "https://github.com/arrow-py/arrow.git"
+    },
+    {
+      "name": "pendulum",
+      "url": "https://github.com/sdispater/pendulum.git"
+    },
+    {
+      "name": "httpcore",
+      "url": "https://github.com/encode/httpcore.git"
+    },
+    {
+      "name": "attrs",
+      "url": "https://github.com/python-attrs/attrs.git"
+    },
+    {
+      "name": "marshmallow",
+      "url": "https://github.com/marshmallow-code/marshmallow.git"
+    },
+    {
+      "name": "ansible",
+      "url": "https://github.com/ansible/ansible.git"
+    },
+    {
+      "name": "salt",
+      "url": "https://github.com/saltstack/salt.git"
+    },
+    {
+      "name": "home-assistant",
+      "url": "https://github.com/home-assistant/core.git"
+    },
+    {
+      "name": "airflow",
+      "url": "https://github.com/apache/airflow.git"
+    },
+    {
+      "name": "thefuck",
+      "url": "https://github.com/nvbn/thefuck.git"
+    },
+    {
+      "name": "you-get",
+      "url": "https://github.com/soimort/you-get.git"
+    },
+    {
+      "name": "youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git"
+    },
+    {
+      "name": "glances",
+      "url": "https://github.com/nicolargo/glances.git"
+    }
+  ],
+  "config": {
+    "repos_dir": "/tmp/agq_oss_30",
+    "repos_file": "scripts/repos_oss30_benchmark.json",
+    "clone_depth": 400,
+    "bugfix_since": "2 years ago",
+    "sonar_url": null,
+    "scanner_image": null,
+    "sonar_enabled": false
+  },
+  "summary": {
+    "repos_with_agq": 30,
+    "repos_with_sonar": 0,
+    "repos_joint": 0,
+    "failed_repos": 0,
+    "agq_mean": 0.6566771843357477,
+    "agq_median_runtime_s": 0.16579196524980944,
+    "sonar_median_runtime_s": null,
+    "runtime_ratio_sonar_over_agq": null
+  },
+  "correlations": {
+    "pearson_agq_vs_bugfix_ratio": null,
+    "pearson_sonar_vs_bugfix_ratio": null,
+    "spearman_agq_vs_sonar": null,
+    "sonar_predictor_for_correlation": "code_smell_quality_score"
+  },
+  "theses": [
+    {
+      "id": "T1",
+      "title": "AGQ deterministic over repeated runs",
+      "passed": true,
+      "evidence": "max_score_delta=0.0000000000 (target <= 1e-9)"
+    },
+    {
+      "id": "T2",
+      "title": "AGQ correlates stronger with defect proxy than Sonar maintainability",
+      "passed": false,
+      "evidence": "insufficient data (predictor=code_smell_quality_score)"
+    },
+    {
+      "id": "T3",
+      "title": "Complementarity: Sonar A but low AGQ exists",
+      "passed": false,
+      "evidence": "cases=0 (none)"
+    },
+    {
+      "id": "T4",
+      "title": "AGQ median runtime is lower than SonarQube median runtime",
+      "passed": false,
+      "evidence": "median_agq_s=0.166 vs median_sonar_s=n/a"
+    },
+    {
+      "id": "T5",
+      "title": "AGQ discriminates quality across heterogeneous repos",
+      "passed": true,
+      "evidence": "spread=0.2840, stddev=0.0560"
+    }
+  ],
+  "results": [
+    {
+      "name": "httpx",
+      "url": "https://github.com/encode/httpx.git",
+      "path": "/tmp/agq_oss_30/httpx",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/httpx/httpx",
+          "runtime_s": 0.11482905500452034,
+          "nodes": 76,
+          "edges": 192,
+          "nodes_in_cycles": 11,
+          "modularity": 0.5418799508135778,
+          "acyclicity": 0.8552631578947368,
+          "stability": 0.20296821535018117,
+          "cohesion": 0.8390804597701149,
+          "agq_score": 0.6097979459571526
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/httpx/httpx",
+          "runtime_s": 0.1004197840084089,
+          "nodes": 76,
+          "edges": 192,
+          "nodes_in_cycles": 11,
+          "modularity": 0.5418799508135778,
+          "acyclicity": 0.8552631578947368,
+          "stability": 0.20296821535018117,
+          "cohesion": 0.8390804597701149,
+          "agq_score": 0.6097979459571526
+        },
+        "score_mean": 0.6097979459571526,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.10762441950646462
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 84,
+        "bugfix_commits": 8,
+        "bugfix_ratio": 0.09523809523809523
+      }
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git",
+      "path": "/tmp/agq_oss_30/requests",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/requests/src/requests",
+          "runtime_s": 0.05208325599960517,
+          "nodes": 67,
+          "edges": 121,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6027821414748538,
+          "acyclicity": 1.0,
+          "stability": 0.1589001648506294,
+          "cohesion": 0.7897727272727273,
+          "agq_score": 0.6378637583995526
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/requests/src/requests",
+          "runtime_s": 0.03920541600382421,
+          "nodes": 67,
+          "edges": 121,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6027821414748538,
+          "acyclicity": 1.0,
+          "stability": 0.1589001648506294,
+          "cohesion": 0.7897727272727273,
+          "agq_score": 0.6378637583995526
+        },
+        "score_mean": 0.6378637583995526,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.04564433600171469
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 148,
+        "bugfix_commits": 16,
+        "bugfix_ratio": 0.10810810810810811
+      }
+    },
+    {
+      "name": "flask",
+      "url": "https://github.com/pallets/flask.git",
+      "path": "/tmp/agq_oss_30/flask",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/flask/src/flask",
+          "runtime_s": 0.07282695900357794,
+          "nodes": 83,
+          "edges": 250,
+          "nodes_in_cycles": 17,
+          "modularity": 0.5417353251848498,
+          "acyclicity": 0.7951807228915663,
+          "stability": 0.2015031221643272,
+          "cohesion": 0.6923076923076923,
+          "agq_score": 0.557681715637109
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/flask/src/flask",
+          "runtime_s": 0.06598152700462379,
+          "nodes": 83,
+          "edges": 250,
+          "nodes_in_cycles": 17,
+          "modularity": 0.5417353251848498,
+          "acyclicity": 0.7951807228915663,
+          "stability": 0.2015031221643272,
+          "cohesion": 0.6923076923076923,
+          "agq_score": 0.557681715637109
+        },
+        "score_mean": 0.557681715637109,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.06940424300410086
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 272,
+        "bugfix_commits": 33,
+        "bugfix_ratio": 0.1213235294117647
+      }
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git",
+      "path": "/tmp/agq_oss_30/click",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/click/src/click",
+          "runtime_s": 0.16548497100302484,
+          "nodes": 64,
+          "edges": 197,
+          "nodes_in_cycles": 13,
+          "modularity": 0.5100422278780253,
+          "acyclicity": 0.796875,
+          "stability": 0.19554989256600708,
+          "cohesion": 0.7847222222222222,
+          "agq_score": 0.5717973356665637
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/click/src/click",
+          "runtime_s": 0.15401016900432296,
+          "nodes": 64,
+          "edges": 197,
+          "nodes_in_cycles": 13,
+          "modularity": 0.5100422278780253,
+          "acyclicity": 0.796875,
+          "stability": 0.19554989256600708,
+          "cohesion": 0.7847222222222222,
+          "agq_score": 0.5717973356665637
+        },
+        "score_mean": 0.5717973356665637,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.1597475700036739
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 545,
+        "bugfix_commits": 92,
+        "bugfix_ratio": 0.1688073394495413
+      }
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git",
+      "path": "/tmp/agq_oss_30/pydantic",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/pydantic/pydantic",
+          "runtime_s": 0.6801703919918509,
+          "nodes": 228,
+          "edges": 1051,
+          "nodes_in_cycles": 26,
+          "modularity": 0.5683536047748566,
+          "acyclicity": 0.8859649122807017,
+          "stability": 0.3907834441871829,
+          "cohesion": 0.8740053050397878,
+          "agq_score": 0.6797768165706323
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/pydantic/pydantic",
+          "runtime_s": 0.6681564730097307,
+          "nodes": 228,
+          "edges": 1051,
+          "nodes_in_cycles": 26,
+          "modularity": 0.5683536047748566,
+          "acyclicity": 0.8859649122807017,
+          "stability": 0.3907834441871829,
+          "cohesion": 0.8740053050397878,
+          "agq_score": 0.6797768165706323
+        },
+        "score_mean": 0.6797768165706323,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.6741634325007908
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 631,
+        "bugfix_commits": 116,
+        "bugfix_ratio": 0.1838351822503962
+      }
+    },
+    {
+      "name": "fastapi",
+      "url": "https://github.com/fastapi/fastapi.git",
+      "path": "/tmp/agq_oss_30/fastapi",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/fastapi/fastapi",
+          "runtime_s": 0.14626743999542668,
+          "nodes": 147,
+          "edges": 313,
+          "nodes_in_cycles": 0,
+          "modularity": 0.606823909708525,
+          "acyclicity": 1.0,
+          "stability": 0.30718158475511415,
+          "cohesion": 0.9202127659574468,
+          "agq_score": 0.7085545651052714
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/fastapi/fastapi",
+          "runtime_s": 0.1412271520093782,
+          "nodes": 147,
+          "edges": 313,
+          "nodes_in_cycles": 0,
+          "modularity": 0.606823909708525,
+          "acyclicity": 1.0,
+          "stability": 0.30718158475511415,
+          "cohesion": 0.9202127659574468,
+          "agq_score": 0.7085545651052714
+        },
+        "score_mean": 0.7085545651052714,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.14374729600240244
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 23,
+        "bugfix_ratio": 0.0575
+      }
+    },
+    {
+      "name": "rich",
+      "url": "https://github.com/Textualize/rich.git",
+      "path": "/tmp/agq_oss_30/rich",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/rich/rich",
+          "runtime_s": 0.3696021910000127,
+          "nodes": 180,
+          "edges": 672,
+          "nodes_in_cycles": 39,
+          "modularity": 0.542327327906588,
+          "acyclicity": 0.7833333333333333,
+          "stability": 0.38847282317094056,
+          "cohesion": 0.8370786516853932,
+          "agq_score": 0.6378030340240638
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/rich/rich",
+          "runtime_s": 0.36576835000596475,
+          "nodes": 180,
+          "edges": 672,
+          "nodes_in_cycles": 39,
+          "modularity": 0.542327327906588,
+          "acyclicity": 0.7833333333333333,
+          "stability": 0.38847282317094056,
+          "cohesion": 0.8370786516853932,
+          "agq_score": 0.6378030340240638
+        },
+        "score_mean": 0.6378030340240638,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.3676852705029887
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 487,
+        "bugfix_commits": 96,
+        "bugfix_ratio": 0.1971252566735113
+      }
+    },
+    {
+      "name": "pytest",
+      "url": "https://github.com/pytest-dev/pytest.git",
+      "path": "/tmp/agq_oss_30/pytest",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/pytest/src/pytest",
+          "runtime_s": 0.0004140410019317642,
+          "nodes": 3,
+          "edges": 2,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.33333333333333337,
+          "cohesion": 1.0,
+          "agq_score": 0.6666666666666666
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/pytest/src/pytest",
+          "runtime_s": 0.0002467340091243386,
+          "nodes": 3,
+          "edges": 2,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.33333333333333337,
+          "cohesion": 1.0,
+          "agq_score": 0.6666666666666666
+        },
+        "score_mean": 0.6666666666666666,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.0003303875055280514
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 1188,
+        "bugfix_commits": 169,
+        "bugfix_ratio": 0.14225589225589225
+      }
+    },
+    {
+      "name": "sanic",
+      "url": "https://github.com/sanic-org/sanic.git",
+      "path": "/tmp/agq_oss_30/sanic",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/sanic/sanic",
+          "runtime_s": 0.20690179600205738,
+          "nodes": 333,
+          "edges": 976,
+          "nodes_in_cycles": 0,
+          "modularity": 0.593145323837678,
+          "acyclicity": 1.0,
+          "stability": 0.36813377316809803,
+          "cohesion": 0.78375,
+          "agq_score": 0.686257274251444
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/sanic/sanic",
+          "runtime_s": 0.2072775299893692,
+          "nodes": 333,
+          "edges": 976,
+          "nodes_in_cycles": 0,
+          "modularity": 0.593145323837678,
+          "acyclicity": 1.0,
+          "stability": 0.36813377316809803,
+          "cohesion": 0.78375,
+          "agq_score": 0.686257274251444
+        },
+        "score_mean": 0.686257274251444,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.2070896629957133
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 89,
+        "bugfix_commits": 17,
+        "bugfix_ratio": 0.19101123595505617
+      }
+    },
+    {
+      "name": "scrapy",
+      "url": "https://github.com/scrapy/scrapy.git",
+      "path": "/tmp/agq_oss_30/scrapy",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/scrapy/scrapy",
+          "runtime_s": 0.27786415998707525,
+          "nodes": 427,
+          "edges": 1810,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5463537946542129,
+          "acyclicity": 1.0,
+          "stability": 0.3741976414390208,
+          "cohesion": 0.7300380228136882,
+          "agq_score": 0.6626473647267305
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/scrapy/scrapy",
+          "runtime_s": 0.27648631899501197,
+          "nodes": 427,
+          "edges": 1810,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5463537946542129,
+          "acyclicity": 1.0,
+          "stability": 0.3741976414390208,
+          "cohesion": 0.7300380228136882,
+          "agq_score": 0.6626473647267305
+        },
+        "score_mean": 0.6626473647267305,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.2771752394910436
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 625,
+        "bugfix_commits": 65,
+        "bugfix_ratio": 0.104
+      }
+    },
+    {
+      "name": "urllib3",
+      "url": "https://github.com/urllib3/urllib3.git",
+      "path": "/tmp/agq_oss_30/urllib3",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/urllib3/src/urllib3",
+          "runtime_s": 0.1274375890061492,
+          "nodes": 97,
+          "edges": 305,
+          "nodes_in_cycles": 15,
+          "modularity": 0.533620607105238,
+          "acyclicity": 0.845360824742268,
+          "stability": 0.22263770523335513,
+          "cohesion": 0.8173076923076923,
+          "agq_score": 0.6047317073471383
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/urllib3/src/urllib3",
+          "runtime_s": 0.12233693299640436,
+          "nodes": 97,
+          "edges": 305,
+          "nodes_in_cycles": 15,
+          "modularity": 0.533620607105238,
+          "acyclicity": 0.845360824742268,
+          "stability": 0.22263770523335513,
+          "cohesion": 0.8173076923076923,
+          "agq_score": 0.6047317073471383
+        },
+        "score_mean": 0.6047317073471383,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.12488726100127678
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 217,
+        "bugfix_commits": 30,
+        "bugfix_ratio": 0.1382488479262673
+      }
+    },
+    {
+      "name": "aiohttp",
+      "url": "https://github.com/aio-libs/aiohttp.git",
+      "path": "/tmp/agq_oss_30/aiohttp",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/aiohttp/aiohttp",
+          "runtime_s": 0.4333310500078369,
+          "nodes": 140,
+          "edges": 688,
+          "nodes_in_cycles": 40,
+          "modularity": 0.5029843320709884,
+          "acyclicity": 0.7142857142857143,
+          "stability": 0.23072386262482147,
+          "cohesion": 0.8550156739811912,
+          "agq_score": 0.5757523957406788
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/aiohttp/aiohttp",
+          "runtime_s": 0.4249623289942974,
+          "nodes": 140,
+          "edges": 688,
+          "nodes_in_cycles": 40,
+          "modularity": 0.5029843320709884,
+          "acyclicity": 0.7142857142857143,
+          "stability": 0.23072386262482147,
+          "cohesion": 0.8550156739811912,
+          "agq_score": 0.5757523957406788
+        },
+        "score_mean": 0.5757523957406788,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.42914668950106716
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 1566,
+        "bugfix_commits": 214,
+        "bugfix_ratio": 0.13665389527458494
+      }
+    },
+    {
+      "name": "django",
+      "url": "https://github.com/django/django.git",
+      "path": "/tmp/agq_oss_30/django",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/django/django",
+          "runtime_s": 2.3444757529941853,
+          "nodes": 1313,
+          "edges": 3932,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6431345634346107,
+          "acyclicity": 1.0,
+          "stability": 0.3847150259067357,
+          "cohesion": 0.8171902268760908,
+          "agq_score": 0.7112599540543594
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/django/django",
+          "runtime_s": 2.3646381470025517,
+          "nodes": 1313,
+          "edges": 3932,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6431345634346107,
+          "acyclicity": 1.0,
+          "stability": 0.3847150259067357,
+          "cohesion": 0.8171902268760908,
+          "agq_score": 0.7112599540543594
+        },
+        "score_mean": 0.7112599540543594,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.3545569499983685
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 1,
+        "bugfix_ratio": 0.0025
+      }
+    },
+    {
+      "name": "starlette",
+      "url": "https://github.com/encode/starlette.git",
+      "path": "/tmp/agq_oss_30/starlette",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/starlette/starlette",
+          "runtime_s": 0.12685695799882524,
+          "nodes": 104,
+          "edges": 302,
+          "nodes_in_cycles": 0,
+          "modularity": 0.541672148882359,
+          "acyclicity": 1.0,
+          "stability": 0.3044554455445545,
+          "cohesion": 0.8014705882352942,
+          "agq_score": 0.6618995456655519
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/starlette/starlette",
+          "runtime_s": 0.125297344988212,
+          "nodes": 104,
+          "edges": 302,
+          "nodes_in_cycles": 0,
+          "modularity": 0.541672148882359,
+          "acyclicity": 1.0,
+          "stability": 0.3044554455445545,
+          "cohesion": 0.8014705882352942,
+          "agq_score": 0.6618995456655519
+        },
+        "score_mean": 0.6618995456655519,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.1260771514935186
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 258,
+        "bugfix_commits": 23,
+        "bugfix_ratio": 0.08914728682170543
+      }
+    },
+    {
+      "name": "celery",
+      "url": "https://github.com/celery/celery.git",
+      "path": "/tmp/agq_oss_30/celery",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/celery/celery",
+          "runtime_s": 0.44048938500054646,
+          "nodes": 459,
+          "edges": 1331,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6023015860024014,
+          "acyclicity": 1.0,
+          "stability": 0.33245072366325756,
+          "cohesion": 0.6537037037037037,
+          "agq_score": 0.6471140033423406
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/celery/celery",
+          "runtime_s": 0.43628408599761315,
+          "nodes": 459,
+          "edges": 1331,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6023015860024014,
+          "acyclicity": 1.0,
+          "stability": 0.33245072366325756,
+          "cohesion": 0.6537037037037037,
+          "agq_score": 0.6471140033423406
+        },
+        "score_mean": 0.6471140033423406,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.4383867354990798
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 70,
+        "bugfix_ratio": 0.175
+      }
+    },
+    {
+      "name": "tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "path": "/tmp/agq_oss_30/tornado",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/tornado/tornado",
+          "runtime_s": 1.7650016800034791,
+          "nodes": 199,
+          "edges": 893,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5198710343394531,
+          "acyclicity": 1.0,
+          "stability": 0.3451640759930916,
+          "cohesion": 0.8300653594771241,
+          "agq_score": 0.6737751174524172
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/tornado/tornado",
+          "runtime_s": 1.8028340430028038,
+          "nodes": 199,
+          "edges": 893,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5198710343394531,
+          "acyclicity": 1.0,
+          "stability": 0.3451640759930916,
+          "cohesion": 0.8300653594771241,
+          "agq_score": 0.6737751174524172
+        },
+        "score_mean": 0.6737751174524172,
+        "score_delta": 0.0,
+        "runtime_s_mean": 1.7839178615031415
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 275,
+        "bugfix_commits": 30,
+        "bugfix_ratio": 0.10909090909090909
+      }
+    },
+    {
+      "name": "typer",
+      "url": "https://github.com/fastapi/typer.git",
+      "path": "/tmp/agq_oss_30/typer",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/typer/typer",
+          "runtime_s": 0.0635706520115491,
+          "nodes": 69,
+          "edges": 136,
+          "nodes_in_cycles": 6,
+          "modularity": 0.5871970736168267,
+          "acyclicity": 0.9130434782608696,
+          "stability": 0.18011122113201516,
+          "cohesion": 0.8402777777777778,
+          "agq_score": 0.6301573876968722
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/typer/typer",
+          "runtime_s": 0.05738316300266888,
+          "nodes": 69,
+          "edges": 136,
+          "nodes_in_cycles": 6,
+          "modularity": 0.5871970736168267,
+          "acyclicity": 0.9130434782608696,
+          "stability": 0.18011122113201516,
+          "cohesion": 0.8402777777777778,
+          "agq_score": 0.6301573876968722
+        },
+        "score_mean": 0.6301573876968722,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.06047690750710899
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 13,
+        "bugfix_ratio": 0.0325
+      }
+    },
+    {
+      "name": "arrow",
+      "url": "https://github.com/arrow-py/arrow.git",
+      "path": "/tmp/agq_oss_30/arrow",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/arrow/arrow",
+          "runtime_s": 0.46488556399708614,
+          "nodes": 28,
+          "edges": 50,
+          "nodes_in_cycles": 0,
+          "modularity": 0.52089407191448,
+          "acyclicity": 1.0,
+          "stability": 0.29591836734693877,
+          "cohesion": 0.9381720430107527,
+          "agq_score": 0.6887461205680429
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/arrow/arrow",
+          "runtime_s": 0.45689368499733973,
+          "nodes": 28,
+          "edges": 50,
+          "nodes_in_cycles": 0,
+          "modularity": 0.52089407191448,
+          "acyclicity": 1.0,
+          "stability": 0.29591836734693877,
+          "cohesion": 0.9381720430107527,
+          "agq_score": 0.6887461205680429
+        },
+        "score_mean": 0.6887461205680429,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.46088962449721294
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 46,
+        "bugfix_commits": 10,
+        "bugfix_ratio": 0.21739130434782608
+      }
+    },
+    {
+      "name": "pendulum",
+      "url": "https://github.com/sdispater/pendulum.git",
+      "path": "/tmp/agq_oss_30/pendulum",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/pendulum/src/pendulum",
+          "runtime_s": 0.08049405200290494,
+          "nodes": 156,
+          "edges": 244,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6487436987360781,
+          "acyclicity": 1.0,
+          "stability": 0.5275807722616234,
+          "cohesion": 0.5113636363636364,
+          "agq_score": 0.6719220268403344
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/pendulum/src/pendulum",
+          "runtime_s": 0.07064276099845301,
+          "nodes": 156,
+          "edges": 244,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6487436987360781,
+          "acyclicity": 1.0,
+          "stability": 0.5275807722616234,
+          "cohesion": 0.5113636363636364,
+          "agq_score": 0.6719220268403344
+        },
+        "score_mean": 0.6719220268403344,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.07556840650067898
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 67,
+        "bugfix_commits": 21,
+        "bugfix_ratio": 0.31343283582089554
+      }
+    },
+    {
+      "name": "httpcore",
+      "url": "https://github.com/encode/httpcore.git",
+      "path": "/tmp/agq_oss_30/httpcore",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/httpcore/httpcore",
+          "runtime_s": 0.09241848700912669,
+          "nodes": 63,
+          "edges": 260,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5211341222879685,
+          "acyclicity": 1.0,
+          "stability": 0.34261944543899425,
+          "cohesion": 0.7974683544303798,
+          "agq_score": 0.6653054805393357
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/httpcore/httpcore",
+          "runtime_s": 0.07955475799099077,
+          "nodes": 63,
+          "edges": 260,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5211341222879685,
+          "acyclicity": 1.0,
+          "stability": 0.34261944543899425,
+          "cohesion": 0.7974683544303798,
+          "agq_score": 0.6653054805393357
+        },
+        "score_mean": 0.6653054805393357,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.08598662250005873
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 36,
+        "bugfix_commits": 5,
+        "bugfix_ratio": 0.1388888888888889
+      }
+    },
+    {
+      "name": "attrs",
+      "url": "https://github.com/python-attrs/attrs.git",
+      "path": "/tmp/agq_oss_30/attrs",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/attrs/src/attrs",
+          "runtime_s": 0.0010027249954873696,
+          "nodes": 10,
+          "edges": 5,
+          "nodes_in_cycles": 0,
+          "modularity": 0.8666666666666667,
+          "acyclicity": 1.0,
+          "stability": 0.5,
+          "cohesion": 1.0,
+          "agq_score": 0.8416666666666667
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/attrs/src/attrs",
+          "runtime_s": 0.0009028240019688383,
+          "nodes": 10,
+          "edges": 5,
+          "nodes_in_cycles": 0,
+          "modularity": 0.8666666666666667,
+          "acyclicity": 1.0,
+          "stability": 0.5,
+          "cohesion": 1.0,
+          "agq_score": 0.8416666666666667
+        },
+        "score_mean": 0.8416666666666667,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.0009527744987281039
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 318,
+        "bugfix_commits": 36,
+        "bugfix_ratio": 0.11320754716981132
+      }
+    },
+    {
+      "name": "marshmallow",
+      "url": "https://github.com/marshmallow-code/marshmallow.git",
+      "path": "/tmp/agq_oss_30/marshmallow",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/marshmallow/src/marshmallow",
+          "runtime_s": 0.14707413098949473,
+          "nodes": 46,
+          "edges": 77,
+          "nodes_in_cycles": 0,
+          "modularity": 0.591330747174903,
+          "acyclicity": 1.0,
+          "stability": 0.1811594202898551,
+          "cohesion": 0.8515625,
+          "agq_score": 0.6560131668661895
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/marshmallow/src/marshmallow",
+          "runtime_s": 0.13327525500790216,
+          "nodes": 46,
+          "edges": 77,
+          "nodes_in_cycles": 0,
+          "modularity": 0.591330747174903,
+          "acyclicity": 1.0,
+          "stability": 0.1811594202898551,
+          "cohesion": 0.8515625,
+          "agq_score": 0.6560131668661895
+        },
+        "score_mean": 0.6560131668661895,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.14017469299869845
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 377,
+        "bugfix_commits": 43,
+        "bugfix_ratio": 0.11405835543766578
+      }
+    },
+    {
+      "name": "ansible",
+      "url": "https://github.com/ansible/ansible.git",
+      "path": "/tmp/agq_oss_30/ansible",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/ansible",
+          "runtime_s": 2.2603857470094226,
+          "nodes": 2312,
+          "edges": 8227,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6088733001298834,
+          "acyclicity": 1.0,
+          "stability": 0.0395791984695405,
+          "cohesion": 0.8050493545937737,
+          "agq_score": 0.6133754632982994
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/ansible",
+          "runtime_s": 2.3107720830012113,
+          "nodes": 2312,
+          "edges": 8227,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6088733001298834,
+          "acyclicity": 1.0,
+          "stability": 0.0395791984695405,
+          "cohesion": 0.8050493545937737,
+          "agq_score": 0.6133754632982994
+        },
+        "score_mean": 0.6133754632982994,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.285578915005317
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 93,
+        "bugfix_ratio": 0.2325
+      }
+    },
+    {
+      "name": "salt",
+      "url": "https://github.com/saltstack/salt.git",
+      "path": "/tmp/agq_oss_30/salt",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/salt/salt",
+          "runtime_s": 2.6563920059998054,
+          "nodes": 1540,
+          "edges": 6055,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5666537244721804,
+          "acyclicity": 1.0,
+          "stability": 0.6249814250687272,
+          "cohesion": 0.8172043010752688,
+          "agq_score": 0.7522098626540441
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/salt/salt",
+          "runtime_s": 2.7545834129996365,
+          "nodes": 1540,
+          "edges": 6055,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5666537244721804,
+          "acyclicity": 1.0,
+          "stability": 0.6249814250687272,
+          "cohesion": 0.8172043010752688,
+          "agq_score": 0.7522098626540441
+        },
+        "score_mean": 0.7522098626540441,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.705487709499721
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 2934,
+        "bugfix_commits": 706,
+        "bugfix_ratio": 0.24062713019768234
+      }
+    },
+    {
+      "name": "home-assistant",
+      "url": "https://github.com/home-assistant/core.git",
+      "path": "/tmp/agq_oss_30/home-assistant",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/home-assistant",
+          "runtime_s": 20.152359450003132,
+          "nodes": 17669,
+          "edges": 113843,
+          "nodes_in_cycles": 2,
+          "modularity": 0.5500041257044257,
+          "acyclicity": 0.9998868074027959,
+          "stability": 0.01959185704236799,
+          "cohesion": 0.8997930508659188,
+          "agq_score": 0.6173189602538771
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/home-assistant",
+          "runtime_s": 20.10050663400034,
+          "nodes": 17669,
+          "edges": 113843,
+          "nodes_in_cycles": 2,
+          "modularity": 0.5500041257044257,
+          "acyclicity": 0.9998868074027959,
+          "stability": 0.01959185704236799,
+          "cohesion": 0.8997930508659188,
+          "agq_score": 0.6173189602538771
+        },
+        "score_mean": 0.6173189602538771,
+        "score_delta": 0.0,
+        "runtime_s_mean": 20.126433042001736
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 44,
+        "bugfix_ratio": 0.11
+      }
+    },
+    {
+      "name": "airflow",
+      "url": "https://github.com/apache/airflow.git",
+      "path": "/tmp/agq_oss_30/airflow",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/airflow",
+          "runtime_s": 14.231456495996099,
+          "nodes": 8023,
+          "edges": 41784,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6243033013634409,
+          "acyclicity": 1.0,
+          "stability": 0.1258521413222754,
+          "cohesion": 0.7342033946655255,
+          "agq_score": 0.6210897093378105
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/airflow",
+          "runtime_s": 14.070553093988565,
+          "nodes": 8023,
+          "edges": 41784,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6243033013634409,
+          "acyclicity": 1.0,
+          "stability": 0.1258521413222754,
+          "cohesion": 0.7342033946655255,
+          "agq_score": 0.6210897093378105
+        },
+        "score_mean": 0.6210897093378105,
+        "score_delta": 0.0,
+        "runtime_s_mean": 14.151004794992332
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 96,
+        "bugfix_ratio": 0.24
+      }
+    },
+    {
+      "name": "thefuck",
+      "url": "https://github.com/nvbn/thefuck.git",
+      "path": "/tmp/agq_oss_30/thefuck",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/thefuck/thefuck",
+          "runtime_s": 0.05364368000300601,
+          "nodes": 281,
+          "edges": 547,
+          "nodes_in_cycles": 2,
+          "modularity": 0.6630226712644295,
+          "acyclicity": 0.9928825622775801,
+          "stability": 0.7069486885663356,
+          "cohesion": 0.5147058823529411,
+          "agq_score": 0.7193899511153216
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/thefuck/thefuck",
+          "runtime_s": 0.04306853598973248,
+          "nodes": 281,
+          "edges": 547,
+          "nodes_in_cycles": 2,
+          "modularity": 0.6630226712644295,
+          "acyclicity": 0.9928825622775801,
+          "stability": 0.7069486885663356,
+          "cohesion": 0.5147058823529411,
+          "agq_score": 0.7193899511153216
+        },
+        "score_mean": 0.7193899511153216,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.048356107996369246
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      }
+    },
+    {
+      "name": "you-get",
+      "url": "https://github.com/soimort/you-get.git",
+      "path": "/tmp/agq_oss_30/you-get",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/you-get/src",
+          "runtime_s": 0.1896182950004004,
+          "nodes": 214,
+          "edges": 426,
+          "nodes_in_cycles": 0,
+          "modularity": 0.635781039917124,
+          "acyclicity": 1.0,
+          "stability": 0.08163265306122447,
+          "cohesion": 0.7055555555555555,
+          "agq_score": 0.605742312133476
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/you-get/src",
+          "runtime_s": 0.15405442599148955,
+          "nodes": 214,
+          "edges": 426,
+          "nodes_in_cycles": 0,
+          "modularity": 0.635781039917124,
+          "acyclicity": 1.0,
+          "stability": 0.08163265306122447,
+          "cohesion": 0.7055555555555555,
+          "agq_score": 0.605742312133476
+        },
+        "score_mean": 0.605742312133476,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.17183636049594497
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 76,
+        "bugfix_commits": 22,
+        "bugfix_ratio": 0.2894736842105263
+      }
+    },
+    {
+      "name": "youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "path": "/tmp/agq_oss_30/youtube-dl",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/youtube-dl",
+          "runtime_s": 2.0641600960079813,
+          "nodes": 1836,
+          "edges": 5109,
+          "nodes_in_cycles": 0,
+          "modularity": 0.61304617599526,
+          "acyclicity": 1.0,
+          "stability": 0.06384182382371917,
+          "cohesion": 0.8980538922155689,
+          "agq_score": 0.643735473008637
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/youtube-dl",
+          "runtime_s": 2.1295525189925684,
+          "nodes": 1836,
+          "edges": 5109,
+          "nodes_in_cycles": 0,
+          "modularity": 0.61304617599526,
+          "acyclicity": 1.0,
+          "stability": 0.06384182382371917,
+          "cohesion": 0.8980538922155689,
+          "agq_score": 0.643735473008637
+        },
+        "score_mean": 0.643735473008637,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.096856307500275
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 171,
+        "bugfix_commits": 39,
+        "bugfix_ratio": 0.22807017543859648
+      }
+    },
+    {
+      "name": "glances",
+      "url": "https://github.com/nicolargo/glances.git",
+      "path": "/tmp/agq_oss_30/glances",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/glances/glances",
+          "runtime_s": 0.15253732599376235,
+          "nodes": 205,
+          "edges": 423,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6483148809490543,
+          "acyclicity": 1.0,
+          "stability": 0.364406779661017,
+          "cohesion": 0.7083333333333333,
+          "agq_score": 0.6802637484858511
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/glances/glances",
+          "runtime_s": 0.15065254099317826,
+          "nodes": 205,
+          "edges": 423,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6483148809490543,
+          "acyclicity": 1.0,
+          "stability": 0.364406779661017,
+          "cohesion": 0.7083333333333333,
+          "agq_score": 0.6802637484858511
+        },
+        "score_mean": 0.6802637484858511,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.1515949334934703
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 1532,
+        "bugfix_commits": 154,
+        "bugfix_ratio": 0.10052219321148825
+      }
+    }
+  ]
+}

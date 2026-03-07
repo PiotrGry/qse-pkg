@@ -1,0 +1,667 @@
+{
+  "generated_at": "2026-03-07T11:58:02.624176+00:00",
+  "source_report": "artifacts/benchmark/agq_oss30_full.json",
+  "summary": {
+    "repos_used": 29,
+    "key_findings": [
+      "code_smells vs bugs: pearson=0.5452, spearman=0.6647 (n=29)",
+      "agq_score: strongest pearson with bugs_per_kloc = 0.3575 (weak)",
+      "modularity: strongest pearson with bugs_per_kloc = 0.4335 (moderate)",
+      "acyclicity: strongest pearson with sonar_runtime_s = 0.1920 (very_weak)",
+      "stability: strongest pearson with bugs_per_kloc = 0.3783 (weak)",
+      "cohesion: strongest pearson with complexity_per_kloc = -0.4497 (moderate)"
+    ]
+  },
+  "sonar_vs_sonar": [
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "n": 29,
+      "pearson": 0.5452218508003244,
+      "pearson_p": 0.002223228262747986,
+      "spearman": 0.6646951354119709,
+      "spearman_p": 8.390130704170153e-05
+    },
+    {
+      "x": "code_smells",
+      "y": "vulnerabilities",
+      "n": 29,
+      "pearson": 0.2437721809866893,
+      "pearson_p": 0.20254403924983266,
+      "spearman": 0.5505821726486644,
+      "spearman_p": 0.001969038745832219
+    },
+    {
+      "x": "bugs",
+      "y": "vulnerabilities",
+      "n": 29,
+      "pearson": 0.19964967464850877,
+      "pearson_p": 0.2991052938926614,
+      "spearman": 0.3437282737800032,
+      "spearman_p": 0.06789643460101476
+    },
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "n": 29,
+      "pearson": 0.9768468360616388,
+      "pearson_p": 1.2869784053477448e-19,
+      "spearman": 0.906896551724138,
+      "spearman_p": 1.2216740986992137e-11
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "n": 29,
+      "pearson": 0.9620236962703208,
+      "pearson_p": 9.392532984731626e-17,
+      "spearman": 0.9147783251231527,
+      "spearman_p": 3.882142028882702e-12
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "bugs_per_kloc",
+      "n": 29,
+      "pearson": -0.029873291535203114,
+      "pearson_p": 0.8777435483502566,
+      "spearman": 0.26628895386120494,
+      "spearman_p": 0.16262645563589562
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 29,
+      "pearson": 0.33001199929271563,
+      "pearson_p": 0.08040253650084576,
+      "spearman": 0.33372105060961604,
+      "spearman_p": 0.07685908445129694
+    },
+    {
+      "x": "bugs_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 29,
+      "pearson": -0.11362516969958912,
+      "pearson_p": 0.5572837748484201,
+      "spearman": -0.06845042644558784,
+      "spearman_p": 0.7242259271261642
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "n": 29,
+      "pearson": 0.4187507355828952,
+      "pearson_p": 0.02376604489778645,
+      "spearman": 0.48177339901477834,
+      "spearman_p": 0.008137881855629482
+    },
+    {
+      "x": "duplicated_lines_density",
+      "y": "smells_per_kloc",
+      "n": 29,
+      "pearson": -0.1297544069436878,
+      "pearson_p": 0.5023112078215408,
+      "spearman": -0.2089699613089228,
+      "spearman_p": 0.2766375848870336
+    }
+  ],
+  "agq_breakdown": [
+    {
+      "x": "agq_score",
+      "y": "bugfix_ratio",
+      "n": 29,
+      "pearson": -0.17632485222778124,
+      "pearson_p": 0.36020829960762224,
+      "spearman": -0.1960591133004926,
+      "spearman_p": 0.3080585101599308
+    },
+    {
+      "x": "agq_score",
+      "y": "bugs_per_kloc",
+      "n": 29,
+      "pearson": 0.3574585035072352,
+      "pearson_p": 0.05694396466910832,
+      "spearman": 0.2039660072128378,
+      "spearman_p": 0.28856148712914853
+    },
+    {
+      "x": "agq_score",
+      "y": "vulns_per_kloc",
+      "n": 29,
+      "pearson": -0.1847657057595995,
+      "pearson_p": 0.33729563420977515,
+      "spearman": -0.26421793832049095,
+      "spearman_p": 0.16604408610993227
+    },
+    {
+      "x": "agq_score",
+      "y": "smells_per_kloc",
+      "n": 29,
+      "pearson": -0.05423999186405025,
+      "pearson_p": 0.7799005535201078,
+      "spearman": 0.18571428571428572,
+      "spearman_p": 0.3347772297339615
+    },
+    {
+      "x": "agq_score",
+      "y": "complexity_per_kloc",
+      "n": 29,
+      "pearson": -0.14714623026329895,
+      "pearson_p": 0.44623223568180637,
+      "spearman": -0.1921182266009852,
+      "spearman_p": 0.3180756289769259
+    },
+    {
+      "x": "agq_score",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 29,
+      "pearson": -0.13274780049993143,
+      "pearson_p": 0.49241590712163397,
+      "spearman": -0.18620689655172415,
+      "spearman_p": 0.3334739079329937
+    },
+    {
+      "x": "agq_score",
+      "y": "duplicated_lines_density",
+      "n": 29,
+      "pearson": 0.07853047132727194,
+      "pearson_p": 0.6855336127464813,
+      "spearman": -0.08772795545516099,
+      "spearman_p": 0.6508923785011355
+    },
+    {
+      "x": "agq_score",
+      "y": "sonar_runtime_s",
+      "n": 29,
+      "pearson": -0.06244216450834618,
+      "pearson_p": 0.7476161055134486,
+      "spearman": 0.05073891625615764,
+      "spearman_p": 0.7937943350445169
+    },
+    {
+      "x": "modularity",
+      "y": "bugfix_ratio",
+      "n": 29,
+      "pearson": -0.0257168220108382,
+      "pearson_p": 0.8946527422166135,
+      "spearman": -0.015270935960591134,
+      "spearman_p": 0.937332060647665
+    },
+    {
+      "x": "modularity",
+      "y": "bugs_per_kloc",
+      "n": 29,
+      "pearson": 0.4334605638622569,
+      "pearson_p": 0.018822992843907663,
+      "spearman": 0.05173050907571973,
+      "spearman_p": 0.7898527983920602
+    },
+    {
+      "x": "modularity",
+      "y": "vulns_per_kloc",
+      "n": 29,
+      "pearson": -0.15693668183828782,
+      "pearson_p": 0.41621171585956984,
+      "spearman": -0.16341189759580563,
+      "spearman_p": 0.3969917231500125
+    },
+    {
+      "x": "modularity",
+      "y": "smells_per_kloc",
+      "n": 29,
+      "pearson": 0.09873631319999249,
+      "pearson_p": 0.6103521328659844,
+      "spearman": -0.1896551724137931,
+      "spearman_p": 0.3244373193241594
+    },
+    {
+      "x": "modularity",
+      "y": "complexity_per_kloc",
+      "n": 29,
+      "pearson": 0.1493395111224511,
+      "pearson_p": 0.43940784350191586,
+      "spearman": 0.09901477832512315,
+      "spearman_p": 0.6093404638386042
+    },
+    {
+      "x": "modularity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 29,
+      "pearson": 0.13812487808628832,
+      "pearson_p": 0.4748917391326898,
+      "spearman": 0.034975369458128076,
+      "spearman_p": 0.8570599153351921
+    },
+    {
+      "x": "modularity",
+      "y": "duplicated_lines_density",
+      "n": 29,
+      "pearson": -0.047722664604505576,
+      "pearson_p": 0.8058139896526452,
+      "spearman": -0.027599806210612445,
+      "spearman_p": 0.8869864147851293
+    },
+    {
+      "x": "modularity",
+      "y": "sonar_runtime_s",
+      "n": 29,
+      "pearson": -0.0014538845988044764,
+      "pearson_p": 0.9940278909783128,
+      "spearman": 0.1438423645320197,
+      "spearman_p": 0.45661875852549494
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugfix_ratio",
+      "n": 29,
+      "pearson": 0.054638067850645164,
+      "pearson_p": 0.7783249201872828,
+      "spearman": 0.1754157185587208,
+      "spearman_p": 0.36272984399580477
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugs_per_kloc",
+      "n": 29,
+      "pearson": 0.15412034591091703,
+      "pearson_p": 0.42473006034772387,
+      "spearman": 0.24798546605565444,
+      "spearman_p": 0.1946064555324587
+    },
+    {
+      "x": "acyclicity",
+      "y": "vulns_per_kloc",
+      "n": 29,
+      "pearson": -0.08720508756210012,
+      "pearson_p": 0.652843580656679,
+      "spearman": 0.04755563543407301,
+      "spearman_p": 0.8064808879321123
+    },
+    {
+      "x": "acyclicity",
+      "y": "smells_per_kloc",
+      "n": 29,
+      "pearson": 0.16050223333956862,
+      "pearson_p": 0.40556501037897863,
+      "spearman": 0.3688535999830636,
+      "spearman_p": 0.04895076130326184
+    },
+    {
+      "x": "acyclicity",
+      "y": "complexity_per_kloc",
+      "n": 29,
+      "pearson": -0.0797211143207384,
+      "pearson_p": 0.6810120621043849,
+      "spearman": -0.0405498664476495,
+      "spearman_p": 0.8345669466459598
+    },
+    {
+      "x": "acyclicity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 29,
+      "pearson": 0.0987702299239375,
+      "pearson_p": 0.6102288751707303,
+      "spearman": 0.0925137693768596,
+      "spearman_p": 0.6331391057126065
+    },
+    {
+      "x": "acyclicity",
+      "y": "duplicated_lines_density",
+      "n": 29,
+      "pearson": -0.11093901808872711,
+      "pearson_p": 0.5666995022354592,
+      "spearman": -0.21141403010591764,
+      "spearman_p": 0.2709305200343731
+    },
+    {
+      "x": "acyclicity",
+      "y": "sonar_runtime_s",
+      "n": 29,
+      "pearson": 0.19197024855938938,
+      "pearson_p": 0.31845564187106346,
+      "spearman": 0.0865063817549856,
+      "spearman_p": 0.6554544611952324
+    },
+    {
+      "x": "stability",
+      "y": "bugfix_ratio",
+      "n": 29,
+      "pearson": -0.16836103239862465,
+      "pearson_p": 0.38264856513065393,
+      "spearman": -0.14187192118226602,
+      "spearman_p": 0.46287378428533643
+    },
+    {
+      "x": "stability",
+      "y": "bugs_per_kloc",
+      "n": 29,
+      "pearson": 0.378255971969998,
+      "pearson_p": 0.04304767093817564,
+      "spearman": 0.32343884960200003,
+      "spearman_p": 0.08698789209657692
+    },
+    {
+      "x": "stability",
+      "y": "vulns_per_kloc",
+      "n": 29,
+      "pearson": -0.11911824434407146,
+      "pearson_p": 0.5382559966958745,
+      "spearman": -0.18145087330443352,
+      "spearman_p": 0.3461860994404179
+    },
+    {
+      "x": "stability",
+      "y": "smells_per_kloc",
+      "n": 29,
+      "pearson": -0.14377548071699597,
+      "pearson_p": 0.4568303386523618,
+      "spearman": 0.20098522167487684,
+      "spearman_p": 0.29581728856837586
+    },
+    {
+      "x": "stability",
+      "y": "complexity_per_kloc",
+      "n": 29,
+      "pearson": 0.07110463975425871,
+      "pearson_p": 0.7139685030132052,
+      "spearman": -0.008374384236453201,
+      "spearman_p": 0.9656103617998707
+    },
+    {
+      "x": "stability",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 29,
+      "pearson": -0.1896875399888566,
+      "pearson_p": 0.324353215793191,
+      "spearman": -0.10344827586206896,
+      "spearman_p": 0.593329330693224
+    },
+    {
+      "x": "stability",
+      "y": "duplicated_lines_density",
+      "n": 29,
+      "pearson": 0.0577267545632715,
+      "pearson_p": 0.7661291585237822,
+      "spearman": -0.0014785610469970954,
+      "spearman_p": 0.9939265295794991
+    },
+    {
+      "x": "stability",
+      "y": "sonar_runtime_s",
+      "n": 29,
+      "pearson": -0.28196074148490624,
+      "pearson_p": 0.13837440807683143,
+      "spearman": -0.030049261083743842,
+      "spearman_p": 0.8770287826136454
+    },
+    {
+      "x": "cohesion",
+      "y": "bugfix_ratio",
+      "n": 29,
+      "pearson": -0.1342459093555842,
+      "pearson_p": 0.48750088846897266,
+      "spearman": -0.1271092508717685,
+      "spearman_p": 0.5111371191006346
+    },
+    {
+      "x": "cohesion",
+      "y": "bugs_per_kloc",
+      "n": 29,
+      "pearson": -0.26155463271916923,
+      "pearson_p": 0.1705135896959621,
+      "spearman": -0.04828775560482878,
+      "spearman_p": 0.8035587378632603
+    },
+    {
+      "x": "cohesion",
+      "y": "vulns_per_kloc",
+      "n": 29,
+      "pearson": -0.018855532356463586,
+      "pearson_p": 0.9226612101234455,
+      "spearman": -0.0461642410912104,
+      "spearman_p": 0.8120414324119268
+    },
+    {
+      "x": "cohesion",
+      "y": "smells_per_kloc",
+      "n": 29,
+      "pearson": -0.09534620090786806,
+      "pearson_p": 0.6227243476223836,
+      "spearman": -0.06453996846589795,
+      "spearman_p": 0.7394232209310505
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "n": 29,
+      "pearson": -0.44966048475690606,
+      "pearson_p": 0.014393026879106291,
+      "spearman": -0.5564724762002423,
+      "spearman_p": 0.0017190797323515822
+    },
+    {
+      "x": "cohesion",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 29,
+      "pearson": -0.17047267660534002,
+      "pearson_p": 0.37662120025904944,
+      "spearman": -0.2249045466006291,
+      "spearman_p": 0.24080582775641168
+    },
+    {
+      "x": "cohesion",
+      "y": "duplicated_lines_density",
+      "n": 29,
+      "pearson": 0.19310229277146437,
+      "pearson_p": 0.31555564394492175,
+      "spearman": 0.09722736339067906,
+      "spearman_p": 0.6158463533436702
+    },
+    {
+      "x": "cohesion",
+      "y": "sonar_runtime_s",
+      "n": 29,
+      "pearson": 0.1377643297414991,
+      "pearson_p": 0.47605658585568333,
+      "spearman": 0.09212957330628181,
+      "spearman_p": 0.6345571374068794
+    }
+  ],
+  "top_correlations": [
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "method": "pearson",
+      "r": 0.9768468360616388,
+      "abs_r": 0.9768468360616388,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "method": "pearson",
+      "r": 0.9620236962703208,
+      "abs_r": 0.9620236962703208,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "method": "spearman",
+      "r": 0.9147783251231527,
+      "abs_r": 0.9147783251231527,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "method": "spearman",
+      "r": 0.906896551724138,
+      "abs_r": 0.906896551724138,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "method": "spearman",
+      "r": 0.6646951354119709,
+      "abs_r": 0.6646951354119709,
+      "strength": "strong"
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "method": "spearman",
+      "r": -0.5564724762002423,
+      "abs_r": 0.5564724762002423,
+      "strength": "moderate"
+    },
+    {
+      "x": "code_smells",
+      "y": "vulnerabilities",
+      "method": "spearman",
+      "r": 0.5505821726486644,
+      "abs_r": 0.5505821726486644,
+      "strength": "moderate"
+    },
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "method": "pearson",
+      "r": 0.5452218508003244,
+      "abs_r": 0.5452218508003244,
+      "strength": "moderate"
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "method": "spearman",
+      "r": 0.48177339901477834,
+      "abs_r": 0.48177339901477834,
+      "strength": "moderate"
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "method": "pearson",
+      "r": -0.44966048475690606,
+      "abs_r": 0.44966048475690606,
+      "strength": "moderate"
+    },
+    {
+      "x": "modularity",
+      "y": "bugs_per_kloc",
+      "method": "pearson",
+      "r": 0.4334605638622569,
+      "abs_r": 0.4334605638622569,
+      "strength": "moderate"
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "method": "pearson",
+      "r": 0.4187507355828952,
+      "abs_r": 0.4187507355828952,
+      "strength": "moderate"
+    }
+  ],
+  "mediation_analysis": {
+    "chains": [
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 bugs_per_kloc",
+        "r_a": -0.14714623026329895,
+        "r_a_p": 0.44623223568180637,
+        "n_a": 29,
+        "r_b": -0.014854906667817079,
+        "r_b_p": 0.9390361548031912,
+        "n_b": 29,
+        "r_c_direct": 0.3574585035072352,
+        "r_c_p": 0.05694396466910832,
+        "n_c": 29,
+        "indirect_effect": 0.002185843517082427,
+        "sobel_z": 0.07681478618393578,
+        "sobel_p": 0.9387707488049946,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 bugfix_ratio",
+        "r_a": -0.14714623026329895,
+        "r_a_p": 0.44623223568180637,
+        "n_a": 29,
+        "r_b": -0.0487433660783634,
+        "r_b_p": 0.8017415394273782,
+        "n_b": 29,
+        "r_c_direct": -0.17632485222778124,
+        "r_c_p": 0.36020829960762224,
+        "n_c": 29,
+        "indirect_effect": 0.007172402568775137,
+        "sobel_z": 0.24094625703606984,
+        "sobel_p": 0.8095968639938262,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 bugs_per_kloc",
+        "r_a": -0.13274780049993143,
+        "r_a_p": 0.49241590712163397,
+        "n_a": 29,
+        "r_b": -0.15592326143218097,
+        "r_b_p": 0.41926591295297166,
+        "n_b": 29,
+        "r_c_direct": 0.3574585035072352,
+        "r_c_p": 0.05694396466910832,
+        "n_c": 29,
+        "indirect_effect": 0.020698470001897812,
+        "sobel_z": 0.5306641755652954,
+        "sobel_p": 0.595651469833494,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 bugfix_ratio",
+        "r_a": -0.13274780049993143,
+        "r_a_p": 0.49241590712163397,
+        "n_a": 29,
+        "r_b": 0.3977041382212186,
+        "r_b_p": 0.03263746799946714,
+        "n_b": 29,
+        "r_c_direct": -0.17632485222778124,
+        "r_c_p": 0.36020829960762224,
+        "n_c": 29,
+        "indirect_effect": -0.052794349598587476,
+        "sobel_z": 0.6649194578568978,
+        "sobel_p": 0.5061018688669666,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 bugs_per_kloc",
+        "r_a": -0.05423999186405025,
+        "r_a_p": 0.7799005535201078,
+        "n_a": 29,
+        "r_b": -0.029873291535203114,
+        "r_b_p": 0.8777435483502566,
+        "n_b": 29,
+        "r_c_direct": 0.3574585035072352,
+        "r_c_p": 0.05694396466910832,
+        "n_c": 29,
+        "indirect_effect": 0.0016203270898218181,
+        "sobel_z": 0.13606110370176547,
+        "sobel_p": 0.8917729121961633,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 bugfix_ratio",
+        "r_a": -0.05423999186405025,
+        "r_a_p": 0.7799005535201078,
+        "n_a": 29,
+        "r_b": 0.3603227304671468,
+        "r_b_p": 0.05484465173113944,
+        "n_b": 29,
+        "r_c_direct": -0.17632485222778124,
+        "r_c_p": 0.36020829960762224,
+        "n_c": 29,
+        "indirect_effect": -0.019543901968970413,
+        "sobel_z": 0.27950455450012096,
+        "sobel_p": 0.7798577648709224,
+        "interpretation": "no_mediation"
+      }
+    ]
+  }
+}

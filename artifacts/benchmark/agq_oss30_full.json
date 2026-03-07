@@ -1,0 +1,1908 @@
+{
+  "generated_at": "2026-03-07T11:55:17.665346+00:00",
+  "repos_target": 30,
+  "repos": [
+    {
+      "name": "httpx",
+      "url": "https://github.com/encode/httpx.git"
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git"
+    },
+    {
+      "name": "flask",
+      "url": "https://github.com/pallets/flask.git"
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git"
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git"
+    },
+    {
+      "name": "fastapi",
+      "url": "https://github.com/fastapi/fastapi.git"
+    },
+    {
+      "name": "rich",
+      "url": "https://github.com/Textualize/rich.git"
+    },
+    {
+      "name": "pytest",
+      "url": "https://github.com/pytest-dev/pytest.git"
+    },
+    {
+      "name": "sanic",
+      "url": "https://github.com/sanic-org/sanic.git"
+    },
+    {
+      "name": "scrapy",
+      "url": "https://github.com/scrapy/scrapy.git"
+    },
+    {
+      "name": "urllib3",
+      "url": "https://github.com/urllib3/urllib3.git"
+    },
+    {
+      "name": "aiohttp",
+      "url": "https://github.com/aio-libs/aiohttp.git"
+    },
+    {
+      "name": "django",
+      "url": "https://github.com/django/django.git"
+    },
+    {
+      "name": "starlette",
+      "url": "https://github.com/encode/starlette.git"
+    },
+    {
+      "name": "celery",
+      "url": "https://github.com/celery/celery.git"
+    },
+    {
+      "name": "tornado",
+      "url": "https://github.com/tornadoweb/tornado.git"
+    },
+    {
+      "name": "typer",
+      "url": "https://github.com/fastapi/typer.git"
+    },
+    {
+      "name": "arrow",
+      "url": "https://github.com/arrow-py/arrow.git"
+    },
+    {
+      "name": "pendulum",
+      "url": "https://github.com/sdispater/pendulum.git"
+    },
+    {
+      "name": "httpcore",
+      "url": "https://github.com/encode/httpcore.git"
+    },
+    {
+      "name": "attrs",
+      "url": "https://github.com/python-attrs/attrs.git"
+    },
+    {
+      "name": "marshmallow",
+      "url": "https://github.com/marshmallow-code/marshmallow.git"
+    },
+    {
+      "name": "ansible",
+      "url": "https://github.com/ansible/ansible.git"
+    },
+    {
+      "name": "salt",
+      "url": "https://github.com/saltstack/salt.git"
+    },
+    {
+      "name": "home-assistant",
+      "url": "https://github.com/home-assistant/core.git"
+    },
+    {
+      "name": "airflow",
+      "url": "https://github.com/apache/airflow.git"
+    },
+    {
+      "name": "thefuck",
+      "url": "https://github.com/nvbn/thefuck.git"
+    },
+    {
+      "name": "you-get",
+      "url": "https://github.com/soimort/you-get.git"
+    },
+    {
+      "name": "youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git"
+    },
+    {
+      "name": "glances",
+      "url": "https://github.com/nicolargo/glances.git"
+    }
+  ],
+  "config": {
+    "repos_dir": "/tmp/agq_oss_30",
+    "repos_file": "scripts/repos_oss30_benchmark.json",
+    "clone_depth": 400,
+    "bugfix_since": "2 years ago",
+    "sonar_url": "http://127.0.0.1:9000",
+    "scanner_image": "sonarsource/sonar-scanner-cli:latest",
+    "sonar_enabled": true
+  },
+  "summary": {
+    "repos_with_agq": 29,
+    "repos_with_sonar": 29,
+    "repos_joint": 29,
+    "failed_repos": 1,
+    "agq_mean": 0.6558806452931655,
+    "agq_median_runtime_s": 0.15917886399984127,
+    "sonar_median_runtime_s": 14.304471518000355,
+    "runtime_ratio_sonar_over_agq": 89.86413873398807
+  },
+  "correlations": {
+    "pearson_agq_vs_bugfix_ratio": -0.17632485222778124,
+    "pearson_sonar_vs_bugfix_ratio": -0.18246384265570745,
+    "spearman_agq_vs_sonar": -0.18571428571428572,
+    "sonar_predictor_for_correlation": "code_smell_quality_score"
+  },
+  "theses": [
+    {
+      "id": "T1",
+      "title": "AGQ deterministic over repeated runs",
+      "passed": true,
+      "evidence": "max_score_delta=0.0000000000 (target <= 1e-9)"
+    },
+    {
+      "id": "T2",
+      "title": "AGQ correlates stronger with defect proxy than Sonar maintainability",
+      "passed": false,
+      "evidence": "predictor=code_smell_quality_score; |r(AGQ,defect_proxy)|=0.1763 vs |r(Sonar,defect_proxy)|=0.1825"
+    },
+    {
+      "id": "T3",
+      "title": "Complementarity: Sonar A but low AGQ exists",
+      "passed": true,
+      "evidence": "cases=24 (httpx, requests, flask, click, rich, pytest, sanic, scrapy, urllib3, aiohttp, starlette, celery, tornado, typer, arrow, pendulum, httpcore, marshmallow, ansible, home-assistant, airflow, you-get, youtube-dl, glances)"
+    },
+    {
+      "id": "T4",
+      "title": "AGQ median runtime is lower than SonarQube median runtime",
+      "passed": true,
+      "evidence": "median_agq_s=0.159 vs median_sonar_s=14.304"
+    },
+    {
+      "id": "T5",
+      "title": "AGQ discriminates quality across heterogeneous repos",
+      "passed": true,
+      "evidence": "spread=0.2840, stddev=0.0568"
+    }
+  ],
+  "results": [
+    {
+      "name": "httpx",
+      "url": "https://github.com/encode/httpx.git",
+      "path": "/tmp/agq_oss_30/httpx",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/httpx/httpx",
+          "runtime_s": 0.10753614500572439,
+          "nodes": 76,
+          "edges": 192,
+          "nodes_in_cycles": 11,
+          "modularity": 0.5418799508135778,
+          "acyclicity": 0.8552631578947368,
+          "stability": 0.20296821535018117,
+          "cohesion": 0.8390804597701149,
+          "agq_score": 0.6097979459571526
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/httpx/httpx",
+          "runtime_s": 0.10530151201237459,
+          "nodes": 76,
+          "edges": 192,
+          "nodes_in_cycles": 11,
+          "modularity": 0.5418799508135778,
+          "acyclicity": 0.8552631578947368,
+          "stability": 0.20296821535018117,
+          "cohesion": 0.8390804597701149,
+          "agq_score": 0.6097979459571526
+        },
+        "score_mean": 0.6097979459571526,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.10641882850904949
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 84,
+        "bugfix_commits": 8,
+        "bugfix_ratio": 0.09523809523809523
+      },
+      "sonar": {
+        "project_key": "agq_oss_httpx",
+        "quality_gate": "OK",
+        "runtime_s": 12.540865101997042,
+        "scan_stdout_tail": "11:39:13.505 INFO  Analysis report compressed in 53ms, zip size=965.3 kB\n11:39:13.569 INFO  Analysis report uploaded in 63ms\n11:39:13.569 INFO  ------------- Check Quality Gate status\n11:39:13.569 INFO  Waiting for the analysis report to be processed (max 600s)\n11:39:18.764 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_httpx\n11:39:18.770 INFO  Analysis total time: 9.766 s\n11:39:18.771 INFO  EXECUTION SUCCESS\n11:39:18.771 INFO  Total time: 11.865s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 8.0,
+        "vulnerabilities": 3.0,
+        "code_smells": 171.0,
+        "ncloc": 12201.0,
+        "complexity": 1869.0,
+        "cognitive_complexity": 1136.0,
+        "duplicated_lines_density": 3.3,
+        "code_smells_per_kloc": 14.015244652077698,
+        "code_smell_quality_score": 0.06659898144660782
+      }
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git",
+      "path": "/tmp/agq_oss_30/requests",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/requests/src/requests",
+          "runtime_s": 0.04756246799661312,
+          "nodes": 67,
+          "edges": 121,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6027821414748538,
+          "acyclicity": 1.0,
+          "stability": 0.1589001648506294,
+          "cohesion": 0.7897727272727273,
+          "agq_score": 0.6378637583995526
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/requests/src/requests",
+          "runtime_s": 0.04210272099589929,
+          "nodes": 67,
+          "edges": 121,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6027821414748538,
+          "acyclicity": 1.0,
+          "stability": 0.1589001648506294,
+          "cohesion": 0.7897727272727273,
+          "agq_score": 0.6378637583995526
+        },
+        "score_mean": 0.6378637583995526,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.044832594496256206
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 148,
+        "bugfix_commits": 16,
+        "bugfix_ratio": 0.10810810810810811
+      },
+      "sonar": {
+        "project_key": "agq_oss_requests",
+        "quality_gate": "OK",
+        "runtime_s": 12.161937601995305,
+        "scan_stdout_tail": "11:39:26.158 INFO  Analysis report compressed in 34ms, zip size=616.5 kB\n11:39:26.222 INFO  Analysis report uploaded in 64ms\n11:39:26.222 INFO  ------------- Check Quality Gate status\n11:39:26.223 INFO  Waiting for the analysis report to be processed (max 600s)\n11:39:31.406 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_requests\n11:39:31.411 INFO  Analysis total time: 9.350 s\n11:39:31.411 INFO  EXECUTION SUCCESS\n11:39:31.412 INFO  Total time: 11.447s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 0.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 107.0,
+        "ncloc": 7011.0,
+        "complexity": 1213.0,
+        "cognitive_complexity": 963.0,
+        "duplicated_lines_density": 0.4,
+        "code_smells_per_kloc": 15.261731564684068,
+        "code_smell_quality_score": 0.061494066362017694
+      }
+    },
+    {
+      "name": "flask",
+      "url": "https://github.com/pallets/flask.git",
+      "path": "/tmp/agq_oss_30/flask",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/flask/src/flask",
+          "runtime_s": 0.0667119760037167,
+          "nodes": 83,
+          "edges": 250,
+          "nodes_in_cycles": 17,
+          "modularity": 0.5417353251848498,
+          "acyclicity": 0.7951807228915663,
+          "stability": 0.2015031221643272,
+          "cohesion": 0.6923076923076923,
+          "agq_score": 0.557681715637109
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/flask/src/flask",
+          "runtime_s": 0.06732105898845475,
+          "nodes": 83,
+          "edges": 250,
+          "nodes_in_cycles": 17,
+          "modularity": 0.5417353251848498,
+          "acyclicity": 0.7951807228915663,
+          "stability": 0.2015031221643272,
+          "cohesion": 0.6923076923076923,
+          "agq_score": 0.557681715637109
+        },
+        "score_mean": 0.557681715637109,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.06701651749608573
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 272,
+        "bugfix_commits": 33,
+        "bugfix_ratio": 0.1213235294117647
+      },
+      "sonar": {
+        "project_key": "agq_oss_flask",
+        "quality_gate": "OK",
+        "runtime_s": 12.619182492999244,
+        "scan_stdout_tail": "11:39:39.227 INFO  Analysis report compressed in 66ms, zip size=1.0 MB\n11:39:39.290 INFO  Analysis report uploaded in 63ms\n11:39:39.291 INFO  ------------- Check Quality Gate status\n11:39:39.291 INFO  Waiting for the analysis report to be processed (max 600s)\n11:39:44.480 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_flask\n11:39:44.488 INFO  Analysis total time: 9.864 s\n11:39:44.488 INFO  EXECUTION SUCCESS\n11:39:44.488 INFO  Total time: 11.904s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 7.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 99.0,
+        "ncloc": 10564.0,
+        "complexity": 2088.0,
+        "cognitive_complexity": 952.0,
+        "duplicated_lines_density": 0.2,
+        "code_smells_per_kloc": 9.37145020825445,
+        "code_smell_quality_score": 0.09641853163447847
+      }
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git",
+      "path": "/tmp/agq_oss_30/click",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/click/src/click",
+          "runtime_s": 0.1573532129987143,
+          "nodes": 64,
+          "edges": 197,
+          "nodes_in_cycles": 13,
+          "modularity": 0.5100422278780253,
+          "acyclicity": 0.796875,
+          "stability": 0.19554989256600708,
+          "cohesion": 0.7847222222222222,
+          "agq_score": 0.5717973356665637
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/click/src/click",
+          "runtime_s": 0.1575646580022294,
+          "nodes": 64,
+          "edges": 197,
+          "nodes_in_cycles": 13,
+          "modularity": 0.5100422278780253,
+          "acyclicity": 0.796875,
+          "stability": 0.19554989256600708,
+          "cohesion": 0.7847222222222222,
+          "agq_score": 0.5717973356665637
+        },
+        "score_mean": 0.5717973356665637,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.15745893550047185
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 545,
+        "bugfix_commits": 92,
+        "bugfix_ratio": 0.1688073394495413
+      },
+      "sonar": {
+        "project_key": "agq_oss_click",
+        "quality_gate": "OK",
+        "runtime_s": 12.956644983991282,
+        "scan_stdout_tail": "11:39:52.812 INFO  Analysis report compressed in 61ms, zip size=1.2 MB\n11:39:52.881 INFO  Analysis report uploaded in 69ms\n11:39:52.882 INFO  ------------- Check Quality Gate status\n11:39:52.882 INFO  Waiting for the analysis report to be processed (max 600s)\n11:39:58.069 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_click\n11:39:58.076 INFO  Analysis total time: 10.151 s\n11:39:58.076 INFO  EXECUTION SUCCESS\n11:39:58.076 INFO  Total time: 12.234s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 0.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 200.0,
+        "ncloc": 14073.0,
+        "complexity": 2644.0,
+        "cognitive_complexity": 1935.0,
+        "duplicated_lines_density": 0.4,
+        "code_smells_per_kloc": 14.211610886093938,
+        "code_smell_quality_score": 0.06573925716928337
+      }
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git",
+      "path": "/tmp/agq_oss_30/pydantic",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/pydantic/pydantic",
+          "runtime_s": 0.6955187679996016,
+          "nodes": 228,
+          "edges": 1051,
+          "nodes_in_cycles": 26,
+          "modularity": 0.5683536047748566,
+          "acyclicity": 0.8859649122807017,
+          "stability": 0.3907834441871829,
+          "cohesion": 0.8740053050397878,
+          "agq_score": 0.6797768165706323
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/pydantic/pydantic",
+          "runtime_s": 0.674899200006621,
+          "nodes": 228,
+          "edges": 1051,
+          "nodes_in_cycles": 26,
+          "modularity": 0.5683536047748566,
+          "acyclicity": 0.8859649122807017,
+          "stability": 0.3907834441871829,
+          "cohesion": 0.8740053050397878,
+          "agq_score": 0.6797768165706323
+        },
+        "score_mean": 0.6797768165706323,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.6852089840031113
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 631,
+        "bugfix_commits": 116,
+        "bugfix_ratio": 0.1838351822503962
+      },
+      "error": "Command failed: docker run --rm --network host -e SONAR_HOST_URL=http://127.0.0.1:9000 -v /tmp/agq_oss_30/pydantic:/usr/src sonarsource/sonar-scanner-cli:latest sonar-scanner -Dsonar.projectKey=agq_oss_pydantic -Dsonar.projectName=agq_oss_pydantic -Dsonar.sources=. -Dsonar.inclusions=**/*.py -Dsonar.python.version=3.10 -Dsonar.sourceEncoding=UTF-8 -Dsonar.login=admin -Dsonar.password=admin -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=600\nstdout_tail:\n11:40:14.815 WARN    * tests/test_model_signature.py\n11:40:14.815 WARN    * tests/mypy/outputs/mypy-default_ini/metaclass_args.py\n11:40:14.815 WARN    * pydantic-core/tests/serializers/test_any.py\n11:40:14.815 WARN    * pydantic-core/tests/validators/test_tagged_union.py\n11:40:14.815 WARN    * pydantic/typing.py\n11:40:14.815 WARN    * tests/test_plugins.py\n11:40:14.815 WARN    * pydantic/json.py\n11:40:14.815 WARN    * tests/test_internal.py\n11:40:14.815 WARN    * pydantic/_internal/_generate_schema.py\n11:40:14.815 WARN  This may lead to missing/broken features in SonarQube\n11:40:14.875 INFO  CPD Executor 41 files had no CPD blocks\n11:40:14.875 INFO  CPD Executor Calculating CPD for 360 files\n11:40:14.956 INFO  CPD Executor CPD calculation finished (done) | time=80ms\n11:40:15.014 INFO  Analysis report generated in 47ms, dir size=17.3 MB\n11:40:15.411 INFO  Analysis report compressed in 397ms, zip size=9.1 MB\n11:40:15.510 INFO  Analysis report uploaded in 99ms\n11:40:15.510 INFO  ------------- Check Quality Gate status\n11:40:15.511 INFO  Waiting for the analysis report to be processed (max 600s)\n11:40:20.736 INFO  EXECUTION FAILURE\n11:40:20.737 INFO  Total time: 20.258s\nstderr_tail:\n11:40:20.737 ERROR Error during SonarScanner CLI execution\n11:40:20.737 ERROR QUALITY GATE STATUS: FAILED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_pydantic\n11:40:20.737 ERROR \n11:40:20.737 ERROR Re-run SonarScanner CLI using the -X switch to enable full debug logging."
+    },
+    {
+      "name": "fastapi",
+      "url": "https://github.com/fastapi/fastapi.git",
+      "path": "/tmp/agq_oss_30/fastapi",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/fastapi/fastapi",
+          "runtime_s": 0.15671173398732208,
+          "nodes": 147,
+          "edges": 313,
+          "nodes_in_cycles": 0,
+          "modularity": 0.606823909708525,
+          "acyclicity": 1.0,
+          "stability": 0.30718158475511415,
+          "cohesion": 0.9202127659574468,
+          "agq_score": 0.7085545651052714
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/fastapi/fastapi",
+          "runtime_s": 0.141273920002277,
+          "nodes": 147,
+          "edges": 313,
+          "nodes_in_cycles": 0,
+          "modularity": 0.606823909708525,
+          "acyclicity": 1.0,
+          "stability": 0.30718158475511415,
+          "cohesion": 0.9202127659574468,
+          "agq_score": 0.7085545651052714
+        },
+        "score_mean": 0.7085545651052714,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.14899282699479954
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 23,
+        "bugfix_ratio": 0.0575
+      },
+      "sonar": {
+        "project_key": "agq_oss_fastapi",
+        "quality_gate": "OK",
+        "runtime_s": 18.593017356994096,
+        "scan_stdout_tail": "11:40:34.365 INFO  Analysis report compressed in 498ms, zip size=5.8 MB\n11:40:34.440 INFO  Analysis report uploaded in 75ms\n11:40:34.441 INFO  ------------- Check Quality Gate status\n11:40:34.441 INFO  Waiting for the analysis report to be processed (max 600s)\n11:40:39.625 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_fastapi\n11:40:39.685 INFO  Analysis total time: 15.774 s\n11:40:39.685 INFO  EXECUTION SUCCESS\n11:40:39.685 INFO  Total time: 17.878s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 3.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 766.0,
+        "ncloc": 91622.0,
+        "complexity": 6019.0,
+        "cognitive_complexity": 2370.0,
+        "duplicated_lines_density": 34.6,
+        "code_smells_per_kloc": 8.360437449520857,
+        "code_smell_quality_score": 0.10683261390216203
+      }
+    },
+    {
+      "name": "rich",
+      "url": "https://github.com/Textualize/rich.git",
+      "path": "/tmp/agq_oss_30/rich",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/rich/rich",
+          "runtime_s": 0.387144234002335,
+          "nodes": 180,
+          "edges": 672,
+          "nodes_in_cycles": 39,
+          "modularity": 0.542327327906588,
+          "acyclicity": 0.7833333333333333,
+          "stability": 0.38847282317094056,
+          "cohesion": 0.8370786516853932,
+          "agq_score": 0.6378030340240638
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/rich/rich",
+          "runtime_s": 0.37103433700394817,
+          "nodes": 180,
+          "edges": 672,
+          "nodes_in_cycles": 39,
+          "modularity": 0.542327327906588,
+          "acyclicity": 0.7833333333333333,
+          "stability": 0.38847282317094056,
+          "cohesion": 0.8370786516853932,
+          "agq_score": 0.6378030340240638
+        },
+        "score_mean": 0.6378030340240638,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.3790892855031416
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 487,
+        "bugfix_commits": 96,
+        "bugfix_ratio": 0.1971252566735113
+      },
+      "sonar": {
+        "project_key": "agq_oss_rich",
+        "quality_gate": "OK",
+        "runtime_s": 14.935240277001867,
+        "scan_stdout_tail": "11:40:50.851 INFO  Analysis report compressed in 154ms, zip size=2.9 MB\n11:40:50.921 INFO  Analysis report uploaded in 70ms\n11:40:50.921 INFO  ------------- Check Quality Gate status\n11:40:50.922 INFO  Waiting for the analysis report to be processed (max 600s)\n11:40:56.104 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_rich\n11:40:56.118 INFO  Analysis total time: 12.169 s\n11:40:56.119 INFO  EXECUTION SUCCESS\n11:40:56.119 INFO  Total time: 14.220s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 20.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 413.0,
+        "ncloc": 41743.0,
+        "complexity": 3931.0,
+        "cognitive_complexity": 3933.0,
+        "duplicated_lines_density": 22.1,
+        "code_smells_per_kloc": 9.893874422058788,
+        "code_smell_quality_score": 0.09179470602076338
+      }
+    },
+    {
+      "name": "pytest",
+      "url": "https://github.com/pytest-dev/pytest.git",
+      "path": "/tmp/agq_oss_30/pytest",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/pytest/src/pytest",
+          "runtime_s": 0.0006251179875107482,
+          "nodes": 3,
+          "edges": 2,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.33333333333333337,
+          "cohesion": 1.0,
+          "agq_score": 0.6666666666666666
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/pytest/src/pytest",
+          "runtime_s": 0.00042332599696237594,
+          "nodes": 3,
+          "edges": 2,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.33333333333333337,
+          "cohesion": 1.0,
+          "agq_score": 0.6666666666666666
+        },
+        "score_mean": 0.6666666666666666,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.0005242219922365621
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 1188,
+        "bugfix_commits": 169,
+        "bugfix_ratio": 0.14225589225589225
+      },
+      "sonar": {
+        "project_key": "agq_oss_pytest",
+        "quality_gate": "OK",
+        "runtime_s": 17.548129631002666,
+        "scan_stdout_tail": "11:41:08.719 INFO  Analysis report compressed in 254ms, zip size=5.2 MB\n11:41:08.805 INFO  Analysis report uploaded in 85ms\n11:41:08.806 INFO  ------------- Check Quality Gate status\n11:41:08.806 INFO  Waiting for the analysis report to be processed (max 600s)\n11:41:13.997 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_pytest\n11:41:14.016 INFO  Analysis total time: 14.814 s\n11:41:14.017 INFO  EXECUTION SUCCESS\n11:41:14.017 INFO  Total time: 16.894s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 33.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 1041.0,
+        "ncloc": 80341.0,
+        "complexity": 9863.0,
+        "cognitive_complexity": 6795.0,
+        "duplicated_lines_density": 0.2,
+        "code_smells_per_kloc": 12.957269638167313,
+        "code_smell_quality_score": 0.07164725092545443
+      }
+    },
+    {
+      "name": "sanic",
+      "url": "https://github.com/sanic-org/sanic.git",
+      "path": "/tmp/agq_oss_30/sanic",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/sanic/sanic",
+          "runtime_s": 0.21247205100371502,
+          "nodes": 333,
+          "edges": 976,
+          "nodes_in_cycles": 0,
+          "modularity": 0.593145323837678,
+          "acyclicity": 1.0,
+          "stability": 0.36813377316809803,
+          "cohesion": 0.78375,
+          "agq_score": 0.686257274251444
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/sanic/sanic",
+          "runtime_s": 0.20956742200360168,
+          "nodes": 333,
+          "edges": 976,
+          "nodes_in_cycles": 0,
+          "modularity": 0.593145323837678,
+          "acyclicity": 1.0,
+          "stability": 0.36813377316809803,
+          "cohesion": 0.78375,
+          "agq_score": 0.686257274251444
+        },
+        "score_mean": 0.686257274251444,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.21101973650365835
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 89,
+        "bugfix_commits": 17,
+        "bugfix_ratio": 0.19101123595505617
+      },
+      "sonar": {
+        "project_key": "agq_oss_sanic",
+        "quality_gate": "OK",
+        "runtime_s": 15.48952196299797,
+        "scan_stdout_tail": "11:41:25.019 INFO  Analysis report compressed in 200ms, zip size=3.4 MB\n11:41:25.089 INFO  Analysis report uploaded in 70ms\n11:41:25.089 INFO  ------------- Check Quality Gate status\n11:41:25.089 INFO  Waiting for the analysis report to be processed (max 600s)\n11:41:30.271 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_sanic\n11:41:30.292 INFO  Analysis total time: 12.681 s\n11:41:30.293 INFO  EXECUTION SUCCESS\n11:41:30.293 INFO  Total time: 14.780s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 35.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 464.0,
+        "ncloc": 43059.0,
+        "complexity": 6497.0,
+        "cognitive_complexity": 4344.0,
+        "duplicated_lines_density": 1.2,
+        "code_smells_per_kloc": 10.775912120578742,
+        "code_smell_quality_score": 0.08491911197710719
+      }
+    },
+    {
+      "name": "scrapy",
+      "url": "https://github.com/scrapy/scrapy.git",
+      "path": "/tmp/agq_oss_30/scrapy",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/scrapy/scrapy",
+          "runtime_s": 0.28231323799991515,
+          "nodes": 427,
+          "edges": 1810,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5463537946542129,
+          "acyclicity": 1.0,
+          "stability": 0.3741976414390208,
+          "cohesion": 0.7300380228136882,
+          "agq_score": 0.6626473647267305
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/scrapy/scrapy",
+          "runtime_s": 0.2809416820091428,
+          "nodes": 427,
+          "edges": 1810,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5463537946542129,
+          "acyclicity": 1.0,
+          "stability": 0.3741976414390208,
+          "cohesion": 0.7300380228136882,
+          "agq_score": 0.6626473647267305
+        },
+        "score_mean": 0.6626473647267305,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.281627460004529
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 625,
+        "bugfix_commits": 65,
+        "bugfix_ratio": 0.104
+      },
+      "sonar": {
+        "project_key": "agq_oss_scrapy",
+        "quality_gate": "OK",
+        "runtime_s": 16.878692885002238,
+        "scan_stdout_tail": "11:41:42.788 INFO  Analysis report compressed in 275ms, zip size=4.7 MB\n11:41:42.860 INFO  Analysis report uploaded in 72ms\n11:41:42.861 INFO  ------------- Check Quality Gate status\n11:41:42.861 INFO  Waiting for the analysis report to be processed (max 600s)\n11:41:48.056 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_scrapy\n11:41:48.083 INFO  Analysis total time: 14.099 s\n11:41:48.083 INFO  EXECUTION SUCCESS\n11:41:48.083 INFO  Total time: 16.151s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 87.0,
+        "vulnerabilities": 10.0,
+        "code_smells": 882.0,
+        "ncloc": 57553.0,
+        "complexity": 8274.0,
+        "cognitive_complexity": 4364.0,
+        "duplicated_lines_density": 1.7,
+        "code_smells_per_kloc": 15.325004778204438,
+        "code_smell_quality_score": 0.061255724796791665
+      }
+    },
+    {
+      "name": "urllib3",
+      "url": "https://github.com/urllib3/urllib3.git",
+      "path": "/tmp/agq_oss_30/urllib3",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/urllib3/src/urllib3",
+          "runtime_s": 0.12302958499640226,
+          "nodes": 97,
+          "edges": 305,
+          "nodes_in_cycles": 15,
+          "modularity": 0.533620607105238,
+          "acyclicity": 0.845360824742268,
+          "stability": 0.22263770523335513,
+          "cohesion": 0.8173076923076923,
+          "agq_score": 0.6047317073471383
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/urllib3/src/urllib3",
+          "runtime_s": 0.12311424400832038,
+          "nodes": 97,
+          "edges": 305,
+          "nodes_in_cycles": 15,
+          "modularity": 0.533620607105238,
+          "acyclicity": 0.845360824742268,
+          "stability": 0.22263770523335513,
+          "cohesion": 0.8173076923076923,
+          "agq_score": 0.6047317073471383
+        },
+        "score_mean": 0.6047317073471383,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.12307191450236132
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 217,
+        "bugfix_commits": 30,
+        "bugfix_ratio": 0.1382488479262673
+      },
+      "sonar": {
+        "project_key": "agq_oss_urllib3",
+        "quality_gate": "OK",
+        "runtime_s": 13.635474525988684,
+        "scan_stdout_tail": "11:41:57.147 INFO  Analysis report compressed in 86ms, zip size=1.8 MB\n11:41:57.262 INFO  Analysis report uploaded in 114ms\n11:41:57.264 INFO  ------------- Check Quality Gate status\n11:41:57.265 INFO  Waiting for the analysis report to be processed (max 600s)\n11:42:02.457 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_urllib3\n11:42:02.464 INFO  Analysis total time: 10.847 s\n11:42:02.465 INFO  EXECUTION SUCCESS\n11:42:02.465 INFO  Total time: 12.942s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 4.0,
+        "vulnerabilities": 25.0,
+        "code_smells": 259.0,
+        "ncloc": 22894.0,
+        "complexity": 3322.0,
+        "cognitive_complexity": 2586.0,
+        "duplicated_lines_density": 1.8,
+        "code_smells_per_kloc": 11.313007774962873,
+        "code_smell_quality_score": 0.08121492475895194
+      }
+    },
+    {
+      "name": "aiohttp",
+      "url": "https://github.com/aio-libs/aiohttp.git",
+      "path": "/tmp/agq_oss_30/aiohttp",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/aiohttp/aiohttp",
+          "runtime_s": 0.43681103400012944,
+          "nodes": 140,
+          "edges": 688,
+          "nodes_in_cycles": 40,
+          "modularity": 0.5029843320709884,
+          "acyclicity": 0.7142857142857143,
+          "stability": 0.23072386262482147,
+          "cohesion": 0.8550156739811912,
+          "agq_score": 0.5757523957406788
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/aiohttp/aiohttp",
+          "runtime_s": 0.4404952260083519,
+          "nodes": 140,
+          "edges": 688,
+          "nodes_in_cycles": 40,
+          "modularity": 0.5029843320709884,
+          "acyclicity": 0.7142857142857143,
+          "stability": 0.23072386262482147,
+          "cohesion": 0.8550156739811912,
+          "agq_score": 0.5757523957406788
+        },
+        "score_mean": 0.5757523957406788,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.43865313000424067
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 1566,
+        "bugfix_commits": 214,
+        "bugfix_ratio": 0.13665389527458494
+      },
+      "sonar": {
+        "project_key": "agq_oss_aiohttp",
+        "quality_gate": "OK",
+        "runtime_s": 17.142146969999885,
+        "scan_stdout_tail": "11:42:15.529 INFO  Analysis report compressed in 210ms, zip size=4.9 MB\n11:42:15.605 INFO  Analysis report uploaded in 75ms\n11:42:15.605 INFO  ------------- Check Quality Gate status\n11:42:15.605 INFO  Waiting for the analysis report to be processed (max 600s)\n11:42:20.790 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_aiohttp\n11:42:20.804 INFO  Analysis total time: 14.355 s\n11:42:20.804 INFO  EXECUTION SUCCESS\n11:42:20.804 INFO  Total time: 16.403s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 18.0,
+        "vulnerabilities": 1.0,
+        "code_smells": 700.0,
+        "ncloc": 66685.0,
+        "complexity": 9423.0,
+        "cognitive_complexity": 5489.0,
+        "duplicated_lines_density": 5.2,
+        "code_smells_per_kloc": 10.497113293844192,
+        "code_smell_quality_score": 0.08697835486542714
+      }
+    },
+    {
+      "name": "django",
+      "url": "https://github.com/django/django.git",
+      "path": "/tmp/agq_oss_30/django",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/django/django",
+          "runtime_s": 2.465373946004547,
+          "nodes": 1313,
+          "edges": 3932,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6431345634346107,
+          "acyclicity": 1.0,
+          "stability": 0.3847150259067357,
+          "cohesion": 0.8171902268760908,
+          "agq_score": 0.7112599540543594
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/django/django",
+          "runtime_s": 2.355573224995169,
+          "nodes": 1313,
+          "edges": 3932,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6431345634346107,
+          "acyclicity": 1.0,
+          "stability": 0.3847150259067357,
+          "cohesion": 0.8171902268760908,
+          "agq_score": 0.7112599540543594
+        },
+        "score_mean": 0.7112599540543594,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.410473585499858
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 1,
+        "bugfix_ratio": 0.0025
+      },
+      "sonar": {
+        "project_key": "agq_oss_django",
+        "quality_gate": "OK",
+        "runtime_s": 52.83096263099287,
+        "scan_stdout_tail": "11:43:03.194 INFO  Analysis report compressed in 1684ms, zip size=30.1 MB\n11:43:03.377 INFO  Analysis report uploaded in 183ms\n11:43:03.378 INFO  ------------- Check Quality Gate status\n11:43:03.378 INFO  Waiting for the analysis report to be processed (max 600s)\n11:43:18.694 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_django\n11:43:18.851 INFO  Analysis total time: 50.079 s\n11:43:18.852 INFO  EXECUTION SUCCESS\n11:43:18.852 INFO  Total time: 52.148s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 85.0,
+        "vulnerabilities": 1.0,
+        "code_smells": 4314.0,
+        "ncloc": 382807.0,
+        "complexity": 50996.0,
+        "cognitive_complexity": 32396.0,
+        "duplicated_lines_density": 1.1,
+        "code_smells_per_kloc": 11.269386400980128,
+        "code_smell_quality_score": 0.08150366834319571
+      }
+    },
+    {
+      "name": "starlette",
+      "url": "https://github.com/encode/starlette.git",
+      "path": "/tmp/agq_oss_30/starlette",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/starlette/starlette",
+          "runtime_s": 0.12433395799598657,
+          "nodes": 104,
+          "edges": 302,
+          "nodes_in_cycles": 0,
+          "modularity": 0.541672148882359,
+          "acyclicity": 1.0,
+          "stability": 0.3044554455445545,
+          "cohesion": 0.8014705882352942,
+          "agq_score": 0.6618995456655519
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/starlette/starlette",
+          "runtime_s": 0.12608654799987562,
+          "nodes": 104,
+          "edges": 302,
+          "nodes_in_cycles": 0,
+          "modularity": 0.541672148882359,
+          "acyclicity": 1.0,
+          "stability": 0.3044554455445545,
+          "cohesion": 0.8014705882352942,
+          "agq_score": 0.6618995456655519
+        },
+        "score_mean": 0.6618995456655519,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.1252102529979311
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 258,
+        "bugfix_commits": 23,
+        "bugfix_ratio": 0.08914728682170543
+      },
+      "sonar": {
+        "project_key": "agq_oss_starlette",
+        "quality_gate": "OK",
+        "runtime_s": 12.689670724997995,
+        "scan_stdout_tail": "11:43:27.905 INFO  Analysis report compressed in 58ms, zip size=1.1 MB\n11:43:27.970 INFO  Analysis report uploaded in 65ms\n11:43:27.970 INFO  ------------- Check Quality Gate status\n11:43:27.971 INFO  Waiting for the analysis report to be processed (max 600s)\n11:43:33.152 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_starlette\n11:43:33.158 INFO  Analysis total time: 9.914 s\n11:43:33.159 INFO  EXECUTION SUCCESS\n11:43:33.159 INFO  Total time: 11.985s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 6.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 216.0,
+        "ncloc": 13220.0,
+        "complexity": 2183.0,
+        "cognitive_complexity": 1329.0,
+        "duplicated_lines_density": 2.0,
+        "code_smells_per_kloc": 16.338880484114977,
+        "code_smell_quality_score": 0.05767385044934997
+      }
+    },
+    {
+      "name": "celery",
+      "url": "https://github.com/celery/celery.git",
+      "path": "/tmp/agq_oss_30/celery",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/celery/celery",
+          "runtime_s": 0.44169865299772937,
+          "nodes": 459,
+          "edges": 1331,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6023015860024014,
+          "acyclicity": 1.0,
+          "stability": 0.33245072366325756,
+          "cohesion": 0.6537037037037037,
+          "agq_score": 0.6471140033423406
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/celery/celery",
+          "runtime_s": 0.43941804200585466,
+          "nodes": 459,
+          "edges": 1331,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6023015860024014,
+          "acyclicity": 1.0,
+          "stability": 0.33245072366325756,
+          "cohesion": 0.6537037037037037,
+          "agq_score": 0.6471140033423406
+        },
+        "score_mean": 0.6471140033423406,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.440558347501792
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 70,
+        "bugfix_ratio": 0.175
+      },
+      "sonar": {
+        "project_key": "agq_oss_celery",
+        "quality_gate": "OK",
+        "runtime_s": 17.91023981499893,
+        "scan_stdout_tail": "11:43:46.994 INFO  Analysis report compressed in 303ms, zip size=6.0 MB\n11:43:47.079 INFO  Analysis report uploaded in 85ms\n11:43:47.080 INFO  ------------- Check Quality Gate status\n11:43:47.080 INFO  Waiting for the analysis report to be processed (max 600s)\n11:43:52.262 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_celery\n11:43:52.290 INFO  Analysis total time: 15.182 s\n11:43:52.291 INFO  EXECUTION SUCCESS\n11:43:52.291 INFO  Total time: 17.265s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 25.0,
+        "vulnerabilities": 1.0,
+        "code_smells": 1260.0,
+        "ncloc": 68487.0,
+        "complexity": 12064.0,
+        "cognitive_complexity": 7701.0,
+        "duplicated_lines_density": 1.3,
+        "code_smells_per_kloc": 18.397652109159402,
+        "code_smell_quality_score": 0.051552630925255576
+      }
+    },
+    {
+      "name": "tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "path": "/tmp/agq_oss_30/tornado",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/tornado/tornado",
+          "runtime_s": 1.7272542279970367,
+          "nodes": 199,
+          "edges": 893,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5198710343394531,
+          "acyclicity": 1.0,
+          "stability": 0.3451640759930916,
+          "cohesion": 0.8300653594771241,
+          "agq_score": 0.6737751174524172
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/tornado/tornado",
+          "runtime_s": 1.8040482840006007,
+          "nodes": 199,
+          "edges": 893,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5198710343394531,
+          "acyclicity": 1.0,
+          "stability": 0.3451640759930916,
+          "cohesion": 0.8300653594771241,
+          "agq_score": 0.6737751174524172
+        },
+        "score_mean": 0.6737751174524172,
+        "score_delta": 0.0,
+        "runtime_s_mean": 1.7656512559988187
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 275,
+        "bugfix_commits": 30,
+        "bugfix_ratio": 0.10909090909090909
+      },
+      "sonar": {
+        "project_key": "agq_oss_tornado",
+        "quality_gate": "OK",
+        "runtime_s": 14.448937870009104,
+        "scan_stdout_tail": "11:44:05.410 INFO  Analysis report compressed in 119ms, zip size=2.6 MB\n11:44:05.485 INFO  Analysis report uploaded in 75ms\n11:44:05.486 INFO  ------------- Check Quality Gate status\n11:44:05.486 INFO  Waiting for the analysis report to be processed (max 600s)\n11:44:10.667 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_tornado\n11:44:10.677 INFO  Analysis total time: 11.680 s\n11:44:10.677 INFO  EXECUTION SUCCESS\n11:44:10.677 INFO  Total time: 13.775s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 22.0,
+        "vulnerabilities": 9.0,
+        "code_smells": 469.0,
+        "ncloc": 28608.0,
+        "complexity": 5568.0,
+        "cognitive_complexity": 4100.0,
+        "duplicated_lines_density": 0.1,
+        "code_smells_per_kloc": 16.394015659955258,
+        "code_smell_quality_score": 0.057491037121589685
+      }
+    },
+    {
+      "name": "typer",
+      "url": "https://github.com/fastapi/typer.git",
+      "path": "/tmp/agq_oss_30/typer",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/typer/typer",
+          "runtime_s": 0.05690434799180366,
+          "nodes": 69,
+          "edges": 136,
+          "nodes_in_cycles": 6,
+          "modularity": 0.5871970736168267,
+          "acyclicity": 0.9130434782608696,
+          "stability": 0.18011122113201516,
+          "cohesion": 0.8402777777777778,
+          "agq_score": 0.6301573876968722
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/typer/typer",
+          "runtime_s": 0.05707789500593208,
+          "nodes": 69,
+          "edges": 136,
+          "nodes_in_cycles": 6,
+          "modularity": 0.5871970736168267,
+          "acyclicity": 0.9130434782608696,
+          "stability": 0.18011122113201516,
+          "cohesion": 0.8402777777777778,
+          "agq_score": 0.6301573876968722
+        },
+        "score_mean": 0.6301573876968722,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.05699112149886787
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 13,
+        "bugfix_ratio": 0.0325
+      },
+      "sonar": {
+        "project_key": "agq_oss_typer",
+        "quality_gate": "OK",
+        "runtime_s": 14.206259034006507,
+        "scan_stdout_tail": "11:44:20.084 INFO  Analysis report compressed in 222ms, zip size=1.7 MB\n11:44:20.152 INFO  Analysis report uploaded in 68ms\n11:44:20.152 INFO  ------------- Check Quality Gate status\n11:44:20.153 INFO  Waiting for the analysis report to be processed (max 600s)\n11:44:25.332 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_typer\n11:44:25.364 INFO  Analysis total time: 11.408 s\n11:44:25.364 INFO  EXECUTION SUCCESS\n11:44:25.365 INFO  Total time: 13.497s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 2.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 143.0,
+        "ncloc": 18661.0,
+        "complexity": 2538.0,
+        "cognitive_complexity": 1436.0,
+        "duplicated_lines_density": 8.5,
+        "code_smells_per_kloc": 7.663040565886072,
+        "code_smell_quality_score": 0.11543291208145443
+      }
+    },
+    {
+      "name": "arrow",
+      "url": "https://github.com/arrow-py/arrow.git",
+      "path": "/tmp/agq_oss_30/arrow",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/arrow/arrow",
+          "runtime_s": 0.46219955700507853,
+          "nodes": 28,
+          "edges": 50,
+          "nodes_in_cycles": 0,
+          "modularity": 0.52089407191448,
+          "acyclicity": 1.0,
+          "stability": 0.29591836734693877,
+          "cohesion": 0.9381720430107527,
+          "agq_score": 0.6887461205680429
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/arrow/arrow",
+          "runtime_s": 0.4644824669958325,
+          "nodes": 28,
+          "edges": 50,
+          "nodes_in_cycles": 0,
+          "modularity": 0.52089407191448,
+          "acyclicity": 1.0,
+          "stability": 0.29591836734693877,
+          "cohesion": 0.9381720430107527,
+          "agq_score": 0.6887461205680429
+        },
+        "score_mean": 0.6887461205680429,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.4633410120004555
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 46,
+        "bugfix_commits": 10,
+        "bugfix_ratio": 0.21739130434782608
+      },
+      "sonar": {
+        "project_key": "agq_oss_arrow",
+        "quality_gate": "OK",
+        "runtime_s": 12.473586106993025,
+        "scan_stdout_tail": "11:44:33.935 INFO  Analysis report compressed in 43ms, zip size=1.0 MB\n11:44:34.005 INFO  Analysis report uploaded in 70ms\n11:44:34.005 INFO  ------------- Check Quality Gate status\n11:44:34.005 INFO  Waiting for the analysis report to be processed (max 600s)\n11:44:39.191 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_arrow\n11:44:39.195 INFO  Analysis total time: 9.720 s\n11:44:39.195 INFO  EXECUTION SUCCESS\n11:44:39.195 INFO  Total time: 11.782s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 13.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 242.0,
+        "ncloc": 15163.0,
+        "complexity": 1290.0,
+        "cognitive_complexity": 667.0,
+        "duplicated_lines_density": 2.2,
+        "code_smells_per_kloc": 15.95990239398536,
+        "code_smell_quality_score": 0.058962603484949236
+      }
+    },
+    {
+      "name": "pendulum",
+      "url": "https://github.com/sdispater/pendulum.git",
+      "path": "/tmp/agq_oss_30/pendulum",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/pendulum/src/pendulum",
+          "runtime_s": 0.07929605100071058,
+          "nodes": 156,
+          "edges": 244,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6487436987360781,
+          "acyclicity": 1.0,
+          "stability": 0.5275807722616234,
+          "cohesion": 0.5113636363636364,
+          "agq_score": 0.6719220268403344
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/pendulum/src/pendulum",
+          "runtime_s": 0.07078617499792017,
+          "nodes": 156,
+          "edges": 244,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6487436987360781,
+          "acyclicity": 1.0,
+          "stability": 0.5275807722616234,
+          "cohesion": 0.5113636363636364,
+          "agq_score": 0.6719220268403344
+        },
+        "score_mean": 0.6719220268403344,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.07504111299931537
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 67,
+        "bugfix_commits": 21,
+        "bugfix_ratio": 0.31343283582089554
+      },
+      "sonar": {
+        "project_key": "agq_oss_pendulum",
+        "quality_gate": "OK",
+        "runtime_s": 13.457379397994373,
+        "scan_stdout_tail": "11:44:47.857 INFO  Analysis report compressed in 114ms, zip size=1.5 MB\n11:44:47.927 INFO  Analysis report uploaded in 70ms\n11:44:47.928 INFO  ------------- Check Quality Gate status\n11:44:47.928 INFO  Waiting for the analysis report to be processed (max 600s)\n11:44:53.133 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_pendulum\n11:44:53.147 INFO  Analysis total time: 10.694 s\n11:44:53.148 INFO  EXECUTION SUCCESS\n11:44:53.148 INFO  Total time: 12.771s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 163.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 149.0,
+        "ncloc": 18779.0,
+        "complexity": 2455.0,
+        "cognitive_complexity": 1268.0,
+        "duplicated_lines_density": 3.2,
+        "code_smells_per_kloc": 7.93439480270515,
+        "code_smell_quality_score": 0.11192699920729055
+      }
+    },
+    {
+      "name": "httpcore",
+      "url": "https://github.com/encode/httpcore.git",
+      "path": "/tmp/agq_oss_30/httpcore",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/httpcore/httpcore",
+          "runtime_s": 0.08405887499975506,
+          "nodes": 63,
+          "edges": 260,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5211341222879685,
+          "acyclicity": 1.0,
+          "stability": 0.34261944543899425,
+          "cohesion": 0.7974683544303798,
+          "agq_score": 0.6653054805393357
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/httpcore/httpcore",
+          "runtime_s": 0.08243562199641019,
+          "nodes": 63,
+          "edges": 260,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5211341222879685,
+          "acyclicity": 1.0,
+          "stability": 0.34261944543899425,
+          "cohesion": 0.7974683544303798,
+          "agq_score": 0.6653054805393357
+        },
+        "score_mean": 0.6653054805393357,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.08324724849808263
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 36,
+        "bugfix_commits": 5,
+        "bugfix_ratio": 0.1388888888888889
+      },
+      "sonar": {
+        "project_key": "agq_oss_httpcore",
+        "quality_gate": "OK",
+        "runtime_s": 12.074538686996675,
+        "scan_stdout_tail": "11:45:00.481 INFO  Analysis report compressed in 43ms, zip size=712.0 kB\n11:45:00.546 INFO  Analysis report uploaded in 64ms\n11:45:00.546 INFO  ------------- Check Quality Gate status\n11:45:00.546 INFO  Waiting for the analysis report to be processed (max 600s)\n11:45:05.747 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_httpcore\n11:45:05.753 INFO  Analysis total time: 9.382 s\n11:45:05.753 INFO  EXECUTION SUCCESS\n11:45:05.753 INFO  Total time: 11.462s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 1.0,
+        "vulnerabilities": 8.0,
+        "code_smells": 145.0,
+        "ncloc": 9460.0,
+        "complexity": 1211.0,
+        "cognitive_complexity": 789.0,
+        "duplicated_lines_density": 17.6,
+        "code_smells_per_kloc": 15.327695560253698,
+        "code_smell_quality_score": 0.06124562993655316
+      }
+    },
+    {
+      "name": "attrs",
+      "url": "https://github.com/python-attrs/attrs.git",
+      "path": "/tmp/agq_oss_30/attrs",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/attrs/src/attrs",
+          "runtime_s": 0.0007479159976355731,
+          "nodes": 10,
+          "edges": 5,
+          "nodes_in_cycles": 0,
+          "modularity": 0.8666666666666667,
+          "acyclicity": 1.0,
+          "stability": 0.5,
+          "cohesion": 1.0,
+          "agq_score": 0.8416666666666667
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/attrs/src/attrs",
+          "runtime_s": 0.0004967500135535374,
+          "nodes": 10,
+          "edges": 5,
+          "nodes_in_cycles": 0,
+          "modularity": 0.8666666666666667,
+          "acyclicity": 1.0,
+          "stability": 0.5,
+          "cohesion": 1.0,
+          "agq_score": 0.8416666666666667
+        },
+        "score_mean": 0.8416666666666667,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.0006223330055945553
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 318,
+        "bugfix_commits": 36,
+        "bugfix_ratio": 0.11320754716981132
+      },
+      "sonar": {
+        "project_key": "agq_oss_attrs",
+        "quality_gate": "OK",
+        "runtime_s": 12.494415180000942,
+        "scan_stdout_tail": "11:45:13.284 INFO  Analysis report compressed in 50ms, zip size=899.1 kB\n11:45:13.351 INFO  Analysis report uploaded in 66ms\n11:45:13.351 INFO  ------------- Check Quality Gate status\n11:45:13.351 INFO  Waiting for the analysis report to be processed (max 600s)\n11:45:18.534 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_attrs\n11:45:18.541 INFO  Analysis total time: 9.748 s\n11:45:18.541 INFO  EXECUTION SUCCESS\n11:45:18.541 INFO  Total time: 11.828s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 57.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 185.0,
+        "ncloc": 11168.0,
+        "complexity": 1710.0,
+        "cognitive_complexity": 1009.0,
+        "duplicated_lines_density": 0.7,
+        "code_smells_per_kloc": 16.56518624641834,
+        "code_smell_quality_score": 0.056930794013294726
+      }
+    },
+    {
+      "name": "marshmallow",
+      "url": "https://github.com/marshmallow-code/marshmallow.git",
+      "path": "/tmp/agq_oss_30/marshmallow",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/marshmallow/src/marshmallow",
+          "runtime_s": 0.13786960298602935,
+          "nodes": 46,
+          "edges": 77,
+          "nodes_in_cycles": 0,
+          "modularity": 0.591330747174903,
+          "acyclicity": 1.0,
+          "stability": 0.1811594202898551,
+          "cohesion": 0.8515625,
+          "agq_score": 0.6560131668661895
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/marshmallow/src/marshmallow",
+          "runtime_s": 0.13409510000201408,
+          "nodes": 46,
+          "edges": 77,
+          "nodes_in_cycles": 0,
+          "modularity": 0.591330747174903,
+          "acyclicity": 1.0,
+          "stability": 0.1811594202898551,
+          "cohesion": 0.8515625,
+          "agq_score": 0.6560131668661895
+        },
+        "score_mean": 0.6560131668661895,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.1359823514940217
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 377,
+        "bugfix_commits": 43,
+        "bugfix_ratio": 0.11405835543766578
+      },
+      "sonar": {
+        "project_key": "agq_oss_marshmallow",
+        "quality_gate": "OK",
+        "runtime_s": 12.321934271996724,
+        "scan_stdout_tail": "11:45:26.229 INFO  Analysis report compressed in 49ms, zip size=902.6 kB\n11:45:26.292 INFO  Analysis report uploaded in 63ms\n11:45:26.293 INFO  ------------- Check Quality Gate status\n11:45:26.293 INFO  Waiting for the analysis report to be processed (max 600s)\n11:45:31.477 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_marshmallow\n11:45:31.482 INFO  Analysis total time: 9.627 s\n11:45:31.482 INFO  EXECUTION SUCCESS\n11:45:31.482 INFO  Total time: 11.712s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 9.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 111.0,
+        "ncloc": 10961.0,
+        "complexity": 1577.0,
+        "cognitive_complexity": 823.0,
+        "duplicated_lines_density": 1.0,
+        "code_smells_per_kloc": 10.126813246966517,
+        "code_smell_quality_score": 0.08987299218602669
+      }
+    },
+    {
+      "name": "ansible",
+      "url": "https://github.com/ansible/ansible.git",
+      "path": "/tmp/agq_oss_30/ansible",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/ansible",
+          "runtime_s": 2.3423501350043807,
+          "nodes": 2312,
+          "edges": 8227,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6088733001298834,
+          "acyclicity": 1.0,
+          "stability": 0.0395791984695405,
+          "cohesion": 0.8050493545937737,
+          "agq_score": 0.6133754632982994
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/ansible",
+          "runtime_s": 2.253394492989173,
+          "nodes": 2312,
+          "edges": 8227,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6088733001298834,
+          "acyclicity": 1.0,
+          "stability": 0.0395791984695405,
+          "cohesion": 0.8050493545937737,
+          "agq_score": 0.6133754632982994
+        },
+        "score_mean": 0.6133754632982994,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.297872313996777
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 93,
+        "bugfix_ratio": 0.2325
+      },
+      "sonar": {
+        "project_key": "agq_oss_ansible",
+        "quality_gate": "OK",
+        "runtime_s": 34.803660947989556,
+        "scan_stdout_tail": "11:46:00.725 INFO  Analysis report compressed in 958ms, zip size=15.4 MB\n11:46:00.877 INFO  Analysis report uploaded in 152ms\n11:46:00.879 INFO  ------------- Check Quality Gate status\n11:46:00.879 INFO  Waiting for the analysis report to be processed (max 600s)\n11:46:11.129 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_ansible\n11:46:11.223 INFO  Analysis total time: 32.000 s\n11:46:11.223 INFO  EXECUTION SUCCESS\n11:46:11.224 INFO  Total time: 34.102s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 42.0,
+        "vulnerabilities": 4.0,
+        "code_smells": 2654.0,
+        "ncloc": 173441.0,
+        "complexity": 28730.0,
+        "cognitive_complexity": 36848.0,
+        "duplicated_lines_density": 2.4,
+        "code_smells_per_kloc": 15.30203354454829,
+        "code_smell_quality_score": 0.06134204038209816
+      }
+    },
+    {
+      "name": "salt",
+      "url": "https://github.com/saltstack/salt.git",
+      "path": "/tmp/agq_oss_30/salt",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/salt/salt",
+          "runtime_s": 2.778966660000151,
+          "nodes": 1540,
+          "edges": 6055,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5666537244721804,
+          "acyclicity": 1.0,
+          "stability": 0.6249814250687272,
+          "cohesion": 0.8172043010752688,
+          "agq_score": 0.7522098626540441
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/salt/salt",
+          "runtime_s": 2.7007964930089656,
+          "nodes": 1540,
+          "edges": 6055,
+          "nodes_in_cycles": 0,
+          "modularity": 0.5666537244721804,
+          "acyclicity": 1.0,
+          "stability": 0.6249814250687272,
+          "cohesion": 0.8172043010752688,
+          "agq_score": 0.7522098626540441
+        },
+        "score_mean": 0.7522098626540441,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.7398815765045583
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 2934,
+        "bugfix_commits": 706,
+        "bugfix_ratio": 0.24062713019768234
+      },
+      "sonar": {
+        "project_key": "agq_oss_salt",
+        "quality_gate": "OK",
+        "runtime_s": 70.43870668100135,
+        "scan_stdout_tail": "11:47:07.425 INFO  Analysis report compressed in 1987ms, zip size=40.3 MB\n11:47:07.600 INFO  Analysis report uploaded in 175ms\n11:47:07.600 INFO  ------------- Check Quality Gate status\n11:47:07.600 INFO  Waiting for the analysis report to be processed (max 600s)\n11:47:27.970 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_salt\n11:47:28.133 INFO  Analysis total time: 1:07.663 s\n11:47:28.134 INFO  EXECUTION SUCCESS\n11:47:28.134 INFO  Total time: 1:09.719s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 112.0,
+        "vulnerabilities": 18.0,
+        "code_smells": 10286.0,
+        "ncloc": 552986.0,
+        "complexity": 78514.0,
+        "cognitive_complexity": 100483.0,
+        "duplicated_lines_density": 4.6,
+        "code_smells_per_kloc": 18.600832570806496,
+        "code_smell_quality_score": 0.05101824100520103
+      }
+    },
+    {
+      "name": "home-assistant",
+      "url": "https://github.com/home-assistant/core.git",
+      "path": "/tmp/agq_oss_30/home-assistant",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/home-assistant",
+          "runtime_s": 20.454733887992916,
+          "nodes": 17669,
+          "edges": 113843,
+          "nodes_in_cycles": 2,
+          "modularity": 0.5500041257044257,
+          "acyclicity": 0.9998868074027959,
+          "stability": 0.01959185704236799,
+          "cohesion": 0.8997930508659188,
+          "agq_score": 0.6173189602538771
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/home-assistant",
+          "runtime_s": 20.34952843199426,
+          "nodes": 17669,
+          "edges": 113843,
+          "nodes_in_cycles": 2,
+          "modularity": 0.5500041257044257,
+          "acyclicity": 0.9998868074027959,
+          "stability": 0.01959185704236799,
+          "cohesion": 0.8997930508659188,
+          "agq_score": 0.6173189602538771
+        },
+        "score_mean": 0.6173189602538771,
+        "score_delta": 0.0,
+        "runtime_s_mean": 20.402131159993587
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 44,
+        "bugfix_ratio": 0.11
+      },
+      "sonar": {
+        "project_key": "agq_oss_home_assistant",
+        "quality_gate": "OK",
+        "runtime_s": 209.1769019330095,
+        "scan_stdout_tail": "11:50:47.446 INFO  Analysis report compressed in 8846ms, zip size=151.0 MB\n11:50:47.960 INFO  Analysis report uploaded in 514ms\n11:50:47.961 INFO  ------------- Check Quality Gate status\n11:50:47.961 INFO  Waiting for the analysis report to be processed (max 600s)\n11:51:38.732 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_home_assistant\n11:51:39.815 INFO  Analysis total time: 3:26.500 s\n11:51:39.816 INFO  EXECUTION SUCCESS\n11:51:39.816 INFO  Total time: 3:28.573s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 85.0,
+        "vulnerabilities": 2.0,
+        "code_smells": 14780.0,
+        "ncloc": 2145183.0,
+        "complexity": 156512.0,
+        "cognitive_complexity": 95363.0,
+        "duplicated_lines_density": 5.4,
+        "code_smells_per_kloc": 6.889855084624482,
+        "code_smell_quality_score": 0.12674504021610875
+      }
+    },
+    {
+      "name": "airflow",
+      "url": "https://github.com/apache/airflow.git",
+      "path": "/tmp/agq_oss_30/airflow",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/airflow",
+          "runtime_s": 14.318900287005818,
+          "nodes": 8023,
+          "edges": 41784,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6243033013634409,
+          "acyclicity": 1.0,
+          "stability": 0.1258521413222754,
+          "cohesion": 0.7342033946655255,
+          "agq_score": 0.6210897093378105
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/airflow",
+          "runtime_s": 14.27183456000057,
+          "nodes": 8023,
+          "edges": 41784,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6243033013634409,
+          "acyclicity": 1.0,
+          "stability": 0.1258521413222754,
+          "cohesion": 0.7342033946655255,
+          "agq_score": 0.6210897093378105
+        },
+        "score_mean": 0.6210897093378105,
+        "score_delta": 0.0,
+        "runtime_s_mean": 14.295367423503194
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 400,
+        "bugfix_commits": 96,
+        "bugfix_ratio": 0.24
+      },
+      "sonar": {
+        "project_key": "agq_oss_airflow",
+        "quality_gate": "OK",
+        "runtime_s": 103.23271621100139,
+        "scan_stdout_tail": "11:53:31.519 INFO  Analysis report compressed in 3848ms, zip size=69.8 MB\n11:53:31.774 INFO  Analysis report uploaded in 255ms\n11:53:31.775 INFO  ------------- Check Quality Gate status\n11:53:31.775 INFO  Waiting for the analysis report to be processed (max 600s)\n11:53:57.241 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_airflow\n11:53:57.659 INFO  Analysis total time: 1:40.458 s\n11:53:57.660 INFO  EXECUTION SUCCESS\n11:53:57.660 INFO  Total time: 1:42.562s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 174.0,
+        "vulnerabilities": 9.0,
+        "code_smells": 5826.0,
+        "ncloc": 857743.0,
+        "complexity": 85649.0,
+        "cognitive_complexity": 61888.0,
+        "duplicated_lines_density": 4.3,
+        "code_smells_per_kloc": 6.792244296951417,
+        "code_smell_quality_score": 0.12833273212330276
+      }
+    },
+    {
+      "name": "thefuck",
+      "url": "https://github.com/nvbn/thefuck.git",
+      "path": "/tmp/agq_oss_30/thefuck",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/thefuck/thefuck",
+          "runtime_s": 0.04770844099402893,
+          "nodes": 281,
+          "edges": 547,
+          "nodes_in_cycles": 2,
+          "modularity": 0.6630226712644295,
+          "acyclicity": 0.9928825622775801,
+          "stability": 0.7069486885663356,
+          "cohesion": 0.5147058823529411,
+          "agq_score": 0.7193899511153216
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/thefuck/thefuck",
+          "runtime_s": 0.04409598099300638,
+          "nodes": 281,
+          "edges": 547,
+          "nodes_in_cycles": 2,
+          "modularity": 0.6630226712644295,
+          "acyclicity": 0.9928825622775801,
+          "stability": 0.7069486885663356,
+          "cohesion": 0.5147058823529411,
+          "agq_score": 0.7193899511153216
+        },
+        "score_mean": 0.7193899511153216,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.045902210993517656
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_thefuck",
+        "quality_gate": "OK",
+        "runtime_s": 13.362621724998462,
+        "scan_stdout_tail": "11:54:08.848 INFO  Analysis report compressed in 166ms, zip size=1.4 MB\n11:54:08.917 INFO  Analysis report uploaded in 69ms\n11:54:08.918 INFO  ------------- Check Quality Gate status\n11:54:08.918 INFO  Waiting for the analysis report to be processed (max 600s)\n11:54:14.123 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_thefuck\n11:54:14.147 INFO  Analysis total time: 10.607 s\n11:54:14.148 INFO  EXECUTION SUCCESS\n11:54:14.148 INFO  Total time: 12.647s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 2.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 108.0,
+        "ncloc": 12377.0,
+        "complexity": 2134.0,
+        "cognitive_complexity": 929.0,
+        "duplicated_lines_density": 1.3,
+        "code_smells_per_kloc": 8.725862486870808,
+        "code_smell_quality_score": 0.10281864475771951
+      }
+    },
+    {
+      "name": "you-get",
+      "url": "https://github.com/soimort/you-get.git",
+      "path": "/tmp/agq_oss_30/you-get",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/you-get/src",
+          "runtime_s": 0.18141372498939745,
+          "nodes": 214,
+          "edges": 426,
+          "nodes_in_cycles": 0,
+          "modularity": 0.635781039917124,
+          "acyclicity": 1.0,
+          "stability": 0.08163265306122447,
+          "cohesion": 0.7055555555555555,
+          "agq_score": 0.605742312133476
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/you-get/src",
+          "runtime_s": 0.15567076500155963,
+          "nodes": 214,
+          "edges": 426,
+          "nodes_in_cycles": 0,
+          "modularity": 0.635781039917124,
+          "acyclicity": 1.0,
+          "stability": 0.08163265306122447,
+          "cohesion": 0.7055555555555555,
+          "agq_score": 0.605742312133476
+        },
+        "score_mean": 0.605742312133476,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.16854224499547854
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 76,
+        "bugfix_commits": 22,
+        "bugfix_ratio": 0.2894736842105263
+      },
+      "sonar": {
+        "project_key": "agq_oss_you_get",
+        "quality_gate": "OK",
+        "runtime_s": 12.926903521001805,
+        "scan_stdout_tail": "11:54:22.588 INFO  Analysis report compressed in 80ms, zip size=1.2 MB\n11:54:22.652 INFO  Analysis report uploaded in 64ms\n11:54:22.653 INFO  ------------- Check Quality Gate status\n11:54:22.653 INFO  Waiting for the analysis report to be processed (max 600s)\n11:54:27.838 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_you_get\n11:54:27.848 INFO  Analysis total time: 10.173 s\n11:54:27.848 INFO  EXECUTION SUCCESS\n11:54:27.848 INFO  Total time: 12.245s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 8.0,
+        "vulnerabilities": 6.0,
+        "code_smells": 713.0,
+        "ncloc": 11169.0,
+        "complexity": 2302.0,
+        "cognitive_complexity": 3131.0,
+        "duplicated_lines_density": 2.7,
+        "code_smells_per_kloc": 63.8374071089623,
+        "code_smell_quality_score": 0.01542319541433008
+      }
+    },
+    {
+      "name": "youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "path": "/tmp/agq_oss_30/youtube-dl",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/youtube-dl",
+          "runtime_s": 2.088298456990742,
+          "nodes": 1836,
+          "edges": 5109,
+          "nodes_in_cycles": 0,
+          "modularity": 0.61304617599526,
+          "acyclicity": 1.0,
+          "stability": 0.06384182382371917,
+          "cohesion": 0.8980538922155689,
+          "agq_score": 0.643735473008637
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/youtube-dl",
+          "runtime_s": 2.1565778869990027,
+          "nodes": 1836,
+          "edges": 5109,
+          "nodes_in_cycles": 0,
+          "modularity": 0.61304617599526,
+          "acyclicity": 1.0,
+          "stability": 0.06384182382371917,
+          "cohesion": 0.8980538922155689,
+          "agq_score": 0.643735473008637
+        },
+        "score_mean": 0.643735473008637,
+        "score_delta": 0.0,
+        "runtime_s_mean": 2.1224381719948724
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 171,
+        "bugfix_commits": 39,
+        "bugfix_ratio": 0.22807017543859648
+      },
+      "sonar": {
+        "project_key": "agq_oss_youtube_dl",
+        "quality_gate": "OK",
+        "runtime_s": 29.19698594600777,
+        "scan_stdout_tail": "11:54:51.211 INFO  Analysis report compressed in 608ms, zip size=11.0 MB\n11:54:51.348 INFO  Analysis report uploaded in 137ms\n11:54:51.349 INFO  ------------- Check Quality Gate status\n11:54:51.349 INFO  Waiting for the analysis report to be processed (max 600s)\n11:55:01.603 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_youtube_dl\n11:55:01.660 INFO  Analysis total time: 26.440 s\n11:55:01.661 INFO  EXECUTION SUCCESS\n11:55:01.661 INFO  Total time: 28.519s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 29.0,
+        "vulnerabilities": 13.0,
+        "code_smells": 1197.0,
+        "ncloc": 142736.0,
+        "complexity": 16856.0,
+        "cognitive_complexity": 22779.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells_per_kloc": 8.38611142248627,
+        "code_smell_quality_score": 0.10654039303265717
+      }
+    },
+    {
+      "name": "glances",
+      "url": "https://github.com/nicolargo/glances.git",
+      "path": "/tmp/agq_oss_30/glances",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_30/glances/glances",
+          "runtime_s": 0.16538815999228973,
+          "nodes": 205,
+          "edges": 423,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6483148809490543,
+          "acyclicity": 1.0,
+          "stability": 0.364406779661017,
+          "cohesion": 0.7083333333333333,
+          "agq_score": 0.6802637484858511
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_30/glances/glances",
+          "runtime_s": 0.1529695680073928,
+          "nodes": 205,
+          "edges": 423,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6483148809490543,
+          "acyclicity": 1.0,
+          "stability": 0.364406779661017,
+          "cohesion": 0.7083333333333333,
+          "agq_score": 0.6802637484858511
+        },
+        "score_mean": 0.6802637484858511,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.15917886399984127
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 1532,
+        "bugfix_commits": 154,
+        "bugfix_ratio": 0.10052219321148825
+      },
+      "sonar": {
+        "project_key": "agq_oss_glances",
+        "quality_gate": "OK",
+        "runtime_s": 14.304471518000355,
+        "scan_stdout_tail": "11:55:11.624 INFO  Analysis report compressed in 129ms, zip size=2.2 MB\n11:55:11.694 INFO  Analysis report uploaded in 70ms\n11:55:11.695 INFO  ------------- Check Quality Gate status\n11:55:11.695 INFO  Waiting for the analysis report to be processed (max 600s)\n11:55:16.913 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_glances\n11:55:16.926 INFO  Analysis total time: 11.561 s\n11:55:16.926 INFO  EXECUTION SUCCESS\n11:55:16.926 INFO  Total time: 13.590s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 7.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 277.0,
+        "ncloc": 22230.0,
+        "complexity": 4912.0,
+        "cognitive_complexity": 4805.0,
+        "duplicated_lines_density": 1.0,
+        "code_smells_per_kloc": 12.46063877642825,
+        "code_smell_quality_score": 0.07429067941048692
+      }
+    }
+  ]
+}

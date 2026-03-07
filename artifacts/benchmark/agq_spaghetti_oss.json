@@ -1,0 +1,623 @@
+{
+  "generated_at": "2026-03-07T08:05:28.289271+00:00",
+  "repos_target": 9,
+  "repos": [
+    {
+      "name": "python_code_disasters",
+      "url": "https://github.com/sobolevn/python-code-disasters.git"
+    },
+    {
+      "name": "cucumber_diseases_python",
+      "url": "https://github.com/Cucumber-Diseases/cucumber-diseases-python.git"
+    },
+    {
+      "name": "python_bad_project",
+      "url": "https://github.com/Cosmo-Tech/python-bad-project.git"
+    },
+    {
+      "name": "python_spaghetti",
+      "url": "https://github.com/ase1590/python-spaghetti.git"
+    },
+    {
+      "name": "cheese_quest_spaghetti",
+      "url": "https://github.com/EvanQuan/cheese-quest.git"
+    },
+    {
+      "name": "oddup_investors_spaghetti",
+      "url": "https://github.com/nwihardjo/Oddup-Investors.git"
+    },
+    {
+      "name": "ue4_component_boilerplate_generator",
+      "url": "https://github.com/benbyy/tools-ue4-component_boilerplate_generator.git"
+    },
+    {
+      "name": "nickineering_spaghetti",
+      "url": "https://github.com/nickineering/spaghetti.git"
+    },
+    {
+      "name": "python_anti_patterns",
+      "url": "https://github.com/quantifiedcode/python-anti-patterns.git"
+    }
+  ],
+  "config": {
+    "repos_dir": "/tmp/agq_oss_spaghetti",
+    "repos_file": "scripts/repos_spaghetti_oss.json",
+    "clone_depth": 400,
+    "bugfix_since": "2 years ago",
+    "sonar_url": "http://127.0.0.1:9000",
+    "scanner_image": "sonarsource/sonar-scanner-cli:latest",
+    "sonar_enabled": true
+  },
+  "summary": {
+    "repos_with_agq": 9,
+    "repos_with_sonar": 9,
+    "repos_joint": 9,
+    "failed_repos": 0,
+    "agq_mean": 0.6943387523673287,
+    "agq_median_runtime_s": 0.006888478004839271,
+    "sonar_median_runtime_s": 11.199689856002806,
+    "runtime_ratio_sonar_over_agq": 1625.858404154711
+  },
+  "correlations": {
+    "pearson_agq_vs_bugfix_ratio": -0.05700482220560873,
+    "pearson_sonar_vs_bugfix_ratio": -0.1259868453918907,
+    "spearman_agq_vs_sonar": 0.4833333333333333,
+    "sonar_predictor_for_correlation": "code_smell_quality_score"
+  },
+  "theses": [
+    {
+      "id": "T1",
+      "title": "AGQ deterministic over repeated runs",
+      "passed": true,
+      "evidence": "max_score_delta=0.0000000000 (target <= 1e-9)"
+    },
+    {
+      "id": "T2",
+      "title": "AGQ correlates stronger with defect proxy than Sonar maintainability",
+      "passed": false,
+      "evidence": "predictor=code_smell_quality_score; |r(AGQ,defect_proxy)|=0.0570 vs |r(Sonar,defect_proxy)|=0.1260"
+    },
+    {
+      "id": "T3",
+      "title": "Complementarity: Sonar A but low AGQ exists",
+      "passed": true,
+      "evidence": "cases=5 (cucumber_diseases_python, cheese_quest_spaghetti, oddup_investors_spaghetti, ue4_component_boilerplate_generator, nickineering_spaghetti)"
+    },
+    {
+      "id": "T4",
+      "title": "AGQ median runtime is lower than SonarQube median runtime",
+      "passed": true,
+      "evidence": "median_agq_s=0.007 vs median_sonar_s=11.200"
+    },
+    {
+      "id": "T5",
+      "title": "AGQ discriminates quality across heterogeneous repos",
+      "passed": true,
+      "evidence": "spread=0.1042, stddev=0.0355"
+    }
+  ],
+  "results": [
+    {
+      "name": "python_code_disasters",
+      "url": "https://github.com/sobolevn/python-code-disasters.git",
+      "path": "/tmp/agq_oss_spaghetti/python_code_disasters",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_code_disasters",
+          "runtime_s": 0.30701178799790796,
+          "nodes": 33,
+          "edges": 14,
+          "nodes_in_cycles": 0,
+          "modularity": 0.7619047619047619,
+          "acyclicity": 1.0,
+          "stability": 0.4,
+          "cohesion": 0.6666666666666667,
+          "agq_score": 0.7071428571428571
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_code_disasters",
+          "runtime_s": 0.28684093499032315,
+          "nodes": 33,
+          "edges": 14,
+          "nodes_in_cycles": 0,
+          "modularity": 0.7619047619047619,
+          "acyclicity": 1.0,
+          "stability": 0.4,
+          "cohesion": 0.6666666666666667,
+          "agq_score": 0.7071428571428571
+        },
+        "score_mean": 0.7071428571428571,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.29692636149411555
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_python_code_disasters",
+        "quality_gate": "OK",
+        "runtime_s": 18.998026809000294,
+        "scan_stdout_tail": "08:03:32.539 INFO  Analysis report compressed in 76ms, zip size=1.4 MB\n08:03:32.603 INFO  Analysis report uploaded in 64ms\n08:03:32.604 INFO  ------------- Check Quality Gate status\n08:03:32.604 INFO  Waiting for the analysis report to be processed (max 600s)\n08:03:37.799 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_python_code_disasters\n08:03:37.803 INFO  Analysis total time: 16.252 s\n08:03:37.804 INFO  EXECUTION SUCCESS\n08:03:37.804 INFO  Total time: 18.328s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 1.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 252.0,
+        "ncloc": 23059.0,
+        "complexity": 31582.0,
+        "cognitive_complexity": 22262.0,
+        "duplicated_lines_density": 0.3,
+        "code_smells_per_kloc": 10.928487792185264,
+        "code_smell_quality_score": 0.0838329231183128
+      }
+    },
+    {
+      "name": "cucumber_diseases_python",
+      "url": "https://github.com/Cucumber-Diseases/cucumber-diseases-python.git",
+      "path": "/tmp/agq_oss_spaghetti/cucumber_diseases_python",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/cucumber_diseases_python",
+          "runtime_s": 0.0033800740056904033,
+          "nodes": 7,
+          "edges": 7,
+          "nodes_in_cycles": 0,
+          "modularity": 0.54421768707483,
+          "acyclicity": 1.0,
+          "stability": 0.3809523809523808,
+          "cohesion": 0.75,
+          "agq_score": 0.6687925170068028
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/cucumber_diseases_python",
+          "runtime_s": 0.0026669459912227467,
+          "nodes": 7,
+          "edges": 7,
+          "nodes_in_cycles": 0,
+          "modularity": 0.54421768707483,
+          "acyclicity": 1.0,
+          "stability": 0.3809523809523808,
+          "cohesion": 0.75,
+          "agq_score": 0.6687925170068028
+        },
+        "score_mean": 0.6687925170068028,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.003023509998456575
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 14,
+        "bugfix_commits": 12,
+        "bugfix_ratio": 0.8571428571428571
+      },
+      "sonar": {
+        "project_key": "agq_oss_cucumber_diseases_python",
+        "quality_gate": "OK",
+        "runtime_s": 10.920907083011116,
+        "scan_stdout_tail": "08:03:43.647 INFO  Analysis report compressed in 4ms, zip size=27.9 kB\n08:03:43.710 INFO  Analysis report uploaded in 63ms\n08:03:43.710 INFO  ------------- Check Quality Gate status\n08:03:43.710 INFO  Waiting for the analysis report to be processed (max 600s)\n08:03:48.915 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_cucumber_diseases_python\n08:03:48.918 INFO  Analysis total time: 8.191 s\n08:03:48.919 INFO  EXECUTION SUCCESS\n08:03:48.919 INFO  Total time: 10.271s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 0.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 3.0,
+        "ncloc": 89.0,
+        "complexity": 33.0,
+        "cognitive_complexity": 12.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells_per_kloc": 33.70786516853933,
+        "code_smell_quality_score": 0.028811913240530913
+      }
+    },
+    {
+      "name": "python_bad_project",
+      "url": "https://github.com/Cosmo-Tech/python-bad-project.git",
+      "path": "/tmp/agq_oss_spaghetti/python_bad_project",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_bad_project/src",
+          "runtime_s": 0.04696563200559467,
+          "nodes": 46,
+          "edges": 72,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6127829218106996,
+          "acyclicity": 1.0,
+          "stability": 0.34782608695652173,
+          "cohesion": 0.9666666666666667,
+          "agq_score": 0.731818918858472
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_bad_project/src",
+          "runtime_s": 0.04269194300286472,
+          "nodes": 46,
+          "edges": 72,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6127829218106996,
+          "acyclicity": 1.0,
+          "stability": 0.34782608695652173,
+          "cohesion": 0.9666666666666667,
+          "agq_score": 0.731818918858472
+        },
+        "score_mean": 0.731818918858472,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.044828787504229695
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 27,
+        "bugfix_commits": 12,
+        "bugfix_ratio": 0.4444444444444444
+      },
+      "sonar": {
+        "project_key": "agq_oss_python_bad_project",
+        "quality_gate": "OK",
+        "runtime_s": 16.938227958002244,
+        "scan_stdout_tail": "08:04:00.864 INFO  Analysis report compressed in 24ms, zip size=368.5 kB\n08:04:00.931 INFO  Analysis report uploaded in 67ms\n08:04:00.932 INFO  ------------- Check Quality Gate status\n08:04:00.932 INFO  Waiting for the analysis report to be processed (max 600s)\n08:04:06.129 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_python_bad_project\n08:04:06.134 INFO  Analysis total time: 9.283 s\n08:04:06.134 INFO  EXECUTION SUCCESS\n08:04:06.134 INFO  Total time: 11.344s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 1.0,
+        "vulnerabilities": 1.0,
+        "code_smells": 98.0,
+        "ncloc": 4141.0,
+        "complexity": 832.0,
+        "cognitive_complexity": 1407.0,
+        "duplicated_lines_density": 1.8,
+        "code_smells_per_kloc": 23.665781212267568,
+        "code_smell_quality_score": 0.04054199586845635
+      }
+    },
+    {
+      "name": "python_spaghetti",
+      "url": "https://github.com/ase1590/python-spaghetti.git",
+      "path": "/tmp/agq_oss_spaghetti/python_spaghetti",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_spaghetti",
+          "runtime_s": 0.00066538700775709,
+          "nodes": 3,
+          "edges": 2,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.6666666666666667,
+          "cohesion": 1.0,
+          "agq_score": 0.75
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_spaghetti",
+          "runtime_s": 0.0005038450035499409,
+          "nodes": 3,
+          "edges": 2,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.6666666666666667,
+          "cohesion": 1.0,
+          "agq_score": 0.75
+        },
+        "score_mean": 0.75,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.0005846160056535155
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_python_spaghetti",
+        "quality_gate": "OK",
+        "runtime_s": 11.199689856002806,
+        "scan_stdout_tail": "08:04:12.208 INFO  Analysis report compressed in 4ms, zip size=19.9 kB\n08:04:12.277 INFO  Analysis report uploaded in 69ms\n08:04:12.278 INFO  ------------- Check Quality Gate status\n08:04:12.278 INFO  Waiting for the analysis report to be processed (max 600s)\n08:04:17.494 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_python_spaghetti\n08:04:17.497 INFO  Analysis total time: 8.185 s\n08:04:17.497 INFO  EXECUTION SUCCESS\n08:04:17.497 INFO  Total time: 10.296s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 0.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 1.0,
+        "ncloc": 28.0,
+        "complexity": 3.0,
+        "cognitive_complexity": 1.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells_per_kloc": 35.714285714285715,
+        "code_smell_quality_score": 0.027237354085603113
+      }
+    },
+    {
+      "name": "cheese_quest_spaghetti",
+      "url": "https://github.com/EvanQuan/cheese-quest.git",
+      "path": "/tmp/agq_oss_spaghetti/cheese_quest_spaghetti",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/cheese_quest_spaghetti",
+          "runtime_s": 1.8796921789908083,
+          "nodes": 5,
+          "edges": 3,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.30000000000000004,
+          "cohesion": 0.9975961538461539,
+          "agq_score": 0.6577323717948718
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/cheese_quest_spaghetti",
+          "runtime_s": 1.9047188740078127,
+          "nodes": 5,
+          "edges": 3,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.30000000000000004,
+          "cohesion": 0.9975961538461539,
+          "agq_score": 0.6577323717948718
+        },
+        "score_mean": 0.6577323717948718,
+        "score_delta": 0.0,
+        "runtime_s_mean": 1.8922055264993105
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_cheese_quest_spaghetti",
+        "quality_gate": "OK",
+        "runtime_s": 20.12628389800375,
+        "scan_stdout_tail": "08:04:36.323 INFO  Analysis report compressed in 25ms, zip size=599.8 kB\n08:04:36.385 INFO  Analysis report uploaded in 62ms\n08:04:36.385 INFO  ------------- Check Quality Gate status\n08:04:36.386 INFO  Waiting for the analysis report to be processed (max 600s)\n08:04:41.581 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_cheese_quest_spaghetti\n08:04:41.585 INFO  Analysis total time: 17.289 s\n08:04:41.586 INFO  EXECUTION SUCCESS\n08:04:41.586 INFO  Total time: 19.386s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 3.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 600.0,
+        "ncloc": 8031.0,
+        "complexity": 1617.0,
+        "cognitive_complexity": 5706.0,
+        "duplicated_lines_density": 6.2,
+        "code_smells_per_kloc": 74.71049682480388,
+        "code_smell_quality_score": 0.01320820813412474
+      }
+    },
+    {
+      "name": "oddup_investors_spaghetti",
+      "url": "https://github.com/nwihardjo/Oddup-Investors.git",
+      "path": "/tmp/agq_oss_spaghetti/oddup_investors_spaghetti",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/oddup_investors_spaghetti",
+          "runtime_s": 0.008284366005682386,
+          "nodes": 7,
+          "edges": 6,
+          "nodes_in_cycles": 0,
+          "modularity": 0.47222222222222215,
+          "acyclicity": 1.0,
+          "stability": 0.2571428571428571,
+          "cohesion": 1.0,
+          "agq_score": 0.6823412698412699
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/oddup_investors_spaghetti",
+          "runtime_s": 0.005492590003996156,
+          "nodes": 7,
+          "edges": 6,
+          "nodes_in_cycles": 0,
+          "modularity": 0.47222222222222215,
+          "acyclicity": 1.0,
+          "stability": 0.2571428571428571,
+          "cohesion": 1.0,
+          "agq_score": 0.6823412698412699
+        },
+        "score_mean": 0.6823412698412699,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.006888478004839271
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_oddup_investors_spaghetti",
+        "quality_gate": "OK",
+        "runtime_s": 11.149915596994106,
+        "scan_stdout_tail": "08:04:47.624 INFO  Analysis report compressed in 10ms, zip size=84.8 kB\n08:04:47.736 INFO  Analysis report uploaded in 112ms\n08:04:47.738 INFO  ------------- Check Quality Gate status\n08:04:47.739 INFO  Waiting for the analysis report to be processed (max 600s)\n08:04:52.935 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_oddup_investors_spaghetti\n08:04:52.937 INFO  Analysis total time: 8.383 s\n08:04:52.938 INFO  EXECUTION SUCCESS\n08:04:52.938 INFO  Total time: 10.472s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 0.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 35.0,
+        "ncloc": 365.0,
+        "complexity": 59.0,
+        "cognitive_complexity": 74.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells_per_kloc": 95.89041095890411,
+        "code_smell_quality_score": 0.010320938781280927
+      }
+    },
+    {
+      "name": "ue4_component_boilerplate_generator",
+      "url": "https://github.com/benbyy/tools-ue4-component_boilerplate_generator.git",
+      "path": "/tmp/agq_oss_spaghetti/ue4_component_boilerplate_generator",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/ue4_component_boilerplate_generator",
+          "runtime_s": 0.0015487819910049438,
+          "nodes": 4,
+          "edges": 3,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.25,
+          "cohesion": 1.0,
+          "agq_score": 0.6458333333333333
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/ue4_component_boilerplate_generator",
+          "runtime_s": 0.0014040380046935752,
+          "nodes": 4,
+          "edges": 3,
+          "nodes_in_cycles": 0,
+          "modularity": 0.3333333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.25,
+          "cohesion": 1.0,
+          "agq_score": 0.6458333333333333
+        },
+        "score_mean": 0.6458333333333333,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.0014764099978492595
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_ue4_component_boilerplate_generator",
+        "quality_gate": "OK",
+        "runtime_s": 10.936205592995975,
+        "scan_stdout_tail": "08:04:58.801 INFO  Analysis report compressed in 4ms, zip size=26.9 kB\n08:04:58.864 INFO  Analysis report uploaded in 63ms\n08:04:58.865 INFO  ------------- Check Quality Gate status\n08:04:58.865 INFO  Waiting for the analysis report to be processed (max 600s)\n08:05:04.051 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_ue4_component_boilerplate_generator\n08:05:04.054 INFO  Analysis total time: 8.191 s\n08:05:04.055 INFO  EXECUTION SUCCESS\n08:05:04.055 INFO  Total time: 10.245s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 1.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 9.0,
+        "ncloc": 107.0,
+        "complexity": 28.0,
+        "cognitive_complexity": 43.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells_per_kloc": 84.11214953271028,
+        "code_smell_quality_score": 0.011749203909080927
+      }
+    },
+    {
+      "name": "nickineering_spaghetti",
+      "url": "https://github.com/nickineering/spaghetti.git",
+      "path": "/tmp/agq_oss_spaghetti/nickineering_spaghetti",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/nickineering_spaghetti",
+          "runtime_s": 0.009830260998569429,
+          "nodes": 41,
+          "edges": 48,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6326678240740741,
+          "acyclicity": 1.0,
+          "stability": 0.27900123685837963,
+          "cohesion": 0.7708333333333334,
+          "agq_score": 0.6706255985664468
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/nickineering_spaghetti",
+          "runtime_s": 0.009445197007153183,
+          "nodes": 41,
+          "edges": 48,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6326678240740741,
+          "acyclicity": 1.0,
+          "stability": 0.27900123685837963,
+          "cohesion": 0.7708333333333334,
+          "agq_score": 0.6706255985664468
+        },
+        "score_mean": 0.6706255985664468,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.009637729002861306
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_nickineering_spaghetti",
+        "quality_gate": "OK",
+        "runtime_s": 12.23792733499431,
+        "scan_stdout_tail": "08:05:11.186 INFO  Analysis report compressed in 15ms, zip size=98.7 kB\n08:05:11.292 INFO  Analysis report uploaded in 106ms\n08:05:11.292 INFO  ------------- Check Quality Gate status\n08:05:11.293 INFO  Waiting for the analysis report to be processed (max 600s)\n08:05:16.480 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_nickineering_spaghetti\n08:05:16.485 INFO  Analysis total time: 9.424 s\n08:05:16.485 INFO  EXECUTION SUCCESS\n08:05:16.485 INFO  Total time: 11.537s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 1.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 16.0,
+        "ncloc": 819.0,
+        "complexity": 191.0,
+        "cognitive_complexity": 184.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells_per_kloc": 19.536019536019538,
+        "code_smell_quality_score": 0.04869492835483679
+      }
+    },
+    {
+      "name": "python_anti_patterns",
+      "url": "https://github.com/quantifiedcode/python-anti-patterns.git",
+      "path": "/tmp/agq_oss_spaghetti/python_anti_patterns",
+      "agq": {
+        "run1": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_anti_patterns/src",
+          "runtime_s": 0.0018783190025715157,
+          "nodes": 7,
+          "edges": 5,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6533333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.2857142857142857,
+          "cohesion": 1.0,
+          "agq_score": 0.7347619047619047
+        },
+        "run2": {
+          "source_root": "/tmp/agq_oss_spaghetti/python_anti_patterns/src",
+          "runtime_s": 0.0017257639992749318,
+          "nodes": 7,
+          "edges": 5,
+          "nodes_in_cycles": 0,
+          "modularity": 0.6533333333333333,
+          "acyclicity": 1.0,
+          "stability": 0.2857142857142857,
+          "cohesion": 1.0,
+          "agq_score": 0.7347619047619047
+        },
+        "score_mean": 0.7347619047619047,
+        "score_delta": 0.0,
+        "runtime_s_mean": 0.0018020415009232238
+      },
+      "defect_proxy": {
+        "window": "2 years ago",
+        "total_commits": 0,
+        "bugfix_commits": 0,
+        "bugfix_ratio": 0.0
+      },
+      "sonar": {
+        "project_key": "agq_oss_python_anti_patterns",
+        "quality_gate": "OK",
+        "runtime_s": 11.064286552005797,
+        "scan_stdout_tail": "08:05:22.469 INFO  Analysis report compressed in 5ms, zip size=41.3 kB\n08:05:22.530 INFO  Analysis report uploaded in 61ms\n08:05:22.531 INFO  ------------- Check Quality Gate status\n08:05:22.531 INFO  Waiting for the analysis report to be processed (max 600s)\n08:05:27.729 INFO  QUALITY GATE STATUS: PASSED - View details on http://127.0.0.1:9000/dashboard?id=agq_oss_python_anti_patterns\n08:05:27.732 INFO  Analysis total time: 8.280 s\n08:05:27.733 INFO  EXECUTION SUCCESS\n08:05:27.733 INFO  Total time: 10.377s",
+        "maintainability_rating": 1.0,
+        "maintainability_rating_letter": "A",
+        "maintainability_quality_score": 1.0,
+        "bugs": 0.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 2.0,
+        "ncloc": 219.0,
+        "complexity": 5.0,
+        "cognitive_complexity": 0.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells_per_kloc": 9.132420091324201,
+        "code_smell_quality_score": 0.09869310500225327
+      }
+    }
+  ]
+}

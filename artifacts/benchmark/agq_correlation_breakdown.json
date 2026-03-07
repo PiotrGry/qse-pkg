@@ -1,0 +1,1123 @@
+{
+  "generated_at": "2026-03-07T19:33:38.351774+00:00",
+  "source_report": "artifacts/benchmark/agq_thesis_oss80.json",
+  "summary": {
+    "repos_used": 78,
+    "key_findings": [
+      "code_smells vs bugs: pearson=0.3508, spearman=0.7305 (n=78)",
+      "agq_score: strongest pearson with bugfix_ratio = -0.1659 (very_weak)",
+      "modularity: strongest pearson with smells_per_kloc = 0.2241 (weak)",
+      "acyclicity: strongest pearson with duplicated_lines_density = -0.1604 (very_weak)",
+      "stability: strongest pearson with bugs_per_kloc = 0.1632 (very_weak)",
+      "cohesion: strongest pearson with complexity_per_kloc = -0.2600 (weak)"
+    ]
+  },
+  "sonar_vs_sonar": [
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "n": 78,
+      "pearson": 0.3508005125280357,
+      "pearson_p": 0.001638985829444671,
+      "spearman": 0.7305357983414925,
+      "spearman_p": 3.174147685767905e-14
+    },
+    {
+      "x": "code_smells",
+      "y": "vulnerabilities",
+      "n": 78,
+      "pearson": 0.06132340674915457,
+      "pearson_p": 0.5937899608888585,
+      "spearman": 0.2508703974504891,
+      "spearman_p": 0.02673166158125903
+    },
+    {
+      "x": "bugs",
+      "y": "vulnerabilities",
+      "n": 78,
+      "pearson": -0.0015983130137802934,
+      "pearson_p": 0.9889193190287783,
+      "spearman": 0.11073223391423766,
+      "spearman_p": 0.33447291032070126
+    },
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "n": 78,
+      "pearson": 0.9059795806025531,
+      "pearson_p": 4.2531929705889806e-30,
+      "spearman": 0.9278113245006424,
+      "spearman_p": 2.7927124173756606e-34
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "n": 78,
+      "pearson": 0.9167650041925105,
+      "pearson_p": 5.082057642111442e-32,
+      "spearman": 0.932642028557659,
+      "spearman_p": 2.1983467677065368e-35
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "bugs_per_kloc",
+      "n": 78,
+      "pearson": -0.05611964874390733,
+      "pearson_p": 0.6255370027993299,
+      "spearman": 0.10690567519862429,
+      "spearman_p": 0.3515458183172686
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 78,
+      "pearson": 0.022475330348686456,
+      "pearson_p": 0.8451450734335589,
+      "spearman": -0.027787420185939545,
+      "spearman_p": 0.8091705106268843
+    },
+    {
+      "x": "bugs_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 78,
+      "pearson": -0.09616641343505467,
+      "pearson_p": 0.4022834801592332,
+      "spearman": -0.1764816768335178,
+      "spearman_p": 0.12219184934074756
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "n": 78,
+      "pearson": 0.35292345890343363,
+      "pearson_p": 0.0015282941541686472,
+      "spearman": 0.4002706154604888,
+      "spearman_p": 0.00028224290782464655
+    },
+    {
+      "x": "duplicated_lines_density",
+      "y": "smells_per_kloc",
+      "n": 78,
+      "pearson": -0.14538416641803892,
+      "pearson_p": 0.20407470338706568,
+      "spearman": -0.1650724049365463,
+      "spearman_p": 0.14866276319463556
+    }
+  ],
+  "agq_breakdown": [
+    {
+      "x": "agq_score",
+      "y": "bugfix_ratio",
+      "n": 78,
+      "pearson": -0.16585181514302486,
+      "pearson_p": 0.14672802892765124,
+      "spearman": -0.15352605626438554,
+      "spearman_p": 0.17960072982164976
+    },
+    {
+      "x": "agq_score",
+      "y": "mean_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "median_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "pct_cross_package_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "pct_wide_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "mean_packages_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "bug_issues_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "median_close_time_days",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "arch_quality_proxy",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "bugs_per_kloc",
+      "n": 78,
+      "pearson": 0.10498967917950852,
+      "pearson_p": 0.3602940466433955,
+      "spearman": -0.048032285969610275,
+      "spearman_p": 0.6762381824125692
+    },
+    {
+      "x": "agq_score",
+      "y": "vulns_per_kloc",
+      "n": 78,
+      "pearson": -0.15604376269868211,
+      "pearson_p": 0.1724843564223314,
+      "spearman": -0.16267280290188682,
+      "spearman_p": 0.15473918068395376
+    },
+    {
+      "x": "agq_score",
+      "y": "smells_per_kloc",
+      "n": 78,
+      "pearson": 0.032791151908302216,
+      "pearson_p": 0.7756406344929638,
+      "spearman": 0.23620683114353996,
+      "spearman_p": 0.03734234000899554
+    },
+    {
+      "x": "agq_score",
+      "y": "complexity_per_kloc",
+      "n": 78,
+      "pearson": -0.14090114351039318,
+      "pearson_p": 0.21852359263298715,
+      "spearman": -0.031019613298094304,
+      "spearman_p": 0.7874683073441353
+    },
+    {
+      "x": "agq_score",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 78,
+      "pearson": -0.06860060896614582,
+      "pearson_p": 0.5506501709954892,
+      "spearman": 0.02348284626765639,
+      "spearman_p": 0.8382952138250518
+    },
+    {
+      "x": "agq_score",
+      "y": "duplicated_lines_density",
+      "n": 78,
+      "pearson": 0.007978176312772636,
+      "pearson_p": 0.9447310653295866,
+      "spearman": -0.004782873606163919,
+      "spearman_p": 0.966849911992013
+    },
+    {
+      "x": "agq_score",
+      "y": "sonar_runtime_s",
+      "n": 78,
+      "pearson": -0.09375410453881637,
+      "pearson_p": 0.41424512097805755,
+      "spearman": 0.019233930626335684,
+      "spearman_p": 0.8672580456916712
+    },
+    {
+      "x": "modularity",
+      "y": "bugfix_ratio",
+      "n": 78,
+      "pearson": -0.03169415300998216,
+      "pearson_p": 0.782958918626122,
+      "spearman": 0.024019276721541288,
+      "spearman_p": 0.8346530110195152
+    },
+    {
+      "x": "modularity",
+      "y": "mean_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "median_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "pct_cross_package_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "pct_wide_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "mean_packages_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "bug_issues_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "median_close_time_days",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "arch_quality_proxy",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "bugs_per_kloc",
+      "n": 78,
+      "pearson": 0.1934275773094946,
+      "pearson_p": 0.08973630575675516,
+      "spearman": -0.12522296518650833,
+      "spearman_p": 0.27466155279395843
+    },
+    {
+      "x": "modularity",
+      "y": "vulns_per_kloc",
+      "n": 78,
+      "pearson": -0.09274063779407395,
+      "pearson_p": 0.4193313521724128,
+      "spearman": 0.046410590448414404,
+      "spearman_p": 0.6865899184486767
+    },
+    {
+      "x": "modularity",
+      "y": "smells_per_kloc",
+      "n": 78,
+      "pearson": 0.22412478909208325,
+      "pearson_p": 0.048537603660294026,
+      "spearman": 0.07358464320489636,
+      "spearman_p": 0.5220046064009467
+    },
+    {
+      "x": "modularity",
+      "y": "complexity_per_kloc",
+      "n": 78,
+      "pearson": 0.03190366751161701,
+      "pearson_p": 0.7815597317750227,
+      "spearman": -0.04515737427129831,
+      "spearman_p": 0.694629324485192
+    },
+    {
+      "x": "modularity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 78,
+      "pearson": 0.012833040839811072,
+      "pearson_p": 0.9112095135285361,
+      "spearman": -0.046700135307730234,
+      "spearman_p": 0.6847373745375029
+    },
+    {
+      "x": "modularity",
+      "y": "duplicated_lines_density",
+      "n": 78,
+      "pearson": -0.08408765602783093,
+      "pearson_p": 0.46419920438952034,
+      "spearman": -0.15331767059758789,
+      "spearman_p": 0.1801991822177358
+    },
+    {
+      "x": "modularity",
+      "y": "sonar_runtime_s",
+      "n": 78,
+      "pearson": -0.03346252050227175,
+      "pearson_p": 0.7711713780065128,
+      "spearman": -0.03635604901427686,
+      "spearman_p": 0.7519961121976217
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugfix_ratio",
+      "n": 78,
+      "pearson": 0.07852386613921787,
+      "pearson_p": 0.4943771136216406,
+      "spearman": 0.0767900829527436,
+      "spearman_p": 0.5039868672104101
+    },
+    {
+      "x": "acyclicity",
+      "y": "mean_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "median_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "pct_cross_package_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "pct_wide_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "mean_packages_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "bug_issues_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "median_close_time_days",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "arch_quality_proxy",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugs_per_kloc",
+      "n": 78,
+      "pearson": 0.11339415113029051,
+      "pearson_p": 0.3229107634460081,
+      "spearman": 0.10751050924249243,
+      "spearman_p": 0.3488118352924192
+    },
+    {
+      "x": "acyclicity",
+      "y": "vulns_per_kloc",
+      "n": 78,
+      "pearson": -0.0834970213473872,
+      "pearson_p": 0.46735433143863425,
+      "spearman": -0.03306108882554471,
+      "spearman_p": 0.7738427976345317
+    },
+    {
+      "x": "acyclicity",
+      "y": "smells_per_kloc",
+      "n": 78,
+      "pearson": 0.1587002192975832,
+      "pearson_p": 0.16520225315541004,
+      "spearman": 0.14850377022706934,
+      "spearman_p": 0.19443071451074123
+    },
+    {
+      "x": "acyclicity",
+      "y": "complexity_per_kloc",
+      "n": 78,
+      "pearson": 0.0007468580441487488,
+      "pearson_p": 0.9948221033965515,
+      "spearman": 0.052945252301328655,
+      "spearman_p": 0.6452481612784216
+    },
+    {
+      "x": "acyclicity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 78,
+      "pearson": 0.10156974884159795,
+      "pearson_p": 0.37623848537404136,
+      "spearman": 0.11226766384343359,
+      "spearman_p": 0.3277721596866767
+    },
+    {
+      "x": "acyclicity",
+      "y": "duplicated_lines_density",
+      "n": 78,
+      "pearson": -0.16039732146499416,
+      "pearson_p": 0.1606702873275042,
+      "spearman": -0.1566795978120593,
+      "spearman_p": 0.17072029839933545
+    },
+    {
+      "x": "acyclicity",
+      "y": "sonar_runtime_s",
+      "n": 78,
+      "pearson": 0.13217955258439165,
+      "pearson_p": 0.2486639021796463,
+      "spearman": 0.045941912049830155,
+      "spearman_p": 0.6895924913749544
+    },
+    {
+      "x": "stability",
+      "y": "bugfix_ratio",
+      "n": 78,
+      "pearson": -0.1043701836708995,
+      "pearson_p": 0.3631510013095568,
+      "spearman": -0.03914698867392337,
+      "spearman_p": 0.7336416351314217
+    },
+    {
+      "x": "stability",
+      "y": "mean_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "median_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "pct_cross_package_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "pct_wide_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "mean_packages_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "bug_issues_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "median_close_time_days",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "arch_quality_proxy",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "bugs_per_kloc",
+      "n": 78,
+      "pearson": 0.1632197284992666,
+      "pearson_p": 0.1533382151427808,
+      "spearman": 0.15256071409730462,
+      "spearman_p": 0.18238526418636947
+    },
+    {
+      "x": "stability",
+      "y": "vulns_per_kloc",
+      "n": 78,
+      "pearson": -0.10389217930066685,
+      "pearson_p": 0.3653649045809013,
+      "spearman": -0.14014613575098003,
+      "spearman_p": 0.22102615251000168
+    },
+    {
+      "x": "stability",
+      "y": "smells_per_kloc",
+      "n": 78,
+      "pearson": 0.010563918788911681,
+      "pearson_p": 0.9268615220975461,
+      "spearman": 0.1764196336586919,
+      "spearman_p": 0.12232531083115239
+    },
+    {
+      "x": "stability",
+      "y": "complexity_per_kloc",
+      "n": 78,
+      "pearson": -0.015377774011427845,
+      "pearson_p": 0.8936967543863849,
+      "spearman": 0.013935519768610025,
+      "spearman_p": 0.9036166050295558
+    },
+    {
+      "x": "stability",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 78,
+      "pearson": -0.0024808769801675217,
+      "pearson_p": 0.9828015003392191,
+      "spearman": 0.010015364479799583,
+      "spearman_p": 0.9306497501649055
+    },
+    {
+      "x": "stability",
+      "y": "duplicated_lines_density",
+      "n": 78,
+      "pearson": -0.0038416719608312965,
+      "pearson_p": 0.9733707134392525,
+      "spearman": 0.1377172631662964,
+      "spearman_p": 0.22921328515129324
+    },
+    {
+      "x": "stability",
+      "y": "sonar_runtime_s",
+      "n": 78,
+      "pearson": -0.11104363298843173,
+      "pearson_p": 0.3331069896076797,
+      "spearman": 0.16520293126780525,
+      "spearman_p": 0.14833743290042978
+    },
+    {
+      "x": "cohesion",
+      "y": "bugfix_ratio",
+      "n": 78,
+      "pearson": -0.18399009716032746,
+      "pearson_p": 0.10684875315828779,
+      "spearman": -0.12389246479994313,
+      "spearman_p": 0.27983376799457627
+    },
+    {
+      "x": "cohesion",
+      "y": "mean_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "median_files_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "pct_cross_package_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "pct_wide_fixes",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "mean_packages_per_fix",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "bug_issues_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "median_close_time_days",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "arch_quality_proxy",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "bugs_per_kloc",
+      "n": 78,
+      "pearson": -0.21393951419870075,
+      "pearson_p": 0.059999644639531884,
+      "spearman": -0.18705883444059931,
+      "spearman_p": 0.10102671107920003
+    },
+    {
+      "x": "cohesion",
+      "y": "vulns_per_kloc",
+      "n": 78,
+      "pearson": -0.041999390948963,
+      "pearson_p": 0.715035965555196,
+      "spearman": -0.029003302416030368,
+      "spearman_p": 0.8009887565316077
+    },
+    {
+      "x": "cohesion",
+      "y": "smells_per_kloc",
+      "n": 78,
+      "pearson": -0.1759180412268967,
+      "pearson_p": 0.12340839310412566,
+      "spearman": -0.11317939250759526,
+      "spearman_p": 0.3238339886313
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "n": 78,
+      "pearson": -0.25995526502741145,
+      "pearson_p": 0.02153540509711201,
+      "spearman": -0.3333291181125926,
+      "spearman_p": 0.002862419564759881
+    },
+    {
+      "x": "cohesion",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 78,
+      "pearson": -0.1864921625010959,
+      "pearson_p": 0.10208273729675932,
+      "spearman": -0.14370621412919693,
+      "spearman_p": 0.20940081919055098
+    },
+    {
+      "x": "cohesion",
+      "y": "duplicated_lines_density",
+      "n": 78,
+      "pearson": 0.15783747797409936,
+      "pearson_p": 0.16754196565030677,
+      "spearman": 0.035277302226501536,
+      "spearman_p": 0.759128081000868
+    },
+    {
+      "x": "cohesion",
+      "y": "sonar_runtime_s",
+      "n": 78,
+      "pearson": -0.06843645699914065,
+      "pearson_p": 0.551606366374885,
+      "spearman": -0.01179847745358507,
+      "spearman_p": 0.918341926868028
+    }
+  ],
+  "top_correlations": [
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "method": "spearman",
+      "r": 0.932642028557659,
+      "abs_r": 0.932642028557659,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "method": "spearman",
+      "r": 0.9278113245006424,
+      "abs_r": 0.9278113245006424,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "method": "pearson",
+      "r": 0.9167650041925105,
+      "abs_r": 0.9167650041925105,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "method": "pearson",
+      "r": 0.9059795806025531,
+      "abs_r": 0.9059795806025531,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "method": "spearman",
+      "r": 0.7305357983414925,
+      "abs_r": 0.7305357983414925,
+      "strength": "strong"
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "method": "spearman",
+      "r": 0.4002706154604888,
+      "abs_r": 0.4002706154604888,
+      "strength": "moderate"
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "method": "pearson",
+      "r": 0.35292345890343363,
+      "abs_r": 0.35292345890343363,
+      "strength": "weak"
+    },
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "method": "pearson",
+      "r": 0.3508005125280357,
+      "abs_r": 0.3508005125280357,
+      "strength": "weak"
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "method": "spearman",
+      "r": -0.3333291181125926,
+      "abs_r": 0.3333291181125926,
+      "strength": "weak"
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "method": "pearson",
+      "r": -0.25995526502741145,
+      "abs_r": 0.25995526502741145,
+      "strength": "weak"
+    },
+    {
+      "x": "code_smells",
+      "y": "vulnerabilities",
+      "method": "spearman",
+      "r": 0.2508703974504891,
+      "abs_r": 0.2508703974504891,
+      "strength": "weak"
+    },
+    {
+      "x": "agq_score",
+      "y": "smells_per_kloc",
+      "method": "spearman",
+      "r": 0.23620683114353996,
+      "abs_r": 0.23620683114353996,
+      "strength": "weak"
+    }
+  ],
+  "mediation_analysis": {
+    "chains": [
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 bugs_per_kloc",
+        "r_a": -0.14090114351039318,
+        "r_a_p": 0.21852359263298715,
+        "n_a": 78,
+        "r_b": -0.0488703172356855,
+        "r_b_p": 0.6709120593316509,
+        "n_b": 78,
+        "r_c_direct": 0.10498967917950852,
+        "r_c_p": 0.3602940466433955,
+        "n_c": 78,
+        "indirect_effect": 0.006885883582223765,
+        "sobel_z": 0.40337859540493004,
+        "sobel_p": 0.6866698165208657,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 bugfix_ratio",
+        "r_a": -0.14090114351039318,
+        "r_a_p": 0.21852359263298715,
+        "n_a": 78,
+        "r_b": -0.12498548919649917,
+        "r_b_p": 0.27557999910871134,
+        "n_b": 78,
+        "r_c_direct": -0.16585181514302486,
+        "r_c_p": 0.14672802892765124,
+        "n_c": 78,
+        "indirect_effect": 0.017610598349992627,
+        "sobel_z": 0.8223432074904965,
+        "sobel_p": 0.41088147314667367,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 mean_files_per_fix",
+        "r_a": -0.14090114351039318,
+        "r_a_p": 0.21852359263298715,
+        "n_a": 78,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 pct_cross_package_fixes",
+        "r_a": -0.14090114351039318,
+        "r_a_p": 0.21852359263298715,
+        "n_a": 78,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 bugs_per_kloc",
+        "r_a": -0.06860060896614582,
+        "r_a_p": 0.5506501709954892,
+        "n_a": 78,
+        "r_b": -0.09313878293786439,
+        "r_b_p": 0.41732892393076626,
+        "n_b": 78,
+        "r_c_direct": 0.10498967917950852,
+        "r_c_p": 0.3602940466433955,
+        "n_c": 78,
+        "indirect_effect": 0.006389377227903169,
+        "sobel_z": 0.4830055348054007,
+        "sobel_p": 0.6290918113987962,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 bugfix_ratio",
+        "r_a": -0.06860060896614582,
+        "r_a_p": 0.5506501709954892,
+        "n_a": 78,
+        "r_b": 0.09483556789985,
+        "r_b_p": 0.40885729305664964,
+        "n_b": 78,
+        "r_c_direct": -0.16585181514302486,
+        "r_c_p": 0.14672802892765124,
+        "n_c": 78,
+        "indirect_effect": -0.006505777709579981,
+        "sobel_z": 0.48606500143261794,
+        "sobel_p": 0.6269210819431952,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 mean_files_per_fix",
+        "r_a": -0.06860060896614582,
+        "r_a_p": 0.5506501709954892,
+        "n_a": 78,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 pct_cross_package_fixes",
+        "r_a": -0.06860060896614582,
+        "r_a_p": 0.5506501709954892,
+        "n_a": 78,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 bugs_per_kloc",
+        "r_a": 0.032791151908302216,
+        "r_a_p": 0.7756406344929638,
+        "n_a": 78,
+        "r_b": -0.05611964874390733,
+        "r_b_p": 0.6255370027993299,
+        "n_b": 78,
+        "r_c_direct": 0.10498967917950852,
+        "r_c_p": 0.3602940466433955,
+        "n_c": 78,
+        "indirect_effect": -0.001840227927002027,
+        "sobel_z": 0.24701890042686372,
+        "sobel_p": 0.8048936964444755,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 bugfix_ratio",
+        "r_a": 0.032791151908302216,
+        "r_a_p": 0.7756406344929638,
+        "n_a": 78,
+        "r_b": -0.053515763081987355,
+        "r_b_p": 0.6416870448581096,
+        "n_b": 78,
+        "r_c_direct": -0.16585181514302486,
+        "r_c_p": 0.14672802892765124,
+        "n_c": 78,
+        "indirect_effect": -0.0017548435167101589,
+        "sobel_z": 0.24393894602867808,
+        "sobel_p": 0.8072782023199012,
+        "interpretation": "no_mediation"
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 mean_files_per_fix",
+        "r_a": 0.032791151908302216,
+        "r_a_p": 0.7756406344929638,
+        "n_a": 78,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 pct_cross_package_fixes",
+        "r_a": 0.032791151908302216,
+        "r_a_p": 0.7756406344929638,
+        "n_a": 78,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      }
+    ]
+  }
+}

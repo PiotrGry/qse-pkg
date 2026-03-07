@@ -1,0 +1,466 @@
+{
+  "generated_at": "2026-03-07T08:06:04.255860+00:00",
+  "source_report": "artifacts/benchmark/agq_spaghetti_oss.json",
+  "summary": {
+    "repos_used": 9,
+    "key_findings": [
+      "code_smells vs bugs: pearson=0.8906, spearman=0.7668 (n=9)",
+      "agq_score: strongest pearson with smells_per_kloc = -0.5931 (moderate)",
+      "modularity: strongest pearson with smells_per_kloc = -0.7492 (strong)",
+      "stability: strongest pearson with bugs_per_kloc = -0.3343 (weak)",
+      "cohesion: strongest pearson with complexity_per_kloc = -0.7622 (strong)"
+    ]
+  },
+  "sonar_vs_sonar": [
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "n": 9,
+      "pearson": 0.8905933229201386,
+      "spearman": 0.7668115805072325
+    },
+    {
+      "x": "code_smells",
+      "y": "vulnerabilities",
+      "n": 9,
+      "pearson": -0.027917151343640357,
+      "spearman": 0.2738612787525831
+    },
+    {
+      "x": "bugs",
+      "y": "vulnerabilities",
+      "n": 9,
+      "pearson": 0.0857492925712544,
+      "spearman": 0.225
+    },
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "n": 9,
+      "pearson": 0.30800833850277193,
+      "spearman": 0.9499999999999998
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "n": 9,
+      "pearson": 0.49537548516845864,
+      "spearman": 0.9499999999999998
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "bugs_per_kloc",
+      "n": 9,
+      "pearson": 0.4458067276158227,
+      "spearman": 0.1131504763712036
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 9,
+      "pearson": -0.21995040674177335,
+      "spearman": -0.13693063937629155
+    },
+    {
+      "x": "bugs_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 9,
+      "pearson": -0.12315178170849736,
+      "spearman": 0.14301938838683886
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "n": 9,
+      "pearson": -0.3068577427052305,
+      "spearman": -0.033333333333333326
+    },
+    {
+      "x": "duplicated_lines_density",
+      "y": "smells_per_kloc",
+      "n": 9,
+      "pearson": 0.278143250817876,
+      "spearman": -0.07921180343813393
+    }
+  ],
+  "agq_breakdown": [
+    {
+      "x": "agq_score",
+      "y": "bugfix_ratio",
+      "n": 9,
+      "pearson": -0.05700482220560873,
+      "spearman": -0.04564354645876383
+    },
+    {
+      "x": "agq_score",
+      "y": "bugs_per_kloc",
+      "n": 9,
+      "pearson": -0.5269473404382897,
+      "spearman": -0.6179756786427273
+    },
+    {
+      "x": "agq_score",
+      "y": "vulns_per_kloc",
+      "n": 9,
+      "pearson": 0.37310450197514977,
+      "spearman": 0.2738612787525831
+    },
+    {
+      "x": "agq_score",
+      "y": "smells_per_kloc",
+      "n": 9,
+      "pearson": -0.5931254718560842,
+      "spearman": -0.4833333333333333
+    },
+    {
+      "x": "agq_score",
+      "y": "complexity_per_kloc",
+      "n": 9,
+      "pearson": -0.041550936707534715,
+      "spearman": -0.6166666666666666
+    },
+    {
+      "x": "agq_score",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 9,
+      "pearson": -0.30805161269138986,
+      "spearman": -0.5166666666666666
+    },
+    {
+      "x": "agq_score",
+      "y": "duplicated_lines_density",
+      "n": 9,
+      "pearson": -0.25011334113908695,
+      "spearman": -0.07921180343813393
+    },
+    {
+      "x": "agq_score",
+      "y": "sonar_runtime_s",
+      "n": 9,
+      "pearson": -0.018592618440221576,
+      "spearman": 0.1333333333333333
+    },
+    {
+      "x": "modularity",
+      "y": "bugfix_ratio",
+      "n": 9,
+      "pearson": 0.15980670983426185,
+      "spearman": 0.09284766908852592
+    },
+    {
+      "x": "modularity",
+      "y": "bugs_per_kloc",
+      "n": 9,
+      "pearson": -0.4182152060846706,
+      "spearman": -0.15049552425675858
+    },
+    {
+      "x": "modularity",
+      "y": "vulns_per_kloc",
+      "n": 9,
+      "pearson": 0.21810120925510643,
+      "spearman": 0.13927150363278892
+    },
+    {
+      "x": "modularity",
+      "y": "smells_per_kloc",
+      "n": 9,
+      "pearson": -0.7491516820809241,
+      "spearman": -0.8645309671165332
+    },
+    {
+      "x": "modularity",
+      "y": "complexity_per_kloc",
+      "n": 9,
+      "pearson": 0.5323867752381853,
+      "spearman": 0.1695158759052026
+    },
+    {
+      "x": "modularity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 9,
+      "pearson": 0.17281214795991204,
+      "spearman": 0.0
+    },
+    {
+      "x": "modularity",
+      "y": "duplicated_lines_density",
+      "n": 9,
+      "pearson": -0.34603307042525294,
+      "spearman": 0.04028297472553804
+    },
+    {
+      "x": "modularity",
+      "y": "sonar_runtime_s",
+      "n": 9,
+      "pearson": 0.18446734475809204,
+      "spearman": 0.13561270072416207
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugfix_ratio",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugs_per_kloc",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "vulns_per_kloc",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "smells_per_kloc",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "complexity_per_kloc",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "duplicated_lines_density",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "sonar_runtime_s",
+      "n": 9,
+      "pearson": null,
+      "spearman": null
+    },
+    {
+      "x": "stability",
+      "y": "bugfix_ratio",
+      "n": 9,
+      "pearson": 0.07303919719481548,
+      "spearman": 0.3195048252113468
+    },
+    {
+      "x": "stability",
+      "y": "bugs_per_kloc",
+      "n": 9,
+      "pearson": -0.3342507808094742,
+      "spearman": -0.4526019054848144
+    },
+    {
+      "x": "stability",
+      "y": "vulns_per_kloc",
+      "n": 9,
+      "pearson": -0.01186955248970089,
+      "spearman": 0.13693063937629155
+    },
+    {
+      "x": "stability",
+      "y": "smells_per_kloc",
+      "n": 9,
+      "pearson": -0.31928035420749906,
+      "spearman": -0.36666666666666664
+    },
+    {
+      "x": "stability",
+      "y": "complexity_per_kloc",
+      "n": 9,
+      "pearson": 0.09228807226654391,
+      "spearman": 0.08333333333333333
+    },
+    {
+      "x": "stability",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 9,
+      "pearson": -0.16124541903594788,
+      "spearman": -0.06666666666666665
+    },
+    {
+      "x": "stability",
+      "y": "duplicated_lines_density",
+      "n": 9,
+      "pearson": -0.14726463364054504,
+      "spearman": 0.29704426289300223
+    },
+    {
+      "x": "stability",
+      "y": "sonar_runtime_s",
+      "n": 9,
+      "pearson": -0.039224179684581174,
+      "spearman": 0.3
+    },
+    {
+      "x": "cohesion",
+      "y": "bugfix_ratio",
+      "n": 9,
+      "pearson": -0.321492101992318,
+      "spearman": -0.45289472989165636
+    },
+    {
+      "x": "cohesion",
+      "y": "bugs_per_kloc",
+      "n": 9,
+      "pearson": 0.2270225030377164,
+      "spearman": -0.15
+    },
+    {
+      "x": "cohesion",
+      "y": "vulns_per_kloc",
+      "n": 9,
+      "pearson": 0.16834512502213453,
+      "spearman": -0.14301938838683886
+    },
+    {
+      "x": "cohesion",
+      "y": "smells_per_kloc",
+      "n": 9,
+      "pearson": 0.5296642171922944,
+      "spearman": 0.47000967108038416
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "n": 9,
+      "pearson": -0.7622270320268142,
+      "spearman": -0.7572378034072856
+    },
+    {
+      "x": "cohesion",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 9,
+      "pearson": -0.3921539327060649,
+      "spearman": -0.4526019054848144
+    },
+    {
+      "x": "cohesion",
+      "y": "duplicated_lines_density",
+      "n": 9,
+      "pearson": 0.27093667199163773,
+      "spearman": -0.3826448905963142
+    },
+    {
+      "x": "cohesion",
+      "y": "sonar_runtime_s",
+      "n": 9,
+      "pearson": -0.20085256062913906,
+      "spearman": -0.33074754631582587
+    }
+  ],
+  "top_correlations": [
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "method": "spearman",
+      "r": 0.9499999999999998,
+      "abs_r": 0.9499999999999998,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "method": "spearman",
+      "r": 0.9499999999999998,
+      "abs_r": 0.9499999999999998,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "method": "pearson",
+      "r": 0.8905933229201386,
+      "abs_r": 0.8905933229201386,
+      "strength": "very_strong"
+    },
+    {
+      "x": "modularity",
+      "y": "smells_per_kloc",
+      "method": "spearman",
+      "r": -0.8645309671165332,
+      "abs_r": 0.8645309671165332,
+      "strength": "very_strong"
+    },
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "method": "spearman",
+      "r": 0.7668115805072325,
+      "abs_r": 0.7668115805072325,
+      "strength": "strong"
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "method": "pearson",
+      "r": -0.7622270320268142,
+      "abs_r": 0.7622270320268142,
+      "strength": "strong"
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "method": "spearman",
+      "r": -0.7572378034072856,
+      "abs_r": 0.7572378034072856,
+      "strength": "strong"
+    },
+    {
+      "x": "modularity",
+      "y": "smells_per_kloc",
+      "method": "pearson",
+      "r": -0.7491516820809241,
+      "abs_r": 0.7491516820809241,
+      "strength": "strong"
+    },
+    {
+      "x": "agq_score",
+      "y": "bugs_per_kloc",
+      "method": "spearman",
+      "r": -0.6179756786427273,
+      "abs_r": 0.6179756786427273,
+      "strength": "strong"
+    },
+    {
+      "x": "agq_score",
+      "y": "complexity_per_kloc",
+      "method": "spearman",
+      "r": -0.6166666666666666,
+      "abs_r": 0.6166666666666666,
+      "strength": "strong"
+    },
+    {
+      "x": "agq_score",
+      "y": "smells_per_kloc",
+      "method": "pearson",
+      "r": -0.5931254718560842,
+      "abs_r": 0.5931254718560842,
+      "strength": "moderate"
+    },
+    {
+      "x": "modularity",
+      "y": "complexity_per_kloc",
+      "method": "pearson",
+      "r": 0.5323867752381853,
+      "abs_r": 0.5323867752381853,
+      "strength": "moderate"
+    }
+  ]
+}

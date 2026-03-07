@@ -1,0 +1,651 @@
+{
+  "generated_at": "2026-03-07T11:38:01.047928+00:00",
+  "source_report": "artifacts/benchmark/agq_oss30_nosq.json",
+  "summary": {
+    "repos_used": 30,
+    "key_findings": [
+      "code_smells vs bugs: pearson=n/a, spearman=n/a (n=0)",
+      "agq_score: strongest pearson with bugfix_ratio = -0.1680 (very_weak)",
+      "modularity: strongest pearson with bugfix_ratio = -0.0278 (very_weak)",
+      "acyclicity: strongest pearson with bugfix_ratio = 0.0402 (very_weak)",
+      "stability: strongest pearson with bugfix_ratio = -0.1562 (very_weak)",
+      "cohesion: strongest pearson with bugfix_ratio = -0.1217 (very_weak)"
+    ]
+  },
+  "sonar_vs_sonar": [
+    {
+      "x": "code_smells",
+      "y": "bugs",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "code_smells",
+      "y": "vulnerabilities",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "bugs",
+      "y": "vulnerabilities",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "code_smells",
+      "y": "complexity",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "code_smells",
+      "y": "cognitive_complexity",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "bugs_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "smells_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "bugs_per_kloc",
+      "y": "vulns_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "complexity_per_kloc",
+      "y": "smells_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "duplicated_lines_density",
+      "y": "smells_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    }
+  ],
+  "agq_breakdown": [
+    {
+      "x": "agq_score",
+      "y": "bugfix_ratio",
+      "n": 30,
+      "pearson": -0.16803283521002763,
+      "pearson_p": 0.37476612084586913,
+      "spearman": -0.1684093437152392,
+      "spearman_p": 0.37368133164931383
+    },
+    {
+      "x": "agq_score",
+      "y": "bugs_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "vulns_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "smells_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "duplicated_lines_density",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "agq_score",
+      "y": "sonar_runtime_s",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "bugfix_ratio",
+      "n": 30,
+      "pearson": -0.02784499592891234,
+      "pearson_p": 0.8838733497993227,
+      "spearman": -0.002002224694104561,
+      "spearman_p": 0.9916218614161078
+    },
+    {
+      "x": "modularity",
+      "y": "bugs_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "vulns_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "smells_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "duplicated_lines_density",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "modularity",
+      "y": "sonar_runtime_s",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugfix_ratio",
+      "n": 30,
+      "pearson": 0.0402086133449836,
+      "pearson_p": 0.8329194798133659,
+      "spearman": 0.14078060131519268,
+      "spearman_p": 0.4580691943208923
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugs_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "vulns_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "smells_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "duplicated_lines_density",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "acyclicity",
+      "y": "sonar_runtime_s",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "bugfix_ratio",
+      "n": 30,
+      "pearson": -0.15622470997228655,
+      "pearson_p": 0.40971308043817367,
+      "spearman": -0.09944382647385987,
+      "spearman_p": 0.601091766884861
+    },
+    {
+      "x": "stability",
+      "y": "bugs_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "vulns_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "smells_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "duplicated_lines_density",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "stability",
+      "y": "sonar_runtime_s",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "bugfix_ratio",
+      "n": 30,
+      "pearson": -0.12167106469645872,
+      "pearson_p": 0.5218546842982188,
+      "spearman": -0.0976749366373374,
+      "spearman_p": 0.6076115103487083
+    },
+    {
+      "x": "cohesion",
+      "y": "bugs_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "vulns_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "smells_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "cognitive_complexity_per_kloc",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "duplicated_lines_density",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    },
+    {
+      "x": "cohesion",
+      "y": "sonar_runtime_s",
+      "n": 0,
+      "pearson": null,
+      "pearson_p": null,
+      "spearman": null,
+      "spearman_p": null
+    }
+  ],
+  "top_correlations": [
+    {
+      "x": "agq_score",
+      "y": "bugfix_ratio",
+      "method": "spearman",
+      "r": -0.1684093437152392,
+      "abs_r": 0.1684093437152392,
+      "strength": "very_weak"
+    },
+    {
+      "x": "agq_score",
+      "y": "bugfix_ratio",
+      "method": "pearson",
+      "r": -0.16803283521002763,
+      "abs_r": 0.16803283521002763,
+      "strength": "very_weak"
+    },
+    {
+      "x": "stability",
+      "y": "bugfix_ratio",
+      "method": "pearson",
+      "r": -0.15622470997228655,
+      "abs_r": 0.15622470997228655,
+      "strength": "very_weak"
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugfix_ratio",
+      "method": "spearman",
+      "r": 0.14078060131519268,
+      "abs_r": 0.14078060131519268,
+      "strength": "very_weak"
+    },
+    {
+      "x": "cohesion",
+      "y": "bugfix_ratio",
+      "method": "pearson",
+      "r": -0.12167106469645872,
+      "abs_r": 0.12167106469645872,
+      "strength": "very_weak"
+    },
+    {
+      "x": "stability",
+      "y": "bugfix_ratio",
+      "method": "spearman",
+      "r": -0.09944382647385987,
+      "abs_r": 0.09944382647385987,
+      "strength": "very_weak"
+    },
+    {
+      "x": "cohesion",
+      "y": "bugfix_ratio",
+      "method": "spearman",
+      "r": -0.0976749366373374,
+      "abs_r": 0.0976749366373374,
+      "strength": "very_weak"
+    },
+    {
+      "x": "acyclicity",
+      "y": "bugfix_ratio",
+      "method": "pearson",
+      "r": 0.0402086133449836,
+      "abs_r": 0.0402086133449836,
+      "strength": "very_weak"
+    },
+    {
+      "x": "modularity",
+      "y": "bugfix_ratio",
+      "method": "pearson",
+      "r": -0.02784499592891234,
+      "abs_r": 0.02784499592891234,
+      "strength": "very_weak"
+    },
+    {
+      "x": "modularity",
+      "y": "bugfix_ratio",
+      "method": "spearman",
+      "r": -0.002002224694104561,
+      "abs_r": 0.002002224694104561,
+      "strength": "very_weak"
+    }
+  ],
+  "mediation_analysis": {
+    "chains": [
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 bugs_per_kloc",
+        "r_a": null,
+        "r_a_p": null,
+        "n_a": 0,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 complexity_per_kloc \u2192 bugfix_ratio",
+        "r_a": null,
+        "r_a_p": null,
+        "n_a": 0,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": -0.16803283521002763,
+        "r_c_p": 0.37476612084586913,
+        "n_c": 30,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 bugs_per_kloc",
+        "r_a": null,
+        "r_a_p": null,
+        "n_a": 0,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 cognitive_complexity_per_kloc \u2192 bugfix_ratio",
+        "r_a": null,
+        "r_a_p": null,
+        "n_a": 0,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": -0.16803283521002763,
+        "r_c_p": 0.37476612084586913,
+        "n_c": 30,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 bugs_per_kloc",
+        "r_a": null,
+        "r_a_p": null,
+        "n_a": 0,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": null,
+        "r_c_p": null,
+        "n_c": 0,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      },
+      {
+        "chain": "agq_score \u2192 smells_per_kloc \u2192 bugfix_ratio",
+        "r_a": null,
+        "r_a_p": null,
+        "n_a": 0,
+        "r_b": null,
+        "r_b_p": null,
+        "n_b": 0,
+        "r_c_direct": -0.16803283521002763,
+        "r_c_p": 0.37476612084586913,
+        "n_c": 30,
+        "indirect_effect": null,
+        "sobel_z": null,
+        "sobel_p": null,
+        "interpretation": null
+      }
+    ]
+  }
+}
