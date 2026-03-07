@@ -76,23 +76,33 @@ def compute_modularity(G: nx.DiGraph) -> float:
 
 def compute_acyclicity(G: nx.DiGraph) -> float:
     """
-    Acyclicity based on the largest strongly-connected component (SCC).
+    Acyclicity based on the largest strongly-connected component (SCC),
+    restricted to internal nodes (those with a 'file' attribute).
 
-    A = 1 - (largest_cyclic_SCC_size / total_nodes)
+    A = 1 - (largest_cyclic_SCC_size / total_internal_nodes)
 
-    Using the largest SCC as severity signal rather than summing all cyclic
-    nodes: a single god-cycle of 100 modules is architecturally catastrophic,
-    whereas the old formula averaged it away in large graphs (1000+ nodes →
-    acyclicity ≈ 0.99 regardless of cycle severity).
+    Only internal nodes are considered: cycles through external nodes
+    (stdlib, third-party packages) are import artefacts, not architectural
+    issues. If no 'file' attribute is present on any node, all nodes are
+    treated as internal (direct graph usage without scanner).
 
-    Empty/single-node graph returns 1.0.
+    Using the largest SCC as severity: one god-cycle of 100 modules is
+    architecturally catastrophic and should not average away in large graphs.
     """
-    n = G.number_of_nodes()
+    all_nodes = list(G.nodes())
+    if len(all_nodes) <= 1:
+        return 1.0
+
+    # Restrict to internal nodes when file metadata is available
+    internal = [n for n, d in G.nodes(data=True) if d.get("file")]
+    nodes = internal if internal else all_nodes
+    n = len(nodes)
     if n <= 1:
         return 1.0
 
+    subgraph = G.subgraph(nodes)
     largest_cycle_size = 0
-    for scc in nx.strongly_connected_components(G):
+    for scc in nx.strongly_connected_components(subgraph):
         if len(scc) > 1:
             largest_cycle_size = max(largest_cycle_size, len(scc))
 

@@ -564,15 +564,16 @@ def _to_markdown(report: Dict[str, object]) -> str:
     lines.append("## Repo Results")
     lines.append("")
     lines.append(
-        "| Repo | AGQ(mean) | AGQ(delta) | Sonar Maint | Bugs | Vulns | Smells | "
-        "Defect proxy | AGQ time(s) | Sonar time(s) |"
+        "| Repo | AGQ(mean) | AGQ(delta) | Sonar Maint | Bugs | Smells | "
+        "Bugfix% | Hotspot% | Churn Gini | AGQ time(s) | Sonar time(s) |"
     )
-    lines.append("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
+    lines.append("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
 
     for row in report["results"]:
         agq = row.get("agq", {})
         sonar = row.get("sonar", {})
         defect = row.get("defect_proxy", {})
+        churn = row.get("churn", {})
 
         lines.append(
             f"| {row['name']} | "
@@ -580,9 +581,10 @@ def _to_markdown(report: Dict[str, object]) -> str:
             f"{_format_f(_float_or_none(agq.get('score_delta')), 6)} | "
             f"{sonar.get('maintainability_rating_letter', 'n/a')} | "
             f"{_format_f(_float_or_none(sonar.get('bugs')), 0)} | "
-            f"{_format_f(_float_or_none(sonar.get('vulnerabilities')), 0)} | "
             f"{_format_f(_float_or_none(sonar.get('code_smells')), 0)} | "
             f"{_format_f(_float_or_none(defect.get('bugfix_ratio')), 4)} | "
+            f"{_format_f(_float_or_none(churn.get('hotspot_ratio')), 4)} | "
+            f"{_format_f(_float_or_none(churn.get('churn_gini')), 4)} | "
             f"{_format_f(_float_or_none(agq.get('runtime_s_mean')), 3)} | "
             f"{_format_f(_float_or_none(sonar.get('runtime_s')), 3)} |"
         )
