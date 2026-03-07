@@ -38,27 +38,36 @@ def compute_modularity(G: nx.DiGraph) -> float:
     Newman's modularity Q on the undirected projection of import graph.
     Uses Louvain community detection (networkx >= 3.x).
 
-    Q in [-0.5, 1.0], we normalize to [0, 1] via (Q + 0.5) / 1.5.
-    Single-node or empty graph returns 1.0 (trivially modular).
-    """
-    if G.number_of_nodes() <= 1:
-        return 1.0
+    Normalization: max(0, Q) / Q_REF where Q_REF = 0.75.
+    Empirically, real codebases rarely exceed Q=0.75 (OSS-80 max ≈ 0.80).
+    Negative Q (anti-structure) maps to 0.0.
+    Q=0 (no community structure) maps to 0.0.
+    Q=0.75 (strong modular structure) maps to 1.0.
 
+    Graphs with fewer than 10 nodes return 0.5 (neutral): Louvain is
+    unreliable on tiny graphs and always produces Q≈0 regardless of
+    structure, which would unfairly penalize small focused libraries.
+    """
+    n = G.number_of_nodes()
+    if n <= 1:
+        return 1.0
     U = G.to_undirected()
-    # Remove self-loops
     U.remove_edges_from(nx.selfloop_edges(U))
 
     if U.number_of_edges() == 0:
         return 1.0  # No dependencies = each module is its own community
 
+    if n < 10:
+        return 0.5  # Too small for reliable community detection (Louvain unreliable)
+
     try:
         communities = nx.community.louvain_communities(U, seed=42)
         Q = nx.community.modularity(U, communities)
     except Exception:
-        return 0.5  # Fallback if algo fails
+        return 0.5
 
-    # Normalize from [-0.5, 1.0] to [0, 1]
-    return max(0.0, min(1.0, (Q + 0.5) / 1.5))
+    Q_REF = 0.75
+    return max(0.0, min(1.0, max(0.0, Q) / Q_REF))
 
 
 # ---------------------------------------------------------------------------
