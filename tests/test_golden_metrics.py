@@ -131,6 +131,32 @@ class TestAcyclicityGolden:
         G.add_edges_from([("a", "b"), ("b", "a"), ("c", "d"), ("d", "c")])
         assert compute_acyclicity(G) == pytest.approx(0.5)
 
+    def test_external_cycle_ignored(self):
+        """Cycle between external nodes (no 'file' attr) must not affect score.
+        External = stdlib/third-party modules — cycles there are not architectural."""
+        G = nx.DiGraph()
+        G.add_node("app.mod", file="/src/mod.py")  # internal
+        G.add_node("ext.a")   # external — no file
+        G.add_node("ext.b")   # external — no file
+        G.add_edge("app.mod", "ext.a")
+        G.add_edge("ext.a", "ext.b")
+        G.add_edge("ext.b", "ext.a")   # cycle between externals only
+        assert compute_acyclicity(G) == 1.0, \
+            "cycle only between external nodes should not penalize acyclicity"
+
+    def test_internal_cycle_detected_among_externals(self):
+        """Internal cycle is still detected even when mixed with external nodes."""
+        G = nx.DiGraph()
+        G.add_node("app.a", file="/src/a.py")
+        G.add_node("app.b", file="/src/b.py")
+        G.add_node("stdlib.os")  # external
+        G.add_edge("app.a", "stdlib.os")   # a imports os (normal)
+        G.add_edge("app.a", "app.b")       # direct internal edge
+        G.add_edge("app.b", "app.a")       # back-edge → cycle a→b→a
+        # Internal subgraph: app.a → app.b → app.a = cycle
+        acy = compute_acyclicity(G)
+        assert acy < 1.0, f"internal cycle should be detected, got {acy}"
+
 
 # ---------------------------------------------------------------------------
 # 2. Stability — instability variance checks
