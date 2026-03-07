@@ -261,6 +261,11 @@ def compute_agq(G: nx.DiGraph,
 
     weights: (modularity, acyclicity, stability, cohesion) — auto-normalized.
     Default equal weights. Calibrated churn-optimal: (0.0, 0.73, 0.05, 0.17).
+
+    Scope note: meaningful discrimination requires ~50+ internal modules.
+    Smaller graphs default to neutral/perfect component values
+    (no cycles, no community structure to detect), inflating AGQ scores
+    for trivially small codebases.
     """
     mod = compute_modularity(G)
     acy = compute_acyclicity(G)

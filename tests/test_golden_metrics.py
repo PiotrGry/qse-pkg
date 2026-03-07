@@ -361,7 +361,52 @@ class TestAGQOrderingInvariants:
 
 
 # ---------------------------------------------------------------------------
-# 6. Determinism
+# 6. Weighted AGQ
+# ---------------------------------------------------------------------------
+
+class TestWeightedAGQ:
+    def test_equal_weights_is_default(self):
+        """Default weights = equal mean of 4 components."""
+        G = _chain(20)
+        lcom = [1, 2, 1]
+        m = compute_agq(G, classes_lcom4=lcom)
+        expected = (m.modularity + m.acyclicity + m.stability + m.cohesion) / 4
+        assert m.agq_score == pytest.approx(expected)
+
+    def test_acyclicity_only_weight(self):
+        """Weight = (0,1,0,0) → agq_score == acyclicity."""
+        G = _chain(20)
+        m = compute_agq(G, weights=(0.0, 1.0, 0.0, 0.0))
+        assert m.agq_score == pytest.approx(m.acyclicity)
+
+    def test_weights_auto_normalized(self):
+        """Weights are auto-normalized: (0,73,5,17) → same as (0,0.73,0.05,0.17)."""
+        G = _chain(20)
+        lcom = [1, 2]
+        m1 = compute_agq(G, classes_lcom4=lcom, weights=(0, 73, 5, 17))
+        m2 = compute_agq(G, classes_lcom4=lcom, weights=(0.0, 0.73, 0.05, 0.17))
+        assert m1.agq_score == pytest.approx(m2.agq_score, abs=1e-6)
+
+    def test_calibrated_weights_favour_acyclicity(self):
+        """Churn-calibrated (0,0.73,0.05,0.17): cyclic graph penalized more."""
+        G_dag = _chain(20)
+        G_cyc = nx.DiGraph()
+        for i in range(20):
+            G_cyc.add_edge(f"m{i}", f"m{(i+1)%20}")  # full ring
+
+        eq_dag = compute_agq(G_dag, weights=(0.25, 0.25, 0.25, 0.25)).agq_score
+        eq_cyc = compute_agq(G_cyc, weights=(0.25, 0.25, 0.25, 0.25)).agq_score
+        cal_dag = compute_agq(G_dag, weights=(0.0, 0.73, 0.05, 0.17)).agq_score
+        cal_cyc = compute_agq(G_cyc, weights=(0.0, 0.73, 0.05, 0.17)).agq_score
+
+        gap_eq = eq_dag - eq_cyc
+        gap_cal = cal_dag - cal_cyc
+        assert gap_cal > gap_eq, \
+            f"calibrated weights should amplify DAG vs cyclic gap: {gap_cal:.3f} > {gap_eq:.3f}"
+
+
+# ---------------------------------------------------------------------------
+# 7. Determinism
 # ---------------------------------------------------------------------------
 
 class TestDeterminism:
