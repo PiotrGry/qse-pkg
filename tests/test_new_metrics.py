@@ -34,14 +34,14 @@ class TestHierarchicalModularity:
         assert compute_hierarchical_modularity(G) == 0.5
 
     def test_isolated_packages_high_score(self):
-        """Two isolated second-level packages → high modularity."""
+        """Two isolated first-level packages → high modularity."""
         G = nx.DiGraph()
-        # myapp.services.* internal edges only
-        G.add_edges_from([("myapp.services.a", "myapp.services.b"),
-                          ("myapp.services.b", "myapp.services.c")])
-        # myapp.domain.* internal edges only
-        G.add_edges_from([("myapp.domain.x", "myapp.domain.y"),
-                          ("myapp.domain.y", "myapp.domain.z")])
+        # services.* internal edges only
+        G.add_edges_from([("services.a", "services.b"),
+                          ("services.b", "services.c")])
+        # domain.* internal edges only
+        G.add_edges_from([("domain.x", "domain.y"),
+                          ("domain.y", "domain.z")])
         m = compute_hierarchical_modularity(G)
         assert m > 0.5, f"isolated packages should score > 0.5, got {m}"
 

@@ -224,10 +224,14 @@ def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
     if not nodes:
         return 1.0
 
+    # Group by first-level package (e.g. "flask.app" → "flask").
+    # First-level is the right granularity here: we measure whether flask's
+    # internal modules are tightly coupled vs well-isolated from other packages.
+    # Second-level grouping (used in stability) would leave each file as its
+    # own package for 2-level paths, giving trivially 0 within-density.
     packages: Dict[str, List[str]] = {}
     for node in nodes:
-        parts = node.split(".")
-        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
+        pkg = node.split(".")[0]
         packages.setdefault(pkg, []).append(node)
 
     if len(packages) < 2:
@@ -286,11 +290,10 @@ def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
     if not nodes:
         return 1.0
 
+    # First-level grouping: "flask.app" → "flask", "requests.models" → "requests"
     packages: Dict[str, str] = {}
     for node in nodes:
-        parts = node.split(".")
-        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
-        packages[node] = pkg
+        packages[node] = node.split(".")[0]
 
     internal = {n for n, d in G.nodes(data=True) if d.get("file")}
     if not internal:
