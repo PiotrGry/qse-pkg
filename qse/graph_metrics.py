@@ -2,9 +2,16 @@
 AGQ Graph Metrics — architecture-agnostic, Level 1.
 
 Modularity (Q):  Newman's modularity via Louvain on import graph
-Acyclicity (A):  1 - (nodes_in_cycles / total_nodes) via Tarjan SCC
-Stability (St):  1 - mean(|Abstractness + Instability - 1|) per module (Martin)
+Acyclicity (A):  1 - (largest_SCC / internal_nodes) via Tarjan SCC
+Stability (St):  package-level instability variance (layering quality)
 Cohesion (Co):   1 - mean(LCOM4) per class (connected components in method-attribute graph)
+
+Additional metrics:
+  hierarchical_modularity: M-score inspired — density ratio within vs between
+                           second-level packages. Fixes leaf-module size bias
+                           in Newman Q (Pisch et al. ESEM 2024).
+  boundary_crossing_ratio: fraction of cross-package edges vs total internal edges.
+                           Architecturally grounded coupling measure.
 
 All metrics normalized to [0, 1] where 1 = best.
 """
@@ -189,6 +196,120 @@ def compute_instability_variance(G: nx.DiGraph) -> float:
     mean_i = sum(instabilities) / len(instabilities)
     var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
     return min(1.0, var / 0.25)
+
+
+# ---------------------------------------------------------------------------
+# Hierarchical Modularity — M-score inspired (Pisch et al. ESEM 2024)
+# ---------------------------------------------------------------------------
+
+def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
+    """
+    Hierarchical modularity based on within-package vs cross-package edge density.
+
+    Inspired by M-score (Pisch, Cai, Kazman et al., ESEM 2024) which clusters
+    dependencies hierarchically and measures density ratios rather than Newman Q.
+    Key advantage: isolated files don't inflate the score (fixes leaf-module bias).
+
+    Groups nodes by second-level package (e.g. "a.b.c" → "a.b").
+    For each package, computes:
+      within_density  = internal_edges / possible_internal_edges
+      cross_edges     = edges leaving this package
+
+    modularity = mean(within_density) / (1 + mean_cross_ratio)
+
+    Returns [0, 1] where 1 = perfect internal cohesion, no cross-package edges.
+    Returns 0.5 neutral if fewer than 2 packages.
+    """
+    nodes = list(G.nodes())
+    if not nodes:
+        return 1.0
+
+    packages: Dict[str, List[str]] = {}
+    for node in nodes:
+        parts = node.split(".")
+        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
+        packages.setdefault(pkg, []).append(node)
+
+    if len(packages) < 2:
+        return 0.5  # can't measure modularity with one package
+
+    within_densities = []
+    cross_ratios = []
+
+    for pkg, members in packages.items():
+        member_set = set(members)
+        n_m = len(members)
+
+        # Internal edges (within package)
+        internal_edges = sum(
+            1 for u in members for v in G.successors(u) if v in member_set
+        )
+        max_internal = n_m * (n_m - 1)
+        within_density = internal_edges / max_internal if max_internal > 0 else 0.0
+
+        # Cross-package edges
+        cross_out = sum(
+            1 for u in members for v in G.successors(u) if v not in member_set
+        )
+        total_out = sum(G.out_degree(u) for u in members)
+        cross_ratio = cross_out / total_out if total_out > 0 else 0.0
+
+        within_densities.append(within_density)
+        cross_ratios.append(cross_ratio)
+
+    mean_within = sum(within_densities) / len(within_densities)
+    mean_cross = sum(cross_ratios) / len(cross_ratios)
+
+    # High within-density + low cross-ratio = good modularity
+    # Normalize: (1 - mean_cross) is the "isolation" score [0,1]
+    # Combined: geometric mean of within_density and isolation
+    isolation = 1.0 - mean_cross
+    if mean_within == 0 and isolation == 0:
+        return 0.0
+    return (mean_within * isolation) ** 0.5  # geometric mean
+
+
+def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
+    """
+    Fraction of internal edges that cross second-level package boundaries.
+
+    Low ratio = good modularity (changes stay within packages).
+    High ratio = tangled dependencies = bad architecture.
+
+    Ref: D'Ambros & Lanza (WCRE 2009) — co-changes crossing architectural
+    module boundaries correlate MORE with defects than within-module co-changes.
+
+    Returns 1 - crossing_ratio so that higher = better (consistent with AGQ).
+    Returns 0.5 neutral if graph has no internal edges.
+    """
+    nodes = list(G.nodes())
+    if not nodes:
+        return 1.0
+
+    packages: Dict[str, str] = {}
+    for node in nodes:
+        parts = node.split(".")
+        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
+        packages[node] = pkg
+
+    internal = {n for n, d in G.nodes(data=True) if d.get("file")}
+    if not internal:
+        internal = set(nodes)
+
+    total_internal_edges = 0
+    crossing_edges = 0
+    for src, tgt in G.edges():
+        if src not in internal:
+            continue
+        total_internal_edges += 1
+        if packages.get(src) != packages.get(tgt):
+            crossing_edges += 1
+
+    if total_internal_edges == 0:
+        return 0.5
+
+    crossing_ratio = crossing_edges / total_internal_edges
+    return 1.0 - crossing_ratio
 
 
 # ---------------------------------------------------------------------------

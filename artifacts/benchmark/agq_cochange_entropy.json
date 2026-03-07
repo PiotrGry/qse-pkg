@@ -1,0 +1,1049 @@
+{
+  "generated_at": "2026-03-07T22:59:48.569435+00:00",
+  "reference": "arXiv:2504.18511 \u2014 Co-Change Graph Entropy (2025)",
+  "config": {
+    "input_json": "artifacts/benchmark/agq_thesis_oss80_v3.json",
+    "since": "2 years ago"
+  },
+  "summary": {
+    "repos_with_entropy": 74,
+    "repos_total": 80
+  },
+  "correlations": {
+    "agq_vs_normalized_entropy": {
+      "pearson": -0.1003,
+      "p_pearson": 0.3952,
+      "spearman": -0.0116,
+      "p_spearman": 0.9135,
+      "n": 74
+    },
+    "agq_vs_cross_module_ratio": {
+      "pearson": 0.2202,
+      "p_pearson": 0.0595,
+      "spearman": 0.1292,
+      "p_spearman": 0.2727,
+      "n": 74
+    },
+    "agq_vs_mean_cochange_degree": {
+      "pearson": 0.1191,
+      "p_pearson": 0.3123,
+      "spearman": 0.032,
+      "p_spearman": 0.7869,
+      "n": 74
+    },
+    "agq_vs_boundary_crossings": {
+      "pearson": 0.1107,
+      "p_pearson": 0.3479,
+      "spearman": 0.1051,
+      "p_spearman": 0.3727,
+      "n": 74
+    }
+  },
+  "results": [
+    {
+      "name": "httpx",
+      "agq": 0.6560064523802706,
+      "entropy": {
+        "n_commits_analysed": 18,
+        "n_files_in_graph": 19,
+        "system_entropy": 3.8954,
+        "normalized_entropy": 0.917,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 3.444
+      }
+    },
+    {
+      "name": "requests",
+      "agq": 0.6843429399834526,
+      "entropy": {
+        "n_commits_analysed": 4,
+        "n_files_in_graph": 14,
+        "system_entropy": 3.7395,
+        "normalized_entropy": 0.9822,
+        "cross_module_ratio": 0.25,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 5
+      }
+    },
+    {
+      "name": "urllib3",
+      "agq": 0.6453241042273814,
+      "entropy": {
+        "n_commits_analysed": 12,
+        "n_files_in_graph": 15,
+        "system_entropy": 3.6241,
+        "normalized_entropy": 0.9276,
+        "cross_module_ratio": 0.5833,
+        "boundary_crossings": 7,
+        "mean_cochange_degree": 2.833
+      }
+    },
+    {
+      "name": "flask",
+      "agq": 0.5993421704969124,
+      "entropy": {
+        "n_commits_analysed": 24,
+        "n_files_in_graph": 21,
+        "system_entropy": 4.0205,
+        "normalized_entropy": 0.9153,
+        "cross_module_ratio": 0.0417,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.333
+      }
+    },
+    {
+      "name": "click",
+      "agq": 0.6043769367788261,
+      "entropy": {
+        "n_commits_analysed": 26,
+        "n_files_in_graph": 18,
+        "system_entropy": 3.9381,
+        "normalized_entropy": 0.9444,
+        "cross_module_ratio": 0.0385,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.154
+      }
+    },
+    {
+      "name": "pydantic",
+      "agq": 0.7812284059481927,
+      "entropy": {
+        "n_commits_analysed": 13,
+        "n_files_in_graph": 28,
+        "system_entropy": 4.5155,
+        "normalized_entropy": 0.9393,
+        "cross_module_ratio": 0.0769,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3
+      }
+    },
+    {
+      "name": "fastapi",
+      "agq": 0.8234962567017896,
+      "entropy": {
+        "n_commits_analysed": 5,
+        "n_files_in_graph": 25,
+        "system_entropy": 4.4454,
+        "normalized_entropy": 0.9573,
+        "cross_module_ratio": 0.6,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 5.8
+      }
+    },
+    {
+      "name": "rich",
+      "agq": 0.6927998841041278,
+      "entropy": {
+        "n_commits_analysed": 38,
+        "n_files_in_graph": 59,
+        "system_entropy": 5.1023,
+        "normalized_entropy": 0.8674,
+        "cross_module_ratio": 0.2105,
+        "boundary_crossings": 8,
+        "mean_cochange_degree": 5.447
+      }
+    },
+    {
+      "name": "pytest",
+      "agq": 0.8472222222222222,
+      "entropy": {
+        "n_commits_analysed": 17,
+        "n_files_in_graph": 26,
+        "system_entropy": 4.2998,
+        "normalized_entropy": 0.9148,
+        "cross_module_ratio": 0.2941,
+        "boundary_crossings": 5,
+        "mean_cochange_degree": 2.706
+      }
+    },
+    {
+      "name": "sanic",
+      "agq": 0.8122804462713098,
+      "entropy": {
+        "n_commits_analysed": 30,
+        "n_files_in_graph": 72,
+        "system_entropy": 5.7743,
+        "normalized_entropy": 0.9359,
+        "cross_module_ratio": 0.3667,
+        "boundary_crossings": 11,
+        "mean_cochange_degree": 4.7
+      }
+    },
+    {
+      "name": "scrapy",
+      "agq": 0.780781069291015,
+      "entropy": {
+        "n_commits_analysed": 46,
+        "n_files_in_graph": 109,
+        "system_entropy": 6.3575,
+        "normalized_entropy": 0.9393,
+        "cross_module_ratio": 0.1522,
+        "boundary_crossings": 7,
+        "mean_cochange_degree": 6.196
+      }
+    },
+    {
+      "name": "aiohttp",
+      "agq": 0.6179711585445441,
+      "entropy": {
+        "n_commits_analysed": 7,
+        "n_files_in_graph": 16,
+        "system_entropy": 3.6981,
+        "normalized_entropy": 0.9245,
+        "cross_module_ratio": 0.1429,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.714
+      }
+    },
+    {
+      "name": "django",
+      "agq": 0.8418600851394463,
+      "entropy": {
+        "n_commits_analysed": 14,
+        "n_files_in_graph": 38,
+        "system_entropy": 4.8488,
+        "normalized_entropy": 0.9239,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 2.786
+      }
+    },
+    {
+      "name": "starlette",
+      "agq": 0.7682170862028097,
+      "entropy": {
+        "n_commits_analysed": 6,
+        "n_files_in_graph": 20,
+        "system_entropy": 4.2144,
+        "normalized_entropy": 0.9751,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 4.667
+      }
+    },
+    {
+      "name": "celery",
+      "agq": 0.7669511848589095,
+      "entropy": {
+        "n_commits_analysed": 11,
+        "n_files_in_graph": 22,
+        "system_entropy": 4.2774,
+        "normalized_entropy": 0.9592,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 3
+      }
+    },
+    {
+      "name": "tornado",
+      "agq": 0.7773084079978698,
+      "entropy": {
+        "n_commits_analysed": 21,
+        "n_files_in_graph": 36,
+        "system_entropy": 4.8743,
+        "normalized_entropy": 0.9428,
+        "cross_module_ratio": 0.2381,
+        "boundary_crossings": 5,
+        "mean_cochange_degree": 5.381
+      }
+    },
+    {
+      "name": "typer",
+      "agq": 0.6879861718627699,
+      "entropy": {
+        "n_commits_analysed": 6,
+        "n_files_in_graph": 21,
+        "system_entropy": 4.2299,
+        "normalized_entropy": 0.963,
+        "cross_module_ratio": 0.5,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 4.5
+      }
+    },
+    {
+      "name": "arrow",
+      "agq": 0.7717323762948234,
+      "entropy": {
+        "n_commits_analysed": 6,
+        "n_files_in_graph": 9,
+        "system_entropy": 2.8683,
+        "normalized_entropy": 0.9049,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 3.333
+      }
+    },
+    {
+      "name": "pendulum",
+      "agq": 0.7815170262597703,
+      "entropy": {
+        "n_commits_analysed": 11,
+        "n_files_in_graph": 30,
+        "system_entropy": 4.4737,
+        "normalized_entropy": 0.9117,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 5.091
+      }
+    },
+    {
+      "name": "httpcore",
+      "agq": 0.7398221713080773,
+      "entropy": {
+        "n_commits_analysed": 7,
+        "n_files_in_graph": 27,
+        "system_entropy": 4.6944,
+        "normalized_entropy": 0.9873,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 9.286
+      }
+    },
+    {
+      "name": "attrs",
+      "agq": 1.0,
+      "entropy": {
+        "n_commits_analysed": 5,
+        "n_files_in_graph": 25,
+        "system_entropy": 4.4643,
+        "normalized_entropy": 0.9613,
+        "cross_module_ratio": 0.4,
+        "boundary_crossings": 2,
+        "mean_cochange_degree": 6.2
+      }
+    },
+    {
+      "name": "marshmallow",
+      "agq": 0.7763568807550634,
+      "entropy": {
+        "n_commits_analysed": 33,
+        "n_files_in_graph": 23,
+        "system_entropy": 4.3899,
+        "normalized_entropy": 0.9705,
+        "cross_module_ratio": 0.2424,
+        "boundary_crossings": 8,
+        "mean_cochange_degree": 4.758
+      }
+    },
+    {
+      "name": "ansible",
+      "agq": 0.6288203899811069,
+      "entropy": {
+        "n_commits_analysed": 12,
+        "n_files_in_graph": 37,
+        "system_entropy": 4.6762,
+        "normalized_entropy": 0.8976,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 3.417
+      }
+    },
+    {
+      "name": "salt",
+      "agq": 0.7969305372053574,
+      "entropy": {
+        "n_commits_analysed": 23,
+        "n_files_in_graph": 40,
+        "system_entropy": 5.0326,
+        "normalized_entropy": 0.9456,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 3.739
+      }
+    },
+    {
+      "name": "home-assistant",
+      "agq": 0.6032732143685124,
+      "entropy": {
+        "n_commits_analysed": 40,
+        "n_files_in_graph": 170,
+        "system_entropy": 7.1839,
+        "normalized_entropy": 0.9696,
+        "cross_module_ratio": 0.075,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 4.35
+      }
+    },
+    {
+      "name": "airflow",
+      "agq": 0.6927711625588051,
+      "entropy": {
+        "n_commits_analysed": 28,
+        "n_files_in_graph": 127,
+        "system_entropy": 6.4673,
+        "normalized_entropy": 0.9254,
+        "cross_module_ratio": 0.3214,
+        "boundary_crossings": 9,
+        "mean_cochange_degree": 5.107
+      }
+    },
+    {
+      "name": "thefuck",
+      "agq": 0.7320427801922236,
+      "entropy": null,
+      "error": "no_data"
+    },
+    {
+      "name": "you-get",
+      "agq": 0.6474794643798678,
+      "entropy": {
+        "n_commits_analysed": 6,
+        "n_files_in_graph": 36,
+        "system_entropy": 5.0009,
+        "normalized_entropy": 0.9673,
+        "cross_module_ratio": 0.1667,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 8
+      }
+    },
+    {
+      "name": "youtube-dl",
+      "agq": 0.6718810349686778,
+      "entropy": {
+        "n_commits_analysed": 15,
+        "n_files_in_graph": 15,
+        "system_entropy": 3.7423,
+        "normalized_entropy": 0.9579,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 2.267
+      }
+    },
+    {
+      "name": "glances",
+      "agq": 0.8162763638362687,
+      "entropy": {
+        "n_commits_analysed": 69,
+        "n_files_in_graph": 82,
+        "system_entropy": 5.8265,
+        "normalized_entropy": 0.9165,
+        "cross_module_ratio": 0.1159,
+        "boundary_crossings": 8,
+        "mean_cochange_degree": 3.232
+      }
+    },
+    {
+      "name": "sqlalchemy",
+      "agq": 0.6897739006076985,
+      "entropy": {
+        "n_commits_analysed": 67,
+        "n_files_in_graph": 136,
+        "system_entropy": 6.5238,
+        "normalized_entropy": 0.9205,
+        "cross_module_ratio": 0.2239,
+        "boundary_crossings": 15,
+        "mean_cochange_degree": 5.149
+      }
+    },
+    {
+      "name": "django-rest-framework",
+      "agq": 0.7939607926358041,
+      "entropy": {
+        "n_commits_analysed": 5,
+        "n_files_in_graph": 11,
+        "system_entropy": 3.3405,
+        "normalized_entropy": 0.9656,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 3.4
+      }
+    },
+    {
+      "name": "boto3",
+      "agq": 0.8885907279946234,
+      "entropy": {
+        "n_commits_analysed": 133,
+        "n_files_in_graph": 15,
+        "system_entropy": 2.5257,
+        "normalized_entropy": 0.6465,
+        "cross_module_ratio": 0.9398,
+        "boundary_crossings": 125,
+        "mean_cochange_degree": 2.068
+      }
+    },
+    {
+      "name": "paramiko",
+      "agq": 0.7964058744687518,
+      "entropy": {
+        "n_commits_analysed": 6,
+        "n_files_in_graph": 16,
+        "system_entropy": 3.7507,
+        "normalized_entropy": 0.9377,
+        "cross_module_ratio": 0.5,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 4
+      }
+    },
+    {
+      "name": "fabric",
+      "agq": 0.7636782896358932,
+      "entropy": null,
+      "error": "no_data"
+    },
+    {
+      "name": "sphinx",
+      "agq": 0.8088940544202892,
+      "entropy": {
+        "n_commits_analysed": 14,
+        "n_files_in_graph": 88,
+        "system_entropy": 6.2317,
+        "normalized_entropy": 0.9647,
+        "cross_module_ratio": 0.2143,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 9.143
+      }
+    },
+    {
+      "name": "black",
+      "agq": 0.7734549767372236,
+      "entropy": {
+        "n_commits_analysed": 16,
+        "n_files_in_graph": 37,
+        "system_entropy": 4.8921,
+        "normalized_entropy": 0.9391,
+        "cross_module_ratio": 0.3125,
+        "boundary_crossings": 5,
+        "mean_cochange_degree": 4.938
+      }
+    },
+    {
+      "name": "mypy",
+      "agq": 0.7841987622806295,
+      "entropy": {
+        "n_commits_analysed": 46,
+        "n_files_in_graph": 63,
+        "system_entropy": 5.3356,
+        "normalized_entropy": 0.8927,
+        "cross_module_ratio": 0.0652,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 3.391
+      }
+    },
+    {
+      "name": "ruff",
+      "agq": null,
+      "entropy": {
+        "n_commits_analysed": 3,
+        "n_files_in_graph": 15,
+        "system_entropy": 3.8426,
+        "normalized_entropy": 0.9836,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 5
+      }
+    },
+    {
+      "name": "poetry",
+      "agq": 0.7922148966026261,
+      "entropy": {
+        "n_commits_analysed": 18,
+        "n_files_in_graph": 55,
+        "system_entropy": 5.4342,
+        "normalized_entropy": 0.9399,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 4.056
+      }
+    },
+    {
+      "name": "pillow",
+      "agq": 0.8117172210415886,
+      "entropy": {
+        "n_commits_analysed": 91,
+        "n_files_in_graph": 116,
+        "system_entropy": 6.1617,
+        "normalized_entropy": 0.8985,
+        "cross_module_ratio": 0.2747,
+        "boundary_crossings": 25,
+        "mean_cochange_degree": 5.308
+      }
+    },
+    {
+      "name": "scikit-learn",
+      "agq": 0.7596110290363716,
+      "entropy": {
+        "n_commits_analysed": 17,
+        "n_files_in_graph": 54,
+        "system_entropy": 5.3497,
+        "normalized_entropy": 0.9296,
+        "cross_module_ratio": 0.1765,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 3.529
+      }
+    },
+    {
+      "name": "pandas",
+      "agq": 0.7191397455714561,
+      "entropy": {
+        "n_commits_analysed": 24,
+        "n_files_in_graph": 69,
+        "system_entropy": 5.7164,
+        "normalized_entropy": 0.9358,
+        "cross_module_ratio": 0.0833,
+        "boundary_crossings": 2,
+        "mean_cochange_degree": 4.583
+      }
+    },
+    {
+      "name": "numpy",
+      "agq": 0.7865173051135319,
+      "entropy": {
+        "n_commits_analysed": 50,
+        "n_files_in_graph": 98,
+        "system_entropy": 6.1417,
+        "normalized_entropy": 0.9285,
+        "cross_module_ratio": 0.2,
+        "boundary_crossings": 10,
+        "mean_cochange_degree": 4
+      }
+    },
+    {
+      "name": "matplotlib",
+      "agq": 0.6699700535153659,
+      "entropy": {
+        "n_commits_analysed": 364,
+        "n_files_in_graph": 397,
+        "system_entropy": 7.7933,
+        "normalized_entropy": 0.9027,
+        "cross_module_ratio": 0.2527,
+        "boundary_crossings": 92,
+        "mean_cochange_degree": 3.673
+      }
+    },
+    {
+      "name": "sympy",
+      "agq": 0.7606194304099075,
+      "entropy": {
+        "n_commits_analysed": 454,
+        "n_files_in_graph": 438,
+        "system_entropy": 8.1295,
+        "normalized_entropy": 0.9265,
+        "cross_module_ratio": 0.0352,
+        "boundary_crossings": 16,
+        "mean_cochange_degree": 3.61
+      }
+    },
+    {
+      "name": "networkx",
+      "agq": 0.7398476422067375,
+      "entropy": {
+        "n_commits_analysed": 12,
+        "n_files_in_graph": 55,
+        "system_entropy": 5.3243,
+        "normalized_entropy": 0.9209,
+        "cross_module_ratio": 0.0833,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 5.583
+      }
+    },
+    {
+      "name": "dask",
+      "agq": 0.8104116597261357,
+      "entropy": {
+        "n_commits_analysed": 16,
+        "n_files_in_graph": 64,
+        "system_entropy": 5.5319,
+        "normalized_entropy": 0.922,
+        "cross_module_ratio": 0.0625,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 6.375
+      }
+    },
+    {
+      "name": "luigi",
+      "agq": 0.7869196414570201,
+      "entropy": {
+        "n_commits_analysed": 12,
+        "n_files_in_graph": 33,
+        "system_entropy": 4.7414,
+        "normalized_entropy": 0.9399,
+        "cross_module_ratio": 0.3333,
+        "boundary_crossings": 4,
+        "mean_cochange_degree": 3.833
+      }
+    },
+    {
+      "name": "prefect",
+      "agq": 0.8550665230962521,
+      "entropy": {
+        "n_commits_analysed": 21,
+        "n_files_in_graph": 55,
+        "system_entropy": 5.2447,
+        "normalized_entropy": 0.9072,
+        "cross_module_ratio": 0.0476,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.286
+      }
+    },
+    {
+      "name": "dramatiq",
+      "agq": 0.7655146465187104,
+      "entropy": {
+        "n_commits_analysed": 23,
+        "n_files_in_graph": 41,
+        "system_entropy": 4.9334,
+        "normalized_entropy": 0.9208,
+        "cross_module_ratio": 0.3043,
+        "boundary_crossings": 7,
+        "mean_cochange_degree": 3.565
+      }
+    },
+    {
+      "name": "huey",
+      "agq": 0.8061470725723474,
+      "entropy": {
+        "n_commits_analysed": 7,
+        "n_files_in_graph": 12,
+        "system_entropy": 3.2775,
+        "normalized_entropy": 0.9142,
+        "cross_module_ratio": 0.1429,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 2.429
+      }
+    },
+    {
+      "name": "gunicorn",
+      "agq": 0.8562048268345831,
+      "entropy": {
+        "n_commits_analysed": 52,
+        "n_files_in_graph": 73,
+        "system_entropy": 5.6329,
+        "normalized_entropy": 0.91,
+        "cross_module_ratio": 0.1538,
+        "boundary_crossings": 8,
+        "mean_cochange_degree": 3.788
+      }
+    },
+    {
+      "name": "uvicorn",
+      "agq": 0.7881699869161499,
+      "entropy": {
+        "n_commits_analysed": 18,
+        "n_files_in_graph": 26,
+        "system_entropy": 4.4381,
+        "normalized_entropy": 0.9442,
+        "cross_module_ratio": 0.0556,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.889
+      }
+    },
+    {
+      "name": "werkzeug",
+      "agq": 0.716257081993048,
+      "entropy": {
+        "n_commits_analysed": 32,
+        "n_files_in_graph": 39,
+        "system_entropy": 4.9254,
+        "normalized_entropy": 0.9319,
+        "cross_module_ratio": 0.0312,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.5
+      }
+    },
+    {
+      "name": "jinja",
+      "agq": 0.7673199592985764,
+      "entropy": {
+        "n_commits_analysed": 11,
+        "n_files_in_graph": 26,
+        "system_entropy": 4.444,
+        "normalized_entropy": 0.9454,
+        "cross_module_ratio": 0.0909,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 8.364
+      }
+    },
+    {
+      "name": "mako",
+      "agq": 0.8761491765059196,
+      "entropy": {
+        "n_commits_analysed": 3,
+        "n_files_in_graph": 24,
+        "system_entropy": 4.5828,
+        "normalized_entropy": 0.9995,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 10
+      }
+    },
+    {
+      "name": "pyjwt",
+      "agq": 0.7341652433963818,
+      "entropy": {
+        "n_commits_analysed": 12,
+        "n_files_in_graph": 13,
+        "system_entropy": 3.6314,
+        "normalized_entropy": 0.9813,
+        "cross_module_ratio": 0.1667,
+        "boundary_crossings": 2,
+        "mean_cochange_degree": 4.25
+      }
+    },
+    {
+      "name": "cryptography",
+      "agq": 0.7953343340008644,
+      "entropy": {
+        "n_commits_analysed": 1,
+        "n_files_in_graph": 2,
+        "system_entropy": 1.0,
+        "normalized_entropy": 1.0,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 2
+      }
+    },
+    {
+      "name": "itsdangerous",
+      "agq": 0.6517754583397102,
+      "entropy": {
+        "n_commits_analysed": 5,
+        "n_files_in_graph": 8,
+        "system_entropy": 2.8111,
+        "normalized_entropy": 0.937,
+        "cross_module_ratio": 0.2,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.6
+      }
+    },
+    {
+      "name": "httpie",
+      "agq": 0.7867234754689546,
+      "entropy": {
+        "n_commits_analysed": 1,
+        "n_files_in_graph": 2,
+        "system_entropy": 1.0,
+        "normalized_entropy": 1.0,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 2
+      }
+    },
+    {
+      "name": "dulwich",
+      "agq": 0.7157725995552696,
+      "entropy": {
+        "n_commits_analysed": 71,
+        "n_files_in_graph": 69,
+        "system_entropy": 5.3957,
+        "normalized_entropy": 0.8833,
+        "cross_module_ratio": 0.0141,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.437
+      }
+    },
+    {
+      "name": "pygments",
+      "agq": 0.764462156426789,
+      "entropy": {
+        "n_commits_analysed": 32,
+        "n_files_in_graph": 44,
+        "system_entropy": 4.7591,
+        "normalized_entropy": 0.8717,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 2.438
+      }
+    },
+    {
+      "name": "beautifulsoup4",
+      "agq": 0.7669622400825163,
+      "entropy": null,
+      "error": "no_data"
+    },
+    {
+      "name": "lxml",
+      "agq": null,
+      "entropy": null,
+      "error": "no_data"
+    },
+    {
+      "name": "tox",
+      "agq": 0.7133974547786032,
+      "entropy": {
+        "n_commits_analysed": 29,
+        "n_files_in_graph": 58,
+        "system_entropy": 5.4846,
+        "normalized_entropy": 0.9363,
+        "cross_module_ratio": 0.0345,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 3.621
+      }
+    },
+    {
+      "name": "nox",
+      "agq": 0.7562986725941484,
+      "entropy": {
+        "n_commits_analysed": 25,
+        "n_files_in_graph": 24,
+        "system_entropy": 4.5056,
+        "normalized_entropy": 0.9827,
+        "cross_module_ratio": 0.36,
+        "boundary_crossings": 9,
+        "mean_cochange_degree": 4.6
+      }
+    },
+    {
+      "name": "hypothesis",
+      "agq": 0.6410142439124139,
+      "entropy": {
+        "n_commits_analysed": 134,
+        "n_files_in_graph": 86,
+        "system_entropy": 5.7075,
+        "normalized_entropy": 0.8881,
+        "cross_module_ratio": 0.1119,
+        "boundary_crossings": 15,
+        "mean_cochange_degree": 3.261
+      }
+    },
+    {
+      "name": "responses",
+      "agq": 0.72795158636975,
+      "entropy": {
+        "n_commits_analysed": 3,
+        "n_files_in_graph": 3,
+        "system_entropy": 1.4591,
+        "normalized_entropy": 0.9206,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 2
+      }
+    },
+    {
+      "name": "sentry-sdk",
+      "agq": 0.6826232059711664,
+      "entropy": {
+        "n_commits_analysed": 20,
+        "n_files_in_graph": 25,
+        "system_entropy": 4.2173,
+        "normalized_entropy": 0.9082,
+        "cross_module_ratio": 0.15,
+        "boundary_crossings": 3,
+        "mean_cochange_degree": 3
+      }
+    },
+    {
+      "name": "kombu",
+      "agq": 0.7405518933487941,
+      "entropy": {
+        "n_commits_analysed": 7,
+        "n_files_in_graph": 12,
+        "system_entropy": 3.3903,
+        "normalized_entropy": 0.9457,
+        "cross_module_ratio": 0.1429,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 2.429
+      }
+    },
+    {
+      "name": "peewee",
+      "agq": 0.8202996856142648,
+      "entropy": {
+        "n_commits_analysed": 10,
+        "n_files_in_graph": 16,
+        "system_entropy": 3.6949,
+        "normalized_entropy": 0.9237,
+        "cross_module_ratio": 0.8,
+        "boundary_crossings": 8,
+        "mean_cochange_degree": 3.2
+      }
+    },
+    {
+      "name": "alembic",
+      "agq": 0.7306165620741816,
+      "entropy": {
+        "n_commits_analysed": 30,
+        "n_files_in_graph": 44,
+        "system_entropy": 5.1888,
+        "normalized_entropy": 0.9504,
+        "cross_module_ratio": 0.4,
+        "boundary_crossings": 12,
+        "mean_cochange_degree": 3.567
+      }
+    },
+    {
+      "name": "textual",
+      "agq": 0.8306607474102425,
+      "entropy": {
+        "n_commits_analysed": 208,
+        "n_files_in_graph": 145,
+        "system_entropy": 6.1154,
+        "normalized_entropy": 0.8517,
+        "cross_module_ratio": 0.0433,
+        "boundary_crossings": 9,
+        "mean_cochange_degree": 3.471
+      }
+    },
+    {
+      "name": "yt-dlp",
+      "agq": 0.6877514889997307,
+      "entropy": {
+        "n_commits_analysed": 23,
+        "n_files_in_graph": 36,
+        "system_entropy": 4.6656,
+        "normalized_entropy": 0.9025,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 2.435
+      }
+    },
+    {
+      "name": "supervisor",
+      "agq": 0.7879343741051178,
+      "entropy": {
+        "n_commits_analysed": 2,
+        "n_files_in_graph": 7,
+        "system_entropy": 2.6412,
+        "normalized_entropy": 0.9408,
+        "cross_module_ratio": 0.0,
+        "boundary_crossings": 0,
+        "mean_cochange_degree": 3.5
+      }
+    },
+    {
+      "name": "locust",
+      "agq": 0.8045831215373065,
+      "entropy": {
+        "n_commits_analysed": 30,
+        "n_files_in_graph": 33,
+        "system_entropy": 4.558,
+        "normalized_entropy": 0.9036,
+        "cross_module_ratio": 0.4333,
+        "boundary_crossings": 13,
+        "mean_cochange_degree": 2.633
+      }
+    },
+    {
+      "name": "whoosh",
+      "agq": 0.8646734177182368,
+      "entropy": null,
+      "error": "no_data"
+    },
+    {
+      "name": "bottle",
+      "agq": 0.7718651701850379,
+      "entropy": {
+        "n_commits_analysed": 2,
+        "n_files_in_graph": 3,
+        "system_entropy": 1.5,
+        "normalized_entropy": 0.9464,
+        "cross_module_ratio": 0.5,
+        "boundary_crossings": 1,
+        "mean_cochange_degree": 2
+      }
+    },
+    {
+      "name": "falcon",
+      "agq": 0.8236394698031981,
+      "entropy": {
+        "n_commits_analysed": 26,
+        "n_files_in_graph": 45,
+        "system_entropy": 5.0604,
+        "normalized_entropy": 0.9214,
+        "cross_module_ratio": 0.2692,
+        "boundary_crossings": 7,
+        "mean_cochange_degree": 3.5
+      }
+    }
+  ]
+}
