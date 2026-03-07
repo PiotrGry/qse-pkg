@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-03-07T22:11:20.547716+00:00",
+  "ground_truth": "1 - hotspot_ratio (churn-based, Nagappan & Ball 2005)",
+  "n_repos": 74,
+  "input_version": "v2 (stability=per-node-variance)",
+  "note": "risk component fixed at 0.5 (no temporal data) \u2014 weight reflects noise",
+  "optimal_weights": {
+    "modularity": 0.0,
+    "acyclicity": 0.7304,
+    "stability": 0.05,
+    "cohesion": 0.174,
+    "risk": 0.0456
+  },
+  "loo_cv": {
+    "mean_mse": 0.00625,
+    "std_mse": 0.0129
+  },
+  "loo_cv_mean_weights": {
+    "modularity": 0.0005,
+    "acyclicity": 0.7301,
+    "stability": 0.0502,
+    "cohesion": 0.1741,
+    "risk": 0.0451
+  },
+  "interpretation": "Acyclicity dominates (w=0.73): cycles directly force co-changes (hotspots). Cohesion second (w=0.17): god classes accumulate changes. Modularity weight=0: community structure does not predict churn independently. Equal weights (0.25 each) may be suboptimal for defect prediction."
+}
