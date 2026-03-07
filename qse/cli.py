@@ -58,16 +58,29 @@ def _run_agq(args) -> None:
     else:
         # Fallback: scan Python repo to build graph
         from qse.scanner import scan_repo
+        from qse.graph_metrics import compute_lcom4 as _compute_lcom4
         analysis = scan_repo(args.path)
         G = analysis.graph
         abstract = {c.name for c in analysis.classes.values() if c.is_abstract}
         lcom4 = [
-            max(1, len(c.method_attrs))
+            _compute_lcom4(c.method_attrs)
             for c in analysis.classes.values()
             if c.method_attrs
         ]
 
-    metrics = compute_agq(G, abstract_modules=abstract, classes_lcom4=lcom4)
+    weights = None
+    if hasattr(args, "agq_weights") and args.agq_weights:
+        import numpy as np
+        vals = [float(x) for x in args.agq_weights.split(",")]
+        if len(vals) != 4:
+            print("Error: --weights requires exactly 4 values (mod,acy,stab,coh)",
+                  file=sys.stderr)
+            sys.exit(1)
+        total = sum(vals)
+        weights = tuple(v / total for v in vals)  # normalize to sum=1
+
+    metrics = compute_agq(G, abstract_modules=abstract, classes_lcom4=lcom4,
+                          weights=weights if weights else (0.25, 0.25, 0.25, 0.25))
     agq = metrics.agq_score
 
     failures = []
@@ -229,6 +242,10 @@ def main():
     agq.add_argument("--min-constraint-score", type=float, default=0.95, metavar="N",
                      help="Minimum constraint score (default: 0.95)")
     agq.add_argument("--output-json", type=str, default=None, metavar="FILE")
+    agq.add_argument("--weights", dest="agq_weights", type=str, default=None,
+                     metavar="W1,W2,W3,W4",
+                     help="Custom weights for mod,acy,stab,coh (auto-normalized, "
+                          "e.g. --weights 0,0.73,0.05,0.17 for churn-calibrated)")
 
     # ── qse discover ────────────────────────────────────────────────────────
     disc = sub.add_parser("discover",

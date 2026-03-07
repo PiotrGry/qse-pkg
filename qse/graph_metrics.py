@@ -25,8 +25,10 @@ class AGQMetrics:
 
     @property
     def agq_score(self) -> float:
-        """Equal-weight composite. Override weights via compute_agq()."""
-        return (self.modularity + self.acyclicity + self.stability + self.cohesion) / 4
+        """Weighted composite. Weights set by compute_agq(); defaults to equal."""
+        w = getattr(self, "_weights", (0.25, 0.25, 0.25, 0.25))
+        return (w[0] * self.modularity + w[1] * self.acyclicity +
+                w[2] * self.stability + w[3] * self.cohesion)
 
 
 # ---------------------------------------------------------------------------
@@ -255,15 +257,20 @@ def compute_agq(G: nx.DiGraph,
                 classes_lcom4: Optional[List[int]] = None,
                 weights: Tuple[float, float, float, float] = (0.25, 0.25, 0.25, 0.25)
                 ) -> AGQMetrics:
-    """Compute all AGQ metrics."""
+    """Compute all AGQ metrics.
+
+    weights: (modularity, acyclicity, stability, cohesion) — auto-normalized.
+    Default equal weights. Calibrated churn-optimal: (0.0, 0.73, 0.05, 0.17).
+    """
     mod = compute_modularity(G)
     acy = compute_acyclicity(G)
     stab = compute_stability(G, abstract_modules)
     coh = compute_cohesion(classes_lcom4 or [])
 
-    return AGQMetrics(
-        modularity=mod,
-        acyclicity=acy,
-        stability=stab,
-        cohesion=coh,
-    )
+    # Normalize weights and store on metrics object for weighted agq_score
+    total = sum(weights)
+    w = tuple(v / total for v in weights) if total > 0 else (0.25, 0.25, 0.25, 0.25)
+
+    m = AGQMetrics(modularity=mod, acyclicity=acy, stability=stab, cohesion=coh)
+    m._weights = w  # used by agq_score property if present
+    return m
