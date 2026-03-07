@@ -551,9 +551,14 @@ def _to_markdown(report: Dict[str, object]) -> str:
     c = report["correlations"]
     predictor = c.get("sonar_predictor_for_correlation", "maintainability_quality_score")
     lines.append(f"- sonar predictor used: `{predictor}`")
-    lines.append(f"- pearson(AGQ, defect_proxy): `{_format_f(c.get('pearson_agq_vs_bugfix_ratio'))}`")
-    lines.append(f"- pearson(SonarPredictor, defect_proxy): `{_format_f(c.get('pearson_sonar_vs_bugfix_ratio'))}`")
-    lines.append(f"- spearman(AGQ, SonarPredictor): `{_format_f(c.get('spearman_agq_vs_sonar'))}`")
+    lines.append(f"- pearson(AGQ, bugfix_ratio): `{_format_f(c.get('pearson_agq_vs_bugfix_ratio'))}`")
+    lines.append(f"- pearson(Sonar, bugfix_ratio): `{_format_f(c.get('pearson_sonar_vs_bugfix_ratio'))}`")
+    lines.append(f"- spearman(AGQ, Sonar): `{_format_f(c.get('spearman_agq_vs_sonar'))}`")
+    lines.append(f"- spearman(AGQ, hotspot_ratio): `{_format_f(c.get('spearman_agq_vs_hotspot_ratio'))}` "
+                 f"(Sonar: `{_format_f(c.get('spearman_sonar_vs_hotspot_ratio'))}`)"
+                 f" n={c.get('n_repos_churn', 'n/a')}")
+    lines.append(f"- spearman(AGQ, churn_gini): `{_format_f(c.get('spearman_agq_vs_churn_gini'))}` "
+                 f"(Sonar: `{_format_f(c.get('spearman_sonar_vs_churn_gini'))}`)")
     lines.append("")
 
     lines.append("## Repo Results")

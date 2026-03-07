@@ -156,13 +156,11 @@ def compute_stability(G: nx.DiGraph,
 
 
 def compute_instability_variance(G: nx.DiGraph) -> float:
-    """
-    Variance of per-node instability I = Ce / (Ca + Ce).
+    """Per-node instability variance — kept for backward compatibility.
 
-    High coupling (all nodes import everything) → all I ≈ 0.5 → low variance.
-    Clean layered code → leaf nodes I=1.0, core I=0.0 → high variance.
-
-    Returns 1 - var (so higher = better differentiation = healthier).
+    Deprecated: use compute_stability() which applies package-level grouping
+    to prevent leaf-module inflation in large repos.
+    Returns var(I)/0.25 at the node level (not package level).
     """
     nodes = list(G.nodes())
     if len(nodes) <= 1:
@@ -176,10 +174,9 @@ def compute_instability_variance(G: nx.DiGraph) -> float:
         I = ce / total if total > 0 else 0.5
         instabilities.append(I)
 
-    mean = sum(instabilities) / len(instabilities)
-    var = sum((i - mean) ** 2 for i in instabilities) / len(instabilities)
-    # Normalize: max possible var for [0,1] values is 0.25
-    return min(1.0, var / 0.25)  # Higher = more differentiated = better
+    mean_i = sum(instabilities) / len(instabilities)
+    var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
+    return min(1.0, var / 0.25)
 
 
 # ---------------------------------------------------------------------------
