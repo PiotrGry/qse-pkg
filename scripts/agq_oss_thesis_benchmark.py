@@ -36,7 +36,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from qse.graph_metrics import compute_agq, compute_lcom4
+from qse.graph_metrics import (compute_agq, compute_lcom4,
+                               compute_hierarchical_modularity,
+                               compute_boundary_crossing_ratio)
 from qse.scanner import scan_repo
 
 
@@ -320,6 +322,8 @@ def _compute_agq_once(repo_path: Path, repo_name: str) -> Dict[str, object]:
         if len(scc) > 1:
             nodes_in_cycles += len(scc)
 
+    h_mod = compute_hierarchical_modularity(graph)
+    bcr = compute_boundary_crossing_ratio(graph)
     runtime_s = time.perf_counter() - t0
     return {
         "source_root": str(src_root),
@@ -332,6 +336,8 @@ def _compute_agq_once(repo_path: Path, repo_name: str) -> Dict[str, object]:
         "stability": metrics.stability,
         "cohesion": metrics.cohesion,
         "agq_score": metrics.agq_score,
+        "hierarchical_modularity": h_mod,
+        "boundary_crossing_ratio": bcr,
     }
 
 
