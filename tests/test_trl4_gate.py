@@ -67,7 +67,7 @@ def test_run_trl4_gate_fails_on_constraint_violation(monkeypatch, tmp_path):
 
 def test_run_trl4_gate_ratchet_blocks_regression(monkeypatch, tmp_path):
     baseline_file = tmp_path / "baseline.json"
-    baseline_file.write_text(json.dumps({"qse4": 0.90, "constraint_score": 1.0}))
+    baseline_file.write_text(json.dumps({"qse_total": 0.90, "constraint_score": 1.0}))
 
     def fake_analyze_repo(_path, _cfg):
         return DummyReport(qse_total=0.85)
@@ -123,10 +123,10 @@ def test_run_trl4_gate_creates_and_updates_baseline(monkeypatch, tmp_path):
     assert first.passed
     assert baseline_file.exists()
     saved_1 = json.loads(baseline_file.read_text())
-    assert abs(saved_1["qse4"] - 0.82) < 1e-9
+    assert abs(saved_1["qse_total"] - 0.82) < 1e-9
 
     second = run_trl4_gate(str(tmp_path), rules=rules)
     assert second.passed
     saved_2 = json.loads(baseline_file.read_text())
-    assert abs(saved_2["qse4"] - 0.86) < 1e-9
+    assert abs(saved_2["qse_total"] - 0.86) < 1e-9
 

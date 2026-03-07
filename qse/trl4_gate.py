@@ -68,7 +68,7 @@ class TRL4Rules:
 @dataclass
 class TRL4GateResult:
     passed: bool
-    qse4: float
+    qse_total: float
     constraint_score: float
     constraint_violations: List[dict]
     failures: List[str]
@@ -77,7 +77,7 @@ class TRL4GateResult:
     def to_dict(self) -> dict:
         return {
             "gate": "PASS" if self.passed else "FAIL",
-            "qse4": round(self.qse4, 4),
+            "qse_total": round(self.qse_total, 4),
             "constraint_score": round(self.constraint_score, 4),
             "constraint_violations": self.constraint_violations,
             "failures": self.failures,
@@ -146,9 +146,9 @@ def _read_baseline(path: str) -> Optional[dict]:
         return json.load(f)
 
 
-def _write_baseline(path: str, qse4: float, constraint_score: float) -> None:
+def _write_baseline(path: str, qse_total: float, constraint_score: float) -> None:
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-    payload = {"qse4": float(qse4), "constraint_score": float(constraint_score)}
+    payload = {"qse_total": float(qse_total), "constraint_score": float(constraint_score)}
     with open(path, "w") as f:
         json.dump(payload, f, indent=2)
 
@@ -159,15 +159,15 @@ def run_trl4_gate(repo_path: str, rules: TRL4Rules, qse_config: Optional[QSEConf
         qse_config = QSEConfig()
 
     report = analyze_repo(repo_path, qse_config)
-    qse4 = float(report.qse_total)
+    qse_total = float(report.qse_total)
 
     analysis = scan_repo(repo_path, layer_map=qse_config.layer_map or None)
     violations = check_constraints_graph(analysis.graph, rules.constraints)
     constraint_score = compute_constraint_score(analysis.graph, violations)
 
     failures: List[str] = []
-    if qse4 < rules.threshold:
-        failures.append(f"QSE4={qse4:.4f} below threshold {rules.threshold:.2f}")
+    if qse_total < rules.threshold:
+        failures.append(f"qse_total={qse_total:.4f} below threshold {rules.threshold:.2f}")
     if constraint_score < rules.min_constraint_score:
         failures.append(
             f"Constraint score={constraint_score:.4f} below minimum {rules.min_constraint_score:.2f}"
@@ -185,14 +185,15 @@ def run_trl4_gate(repo_path: str, rules: TRL4Rules, qse_config: Optional[QSEConf
         baseline = _read_baseline(rules.ratchet_baseline_file)
         ratchet_meta["baseline_found"] = baseline is not None
         if baseline is not None:
-            base_qse = float(baseline.get("qse4", 0.0))
+            # Accept both new "qse_total" and legacy "qse4" baseline keys
+            base_qse = float(baseline.get("qse_total", baseline.get("qse4", 0.0)))
             base_c = float(baseline.get("constraint_score", 0.0))
-            ratchet_meta["baseline_qse4"] = base_qse
+            ratchet_meta["baseline_qse_total"] = base_qse
             ratchet_meta["baseline_constraint_score"] = base_c
 
-            if qse4 + rules.ratchet_delta < base_qse:
+            if qse_total + rules.ratchet_delta < base_qse:
                 failures.append(
-                    f"Ratchet violation: qse4={qse4:.4f} < baseline={base_qse:.4f} - delta={rules.ratchet_delta:.4f}"
+                    f"Ratchet violation: qse_total={qse_total:.4f} < baseline={base_qse:.4f} - delta={rules.ratchet_delta:.4f}"
                 )
             if constraint_score + rules.ratchet_delta < base_c:
                 failures.append(
@@ -203,22 +204,22 @@ def run_trl4_gate(repo_path: str, rules: TRL4Rules, qse_config: Optional[QSEConf
 
     if passed and rules.ratchet_enabled and rules.ratchet_update_on_pass:
         if baseline is None:
-            _write_baseline(rules.ratchet_baseline_file, qse4=qse4, constraint_score=constraint_score)
+            _write_baseline(rules.ratchet_baseline_file, qse_total=qse_total, constraint_score=constraint_score)
             ratchet_meta["baseline_updated"] = True
         else:
-            prev_qse = float(baseline.get("qse4", 0.0))
+            prev_qse = float(baseline.get("qse_total", baseline.get("qse4", 0.0)))
             prev_c = float(baseline.get("constraint_score", 0.0))
-            new_qse = max(prev_qse, qse4)
+            new_qse = max(prev_qse, qse_total)
             new_c = max(prev_c, constraint_score)
             if new_qse > prev_qse or new_c > prev_c:
-                _write_baseline(rules.ratchet_baseline_file, qse4=new_qse, constraint_score=new_c)
+                _write_baseline(rules.ratchet_baseline_file, qse_total=new_qse, constraint_score=new_c)
                 ratchet_meta["baseline_updated"] = True
             else:
                 ratchet_meta["baseline_updated"] = False
 
     return TRL4GateResult(
         passed=passed,
-        qse4=qse4,
+        qse_total=qse_total,
         constraint_score=constraint_score,
         constraint_violations=violations,
         failures=failures,
@@ -269,7 +270,7 @@ def main() -> None:
 
     if result.passed:
         print(
-            f"TRL4 GATE PASS  qse4={result.qse4:.4f}  constraint_score={result.constraint_score:.4f}"
+            f"TRL4 GATE PASS  qse_total={result.qse_total:.4f}  constraint_score={result.constraint_score:.4f}"
         )
         raise SystemExit(0)
 

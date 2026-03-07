@@ -198,7 +198,7 @@ def _check_reproducibility(workdir: Path, config_path: str) -> CheckResult:
     r2 = run_trl4_gate(str(repo), rules=rules, qse_config=cfg).to_dict()
 
     stable = (
-        r1["qse4"] == r2["qse4"]
+        r1["qse_total"] == r2["qse_total"]
         and r1["constraint_score"] == r2["constraint_score"]
         and r1["constraint_violations"] == r2["constraint_violations"]
     )
@@ -332,4 +332,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

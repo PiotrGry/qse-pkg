@@ -46,15 +46,48 @@ class GateResult:
     feedback_prompt: str
 
 
+_DEFECT_GUIDANCE = {
+    "anemic_entity": (
+        "Domain entities have only __init__ and no business methods. "
+        "Add domain logic (validation, calculation, state transitions) "
+        "directly to the entity instead of placing it in services."
+    ),
+    "fat_service": (
+        "Application service has too many methods (>8). "
+        "Split into focused services: each service should handle one use case or aggregate."
+    ),
+    "zombie_entity": (
+        "Domain entity is defined but never imported or used by any service. "
+        "Either wire it into an application service, or remove it if unused."
+    ),
+    "layer_violation": (
+        "Inner layer imports outer layer (e.g. domain imports infrastructure). "
+        "Use dependency inversion: define an interface/protocol in domain, "
+        "implement it in infrastructure, inject via application layer."
+    ),
+}
+
+
 def _build_feedback(failures: List[str], qse_total: float,
-                    min_total: Optional[float]) -> str:
+                    min_total: Optional[float],
+                    defects: Optional[Dict[str, set]] = None) -> str:
     if not failures:
         return ""
-    lines = ["Your generated code failed QSE quality checks:"]
+    lines = ["Your generated code has architectural issues:"]
+    lines.append("")
     for f in failures:
         lines.append(f"- {f}")
+    # Add actionable guidance per defect type
+    if defects:
+        lines.append("")
+        lines.append("How to fix:")
+        for dtype, files in defects.items():
+            if files and dtype in _DEFECT_GUIDANCE:
+                lines.append(f"  {dtype}: {_DEFECT_GUIDANCE[dtype]}")
     if min_total is not None:
-        lines.append(f"QSE score: {qse_total:.2f} (minimum: {min_total:.2f})")
+        lines.append("")
+        lines.append(f"Current QSE score: {qse_total:.2f} (target: {min_total:.2f})")
+    lines.append("")
     lines.append("Regenerate the failing files while keeping passing files unchanged.")
     return "\n".join(lines)
 
@@ -92,7 +125,8 @@ def quality_gate(repo_path: str, rules: GateRules = None,
             )
 
     passed = len(failures) == 0
-    feedback = _build_feedback(failures, report.qse_total, rules.min_qse_total)
+    feedback = _build_feedback(failures, report.qse_total, rules.min_qse_total,
+                               defects=report.defects)
 
     return GateResult(
         passed=passed,

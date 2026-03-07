@@ -1,0 +1,31 @@
+name: qse-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # Example 1: Python project (auto-scan)
+  agq-python:
+    uses: PiotrGry/qse-pkg/.github/workflows/qse-gate.yml@main
+    with:
+      path: "src/"
+      threshold: 0.70
+      ratchet: true
+
+  # Example 2: Any language via JSON graph
+  # agq-generic:
+  #   uses: PiotrGry/qse-pkg/.github/workflows/qse-gate.yml@main
+  #   with:
+  #     graph-file: "dependency_graph.json"
+  #     threshold: 0.70
+  #     ratchet: true
+  #
+  # The JSON graph format:
+  # {
+  #   "nodes": ["module_a", "module_b", "module_c"],
+  #   "edges": [["module_a", "module_b"], ["module_b", "module_c"]],
+  #   "abstract_modules": ["module_c"],
+  #   "classes_lcom4": [1, 2, 1]
+  # }

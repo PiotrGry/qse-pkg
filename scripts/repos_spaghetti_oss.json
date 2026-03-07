@@ -1,0 +1,38 @@
+[
+  {
+    "name": "python_code_disasters",
+    "url": "https://github.com/sobolevn/python-code-disasters.git"
+  },
+  {
+    "name": "cucumber_diseases_python",
+    "url": "https://github.com/Cucumber-Diseases/cucumber-diseases-python.git"
+  },
+  {
+    "name": "python_bad_project",
+    "url": "https://github.com/Cosmo-Tech/python-bad-project.git"
+  },
+  {
+    "name": "python_spaghetti",
+    "url": "https://github.com/ase1590/python-spaghetti.git"
+  },
+  {
+    "name": "cheese_quest_spaghetti",
+    "url": "https://github.com/EvanQuan/cheese-quest.git"
+  },
+  {
+    "name": "oddup_investors_spaghetti",
+    "url": "https://github.com/nwihardjo/Oddup-Investors.git"
+  },
+  {
+    "name": "ue4_component_boilerplate_generator",
+    "url": "https://github.com/benbyy/tools-ue4-component_boilerplate_generator.git"
+  },
+  {
+    "name": "nickineering_spaghetti",
+    "url": "https://github.com/nickineering/spaghetti.git"
+  },
+  {
+    "name": "python_anti_patterns",
+    "url": "https://github.com/quantifiedcode/python-anti-patterns.git"
+  }
+]

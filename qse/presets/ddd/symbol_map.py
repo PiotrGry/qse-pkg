@@ -13,7 +13,7 @@ Detektor v2 osiąga F1=0.964 przy dose=0.5 (mutation study, n=900).
 import ast
 import os
 from dataclasses import dataclass, field
-from typing import Dict, Set, Optional
+from typing import Dict, Set
 
 
 @dataclass

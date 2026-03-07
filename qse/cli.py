@@ -27,10 +27,155 @@ def _build_config(args) -> QSEConfig:
     return config
 
 
+def _load_graph_json(path: str):
+    """Load dependency graph from JSON.
+
+    Expected format:
+        {"nodes": ["mod_a", "mod_b", ...],
+         "edges": [["mod_a", "mod_b"], ...],
+         "abstract_modules": ["mod_b"],       // optional
+         "classes_lcom4": [1, 2, 1]}          // optional
+    """
+    import networkx as nx
+    with open(path) as f:
+        data = json.load(f)
+    G = nx.DiGraph()
+    for node in data.get("nodes", []):
+        G.add_node(node)
+    for src, tgt in data.get("edges", []):
+        G.add_edge(src, tgt)
+    abstract = set(data.get("abstract_modules", []))
+    lcom4 = data.get("classes_lcom4", [])
+    return G, abstract, lcom4
+
+
+def _run_agq(args) -> None:
+    """Execute the language-agnostic AGQ gate."""
+    from qse.graph_metrics import compute_agq
+
+    if args.graph:
+        G, abstract, lcom4 = _load_graph_json(args.graph)
+    else:
+        # Fallback: scan Python repo to build graph
+        from qse.scanner import scan_repo
+        analysis = scan_repo(args.path)
+        G = analysis.graph
+        abstract = {c.name for c in analysis.classes.values() if c.is_abstract}
+        lcom4 = [
+            max(1, len(c.method_attrs))
+            for c in analysis.classes.values()
+            if c.method_attrs
+        ]
+
+    metrics = compute_agq(G, abstract_modules=abstract, classes_lcom4=lcom4)
+    agq = metrics.agq_score
+
+    failures = []
+    if agq < args.threshold:
+        failures.append(f"agq_score={agq:.4f} below threshold {args.threshold:.2f}")
+
+    # Constraint checking (policy-as-a-service)
+    constraint_score = None
+    constraint_violations = []
+    if args.constraints:
+        from qse.trl4_gate import check_constraints_graph, compute_constraint_score
+        with open(args.constraints) as f:
+            constraints_data = json.load(f)
+        constraints = (constraints_data if isinstance(constraints_data, list)
+                       else constraints_data.get("constraints", []))
+        constraint_violations = check_constraints_graph(G, constraints)
+        constraint_score = compute_constraint_score(G, constraint_violations)
+        min_cs = args.min_constraint_score
+        if constraint_score < min_cs:
+            failures.append(
+                f"constraint_score={constraint_score:.4f} below minimum {min_cs:.2f}"
+            )
+
+    result = {
+        "gate": "PASS" if not failures else "FAIL",
+        "agq_score": round(agq, 4),
+        "threshold": args.threshold,
+        "metrics": {
+            "modularity": round(metrics.modularity, 4),
+            "acyclicity": round(metrics.acyclicity, 4),
+            "stability": round(metrics.stability, 4),
+            "cohesion": round(metrics.cohesion, 4),
+        },
+        "graph": {
+            "nodes": G.number_of_nodes(),
+            "edges": G.number_of_edges(),
+        },
+        "failures": failures,
+    }
+    if constraint_score is not None:
+        result["constraint_score"] = round(constraint_score, 4)
+        result["constraint_violations"] = [
+            {"rule": v["rule"], "source": v["source"], "target": v["target"]}
+            for v in constraint_violations
+        ]
+
+    if args.output_json:
+        with open(args.output_json, "w") as f:
+            json.dump(result, f, indent=2)
+
+    if failures:
+        print("AGQ GATE FAIL", file=sys.stderr)
+        for f in failures:
+            print(f"  - {f}", file=sys.stderr)
+        sys.exit(1)
+
+    parts = [f"AGQ GATE PASS  agq={agq:.4f}  "
+             f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
+             f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}"]
+    if constraint_score is not None:
+        parts.append(f"  constraints={constraint_score:.2f}")
+    print("".join(parts))
+    sys.exit(0)
+
+
+def _run_discover(args) -> None:
+    """Auto-discover architectural boundaries and propose constraints."""
+    from qse.discover import discover_policies
+
+    if args.graph:
+        G, _, _ = _load_graph_json(args.graph)
+    else:
+        from qse.scanner import scan_repo
+        analysis = scan_repo(args.path)
+        G = analysis.graph
+
+    report = discover_policies(G, min_confidence=args.min_confidence)
+
+    # Console output
+    print(f"Clusters found: {len(report.clusters)}")
+    for c in report.clusters:
+        print(f"  {c['label']} ({c['size']} modules)")
+
+    print(f"\nProposed rules: {len(report.proposed_rules)}")
+    for r in report.proposed_rules:
+        marker = "+" if r.confidence >= 0.7 else "?"
+        print(f"  [{marker} {r.confidence:.0%}] forbidden: {r.from_pattern} -> {r.to_pattern}")
+        print(f"         {r.rationale}")
+
+    # JSON outputs
+    if args.output_json:
+        with open(args.output_json, "w") as f:
+            f.write(report.to_json())
+        print(f"\nFull report written to {args.output_json}")
+
+    if args.output_constraints:
+        constraints = [r.to_constraint() for r in report.proposed_rules
+                       if r.confidence >= 0.7]
+        with open(args.output_constraints, "w") as f:
+            json.dump(constraints, f, indent=2)
+        print(f"Constraints ({len(constraints)} rules) written to {args.output_constraints}")
+        print(f"Use with: qse agq --constraints {args.output_constraints}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="qse",
-        description="QSE — Quality Score Engine for DDD architecture validation",
+        description="QSE — Quality Score Engine for architecture validation",
     )
     sub = parser.add_subparsers(dest="command")
 
@@ -47,7 +192,7 @@ def main():
     gate = sub.add_parser("gate", help="Run QSE and exit non-zero if gate fails")
     gate.add_argument("path", help="Path to the repository root")
     gate.add_argument("--threshold", type=float, default=0.80, metavar="N",
-                      help="Minimum QSE4 score (default: 0.80)")
+                      help="Minimum QSE total score (default: 0.80)")
     gate.add_argument("--fail-on-defects", type=str, default=None, metavar="LIST",
                       help=f"Comma-separated defect types that must be zero. "
                            f"Available: {', '.join(DEFECT_TYPES)}")
@@ -70,7 +215,44 @@ def main():
                       help="Ratchet baseline JSON file path")
     trl4.add_argument("--no-trace", action="store_true")
 
+    # ── qse agq ──────────────────────────────────────────────────────────────
+    agq = sub.add_parser("agq",
+                         help="Language-agnostic AGQ gate (graph metrics + optional constraints)")
+    agq.add_argument("path", nargs="?", default=".",
+                     help="Path to repo root (used for Python auto-scan if --graph not given)")
+    agq.add_argument("--graph", type=str, default=None, metavar="FILE",
+                     help="JSON dependency graph file (language-agnostic input)")
+    agq.add_argument("--threshold", type=float, default=0.70, metavar="N",
+                     help="Minimum AGQ score (default: 0.70)")
+    agq.add_argument("--constraints", type=str, default=None, metavar="FILE",
+                     help="JSON file with forbidden-edge constraints (policy-as-a-service)")
+    agq.add_argument("--min-constraint-score", type=float, default=0.95, metavar="N",
+                     help="Minimum constraint score (default: 0.95)")
+    agq.add_argument("--output-json", type=str, default=None, metavar="FILE")
+
+    # ── qse discover ────────────────────────────────────────────────────────
+    disc = sub.add_parser("discover",
+                          help="Auto-discover architectural boundaries and propose constraints")
+    disc.add_argument("path", nargs="?", default=".",
+                      help="Path to repo root (Python auto-scan if --graph not given)")
+    disc.add_argument("--graph", type=str, default=None, metavar="FILE",
+                      help="JSON dependency graph file (language-agnostic input)")
+    disc.add_argument("--min-confidence", type=float, default=0.5, metavar="N",
+                      help="Minimum confidence for proposed rules (default: 0.5)")
+    disc.add_argument("--output-json", type=str, default=None, metavar="FILE",
+                      help="Write full discovery report to JSON file")
+    disc.add_argument("--output-constraints", type=str, default=None, metavar="FILE",
+                      help="Write high-confidence constraints to JSON file (ready for --constraints)")
+
     args = parser.parse_args()
+
+    if args.command == "discover":
+        _run_discover(args)
+        return
+
+    if args.command == "agq":
+        _run_agq(args)
+        return
 
     if args.command not in ("scan", "gate", "trl4"):
         parser.print_help()
@@ -98,7 +280,7 @@ def main():
                 json.dump(payload, f, indent=2)
 
         if result.passed:
-            print(f"TRL4 GATE PASS  qse4={result.qse4:.4f}  constraint_score={result.constraint_score:.4f}")
+            print(f"TRL4 GATE PASS  qse_total={result.qse_total:.4f}  constraint_score={result.constraint_score:.4f}")
             sys.exit(0)
 
         print("TRL4 GATE FAIL", file=sys.stderr)
@@ -119,10 +301,10 @@ def main():
 
     # ── gate ──────────────────────────────────────────────────────────────────
     failures = []
-    qse4 = report.qse_total
+    qse_total = report.qse_total
 
-    if qse4 < args.threshold:
-        failures.append(f"QSE4={qse4:.4f} below threshold {args.threshold:.2f}")
+    if qse_total < args.threshold:
+        failures.append(f"qse_total={qse_total:.4f} below threshold {args.threshold:.2f}")
 
     if args.fail_on_defects:
         for dtype in args.fail_on_defects.split(","):
@@ -133,11 +315,11 @@ def main():
                 failures.append(f"{dtype}: {count} instance(s) — {', '.join(files)}")
 
     result = {
-        "gate":      "PASS" if not failures else "FAIL",
-        "qse4":      round(qse4, 4),
-        "threshold": args.threshold,
-        "failures":  failures,
-        "report":    report.to_dict(),
+        "gate":       "PASS" if not failures else "FAIL",
+        "qse_total":  round(qse_total, 4),
+        "threshold":  args.threshold,
+        "failures":   failures,
+        "report":     report.to_dict(),
     }
 
     if args.output_json:
@@ -150,7 +332,7 @@ def main():
             print(f"  ✗ {f}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"QSE GATE PASS  QSE4={qse4:.4f}")
+    print(f"QSE GATE PASS  qse_total={qse_total:.4f}")
     sys.exit(0)
 
 

@@ -38,10 +38,17 @@ class TestBuildFeedback:
 
     def test_formats_failures(self):
         fb = _build_feedback(["2 anemic_entity(s)"], 0.5, 0.7)
-        assert "failed QSE quality checks" in fb
+        assert "architectural issues" in fb
         assert "2 anemic_entity" in fb
         assert "0.50" in fb
         assert "0.70" in fb
+
+    def test_includes_defect_guidance(self):
+        defects = {"anemic_entity": {"domain/order.py"}, "fat_service": set()}
+        fb = _build_feedback(["1 anemic_entity(s)"], 0.5, 0.7, defects=defects)
+        assert "How to fix:" in fb
+        assert "anemic_entity" in fb
+        assert "domain logic" in fb
 
 
 class TestQualityGateCleanProject:

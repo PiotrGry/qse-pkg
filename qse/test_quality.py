@@ -17,7 +17,7 @@ import ast
 import os
 import re
 from dataclasses import dataclass, field
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set
 
 
 # Descriptive test name patterns (beyond just "test_something")
@@ -151,25 +151,32 @@ def _scan_test_file(file_path: str,
     return info
 
 
-def _collect_domain_classes(base_dir: str) -> Set[str]:
-    """Collect all class names defined in domain/ layer."""
+def _collect_domain_classes(base_dir: str,
+                           target_dirs: List[str] = None) -> Set[str]:
+    """Collect all class names defined in target directories.
+
+    target_dirs: list of directory names to scan (default: ["domain"]).
+    """
+    if target_dirs is None:
+        target_dirs = ["domain"]
     classes = set()
-    domain_dir = os.path.join(base_dir, "domain")
-    if not os.path.isdir(domain_dir):
-        return classes
-    for root, _dirs, files in os.walk(domain_dir):
-        for fname in files:
-            if not fname.endswith(".py"):
-                continue
-            fpath = os.path.join(root, fname)
-            try:
-                with open(fpath) as f:
-                    tree = ast.parse(f.read(), filename=fpath)
-            except (SyntaxError, OSError):
-                continue
-            for node in ast.walk(tree):
-                if isinstance(node, ast.ClassDef):
-                    classes.add(node.name)
+    for dirname in target_dirs:
+        target_dir = os.path.join(base_dir, dirname)
+        if not os.path.isdir(target_dir):
+            continue
+        for root, _dirs, files in os.walk(target_dir):
+            for fname in files:
+                if not fname.endswith(".py"):
+                    continue
+                fpath = os.path.join(root, fname)
+                try:
+                    with open(fpath) as f:
+                        tree = ast.parse(f.read(), filename=fpath)
+                except (SyntaxError, OSError):
+                    continue
+                for node in ast.walk(tree):
+                    if isinstance(node, ast.ClassDef):
+                        classes.add(node.name)
     return classes
 
 
@@ -193,15 +200,19 @@ def _collect_production_files(base_dir: str) -> List[str]:
     return result
 
 
-def compute_test_quality(base_dir: str) -> Dict[str, float]:
+def compute_test_quality(base_dir: str,
+                         target_dirs: List[str] = None) -> Dict[str, float]:
     """
     Compute QSE_test metrics for a repository.
+
+    target_dirs: list of directory names containing entity classes
+                 (default: ["domain"]).
 
     Returns dict with keys:
         assertion_density, test_to_code_ratio, naming_quality,
         isolation_score, coverage_potential, qse_test
     """
-    domain_classes = _collect_domain_classes(base_dir)
+    domain_classes = _collect_domain_classes(base_dir, target_dirs=target_dirs)
     test_files = _collect_test_files(base_dir)
     prod_files = _collect_production_files(base_dir)
 

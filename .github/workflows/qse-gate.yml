@@ -1,0 +1,172 @@
+name: qse-agq-gate
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: "Path to repo root (used for Python auto-scan if graph-file not given)"
+        required: false
+        type: string
+        default: "."
+      graph-file:
+        description: "JSON dependency graph file (language-agnostic input). If empty, auto-scans Python."
+        required: false
+        type: string
+        default: ""
+      threshold:
+        description: "Minimum AGQ score (Modularity + Acyclicity + Stability + Cohesion) / 4"
+        required: false
+        type: number
+        default: 0.70
+      python-version:
+        description: "Python version for QSE runtime"
+        required: false
+        type: string
+        default: "3.10"
+      ratchet:
+        description: "Enable ratchet mode (never regress below baseline)"
+        required: false
+        type: boolean
+        default: true
+      baseline-branch:
+        description: "Branch to read ratchet baseline from"
+        required: false
+        type: string
+        default: "main"
+      upload-artifact:
+        description: "Upload AGQ report as artifact"
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  agq:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Install QSE
+        run: |
+          python -m pip install --upgrade pip
+          pip install git+https://github.com/PiotrGry/qse-pkg.git
+
+      - name: Restore ratchet baseline
+        if: inputs.ratchet
+        id: baseline
+        run: |
+          BASELINE_FILE=".qse/agq_baseline.json"
+          if git show origin/${{ inputs.baseline-branch }}:${BASELINE_FILE} > /tmp/agq_baseline.json 2>/dev/null; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            echo "Ratchet baseline restored from ${{ inputs.baseline-branch }}"
+            cat /tmp/agq_baseline.json
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "No ratchet baseline found — first run will set it"
+          fi
+
+      - name: Run AGQ gate
+        id: gate
+        run: |
+          GATE_ARGS="${{ inputs.path }}"
+          GATE_ARGS="${GATE_ARGS} --threshold ${{ inputs.threshold }}"
+          GATE_ARGS="${GATE_ARGS} --output-json /tmp/agq_report.json"
+
+          if [ -n "${{ inputs.graph-file }}" ]; then
+            GATE_ARGS="${GATE_ARGS} --graph ${{ inputs.graph-file }}"
+          fi
+
+          set +e
+          qse agq ${GATE_ARGS}
+          EXIT_CODE=$?
+          set -e
+
+          echo "exit_code=${EXIT_CODE}" >> "$GITHUB_OUTPUT"
+
+          if [ -f /tmp/agq_report.json ]; then
+            AGQ_SCORE=$(python3 -c "import json; print(json.load(open('/tmp/agq_report.json'))['agq_score'])")
+            echo "agq_score=${AGQ_SCORE}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ratchet check
+        if: inputs.ratchet && steps.baseline.outputs.found == 'true'
+        run: |
+          python3 -c "
+          import json, sys
+          baseline = json.load(open('/tmp/agq_baseline.json'))
+          base_score = float(baseline.get('agq_score', 0.0))
+          current = float('${{ steps.gate.outputs.agq_score }}')
+          print(f'Baseline: {base_score:.4f}  Current: {current:.4f}')
+          if current < base_score:
+              print(f'RATCHET FAIL: AGQ regressed {base_score:.4f} -> {current:.4f}', file=sys.stderr)
+              sys.exit(1)
+          print(f'Ratchet OK: {current:.4f} >= {base_score:.4f}')
+          "
+
+      - name: Update ratchet baseline
+        if: inputs.ratchet && github.ref == format('refs/heads/{0}', inputs.baseline-branch)
+        run: |
+          mkdir -p .qse
+          python3 -c "
+          import json
+          report = json.load(open('/tmp/agq_report.json'))
+          baseline = {'agq_score': report['agq_score'], 'metrics': report['metrics']}
+          json.dump(baseline, open('.qse/agq_baseline.json', 'w'), indent=2)
+          print(json.dumps(baseline, indent=2))
+          "
+
+      - name: Write job summary
+        if: always()
+        run: |
+          python3 -c "
+          import json, sys, os
+          try:
+              report = json.load(open('/tmp/agq_report.json'))
+          except Exception:
+              sys.exit(0)
+
+          agq = report['agq_score']
+          m = report['metrics']
+          g = report.get('graph', {})
+          status = 'PASS' if '${{ steps.gate.outputs.exit_code }}' == '0' else 'FAIL'
+          icon = ':white_check_mark:' if status == 'PASS' else ':x:'
+
+          lines = [
+              f'## {icon} AGQ Gate: {status}',
+              '',
+              f'**AGQ Score: {agq:.4f}** (threshold: ${{ inputs.threshold }})',
+              '',
+              '| Metric | Score | Description |',
+              '|--------|-------|-------------|',
+              f'| Modularity | {m[\"modularity\"]:.4f} | Community structure (Louvain) |',
+              f'| Acyclicity | {m[\"acyclicity\"]:.4f} | Fraction of nodes outside cycles (Tarjan SCC) |',
+              f'| Stability | {m[\"stability\"]:.4f} | Distance from Main Sequence (Martin DMS) |',
+              f'| Cohesion | {m[\"cohesion\"]:.4f} | Class cohesion (LCOM4) |',
+              '',
+              f'Graph: {g.get(\"nodes\", \"?\")} nodes, {g.get(\"edges\", \"?\")} edges',
+          ]
+
+          summary_file = os.environ.get('GITHUB_STEP_SUMMARY', '')
+          if summary_file:
+              with open(summary_file, 'a') as f:
+                  f.write('\n'.join(lines))
+          "
+
+      - name: Upload AGQ report
+        if: always() && inputs.upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agq-report
+          path: /tmp/agq_report.json
+
+      - name: Gate verdict
+        if: steps.gate.outputs.exit_code != '0'
+        run: exit 1

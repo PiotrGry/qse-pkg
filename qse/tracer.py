@@ -5,15 +5,12 @@ Instruments a target module's execution to discover runtime type
 information and actual call edges not visible in static analysis.
 """
 
-import ast
 import importlib
 import os
 import sys
 import threading
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Set, Tuple
-
-import networkx as nx
+from typing import Dict, List, Set, Tuple
 
 
 @dataclass

@@ -140,6 +140,10 @@ def compute_stability(G: nx.DiGraph,
                     ce += 1
 
         total_coupling = ca + ce
+        # Isolated package (no external edges): I=0.5 places it on the main
+        # sequence midpoint, giving D = |A + 0.5 - 1| = |A - 0.5|. This is a
+        # neutral default — neither penalized nor rewarded — avoiding the D=1.0
+        # penalty that I=0 would impose on concrete isolated packages.
         I = ce / total_coupling if total_coupling > 0 else 0.5
 
         n_abstract = sum(1 for m in members if m in abstract_modules)

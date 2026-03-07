@@ -1,35 +1,40 @@
-"""Heuristic defect detectors extracted from run_poc.py."""
+"""DDD defect detectors — thin wrappers over universal qse.detectors."""
 
-import math
 import os
 from typing import Dict, Set
 
 import networkx as nx
 
-from qse.scanner import StaticAnalysis, detect_layer_violations
+from qse.scanner import LAYER_ORDER, StaticAnalysis
 from qse.presets.ddd.config import QSEConfig
 from qse.presets.ddd.symbol_map import detect_zombie_v2
+from qse import detectors as _u
+
+
+# DDD ClassFilters
+def _is_domain(c) -> bool:
+    return c.layer == "domain"
+
+def _is_domain_no_exc(c) -> bool:
+    return c.layer == "domain" and not c.is_exception
+
+def _is_not_domain(c) -> bool:
+    return c.layer != "domain"
+
+def _is_application(c) -> bool:
+    return c.layer == "application"
 
 
 def detect_anemic(analysis: StaticAnalysis, repo_dir: str) -> Set[str]:
     """Detect anemic domain entities (only __init__, no domain methods)."""
-    result = set()
-    for cls in analysis.classes.values():
-        if cls.layer == "domain" and cls.n_init_only and not cls.is_exception:
-            result.add(os.path.relpath(cls.file_path, repo_dir))
-    return result
+    return _u.detect_data_only(analysis, repo_dir, _is_domain)
 
 
 def detect_fat(analysis: StaticAnalysis, repo_dir: str,
                threshold: int = 8, steepness: float = 1.0) -> Set[str]:
     """Detect fat services using sigmoid scoring. Returns files with penalty > 0.5."""
-    result = set()
-    for cls in analysis.classes.values():
-        if cls.layer == "application":
-            penalty = 1.0 / (1.0 + math.exp(-steepness * (cls.n_methods - threshold)))
-            if penalty > 0.5:
-                result.add(os.path.relpath(cls.file_path, repo_dir))
-    return result
+    return _u.detect_god_class(analysis, repo_dir, _is_application,
+                                threshold, steepness)
 
 
 def _normalize_name(name: str) -> str:
@@ -40,68 +45,14 @@ def _normalize_name(name: str) -> str:
 def detect_zombie(analysis: StaticAnalysis, graph: nx.DiGraph,
                   repo_dir: str) -> Set[str]:
     """Detect zombie domain entities not referenced by any service."""
-    all_domain = {cls.name for cls in analysis.classes.values()
-                  if cls.layer == "domain" and not cls.is_exception}
-    referenced = set()
-
-    def _matches(entity_name: str, dep_string: str) -> bool:
-        """Check if entity name matches a dependency string (handles snake_case vs CamelCase)."""
-        norm_entity = _normalize_name(entity_name)
-        norm_dep = _normalize_name(dep_string)
-        return norm_entity in norm_dep
-
-    # Check non-domain classes for references
-    for cls in analysis.classes.values():
-        if cls.layer != "domain":
-            for dep in cls.dependencies:
-                for ename in all_domain:
-                    if _matches(ename, dep):
-                        referenced.add(ename)
-
-    # Check graph edges
-    for u, v in graph.edges():
-        for ename in all_domain:
-            if _matches(ename, v):
-                referenced.add(ename)
-
-    # Check domain-to-domain dependencies (indirect references):
-    # If Order references LineItem, and Order is referenced by a service,
-    # then LineItem is also reachable (not a zombie).
-    changed = True
-    while changed:
-        changed = False
-        for cls in analysis.classes.values():
-            if cls.layer == "domain" and cls.name in referenced:
-                for dep in cls.dependencies:
-                    for ename in all_domain:
-                        if _matches(ename, dep) and ename not in referenced:
-                            referenced.add(ename)
-                            changed = True
-
-    result = set()
-    for cls in analysis.classes.values():
-        if cls.layer == "domain" and cls.name not in referenced:
-            result.add(os.path.relpath(cls.file_path, repo_dir))
-    return result
+    return _u.detect_dead_class(analysis, graph, repo_dir,
+                                 _is_domain_no_exc, _is_not_domain)
 
 
 def detect_layer_violations_set(analysis: StaticAnalysis, graph: nx.DiGraph,
                                 repo_dir: str) -> Set[str]:
     """Detect files with layer violations."""
-    violations = detect_layer_violations(analysis)
-    result = set()
-    for src, tgt, sl, tl in violations:
-        node_data = analysis.graph.nodes.get(src, {})
-        if "file" in node_data:
-            result.add(os.path.relpath(node_data["file"], repo_dir))
-    for src, tgt in graph.edges():
-        src_layer = graph.nodes.get(src, {}).get("layer")
-        tgt_layer = graph.nodes.get(tgt, {}).get("layer")
-        if src_layer == "presentation" and tgt_layer == "domain":
-            node_data = graph.nodes.get(src, {})
-            if "file" in node_data:
-                result.add(os.path.relpath(node_data["file"], repo_dir))
-    return result
+    return _u.detect_policy_violations(analysis, repo_dir, LAYER_ORDER)
 
 
 def detect_all(analysis: StaticAnalysis, graph: nx.DiGraph,

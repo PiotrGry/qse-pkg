@@ -1,7 +1,7 @@
 """QSE report output formatters."""
 
 import json
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from typing import Dict, Set
 
 import numpy as np

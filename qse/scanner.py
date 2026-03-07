@@ -6,7 +6,7 @@ detect layer membership, count methods/attributes per class.
 import ast
 import os
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import networkx as nx
 
@@ -84,7 +84,7 @@ def _extract_classes(tree: ast.AST, file_path: str,
             continue
         methods = [n for n in node.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))]
         n_methods = len(methods)
-        n_init_only = (n_methods == 1 and methods[0].name == "__init__") if methods else n_methods == 0
+        n_init_only = (n_methods == 1 and methods[0].name == "__init__")
 
         # Count attributes assigned in __init__
         n_attrs = 0
@@ -196,22 +196,41 @@ def scan_repo(base_dir: str, layer_map: dict = None) -> StaticAnalysis:
     return StaticAnalysis(graph=graph, classes=all_classes, files=all_files)
 
 
-def detect_layer_violations(analysis: StaticAnalysis) -> List[Tuple[str, str, str, str]]:
+def detect_layer_violations(analysis: StaticAnalysis,
+                            layer_order: dict = None) -> List[Tuple[str, str, str, str]]:
     """
-    Detect edges that violate DDD layering (outer → inner skipping layers,
-    or presentation importing domain directly).
+    Detect edges that violate layering rules.
+
+    layer_order: dict mapping layer names to ordinals (lower = inner).
+                 Defaults to DDD LAYER_ORDER if not provided.
+
+    The Dependency Rule: dependencies must point inward (outer→inner).
+
+    Violations:
+    - Inner layer imports outer layer (dependency inversion)
+
+    Allowed:
+    - Outer layer importing any inner layer
+    - Same-layer imports
 
     Returns list of (source_mod, target_mod, source_layer, target_layer).
     """
+    if layer_order is None:
+        layer_order = LAYER_ORDER
+
     violations = []
     for src, tgt in analysis.graph.edges():
         src_layer = analysis.graph.nodes.get(src, {}).get("layer")
         tgt_layer = analysis.graph.nodes.get(tgt, {}).get("layer")
         if src_layer is None or tgt_layer is None:
             continue
-        src_ord = LAYER_ORDER.get(src_layer, -1)
-        tgt_ord = LAYER_ORDER.get(tgt_layer, -1)
-        # Violation: presentation (3) imports domain (0) directly
-        if src_layer == "presentation" and tgt_layer == "domain":
+        src_ord = layer_order.get(src_layer, -1)
+        tgt_ord = layer_order.get(tgt_layer, -1)
+        if src_ord < 0 or tgt_ord < 0:
+            continue
+
+        # Violation: inner layer imports outer layer (dependency inversion)
+        if src_ord < tgt_ord:
             violations.append((src, tgt, src_layer, tgt_layer))
+
     return violations
