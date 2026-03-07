@@ -92,9 +92,11 @@ class TestAcyclicity:
         assert compute_acyclicity(G) == pytest.approx(0.25)
 
     def test_two_disconnected_cycles(self):
+        """Two separate 2-node cycles: largest SCC=2, total=4 → 1 - 2/4 = 0.5.
+        Less catastrophic than one large SCC — new formula captures severity."""
         G = nx.DiGraph()
         G.add_edges_from([("a", "b"), ("b", "a"), ("c", "d"), ("d", "c")])
-        assert compute_acyclicity(G) == 0.0
+        assert compute_acyclicity(G) == pytest.approx(0.5)
 
 
 # ---------------------------------------------------------------------------
@@ -106,11 +108,12 @@ class TestStability:
         assert compute_stability(nx.DiGraph()) == 1.0
 
     def test_isolated_nodes_default(self):
-        """Isolated nodes get I=0.5, A=0 → D=|0+0.5-1|=0.5 → St=0.5."""
+        """Isolated nodes all get I=0.5 → zero variance → stability=0.0.
+        Undifferentiated graph has no layering signal."""
         G = nx.DiGraph()
         G.add_nodes_from(["a", "b"])
         st = compute_stability(G)
-        assert st == pytest.approx(0.5)
+        assert st == pytest.approx(0.0)
 
     def test_abstract_module_on_main_sequence(self):
         """A=1 (fully abstract) + I=0 (fully stable) → D=0 → St=1.0."""

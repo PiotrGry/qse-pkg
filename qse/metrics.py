@@ -139,18 +139,22 @@ def compute_compliance(analysis: StaticAnalysis,
 
 def compute_coupling(graph: nx.DiGraph, beta: float = BETA) -> float:
     """
-    Graph coupling quality (inverted).
+    Graph coupling quality based on mean out-degree (fanout), size-independent.
 
-    coupling = 1 / (1 + exp(β · (density - 0.5)))
+    coupling = 1 / (1 + exp(β · (mean_out_degree - threshold)))
+    threshold = 5.0  (modules with >5 direct dependencies are suspect)
 
-    density = edges / (nodes * (nodes-1)). High density → low quality.
+    Replaces density-based formula which collapses to ≈1.0 for all large
+    sparse graphs (density → 0 as N grows), providing no discrimination.
+    Mean out-degree is size-independent and architecturally interpretable:
+    each module's fanout counts equally regardless of total codebase size.
     """
     n = graph.number_of_nodes()
     if n <= 1:
         return 1.0
-    max_edges = n * (n - 1)
-    density = graph.number_of_edges() / max_edges
-    return 1.0 / (1.0 + math.exp(beta * (density - 0.5)))
+    mean_out_degree = graph.number_of_edges() / n
+    threshold = 3.0  # >3 direct deps per module is suspect
+    return 1.0 / (1.0 + math.exp(beta * (mean_out_degree - threshold)))
 
 
 def compute_complexity(analysis: StaticAnalysis,

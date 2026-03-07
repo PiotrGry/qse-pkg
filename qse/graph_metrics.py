@@ -67,23 +67,30 @@ def compute_modularity(G: nx.DiGraph) -> float:
 
 def compute_acyclicity(G: nx.DiGraph) -> float:
     """
-    Fraction of nodes NOT participating in any cycle.
+    Acyclicity based on the largest strongly-connected component (SCC).
 
-    A = 1 - (nodes_in_cycles / total_nodes)
+    A = 1 - (largest_cyclic_SCC_size / total_nodes)
 
-    Uses Tarjan's SCC: any SCC with size > 1 contains a cycle.
+    Using the largest SCC as severity signal rather than summing all cyclic
+    nodes: a single god-cycle of 100 modules is architecturally catastrophic,
+    whereas the old formula averaged it away in large graphs (1000+ nodes →
+    acyclicity ≈ 0.99 regardless of cycle severity).
+
     Empty/single-node graph returns 1.0.
     """
     n = G.number_of_nodes()
     if n <= 1:
         return 1.0
 
-    nodes_in_cycles = 0
+    largest_cycle_size = 0
     for scc in nx.strongly_connected_components(G):
         if len(scc) > 1:
-            nodes_in_cycles += len(scc)
+            largest_cycle_size = max(largest_cycle_size, len(scc))
 
-    return 1.0 - (nodes_in_cycles / n)
+    if largest_cycle_size == 0:
+        return 1.0
+
+    return 1.0 - (largest_cycle_size / n)
 
 
 # ---------------------------------------------------------------------------
@@ -93,69 +100,40 @@ def compute_acyclicity(G: nx.DiGraph) -> float:
 def compute_stability(G: nx.DiGraph,
                       abstract_modules: Optional[Set[str]] = None) -> float:
     """
-    Mean distance from main sequence per package (second-level grouping).
+    Architectural layering quality via instability variance.
 
-    For each package:
-      Ca = afferent coupling (in-degree from outside package)
-      Ce = efferent coupling (out-degree to outside package)
-      I  = Ce / (Ca + Ce)                    # Instability [0,1]
-      A  = abstract_members / total_members  # Abstractness [0,1]
-      D  = |A + I - 1|                       # Distance from main sequence
+    Measures how well the codebase differentiates stable core modules
+    (low instability I≈0, many dependents) from unstable leaf modules
+    (high instability I≈1, many dependencies).
 
-    Stability = 1 - mean(D)
+    Clean layered architecture  → high I variance (core I≈0, leaves I≈1) → score≈1
+    Tangled / flat architecture → low I variance (all modules I≈0.5)     → score≈0
 
-    abstract_modules: set of node names containing abstract classes (ABC, Protocol, etc.)
-    If None, A=0 for all — this PENALIZES stable interfaces (D=1.0 for stable+concrete).
+    stability = var(I) / 0.25   clamped to [0, 1]
+
+    The max possible variance for values in [0,1] is 0.25 (bimodal 0/1 split).
+
+    Replaces Martin's Distance from Main Sequence which degenerates to
+    mean(I) when abstractness data is unavailable (A=0 for all modules),
+    incorrectly rewarding flat/leaf-heavy codebases.
+
+    abstract_modules: retained for API compatibility, not used.
     """
-    if abstract_modules is None:
-        abstract_modules = set()
-
     nodes = list(G.nodes())
-    if not nodes:
+    if len(nodes) <= 1:
         return 1.0
 
-    # Group by second-level package for finer granularity
-    # e.g. "core.user" → "core", "services.order_service" → "services"
-    # For single-segment names, use the name itself
-    packages: Dict[str, List[str]] = {}
+    instabilities = []
     for node in nodes:
-        parts = node.split(".")
-        # Use up to 2 levels for grouping: "a.b.c" → "a.b", "a" → "a"
-        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
-        packages.setdefault(pkg, []).append(node)
+        ca = G.in_degree(node)
+        ce = G.out_degree(node)
+        total = ca + ce
+        I = ce / total if total > 0 else 0.5
+        instabilities.append(I)
 
-    distances = []
-    for pkg, members in packages.items():
-        member_set = set(members)
-
-        # Ca and Ce for package (external edges only)
-        ca = 0
-        ce = 0
-        for m in members:
-            for pred in G.predecessors(m):
-                if pred not in member_set:
-                    ca += 1
-            for succ in G.successors(m):
-                if succ not in member_set:
-                    ce += 1
-
-        total_coupling = ca + ce
-        # Isolated package (no external edges): I=0.5 places it on the main
-        # sequence midpoint, giving D = |A + 0.5 - 1| = |A - 0.5|. This is a
-        # neutral default — neither penalized nor rewarded — avoiding the D=1.0
-        # penalty that I=0 would impose on concrete isolated packages.
-        I = ce / total_coupling if total_coupling > 0 else 0.5
-
-        n_abstract = sum(1 for m in members if m in abstract_modules)
-        A = n_abstract / len(members) if members else 0.0
-
-        D = abs(A + I - 1.0)
-        distances.append(D)
-
-    if not distances:
-        return 1.0
-
-    return 1.0 - (sum(distances) / len(distances))
+    mean_i = sum(instabilities) / len(instabilities)
+    var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
+    return min(1.0, var / 0.25)
 
 
 def compute_instability_variance(G: nx.DiGraph) -> float:
