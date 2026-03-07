@@ -26,12 +26,12 @@ class TestHierarchicalModularity:
     def test_no_nodes_returns_one(self):
         assert compute_hierarchical_modularity(nx.DiGraph()) == 1.0
 
-    def test_single_package_returns_neutral(self):
-        """All nodes in same second-level package → can't measure → 0.5.
-        Need 3-level names: myapp.core.X all group to 'myapp.core'."""
+    def test_single_package_returns_one(self):
+        """All nodes in same package → zero cross-package edges → BCR = 1.0.
+        Single-package monolith IS perfectly 'isolated' from other packages."""
         G = _pkg_graph([("myapp.core.a", "myapp.core.b"),
                         ("myapp.core.b", "myapp.core.c")])
-        assert compute_hierarchical_modularity(G) == 0.5
+        assert compute_hierarchical_modularity(G) == 1.0
 
     def test_isolated_packages_high_score(self):
         """Two packages with ONLY internal edges → high isolation.

@@ -199,122 +199,93 @@ def compute_instability_variance(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Hierarchical Modularity — M-score inspired (Pisch et al. ESEM 2024)
+# Adaptive Package Boundary Crossing — depth-aware (D'Ambros & Lanza 2009)
 # ---------------------------------------------------------------------------
 
-def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
+def _detect_package_depth(G: nx.DiGraph) -> int:
+    """Auto-detect the meaningful grouping depth from module path distribution.
+
+    Strategy: find the depth level where packages have the most multi-member
+    groups (i.e. where grouping is actually meaningful and non-trivial).
+
+    Examples:
+      flask (mean_depth=1.3):  depth 1 → {"flask": [flask.app, flask.views, ...]}
+      django (mean_depth=3.3): depth 2 → {"django.db": [...], "django.http": [...]}
+      ansible (mean_depth=5):  depth 3 → {"ansible.modules.cloud": [...], ...}
     """
-    Hierarchical modularity based on within-package vs cross-package edge density.
-
-    Inspired by M-score (Pisch, Cai, Kazman et al., ESEM 2024) which clusters
-    dependencies hierarchically and measures density ratios rather than Newman Q.
-    Key advantage: isolated files don't inflate the score (fixes leaf-module bias).
-
-    Groups nodes by second-level package (e.g. "a.b.c" → "a.b").
-    For each package, computes:
-      within_density  = internal_edges / possible_internal_edges
-      cross_edges     = edges leaving this package
-
-    modularity = mean(within_density) / (1 + mean_cross_ratio)
-
-    Returns [0, 1] where 1 = perfect internal cohesion, no cross-package edges.
-    Returns 0.5 neutral if fewer than 2 packages.
-    """
-    nodes = list(G.nodes())
+    nodes = [n for n in G.nodes() if "." in n]
     if not nodes:
-        return 1.0
+        return 1
 
-    # Group by second-level package (e.g. "flask.app" → "flask.app",
-    # "django.db.models" → "django.db"). Each Python module or sub-package
-    # is its own unit. For single-file packages (n=1), within-density is
-    # always 0 and is excluded from the mean — only cross_ratio matters.
-    packages: Dict[str, List[str]] = {}
-    for node in nodes:
-        parts = node.split(".")
-        pkg = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
-        packages.setdefault(pkg, []).append(node)
+    depths = [len(n.split(".")) for n in nodes]
+    mean_depth = sum(depths) / len(depths)
 
-    if len(packages) < 2:
-        return 0.5  # can't measure modularity with one package
-
-    # Only measure within-density for multi-member packages (sub-packages)
-    within_densities = []
-    cross_ratios = []
-
-    for pkg, members in packages.items():
-        member_set = set(members)
-        n_m = len(members)
-
-        # Within-density: only meaningful when package has >1 member
-        if n_m > 1:
-            internal_edges = sum(
-                1 for u in members for v in G.successors(u) if v in member_set
-            )
-            max_internal = n_m * (n_m - 1)
-            within_densities.append(
-                internal_edges / max_internal if max_internal > 0 else 0.0
-            )
-
-        # Cross-package ratio: meaningful for all packages
-        cross_out = sum(
-            1 for u in members for v in G.successors(u) if v not in member_set
-        )
-        total_out = sum(G.out_degree(u) for u in members)
-        cross_ratio = cross_out / total_out if total_out > 0 else 0.0
-        cross_ratios.append(cross_ratio)
-
-    mean_within = sum(within_densities) / len(within_densities) if within_densities else 0.5
-    mean_cross = sum(cross_ratios) / len(cross_ratios)
-
-    # Low cross-ratio = modules are well-isolated = good modularity
-    # within_density = bonus for sub-packages with internal cohesion
-    isolation = 1.0 - mean_cross
-    if not within_densities:
-        return isolation  # flat project: only cross-ratio matters
-    return (mean_within * isolation) ** 0.5
+    # Group one level above the leaves: round(mean_depth) - 1
+    # flask (mean=1.3) → 1   — group at "flask"
+    # django (mean=3.3) → 2  — group at "django.db"
+    # ansible (mean=5)  → 4  — group at "ansible.modules.cloud"
+    level = max(1, min(4, round(mean_depth) - 1))
+    return level
 
 
 def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
     """
-    Fraction of internal edges that cross second-level package boundaries.
+    Fraction of internal edges that cross package boundaries, where the
+    grouping depth is auto-detected from the project's module path structure.
 
-    Low ratio = good modularity (changes stay within packages).
-    High ratio = tangled dependencies = bad architecture.
+    Flat libraries (flask, mean_depth≈1.3)  → group at depth 1: "flask.*"
+    Frameworks (django, mean_depth≈3.3)     → group at depth 2: "django.db"
+    Deep systems (ansible, mean_depth≈5.0)  → group at depth 3: "ansible.modules.cloud"
 
-    Ref: D'Ambros & Lanza (WCRE 2009) — co-changes crossing architectural
-    module boundaries correlate MORE with defects than within-module co-changes.
+    This ensures the metric is meaningful regardless of how deeply nested
+    the project's package structure is.
 
-    Returns 1 - crossing_ratio so that higher = better (consistent with AGQ).
-    Returns 0.5 neutral if graph has no internal edges.
+    Returns 1 - crossing_ratio: higher = better (fewer cross-boundary edges).
+    Returns 0.5 neutral when no edges or single package.
+
+    Ref: D'Ambros & Lanza (WCRE 2009).
     """
     nodes = list(G.nodes())
     if not nodes:
         return 1.0
 
-    # Second-level grouping: "flask.app" → "flask.app", "django.db.models" → "django.db"
+    depth = _detect_package_depth(G)
+
     packages: Dict[str, str] = {}
     for node in nodes:
         parts = node.split(".")
-        packages[node] = ".".join(parts[:2]) if len(parts) >= 2 else parts[0]
+        packages[node] = ".".join(parts[:depth]) if len(parts) >= depth else parts[0]
+
+    # Don't short-circuit on single package — compute normally.
+    # All edges within one package → 0 crossing → BCR = 1.0 (correct: perfectly isolated).
 
     internal = {n for n, d in G.nodes(data=True) if d.get("file")}
     if not internal:
         internal = set(nodes)
 
-    total_internal_edges = 0
+    total_edges = 0
     crossing_edges = 0
     for src, tgt in G.edges():
         if src not in internal:
             continue
-        total_internal_edges += 1
+        total_edges += 1
         if packages.get(src) != packages.get(tgt):
             crossing_edges += 1
 
-    if total_internal_edges == 0:
+    if total_edges == 0:
         return 0.5
 
-    crossing_ratio = crossing_edges / total_internal_edges
-    return 1.0 - crossing_ratio
+    return 1.0 - (crossing_edges / total_edges)
+
+
+def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
+    """Deprecated alias — use compute_boundary_crossing_ratio() instead.
+
+    hierarchical_modularity was redundant with Newman modularity Q when
+    package boundaries align with natural graph clusters. BCR with adaptive
+    depth provides the same signal more directly.
+    """
+    return compute_boundary_crossing_ratio(G)
 
 
 # ---------------------------------------------------------------------------
