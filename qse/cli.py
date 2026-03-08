@@ -49,14 +49,84 @@ def _load_graph_json(path: str):
     return G, abstract, lcom4
 
 
+def _detect_repo_language(path: str) -> str:
+    """Detect primary language of a repository by file count."""
+    import os
+    counts = {"py": 0, "java": 0, "go": 0}
+    for root, dirs, files in os.walk(path):
+        dirs[:] = [d for d in dirs if not d.startswith('.') and d != 'target']
+        for f in files:
+            ext = f.rsplit('.', 1)[-1] if '.' in f else ''
+            if ext in counts:
+                counts[ext] += 1
+        if sum(counts.values()) > 100:
+            break
+    return max(counts, key=counts.get) if any(counts.values()) else "py"
+
+
 def _run_agq(args) -> None:
-    """Execute the language-agnostic AGQ gate."""
+    """Execute the language-agnostic AGQ gate.
+
+    Auto-detects language: Python uses scanner.py, Java/Go use Rust qse-core.
+    """
     from qse.graph_metrics import compute_agq
 
     if args.graph:
         G, abstract, lcom4 = _load_graph_json(args.graph)
+        metrics = compute_agq(G, abstract_modules=set(abstract), classes_lcom4=lcom4)
     else:
-        # Fallback: scan Python repo to build graph
+        # Auto-detect language
+        lang = _detect_repo_language(args.path)
+
+        if lang in ("java", "go"):
+            # Use Rust scanner for Java/Go
+            try:
+                from _qse_core import scan_and_compute_agq
+                r = scan_and_compute_agq(args.path)
+                from qse.graph_metrics import AGQMetrics
+                metrics = AGQMetrics(
+                    modularity=r["modularity"],
+                    acyclicity=r["acyclicity"],
+                    stability=r["stability"],
+                    cohesion=r["cohesion"],
+                )
+                agq = r["agq_score"]
+
+                result = {
+                    "gate": "PASS",
+                    "agq_score": round(agq, 4),
+                    "threshold": args.threshold,
+                    "language": r["language"],
+                    "metrics": {k: round(r[k], 4) for k in
+                                ["modularity","acyclicity","stability","cohesion"]},
+                    "graph": {"nodes": r["nodes"], "edges": r["edges"]},
+                    "failures": [],
+                }
+                if agq < args.threshold:
+                    result["gate"] = "FAIL"
+                    result["failures"].append(
+                        f"agq_score={agq:.4f} below threshold {args.threshold:.2f}")
+
+                if args.output_json:
+                    with open(args.output_json, "w") as f:
+                        json.dump(result, f, indent=2)
+
+                if result["failures"]:
+                    print("AGQ GATE FAIL", file=sys.stderr)
+                    for fail in result["failures"]:
+                        print(f"  - {fail}", file=sys.stderr)
+                    sys.exit(1)
+
+                print(f"AGQ GATE PASS  agq={agq:.4f}  "
+                      f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
+                      f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}  "
+                      f"lang={r['language']}")
+                sys.exit(0)
+            except ImportError:
+                print(f"[warn] Rust qse-core not available, falling back to Python scanner",
+                      file=sys.stderr)
+
+        # Python scanner (default)
         from qse.scanner import scan_repo
         from qse.graph_metrics import compute_lcom4 as _compute_lcom4
         analysis = scan_repo(args.path)
