@@ -139,7 +139,57 @@ def _run_agq(args) -> None:
                 print(f"[warn] Rust qse-core not available, falling back to Python scanner",
                       file=sys.stderr)
 
-        # Python scanner (default)
+        # Try Rust scanner for Python too — 7-46× faster
+        try:
+            from _qse_core import scan_and_compute_agq
+            r = scan_and_compute_agq(args.path)
+            from qse.graph_metrics import AGQMetrics
+            metrics = AGQMetrics(
+                modularity=r["modularity"], acyclicity=r["acyclicity"],
+                stability=r["stability"], cohesion=r["cohesion"],
+            )
+            agq = r["agq_score"]
+
+            result = {
+                "gate": "PASS" if agq >= args.threshold else "FAIL",
+                "agq_score": round(agq, 4), "threshold": args.threshold,
+                "language": r["language"],
+                "metrics": {k: round(r[k], 4) for k in
+                            ["modularity","acyclicity","stability","cohesion"]},
+                "graph": {"nodes": r["nodes"], "edges": r["edges"]},
+                "failures": ([] if agq >= args.threshold else
+                             [f"agq_score={agq:.4f} below threshold {args.threshold:.2f}"]),
+            }
+            if args.output_json:
+                with open(args.output_json, "w") as f:
+                    json.dump(result, f, indent=2)
+            if result["failures"]:
+                print("AGQ GATE FAIL", file=sys.stderr)
+                for fail in result["failures"]: print(f"  - {fail}", file=sys.stderr)
+                sys.exit(1)
+
+            try:
+                from qse.agq_enhanced import compute_agq_enhanced
+                lang_map = {"Java":"Java","Go":"Go","Python":"Python"}
+                enh = compute_agq_enhanced(
+                    agq, metrics.modularity, metrics.acyclicity,
+                    metrics.stability, metrics.cohesion,
+                    r["nodes"], lang_map.get(r["language"],"Python"))
+                fp_str = f"  [{enh.fingerprint}]"
+                z_str = f"  z={enh.agq_z:+.2f} ({enh.agq_percentile}%ile)"
+                cyc_str = f"  cycles={enh.cycle_severity['severity_level']}"
+            except Exception:
+                fp_str = z_str = cyc_str = ""
+
+            print(f"AGQ GATE PASS  agq={agq:.4f}  "
+                  f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
+                  f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}  "
+                  f"lang={r['language']}{fp_str}{z_str}{cyc_str}")
+            sys.exit(0)
+        except ImportError:
+            pass  # Fall through to Python scanner
+
+        # Python scanner fallback (when Rust not installed)
         from qse.scanner import scan_repo
         from qse.graph_metrics import compute_lcom4 as _compute_lcom4
         analysis = scan_repo(args.path)
