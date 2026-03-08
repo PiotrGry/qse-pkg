@@ -1,0 +1,3 @@
+[workspace]
+members = ["qse-core", "qse-py"]
+resolver = "2"
