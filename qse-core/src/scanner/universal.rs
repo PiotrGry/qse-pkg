@@ -33,8 +33,12 @@ pub struct ClassInfo {
 
 #[derive(Debug)]
 pub struct ScanResult {
-    /// Import dependency graph: nodes = module paths, edges = imports
+    /// Full import dependency graph (internal + external nodes)
     pub graph: DiGraph<String, ()>,
+    /// Internal-only graph: source files + their direct import targets.
+    /// Mirrors Python's _build_internal_graph(). Use this for AGQ metrics
+    /// to avoid stdlib/third-party nodes inflating the graph.
+    pub internal_graph: DiGraph<String, ()>,
     /// Node indices keyed by module path
     pub node_index: HashMap<String, NodeIndex>,
     /// Class metadata keyed by class name
@@ -43,11 +47,35 @@ pub struct ScanResult {
     pub files: Vec<PathBuf>,
     /// Language detected
     pub language: Language,
+    /// Set of internal node names (files we actually scanned)
+    pub internal_nodes: std::collections::HashSet<String>,
 }
 
 // ---------------------------------------------------------------------------
 // Language detection
 // ---------------------------------------------------------------------------
+
+fn walkdir_shallow(dir: &Path, max_depth: usize) -> Vec<PathBuf> {
+    let mut result = Vec::new();
+    walkdir_rec(dir, max_depth, &mut result);
+    result
+}
+
+fn walkdir_rec(dir: &Path, depth: usize, out: &mut Vec<PathBuf>) {
+    if depth == 0 { return; }
+    let Ok(entries) = std::fs::read_dir(dir) else { return };
+    for e in entries.flatten() {
+        let p = e.path();
+        if p.is_dir() {
+            let n = p.file_name().and_then(|n| n.to_str()).unwrap_or("");
+            if !n.starts_with('.') && !matches!(n, "target" | "__pycache__" | "node_modules") {
+                walkdir_rec(&p, depth - 1, out);
+            }
+        } else {
+            out.push(p);
+        }
+    }
+}
 
 fn detect_language(dir: &Path) -> Option<Language> {
     let mut py = 0usize;
@@ -82,9 +110,19 @@ fn detect_language(dir: &Path) -> Option<Language> {
         }
     }
 
+    // If nothing found in shallow scan, do a deeper recursive scan
     if py == 0 && java == 0 && go == 0 {
-        return None;
+        for entry in walkdir_shallow(dir, 4) {
+            match entry.extension().and_then(|s| s.to_str()) {
+                Some("py")   => py   += 1,
+                Some("java") => java += 1,
+                Some("go")   => go   += 1,
+                _ => {}
+            }
+            if py + java + go > 50 { break; }
+        }
     }
+    if py == 0 && java == 0 && go == 0 { return None; }
     if java >= py && java >= go { return Some(Language::Java); }
     if go   >= py && go   >= java { return Some(Language::Go); }
     Some(Language::Python)
@@ -537,8 +575,43 @@ struct FileResult {
     classes: Vec<ClassInfo>,
 }
 
+/// Find the actual source root for any language.
+/// Python: tries src/<name>/, src/, <name>/  (pip/poetry layout)
+/// Java:   tries src/main/java/, src/main/  (Maven/Gradle layout)
+/// Go:     repo root is typically correct
+fn find_source_root(base: &Path) -> PathBuf {
+    let name = base.file_name().and_then(|n| n.to_str()).unwrap_or("");
+    // Java Maven/Gradle layout first
+    let java_candidates = [
+        base.join("src").join("main").join("java"),
+        base.join("src").join("main"),
+    ];
+    for c in &java_candidates {
+        if c.is_dir() && walkdir_shallow(c, 2).iter()
+            .any(|p| p.extension().and_then(|e| e.to_str()) == Some("java"))
+        {
+            return c.clone();
+        }
+    }
+    // Python layout
+    let py_candidates = [
+        base.join("src").join(name),
+        base.join("src"),
+        base.join(name),
+    ];
+    for c in &py_candidates {
+        if c.is_dir() && walkdir_shallow(c, 1).iter()
+            .any(|p| p.extension().and_then(|e| e.to_str()) == Some("py"))
+        {
+            return c.clone();
+        }
+    }
+    base.to_path_buf()
+}
+
 pub fn scan_repo(base_dir: &str) -> ScanResult {
-    let base = Path::new(base_dir);
+    let base_root = find_source_root(Path::new(base_dir));
+    let base = base_root.as_path();
     let lang = detect_language(base).unwrap_or(Language::Python);
     let ext = file_extension(&lang);
     let ts_lang = ts_language(&lang);
@@ -573,8 +646,10 @@ pub fn scan_repo(base_dir: &str) -> ScanResult {
     };
 
     let mut scanned_files = Vec::new();
+    let mut internal_nodes: std::collections::HashSet<String> = std::collections::HashSet::new();
 
     for fr in file_results {
+        internal_nodes.insert(fr.mod_path.clone());
         let src_node = get_node(&mut graph, &mut node_index, fr.mod_path.clone());
         for imp in fr.imports {
             let tgt_node = get_node(&mut graph, &mut node_index, imp);
@@ -582,19 +657,49 @@ pub fn scan_repo(base_dir: &str) -> ScanResult {
                 graph.add_edge(src_node, tgt_node, ());
             }
         }
-
         for cls in fr.classes {
             classes.insert(cls.name.clone(), cls);
         }
-
         scanned_files.push(PathBuf::from(&fr.mod_path));
+    }
+
+    // Build internal graph: internal nodes + their direct import targets
+    // Mirrors Python's _build_internal_graph() — excludes stdlib/third-party
+    // nodes that are never imported by anything internal.
+    let mut connected: std::collections::HashSet<String> = std::collections::HashSet::new();
+    for ni in graph.node_indices() {
+        let name = &graph[ni];
+        if internal_nodes.contains(name) {
+            connected.insert(name.clone());
+            for nb in graph.neighbors(ni) {
+                connected.insert(graph[nb].clone());
+            }
+        }
+    }
+    let mut internal_graph: DiGraph<String, ()> = DiGraph::new();
+    let mut int_idx: HashMap<String, NodeIndex> = HashMap::new();
+    for name in &connected {
+        let ni = internal_graph.add_node(name.clone());
+        int_idx.insert(name.clone(), ni);
+    }
+    for e in graph.edge_indices() {
+        let (a, b) = graph.edge_endpoints(e).unwrap();
+        let an = &graph[a];
+        let bn = &graph[b];
+        if let (Some(&ia), Some(&ib)) = (int_idx.get(an), int_idx.get(bn)) {
+            if !internal_graph.contains_edge(ia, ib) {
+                internal_graph.add_edge(ia, ib, ());
+            }
+        }
     }
 
     ScanResult {
         graph,
+        internal_graph,
         node_index,
         classes,
         files: scanned_files,
         language: lang,
+        internal_nodes,
     }
 }

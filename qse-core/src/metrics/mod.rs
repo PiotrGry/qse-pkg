@@ -18,7 +18,9 @@ pub struct AGQMetrics {
 }
 
 pub fn compute_agq(result: &ScanResult) -> AGQMetrics {
-    let g = &result.graph;
+    // Use internal_graph — mirrors Python's _build_internal_graph()
+    // Excludes stdlib/third-party nodes, aligns scores with Python.
+    let g = &result.internal_graph;
     let n = g.node_count();
     let e = g.edge_count();
 
