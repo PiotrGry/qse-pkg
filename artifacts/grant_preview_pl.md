@@ -38,39 +38,88 @@ W oprogramowaniu:
 
 ### 2.1 Co to jest QSE
 
-**QSE (Quality Score Engine)** to system który automatycznie mierzy jakość architektoniczną oprogramowania i egzekwuje reguły architektoniczne w procesie wytwarzania oprogramowania (CI/CD).
+**QSE (Quality Score Engine)** to system który automatycznie mierzy jakość architektoniczną oprogramowania, klasyfikuje jej typ oraz egzekwuje reguły architektoniczne w procesie wytwarzania oprogramowania (CI/CD). Działa dla **Python, Java i Go** z jednego interfejsu.
 
-QSE składa się z czterech warstw:
+QSE składa się z pięciu warstw:
 
 ```
-┌─────────────────────────────────────────────────┐
-│  WARSTWA 4: Policy-as-a-Service                 │
-│  Automatyczne reguły architektoniczne           │
-├─────────────────────────────────────────────────┤
-│  WARSTWA 3: Quality Gate (TRL4)                 │
-│  Blokada gdy jakość spada poniżej progu         │
-├─────────────────────────────────────────────────┤
-│  WARSTWA 2: AGQ Metrics                         │
-│  4 metryki strukturalne + 1 test quality        │
-├─────────────────────────────────────────────────┤
-│  WARSTWA 1: Scanner (Python, Java, Go)          │
-│  Analiza kodu źródłowego — graf zależności      │
-└─────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│  WARSTWA 5: AGQ Enhanced                                │
+│  AGQ-z, Fingerprint, CycleSeverity, ChurnRisk, AGQ-adj  │
+├─────────────────────────────────────────────────────────┤
+│  WARSTWA 4: Policy-as-a-Service                         │
+│  Automatyczne reguły architektoniczne (qse discover)    │
+├─────────────────────────────────────────────────────────┤
+│  WARSTWA 3: Quality Gate (TRL4 + ratchet)               │
+│  Blokada gdy jakość spada poniżej progu                 │
+├─────────────────────────────────────────────────────────┤
+│  WARSTWA 2: AGQ Metrics (4 naprawione + kalibracja)     │
+│  Modularity, Acyclicity, Stability, Cohesion            │
+├─────────────────────────────────────────────────────────┤
+│  WARSTWA 1: Scanner (Python AST + Rust tree-sitter)     │
+│  Python, Java (Maven/Gradle), Go — 30× szybszy w Rust   │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ### 2.2 Jak działa — krok po kroku
 
-**Krok 1: Skanowanie kodu**
-QSE czyta pliki źródłowe i buduje "mapę zależności" — kto od kogo zależy. Jak sieć połączeń między modułami. Ten krok jest 30× szybszy w naszej implementacji Rust niż w konkurencyjnych narzędziach Python (home-assistant: 20 sekund → 0.65 sekundy).
+**Krok 1: Skanowanie kodu — wykrywanie języka automatyczne**
 
-**Krok 2: Obliczanie metryk AGQ**
-Na podstawie mapy zależności obliczamy cztery liczby między 0 a 1 (gdzie 1 = doskonały):
+```bash
+$ qse agq /ścieżka/do/projektu
+```
 
-**Krok 3: Gate — ocena wynikowa**
-Jeśli wynik spada poniżej ustalonego progu → system blokuje zmianę w kodzie.
+System zlicza pliki `.py/.java/.go` i wybiera silnik:
+- **Python** → Python AST scanner (sprawdzony, szybki)
+- **Java/Go** → Rust qse-core z tree-sitter (30× szybszy)
 
-**Krok 4: Wyjaśnienie naruszenia**
-Nie tylko "fail" — konkretne: "moduł `payment/service.py` importuje `user/controller.py`, co narusza regułę separacji domen. Sugestia: użyj interfejsu lub zdarzeń."
+Kluczowa innowacja dla Javy: zamiast ścieżki pliku (`android.guava-testlib.src.com.google.common...`) QSE czyta deklarację `package com.google.common.collect;` → semantycznie poprawne nazwy modułów (`com.google.common.collect.ImmutableList`).
+
+**Krok 2: Graf wewnętrznych zależności**
+
+QSE buduje graf gdzie węzły = moduły źródłowe, krawędzie = importy. Kluczowe: `internal_graph` odfiltruje węzły zewnętrzne (stdlib, biblioteki third-party). Cykl przez `os` czy `java.util` nie jest architektonicznym problemem — cykl między własymi modułami tak.
+
+**Krok 3: Cztery metryki AGQ** (szczegóły w sekcji 3)
+
+**Krok 4: Pięć metryk Enhanced** — NOWE
+
+Na podstawie czterech bazowych QSE oblicza pięć dodatkowych wymiarów:
+
+| Metryka | Co daje | Przykład |
+|---|---|---|
+| **AGQ-z** | Percentyl w języku — usuwa language bias | jackson: 4.3%ile Java |
+| **Fingerprint** | Typ architektury (7 wzorców) | [TANGLED], [CLEAN], [LAYERED] |
+| **CycleSeverity** | Powaga cykli: NONE/LOW/MEDIUM/HIGH/CRITICAL | HIGH = 15% klas w pętli |
+| **ChurnRisk** | Ryzyko nierównego rozkładu zmian | CRITICAL → pilna refaktoryzacja |
+| **AGQ-adj** | Score skorygowany o rozmiar projektu | małe i duże repo porównywalne |
+
+**Krok 5: Wynik z wyjaśnieniem**
+
+```
+# Zamiast suchego "AGQ=0.46 FAIL":
+AGQ GATE PASS  agq=0.4618  M=0.57 A=0.85 St=0.26 Co=0.16  lang=Java
+  [TANGLED]  z=-1.71 (4.3%ile Java)  cycles=HIGH (15% klas w cyklach)
+  → Projekt jest w dolnych 5% repozytoriów Java
+  → 15% klas uwięzionych w cyklach zależności — HIGH priority fix
+  → Wzorzec TANGLED: niska spójność + cykle = architektoniczny dług
+
+# Versus dobry projekt:
+AGQ GATE PASS  agq=0.8760  lang=Go
+  [CLEAN]  z=+0.95 (82.8%ile Go)  cycles=NONE
+  → Strukturalnie czysty: zero cykli, wysoka spójność, wyraźne warstwy
+```
+
+**Krok 6: Policy-as-a-Service — automatyczne reguły**
+
+```bash
+$ qse discover /ścieżka/do/repo --output-constraints .qse/arch.json
+# Wynik dla Spring Boot:
+# 27 reguł m.in.: forbidden: org.springframework.boot.loader/* → org.springframework/*
+# (classloader nie może zależeć od kodu aplikacji)
+
+$ qse agq . --constraints .qse/arch.json
+# Każdy PR sprawdzany czy respektuje granice architektoniczne
+```
 
 ---
 
@@ -135,6 +184,46 @@ Pięć wymiarów jakości testów:
 ---
 
 ## 4. Wyniki eksperymentalne — pełne dane
+
+### 4.0 Benchmark 237 repozytoriów — podsumowanie cross-language (NOWE)
+
+Największy benchmark architektoniczny cross-language: **237 w pełni sklonowanych repozytoriów** (Python-78, Java-77, Go-80) z pełną historią git.
+
+**Kluczowe statystyki:**
+
+| Język | n | Średnie AGQ | Cohesion | Acyclicity | % z cyklami |
+|---|---|---|---|---|---|
+| Go | 80 | **0.817** | **1.000** | **1.000** | **0%** |
+| Python | 78 | 0.746 | 0.647 | 0.999 | 4% |
+| Java | 77 | **0.619** | **0.379** | 0.973 | **73%** |
+
+**Fingerprint distribution (237 repo):**
+
+| Wzorzec | Total | Python | Java | Go | Interpretacja |
+|---|---|---|---|---|---|
+| LAYERED | 68 | 57 | 4 | 7 | Warstwowa architektura — dobra |
+| CLEAN | 49 | 1 | 1 | **47** | Strukturalnie czysty — Go dominuje |
+| LOW_COHESION | 44 | 4 | **40** | 0 | Klasy robią za dużo — Java problem |
+| MODERATE | 39 | 12 | 11 | 16 | Przeciętny, bez patologii |
+| FLAT | 23 | 5 | 8 | 10 | Brak warstw — **dominujący pattern złej arch.** |
+| TANGLED | 9 | 0 | **9** | 0 | Cykle + niska spójność — Java OOP dług |
+| CYCLIC | 5 | 0 | **5** | 0 | Cykle bez innych patologii |
+
+**NAJWAŻNIEJSZE ODKRYCIE:** Wzorzec FLAT (brak warstw architektonicznych) jest dominującym wzorcem złej architektury cross-language — pojawia się u najgorszych projektów w każdym języku: `home-assistant` (Python, z=-2.81), `avro` (Java, z=-3.11), `kubernetes` (Go, z=-2.58).
+
+**Nowe statystycznie istotne korelacje (n=231-237):**
+
+| Para | r_s / r | p-value |
+|---|---|---|
+| acyclicity vs hotspot_ratio | +0.223 | **0.001** |
+| stability vs hotspot_ratio | +0.173 | **0.009** |
+| AGQ vs churn_gini | -0.128 | 0.052 |
+| **AGQ-z vs churn_gini** | **-0.130** | **0.048*** |
+| **AGQ-adj vs churn_gini** | **-0.162** | **0.014*** |
+| **AGQ-adj vs hotspot_ratio** | **+0.232** | **<0.001*** |
+| **ChurnRisk vs hotspot_ratio** | **-0.149** | **0.024*** |
+
+Size-adjusted AGQ (AGQ-adj) ma **najsilniejszą korelację** z churn — usunięcie bias rozmiaru wzmacnia sygnał architektoniczny.
 
 ### 4.1 Benchmark Python OSS-80
 

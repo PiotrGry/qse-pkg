@@ -79,7 +79,9 @@ def compute_agq_percentile(agq: float, language: str) -> Optional[float]:
 # ---------------------------------------------------------------------------
 
 FINGERPRINT_DESCRIPTIONS = {
-    "CLEAN":        "Clean architecture — high cohesion, layered, no cycles (Go-style)",
+    "CLEAN":        "Structurally pure — no cycles, high cohesion, clear layers. "
+                    "Named for mathematical graph properties, NOT Uncle Bob's Clean Architecture. "
+                    "Dominant in Go (enforced by language/ecosystem conventions).",
     "LAYERED":      "Layered architecture — good stability and acyclicity, medium cohesion",
     "MODERATE":     "Moderate architecture — no strong pathologies, room for improvement",
     "LOW_COHESION": "Low cohesion — classes do too many things, consider splitting (Java OOP)",
