@@ -117,10 +117,23 @@ def _run_agq(args) -> None:
                         print(f"  - {fail}", file=sys.stderr)
                     sys.exit(1)
 
+                try:
+                    from qse.agq_enhanced import compute_agq_enhanced
+                    lang_map = {"Java": "Java", "Go": "Go", "Python": "Python"}
+                    enh = compute_agq_enhanced(
+                        agq, metrics.modularity, metrics.acyclicity,
+                        metrics.stability, metrics.cohesion,
+                        r["nodes"], lang_map.get(r["language"], "Python"))
+                    fp_str = f"  [{enh.fingerprint}]"
+                    z_str = f"  z={enh.agq_z:+.2f} ({enh.agq_percentile}%ile)"
+                    cyc_str = f"  cycles={enh.cycle_severity['severity_level']}"
+                except Exception:
+                    fp_str = z_str = cyc_str = ""
+
                 print(f"AGQ GATE PASS  agq={agq:.4f}  "
                       f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
                       f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}  "
-                      f"lang={r['language']}")
+                      f"lang={r['language']}{fp_str}{z_str}{cyc_str}")
                 sys.exit(0)
             except ImportError:
                 print(f"[warn] Rust qse-core not available, falling back to Python scanner",
@@ -207,9 +220,25 @@ def _run_agq(args) -> None:
             print(f"  - {f}", file=sys.stderr)
         sys.exit(1)
 
+    # Enhanced metrics
+    try:
+        from qse.agq_enhanced import compute_agq_enhanced
+        detected_lang = _detect_repo_language(args.path)
+        lang_map = {"java": "Java", "go": "Go", "py": "Python"}
+        lang_name = lang_map.get(detected_lang, "Python")
+        enh = compute_agq_enhanced(agq, metrics.modularity, metrics.acyclicity,
+                                   metrics.stability, metrics.cohesion,
+                                   G.number_of_nodes(), lang_name)
+        fp_str = f"  [{enh.fingerprint}]"
+        z_str = f"  z={enh.agq_z:+.2f} ({enh.agq_percentile}%ile)"
+        cyc_str = f"  cycles={enh.cycle_severity['severity_level']}"
+    except Exception:
+        fp_str = z_str = cyc_str = ""
+
     parts = [f"AGQ GATE PASS  agq={agq:.4f}  "
              f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
-             f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}"]
+             f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}"
+             f"{fp_str}{z_str}{cyc_str}"]
     if constraint_score is not None:
         parts.append(f"  constraints={constraint_score:.2f}")
     print("".join(parts))

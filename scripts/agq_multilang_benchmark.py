@@ -186,8 +186,21 @@ def main():
                   f"n={agq['nodes']} {ms:.0f}ms"
                   + (f" hotspot={churn['hotspot_ratio']:.2f}" if churn else ""))
 
+            # Compute enhanced metrics
+            try:
+                import sys as _sys; _sys.path.insert(0, str(Path(__file__).parents[1]))
+                from qse.agq_enhanced import compute_agq_enhanced
+                enh = compute_agq_enhanced(
+                    agq["agq_score"], agq["modularity"], agq["acyclicity"],
+                    agq["stability"], agq["cohesion"],
+                    agq["nodes"], agq["language"]
+                ).to_dict()
+            except Exception:
+                enh = None
+
             results.append({"name": name, "url": url, "agq": agq,
-                            "churn": churn, "runtime_ms": round(ms, 1)})
+                            "churn": churn, "enhanced": enh,
+                            "runtime_ms": round(ms, 1)})
         except Exception as exc:
             print(f"ERROR: {exc}")
             results.append({"name": name, "error": str(exc)})
