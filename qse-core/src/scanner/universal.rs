@@ -142,16 +142,29 @@ fn collect_recursive(dir: &Path, ext: &str, out: &mut Vec<PathBuf>) {
     for entry in entries.flatten() {
         let path = entry.path();
         if path.is_dir() {
-            // Skip hidden dirs and common non-source dirs
             let name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            if name.starts_with('.') || matches!(name, "node_modules" | "target" | "__pycache__" | ".git") {
+            // Skip hidden, build, cache and test directories
+            if name.starts_with('.')
+                || matches!(name,
+                    "node_modules" | "target" | "__pycache__" | ".git"
+                    | "tests" | "test" | "testing" | "benchmarks"
+                    | "docs" | "doc" | "examples" | "example"
+                    | "vendor" | "third_party" | "fixtures" | "scripts")
+            {
                 continue;
             }
             collect_recursive(&path, ext, out);
         } else if path.extension().and_then(|e| e.to_str()) == Some(ext) {
-            // Skip __init__.py for Python (mostly re-exports, inflate graph)
-            if ext == "py" && path.file_name().and_then(|n| n.to_str()) == Some("__init__.py") {
-                continue;
+            let fname = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
+            // Skip test files, __init__.py, setup files
+            if ext == "py" {
+                if fname == "__init__.py"
+                    || fname.starts_with("test_")
+                    || fname.ends_with("_test.py")
+                    || matches!(fname, "setup.py" | "conftest.py" | "noxfile.py")
+                {
+                    continue;
+                }
             }
             out.push(path);
         }

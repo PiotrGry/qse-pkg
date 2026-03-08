@@ -1,126 +1,109 @@
-/// Newman modularity Q via Louvain-like greedy algorithm.
+/// Newman modularity Q via O(m) Louvain algorithm.
 /// Normalized: max(0, Q) / 0.75, returns 0.5 neutral for n<10 with edges.
-/// Mirrors Python: compute_modularity() in graph_metrics.py
 use petgraph::graph::DiGraph;
 
 pub fn compute(g: &DiGraph<String, ()>) -> f64 {
     let n = g.node_count();
     if n <= 1 { return 1.0; }
 
-    // Build undirected edge list (ignore direction for modularity)
-    let mut edges: Vec<(usize, usize)> = Vec::new();
+    // Build undirected symmetric adjacency for Louvain
+    let mut adj: Vec<Vec<usize>> = vec![Vec::new(); n];
+    let mut degree = vec![0usize; n];
+
     for e in g.edge_indices() {
         let (a, b) = g.edge_endpoints(e).unwrap();
         let ai = a.index();
         let bi = b.index();
-        if ai != bi {
-            edges.push((ai.min(bi), ai.max(bi)));
-        }
+        if ai == bi { continue; }
+        adj[ai].push(bi);
+        adj[bi].push(ai);
+        degree[ai] += 1;
+        degree[bi] += 1;
     }
-    edges.sort();
-    edges.dedup();
 
-    if edges.is_empty() { return 1.0; }
+    // Deduplicate adjacency lists
+    for a in adj.iter_mut() {
+        a.sort_unstable();
+        a.dedup();
+    }
+
+    let m: usize = degree.iter().sum::<usize>() / 2;
+    if m == 0 { return 1.0; }
     if n < 10 { return 0.5; }
 
-    let m = edges.len() as f64;
-    let mut degree = vec![0usize; n];
-    for &(a, b) in &edges {
-        degree[a] += 1;
-        degree[b] += 1;
-    }
+    let m_f = m as f64;
 
-    // Greedy Louvain-inspired: start each node in own community,
-    // then merge greedily for fixed iterations with deterministic order
+    // Louvain phase 1: greedy O(m) per pass
     let mut community: Vec<usize> = (0..n).collect();
+    // community_degree[c] = sum of degrees of nodes in community c
+    let mut comm_deg: Vec<f64> = degree.iter().map(|&d| d as f64).collect();
+    // community_internal[c] = sum of internal edges * 2
+    let mut comm_int: Vec<f64> = vec![0.0; n];
 
-    // Simple modularity-maximizing merge: try all pairs, keep best
-    // This is O(n^2) but fine for typical graph sizes (< 5000 nodes)
     let mut improved = true;
-    let mut iterations = 0;
-    while improved && iterations < 20 {
+    let mut iters = 0;
+    while improved && iters < 50 {
         improved = false;
-        iterations += 1;
+        iters += 1;
+
         for node in 0..n {
-            let current_comm = community[node];
-            let mut best_comm = current_comm;
-            let mut best_gain = 0.0_f64;
+            let curr_c = community[node];
+            let ki = degree[node] as f64;
 
-            // Find neighboring communities
-            let mut neighbor_comms: Vec<usize> = edges.iter()
-                .filter_map(|&(a, b)| {
-                    if a == node { Some(community[b]) }
-                    else if b == node { Some(community[a]) }
-                    else { None }
-                })
-                .collect();
-            neighbor_comms.sort();
-            neighbor_comms.dedup();
+            // Count edges to each neighbouring community
+            let mut neigh_weight: std::collections::HashMap<usize, f64> =
+                std::collections::HashMap::new();
+            for &nb in &adj[node] {
+                *neigh_weight.entry(community[nb]).or_insert(0.0) += 1.0;
+            }
 
-            for &nc in &neighbor_comms {
-                if nc == current_comm { continue; }
-                let gain = modularity_gain(node, nc, &community, &edges, &degree, m);
-                if gain > best_gain {
-                    best_gain = gain;
-                    best_comm = nc;
+            // ΔQ for removing node from current community
+            let ki_in_curr = *neigh_weight.get(&curr_c).unwrap_or(&0.0);
+            let dq_remove = -(ki_in_curr / m_f)
+                + (comm_deg[curr_c] - ki) * ki / (2.0 * m_f * m_f);
+
+            // Find best community to move to
+            let mut best_c = curr_c;
+            let mut best_dq = 0.0_f64;
+
+            for (&nc, &ki_in_nc) in &neigh_weight {
+                if nc == curr_c { continue; }
+                let dq = dq_remove
+                    + (ki_in_nc / m_f)
+                    - comm_deg[nc] * ki / (2.0 * m_f * m_f);
+                if dq > best_dq {
+                    best_dq = dq;
+                    best_c = nc;
                 }
             }
-            if best_comm != current_comm {
-                community[node] = best_comm;
+
+            if best_c != curr_c {
+                // Move node from curr_c to best_c
+                comm_deg[curr_c] -= ki;
+                comm_int[curr_c] -= 2.0 * ki_in_curr;
+                comm_deg[best_c] += ki;
+                let ki_in_best = *neigh_weight.get(&best_c).unwrap_or(&0.0);
+                comm_int[best_c] += 2.0 * ki_in_best;
+                community[node] = best_c;
                 improved = true;
             }
         }
     }
 
-    // Compute Q
-    let q = compute_q(&community, &edges, &degree, m);
-    let q_ref = 0.75_f64;
-    (q.max(0.0) / q_ref).min(1.0)
-}
-
-fn modularity_gain(
-    node: usize,
-    target_comm: usize,
-    community: &[usize],
-    edges: &[(usize, usize)],
-    degree: &[usize],
-    m: f64,
-) -> f64 {
-    // ΔQ when moving node to target_comm
-    // Simplified: count edges to target_comm vs current_comm
-    let mut edges_to_target = 0;
-    let mut edges_to_current = 0;
-    let current_comm = community[node];
-
-    for &(a, b) in edges {
-        let other = if a == node { b } else if b == node { a } else { continue };
-        let other_comm = community[other];
-        if other_comm == target_comm { edges_to_target += 1; }
-        if other_comm == current_comm && other != node { edges_to_current += 1; }
-    }
-
-    let sum_target: usize = community.iter().enumerate()
-        .filter(|(_, &c)| c == target_comm)
-        .map(|(i, _)| degree[i])
-        .sum();
-
-    let ki = degree[node] as f64;
-    let sum_t = sum_target as f64;
-
-    // Simplified ΔQ formula
-    (edges_to_target as f64 - edges_to_current as f64) / m
-        - ki * (sum_t - ki) / (2.0 * m * m)
-}
-
-fn compute_q(community: &[usize], edges: &[(usize, usize)], degree: &[usize], m: f64) -> f64 {
-    if m == 0.0 { return 0.0; }
+    // Compute final Q
     let mut q = 0.0_f64;
-    for &(i, j) in edges {
-        if community[i] == community[j] {
-            let ki = degree[i] as f64;
-            let kj = degree[j] as f64;
-            q += 1.0 - ki * kj / (2.0 * m);
+    for node in 0..n {
+        let c = community[node];
+        for &nb in &adj[node] {
+            if community[nb] == c {
+                let ki = degree[node] as f64;
+                let kj = degree[nb] as f64;
+                q += 1.0 - ki * kj / (2.0 * m_f);
+            }
         }
     }
-    q / m
+    q /= 2.0 * m_f; // each edge counted twice
+
+    let q_ref = 0.75_f64;
+    (q.max(0.0) / q_ref).min(1.0)
 }
