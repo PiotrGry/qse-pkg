@@ -164,20 +164,73 @@ fn file_extension(lang: &Language) -> &'static str {
 // ---------------------------------------------------------------------------
 
 fn module_path(file: &Path, base: &Path, lang: &Language) -> String {
+    match lang {
+        Language::Java => {
+            // For Java: read package declaration from file → "com.google.common.collect"
+            // Then append class name → "com.google.common.collect.ImmutableList"
+            // This gives semantically correct node names regardless of directory layout.
+            if let Ok(src) = std::fs::read_to_string(file) {
+                if let Some(pkg) = _java_package(&src) {
+                    let class_name = file.file_stem()
+                        .and_then(|s| s.to_str())
+                        .unwrap_or("Unknown");
+                    return format!("{}.{}", pkg, class_name);
+                }
+            }
+            // Fallback: path-based (strips leading path segments up to src/main/java/)
+            _java_path_fallback(file, base)
+        }
+        Language::Go => {
+            // Go: strip base + extension, use directory as package
+            let rel = file.strip_prefix(base).unwrap_or(file);
+            rel.to_string_lossy()
+                .replace(std::path::MAIN_SEPARATOR, ".")
+                .trim_end_matches(".go")
+                .to_string()
+        }
+        Language::Python => {
+            let rel = file.strip_prefix(base).unwrap_or(file);
+            let s = rel.to_string_lossy()
+                .replace(std::path::MAIN_SEPARATOR, ".")
+                .trim_end_matches(".py")
+                .to_string();
+            if s.ends_with(".__init__") { s[..s.len()-9].to_string() } else { s }
+        }
+    }
+}
+
+/// Extract Java package declaration: "package com.google.common.collect;" → "com.google.common.collect"
+fn _java_package(source: &str) -> Option<String> {
+    for line in source.lines().take(30) {
+        let t = line.trim();
+        if t.starts_with("package ") && t.ends_with(';') {
+            let pkg = t.trim_start_matches("package ").trim_end_matches(';').trim();
+            if !pkg.is_empty() {
+                return Some(pkg.to_string());
+            }
+        }
+        // Stop scanning after first non-comment, non-blank, non-package line
+        if !t.is_empty() && !t.starts_with("//") && !t.starts_with("/*")
+            && !t.starts_with("*") && !t.starts_with("package ")
+            && !t.starts_with("import ")
+        {
+            break;
+        }
+    }
+    None
+}
+
+/// Fallback Java module path: find "src/main/java/" or "src/" prefix and strip it.
+fn _java_path_fallback(file: &Path, base: &Path) -> String {
     let rel = file.strip_prefix(base).unwrap_or(file);
     let s = rel.to_string_lossy().replace(std::path::MAIN_SEPARATOR, ".");
-    // Strip extension
-    let s = match lang {
-        Language::Python => s.trim_end_matches(".py").to_string(),
-        Language::Java   => s.trim_end_matches(".java").to_string(),
-        Language::Go     => s.trim_end_matches(".go").to_string(),
-    };
-    // Strip __init__ suffix for Python
-    if s.ends_with(".__init__") {
-        s[..s.len() - 9].to_string()
-    } else {
-        s
+    // Strip common Maven prefixes: src.main.java., src.java., etc.
+    for prefix in &["src.main.java.", "src.java.", "main.java.", "java."] {
+        if let Some(stripped) = s.strip_prefix(prefix) {
+            return stripped.trim_end_matches(".java").to_string();
+        }
     }
+    s.trim_end_matches(".java").to_string()
 }
 
 // ---------------------------------------------------------------------------
