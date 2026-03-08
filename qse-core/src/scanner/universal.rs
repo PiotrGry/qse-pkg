@@ -138,6 +138,11 @@ fn detect_language(dir: &Path) -> Option<Language> {
         }
     }
     if py == 0 && java == 0 && go == 0 { return None; }
+    // For mixed repos (e.g. Go project with Python build scripts):
+    // trust Go/Java over Python if they have any meaningful presence
+    // Python build scripts are common in non-Python projects
+    if go > 0 && py > 0 && go >= py / 4 { return Some(Language::Go); }
+    if java > 0 && py > 0 && java >= py / 4 { return Some(Language::Java); }
     if java >= py && java >= go { return Some(Language::Java); }
     if go   >= py && go   >= java { return Some(Language::Go); }
     Some(Language::Python)
@@ -290,7 +295,7 @@ fn extract_python(source: &[u8], tree: &tree_sitter::Tree, file: &Path, base: &P
 }
 
 fn node_text<'a>(node: Node, source: &'a str) -> &'a str {
-    &source[node.start_byte()..node.end_byte()]
+    source.get(node.start_byte()..node.end_byte()).unwrap_or("")
 }
 
 fn extract_python_node(
