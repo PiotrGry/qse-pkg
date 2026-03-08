@@ -110,16 +110,31 @@ fn detect_language(dir: &Path) -> Option<Language> {
         }
     }
 
-    // If nothing found in shallow scan, do a deeper recursive scan (up to 6 levels)
+    // Deep scan fallback — skip test directories to find main sources
     if py == 0 && java == 0 && go == 0 {
-        for entry in walkdir_shallow(dir, 6) {
+        for entry in walkdir_shallow(dir, 8) {
+            let path_str = entry.to_string_lossy();
+            // Skip test paths so main source files are detected
+            if path_str.contains("/test/") || path_str.contains("/tests/") {
+                continue;
+            }
             match entry.extension().and_then(|s| s.to_str()) {
                 Some("py")   => py   += 1,
                 Some("java") => java += 1,
                 Some("go")   => go   += 1,
                 _ => {}
             }
-            if py + java + go > 50 { break; }
+            if py + java + go > 20 { break; }
+        }
+    }
+    // Last resort: count all Java files including tests
+    if py == 0 && java == 0 && go == 0 {
+        for entry in walkdir_shallow(dir, 8) {
+            match entry.extension().and_then(|s| s.to_str()) {
+                Some("java") => java += 1,
+                _ => {}
+            }
+            if java > 5 { break; }
         }
     }
     if py == 0 && java == 0 && go == 0 { return None; }
