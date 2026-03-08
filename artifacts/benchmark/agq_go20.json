@@ -1,0 +1,443 @@
+{
+  "generated_at": "2026-03-08T00:48:54.695848+00:00",
+  "repos_file": "scripts/repos_go20_benchmark.json",
+  "repos_total": 20,
+  "repos_ok": 20,
+  "agq_mean": 0.8163,
+  "agq_spread": 0.2265,
+  "agq_std": 0.0617,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": 0.0199,
+      "p": 0.9332,
+      "n": 20
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": 0.0199,
+      "p": 0.9332,
+      "n": 20
+    }
+  },
+  "results": [
+    {
+      "name": "gin",
+      "url": "https://github.com/gin-gonic/gin.git",
+      "agq": {
+        "modularity": 0.42386274863289536,
+        "acyclicity": 1.0,
+        "stability": 0.9556545706261614,
+        "cohesion": 1.0,
+        "agq_score": 0.8448793298147642,
+        "nodes": 167,
+        "edges": 516,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0992,
+        "churn_gini": 0.3764,
+        "n_files": 131,
+        "mean_churn": 1.863
+      },
+      "runtime_ms": 15.2
+    },
+    {
+      "name": "vault",
+      "url": "https://github.com/hashicorp/vault.git",
+      "agq": {
+        "modularity": 0.5305699764814302,
+        "acyclicity": 1.0,
+        "stability": 0.984731174726346,
+        "cohesion": 1.0,
+        "agq_score": 0.878825287801944,
+        "nodes": 2919,
+        "edges": 16470,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 7833,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 127.9
+    },
+    {
+      "name": "hugo",
+      "url": "https://github.com/gohugoio/hugo.git",
+      "agq": {
+        "modularity": 0.5089967094650106,
+        "acyclicity": 1.0,
+        "stability": 0.9826077453681278,
+        "cohesion": 1.0,
+        "agq_score": 0.8729011137082846,
+        "nodes": 1284,
+        "edges": 5843,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 2541,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 36.1
+    },
+    {
+      "name": "prometheus",
+      "url": "https://github.com/prometheus/prometheus.git",
+      "agq": {
+        "modularity": 0.5264717793577972,
+        "acyclicity": 1.0,
+        "stability": 0.9651684628355307,
+        "cohesion": 1.0,
+        "agq_score": 0.872910060548332,
+        "nodes": 1078,
+        "edges": 6090,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 1611,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 91.0
+    },
+    {
+      "name": "grafana",
+      "url": "https://github.com/grafana/grafana.git",
+      "agq": {
+        "modularity": 0.5464418255746614,
+        "acyclicity": 1.0,
+        "stability": 0.16024714976073348,
+        "cohesion": 1.0,
+        "agq_score": 0.6766722438338486,
+        "nodes": 7457,
+        "edges": 43127,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 20849,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 302.2
+    },
+    {
+      "name": "traefik",
+      "url": "https://github.com/traefik/traefik.git",
+      "agq": {
+        "modularity": 0.6421913506883126,
+        "acyclicity": 1.0,
+        "stability": 0.5168374759799449,
+        "cohesion": 1.0,
+        "agq_score": 0.7897572066670644,
+        "nodes": 1215,
+        "edges": 5696,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 2210,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 48.5
+    },
+    {
+      "name": "cobra",
+      "url": "https://github.com/spf13/cobra.git",
+      "agq": {
+        "modularity": 0.35549399815327787,
+        "acyclicity": 1.0,
+        "stability": 0.9627991675338188,
+        "cohesion": 1.0,
+        "agq_score": 0.8295732914217742,
+        "nodes": 62,
+        "edges": 190,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 66,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 13.4
+    },
+    {
+      "name": "viper",
+      "url": "https://github.com/spf13/viper.git",
+      "agq": {
+        "modularity": 0.6134292268584535,
+        "acyclicity": 1.0,
+        "stability": 0.8013353489543963,
+        "cohesion": 1.0,
+        "agq_score": 0.8536911439532124,
+        "nodes": 74,
+        "edges": 127,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 65,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 14.3
+    },
+    {
+      "name": "zap",
+      "url": "https://github.com/uber-go/zap.git",
+      "agq": {
+        "modularity": 0.3427695155000334,
+        "acyclicity": 1.0,
+        "stability": 0.7916694835045968,
+        "cohesion": 1.0,
+        "agq_score": 0.7836097497511576,
+        "nodes": 205,
+        "edges": 615,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 172,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 29.3
+    },
+    {
+      "name": "fiber",
+      "url": "https://github.com/gofiber/fiber.git",
+      "agq": {
+        "modularity": 0.4195556784424465,
+        "acyclicity": 1.0,
+        "stability": 0.97700538548753,
+        "cohesion": 1.0,
+        "agq_score": 0.8491402659824941,
+        "nodes": 347,
+        "edges": 1478,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 379,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 43.1
+    },
+    {
+      "name": "echo",
+      "url": "https://github.com/labstack/echo.git",
+      "agq": {
+        "modularity": 0.3340919336110923,
+        "acyclicity": 1.0,
+        "stability": 0.9212080936322145,
+        "cohesion": 1.0,
+        "agq_score": 0.8138250068108267,
+        "nodes": 142,
+        "edges": 605,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 129,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 19.6
+    },
+    {
+      "name": "testify",
+      "url": "https://github.com/stretchr/testify.git",
+      "agq": {
+        "modularity": 0.56962962962963,
+        "acyclicity": 1.0,
+        "stability": 0.8543458578542331,
+        "cohesion": 1.0,
+        "agq_score": 0.8559938718709659,
+        "nodes": 114,
+        "edges": 240,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 91,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 14.1
+    },
+    {
+      "name": "fx",
+      "url": "https://github.com/uber-go/fx.git",
+      "agq": {
+        "modularity": 0.5840602052821623,
+        "acyclicity": 1.0,
+        "stability": 0.9219674429739076,
+        "cohesion": 1.0,
+        "agq_score": 0.8765069120640175,
+        "nodes": 208,
+        "edges": 628,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 190,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 14.2
+    },
+    {
+      "name": "gorm",
+      "url": "https://github.com/go-gorm/gorm.git",
+      "agq": {
+        "modularity": 0.37176687692195,
+        "acyclicity": 1.0,
+        "stability": 0.7634735142338022,
+        "cohesion": 1.0,
+        "agq_score": 0.7838100977889381,
+        "nodes": 216,
+        "edges": 801,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 120,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 15.8
+    },
+    {
+      "name": "grpc-go",
+      "url": "https://github.com/grpc/grpc-go.git",
+      "agq": {
+        "modularity": 0.5866937128714044,
+        "acyclicity": 1.0,
+        "stability": 0.8616201560356673,
+        "cohesion": 1.0,
+        "agq_score": 0.862078467226768,
+        "nodes": 1412,
+        "edges": 9275,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 1195,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 69.2
+    },
+    {
+      "name": "kubernetes",
+      "url": "https://github.com/kubernetes/kubernetes.git",
+      "agq": {
+        "modularity": 0.5024704747603348,
+        "acyclicity": 1.0,
+        "stability": 0.1069208094310626,
+        "cohesion": 1.0,
+        "agq_score": 0.6523478210478493,
+        "nodes": 20237,
+        "edges": 101336,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 20415,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 974.5
+    },
+    {
+      "name": "terraform",
+      "url": "https://github.com/hashicorp/terraform.git",
+      "agq": {
+        "modularity": 0.5083299030644847,
+        "acyclicity": 1.0,
+        "stability": 0.5400598377445517,
+        "cohesion": 1.0,
+        "agq_score": 0.7620974352022591,
+        "nodes": 2346,
+        "edges": 12330,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 4413,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 129.6
+    },
+    {
+      "name": "etcd",
+      "url": "https://github.com/etcd-io/etcd.git",
+      "agq": {
+        "modularity": 0.5516980513222899,
+        "acyclicity": 1.0,
+        "stability": 0.8996917950853801,
+        "cohesion": 1.0,
+        "agq_score": 0.8628474616019175,
+        "nodes": 1448,
+        "edges": 7036,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 1140,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 92.8
+    },
+    {
+      "name": "docker",
+      "url": "https://github.com/moby/moby.git",
+      "agq": {
+        "modularity": 0.528775388172357,
+        "acyclicity": 1.0,
+        "stability": 0.7343659926938627,
+        "cohesion": 1.0,
+        "agq_score": 0.8157853452165549,
+        "nodes": 12005,
+        "edges": 47722,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 12429,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 483.6
+    },
+    {
+      "name": "caddy",
+      "url": "https://github.com/caddyserver/caddy.git",
+      "agq": {
+        "modularity": 0.42962673060268314,
+        "acyclicity": 1.0,
+        "stability": 0.7236304834084561,
+        "cohesion": 1.0,
+        "agq_score": 0.7883143035027849,
+        "nodes": 519,
+        "edges": 2312,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 588,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 25.0
+    }
+  ]
+}

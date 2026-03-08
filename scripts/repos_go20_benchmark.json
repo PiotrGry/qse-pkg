@@ -1,0 +1,22 @@
+[
+  {"name": "gin",         "url": "https://github.com/gin-gonic/gin.git"},
+  {"name": "vault",       "url": "https://github.com/hashicorp/vault.git"},
+  {"name": "hugo",        "url": "https://github.com/gohugoio/hugo.git"},
+  {"name": "prometheus",  "url": "https://github.com/prometheus/prometheus.git"},
+  {"name": "grafana",     "url": "https://github.com/grafana/grafana.git"},
+  {"name": "traefik",     "url": "https://github.com/traefik/traefik.git"},
+  {"name": "cobra",       "url": "https://github.com/spf13/cobra.git"},
+  {"name": "viper",       "url": "https://github.com/spf13/viper.git"},
+  {"name": "zap",         "url": "https://github.com/uber-go/zap.git"},
+  {"name": "fiber",       "url": "https://github.com/gofiber/fiber.git"},
+  {"name": "echo",        "url": "https://github.com/labstack/echo.git"},
+  {"name": "testify",     "url": "https://github.com/stretchr/testify.git"},
+  {"name": "fx",          "url": "https://github.com/uber-go/fx.git"},
+  {"name": "gorm",        "url": "https://github.com/go-gorm/gorm.git"},
+  {"name": "grpc-go",     "url": "https://github.com/grpc/grpc-go.git"},
+  {"name": "kubernetes",  "url": "https://github.com/kubernetes/kubernetes.git"},
+  {"name": "terraform",   "url": "https://github.com/hashicorp/terraform.git"},
+  {"name": "etcd",        "url": "https://github.com/etcd-io/etcd.git"},
+  {"name": "docker",      "url": "https://github.com/moby/moby.git"},
+  {"name": "caddy",       "url": "https://github.com/caddyserver/caddy.git"}
+]
