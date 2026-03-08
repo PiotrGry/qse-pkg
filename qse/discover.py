@@ -78,6 +78,35 @@ class DiscoveryReport:
         return json.dumps(self.to_dict(), indent=indent)
 
 
+def discover_multilang(repo_path: str, **kwargs) -> "DiscoveryReport":
+    """Run discover on any language repo using Rust qse-core scanner.
+
+    Supports Python, Java (Maven/Gradle), and Go repositories.
+    Falls back to Python scanner if Rust scanner not available.
+
+    Args:
+        repo_path: path to repository root
+        **kwargs: passed to discover_policies (min_confidence, min_cluster_size)
+    """
+    try:
+        import json as _json
+        import networkx as _nx
+        from _qse_core import scan_to_graph_json
+        raw = scan_to_graph_json(repo_path)
+        data = _json.loads(raw)
+        G = _nx.DiGraph()
+        for node in data["nodes"]:
+            G.add_node(node["id"], internal=node["internal"])
+        for src, tgt in data["edges"]:
+            G.add_edge(src, tgt)
+        return discover_policies(G, **kwargs)
+    except ImportError:
+        # Fallback: Python scanner (Python only)
+        from qse.scanner import scan_repo
+        analysis = scan_repo(repo_path)
+        return discover_policies(analysis.graph, **kwargs)
+
+
 # ---------------------------------------------------------------------------
 # Internal graph filtering
 # ---------------------------------------------------------------------------

@@ -45,10 +45,52 @@ fn detect_language(path: &str) -> String {
     format!("{:?}", result.language)
 }
 
+/// Scan repository and return graph as JSON string.
+/// Format: {"nodes": [{"id": "mod.path", "file": "/src/..."}, ...],
+///           "edges": [["src", "tgt"], ...],
+///           "language": "Java"}
+/// Suitable for feeding into qse.discover or networkx reconstruction.
+#[pyfunction]
+fn scan_to_graph_json(path: &str) -> PyResult<String> {
+    let result = scan_repo(path);
+    let g = &result.internal_graph;
+
+    // Build nodes list with file metadata
+    let mut nodes = serde_json::json!([]);
+    for ni in g.node_indices() {
+        let name = &g[ni];
+        let file = result.node_index.get(name)
+            .map(|_| name.clone())
+            .unwrap_or_default();
+        let is_internal = result.internal_nodes.contains(name);
+        nodes.as_array_mut().unwrap().push(serde_json::json!({
+            "id": name,
+            "internal": is_internal,
+        }));
+    }
+
+    // Build edges list
+    let mut edges = serde_json::json!([]);
+    for e in g.edge_indices() {
+        let (a, b) = g.edge_endpoints(e).unwrap();
+        edges.as_array_mut().unwrap().push(serde_json::json!([g[a], g[b]]));
+    }
+
+    let output = serde_json::json!({
+        "language": format!("{:?}", result.language),
+        "nodes": nodes,
+        "edges": edges,
+        "n_internal": result.internal_nodes.len(),
+    });
+
+    Ok(serde_json::to_string(&output).unwrap())
+}
+
 #[pymodule]
 fn _qse_core(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(scan_and_compute_agq, m)?)?;
     m.add_function(wrap_pyfunction!(scan_classes, m)?)?;
     m.add_function(wrap_pyfunction!(detect_language, m)?)?;
+    m.add_function(wrap_pyfunction!(scan_to_graph_json, m)?)?;
     Ok(())
 }
