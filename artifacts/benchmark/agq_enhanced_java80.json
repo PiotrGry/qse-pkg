@@ -1,0 +1,3261 @@
+{
+  "generated_at": "2026-03-08T02:35:30.809540+00:00",
+  "repos_file": "scripts/repos_java80_benchmark.json",
+  "repos_total": 80,
+  "repos_ok": 79,
+  "agq_mean": 0.6272,
+  "agq_spread": 0.4344,
+  "agq_std": 0.0951,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": 0.1136,
+      "p": 0.3218,
+      "n": 78
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": -0.1549,
+      "p": 0.1757,
+      "n": 78
+    }
+  },
+  "results": [
+    {
+      "name": "guava",
+      "url": "https://github.com/google/guava.git",
+      "agq": {
+        "modularity": 0.698972356410071,
+        "acyclicity": 1.0,
+        "stability": 0.7028285129444712,
+        "cohesion": 0.19948921679909193,
+        "agq_score": 0.6503225215384085,
+        "nodes": 1831,
+        "edges": 10744,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1052,
+        "churn_gini": 0.4568,
+        "n_files": 2073,
+        "mean_churn": 5.087
+      },
+      "enhanced": {
+        "agq_score": 0.6503225215384085,
+        "agq_z": 0.2977,
+        "agq_percentile": 61.7,
+        "agq_size_adjusted": 0.538,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1494,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 1831
+      },
+      "runtime_ms": 183.9
+    },
+    {
+      "name": "spring-boot",
+      "url": "https://github.com/spring-projects/spring-boot.git",
+      "agq": {
+        "modularity": 0.7477189392837524,
+        "acyclicity": 0.9994588158891655,
+        "stability": 0.943172009916603,
+        "cohesion": 0.5217256362507758,
+        "agq_score": 0.8030188503350741,
+        "nodes": 9239,
+        "edges": 35962,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0634,
+        "churn_gini": 0.454,
+        "n_files": 18141,
+        "mean_churn": 2.257
+      },
+      "enhanced": {
+        "agq_score": 0.8030188503350741,
+        "agq_z": 1.9256,
+        "agq_percentile": 97.3,
+        "agq_size_adjusted": 0.5465,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0005,
+          "severity_pct": 0.1,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0678,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 9239
+      },
+      "runtime_ms": 209.5
+    },
+    {
+      "name": "spring-framework",
+      "url": "https://github.com/spring-projects/spring-framework.git",
+      "agq": {
+        "modularity": 0.6695379613089174,
+        "acyclicity": 0.9991267646630767,
+        "stability": 0.5481427638430042,
+        "cohesion": 0.39428108646897586,
+        "agq_score": 0.6527721440709936,
+        "nodes": 6871,
+        "edges": 40593,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0742,
+        "churn_gini": 0.3661,
+        "n_files": 6256,
+        "mean_churn": 3.754
+      },
+      "enhanced": {
+        "agq_score": 0.6527721440709936,
+        "agq_z": 0.3238,
+        "agq_percentile": 62.7,
+        "agq_size_adjusted": 0.4592,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0009,
+          "severity_pct": 0.1,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2021,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 6871
+      },
+      "runtime_ms": 326.5
+    },
+    {
+      "name": "mockito",
+      "url": "https://github.com/mockito/mockito.git",
+      "agq": {
+        "modularity": 0.619234618369855,
+        "acyclicity": 0.8679245283018868,
+        "stability": 0.24943310657596354,
+        "cohesion": 0.47435897435897434,
+        "agq_score": 0.55273780690167,
+        "nodes": 901,
+        "edges": 2532,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0533,
+        "churn_gini": 0.3577,
+        "n_files": 713,
+        "mean_churn": 1.62
+      },
+      "enhanced": {
+        "agq_score": 0.55273780690167,
+        "agq_z": -0.7427,
+        "agq_percentile": 22.9,
+        "agq_size_adjusted": 0.5049,
+        "fingerprint": "CYCLIC",
+        "cycle_severity": {
+          "severity_ratio": 0.1321,
+          "severity_pct": 13.2,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 13.2% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3674,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 901
+      },
+      "runtime_ms": 10.6
+    },
+    {
+      "name": "okhttp",
+      "url": "https://github.com/square/okhttp.git",
+      "agq": {
+        "modularity": 0.4745462822197595,
+        "acyclicity": 1.0,
+        "stability": 0.44253074750869303,
+        "cohesion": 0.5520833333333333,
+        "agq_score": 0.6172900907654464,
+        "nodes": 172,
+        "edges": 394,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0717,
+        "churn_gini": 0.5327,
+        "n_files": 697,
+        "mean_churn": 3.548
+      },
+      "enhanced": {
+        "agq_score": 0.6172900907654464,
+        "agq_z": -0.0545,
+        "agq_percentile": 47.8,
+        "agq_size_adjusted": 0.7453,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2723,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 172
+      },
+      "runtime_ms": 5.7
+    },
+    {
+      "name": "retrofit",
+      "url": "https://github.com/square/retrofit.git",
+      "agq": {
+        "modularity": 0.6394439996447797,
+        "acyclicity": 0.9895561357702349,
+        "stability": 0.6677839459569749,
+        "cohesion": 0.5571428571428572,
+        "agq_score": 0.7134817346287117,
+        "nodes": 383,
+        "edges": 1199,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0158,
+        "churn_gini": 0.3108,
+        "n_files": 1074,
+        "mean_churn": 1.459
+      },
+      "enhanced": {
+        "agq_score": 0.7134817346287117,
+        "agq_z": 0.971,
+        "agq_percentile": 83.4,
+        "agq_size_adjusted": 0.7455,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0104,
+          "severity_pct": 1.0,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.0% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.177,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 383
+      },
+      "runtime_ms": 10.1
+    },
+    {
+      "name": "gson",
+      "url": "https://github.com/google/gson.git",
+      "agq": {
+        "modularity": 0.5558598529583881,
+        "acyclicity": 0.942652329749104,
+        "stability": 0.47187672559000077,
+        "cohesion": 0.4097938144329897,
+        "agq_score": 0.5950456806826206,
+        "nodes": 279,
+        "edges": 885,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1185,
+        "churn_gini": 0.6684,
+        "n_files": 135,
+        "mean_churn": 4.904
+      },
+      "enhanced": {
+        "agq_score": 0.5950456806826206,
+        "agq_z": -0.2916,
+        "agq_percentile": 38.5,
+        "agq_size_adjusted": 0.6567,
+        "fingerprint": "CYCLIC",
+        "cycle_severity": {
+          "severity_ratio": 0.0573,
+          "severity_pct": 5.7,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 5.7% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2759,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 279
+      },
+      "runtime_ms": 5.8
+    },
+    {
+      "name": "jackson-core",
+      "url": "https://github.com/FasterXML/jackson-core.git",
+      "agq": {
+        "modularity": 0.5584355337890703,
+        "acyclicity": 0.966183574879227,
+        "stability": 0.44444444444444453,
+        "cohesion": 0.1504424778761062,
+        "agq_score": 0.5298765077472121,
+        "nodes": 207,
+        "edges": 495,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.051,
+        "churn_gini": 0.7235,
+        "n_files": 157,
+        "mean_churn": 6.618
+      },
+      "enhanced": {
+        "agq_score": 0.5298765077472121,
+        "agq_z": -0.9864,
+        "agq_percentile": 16.2,
+        "agq_size_adjusted": 0.6175,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0338,
+          "severity_pct": 3.4,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 3.4% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2719,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 207
+      },
+      "runtime_ms": 17.3
+    },
+    {
+      "name": "jackson-databind",
+      "url": "https://github.com/FasterXML/jackson-databind.git",
+      "agq": {
+        "modularity": 0.6096068717884545,
+        "acyclicity": 0.8504027617951668,
+        "stability": 0.2629757785467129,
+        "cohesion": 0.1606796116504854,
+        "agq_score": 0.4709162559452049,
+        "nodes": 869,
+        "edges": 4003,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0952,
+        "churn_gini": 0.6374,
+        "n_files": 704,
+        "mean_churn": 4.967
+      },
+      "enhanced": {
+        "agq_score": 0.4709162559452049,
+        "agq_z": -1.615,
+        "agq_percentile": 5.3,
+        "agq_size_adjusted": 0.4325,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.1496,
+          "severity_pct": 15.0,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 15.0% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.374,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 869
+      },
+      "runtime_ms": 23.0
+    },
+    {
+      "name": "netty",
+      "url": "https://github.com/netty/netty.git",
+      "agq": {
+        "modularity": 0.6561348756244607,
+        "acyclicity": 0.9987376925018935,
+        "stability": 0.5476546828637963,
+        "cohesion": 0.27611596870685684,
+        "agq_score": 0.6196608049242518,
+        "nodes": 3961,
+        "edges": 18163,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0584,
+        "churn_gini": 0.7253,
+        "n_files": 1917,
+        "mean_churn": 4.959
+      },
+      "enhanced": {
+        "agq_score": 0.6196608049242518,
+        "agq_z": -0.0292,
+        "agq_percentile": 48.8,
+        "agq_size_adjusted": 0.4649,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0013,
+          "severity_pct": 0.1,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2051,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 3961
+      },
+      "runtime_ms": 97.3
+    },
+    {
+      "name": "hibernate-orm",
+      "url": "https://github.com/hibernate/hibernate-orm.git",
+      "agq": {
+        "modularity": 0.7711448060775585,
+        "acyclicity": 0.8401913875598086,
+        "stability": 0.21135347895179946,
+        "cohesion": 0.3018490754622689,
+        "agq_score": 0.5311346870128588,
+        "nodes": 10450,
+        "edges": 67759,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0941,
+        "churn_gini": 0.4697,
+        "n_files": 8574,
+        "mean_churn": 5.398
+      },
+      "enhanced": {
+        "agq_score": 0.5311346870128588,
+        "agq_z": -0.973,
+        "agq_percentile": 16.5,
+        "agq_size_adjusted": 0.3567,
+        "fingerprint": "CYCLIC",
+        "cycle_severity": {
+          "severity_ratio": 0.1598,
+          "severity_pct": 16.0,
+          "severity_level": "CRITICAL",
+          "message": "Critical cycles: 16.0% of modules involved. Architectural redesign needed."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3623,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 10450
+      },
+      "runtime_ms": 265.0
+    },
+    {
+      "name": "commons-lang",
+      "url": "https://github.com/apache/commons-lang.git",
+      "agq": {
+        "modularity": 0.6244546620107801,
+        "acyclicity": 0.9552238805970149,
+        "stability": 0.3305785123966941,
+        "cohesion": 0.2823275862068966,
+        "agq_score": 0.5481461603028464,
+        "nodes": 469,
+        "edges": 1104,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0774,
+        "churn_gini": 0.6367,
+        "n_files": 349,
+        "mean_churn": 7.722
+      },
+      "enhanced": {
+        "agq_score": 0.5481461603028464,
+        "agq_z": -0.7916,
+        "agq_percentile": 21.4,
+        "agq_size_adjusted": 0.5539,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0448,
+          "severity_pct": 4.5,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 4.5% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2983,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 469
+      },
+      "runtime_ms": 25.1
+    },
+    {
+      "name": "commons-collections",
+      "url": "https://github.com/apache/commons-collections.git",
+      "agq": {
+        "modularity": 0.5087752302567105,
+        "acyclicity": 0.9868995633187773,
+        "stability": 0.4375,
+        "cohesion": 0.15074626865671636,
+        "agq_score": 0.520980265558051,
+        "nodes": 458,
+        "edges": 1890,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0644,
+        "churn_gini": 0.4971,
+        "n_files": 419,
+        "mean_churn": 5.671
+      },
+      "enhanced": {
+        "agq_score": 0.520980265558051,
+        "agq_z": -1.0812,
+        "agq_percentile": 14.0,
+        "agq_size_adjusted": 0.5284,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0131,
+          "severity_pct": 1.3,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.3% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2735,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 458
+      },
+      "runtime_ms": 35.5
+    },
+    {
+      "name": "commons-io",
+      "url": "https://github.com/apache/commons-io.git",
+      "agq": {
+        "modularity": 0.5528036798177585,
+        "acyclicity": 0.9473684210526316,
+        "stability": 0.36000000000000004,
+        "cohesion": 0.19715447154471544,
+        "agq_score": 0.5143316431037764,
+        "nodes": 494,
+        "edges": 1743,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0689,
+        "churn_gini": 0.5857,
+        "n_files": 334,
+        "mean_churn": 7.434
+      },
+      "enhanced": {
+        "agq_score": 0.5143316431037764,
+        "agq_z": -1.1521,
+        "agq_percentile": 12.5,
+        "agq_size_adjusted": 0.5153,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.0526,
+          "severity_pct": 5.3,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 5.3% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3078,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 494
+      },
+      "runtime_ms": 10.2
+    },
+    {
+      "name": "commons-math",
+      "url": "https://github.com/apache/commons-math.git",
+      "agq": {
+        "modularity": 0.6420763472099927,
+        "acyclicity": 0.9977997799779978,
+        "stability": 0.3288888888888889,
+        "cohesion": 0.35357737104825293,
+        "agq_score": 0.5805855967812831,
+        "nodes": 909,
+        "edges": 2937,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0506,
+        "churn_gini": 0.4473,
+        "n_files": 257,
+        "mean_churn": 1.911
+      },
+      "enhanced": {
+        "agq_score": 0.5805855967812831,
+        "agq_z": -0.4458,
+        "agq_percentile": 32.8,
+        "agq_size_adjusted": 0.5296,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0022,
+          "severity_pct": 0.2,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.274,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 909
+      },
+      "runtime_ms": 31.6
+    },
+    {
+      "name": "log4j",
+      "url": "https://github.com/apache/logging-log4j2.git",
+      "agq": {
+        "modularity": 0.719957419064592,
+        "acyclicity": 0.967686342093925,
+        "stability": 0.9614704401818689,
+        "cohesion": 0.31517183570829843,
+        "agq_score": 0.7410715092621711,
+        "nodes": 2321,
+        "edges": 10711,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0577,
+        "churn_gini": 0.3684,
+        "n_files": 4297,
+        "mean_churn": 1.68
+      },
+      "enhanced": {
+        "agq_score": 0.7410715092621711,
+        "agq_z": 1.2652,
+        "agq_percentile": 89.7,
+        "agq_size_adjusted": 0.5943,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0323,
+          "severity_pct": 3.2,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 3.2% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0837,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 2321
+      },
+      "runtime_ms": 57.8
+    },
+    {
+      "name": "logback",
+      "url": "https://github.com/qos-ch/logback.git",
+      "agq": {
+        "modularity": 0.6414925027889741,
+        "acyclicity": 0.9920948616600791,
+        "stability": 0.8398245567385584,
+        "cohesion": 0.43966876971608837,
+        "agq_score": 0.728270172725925,
+        "nodes": 1012,
+        "edges": 3025,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0498,
+        "churn_gini": 0.4763,
+        "n_files": 803,
+        "mean_churn": 2.142
+      },
+      "enhanced": {
+        "agq_score": 0.728270172725925,
+        "agq_z": 1.1287,
+        "agq_percentile": 87.0,
+        "agq_size_adjusted": 0.6541,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0079,
+          "severity_pct": 0.8,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1237,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 1012
+      },
+      "runtime_ms": 63.2
+    },
+    {
+      "name": "slf4j",
+      "url": "https://github.com/qos-ch/slf4j.git",
+      "agq": {
+        "modularity": 0.6605807186100204,
+        "acyclicity": 0.9821428571428571,
+        "stability": 0.4620931943387586,
+        "cohesion": 0.2618110236220472,
+        "agq_score": 0.5916569484284209,
+        "nodes": 280,
+        "edges": 531,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.3721,
+        "churn_gini": 0.469,
+        "n_files": 43,
+        "mean_churn": 4.791
+      },
+      "enhanced": {
+        "agq_score": 0.5916569484284209,
+        "agq_z": -0.3278,
+        "agq_percentile": 37.2,
+        "agq_size_adjusted": 0.6525,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0179,
+          "severity_pct": 1.8,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.8% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2382,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 280
+      },
+      "runtime_ms": 16.2
+    },
+    {
+      "name": "junit4",
+      "url": "https://github.com/junit-team/junit4.git",
+      "agq": {
+        "modularity": 0.6093584023333039,
+        "acyclicity": 0.9852507374631269,
+        "stability": 0.777747176892474,
+        "cohesion": 0.3820224719101124,
+        "agq_score": 0.6885946971497542,
+        "nodes": 339,
+        "edges": 1073,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0769,
+        "churn_gini": 0.2462,
+        "n_files": 13,
+        "mean_churn": 1.538
+      },
+      "enhanced": {
+        "agq_score": 0.6885946971497542,
+        "agq_z": 0.7057,
+        "agq_percentile": 76.0,
+        "agq_size_adjusted": 0.7345,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0147,
+          "severity_pct": 1.5,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.5% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1522,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 339
+      },
+      "runtime_ms": 20.8
+    },
+    {
+      "name": "junit5",
+      "url": "https://github.com/junit-team/junit5.git",
+      "agq": {
+        "modularity": 0.6230071515108838,
+        "acyclicity": 0.9976190476190476,
+        "stability": 0.9131904468675869,
+        "cohesion": 0.3324132492113565,
+        "agq_score": 0.7165574738022187,
+        "nodes": 1680,
+        "edges": 7945,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0847,
+        "churn_gini": 0.4973,
+        "n_files": 1570,
+        "mean_churn": 5.875
+      },
+      "enhanced": {
+        "agq_score": 0.7165574738022187,
+        "agq_z": 1.0038,
+        "agq_percentile": 84.2,
+        "agq_size_adjusted": 0.5996,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0024,
+          "severity_pct": 0.2,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1026,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 1680
+      },
+      "runtime_ms": 76.8
+    },
+    {
+      "name": "assertj",
+      "url": "https://github.com/assertj/assertj.git",
+      "agq": {
+        "modularity": 0.7985312349727994,
+        "acyclicity": 0.987603305785124,
+        "stability": 0.28395061728395077,
+        "cohesion": 0.39453621346886913,
+        "agq_score": 0.6161553428776859,
+        "nodes": 1694,
+        "edges": 4737,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0482,
+        "churn_gini": 0.3082,
+        "n_files": 913,
+        "mean_churn": 7.464
+      },
+      "enhanced": {
+        "agq_score": 0.6161553428776859,
+        "agq_z": -0.0666,
+        "agq_percentile": 47.3,
+        "agq_size_adjusted": 0.515,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0124,
+          "severity_pct": 1.2,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.2% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2613,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 1694
+      },
+      "runtime_ms": 80.6
+    },
+    {
+      "name": "checkstyle",
+      "url": "https://github.com/checkstyle/checkstyle.git",
+      "agq": {
+        "modularity": 0.8339800324074501,
+        "acyclicity": 0.9989655172413793,
+        "stability": 0.24476938095869527,
+        "cohesion": 0.4163770634231103,
+        "agq_score": 0.6235229985076587,
+        "nodes": 2900,
+        "edges": 6127,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0886,
+        "churn_gini": 0.5322,
+        "n_files": 4223,
+        "mean_churn": 3.018
+      },
+      "enhanced": {
+        "agq_score": 0.6235229985076587,
+        "agq_z": 0.012,
+        "agq_percentile": 50.5,
+        "agq_size_adjusted": 0.486,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.001,
+          "severity_pct": 0.1,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2603,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 2900
+      },
+      "runtime_ms": 43.0
+    },
+    {
+      "name": "spotbugs",
+      "url": "https://github.com/spotbugs/spotbugs.git",
+      "agq": {
+        "modularity": 0.7325102880658436,
+        "acyclicity": 1.0,
+        "stability": 0.8888888888888891,
+        "cohesion": 1.0,
+        "agq_score": 0.9053497942386832,
+        "nodes": 10,
+        "edges": 9,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0606,
+        "churn_gini": 0.5534,
+        "n_files": 1089,
+        "mean_churn": 2.657
+      },
+      "enhanced": {
+        "agq_score": 0.9053497942386832,
+        "agq_z": 2.5194,
+        "agq_percentile": 99.4,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "CLEAN",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0868,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 10
+      },
+      "runtime_ms": 7.0
+    },
+    {
+      "name": "mapstruct",
+      "url": "https://github.com/mapstruct/mapstruct.git",
+      "agq": {
+        "modularity": 0.6175847236768686,
+        "acyclicity": 0.9971870604781997,
+        "stability": 0.20037807183364845,
+        "cohesion": 0.2944444444444444,
+        "agq_score": 0.5273985751082902,
+        "nodes": 711,
+        "edges": 2941,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0705,
+        "churn_gini": 0.5241,
+        "n_files": 227,
+        "mean_churn": 2.608
+      },
+      "enhanced": {
+        "agq_score": 0.5273985751082902,
+        "agq_z": -1.0128,
+        "agq_percentile": 15.6,
+        "agq_size_adjusted": 0.4991,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0028,
+          "severity_pct": 0.3,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3178,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 711
+      },
+      "runtime_ms": 13.6
+    },
+    {
+      "name": "mybatis",
+      "url": "https://github.com/mybatis/mybatis-3.git",
+      "agq": {
+        "modularity": 0.7213852542792427,
+        "acyclicity": 0.9104234527687296,
+        "stability": 0.14792899408284013,
+        "cohesion": 0.23070175438596496,
+        "agq_score": 0.5026098638791944,
+        "nodes": 614,
+        "edges": 2322,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0901,
+        "churn_gini": 0.5882,
+        "n_files": 222,
+        "mean_churn": 3.986
+      },
+      "enhanced": {
+        "agq_score": 0.5026098638791944,
+        "agq_z": -1.2771,
+        "agq_percentile": 10.1,
+        "agq_size_adjusted": 0.4865,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.0896,
+          "severity_pct": 9.0,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 9.0% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3561,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 614
+      },
+      "runtime_ms": 12.6
+    },
+    {
+      "name": "flyway",
+      "url": "https://github.com/flyway/flyway.git",
+      "agq": {
+        "modularity": 0.6049618221605163,
+        "acyclicity": 0.9156829679595279,
+        "stability": 0.09085992428339644,
+        "cohesion": 0.38228155339805825,
+        "agq_score": 0.4984465669503747,
+        "nodes": 1186,
+        "edges": 5311,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0612,
+        "churn_gini": 0.5451,
+        "n_files": 2141,
+        "mean_churn": 4.322
+      },
+      "enhanced": {
+        "agq_score": 0.4984465669503747,
+        "agq_z": -1.3215,
+        "agq_percentile": 9.3,
+        "agq_size_adjusted": 0.4376,
+        "fingerprint": "CYCLIC",
+        "cycle_severity": {
+          "severity_ratio": 0.0843,
+          "severity_pct": 8.4,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 8.4% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3939,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 1186
+      },
+      "runtime_ms": 27.7
+    },
+    {
+      "name": "liquibase",
+      "url": "https://github.com/liquibase/liquibase.git",
+      "agq": {
+        "modularity": 0.6061386939679646,
+        "acyclicity": 0.8566919191919192,
+        "stability": 0.5185631715940396,
+        "cohesion": 0.27117486338797814,
+        "agq_score": 0.5631421620354754,
+        "nodes": 1584,
+        "edges": 9648,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0834,
+        "churn_gini": 0.5835,
+        "n_files": 863,
+        "mean_churn": 3.263
+      },
+      "enhanced": {
+        "agq_score": 0.5631421620354754,
+        "agq_z": -0.6317,
+        "agq_percentile": 26.4,
+        "agq_size_adjusted": 0.475,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.1433,
+          "severity_pct": 14.3,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 14.3% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2949,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 1584
+      },
+      "runtime_ms": 39.9
+    },
+    {
+      "name": "resilience4j",
+      "url": "https://github.com/resilience4j/resilience4j.git",
+      "agq": {
+        "modularity": 0.756070122002555,
+        "acyclicity": 0.9943548387096774,
+        "stability": 0.9913305952370794,
+        "cohesion": 0.368,
+        "agq_score": 0.7774388889873279,
+        "nodes": 1240,
+        "edges": 5703,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1034,
+        "churn_gini": 0.2585,
+        "n_files": 232,
+        "mean_churn": 1.453
+      },
+      "enhanced": {
+        "agq_score": 0.7774388889873279,
+        "agq_z": 1.6529,
+        "agq_percentile": 95.1,
+        "agq_size_adjusted": 0.6783,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0056,
+          "severity_pct": 0.6,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0542,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 1240
+      },
+      "runtime_ms": 23.6
+    },
+    {
+      "name": "micrometer",
+      "url": "https://github.com/micrometer-metrics/micrometer.git",
+      "agq": {
+        "modularity": 0.6723660764948037,
+        "acyclicity": 0.9990503323836657,
+        "stability": 0.8124496248992524,
+        "cohesion": 0.3238276299112801,
+        "agq_score": 0.7019234159222505,
+        "nodes": 2106,
+        "edges": 7346,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0396,
+        "churn_gini": 0.6508,
+        "n_files": 834,
+        "mean_churn": 4.088
+      },
+      "enhanced": {
+        "agq_score": 0.7019234159222505,
+        "agq_z": 0.8478,
+        "agq_percentile": 80.2,
+        "agq_size_adjusted": 0.57,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0009,
+          "severity_pct": 0.1,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1223,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 2106
+      },
+      "runtime_ms": 49.8
+    },
+    {
+      "name": "caffeine",
+      "url": "https://github.com/ben-manes/caffeine.git",
+      "agq": {
+        "modularity": 0.8221587708688971,
+        "acyclicity": 0.992,
+        "stability": 0.29649686814031406,
+        "cohesion": 0.2506561679790026,
+        "agq_score": 0.5903279517470534,
+        "nodes": 1375,
+        "edges": 4794,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0973,
+        "churn_gini": 0.6739,
+        "n_files": 668,
+        "mean_churn": 7.156
+      },
+      "enhanced": {
+        "agq_score": 0.5903279517470534,
+        "agq_z": -0.3419,
+        "agq_percentile": 36.6,
+        "agq_size_adjusted": 0.5077,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.008,
+          "severity_pct": 0.8,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2506,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 1375
+      },
+      "runtime_ms": 96.2
+    },
+    {
+      "name": "failsafe",
+      "url": "https://github.com/failsafe-lib/failsafe.git",
+      "agq": {
+        "modularity": 0.5688798567765033,
+        "acyclicity": 0.96,
+        "stability": 0.26530612244897955,
+        "cohesion": 0.3278301886792453,
+        "agq_score": 0.5305040419761821,
+        "nodes": 175,
+        "edges": 415,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 2,
+        "mean_churn": 1.0
+      },
+      "enhanced": {
+        "agq_score": 0.5305040419761821,
+        "agq_z": -0.9797,
+        "agq_percentile": 16.4,
+        "agq_size_adjusted": 0.6383,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.04,
+          "severity_pct": 4.0,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 4.0% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3266,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 175
+      },
+      "runtime_ms": 9.1
+    },
+    {
+      "name": "jooq",
+      "url": "https://github.com/jOOQ/jOOQ.git",
+      "agq": {
+        "modularity": 0.7827961179434554,
+        "acyclicity": 0.9966313763233878,
+        "stability": 0.7870510980789648,
+        "cohesion": 0.23353365384615388,
+        "agq_score": 0.7000030615479904,
+        "nodes": 6234,
+        "edges": 31590,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1405,
+        "churn_gini": 0.5006,
+        "n_files": 3096,
+        "mean_churn": 4.274
+      },
+      "enhanced": {
+        "agq_score": 0.7000030615479904,
+        "agq_z": 0.8273,
+        "agq_percentile": 79.6,
+        "agq_size_adjusted": 0.4979,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0034,
+          "severity_pct": 0.3,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.109,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 6234
+      },
+      "runtime_ms": 303.4
+    },
+    {
+      "name": "testcontainers",
+      "url": "https://github.com/testcontainers/testcontainers-java.git",
+      "agq": {
+        "modularity": 0.5313299862279576,
+        "acyclicity": 0.9865853658536585,
+        "stability": 0.23167200121932574,
+        "cohesion": 0.3788927335640139,
+        "agq_score": 0.532120021716239,
+        "nodes": 820,
+        "edges": 2691,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1641,
+        "churn_gini": 0.5596,
+        "n_files": 396,
+        "mean_churn": 5.058
+      },
+      "enhanced": {
+        "agq_score": 0.532120021716239,
+        "agq_z": -0.9625,
+        "agq_percentile": 16.8,
+        "agq_size_adjusted": 0.4929,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0134,
+          "severity_pct": 1.3,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.3% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3309,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 820
+      },
+      "runtime_ms": 20.1
+    },
+    {
+      "name": "opentelemetry-java",
+      "url": "https://github.com/open-telemetry/opentelemetry-java.git",
+      "agq": {
+        "modularity": 0.6282684794866519,
+        "acyclicity": 0.9835657370517928,
+        "stability": 0.7799592159303629,
+        "cohesion": 0.3123861566484517,
+        "agq_score": 0.6760448972793148,
+        "nodes": 2008,
+        "edges": 10136,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0826,
+        "churn_gini": 0.6127,
+        "n_files": 1659,
+        "mean_churn": 3.428
+      },
+      "enhanced": {
+        "agq_score": 0.6760448972793148,
+        "agq_z": 0.5719,
+        "agq_percentile": 71.6,
+        "agq_size_adjusted": 0.5525,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0164,
+          "severity_pct": 1.6,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.6% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1486,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 2008
+      },
+      "runtime_ms": 35.6
+    },
+    {
+      "name": "grpc-java",
+      "url": "https://github.com/grpc/grpc-java.git",
+      "agq": {
+        "modularity": 0.6360721232723078,
+        "acyclicity": 1.0,
+        "stability": 0.17773166453698408,
+        "cohesion": 0.2697784810126582,
+        "agq_score": 0.5208955672054876,
+        "nodes": 2553,
+        "edges": 11945,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0918,
+        "churn_gini": 0.5491,
+        "n_files": 915,
+        "mean_churn": 3.718
+      },
+      "enhanced": {
+        "agq_score": 0.5208955672054876,
+        "agq_z": -1.0821,
+        "agq_percentile": 14.0,
+        "agq_size_adjusted": 0.4126,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3195,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 2553
+      },
+      "runtime_ms": 79.5
+    },
+    {
+      "name": "reactor-core",
+      "url": "https://github.com/reactor/reactor-core.git",
+      "agq": {
+        "modularity": 0.5853139292515014,
+        "acyclicity": 0.9853862212943633,
+        "stability": 0.7928080308765503,
+        "cohesion": 0.29117647058823526,
+        "agq_score": 0.6636711630026625,
+        "nodes": 958,
+        "edges": 4842,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0347,
+        "churn_gini": 0.5807,
+        "n_files": 547,
+        "mean_churn": 3.309
+      },
+      "enhanced": {
+        "agq_score": 0.6636711630026625,
+        "agq_z": 0.44,
+        "agq_percentile": 67.0,
+        "agq_size_adjusted": 0.6008,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0146,
+          "severity_pct": 1.5,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.5% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1524,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 958
+      },
+      "runtime_ms": 32.1
+    },
+    {
+      "name": "rxjava",
+      "url": "https://github.com/ReactiveX/RxJava.git",
+      "agq": {
+        "modularity": 0.5023309935011292,
+        "acyclicity": 0.9882005899705015,
+        "stability": 0.5306122448979591,
+        "cohesion": 0.5579793340987371,
+        "agq_score": 0.6447807906170818,
+        "nodes": 1017,
+        "edges": 5138,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.16,
+        "churn_gini": 0.7749,
+        "n_files": 50,
+        "mean_churn": 9.46
+      },
+      "enhanced": {
+        "agq_score": 0.6447807906170818,
+        "agq_z": 0.2386,
+        "agq_percentile": 59.4,
+        "agq_size_adjusted": 0.5787,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0118,
+          "severity_pct": 1.2,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.2% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2462,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 1017
+      },
+      "runtime_ms": 41.8
+    },
+    {
+      "name": "vertx-core",
+      "url": "https://github.com/eclipse-vertx/vert.x.git",
+      "agq": {
+        "modularity": 0.5671440301795653,
+        "acyclicity": 0.930416068866571,
+        "stability": 0.961875904691414,
+        "cohesion": 0.21534653465346532,
+        "agq_score": 0.6686956345977538,
+        "nodes": 1394,
+        "edges": 5875,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.126,
+        "churn_gini": 0.538,
+        "n_files": 1325,
+        "mean_churn": 3.47
+      },
+      "enhanced": {
+        "agq_score": 0.6686956345977538,
+        "agq_z": 0.4936,
+        "agq_percentile": 68.9,
+        "agq_size_adjusted": 0.574,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.0696,
+          "severity_pct": 7.0,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 7.0% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1328,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 1394
+      },
+      "runtime_ms": 37.9
+    },
+    {
+      "name": "quarkus",
+      "url": "https://github.com/quarkusio/quarkus.git",
+      "agq": {
+        "modularity": 0.7785978415846798,
+        "acyclicity": 0.9987497158445101,
+        "stability": 0.4045735566741919,
+        "cohesion": 0.44156604238541153,
+        "agq_score": 0.6558717891221983,
+        "nodes": 17596,
+        "edges": 85819,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0832,
+        "churn_gini": 0.5219,
+        "n_files": 11581,
+        "mean_churn": 2.658
+      },
+      "enhanced": {
+        "agq_score": 0.6558717891221983,
+        "agq_z": 0.3568,
+        "agq_percentile": 63.9,
+        "agq_size_adjusted": 0.417,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0013,
+          "severity_pct": 0.1,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2235,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 17596
+      },
+      "runtime_ms": 391.2
+    },
+    {
+      "name": "micronaut-core",
+      "url": "https://github.com/micronaut-projects/micronaut-core.git",
+      "agq": {
+        "modularity": 0.6454389828992563,
+        "acyclicity": 0.9972059234423023,
+        "stability": 0.9678778038912734,
+        "cohesion": 0.3671617161716172,
+        "agq_score": 0.7444211066011124,
+        "nodes": 3579,
+        "edges": 20802,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0635,
+        "churn_gini": 0.4801,
+        "n_files": 2345,
+        "mean_churn": 3.029
+      },
+      "enhanced": {
+        "agq_score": 0.7444211066011124,
+        "agq_z": 1.3009,
+        "agq_percentile": 90.3,
+        "agq_size_adjusted": 0.5654,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0028,
+          "severity_pct": 0.3,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0819,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 3579
+      },
+      "runtime_ms": 96.7
+    },
+    {
+      "name": "dropwizard",
+      "url": "https://github.com/dropwizard/dropwizard.git",
+      "agq": {
+        "modularity": 0.7401232685835358,
+        "acyclicity": 0.9939759036144579,
+        "stability": 0.19667772865201627,
+        "cohesion": 0.4607623318385651,
+        "agq_score": 0.5978848081721437,
+        "nodes": 1328,
+        "edges": 3997,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1907,
+        "churn_gini": 0.758,
+        "n_files": 257,
+        "mean_churn": 8.486
+      },
+      "enhanced": {
+        "agq_score": 0.5978848081721437,
+        "agq_z": -0.2614,
+        "agq_percentile": 39.7,
+        "agq_size_adjusted": 0.5167,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.006,
+          "severity_pct": 0.6,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.296,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 1328
+      },
+      "runtime_ms": 19.1
+    },
+    {
+      "name": "jersey",
+      "url": "https://github.com/eclipse-ee4j/jersey.git",
+      "agq": {
+        "modularity": 0.6412370373521936,
+        "acyclicity": 0.9933621933621933,
+        "stability": 0.3410131036180392,
+        "cohesion": 0.38475952529668955,
+        "agq_score": 0.5900929649072789,
+        "nodes": 3465,
+        "edges": 16248,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.2556,
+        "churn_gini": 0.669,
+        "n_files": 708,
+        "mean_churn": 13.174
+      },
+      "enhanced": {
+        "agq_score": 0.5900929649072789,
+        "agq_z": -0.3444,
+        "agq_percentile": 36.5,
+        "agq_size_adjusted": 0.4499,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0066,
+          "severity_pct": 0.7,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2728,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 3465
+      },
+      "runtime_ms": 63.5
+    },
+    {
+      "name": "resteasy",
+      "url": "https://github.com/resteasy/resteasy.git",
+      "agq": {
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.888888888888889,
+        "cohesion": 1.0,
+        "agq_score": 0.8472222222222222,
+        "nodes": 9,
+        "edges": 8,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1372,
+        "churn_gini": 0.6813,
+        "n_files": 481,
+        "mean_churn": 5.012
+      },
+      "enhanced": {
+        "agq_score": 0.8472222222222222,
+        "agq_z": 1.5803,
+        "agq_percentile": 94.3,
+        "agq_size_adjusted": 0.8472222222222222,
+        "fingerprint": "CLEAN",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1333,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 9
+      },
+      "runtime_ms": 29.6
+    },
+    {
+      "name": "weld-core",
+      "url": "https://github.com/weld/core.git",
+      "agq": {
+        "modularity": 0.5835739117523023,
+        "acyclicity": 0.9216617210682493,
+        "stability": 0.6685032139577592,
+        "cohesion": 0.2657142857142857,
+        "agq_score": 0.6098632831231491,
+        "nodes": 1685,
+        "edges": 8804,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0969,
+        "churn_gini": 0.6593,
+        "n_files": 320,
+        "mean_churn": 3.65
+      },
+      "enhanced": {
+        "agq_score": 0.6098632831231491,
+        "agq_z": -0.1337,
+        "agq_percentile": 44.7,
+        "agq_size_adjusted": 0.5101,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.0783,
+          "severity_pct": 7.8,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 7.8% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2219,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 1685
+      },
+      "runtime_ms": 35.9
+    },
+    {
+      "name": "guice",
+      "url": "https://github.com/google/guice.git",
+      "agq": {
+        "modularity": 0.536337002475187,
+        "acyclicity": 0.9619422572178478,
+        "stability": 0.28006694825105954,
+        "cohesion": 0.325735294117647,
+        "agq_score": 0.5260203755154353,
+        "nodes": 762,
+        "edges": 3090,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1622,
+        "churn_gini": 0.4358,
+        "n_files": 111,
+        "mean_churn": 2.82
+      },
+      "enhanced": {
+        "agq_score": 0.5260203755154353,
+        "agq_z": -1.0275,
+        "agq_percentile": 15.2,
+        "agq_size_adjusted": 0.4926,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0381,
+          "severity_pct": 3.8,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 3.8% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3277,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 762
+      },
+      "runtime_ms": 12.2
+    },
+    {
+      "name": "dagger",
+      "url": "https://github.com/google/dagger.git",
+      "agq": {
+        "modularity": 0.5716666666666667,
+        "acyclicity": 1.0,
+        "stability": 0.7822222222222224,
+        "cohesion": 1.0,
+        "agq_score": 0.8384722222222223,
+        "nodes": 15,
+        "edges": 20,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1315,
+        "churn_gini": 0.414,
+        "n_files": 3528,
+        "mean_churn": 2.438
+      },
+      "enhanced": {
+        "agq_score": 0.8384722222222223,
+        "agq_z": 1.439,
+        "agq_percentile": 92.5,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.151,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 15
+      },
+      "runtime_ms": 9.7
+    },
+    {
+      "name": "lombok",
+      "url": "https://github.com/projectlombok/lombok.git",
+      "agq": {
+        "modularity": 0.8616930943608295,
+        "acyclicity": 0.9972801450589301,
+        "stability": 0.6049147060013111,
+        "cohesion": 0.3568840579710145,
+        "agq_score": 0.7051930008480214,
+        "nodes": 1103,
+        "edges": 5134,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1377,
+        "churn_gini": 0.5258,
+        "n_files": 138,
+        "mean_churn": 3.659
+      },
+      "enhanced": {
+        "agq_score": 0.7051930008480214,
+        "agq_z": 0.8827,
+        "agq_percentile": 81.1,
+        "agq_size_adjusted": 0.6256,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0027,
+          "severity_pct": 0.3,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1475,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 1103
+      },
+      "runtime_ms": 41.6
+    },
+    {
+      "name": "vavr",
+      "url": "https://github.com/vavr-io/vavr.git",
+      "agq": {
+        "modularity": 0.48744938674944255,
+        "acyclicity": 0.8616071428571428,
+        "stability": 0.484375,
+        "cohesion": 0.21238938053097345,
+        "agq_score": 0.5114552275343897,
+        "nodes": 224,
+        "edges": 851,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0473,
+        "churn_gini": 0.4269,
+        "n_files": 148,
+        "mean_churn": 9.345
+      },
+      "enhanced": {
+        "agq_score": 0.5114552275343897,
+        "agq_z": -1.1828,
+        "agq_percentile": 11.8,
+        "agq_size_adjusted": 0.5873,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.1384,
+          "severity_pct": 13.8,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 13.8% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3264,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 224
+      },
+      "runtime_ms": 35.3
+    },
+    {
+      "name": "immutables",
+      "url": "https://github.com/immutables/immutables.git",
+      "agq": {
+        "modularity": 0.7519569694183468,
+        "acyclicity": 1.0,
+        "stability": 0.856320142631117,
+        "cohesion": 0.5271883289124668,
+        "agq_score": 0.7838663602404826,
+        "nodes": 1776,
+        "edges": 5111,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1542,
+        "churn_gini": 0.6554,
+        "n_files": 253,
+        "mean_churn": 4.921
+      },
+      "enhanced": {
+        "agq_score": 0.7838663602404826,
+        "agq_z": 1.7214,
+        "agq_percentile": 95.7,
+        "agq_size_adjusted": 0.6511,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0927,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 1776
+      },
+      "runtime_ms": 29.7
+    },
+    {
+      "name": "auto",
+      "url": "https://github.com/google/auto.git",
+      "agq": {
+        "modularity": 0.5036444708680136,
+        "acyclicity": 1.0,
+        "stability": 0.5945384001481585,
+        "cohesion": 0.25,
+        "agq_score": 0.587045717754043,
+        "nodes": 464,
+        "edges": 1740,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1059,
+        "churn_gini": 0.7207,
+        "n_files": 85,
+        "mean_churn": 5.941
+      },
+      "enhanced": {
+        "agq_score": 0.587045717754043,
+        "agq_z": -0.3769,
+        "agq_percentile": 35.3,
+        "agq_size_adjusted": 0.5942,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2209,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 464
+      },
+      "runtime_ms": 9.7
+    },
+    {
+      "name": "error-prone",
+      "url": "https://github.com/google/error-prone.git",
+      "agq": {
+        "modularity": 0.5364160003188573,
+        "acyclicity": 0.9949865021210953,
+        "stability": 0.19270833333333334,
+        "cohesion": 0.4729800629590766,
+        "agq_score": 0.5492727246830906,
+        "nodes": 2593,
+        "edges": 20917,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1212,
+        "churn_gini": 0.4769,
+        "n_files": 891,
+        "mean_churn": 3.487
+      },
+      "enhanced": {
+        "agq_score": 0.5492727246830906,
+        "agq_z": -0.7796,
+        "agq_percentile": 21.8,
+        "agq_size_adjusted": 0.4343,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.005,
+          "severity_pct": 0.5,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3374,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 2593
+      },
+      "runtime_ms": 91.0
+    },
+    {
+      "name": "byte-buddy",
+      "url": "https://github.com/raphw/byte-buddy.git",
+      "agq": {
+        "modularity": 0.5262266472216359,
+        "acyclicity": 0.821831869510665,
+        "stability": 0.6866249078433811,
+        "cohesion": 0.40038314176245215,
+        "agq_score": 0.6087666415845335,
+        "nodes": 797,
+        "edges": 5218,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0935,
+        "churn_gini": 0.7732,
+        "n_files": 246,
+        "mean_churn": 8.008
+      },
+      "enhanced": {
+        "agq_score": 0.6087666415845335,
+        "agq_z": -0.1453,
+        "agq_percentile": 44.2,
+        "agq_size_adjusted": 0.5663,
+        "fingerprint": "CYCLIC",
+        "cycle_severity": {
+          "severity_ratio": 0.1782,
+          "severity_pct": 17.8,
+          "severity_level": "CRITICAL",
+          "message": "Critical cycles: 17.8% of modules involved. Architectural redesign needed."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2779,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 797
+      },
+      "runtime_ms": 102.8
+    },
+    {
+      "name": "asm",
+      "url": "https://gitlab.ow2.org/asm/asm.git",
+      "agq": {
+        "modularity": 0.8307616131021972,
+        "acyclicity": 1.0,
+        "stability": 0.5495062179020921,
+        "cohesion": 0.27108433734939763,
+        "agq_score": 0.6628380420884217,
+        "nodes": 373,
+        "edges": 929,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1509,
+        "churn_gini": 0.4581,
+        "n_files": 53,
+        "mean_churn": 2.434
+      },
+      "enhanced": {
+        "agq_score": 0.6628380420884217,
+        "agq_z": 0.4311,
+        "agq_percentile": 66.7,
+        "agq_size_adjusted": 0.6956,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.169,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 373
+      },
+      "runtime_ms": 36.4
+    },
+    {
+      "name": "cglib",
+      "url": "https://github.com/cglib/cglib.git",
+      "agq": {
+        "modularity": 0.5166279969064205,
+        "acyclicity": 1.0,
+        "stability": 0.3305785123966941,
+        "cohesion": 0.4007633587786259,
+        "agq_score": 0.5619924670204351,
+        "nodes": 210,
+        "edges": 431,
+        "language": "Java"
+      },
+      "churn": null,
+      "enhanced": {
+        "agq_score": 0.5619924670204351,
+        "agq_z": -0.644,
+        "agq_percentile": 26.0,
+        "agq_size_adjusted": 0.6532,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2975,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 210
+      },
+      "runtime_ms": 17.4
+    },
+    {
+      "name": "javassist",
+      "url": "https://github.com/jboss-javassist/javassist.git",
+      "agq": {
+        "modularity": 0.6252271374727248,
+        "acyclicity": 0.9758064516129032,
+        "stability": 0.7173181160743327,
+        "cohesion": 0.1975190839694656,
+        "agq_score": 0.6289676972823566,
+        "nodes": 372,
+        "edges": 1420,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.25,
+        "n_files": 4,
+        "mean_churn": 1.5
+      },
+      "enhanced": {
+        "agq_score": 0.6289676972823566,
+        "agq_z": 0.07,
+        "agq_percentile": 52.8,
+        "agq_size_adjusted": 0.6604,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0242,
+          "severity_pct": 2.4,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 2.4% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1719,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 372
+      },
+      "runtime_ms": 32.1
+    },
+    {
+      "name": "snakeyaml",
+      "url": "https://bitbucket.org/snakeyaml/snakeyaml.git",
+      "agq": {
+        "modularity": 0.5552355956998117,
+        "acyclicity": 0.9693877551020408,
+        "stability": 0.40999999999999986,
+        "cohesion": 0.4041666666666667,
+        "agq_score": 0.5846975043671298,
+        "nodes": 196,
+        "edges": 607,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0851,
+        "churn_gini": 0.5252,
+        "n_files": 47,
+        "mean_churn": 3.17
+      },
+      "enhanced": {
+        "agq_score": 0.5846975043671298,
+        "agq_z": -0.4019,
+        "agq_percentile": 34.4,
+        "agq_size_adjusted": 0.6884,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0306,
+          "severity_pct": 3.1,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 3.1% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2813,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 196
+      },
+      "runtime_ms": 28.5
+    },
+    {
+      "name": "jsoup",
+      "url": "https://github.com/jhy/jsoup.git",
+      "agq": {
+        "modularity": 0.5046989224351776,
+        "acyclicity": 0.9118773946360154,
+        "stability": 0.3541666666666667,
+        "cohesion": 0.1402439024390244,
+        "agq_score": 0.47774672154422104,
+        "nodes": 261,
+        "edges": 801,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.086,
+        "churn_gini": 0.6138,
+        "n_files": 93,
+        "mean_churn": 8.925
+      },
+      "enhanced": {
+        "agq_score": 0.47774672154422104,
+        "agq_z": -1.5421,
+        "agq_percentile": 6.2,
+        "agq_size_adjusted": 0.5336,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.0881,
+          "severity_pct": 8.8,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 8.8% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3369,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 261
+      },
+      "runtime_ms": 19.3
+    },
+    {
+      "name": "commons-csv",
+      "url": "https://github.com/apache/commons-csv.git",
+      "agq": {
+        "modularity": 0.7087017813661404,
+        "acyclicity": 1.0,
+        "stability": 0.5555555555555557,
+        "cohesion": 0.3055555555555556,
+        "agq_score": 0.642453223119313,
+        "nodes": 74,
+        "edges": 102,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1207,
+        "churn_gini": 0.7275,
+        "n_files": 58,
+        "mean_churn": 14.948
+      },
+      "enhanced": {
+        "agq_score": 0.642453223119313,
+        "agq_z": 0.2138,
+        "agq_percentile": 58.5,
+        "agq_size_adjusted": 0.9276,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1916,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 74
+      },
+      "runtime_ms": 15.6
+    },
+    {
+      "name": "opencsv",
+      "error": "missing"
+    },
+    {
+      "name": "poi",
+      "url": "https://github.com/apache/poi.git",
+      "agq": {
+        "modularity": 0.7655429932834895,
+        "acyclicity": 0.9996413199426112,
+        "stability": 0.6032630343280581,
+        "cohesion": 0.22467672413793105,
+        "agq_score": 0.6482810179230224,
+        "nodes": 5576,
+        "edges": 21372,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0679,
+        "churn_gini": 0.4776,
+        "n_files": 1090,
+        "mean_churn": 2.211
+      },
+      "enhanced": {
+        "agq_score": 0.6482810179230224,
+        "agq_z": 0.2759,
+        "agq_percentile": 60.9,
+        "agq_size_adjusted": 0.467,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0004,
+          "severity_pct": 0.0,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1661,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 5576
+      },
+      "runtime_ms": 203.3
+    },
+    {
+      "name": "pdfbox",
+      "url": "https://github.com/apache/pdfbox.git",
+      "agq": {
+        "modularity": 0.5962819004893564,
+        "acyclicity": 0.9798697454114861,
+        "stability": 0.3175803402646504,
+        "cohesion": 0.2446653734238603,
+        "agq_score": 0.5345993398973383,
+        "nodes": 1689,
+        "edges": 9404,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0962,
+        "churn_gini": 0.5216,
+        "n_files": 426,
+        "mean_churn": 3.176
+      },
+      "enhanced": {
+        "agq_score": 0.5345993398973383,
+        "agq_z": -0.936,
+        "agq_percentile": 17.5,
+        "agq_size_adjusted": 0.447,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0201,
+          "severity_pct": 2.0,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 2.0% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2955,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 1689
+      },
+      "runtime_ms": 43.6
+    },
+    {
+      "name": "itext7",
+      "url": "https://github.com/itext/itext7.git",
+      "agq": {
+        "modularity": 0.814686404334966,
+        "acyclicity": 1.0,
+        "stability": 0.976906414190142,
+        "cohesion": 0.3072990965287684,
+        "agq_score": 0.7747229787634691,
+        "nodes": 4334,
+        "edges": 15357,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0708,
+        "churn_gini": 0.3417,
+        "n_files": 2400,
+        "mean_churn": 3.337
+      },
+      "enhanced": {
+        "agq_score": 0.7747229787634691,
+        "agq_z": 1.6239,
+        "agq_percentile": 94.8,
+        "agq_size_adjusted": 0.5749,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.044,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 4334
+      },
+      "runtime_ms": 94.0
+    },
+    {
+      "name": "jfreechart",
+      "url": "https://github.com/jfree/jfreechart.git",
+      "agq": {
+        "modularity": 0.5607794449695392,
+        "acyclicity": 0.9522727272727273,
+        "stability": 0.3112244897959185,
+        "cohesion": 0.2974358974358975,
+        "agq_score": 0.5304281398685207,
+        "nodes": 880,
+        "edges": 5520,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0123,
+        "churn_gini": 0.1385,
+        "n_files": 651,
+        "mean_churn": 2.899
+      },
+      "enhanced": {
+        "agq_score": 0.5304281398685207,
+        "agq_z": -0.9805,
+        "agq_percentile": 16.3,
+        "agq_size_adjusted": 0.4862,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0477,
+          "severity_pct": 4.8,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 4.8% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3183,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 880
+      },
+      "runtime_ms": 38.9
+    },
+    {
+      "name": "xstream",
+      "url": "https://github.com/x-stream/xstream.git",
+      "agq": {
+        "modularity": 0.7275066612445323,
+        "acyclicity": 0.9902506963788301,
+        "stability": 0.11418685121107261,
+        "cohesion": 0.3211488250652742,
+        "agq_score": 0.5382732584749274,
+        "nodes": 718,
+        "edges": 2471,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.05,
+        "churn_gini": 0.6218,
+        "n_files": 60,
+        "mean_churn": 3.15
+      },
+      "enhanced": {
+        "agq_score": 0.5382732584749274,
+        "agq_z": -0.8969,
+        "agq_percentile": 18.5,
+        "agq_size_adjusted": 0.5087,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0097,
+          "severity_pct": 1.0,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3251,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 718
+      },
+      "runtime_ms": 14.3
+    },
+    {
+      "name": "kryo",
+      "url": "https://github.com/EsotericSoftware/kryo.git",
+      "agq": {
+        "modularity": 0.7130252063627042,
+        "acyclicity": 0.9277456647398844,
+        "stability": 0.1994459833795013,
+        "cohesion": 0.16764705882352937,
+        "agq_score": 0.5019659783264048,
+        "nodes": 346,
+        "edges": 776,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0495,
+        "churn_gini": 0.629,
+        "n_files": 101,
+        "mean_churn": 2.832
+      },
+      "enhanced": {
+        "agq_score": 0.5019659783264048,
+        "agq_z": -1.2839,
+        "agq_percentile": 10.0,
+        "agq_size_adjusted": 0.5336,
+        "fingerprint": "TANGLED",
+        "cycle_severity": {
+          "severity_ratio": 0.0723,
+          "severity_pct": 7.2,
+          "severity_level": "HIGH",
+          "message": "Significant cycles: 7.2% of modules involved. Prioritize fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3337,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 346
+      },
+      "runtime_ms": 9.5
+    },
+    {
+      "name": "protobuf-java",
+      "url": "https://github.com/protocolbuffers/protobuf.git",
+      "agq": {
+        "modularity": 0.6923439255235304,
+        "acyclicity": 1.0,
+        "stability": 0.8791821736306452,
+        "cohesion": 0.16149068322981364,
+        "agq_score": 0.6832541955959973,
+        "nodes": 502,
+        "edges": 1128,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1197,
+        "churn_gini": 0.6752,
+        "n_files": 2522,
+        "mean_churn": 8.778
+      },
+      "enhanced": {
+        "agq_score": 0.6832541955959973,
+        "agq_z": 0.6488,
+        "agq_percentile": 74.2,
+        "agq_size_adjusted": 0.6828,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0978,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 502
+      },
+      "runtime_ms": 81.9
+    },
+    {
+      "name": "thrift",
+      "url": "https://github.com/apache/thrift.git",
+      "agq": {
+        "modularity": 0.5972468865969983,
+        "acyclicity": 1.0,
+        "stability": 0.3980380499405458,
+        "cohesion": 0.6751700680272108,
+        "agq_score": 0.6676137511411887,
+        "nodes": 207,
+        "edges": 484,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0773,
+        "churn_gini": 0.419,
+        "n_files": 660,
+        "mean_churn": 2.132
+      },
+      "enhanced": {
+        "agq_score": 0.6676137511411887,
+        "agq_z": -1.3213,
+        "agq_percentile": 9.3,
+        "agq_size_adjusted": 0.778,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2611,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Python",
+        "nodes": 207
+      },
+      "runtime_ms": 10.4
+    },
+    {
+      "name": "avro",
+      "url": "https://github.com/apache/avro.git",
+      "agq": {
+        "modularity": 0.47473888802416964,
+        "acyclicity": 1.0,
+        "stability": 0.11102040816326532,
+        "cohesion": 0.6407766990291262,
+        "agq_score": 0.5566339988041402,
+        "nodes": 110,
+        "edges": 289,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0783,
+        "churn_gini": 0.5811,
+        "n_files": 613,
+        "mean_churn": 3.227
+      },
+      "enhanced": {
+        "agq_score": 0.5566339988041402,
+        "agq_z": -3.1142,
+        "agq_percentile": 0.1,
+        "agq_size_adjusted": 0.7359,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3717,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 110
+      },
+      "runtime_ms": 12.9
+    },
+    {
+      "name": "kafka",
+      "url": "https://github.com/apache/kafka.git",
+      "agq": {
+        "modularity": 0.6562277051841282,
+        "acyclicity": 1.0,
+        "stability": 0.7354133283061544,
+        "cohesion": 0.6265243902439024,
+        "agq_score": 0.7545413559335462,
+        "nodes": 273,
+        "edges": 914,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0853,
+        "churn_gini": 0.5692,
+        "n_files": 4101,
+        "mean_churn": 4.092
+      },
+      "enhanced": {
+        "agq_score": 0.7545413559335462,
+        "agq_z": 0.0831,
+        "agq_percentile": 53.3,
+        "agq_size_adjusted": 0.8359,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1481,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 273
+      },
+      "runtime_ms": 22.3
+    },
+    {
+      "name": "flink",
+      "url": "https://github.com/apache/flink.git",
+      "agq": {
+        "modularity": 0.5516955804898355,
+        "acyclicity": 1.0,
+        "stability": 0.24509540446116637,
+        "cohesion": 0.6270810210876804,
+        "agq_score": 0.6059680015096706,
+        "nodes": 560,
+        "edges": 1826,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0922,
+        "churn_gini": 0.4259,
+        "n_files": 7599,
+        "mean_churn": 2.177
+      },
+      "enhanced": {
+        "agq_score": 0.6059680015096706,
+        "agq_z": -2.3172,
+        "agq_percentile": 1.0,
+        "agq_size_adjusted": 0.5951,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3161,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 560
+      },
+      "runtime_ms": 67.6
+    },
+    {
+      "name": "spark",
+      "url": "https://github.com/apache/spark.git",
+      "agq": {
+        "modularity": 0.7136924932424636,
+        "acyclicity": 1.0,
+        "stability": 0.4213602162320132,
+        "cohesion": 0.6592261904761905,
+        "agq_score": 0.6985697249876668,
+        "nodes": 2106,
+        "edges": 9124,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0921,
+        "churn_gini": 0.6078,
+        "n_files": 4367,
+        "mean_churn": 5.639
+      },
+      "enhanced": {
+        "agq_score": 0.6985697249876668,
+        "agq_z": -0.8212,
+        "agq_percentile": 20.6,
+        "agq_size_adjusted": 0.5673,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2309,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Python",
+        "nodes": 2106
+      },
+      "runtime_ms": 114.0
+    },
+    {
+      "name": "hadoop",
+      "url": "https://github.com/apache/hadoop.git",
+      "agq": {
+        "modularity": 0.7189804548971414,
+        "acyclicity": 0.9902412940311477,
+        "stability": 0.590054204523074,
+        "cohesion": 0.2596774193548387,
+        "agq_score": 0.6397383432015504,
+        "nodes": 14961,
+        "edges": 90068,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0728,
+        "churn_gini": 0.4228,
+        "n_files": 2349,
+        "mean_churn": 2.136
+      },
+      "enhanced": {
+        "agq_score": 0.6397383432015504,
+        "agq_z": 0.1848,
+        "agq_percentile": 57.3,
+        "agq_size_adjusted": 0.4136,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0098,
+          "severity_pct": 1.0,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1841,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Java",
+        "nodes": 14961
+      },
+      "runtime_ms": 394.7
+    },
+    {
+      "name": "hbase",
+      "url": "https://github.com/apache/hbase.git",
+      "agq": {
+        "modularity": 0.7172090729783038,
+        "acyclicity": 1.0,
+        "stability": 0.6508264462809914,
+        "cohesion": 0.3119158878504673,
+        "agq_score": 0.6699878517774406,
+        "nodes": 57,
+        "edges": 104,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1059,
+        "churn_gini": 0.4014,
+        "n_files": 1737,
+        "mean_churn": 1.986
+      },
+      "enhanced": {
+        "agq_score": 0.6699878517774406,
+        "agq_z": -1.2829,
+        "agq_percentile": 10.0,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1613,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 57
+      },
+      "runtime_ms": 48.5
+    },
+    {
+      "name": "cassandra",
+      "url": "https://github.com/apache/cassandra.git",
+      "agq": {
+        "modularity": 0.571203155818539,
+        "acyclicity": 1.0,
+        "stability": 0.16809564062311294,
+        "cohesion": 0.7045454545454546,
+        "agq_score": 0.6109610627467766,
+        "nodes": 117,
+        "edges": 195,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0964,
+        "churn_gini": 0.5658,
+        "n_files": 2802,
+        "mean_churn": 3.842
+      },
+      "enhanced": {
+        "agq_score": 0.6109610627467766,
+        "agq_z": -2.2365,
+        "agq_percentile": 1.3,
+        "agq_size_adjusted": 0.7973,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3353,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 117
+      },
+      "runtime_ms": 24.6
+    },
+    {
+      "name": "elasticsearch",
+      "url": "https://github.com/elastic/elasticsearch.git",
+      "agq": {
+        "modularity": 0.69812925170068,
+        "acyclicity": 1.0,
+        "stability": 0.4710743801652892,
+        "cohesion": 1.0,
+        "agq_score": 0.7923009079664923,
+        "nodes": 22,
+        "edges": 28,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0899,
+        "churn_gini": 0.5339,
+        "n_files": 32184,
+        "mean_churn": 3.792
+      },
+      "enhanced": {
+        "agq_score": 0.7923009079664923,
+        "agq_z": 0.6931,
+        "agq_percentile": 75.6,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2191,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Python",
+        "nodes": 22
+      },
+      "runtime_ms": 99.0
+    },
+    {
+      "name": "lucene",
+      "url": "https://github.com/apache/lucene.git",
+      "agq": {
+        "modularity": 0.757483825101907,
+        "acyclicity": 0.9792949076664801,
+        "stability": 0.38063991524433355,
+        "cohesion": 0.2438987187309335,
+        "agq_score": 0.5903293416859136,
+        "nodes": 5361,
+        "edges": 28137,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0952,
+        "churn_gini": 0.5109,
+        "n_files": 2825,
+        "mean_churn": 2.979
+      },
+      "enhanced": {
+        "agq_score": 0.5903293416859136,
+        "agq_z": -0.3419,
+        "agq_percentile": 36.6,
+        "agq_size_adjusted": 0.4272,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0207,
+          "severity_pct": 2.1,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 2.1% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2447,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Java",
+        "nodes": 5361
+      },
+      "runtime_ms": 345.4
+    },
+    {
+      "name": "solr",
+      "url": "https://github.com/apache/solr.git",
+      "agq": {
+        "modularity": 0.4531109829552728,
+        "acyclicity": 1.0,
+        "stability": 0.22454889730452227,
+        "cohesion": 0.7419354838709677,
+        "agq_score": 0.6048988410326908,
+        "nodes": 86,
+        "edges": 204,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0308,
+        "churn_gini": 0.2975,
+        "n_files": 13519,
+        "mean_churn": 2.288
+      },
+      "enhanced": {
+        "agq_score": 0.6048988410326908,
+        "agq_z": -2.3344,
+        "agq_percentile": 1.0,
+        "agq_size_adjusted": 0.8439,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.342,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 86
+      },
+      "runtime_ms": 29.7
+    },
+    {
+      "name": "zookeeper",
+      "url": "https://github.com/apache/zookeeper.git",
+      "agq": {
+        "modularity": 0.8588521036073479,
+        "acyclicity": 1.0,
+        "stability": 0.44429752066115713,
+        "cohesion": 0.7045454545454546,
+        "agq_score": 0.7519237697034898,
+        "nodes": 84,
+        "edges": 143,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0885,
+        "churn_gini": 0.3456,
+        "n_files": 305,
+        "mean_churn": 1.652
+      },
+      "enhanced": {
+        "agq_score": 0.7519237697034898,
+        "agq_z": 0.0408,
+        "agq_percentile": 51.6,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1949,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 84
+      },
+      "runtime_ms": 6.2
+    },
+    {
+      "name": "dubbo",
+      "url": "https://github.com/apache/dubbo.git",
+      "agq": {
+        "modularity": 0.6212598624217861,
+        "acyclicity": 0.9816459443457667,
+        "stability": 0.07480103417846021,
+        "cohesion": 0.37340726757904674,
+        "agq_score": 0.5127785271312649,
+        "nodes": 5067,
+        "edges": 22017,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0672,
+        "churn_gini": 0.4904,
+        "n_files": 1816,
+        "mean_churn": 2.325
+      },
+      "enhanced": {
+        "agq_score": 0.5127785271312649,
+        "agq_z": -1.1687,
+        "agq_percentile": 12.1,
+        "agq_size_adjusted": 0.3736,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0184,
+          "severity_pct": 1.8,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.8% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3625,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 5067
+      },
+      "runtime_ms": 109.8
+    },
+    {
+      "name": "skywalking",
+      "url": "https://github.com/apache/skywalking.git",
+      "agq": {
+        "modularity": 0.6495268899476144,
+        "acyclicity": 0.9641982864137086,
+        "stability": 0.1312555614332364,
+        "cohesion": 0.4967658473479948,
+        "agq_score": 0.5604366462856385,
+        "nodes": 3268,
+        "edges": 17623,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0834,
+        "churn_gini": 0.4892,
+        "n_files": 1631,
+        "mean_churn": 2.491
+      },
+      "enhanced": {
+        "agq_score": 0.5604366462856385,
+        "agq_z": -0.6606,
+        "agq_percentile": 25.4,
+        "agq_size_adjusted": 0.4304,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0358,
+          "severity_pct": 3.6,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 3.6% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3486,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Java",
+        "nodes": 3268
+      },
+      "runtime_ms": 83.4
+    }
+  ]
+}

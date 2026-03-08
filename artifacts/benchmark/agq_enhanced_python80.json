@@ -1,0 +1,3288 @@
+{
+  "generated_at": "2026-03-08T02:35:22.676146+00:00",
+  "repos_file": "scripts/repos_oss80_benchmark.json",
+  "repos_total": 80,
+  "repos_ok": 80,
+  "agq_mean": 0.753,
+  "agq_spread": 0.4248,
+  "agq_std": 0.0647,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": -0.1822,
+      "p": 0.1127,
+      "n": 77
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": -0.023,
+      "p": 0.8423,
+      "n": 77
+    }
+  },
+  "results": [
+    {
+      "name": "httpx",
+      "url": "https://github.com/encode/httpx.git",
+      "agq": {
+        "modularity": 0.620533333333333,
+        "acyclicity": 1.0,
+        "stability": 0.8140816326530604,
+        "cohesion": 0.6984126984126984,
+        "agq_score": 0.7832569160997729,
+        "nodes": 70,
+        "edges": 100,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0682,
+        "churn_gini": 0.4255,
+        "n_files": 44,
+        "mean_churn": 4.068
+      },
+      "enhanced": {
+        "agq_score": 0.7832569160997729,
+        "agq_z": 0.547,
+        "agq_percentile": 70.8,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1317,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 70
+      },
+      "runtime_ms": 8.6
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git",
+      "agq": {
+        "modularity": 0.8119806094182828,
+        "acyclicity": 1.0,
+        "stability": 0.6485207100591713,
+        "cohesion": 0.44999999999999996,
+        "agq_score": 0.7276253298693636,
+        "nodes": 67,
+        "edges": 76,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1905,
+        "churn_gini": 0.5257,
+        "n_files": 42,
+        "mean_churn": 3.976
+      },
+      "enhanced": {
+        "agq_score": 0.7276253298693636,
+        "agq_z": -0.3518,
+        "agq_percentile": 36.3,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.143,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 67
+      },
+      "runtime_ms": 6.5
+    },
+    {
+      "name": "urllib3",
+      "url": "https://github.com/urllib3/urllib3.git",
+      "agq": {
+        "modularity": 0.497753290480563,
+        "acyclicity": 1.0,
+        "stability": 0.8779213238496153,
+        "cohesion": 0.5789473684210527,
+        "agq_score": 0.7386554956878078,
+        "nodes": 87,
+        "edges": 165,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1057,
+        "churn_gini": 0.5657,
+        "n_files": 123,
+        "mean_churn": 4.748
+      },
+      "enhanced": {
+        "agq_score": 0.7386554956878078,
+        "agq_z": -0.1736,
+        "agq_percentile": 43.1,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1371,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 87
+      },
+      "runtime_ms": 14.6
+    },
+    {
+      "name": "flask",
+      "url": "https://github.com/pallets/flask.git",
+      "agq": {
+        "modularity": 0.4934499076638967,
+        "acyclicity": 1.0,
+        "stability": 0.7373438166839266,
+        "cohesion": 0.5777777777777777,
+        "agq_score": 0.7021428755314003,
+        "nodes": 79,
+        "edges": 152,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1379,
+        "churn_gini": 0.5965,
+        "n_files": 116,
+        "mean_churn": 4.578
+      },
+      "enhanced": {
+        "agq_score": 0.7021428755314003,
+        "agq_z": -0.7634,
+        "agq_percentile": 22.3,
+        "agq_size_adjusted": 0.9986,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1801,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 79
+      },
+      "runtime_ms": 7.9
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git",
+      "agq": {
+        "modularity": 0.4994822305946638,
+        "acyclicity": 1.0,
+        "stability": 0.763784744003893,
+        "cohesion": 0.6846153846153846,
+        "agq_score": 0.7369705898034853,
+        "nodes": 59,
+        "edges": 123,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1053,
+        "churn_gini": 0.5947,
+        "n_files": 133,
+        "mean_churn": 5.105
+      },
+      "enhanced": {
+        "agq_score": 0.7369705898034853,
+        "agq_z": -0.2008,
+        "agq_percentile": 42.0,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.171,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 59
+      },
+      "runtime_ms": 17.8
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git",
+      "agq": {
+        "modularity": 0.6060467009673572,
+        "acyclicity": 0.99,
+        "stability": 0.9290098850847748,
+        "cohesion": 0.7511363636363636,
+        "agq_score": 0.819048237422124,
+        "nodes": 200,
+        "edges": 744,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1243,
+        "churn_gini": 0.6453,
+        "n_files": 555,
+        "mean_churn": 9.168
+      },
+      "enhanced": {
+        "agq_score": 0.819048237422124,
+        "agq_z": 1.1252,
+        "agq_percentile": 87.0,
+        "agq_size_adjusted": 0.9607,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.01,
+          "severity_pct": 1.0,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.0% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1051,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 200
+      },
+      "runtime_ms": 64.5
+    },
+    {
+      "name": "fastapi",
+      "url": "https://github.com/fastapi/fastapi.git",
+      "agq": {
+        "modularity": 0.5622552579492224,
+        "acyclicity": 1.0,
+        "stability": 0.8367788461538461,
+        "cohesion": 0.7880434782608696,
+        "agq_score": 0.7967693955909846,
+        "nodes": 145,
+        "edges": 306,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0756,
+        "churn_gini": 0.5634,
+        "n_files": 2885,
+        "mean_churn": 4.071
+      },
+      "enhanced": {
+        "agq_score": 0.7967693955909846,
+        "agq_z": 0.7653,
+        "agq_percentile": 77.8,
+        "agq_size_adjusted": 0.995,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1365,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 145
+      },
+      "runtime_ms": 9.8
+    },
+    {
+      "name": "rich",
+      "url": "https://github.com/Textualize/rich.git",
+      "agq": {
+        "modularity": 0.4880191055937444,
+        "acyclicity": 1.0,
+        "stability": 0.9467832847424661,
+        "cohesion": 0.7173076923076923,
+        "agq_score": 0.7880275206609757,
+        "nodes": 175,
+        "edges": 342,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.084,
+        "churn_gini": 0.5852,
+        "n_files": 119,
+        "mean_churn": 4.832
+      },
+      "enhanced": {
+        "agq_score": 0.7880275206609757,
+        "agq_z": 0.624,
+        "agq_percentile": 73.4,
+        "agq_size_adjusted": 0.9482,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1184,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 175
+      },
+      "runtime_ms": 20.5
+    },
+    {
+      "name": "pytest",
+      "url": "https://github.com/pytest-dev/pytest.git",
+      "agq": {
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0,
+        "agq_score": 0.875,
+        "nodes": 2,
+        "edges": 1,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1154,
+        "churn_gini": 0.6329,
+        "n_files": 546,
+        "mean_churn": 5.418
+      },
+      "enhanced": {
+        "agq_score": 0.875,
+        "agq_z": 2.0291,
+        "agq_percentile": 97.9,
+        "agq_size_adjusted": 0.875,
+        "fingerprint": "CLEAN",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 2
+      },
+      "runtime_ms": 1.2
+    },
+    {
+      "name": "sanic",
+      "url": "https://github.com/sanic-org/sanic.git",
+      "agq": {
+        "modularity": 0.3850994499362244,
+        "acyclicity": 1.0,
+        "stability": 0.9561505361655658,
+        "cohesion": 0.5897887323943662,
+        "agq_score": 0.732759679624039,
+        "nodes": 322,
+        "edges": 896,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1348,
+        "churn_gini": 0.3861,
+        "n_files": 178,
+        "mean_churn": 2.427
+      },
+      "enhanced": {
+        "agq_score": 0.732759679624039,
+        "agq_z": -0.2688,
+        "agq_percentile": 39.4,
+        "agq_size_adjusted": 0.7886,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1361,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 322
+      },
+      "runtime_ms": 13.4
+    },
+    {
+      "name": "scrapy",
+      "url": "https://github.com/scrapy/scrapy.git",
+      "agq": {
+        "modularity": 0.45213964290898695,
+        "acyclicity": 1.0,
+        "stability": 0.9739668561501886,
+        "cohesion": 0.5913043478260869,
+        "agq_score": 0.7543527117213156,
+        "nodes": 417,
+        "edges": 1660,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1128,
+        "churn_gini": 0.48,
+        "n_files": 266,
+        "mean_churn": 8.335
+      },
+      "enhanced": {
+        "agq_score": 0.7543527117213156,
+        "agq_z": 0.08,
+        "agq_percentile": 53.2,
+        "agq_size_adjusted": 0.777,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1174,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 417
+      },
+      "runtime_ms": 8.3
+    },
+    {
+      "name": "aiohttp",
+      "url": "https://github.com/aio-libs/aiohttp.git",
+      "agq": {
+        "modularity": 0.3830076938556352,
+        "acyclicity": 1.0,
+        "stability": 0.9147566529492462,
+        "cohesion": 0.6114285714285714,
+        "agq_score": 0.7272982295583632,
+        "nodes": 135,
+        "edges": 421,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0749,
+        "churn_gini": 0.7818,
+        "n_files": 614,
+        "mean_churn": 15.521
+      },
+      "enhanced": {
+        "agq_score": 0.7272982295583632,
+        "agq_z": -0.3571,
+        "agq_percentile": 36.1,
+        "agq_size_adjusted": 0.9214,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.149,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 135
+      },
+      "runtime_ms": 11.3
+    },
+    {
+      "name": "django",
+      "url": "https://github.com/django/django.git",
+      "agq": {
+        "modularity": 0.5119995076902167,
+        "acyclicity": 1.0,
+        "stability": 0.9733001837639169,
+        "cohesion": 0.6794453507340946,
+        "agq_score": 0.7911862605470571,
+        "nodes": 1229,
+        "edges": 3674,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1087,
+        "churn_gini": 0.5358,
+        "n_files": 1518,
+        "mean_churn": 3.696
+      },
+      "enhanced": {
+        "agq_score": 0.7911862605470571,
+        "agq_z": 0.6751,
+        "agq_percentile": 75.0,
+        "agq_size_adjusted": 0.6912,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1056,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 1229
+      },
+      "runtime_ms": 72.8
+    },
+    {
+      "name": "starlette",
+      "url": "https://github.com/encode/starlette.git",
+      "agq": {
+        "modularity": 0.5446202149498848,
+        "acyclicity": 1.0,
+        "stability": 0.8592750000000011,
+        "cohesion": 0.6598837209302326,
+        "agq_score": 0.7659447339700296,
+        "nodes": 103,
+        "edges": 273,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.125,
+        "churn_gini": 0.5592,
+        "n_files": 88,
+        "mean_churn": 6.307
+      },
+      "enhanced": {
+        "agq_score": 0.7659447339700296,
+        "agq_z": 0.2673,
+        "agq_percentile": 60.5,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1333,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 103
+      },
+      "runtime_ms": 4.9
+    },
+    {
+      "name": "celery",
+      "url": "https://github.com/celery/celery.git",
+      "agq": {
+        "modularity": 0.515962479794185,
+        "acyclicity": 1.0,
+        "stability": 0.9330660285843599,
+        "cohesion": 0.4808558558558559,
+        "agq_score": 0.7324710910586002,
+        "nodes": 420,
+        "edges": 1210,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1388,
+        "churn_gini": 0.5934,
+        "n_files": 209,
+        "mean_churn": 4.455
+      },
+      "enhanced": {
+        "agq_score": 0.7324710910586002,
+        "agq_z": -0.2735,
+        "agq_percentile": 39.2,
+        "agq_size_adjusted": 0.7536,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1169,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 420
+      },
+      "runtime_ms": 20.2
+    },
+    {
+      "name": "tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "agq": {
+        "modularity": 0.4365554741005191,
+        "acyclicity": 1.0,
+        "stability": 0.9060928705021141,
+        "cohesion": 0.7524366471734893,
+        "agq_score": 0.7737712479440306,
+        "nodes": 199,
+        "edges": 881,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1169,
+        "churn_gini": 0.5264,
+        "n_files": 77,
+        "mean_churn": 3.818
+      },
+      "enhanced": {
+        "agq_score": 0.7737712479440306,
+        "agq_z": 0.3937,
+        "agq_percentile": 65.3,
+        "agq_size_adjusted": 0.9084,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1409,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 199
+      },
+      "runtime_ms": 42.8
+    },
+    {
+      "name": "typer",
+      "url": "https://github.com/fastapi/typer.git",
+      "agq": {
+        "modularity": 0.5814080977367059,
+        "acyclicity": 1.0,
+        "stability": 0.6179374081075405,
+        "cohesion": 0.7692307692307692,
+        "agq_score": 0.7421440687687539,
+        "nodes": 69,
+        "edges": 113,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0896,
+        "churn_gini": 0.6011,
+        "n_files": 915,
+        "mean_churn": 2.781
+      },
+      "enhanced": {
+        "agq_score": 0.7421440687687539,
+        "agq_z": -0.1172,
+        "agq_percentile": 45.3,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1983,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 69
+      },
+      "runtime_ms": 5.0
+    },
+    {
+      "name": "arrow",
+      "url": "https://github.com/arrow-py/arrow.git",
+      "agq": {
+        "modularity": 0.44675829515479654,
+        "acyclicity": 1.0,
+        "stability": 0.7736359850062471,
+        "cohesion": 0.8092105263157895,
+        "agq_score": 0.7574012016192082,
+        "nodes": 28,
+        "edges": 49,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1667,
+        "churn_gini": 0.4665,
+        "n_files": 24,
+        "mean_churn": 3.833
+      },
+      "enhanced": {
+        "agq_score": 0.7574012016192082,
+        "agq_z": 0.1293,
+        "agq_percentile": 55.1,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1786,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 28
+      },
+      "runtime_ms": 16.1
+    },
+    {
+      "name": "pendulum",
+      "url": "https://github.com/sdispater/pendulum.git",
+      "agq": {
+        "modularity": 0.6601889955799413,
+        "acyclicity": 1.0,
+        "stability": 0.9501239380945473,
+        "cohesion": 0.38888888888888884,
+        "agq_score": 0.7498004556408444,
+        "nodes": 153,
+        "edges": 162,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1481,
+        "churn_gini": 0.4293,
+        "n_files": 54,
+        "mean_churn": 3.222
+      },
+      "enhanced": {
+        "agq_score": 0.7498004556408444,
+        "agq_z": 0.0065,
+        "agq_percentile": 50.3,
+        "agq_size_adjusted": 0.9263,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0829,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 153
+      },
+      "runtime_ms": 5.9
+    },
+    {
+      "name": "httpcore",
+      "url": "https://github.com/encode/httpcore.git",
+      "agq": {
+        "modularity": 0.5700979154392165,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.5595238095238095,
+        "agq_score": 0.7824054312407565,
+        "nodes": 54,
+        "edges": 109,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0811,
+        "churn_gini": 0.4002,
+        "n_files": 37,
+        "mean_churn": 3.081
+      },
+      "enhanced": {
+        "agq_score": 0.7824054312407565,
+        "agq_z": 0.5332,
+        "agq_percentile": 70.3,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.086,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 54
+      },
+      "runtime_ms": 3.1
+    },
+    {
+      "name": "attrs",
+      "url": "https://github.com/python-attrs/attrs.git",
+      "agq": {
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0,
+        "agq_score": 1.0,
+        "nodes": 10,
+        "edges": 5,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1217,
+        "churn_gini": 0.5917,
+        "n_files": 115,
+        "mean_churn": 6.061
+      },
+      "enhanced": {
+        "agq_score": 1.0,
+        "agq_z": 4.0485,
+        "agq_percentile": 100.0,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "CLEAN",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 10
+      },
+      "runtime_ms": 0.3
+    },
+    {
+      "name": "marshmallow",
+      "url": "https://github.com/marshmallow-code/marshmallow.git",
+      "agq": {
+        "modularity": 0.6000576701268739,
+        "acyclicity": 1.0,
+        "stability": 0.7387654320987652,
+        "cohesion": 0.775,
+        "agq_score": 0.7784557755564098,
+        "nodes": 45,
+        "edges": 68,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1071,
+        "churn_gini": 0.696,
+        "n_files": 84,
+        "mean_churn": 8.298
+      },
+      "enhanced": {
+        "agq_score": 0.7784557755564098,
+        "agq_z": 0.4694,
+        "agq_percentile": 68.1,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1584,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 45
+      },
+      "runtime_ms": 7.0
+    },
+    {
+      "name": "ansible",
+      "url": "https://github.com/ansible/ansible.git",
+      "agq": {
+        "modularity": 0.518751853875734,
+        "acyclicity": 1.0,
+        "stability": 0.2228993917614626,
+        "cohesion": 0.6907706945765937,
+        "agq_score": 0.6081054850534475,
+        "nodes": 2155,
+        "edges": 6352,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0903,
+        "churn_gini": 0.4283,
+        "n_files": 1429,
+        "mean_churn": 2.676
+      },
+      "enhanced": {
+        "agq_score": 0.6081054850534475,
+        "agq_z": -2.2826,
+        "agq_percentile": 1.1,
+        "agq_size_adjusted": 0.4924,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3294,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 2155
+      },
+      "runtime_ms": 74.9
+    },
+    {
+      "name": "salt",
+      "url": "https://github.com/saltstack/salt.git",
+      "agq": {
+        "modularity": 0.48028851856689064,
+        "acyclicity": 1.0,
+        "stability": 0.9022574134757735,
+        "cohesion": 0.6566593886462881,
+        "agq_score": 0.7598013301722379,
+        "nodes": 1534,
+        "edges": 6015,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0769,
+        "churn_gini": 0.657,
+        "n_files": 2861,
+        "mean_churn": 3.715
+      },
+      "enhanced": {
+        "agq_score": 0.7598013301722379,
+        "agq_z": 0.168,
+        "agq_percentile": 56.7,
+        "agq_size_adjusted": 0.6437,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1333,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 1534
+      },
+      "runtime_ms": 193.0
+    },
+    {
+      "name": "home-assistant",
+      "url": "https://github.com/home-assistant/core.git",
+      "agq": {
+        "modularity": 0.5116903607434752,
+        "acyclicity": 1.0,
+        "stability": 0.07786588461912361,
+        "cohesion": 0.7111203516692408,
+        "agq_score": 0.5751691492579599,
+        "nodes": 17595,
+        "edges": 107166,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0708,
+        "churn_gini": 0.6321,
+        "n_files": 12433,
+        "mean_churn": 7.627
+      },
+      "enhanced": {
+        "agq_score": 0.5751691492579599,
+        "agq_z": -2.8147,
+        "agq_percentile": 0.2,
+        "agq_size_adjusted": 0.3657,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3743,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 17595
+      },
+      "runtime_ms": 812.4
+    },
+    {
+      "name": "airflow",
+      "url": "https://github.com/apache/airflow.git",
+      "agq": {
+        "modularity": 0.7461516480810504,
+        "acyclicity": 1.0,
+        "stability": 0.46353892142904657,
+        "cohesion": 0.6053453661922943,
+        "agq_score": 0.7037589839255978,
+        "nodes": 8017,
+        "edges": 36498,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1099,
+        "churn_gini": 0.6166,
+        "n_files": 15481,
+        "mean_churn": 5.276
+      },
+      "enhanced": {
+        "agq_score": 0.7037589839255978,
+        "agq_z": -0.7373,
+        "agq_percentile": 23.0,
+        "agq_size_adjusted": 0.4865,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2117,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Python",
+        "nodes": 8017
+      },
+      "runtime_ms": 303.6
+    },
+    {
+      "name": "thefuck",
+      "url": "https://github.com/nvbn/thefuck.git",
+      "agq": {
+        "modularity": 0.5532710064934603,
+        "acyclicity": 1.0,
+        "stability": 0.7108187302316096,
+        "cohesion": 0.3392857142857143,
+        "agq_score": 0.650843862752696,
+        "nodes": 273,
+        "edges": 481,
+        "language": "Python"
+      },
+      "churn": null,
+      "enhanced": {
+        "agq_score": 0.650843862752696,
+        "agq_z": -1.5922,
+        "agq_percentile": 5.6,
+        "agq_size_adjusted": 0.7211,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1761,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 273
+      },
+      "runtime_ms": 4.2
+    },
+    {
+      "name": "you-get",
+      "url": "https://github.com/soimort/you-get.git",
+      "agq": {
+        "modularity": 0.5724961425353344,
+        "acyclicity": 1.0,
+        "stability": 0.28402366863905315,
+        "cohesion": 0.6684782608695652,
+        "agq_score": 0.6312495180109882,
+        "nodes": 190,
+        "edges": 249,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1,
+        "churn_gini": 0.4502,
+        "n_files": 50,
+        "mean_churn": 2.2
+      },
+      "enhanced": {
+        "agq_score": 0.6312495180109882,
+        "agq_z": -1.9087,
+        "agq_percentile": 2.8,
+        "agq_size_adjusted": 0.7477,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3003,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 190
+      },
+      "runtime_ms": 9.5
+    },
+    {
+      "name": "youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "agq": {
+        "modularity": 0.6812670677549041,
+        "acyclicity": 1.0,
+        "stability": 0.8618644673574669,
+        "cohesion": 0.8835952848722987,
+        "agq_score": 0.8566817049961675,
+        "nodes": 1003,
+        "edges": 1351,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.129,
+        "churn_gini": 0.6731,
+        "n_files": 31,
+        "mean_churn": 6.323
+      },
+      "enhanced": {
+        "agq_score": 0.8566817049961675,
+        "agq_z": 1.7331,
+        "agq_percentile": 95.8,
+        "agq_size_adjusted": 0.7704,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1052,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 1003
+      },
+      "runtime_ms": 57.6
+    },
+    {
+      "name": "glances",
+      "url": "https://github.com/nicolargo/glances.git",
+      "agq": {
+        "modularity": 0.5145006297120579,
+        "acyclicity": 1.0,
+        "stability": 0.9310693877551037,
+        "cohesion": 0.5142045454545454,
+        "agq_score": 0.7399436407304268,
+        "nodes": 203,
+        "edges": 417,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1241,
+        "churn_gini": 0.6501,
+        "n_files": 403,
+        "mean_churn": 9.412
+      },
+      "enhanced": {
+        "agq_score": 0.7399436407304268,
+        "agq_z": -0.1528,
+        "agq_percentile": 43.9,
+        "agq_size_adjusted": 0.8655,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1178,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 203
+      },
+      "runtime_ms": 8.6
+    },
+    {
+      "name": "sqlalchemy",
+      "url": "https://github.com/sqlalchemy/sqlalchemy.git",
+      "agq": {
+        "modularity": 0.453363122840424,
+        "acyclicity": 1.0,
+        "stability": 0.8122128092369001,
+        "cohesion": 0.5007482229704452,
+        "agq_score": 0.6915810387619423,
+        "nodes": 821,
+        "edges": 3222,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1117,
+        "churn_gini": 0.507,
+        "n_files": 725,
+        "mean_churn": 4.859
+      },
+      "enhanced": {
+        "agq_score": 0.6915810387619423,
+        "agq_z": -0.9341,
+        "agq_percentile": 17.5,
+        "agq_size_adjusted": 0.6405,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1657,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 821
+      },
+      "runtime_ms": 120.5
+    },
+    {
+      "name": "django-rest-framework",
+      "url": "https://github.com/encode/django-rest-framework.git",
+      "agq": {
+        "modularity": 0.41273870832983134,
+        "acyclicity": 1.0,
+        "stability": 0.8456103557822814,
+        "cohesion": 0.704225352112676,
+        "agq_score": 0.7406436040561972,
+        "nodes": 273,
+        "edges": 1029,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1406,
+        "churn_gini": 0.4826,
+        "n_files": 192,
+        "mean_churn": 2.917
+      },
+      "enhanced": {
+        "agq_score": 0.7406436040561972,
+        "agq_z": -0.1415,
+        "agq_percentile": 44.4,
+        "agq_size_adjusted": 0.8205,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1638,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 273
+      },
+      "runtime_ms": 21.3
+    },
+    {
+      "name": "boto3",
+      "url": "https://github.com/boto/boto3.git",
+      "agq": {
+        "modularity": 0.7778099279835392,
+        "acyclicity": 1.0,
+        "stability": 0.9518222222222227,
+        "cohesion": 0.7463235294117647,
+        "agq_score": 0.8689889199043817,
+        "nodes": 93,
+        "edges": 144,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0045,
+        "churn_gini": 0.2574,
+        "n_files": 4180,
+        "mean_churn": 2.363
+      },
+      "enhanced": {
+        "agq_score": 0.8689889199043817,
+        "agq_z": 1.932,
+        "agq_percentile": 97.3,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0589,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 93
+      },
+      "runtime_ms": 2.7
+    },
+    {
+      "name": "paramiko",
+      "url": "https://github.com/paramiko/paramiko.git",
+      "agq": {
+        "modularity": 0.4984994082840228,
+        "acyclicity": 1.0,
+        "stability": 0.8992189468379963,
+        "cohesion": 0.5824468085106382,
+        "agq_score": 0.7450412909081643,
+        "nodes": 133,
+        "edges": 325,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0909,
+        "churn_gini": 0.3965,
+        "n_files": 33,
+        "mean_churn": 2.182
+      },
+      "enhanced": {
+        "agq_score": 0.7450412909081643,
+        "agq_z": -0.0704,
+        "agq_percentile": 47.2,
+        "agq_size_adjusted": 0.9468,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1305,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 133
+      },
+      "runtime_ms": 10.1
+    },
+    {
+      "name": "fabric",
+      "url": "https://github.com/fabric/fabric.git",
+      "agq": {
+        "modularity": 0.8548271262952691,
+        "acyclicity": 1.0,
+        "stability": 0.7301097393689988,
+        "cohesion": 0.6041666666666667,
+        "agq_score": 0.7972758830827338,
+        "nodes": 54,
+        "edges": 57,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 1,
+        "mean_churn": 1.0
+      },
+      "enhanced": {
+        "agq_score": 0.7972758830827338,
+        "agq_z": 0.7734,
+        "agq_percentile": 78.0,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.11,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 54
+      },
+      "runtime_ms": 2.6
+    },
+    {
+      "name": "sphinx",
+      "url": "https://github.com/sphinx-doc/sphinx.git",
+      "agq": {
+        "modularity": 0.5261638032871223,
+        "acyclicity": 1.0,
+        "stability": 0.9806172839506189,
+        "cohesion": 0.6796218487394958,
+        "agq_score": 0.7966007339943093,
+        "nodes": 500,
+        "edges": 2091,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1063,
+        "churn_gini": 0.6227,
+        "n_files": 847,
+        "mean_churn": 7.666
+      },
+      "enhanced": {
+        "agq_score": 0.7966007339943093,
+        "agq_z": 0.7625,
+        "agq_percentile": 77.7,
+        "agq_size_adjusted": 0.7966,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1006,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 500
+      },
+      "runtime_ms": 31.2
+    },
+    {
+      "name": "black",
+      "url": "https://github.com/psf/black.git",
+      "agq": {
+        "modularity": 0.5054293628808869,
+        "acyclicity": 1.0,
+        "stability": 0.7334862939258533,
+        "cohesion": 0.63,
+        "agq_score": 0.717228914201685,
+        "nodes": 95,
+        "edges": 190,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1622,
+        "churn_gini": 0.5895,
+        "n_files": 111,
+        "mean_churn": 8.459
+      },
+      "enhanced": {
+        "agq_score": 0.717228914201685,
+        "agq_z": -0.5197,
+        "agq_percentile": 30.2,
+        "agq_size_adjusted": 0.9788,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1789,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 95
+      },
+      "runtime_ms": 9.0
+    },
+    {
+      "name": "mypy",
+      "url": "https://github.com/python/mypy.git",
+      "agq": {
+        "modularity": 0.6555645330976708,
+        "acyclicity": 1.0,
+        "stability": 0.9896225932566913,
+        "cohesion": 0.5730042016806722,
+        "agq_score": 0.8045478320087587,
+        "nodes": 411,
+        "edges": 1780,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1062,
+        "churn_gini": 0.6162,
+        "n_files": 1365,
+        "mean_churn": 6.042
+      },
+      "enhanced": {
+        "agq_score": 0.8045478320087587,
+        "agq_z": 0.8909,
+        "agq_percentile": 81.4,
+        "agq_size_adjusted": 0.8308,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.072,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 411
+      },
+      "runtime_ms": 57.1
+    },
+    {
+      "name": "ruff",
+      "url": "https://github.com/astral-sh/ruff.git",
+      "agq": {
+        "modularity": 0.730307698592246,
+        "acyclicity": 1.0,
+        "stability": 0.1779004166382091,
+        "cohesion": 0.8333333333333334,
+        "agq_score": 0.6853853621409471,
+        "nodes": 3604,
+        "edges": 2716,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0888,
+        "churn_gini": 0.6141,
+        "n_files": 11339,
+        "mean_churn": 5.072
+      },
+      "enhanced": {
+        "agq_score": 0.6853853621409471,
+        "agq_z": -1.0342,
+        "agq_percentile": 15.1,
+        "agq_size_adjusted": 0.5201,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3006,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 3604
+      },
+      "runtime_ms": 48.1
+    },
+    {
+      "name": "poetry",
+      "url": "https://github.com/python-poetry/poetry.git",
+      "agq": {
+        "modularity": 0.5564710370385823,
+        "acyclicity": 1.0,
+        "stability": 0.9209021849792484,
+        "cohesion": 0.6008522727272727,
+        "agq_score": 0.7695563736862758,
+        "nodes": 428,
+        "edges": 1314,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1405,
+        "churn_gini": 0.5688,
+        "n_files": 185,
+        "mean_churn": 6.059
+      },
+      "enhanced": {
+        "agq_score": 0.7695563736862758,
+        "agq_z": 0.3256,
+        "agq_percentile": 62.8,
+        "agq_size_adjusted": 0.7893,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1124,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 428
+      },
+      "runtime_ms": 11.1
+    },
+    {
+      "name": "pillow",
+      "url": "https://github.com/python-pillow/Pillow.git",
+      "agq": {
+        "modularity": 0.40495061075159633,
+        "acyclicity": 1.0,
+        "stability": 0.8724882951843037,
+        "cohesion": 0.7040816326530612,
+        "agq_score": 0.7453801346472404,
+        "nodes": 389,
+        "edges": 1037,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.122,
+        "churn_gini": 0.657,
+        "n_files": 590,
+        "mean_churn": 6.622
+      },
+      "enhanced": {
+        "agq_score": 0.7453801346472404,
+        "agq_z": -0.0649,
+        "agq_percentile": 47.4,
+        "agq_size_adjusted": 0.7768,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1573,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 389
+      },
+      "runtime_ms": 32.2
+    },
+    {
+      "name": "scikit-learn",
+      "url": "https://github.com/scikit-learn/scikit-learn.git",
+      "agq": {
+        "modularity": 0.6707879039585448,
+        "acyclicity": 0.9889455782312925,
+        "stability": 0.8160238451431404,
+        "cohesion": 0.7042341220423411,
+        "agq_score": 0.7949978623438297,
+        "nodes": 1176,
+        "edges": 7968,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1041,
+        "churn_gini": 0.6026,
+        "n_files": 1642,
+        "mean_churn": 5.419
+      },
+      "enhanced": {
+        "agq_score": 0.7949978623438297,
+        "agq_z": 0.7366,
+        "agq_percentile": 76.9,
+        "agq_size_adjusted": 0.6988,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0111,
+          "severity_pct": 1.1,
+          "severity_level": "MEDIUM",
+          "message": "Moderate cycles: 1.1% of modules involved. Schedule refactoring."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1266,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 1176
+      },
+      "runtime_ms": 84.5
+    },
+    {
+      "name": "pandas",
+      "url": "https://github.com/pandas-dev/pandas.git",
+      "agq": {
+        "modularity": 0.7324936486660135,
+        "acyclicity": 1.0,
+        "stability": 0.9873377949539696,
+        "cohesion": 0.33172720533728683,
+        "agq_score": 0.7628896622393175,
+        "nodes": 1721,
+        "edges": 9379,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1096,
+        "churn_gini": 0.7028,
+        "n_files": 666,
+        "mean_churn": 10.728
+      },
+      "enhanced": {
+        "agq_score": 0.7628896622393175,
+        "agq_z": 0.2179,
+        "agq_percentile": 58.6,
+        "agq_size_adjusted": 0.6363,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0573,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 1721
+      },
+      "runtime_ms": 152.5
+    },
+    {
+      "name": "numpy",
+      "url": "https://github.com/numpy/numpy.git",
+      "agq": {
+        "modularity": 0.44449375874208025,
+        "acyclicity": 1.0,
+        "stability": 0.9390243902439024,
+        "cohesion": 0.5669968717413973,
+        "agq_score": 0.737628755181845,
+        "nodes": 616,
+        "edges": 1876,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1242,
+        "churn_gini": 0.6325,
+        "n_files": 1393,
+        "mean_churn": 6.373
+      },
+      "enhanced": {
+        "agq_score": 0.737628755181845,
+        "agq_z": -0.1902,
+        "agq_percentile": 42.5,
+        "agq_size_adjusted": 0.7137,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1294,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 616
+      },
+      "runtime_ms": 218.7
+    },
+    {
+      "name": "matplotlib",
+      "url": "https://github.com/matplotlib/matplotlib.git",
+      "agq": {
+        "modularity": 0.4852915828351381,
+        "acyclicity": 1.0,
+        "stability": 0.3622202932098747,
+        "cohesion": 0.6532349602724177,
+        "agq_score": 0.6251867090793577,
+        "nodes": 1217,
+        "edges": 4098,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.095,
+        "churn_gini": 0.6007,
+        "n_files": 1263,
+        "mean_churn": 4.151
+      },
+      "enhanced": {
+        "agq_score": 0.6251867090793577,
+        "agq_z": -2.0067,
+        "agq_percentile": 2.2,
+        "agq_size_adjusted": 0.5469,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2943,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Python",
+        "nodes": 1217
+      },
+      "runtime_ms": 103.1
+    },
+    {
+      "name": "sympy",
+      "url": "https://github.com/sympy/sympy.git",
+      "agq": {
+        "modularity": 0.6570034079653161,
+        "acyclicity": 1.0,
+        "stability": 0.7527886584853425,
+        "cohesion": 0.48487846240814014,
+        "agq_score": 0.7236676322146998,
+        "nodes": 2246,
+        "edges": 13499,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1073,
+        "churn_gini": 0.6321,
+        "n_files": 1267,
+        "mean_churn": 4.949
+      },
+      "enhanced": {
+        "agq_score": 0.7236676322146998,
+        "agq_z": -0.4157,
+        "agq_percentile": 33.9,
+        "agq_size_adjusted": 0.5828,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1428,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 2246
+      },
+      "runtime_ms": 264.6
+    },
+    {
+      "name": "networkx",
+      "url": "https://github.com/networkx/networkx.git",
+      "agq": {
+        "modularity": 0.43675161382961564,
+        "acyclicity": 1.0,
+        "stability": 0.8617307175490477,
+        "cohesion": 0.42785571142284573,
+        "agq_score": 0.6815845107003773,
+        "nodes": 685,
+        "edges": 1698,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1211,
+        "churn_gini": 0.4939,
+        "n_files": 413,
+        "mean_churn": 3.38
+      },
+      "enhanced": {
+        "agq_score": 0.6815845107003773,
+        "agq_z": -1.0956,
+        "agq_percentile": 13.7,
+        "agq_size_adjusted": 0.6487,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1541,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 685
+      },
+      "runtime_ms": 108.7
+    },
+    {
+      "name": "dask",
+      "url": "https://github.com/dask/dask.git",
+      "agq": {
+        "modularity": 0.5817730901462606,
+        "acyclicity": 1.0,
+        "stability": 0.9564492678006258,
+        "cohesion": 0.6973118279569892,
+        "agq_score": 0.8088835464759689,
+        "nodes": 670,
+        "edges": 3275,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1183,
+        "churn_gini": 0.5815,
+        "n_files": 338,
+        "mean_churn": 6.349
+      },
+      "enhanced": {
+        "agq_score": 0.8088835464759689,
+        "agq_z": 0.961,
+        "agq_percentile": 83.2,
+        "agq_size_adjusted": 0.7725,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0967,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 670
+      },
+      "runtime_ms": 69.6
+    },
+    {
+      "name": "luigi",
+      "url": "https://github.com/spotify/luigi.git",
+      "agq": {
+        "modularity": 0.548955504925981,
+        "acyclicity": 1.0,
+        "stability": 0.9075382320641235,
+        "cohesion": 0.5847750865051904,
+        "agq_score": 0.7603172058738237,
+        "nodes": 270,
+        "edges": 716,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0634,
+        "churn_gini": 0.5171,
+        "n_files": 142,
+        "mean_churn": 2.563
+      },
+      "enhanced": {
+        "agq_score": 0.7603172058738237,
+        "agq_z": 0.1764,
+        "agq_percentile": 57.0,
+        "agq_size_adjusted": 0.844,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1179,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 270
+      },
+      "runtime_ms": 11.9
+    },
+    {
+      "name": "prefect",
+      "url": "https://github.com/PrefectHQ/prefect.git",
+      "agq": {
+        "modularity": 0.6266249332804216,
+        "acyclicity": 1.0,
+        "stability": 0.9817625722968403,
+        "cohesion": 0.7292899408284024,
+        "agq_score": 0.834419361601416,
+        "nodes": 1251,
+        "edges": 5681,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1022,
+        "churn_gini": 0.5598,
+        "n_files": 7875,
+        "mean_churn": 3.527
+      },
+      "enhanced": {
+        "agq_score": 0.834419361601416,
+        "agq_z": 1.3735,
+        "agq_percentile": 91.5,
+        "agq_size_adjusted": 0.7271,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0801,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 1251
+      },
+      "runtime_ms": 52.0
+    },
+    {
+      "name": "dramatiq",
+      "url": "https://github.com/Bogdanp/dramatiq.git",
+      "agq": {
+        "modularity": 0.5542406311637076,
+        "acyclicity": 1.0,
+        "stability": 0.8312923850837672,
+        "cohesion": 0.5725806451612903,
+        "agq_score": 0.7395284153521913,
+        "nodes": 93,
+        "edges": 130,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1429,
+        "churn_gini": 0.4984,
+        "n_files": 98,
+        "mean_churn": 4.469
+      },
+      "enhanced": {
+        "agq_score": 0.7395284153521913,
+        "agq_z": -0.1595,
+        "agq_percentile": 43.7,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1398,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 93
+      },
+      "runtime_ms": 14.1
+    },
+    {
+      "name": "huey",
+      "url": "https://github.com/coleifer/huey.git",
+      "agq": {
+        "modularity": 0.4038546849300106,
+        "acyclicity": 1.0,
+        "stability": 0.8686868686868677,
+        "cohesion": 0.6395348837209303,
+        "agq_score": 0.7280191093344521,
+        "nodes": 105,
+        "edges": 221,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.16,
+        "churn_gini": 0.3583,
+        "n_files": 25,
+        "mean_churn": 2.76
+      },
+      "enhanced": {
+        "agq_score": 0.7280191093344521,
+        "agq_z": -0.3454,
+        "agq_percentile": 36.5,
+        "agq_size_adjusted": 0.9722,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1586,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 105
+      },
+      "runtime_ms": 14.5
+    },
+    {
+      "name": "gunicorn",
+      "url": "https://github.com/benoitc/gunicorn.git",
+      "agq": {
+        "modularity": 0.5092165680473374,
+        "acyclicity": 1.0,
+        "stability": 0.8870758310249315,
+        "cohesion": 0.712890625,
+        "agq_score": 0.7772957560180672,
+        "nodes": 168,
+        "edges": 325,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.087,
+        "churn_gini": 0.4865,
+        "n_files": 322,
+        "mean_churn": 2.752
+      },
+      "enhanced": {
+        "agq_score": 0.7772957560180672,
+        "agq_z": 0.4507,
+        "agq_percentile": 67.4,
+        "agq_size_adjusted": 0.9427,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.132,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 168
+      },
+      "runtime_ms": 29.9
+    },
+    {
+      "name": "uvicorn",
+      "url": "https://github.com/encode/uvicorn.git",
+      "agq": {
+        "modularity": 0.5033165620818966,
+        "acyclicity": 1.0,
+        "stability": 0.7574175580119556,
+        "cohesion": 0.5862068965517242,
+        "agq_score": 0.711735254161394,
+        "nodes": 117,
+        "edges": 266,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.137,
+        "churn_gini": 0.5355,
+        "n_files": 73,
+        "mean_churn": 5.685
+      },
+      "enhanced": {
+        "agq_score": 0.711735254161394,
+        "agq_z": -0.6085,
+        "agq_percentile": 27.1,
+        "agq_size_adjusted": 0.9288,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1721,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 117
+      },
+      "runtime_ms": 14.8
+    },
+    {
+      "name": "werkzeug",
+      "url": "https://github.com/pallets/werkzeug.git",
+      "agq": {
+        "modularity": 0.4907692307692304,
+        "acyclicity": 1.0,
+        "stability": 0.9205535755718852,
+        "cohesion": 0.5593220338983051,
+        "agq_score": 0.7426612100598553,
+        "nodes": 123,
+        "edges": 260,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0702,
+        "churn_gini": 0.5912,
+        "n_files": 114,
+        "mean_churn": 5.175
+      },
+      "enhanced": {
+        "agq_score": 0.7426612100598553,
+        "agq_z": -0.1089,
+        "agq_percentile": 45.7,
+        "agq_size_adjusted": 0.9591,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1257,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 123
+      },
+      "runtime_ms": 26.6
+    },
+    {
+      "name": "jinja",
+      "url": "https://github.com/pallets/jinja.git",
+      "agq": {
+        "modularity": 0.5733235677083334,
+        "acyclicity": 1.0,
+        "stability": 0.8172249886826611,
+        "cohesion": 0.5880503144654088,
+        "agq_score": 0.7446497177141008,
+        "nodes": 124,
+        "edges": 256,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1412,
+        "churn_gini": 0.5096,
+        "n_files": 85,
+        "mean_churn": 4.235
+      },
+      "enhanced": {
+        "agq_score": 0.7446497177141008,
+        "agq_z": -0.0767,
+        "agq_percentile": 46.9,
+        "agq_size_adjusted": 0.96,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1402,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 124
+      },
+      "runtime_ms": 23.8
+    },
+    {
+      "name": "mako",
+      "url": "https://github.com/sqlalchemy/mako.git",
+      "agq": {
+        "modularity": 0.6576508890558477,
+        "acyclicity": 1.0,
+        "stability": 0.9031872008062477,
+        "cohesion": 0.6915584415584415,
+        "agq_score": 0.8130991328551342,
+        "nodes": 87,
+        "edges": 121,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.125,
+        "churn_gini": 0.4684,
+        "n_files": 40,
+        "mean_churn": 2.475
+      },
+      "enhanced": {
+        "agq_score": 0.8130991328551342,
+        "agq_z": 1.0291,
+        "agq_percentile": 84.8,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0975,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 87
+      },
+      "runtime_ms": 6.5
+    },
+    {
+      "name": "pyjwt",
+      "url": "https://github.com/jpadilla/pyjwt.git",
+      "agq": {
+        "modularity": 0.5194003527336858,
+        "acyclicity": 1.0,
+        "stability": 0.8261615047118694,
+        "cohesion": 0.2592592592592593,
+        "agq_score": 0.6512052791762037,
+        "nodes": 64,
+        "edges": 126,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1176,
+        "churn_gini": 0.5391,
+        "n_files": 34,
+        "mean_churn": 7.176
+      },
+      "enhanced": {
+        "agq_score": 0.6512052791762037,
+        "agq_z": -1.5863,
+        "agq_percentile": 5.6,
+        "agq_size_adjusted": 0.9731,
+        "fingerprint": "LOW_COHESION",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1483,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 64
+      },
+      "runtime_ms": 9.0
+    },
+    {
+      "name": "cryptography",
+      "url": "https://github.com/pyca/cryptography.git",
+      "agq": {
+        "modularity": 0.470669721349033,
+        "acyclicity": 1.0,
+        "stability": 0.8657885368458531,
+        "cohesion": 0.6558641975308642,
+        "agq_score": 0.7480806139314377,
+        "nodes": 124,
+        "edges": 274,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0868,
+        "churn_gini": 0.7848,
+        "n_files": 403,
+        "mean_churn": 13.357
+      },
+      "enhanced": {
+        "agq_score": 0.7480806139314377,
+        "agq_z": -0.0213,
+        "agq_percentile": 49.1,
+        "agq_size_adjusted": 0.9645,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1461,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 124
+      },
+      "runtime_ms": 9.4
+    },
+    {
+      "name": "itsdangerous",
+      "url": "https://github.com/pallets/itsdangerous.git",
+      "agq": {
+        "modularity": 0.6391184573002756,
+        "acyclicity": 1.0,
+        "stability": 0.9307479224376728,
+        "cohesion": 0.75,
+        "agq_score": 0.8299665949344871,
+        "nodes": 19,
+        "edges": 22,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1852,
+        "churn_gini": 0.4638,
+        "n_files": 54,
+        "mean_churn": 3.241
+      },
+      "enhanced": {
+        "agq_score": 0.8299665949344871,
+        "agq_z": 1.3016,
+        "agq_percentile": 90.3,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.093,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 19
+      },
+      "runtime_ms": 1.8
+    },
+    {
+      "name": "httpie",
+      "url": "https://github.com/httpie/cli.git",
+      "agq": {
+        "modularity": 0.5201120836794125,
+        "acyclicity": 1.0,
+        "stability": 0.8782154132808868,
+        "cohesion": 0.7195945945945945,
+        "agq_score": 0.7794805228887234,
+        "nodes": 178,
+        "edges": 331,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.2308,
+        "n_files": 13,
+        "mean_churn": 2.308
+      },
+      "enhanced": {
+        "agq_score": 0.7794805228887234,
+        "agq_z": 0.486,
+        "agq_percentile": 68.6,
+        "agq_size_adjusted": 0.9348,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1325,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 178
+      },
+      "runtime_ms": 4.4
+    },
+    {
+      "name": "dulwich",
+      "url": "https://github.com/jelmer/dulwich.git",
+      "agq": {
+        "modularity": 0.3368097330749778,
+        "acyclicity": 1.0,
+        "stability": 0.9454716467414185,
+        "cohesion": 0.7469437652811737,
+        "agq_score": 0.7573062862743924,
+        "nodes": 201,
+        "edges": 562,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1078,
+        "churn_gini": 0.6826,
+        "n_files": 167,
+        "mean_churn": 16.455
+      },
+      "enhanced": {
+        "agq_score": 0.7573062862743924,
+        "agq_z": 0.1277,
+        "agq_percentile": 55.1,
+        "agq_size_adjusted": 0.8874,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.149,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 201
+      },
+      "runtime_ms": 27.8
+    },
+    {
+      "name": "pygments",
+      "url": "https://github.com/pygments/pygments.git",
+      "agq": {
+        "modularity": 0.5253908622272488,
+        "acyclicity": 1.0,
+        "stability": 0.941749743293411,
+        "cohesion": 0.8487569060773481,
+        "agq_score": 0.828974377899502,
+        "nodes": 455,
+        "edges": 1190,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0538,
+        "churn_gini": 0.3293,
+        "n_files": 390,
+        "mean_churn": 3.21
+      },
+      "enhanced": {
+        "agq_score": 0.828974377899502,
+        "agq_z": 1.2855,
+        "agq_percentile": 90.1,
+        "agq_size_adjusted": 0.8417,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1124,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 455
+      },
+      "runtime_ms": 35.0
+    },
+    {
+      "name": "beautifulsoup4",
+      "url": "https://github.com/wention/BeautifulSoup4.git",
+      "agq": {
+        "modularity": 0.4941999999999999,
+        "acyclicity": 1.0,
+        "stability": 0.465692233575693,
+        "cohesion": 0.6902985074626866,
+        "agq_score": 0.6625476852595948,
+        "nodes": 54,
+        "edges": 100,
+        "language": "Python"
+      },
+      "churn": null,
+      "enhanced": {
+        "agq_score": 0.6625476852595948,
+        "agq_z": -1.4031,
+        "agq_percentile": 8.0,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2615,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Python",
+        "nodes": 54
+      },
+      "runtime_ms": 7.3
+    },
+    {
+      "name": "lxml",
+      "url": "https://github.com/lxml/lxml.git",
+      "agq": {
+        "modularity": 0.5506188641222204,
+        "acyclicity": 1.0,
+        "stability": 0.9557760000000006,
+        "cohesion": 0.7411504424778761,
+        "agq_score": 0.8118863266500242,
+        "nodes": 140,
+        "edges": 271,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1026,
+        "churn_gini": 0.7241,
+        "n_files": 78,
+        "mean_churn": 9.551
+      },
+      "enhanced": {
+        "agq_score": 0.8118863266500242,
+        "agq_z": 1.0095,
+        "agq_percentile": 84.4,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1031,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 140
+      },
+      "runtime_ms": 35.1
+    },
+    {
+      "name": "tox",
+      "url": "https://github.com/tox-dev/tox.git",
+      "agq": {
+        "modularity": 0.45809396424899246,
+        "acyclicity": 1.0,
+        "stability": 0.8270918367346949,
+        "cohesion": 0.5327102803738317,
+        "agq_score": 0.7044740203393798,
+        "nodes": 260,
+        "edges": 899,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1184,
+        "churn_gini": 0.4996,
+        "n_files": 380,
+        "mean_churn": 4.089
+      },
+      "enhanced": {
+        "agq_score": 0.7044740203393798,
+        "agq_z": -0.7258,
+        "agq_percentile": 23.4,
+        "agq_size_adjusted": 0.7873,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1603,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 260
+      },
+      "runtime_ms": 10.3
+    },
+    {
+      "name": "nox",
+      "url": "https://github.com/wntrblm/nox.git",
+      "agq": {
+        "modularity": 0.4898099310258735,
+        "acyclicity": 1.0,
+        "stability": 0.6913580246913585,
+        "cohesion": 0.7159090909090908,
+        "agq_score": 0.7242692616565807,
+        "nodes": 90,
+        "edges": 179,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1087,
+        "churn_gini": 0.4797,
+        "n_files": 46,
+        "mean_churn": 9.87
+      },
+      "enhanced": {
+        "agq_score": 0.7242692616565807,
+        "agq_z": -0.406,
+        "agq_percentile": 34.2,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1946,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 90
+      },
+      "runtime_ms": 3.9
+    },
+    {
+      "name": "hypothesis",
+      "url": "https://github.com/HypothesisWorks/hypothesis.git",
+      "agq": {
+        "modularity": 0.5470550015282278,
+        "acyclicity": 1.0,
+        "stability": 0.23153249668401243,
+        "cohesion": 0.798951048951049,
+        "agq_score": 0.6443846367908224,
+        "nodes": 699,
+        "edges": 3123,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1022,
+        "churn_gini": 0.7823,
+        "n_files": 372,
+        "mean_churn": 13.688
+      },
+      "enhanced": {
+        "agq_score": 0.6443846367908224,
+        "agq_z": -1.6965,
+        "agq_percentile": 4.5,
+        "agq_size_adjusted": 0.6114,
+        "fingerprint": "FLAT",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.3211,
+          "churn_risk_level": "CRITICAL",
+          "message": "Critical: architecture structure strongly predicts churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 699
+      },
+      "runtime_ms": 27.6
+    },
+    {
+      "name": "responses",
+      "url": "https://github.com/getsentry/responses.git",
+      "agq": {
+        "modularity": 0.5795932992923046,
+        "acyclicity": 1.0,
+        "stability": 0.6778670562454351,
+        "cohesion": 0.6029411764705883,
+        "agq_score": 0.715100383002082,
+        "nodes": 38,
+        "edges": 61,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.2143,
+        "churn_gini": 0.5369,
+        "n_files": 14,
+        "mean_churn": 4.429
+      },
+      "enhanced": {
+        "agq_score": 0.715100383002082,
+        "agq_z": -0.5541,
+        "agq_percentile": 29.0,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1807,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 38
+      },
+      "runtime_ms": 8.6
+    },
+    {
+      "name": "sentry-sdk",
+      "url": "https://github.com/getsentry/sentry-python.git",
+      "agq": {
+        "modularity": 0.47783637532220097,
+        "acyclicity": 0.9944320712694877,
+        "stability": 0.40167005722372146,
+        "cohesion": 0.7416918429003021,
+        "agq_score": 0.6539075866789281,
+        "nodes": 898,
+        "edges": 3186,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1133,
+        "churn_gini": 0.639,
+        "n_files": 362,
+        "mean_churn": 11.099
+      },
+      "enhanced": {
+        "agq_score": 0.6539075866789281,
+        "agq_z": -1.5427,
+        "agq_percentile": 6.1,
+        "agq_size_adjusted": 0.5976,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0056,
+          "severity_pct": 0.6,
+          "severity_level": "LOW",
+          "message": "Minor cycles: <1% of modules involved. Easy to fix."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.2867,
+          "churn_risk_level": "HIGH",
+          "message": "High risk: architectural issues likely causing hotspot files."
+        },
+        "language": "Python",
+        "nodes": 898
+      },
+      "runtime_ms": 30.0
+    },
+    {
+      "name": "kombu",
+      "url": "https://github.com/celery/kombu.git",
+      "agq": {
+        "modularity": 0.5153120314736032,
+        "acyclicity": 1.0,
+        "stability": 0.8519502603889905,
+        "cohesion": 0.48655913978494625,
+        "agq_score": 0.713455357911885,
+        "nodes": 227,
+        "edges": 453,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1579,
+        "churn_gini": 0.5805,
+        "n_files": 95,
+        "mean_churn": 5.147
+      },
+      "enhanced": {
+        "agq_score": 0.713455357911885,
+        "agq_z": -0.5807,
+        "agq_percentile": 28.1,
+        "agq_size_adjusted": 0.8173,
+        "fingerprint": "MODERATE",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1414,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 227
+      },
+      "runtime_ms": 12.9
+    },
+    {
+      "name": "peewee",
+      "url": "https://github.com/coleifer/peewee.git",
+      "agq": {
+        "modularity": 0.5244797649537304,
+        "acyclicity": 1.0,
+        "stability": 0.8694103520042256,
+        "cohesion": 0.7814029363784666,
+        "agq_score": 0.7938232633341057,
+        "nodes": 194,
+        "edges": 473,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1062,
+        "churn_gini": 0.5416,
+        "n_files": 113,
+        "mean_churn": 5.504
+      },
+      "enhanced": {
+        "agq_score": 0.7938232633341057,
+        "agq_z": 0.7177,
+        "agq_percentile": 76.4,
+        "agq_size_adjusted": 0.9365,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1343,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 194
+      },
+      "runtime_ms": 38.4
+    },
+    {
+      "name": "alembic",
+      "url": "https://github.com/sqlalchemy/alembic.git",
+      "agq": {
+        "modularity": 0.5346116243158539,
+        "acyclicity": 1.0,
+        "stability": 0.9242697157177542,
+        "cohesion": 0.5515873015873016,
+        "agq_score": 0.7526171604052274,
+        "nodes": 161,
+        "edges": 382,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1472,
+        "churn_gini": 0.5126,
+        "n_files": 163,
+        "mean_churn": 4.337
+      },
+      "enhanced": {
+        "agq_score": 0.7526171604052274,
+        "agq_z": 0.052,
+        "agq_percentile": 52.1,
+        "agq_size_adjusted": 0.9205,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1158,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 161
+      },
+      "runtime_ms": 9.7
+    },
+    {
+      "name": "textual",
+      "url": "https://github.com/Textualize/textual.git",
+      "agq": {
+        "modularity": 0.5735760531692548,
+        "acyclicity": 1.0,
+        "stability": 0.9861872239124138,
+        "cohesion": 0.6529745042492918,
+        "agq_score": 0.8031844453327401,
+        "nodes": 523,
+        "edges": 1894,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0984,
+        "churn_gini": 0.7748,
+        "n_files": 630,
+        "mean_churn": 10.27
+      },
+      "enhanced": {
+        "agq_score": 0.8031844453327401,
+        "agq_z": 0.8689,
+        "agq_percentile": 80.8,
+        "agq_size_adjusted": 0.7974,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.0894,
+          "churn_risk_level": "LOW",
+          "message": "Low architectural risk of churn hotspots."
+        },
+        "language": "Python",
+        "nodes": 523
+      },
+      "runtime_ms": 36.9
+    },
+    {
+      "name": "yt-dlp",
+      "url": "https://github.com/yt-dlp/yt-dlp.git",
+      "agq": {
+        "modularity": 0.6231815094412835,
+        "acyclicity": 1.0,
+        "stability": 0.8701288716651742,
+        "cohesion": 0.8599028716216216,
+        "agq_score": 0.8383033131820198,
+        "nodes": 1337,
+        "edges": 2270,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0578,
+        "churn_gini": 0.5522,
+        "n_files": 1229,
+        "mean_churn": 3.557
+      },
+      "enhanced": {
+        "agq_score": 0.8383033131820198,
+        "agq_z": 1.4362,
+        "agq_percentile": 92.5,
+        "agq_size_adjusted": 0.7238,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1143,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 1337
+      },
+      "runtime_ms": 81.0
+    },
+    {
+      "name": "supervisor",
+      "url": "https://github.com/Supervisor/supervisor.git",
+      "agq": {
+        "modularity": 0.47124494611633483,
+        "acyclicity": 1.0,
+        "stability": 0.933222268499237,
+        "cohesion": 0.6245901639344262,
+        "agq_score": 0.7572643446374996,
+        "nodes": 167,
+        "edges": 399,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1364,
+        "churn_gini": 0.4967,
+        "n_files": 22,
+        "mean_churn": 2.5
+      },
+      "enhanced": {
+        "agq_score": 0.7572643446374996,
+        "agq_z": 0.127,
+        "agq_percentile": 55.1,
+        "agq_size_adjusted": 0.9195,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1258,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 167
+      },
+      "runtime_ms": 20.8
+    },
+    {
+      "name": "locust",
+      "url": "https://github.com/locustio/locust.git",
+      "agq": {
+        "modularity": 0.4565398135703283,
+        "acyclicity": 1.0,
+        "stability": 0.871111111111112,
+        "cohesion": 0.736842105263158,
+        "agq_score": 0.7661232574861495,
+        "nodes": 256,
+        "edges": 561,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1006,
+        "churn_gini": 0.669,
+        "n_files": 358,
+        "mean_churn": 5.816
+      },
+      "enhanced": {
+        "agq_score": 0.7661232574861495,
+        "agq_z": 0.2702,
+        "agq_percentile": 60.6,
+        "agq_size_adjusted": 0.8586,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1474,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 256
+      },
+      "runtime_ms": 26.5
+    },
+    {
+      "name": "whoosh",
+      "url": "https://github.com/mchaput/whoosh.git",
+      "agq": {
+        "modularity": 0.4381567850429297,
+        "acyclicity": 1.0,
+        "stability": 0.9880147146078084,
+        "cohesion": 0.6415730337078651,
+        "agq_score": 0.7669361333396508,
+        "nodes": 200,
+        "edges": 405,
+        "language": "Python"
+      },
+      "churn": null,
+      "enhanced": {
+        "agq_score": 0.7669361333396508,
+        "agq_z": 0.2833,
+        "agq_percentile": 61.2,
+        "agq_size_adjusted": 0.8996,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.116,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 200
+      },
+      "runtime_ms": 10.9
+    },
+    {
+      "name": "bottle",
+      "url": "https://github.com/bottlepy/bottle.git",
+      "agq": {
+        "modularity": 0.5299408284023672,
+        "acyclicity": 1.0,
+        "stability": 0.9194193747560371,
+        "cohesion": 0.7476190476190476,
+        "agq_score": 0.799244812694363,
+        "nodes": 73,
+        "edges": 130,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1026,
+        "churn_gini": 0.5699,
+        "n_files": 39,
+        "mean_churn": 4.282
+      },
+      "enhanced": {
+        "agq_score": 0.799244812694363,
+        "agq_z": 0.8052,
+        "agq_percentile": 79.0,
+        "agq_size_adjusted": 1.0,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1182,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 73
+      },
+      "runtime_ms": 15.3
+    },
+    {
+      "name": "falcon",
+      "url": "https://github.com/falconry/falcon.git",
+      "agq": {
+        "modularity": 0.4358883044780481,
+        "acyclicity": 1.0,
+        "stability": 0.9399864659777069,
+        "cohesion": 0.8656914893617021,
+        "agq_score": 0.8103915649543643,
+        "nodes": 197,
+        "edges": 468,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1293,
+        "churn_gini": 0.5182,
+        "n_files": 317,
+        "mean_churn": 4.047
+      },
+      "enhanced": {
+        "agq_score": 0.8103915649543643,
+        "agq_z": 0.9853,
+        "agq_percentile": 83.8,
+        "agq_size_adjusted": 0.9533,
+        "fingerprint": "LAYERED",
+        "cycle_severity": {
+          "severity_ratio": 0.0,
+          "severity_pct": 0.0,
+          "severity_level": "NONE",
+          "message": "No cyclic dependencies detected."
+        },
+        "churn_risk": {
+          "churn_risk_score": 0.1308,
+          "churn_risk_level": "MEDIUM",
+          "message": "Moderate risk of uneven change distribution."
+        },
+        "language": "Python",
+        "nodes": 197
+      },
+      "runtime_ms": 9.0
+    }
+  ]
+}
