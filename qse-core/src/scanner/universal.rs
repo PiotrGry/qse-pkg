@@ -110,9 +110,9 @@ fn detect_language(dir: &Path) -> Option<Language> {
         }
     }
 
-    // If nothing found in shallow scan, do a deeper recursive scan
+    // If nothing found in shallow scan, do a deeper recursive scan (up to 6 levels)
     if py == 0 && java == 0 && go == 0 {
-        for entry in walkdir_shallow(dir, 4) {
+        for entry in walkdir_shallow(dir, 6) {
             match entry.extension().and_then(|s| s.to_str()) {
                 Some("py")   => py   += 1,
                 Some("java") => java += 1,
@@ -182,21 +182,26 @@ fn collect_recursive(dir: &Path, ext: &str, out: &mut Vec<PathBuf>) {
         let path = entry.path();
         if path.is_dir() {
             let name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            // Skip hidden dirs and build/cache artifacts only — match Python scanner.py behavior
+            // Skip hidden dirs, build artifacts, and test directories for Java
             if name.starts_with('.')
                 || matches!(name, "node_modules" | "target" | "__pycache__" | ".git")
             {
                 continue;
             }
+            // For Java: skip test source directories
+            if ext == "java" && matches!(name, "test" | "tests" | "androidTest" | "testFixtures") {
+                continue;
+            }
             collect_recursive(&path, ext, out);
         } else if path.extension().and_then(|e| e.to_str()) == Some(ext) {
             let fname = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            // Only skip __init__.py — same as Python scanner.py
+            // Python: skip __init__.py only
             if ext == "py" && fname == "__init__.py" {
                 continue;
             }
             out.push(path);
         }
+        // Note: for Java, test dirs (src/test/) are skipped at dir level below
     }
 }
 
@@ -581,17 +586,20 @@ struct FileResult {
 /// Go:     repo root is typically correct
 fn find_source_root(base: &Path) -> PathBuf {
     let name = base.file_name().and_then(|n| n.to_str()).unwrap_or("");
-    // Java Maven/Gradle layout first
-    let java_candidates = [
-        base.join("src").join("main").join("java"),
-        base.join("src").join("main"),
-    ];
-    for c in &java_candidates {
-        if c.is_dir() && walkdir_shallow(c, 2).iter()
-            .any(|p| p.extension().and_then(|e| e.to_str()) == Some("java"))
-        {
-            return c.clone();
-        }
+    // Java Maven/Gradle layout: try root src/main/java first,
+    // then scan for multi-module projects (each sub-module has own src/main/java)
+    let java_root = base.join("src").join("main").join("java");
+    if java_root.is_dir() && walkdir_shallow(&java_root, 2).iter()
+        .any(|p| p.extension().and_then(|e| e.to_str()) == Some("java"))
+    {
+        return java_root;
+    }
+    // Multi-module: if any .java files exist anywhere, use repo root
+    // (collect_files will recurse and find all src/main/java subtrees)
+    if walkdir_shallow(base, 4).iter()
+        .any(|p| p.extension().and_then(|e| e.to_str()) == Some("java"))
+    {
+        return base.to_path_buf();
     }
     // Python layout
     let py_candidates = [
