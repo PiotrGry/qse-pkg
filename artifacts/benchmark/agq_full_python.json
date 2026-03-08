@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-03-08T02:07:43.824654+00:00",
+  "repos_file": "/dev/fd/63",
+  "repos_total": 10,
+  "repos_ok": 10,
+  "agq_mean": 0.7366,
+  "agq_spread": 0.1965,
+  "agq_std": 0.0559,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": -0.3455,
+      "p": 0.3282,
+      "n": 10
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": 0.0909,
+      "p": 0.8028,
+      "n": 10
+    }
+  },
+  "results": [
+    {
+      "name": "fastapi",
+      "url": "",
+      "agq": {
+        "modularity": 0.556858473236789,
+        "acyclicity": 1.0,
+        "stability": 0.8367788461538461,
+        "cohesion": 0.7880434782608696,
+        "agq_score": 0.7954201994128761,
+        "nodes": 145,
+        "edges": 306,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0756,
+        "churn_gini": 0.5634,
+        "n_files": 2885,
+        "mean_churn": 4.071
+      },
+      "runtime_ms": 19.8
+    },
+    {
+      "name": "requests",
+      "url": "",
+      "agq": {
+        "modularity": 0.811980609418283,
+        "acyclicity": 1.0,
+        "stability": 0.6485207100591714,
+        "cohesion": 0.44999999999999996,
+        "agq_score": 0.7276253298693636,
+        "nodes": 67,
+        "edges": 76,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1905,
+        "churn_gini": 0.5257,
+        "n_files": 42,
+        "mean_churn": 3.976
+      },
+      "runtime_ms": 4.4
+    },
+    {
+      "name": "airflow",
+      "url": "",
+      "agq": {
+        "modularity": 0.7624463337323494,
+        "acyclicity": 1.0,
+        "stability": 0.46353892142904884,
+        "cohesion": 0.6053453661922943,
+        "agq_score": 0.7078326553384231,
+        "nodes": 8017,
+        "edges": 36498,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1099,
+        "churn_gini": 0.6166,
+        "n_files": 15481,
+        "mean_churn": 5.276
+      },
+      "runtime_ms": 450.0
+    },
+    {
+      "name": "scikit-learn",
+      "url": "",
+      "agq": {
+        "modularity": 0.6910294919638468,
+        "acyclicity": 0.9889455782312925,
+        "stability": 0.8160238451431403,
+        "cohesion": 0.7042341220423411,
+        "agq_score": 0.8000582593451552,
+        "nodes": 1176,
+        "edges": 7968,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1041,
+        "churn_gini": 0.6026,
+        "n_files": 1642,
+        "mean_churn": 5.419
+      },
+      "runtime_ms": 141.0
+    },
+    {
+      "name": "django",
+      "url": "",
+      "agq": {
+        "modularity": 0.5217470734781254,
+        "acyclicity": 1.0,
+        "stability": 0.973300183763917,
+        "cohesion": 0.6794453507340946,
+        "agq_score": 0.7936231519940342,
+        "nodes": 1229,
+        "edges": 3674,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1087,
+        "churn_gini": 0.5358,
+        "n_files": 1518,
+        "mean_churn": 3.696
+      },
+      "runtime_ms": 66.5
+    },
+    {
+      "name": "ansible",
+      "url": "",
+      "agq": {
+        "modularity": 0.5005127073432781,
+        "acyclicity": 1.0,
+        "stability": 0.22289939176146256,
+        "cohesion": 0.6907706945765937,
+        "agq_score": 0.6035456984203336,
+        "nodes": 2155,
+        "edges": 6352,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0903,
+        "churn_gini": 0.4283,
+        "n_files": 1429,
+        "mean_churn": 2.676
+      },
+      "runtime_ms": 76.1
+    },
+    {
+      "name": "celery",
+      "url": "",
+      "agq": {
+        "modularity": 0.4614379709946948,
+        "acyclicity": 1.0,
+        "stability": 0.9330660285843599,
+        "cohesion": 0.4808558558558559,
+        "agq_score": 0.7188399638587276,
+        "nodes": 420,
+        "edges": 1210,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1388,
+        "churn_gini": 0.5934,
+        "n_files": 209,
+        "mean_churn": 4.455
+      },
+      "runtime_ms": 25.2
+    },
+    {
+      "name": "flask",
+      "url": "",
+      "agq": {
+        "modularity": 0.5227377654662972,
+        "acyclicity": 1.0,
+        "stability": 0.7373438166839271,
+        "cohesion": 0.5777777777777777,
+        "agq_score": 0.7094648399820005,
+        "nodes": 79,
+        "edges": 152,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1379,
+        "churn_gini": 0.5965,
+        "n_files": 116,
+        "mean_churn": 4.578
+      },
+      "runtime_ms": 5.3
+    },
+    {
+      "name": "pandas",
+      "url": "",
+      "agq": {
+        "modularity": 0.6604163171694213,
+        "acyclicity": 1.0,
+        "stability": 0.9873377949539696,
+        "cohesion": 0.33172720533728683,
+        "agq_score": 0.7448703293651695,
+        "nodes": 1721,
+        "edges": 9379,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1096,
+        "churn_gini": 0.7028,
+        "n_files": 666,
+        "mean_churn": 10.728
+      },
+      "runtime_ms": 144.1
+    },
+    {
+      "name": "scrapy",
+      "url": "",
+      "agq": {
+        "modularity": 0.4926053612038534,
+        "acyclicity": 1.0,
+        "stability": 0.9739668561501881,
+        "cohesion": 0.5913043478260869,
+        "agq_score": 0.7644691412950322,
+        "nodes": 417,
+        "edges": 1660,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1128,
+        "churn_gini": 0.48,
+        "n_files": 266,
+        "mean_churn": 8.335
+      },
+      "runtime_ms": 10.9
+    }
+  ]
+}

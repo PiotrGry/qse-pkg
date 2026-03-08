@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-03-08T02:07:44.325182+00:00",
+  "repos_file": "/dev/fd/63",
+  "repos_total": 10,
+  "repos_ok": 10,
+  "agq_mean": 0.6404,
+  "agq_spread": 0.3253,
+  "agq_std": 0.1077,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": -0.1273,
+      "p": 0.7261,
+      "n": 10
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": -0.6,
+      "p": 0.0667,
+      "n": 10
+    }
+  },
+  "results": [
+    {
+      "name": "resilience4j",
+      "url": "",
+      "agq": {
+        "modularity": 0.7751506167810707,
+        "acyclicity": 0.9943548387096774,
+        "stability": 0.9913305952370794,
+        "cohesion": 0.368,
+        "agq_score": 0.7822090126819569,
+        "nodes": 1240,
+        "edges": 5703,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1034,
+        "churn_gini": 0.2585,
+        "n_files": 232,
+        "mean_churn": 1.453
+      },
+      "runtime_ms": 50.1
+    },
+    {
+      "name": "log4j",
+      "url": "",
+      "agq": {
+        "modularity": 0.6871021081118848,
+        "acyclicity": 0.967686342093925,
+        "stability": 0.961470440181869,
+        "cohesion": 0.31517183570829843,
+        "agq_score": 0.7328576815239943,
+        "nodes": 2321,
+        "edges": 10711,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0577,
+        "churn_gini": 0.3684,
+        "n_files": 4297,
+        "mean_churn": 1.68
+      },
+      "runtime_ms": 65.4
+    },
+    {
+      "name": "mockito",
+      "url": "",
+      "agq": {
+        "modularity": 0.6326138642854328,
+        "acyclicity": 0.8679245283018868,
+        "stability": 0.24943310657596354,
+        "cohesion": 0.47435897435897434,
+        "agq_score": 0.5560826183805644,
+        "nodes": 901,
+        "edges": 2532,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0533,
+        "churn_gini": 0.3577,
+        "n_files": 713,
+        "mean_churn": 1.62
+      },
+      "runtime_ms": 42.1
+    },
+    {
+      "name": "junit5",
+      "url": "",
+      "agq": {
+        "modularity": 0.6038291627078004,
+        "acyclicity": 0.9976190476190476,
+        "stability": 0.9131904468675873,
+        "cohesion": 0.3324132492113565,
+        "agq_score": 0.7117629766014479,
+        "nodes": 1680,
+        "edges": 7945,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0847,
+        "churn_gini": 0.4973,
+        "n_files": 1570,
+        "mean_churn": 5.875
+      },
+      "runtime_ms": 119.1
+    },
+    {
+      "name": "hibernate-orm",
+      "url": "",
+      "agq": {
+        "modularity": 0.8342201677937154,
+        "acyclicity": 0.8401913875598086,
+        "stability": 0.2113534789517995,
+        "cohesion": 0.3018490754622689,
+        "agq_score": 0.5469035274418981,
+        "nodes": 10450,
+        "edges": 67759,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0941,
+        "churn_gini": 0.4697,
+        "n_files": 8574,
+        "mean_churn": 5.398
+      },
+      "runtime_ms": 602.8
+    },
+    {
+      "name": "jackson-databind",
+      "url": "",
+      "agq": {
+        "modularity": 0.637443184994053,
+        "acyclicity": 0.8504027617951668,
+        "stability": 0.26297577854671284,
+        "cohesion": 0.1606796116504854,
+        "agq_score": 0.4778753342466045,
+        "nodes": 869,
+        "edges": 4003,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0952,
+        "churn_gini": 0.6371,
+        "n_files": 704,
+        "mean_churn": 4.963
+      },
+      "runtime_ms": 23.0
+    },
+    {
+      "name": "guava",
+      "url": "",
+      "agq": {
+        "modularity": 0.6664518879504792,
+        "acyclicity": 1.0,
+        "stability": 0.7028285129444712,
+        "cohesion": 0.19948921679909193,
+        "agq_score": 0.6421924044235106,
+        "nodes": 1831,
+        "edges": 10744,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1052,
+        "churn_gini": 0.4568,
+        "n_files": 2073,
+        "mean_churn": 5.087
+      },
+      "runtime_ms": 85.1
+    },
+    {
+      "name": "netty",
+      "url": "",
+      "agq": {
+        "modularity": 0.6792568284646984,
+        "acyclicity": 0.9987376925018935,
+        "stability": 0.5476546828637963,
+        "cohesion": 0.27611596870685684,
+        "agq_score": 0.6254412931343112,
+        "nodes": 3961,
+        "edges": 18163,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0584,
+        "churn_gini": 0.7253,
+        "n_files": 1917,
+        "mean_churn": 4.959
+      },
+      "runtime_ms": 110.1
+    },
+    {
+      "name": "spring-boot",
+      "url": "",
+      "agq": {
+        "modularity": 0.7483029683940597,
+        "acyclicity": 0.9994588158891655,
+        "stability": 0.9431720099166025,
+        "cohesion": 0.5217256362507758,
+        "agq_score": 0.8031648576126509,
+        "nodes": 9239,
+        "edges": 35962,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0634,
+        "churn_gini": 0.454,
+        "n_files": 18141,
+        "mean_churn": 2.257
+      },
+      "runtime_ms": 210.8
+    },
+    {
+      "name": "grpc-java",
+      "url": "",
+      "agq": {
+        "modularity": 0.6551186543271859,
+        "acyclicity": 1.0,
+        "stability": 0.17773166453698427,
+        "cohesion": 0.2697784810126582,
+        "agq_score": 0.525657199969207,
+        "nodes": 2553,
+        "edges": 11945,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0918,
+        "churn_gini": 0.5491,
+        "n_files": 915,
+        "mean_churn": 3.718
+      },
+      "runtime_ms": 47.8
+    }
+  ]
+}

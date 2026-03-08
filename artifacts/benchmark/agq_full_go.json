@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-03-08T02:07:44.372072+00:00",
+  "repos_file": "/dev/fd/63",
+  "repos_total": 10,
+  "repos_ok": 10,
+  "agq_mean": 0.8246,
+  "agq_spread": 0.2354,
+  "agq_std": 0.0688,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": -0.1394,
+      "p": 0.7009,
+      "n": 10
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": -0.3091,
+      "p": 0.3848,
+      "n": 10
+    }
+  },
+  "results": [
+    {
+      "name": "hugo",
+      "url": "",
+      "agq": {
+        "modularity": 0.5793839869105363,
+        "acyclicity": 1.0,
+        "stability": 0.9826077453681297,
+        "cohesion": 1.0,
+        "agq_score": 0.8904979330696665,
+        "nodes": 1284,
+        "edges": 5843,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0738,
+        "churn_gini": 0.497,
+        "n_files": 3319,
+        "mean_churn": 3.072
+      },
+      "runtime_ms": 48.8
+    },
+    {
+      "name": "kubernetes",
+      "url": "",
+      "agq": {
+        "modularity": 0.5134949963802203,
+        "acyclicity": 1.0,
+        "stability": 0.10692080943106251,
+        "cohesion": 1.0,
+        "agq_score": 0.6551039514528207,
+        "nodes": 20237,
+        "edges": 101336,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.077,
+        "churn_gini": 0.5599,
+        "n_files": 18508,
+        "mean_churn": 3.35
+      },
+      "runtime_ms": 1247.8
+    },
+    {
+      "name": "gin",
+      "url": "",
+      "agq": {
+        "modularity": 0.46534412996013863,
+        "acyclicity": 1.0,
+        "stability": 0.9556545706261618,
+        "cohesion": 1.0,
+        "agq_score": 0.8552496751465751,
+        "nodes": 167,
+        "edges": 516,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.113,
+        "churn_gini": 0.6231,
+        "n_files": 115,
+        "mean_churn": 5.2
+      },
+      "runtime_ms": 20.1
+    },
+    {
+      "name": "terraform",
+      "url": "",
+      "agq": {
+        "modularity": 0.4645481834923062,
+        "acyclicity": 1.0,
+        "stability": 0.5400598377445525,
+        "cohesion": 1.0,
+        "agq_score": 0.7511520053092147,
+        "nodes": 2346,
+        "edges": 12330,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0963,
+        "churn_gini": 0.5859,
+        "n_files": 3262,
+        "mean_churn": 4.283
+      },
+      "runtime_ms": 224.6
+    },
+    {
+      "name": "prometheus",
+      "url": "",
+      "agq": {
+        "modularity": 0.513657354605206,
+        "acyclicity": 1.0,
+        "stability": 0.9651684628355317,
+        "cohesion": 1.0,
+        "agq_score": 0.8697064543601845,
+        "nodes": 1078,
+        "edges": 6090,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1138,
+        "churn_gini": 0.6944,
+        "n_files": 1283,
+        "mean_churn": 8.228
+      },
+      "runtime_ms": 90.4
+    },
+    {
+      "name": "cobra",
+      "url": "",
+      "agq": {
+        "modularity": 0.3899907663896581,
+        "acyclicity": 1.0,
+        "stability": 0.9627991675338189,
+        "cohesion": 1.0,
+        "agq_score": 0.8381974834808692,
+        "nodes": 62,
+        "edges": 190,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.2162,
+        "churn_gini": 0.4767,
+        "n_files": 37,
+        "mean_churn": 3.432
+      },
+      "runtime_ms": 12.1
+    },
+    {
+      "name": "etcd",
+      "url": "",
+      "agq": {
+        "modularity": 0.46264954494296134,
+        "acyclicity": 1.0,
+        "stability": 0.8996917950853801,
+        "cohesion": 1.0,
+        "agq_score": 0.8405853350070853,
+        "nodes": 1448,
+        "edges": 7036,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0693,
+        "churn_gini": 0.7869,
+        "n_files": 794,
+        "mean_churn": 9.742
+      },
+      "runtime_ms": 118.5
+    },
+    {
+      "name": "grpc-go",
+      "url": "",
+      "agq": {
+        "modularity": 0.6230240194903153,
+        "acyclicity": 1.0,
+        "stability": 0.8616201560356667,
+        "cohesion": 1.0,
+        "agq_score": 0.8711610438814954,
+        "nodes": 1412,
+        "edges": 9275,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1358,
+        "churn_gini": 0.5466,
+        "n_files": 1186,
+        "mean_churn": 4.446
+      },
+      "runtime_ms": 70.6
+    },
+    {
+      "name": "traefik",
+      "url": "",
+      "agq": {
+        "modularity": 0.6776701215190145,
+        "acyclicity": 1.0,
+        "stability": 0.5168374759799451,
+        "cohesion": 1.0,
+        "agq_score": 0.7986268993747399,
+        "nodes": 1215,
+        "edges": 5696,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1013,
+        "churn_gini": 0.5651,
+        "n_files": 2082,
+        "mean_churn": 3.496
+      },
+      "runtime_ms": 42.1
+    },
+    {
+      "name": "vault",
+      "url": "",
+      "agq": {
+        "modularity": 0.5186739187254753,
+        "acyclicity": 1.0,
+        "stability": 0.9847311747263461,
+        "cohesion": 1.0,
+        "agq_score": 0.8758512733629553,
+        "nodes": 2919,
+        "edges": 16470,
+        "language": "Go"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0504,
+        "churn_gini": 0.3835,
+        "n_files": 13285,
+        "mean_churn": 3.077
+      },
+      "runtime_ms": 137.8
+    }
+  ]
+}
