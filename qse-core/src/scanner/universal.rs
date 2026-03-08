@@ -7,6 +7,7 @@ use std::collections::{HashMap, HashSet};
 use std::path::{Path, PathBuf};
 use petgraph::graph::DiGraph;
 use petgraph::graph::NodeIndex;
+use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use tree_sitter::{Language as TSLanguage, Parser, Node};
 
@@ -143,28 +144,18 @@ fn collect_recursive(dir: &Path, ext: &str, out: &mut Vec<PathBuf>) {
         let path = entry.path();
         if path.is_dir() {
             let name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            // Skip hidden, build, cache and test directories
+            // Skip hidden dirs and build/cache artifacts only — match Python scanner.py behavior
             if name.starts_with('.')
-                || matches!(name,
-                    "node_modules" | "target" | "__pycache__" | ".git"
-                    | "tests" | "test" | "testing" | "benchmarks"
-                    | "docs" | "doc" | "examples" | "example"
-                    | "vendor" | "third_party" | "fixtures" | "scripts")
+                || matches!(name, "node_modules" | "target" | "__pycache__" | ".git")
             {
                 continue;
             }
             collect_recursive(&path, ext, out);
         } else if path.extension().and_then(|e| e.to_str()) == Some(ext) {
             let fname = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            // Skip test files, __init__.py, setup files
-            if ext == "py" {
-                if fname == "__init__.py"
-                    || fname.starts_with("test_")
-                    || fname.ends_with("_test.py")
-                    || matches!(fname, "setup.py" | "conftest.py" | "noxfile.py")
-                {
-                    continue;
-                }
+            // Only skip __init__.py — same as Python scanner.py
+            if ext == "py" && fname == "__init__.py" {
+                continue;
             }
             out.push(path);
         }
@@ -539,6 +530,13 @@ fn extract_go_struct(node: Node, source: &str, file: &Path) -> Option<ClassInfo>
 // Main scan_repo function
 // ---------------------------------------------------------------------------
 
+/// Per-file parse result (produced in parallel, merged serially)
+struct FileResult {
+    mod_path: String,
+    imports: Vec<String>,
+    classes: Vec<ClassInfo>,
+}
+
 pub fn scan_repo(base_dir: &str) -> ScanResult {
     let base = Path::new(base_dir);
     let lang = detect_language(base).unwrap_or(Language::Python);
@@ -547,54 +545,49 @@ pub fn scan_repo(base_dir: &str) -> ScanResult {
 
     let files = collect_files(base, ext);
 
-    let mut graph: DiGraph<String, ()> = DiGraph::new();
-    let mut node_index: HashMap<String, NodeIndex> = HashMap::new();
-    let mut classes: HashMap<String, ClassInfo> = HashMap::new();
-
-    // Helper: get or create node
-    let get_node = |g: &mut DiGraph<String, ()>,
-                        idx: &mut HashMap<String, NodeIndex>,
-                        name: String| -> NodeIndex {
-        if let Some(&ni) = idx.get(&name) {
-            ni
-        } else {
-            let ni = g.add_node(name.clone());
-            idx.insert(name, ni);
-            ni
-        }
-    };
-
-    let mut parser = Parser::new();
-    parser.set_language(&ts_lang).expect("Failed to set language");
-
-    let mut scanned_files = Vec::new();
-
-    for file_path in &files {
-        let Ok(source) = std::fs::read(file_path) else { continue };
-
-        let Some(tree) = parser.parse(&source, None) else { continue };
-
+    // Parse files in parallel using rayon — each thread gets its own Parser
+    let file_results: Vec<FileResult> = files.par_iter().filter_map(|file_path| {
+        let Ok(source) = std::fs::read(file_path) else { return None };
+        let mut parser = Parser::new();
+        parser.set_language(&ts_lang).ok()?;
+        let tree = parser.parse(&source, None)?;
         let mod_path = module_path(file_path, base, &lang);
-        let src_node = get_node(&mut graph, &mut node_index, mod_path.clone());
-
-        let (imports, file_classes) = match lang {
+        let (imports, classes) = match lang {
             Language::Python => extract_python(&source, &tree, file_path, base),
             Language::Java   => extract_java(&source, &tree, file_path, base),
             Language::Go     => extract_go(&source, &tree, file_path, base),
         };
+        Some(FileResult { mod_path, imports, classes })
+    }).collect();
 
-        for imp in imports {
+    // Merge results into graph (serial — graph is not thread-safe)
+    let mut graph: DiGraph<String, ()> = DiGraph::new();
+    let mut node_index: HashMap<String, NodeIndex> = HashMap::new();
+    let mut classes: HashMap<String, ClassInfo> = HashMap::new();
+
+    let get_node = |g: &mut DiGraph<String, ()>,
+                        idx: &mut HashMap<String, NodeIndex>,
+                        name: String| -> NodeIndex {
+        if let Some(&ni) = idx.get(&name) { ni }
+        else { let ni = g.add_node(name.clone()); idx.insert(name, ni); ni }
+    };
+
+    let mut scanned_files = Vec::new();
+
+    for fr in file_results {
+        let src_node = get_node(&mut graph, &mut node_index, fr.mod_path.clone());
+        for imp in fr.imports {
             let tgt_node = get_node(&mut graph, &mut node_index, imp);
             if src_node != tgt_node && !graph.contains_edge(src_node, tgt_node) {
                 graph.add_edge(src_node, tgt_node, ());
             }
         }
 
-        for cls in file_classes {
+        for cls in fr.classes {
             classes.insert(cls.name.clone(), cls);
         }
 
-        scanned_files.push(file_path.clone());
+        scanned_files.push(PathBuf::from(&fr.mod_path));
     }
 
     ScanResult {
