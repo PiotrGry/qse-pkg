@@ -1,0 +1,1688 @@
+{
+  "generated_at": "2026-03-08T02:21:48.153744+00:00",
+  "repos_file": "scripts/repos_oss80_benchmark.json",
+  "repos_total": 80,
+  "repos_ok": 80,
+  "agq_mean": 0.751,
+  "agq_spread": 0.4193,
+  "agq_std": 0.0631,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": -0.1297,
+      "p": 0.2609,
+      "n": 77
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": -0.0382,
+      "p": 0.7417,
+      "n": 77
+    }
+  },
+  "results": [
+    {
+      "name": "httpx",
+      "url": "https://github.com/encode/httpx.git",
+      "agq": {
+        "modularity": 0.6204000000000002,
+        "acyclicity": 1.0,
+        "stability": 0.8140816326530605,
+        "cohesion": 0.6984126984126984,
+        "agq_score": 0.7832235827664398,
+        "nodes": 70,
+        "edges": 100,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0682,
+        "churn_gini": 0.4255,
+        "n_files": 44,
+        "mean_churn": 4.068
+      },
+      "runtime_ms": 10.1
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git",
+      "agq": {
+        "modularity": 0.8119806094182827,
+        "acyclicity": 1.0,
+        "stability": 0.6485207100591714,
+        "cohesion": 0.44999999999999996,
+        "agq_score": 0.7276253298693636,
+        "nodes": 67,
+        "edges": 76,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1905,
+        "churn_gini": 0.5257,
+        "n_files": 42,
+        "mean_churn": 3.976
+      },
+      "runtime_ms": 5.0
+    },
+    {
+      "name": "urllib3",
+      "url": "https://github.com/urllib3/urllib3.git",
+      "agq": {
+        "modularity": 0.5059810223446586,
+        "acyclicity": 1.0,
+        "stability": 0.8779213238496154,
+        "cohesion": 0.5789473684210527,
+        "agq_score": 0.7407124286538317,
+        "nodes": 87,
+        "edges": 165,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1057,
+        "churn_gini": 0.5657,
+        "n_files": 123,
+        "mean_churn": 4.748
+      },
+      "runtime_ms": 8.7
+    },
+    {
+      "name": "flask",
+      "url": "https://github.com/pallets/flask.git",
+      "agq": {
+        "modularity": 0.5432536934441369,
+        "acyclicity": 1.0,
+        "stability": 0.7373438166839267,
+        "cohesion": 0.5777777777777777,
+        "agq_score": 0.7145938219764603,
+        "nodes": 79,
+        "edges": 152,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1379,
+        "churn_gini": 0.5965,
+        "n_files": 116,
+        "mean_churn": 4.578
+      },
+      "runtime_ms": 9.6
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git",
+      "agq": {
+        "modularity": 0.4533897371494043,
+        "acyclicity": 1.0,
+        "stability": 0.763784744003893,
+        "cohesion": 0.6846153846153846,
+        "agq_score": 0.7254474664421704,
+        "nodes": 59,
+        "edges": 123,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1053,
+        "churn_gini": 0.5947,
+        "n_files": 133,
+        "mean_churn": 5.105
+      },
+      "runtime_ms": 15.1
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git",
+      "agq": {
+        "modularity": 0.5185992118549353,
+        "acyclicity": 0.99,
+        "stability": 0.9290098850847747,
+        "cohesion": 0.7511363636363636,
+        "agq_score": 0.7971863651440183,
+        "nodes": 200,
+        "edges": 744,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1243,
+        "churn_gini": 0.6453,
+        "n_files": 555,
+        "mean_churn": 9.168
+      },
+      "runtime_ms": 51.0
+    },
+    {
+      "name": "fastapi",
+      "url": "https://github.com/fastapi/fastapi.git",
+      "agq": {
+        "modularity": 0.4284605636008944,
+        "acyclicity": 1.0,
+        "stability": 0.8367788461538461,
+        "cohesion": 0.7880434782608696,
+        "agq_score": 0.7633207220039026,
+        "nodes": 145,
+        "edges": 306,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0756,
+        "churn_gini": 0.5634,
+        "n_files": 2885,
+        "mean_churn": 4.071
+      },
+      "runtime_ms": 10.5
+    },
+    {
+      "name": "rich",
+      "url": "https://github.com/Textualize/rich.git",
+      "agq": {
+        "modularity": 0.4880191055937449,
+        "acyclicity": 1.0,
+        "stability": 0.9467832847424686,
+        "cohesion": 0.7173076923076923,
+        "agq_score": 0.7880275206609765,
+        "nodes": 175,
+        "edges": 342,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.084,
+        "churn_gini": 0.5852,
+        "n_files": 119,
+        "mean_churn": 4.832
+      },
+      "runtime_ms": 19.9
+    },
+    {
+      "name": "pytest",
+      "url": "https://github.com/pytest-dev/pytest.git",
+      "agq": {
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0,
+        "agq_score": 0.875,
+        "nodes": 2,
+        "edges": 1,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1154,
+        "churn_gini": 0.6329,
+        "n_files": 546,
+        "mean_churn": 5.418
+      },
+      "runtime_ms": 1.3
+    },
+    {
+      "name": "sanic",
+      "url": "https://github.com/sanic-org/sanic.git",
+      "agq": {
+        "modularity": 0.34903888313137726,
+        "acyclicity": 1.0,
+        "stability": 0.9561505361655657,
+        "cohesion": 0.5897887323943662,
+        "agq_score": 0.7237445379228273,
+        "nodes": 322,
+        "edges": 896,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1348,
+        "churn_gini": 0.3861,
+        "n_files": 178,
+        "mean_churn": 2.427
+      },
+      "runtime_ms": 10.3
+    },
+    {
+      "name": "scrapy",
+      "url": "https://github.com/scrapy/scrapy.git",
+      "agq": {
+        "modularity": 0.47452533023660926,
+        "acyclicity": 1.0,
+        "stability": 0.9739668561501881,
+        "cohesion": 0.5913043478260869,
+        "agq_score": 0.7599491335532211,
+        "nodes": 417,
+        "edges": 1660,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1128,
+        "churn_gini": 0.48,
+        "n_files": 266,
+        "mean_churn": 8.335
+      },
+      "runtime_ms": 8.5
+    },
+    {
+      "name": "aiohttp",
+      "url": "https://github.com/aio-libs/aiohttp.git",
+      "agq": {
+        "modularity": 0.34222330047788024,
+        "acyclicity": 1.0,
+        "stability": 0.9147566529492464,
+        "cohesion": 0.6114285714285714,
+        "agq_score": 0.7171021312139245,
+        "nodes": 135,
+        "edges": 421,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0749,
+        "churn_gini": 0.7818,
+        "n_files": 614,
+        "mean_churn": 15.521
+      },
+      "runtime_ms": 8.9
+    },
+    {
+      "name": "django",
+      "url": "https://github.com/django/django.git",
+      "agq": {
+        "modularity": 0.5006350934494643,
+        "acyclicity": 1.0,
+        "stability": 0.973300183763917,
+        "cohesion": 0.6794453507340946,
+        "agq_score": 0.7883451569868689,
+        "nodes": 1229,
+        "edges": 3674,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1087,
+        "churn_gini": 0.5358,
+        "n_files": 1518,
+        "mean_churn": 3.696
+      },
+      "runtime_ms": 55.0
+    },
+    {
+      "name": "starlette",
+      "url": "https://github.com/encode/starlette.git",
+      "agq": {
+        "modularity": 0.5183753974962761,
+        "acyclicity": 1.0,
+        "stability": 0.8592750000000009,
+        "cohesion": 0.6598837209302326,
+        "agq_score": 0.7593835296066274,
+        "nodes": 103,
+        "edges": 273,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.125,
+        "churn_gini": 0.5592,
+        "n_files": 88,
+        "mean_churn": 6.307
+      },
+      "runtime_ms": 5.1
+    },
+    {
+      "name": "celery",
+      "url": "https://github.com/celery/celery.git",
+      "agq": {
+        "modularity": 0.5251144047537742,
+        "acyclicity": 1.0,
+        "stability": 0.9330660285843598,
+        "cohesion": 0.4808558558558559,
+        "agq_score": 0.7347590722984976,
+        "nodes": 420,
+        "edges": 1210,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1388,
+        "churn_gini": 0.5934,
+        "n_files": 209,
+        "mean_churn": 4.455
+      },
+      "runtime_ms": 17.3
+    },
+    {
+      "name": "tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "agq": {
+        "modularity": 0.4546299028165548,
+        "acyclicity": 1.0,
+        "stability": 0.9060928705021143,
+        "cohesion": 0.7524366471734893,
+        "agq_score": 0.7782898551230396,
+        "nodes": 199,
+        "edges": 881,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1169,
+        "churn_gini": 0.5264,
+        "n_files": 77,
+        "mean_churn": 3.818
+      },
+      "runtime_ms": 20.2
+    },
+    {
+      "name": "typer",
+      "url": "https://github.com/fastapi/typer.git",
+      "agq": {
+        "modularity": 0.5812514684000315,
+        "acyclicity": 1.0,
+        "stability": 0.6179374081075405,
+        "cohesion": 0.7692307692307692,
+        "agq_score": 0.7421049114345853,
+        "nodes": 69,
+        "edges": 113,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0896,
+        "churn_gini": 0.6011,
+        "n_files": 915,
+        "mean_churn": 2.781
+      },
+      "runtime_ms": 4.9
+    },
+    {
+      "name": "arrow",
+      "url": "https://github.com/arrow-py/arrow.git",
+      "agq": {
+        "modularity": 0.45036790226294593,
+        "acyclicity": 1.0,
+        "stability": 0.773635985006247,
+        "cohesion": 0.8092105263157895,
+        "agq_score": 0.7583036033962456,
+        "nodes": 28,
+        "edges": 49,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1667,
+        "churn_gini": 0.4665,
+        "n_files": 24,
+        "mean_churn": 3.833
+      },
+      "runtime_ms": 29.2
+    },
+    {
+      "name": "pendulum",
+      "url": "https://github.com/sdispater/pendulum.git",
+      "agq": {
+        "modularity": 0.6986231773611736,
+        "acyclicity": 1.0,
+        "stability": 0.9501239380945473,
+        "cohesion": 0.38888888888888884,
+        "agq_score": 0.7594090010861525,
+        "nodes": 153,
+        "edges": 162,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1481,
+        "churn_gini": 0.4293,
+        "n_files": 54,
+        "mean_churn": 3.222
+      },
+      "runtime_ms": 13.6
+    },
+    {
+      "name": "httpcore",
+      "url": "https://github.com/encode/httpcore.git",
+      "agq": {
+        "modularity": 0.5689756754481944,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.5595238095238095,
+        "agq_score": 0.7821248712430009,
+        "nodes": 54,
+        "edges": 109,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0811,
+        "churn_gini": 0.4002,
+        "n_files": 37,
+        "mean_churn": 3.081
+      },
+      "runtime_ms": 4.8
+    },
+    {
+      "name": "attrs",
+      "url": "https://github.com/python-attrs/attrs.git",
+      "agq": {
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0,
+        "agq_score": 1.0,
+        "nodes": 10,
+        "edges": 5,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1217,
+        "churn_gini": 0.5917,
+        "n_files": 115,
+        "mean_churn": 6.061
+      },
+      "runtime_ms": 0.6
+    },
+    {
+      "name": "marshmallow",
+      "url": "https://github.com/marshmallow-code/marshmallow.git",
+      "agq": {
+        "modularity": 0.6000576701268738,
+        "acyclicity": 1.0,
+        "stability": 0.738765432098765,
+        "cohesion": 0.775,
+        "agq_score": 0.7784557755564097,
+        "nodes": 45,
+        "edges": 68,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1071,
+        "churn_gini": 0.696,
+        "n_files": 84,
+        "mean_churn": 8.298
+      },
+      "runtime_ms": 5.8
+    },
+    {
+      "name": "ansible",
+      "url": "https://github.com/ansible/ansible.git",
+      "agq": {
+        "modularity": 0.5276105874876085,
+        "acyclicity": 1.0,
+        "stability": 0.2228993917614628,
+        "cohesion": 0.6907706945765937,
+        "agq_score": 0.6103201684564162,
+        "nodes": 2155,
+        "edges": 6352,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0903,
+        "churn_gini": 0.4283,
+        "n_files": 1429,
+        "mean_churn": 2.676
+      },
+      "runtime_ms": 74.9
+    },
+    {
+      "name": "salt",
+      "url": "https://github.com/saltstack/salt.git",
+      "agq": {
+        "modularity": 0.41777790676168075,
+        "acyclicity": 1.0,
+        "stability": 0.9022574134757735,
+        "cohesion": 0.6566593886462881,
+        "agq_score": 0.7441736772209355,
+        "nodes": 1534,
+        "edges": 6015,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0769,
+        "churn_gini": 0.657,
+        "n_files": 2861,
+        "mean_churn": 3.715
+      },
+      "runtime_ms": 185.0
+    },
+    {
+      "name": "home-assistant",
+      "url": "https://github.com/home-assistant/core.git",
+      "agq": {
+        "modularity": 0.5337168455769242,
+        "acyclicity": 1.0,
+        "stability": 0.07786588461912353,
+        "cohesion": 0.7111203516692408,
+        "agq_score": 0.5806757704663221,
+        "nodes": 17595,
+        "edges": 107166,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0708,
+        "churn_gini": 0.6321,
+        "n_files": 12433,
+        "mean_churn": 7.627
+      },
+      "runtime_ms": 815.4
+    },
+    {
+      "name": "airflow",
+      "url": "https://github.com/apache/airflow.git",
+      "agq": {
+        "modularity": 0.7291745552524036,
+        "acyclicity": 1.0,
+        "stability": 0.46353892142904674,
+        "cohesion": 0.6053453661922943,
+        "agq_score": 0.6995147107184361,
+        "nodes": 8017,
+        "edges": 36498,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1099,
+        "churn_gini": 0.6166,
+        "n_files": 15481,
+        "mean_churn": 5.276
+      },
+      "runtime_ms": 299.4
+    },
+    {
+      "name": "thefuck",
+      "url": "https://github.com/nvbn/thefuck.git",
+      "agq": {
+        "modularity": 0.5532681249936968,
+        "acyclicity": 1.0,
+        "stability": 0.7108187302316097,
+        "cohesion": 0.3392857142857143,
+        "agq_score": 0.6508431423777552,
+        "nodes": 273,
+        "edges": 481,
+        "language": "Python"
+      },
+      "churn": null,
+      "runtime_ms": 4.3
+    },
+    {
+      "name": "you-get",
+      "url": "https://github.com/soimort/you-get.git",
+      "agq": {
+        "modularity": 0.5736789191572175,
+        "acyclicity": 1.0,
+        "stability": 0.28402366863905304,
+        "cohesion": 0.6684782608695652,
+        "agq_score": 0.6315452121664589,
+        "nodes": 190,
+        "edges": 249,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1,
+        "churn_gini": 0.4502,
+        "n_files": 50,
+        "mean_churn": 2.2
+      },
+      "runtime_ms": 8.5
+    },
+    {
+      "name": "youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "agq": {
+        "modularity": 0.6927770329587298,
+        "acyclicity": 1.0,
+        "stability": 0.8618644673574676,
+        "cohesion": 0.8835952848722987,
+        "agq_score": 0.8595591962971241,
+        "nodes": 1003,
+        "edges": 1351,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.129,
+        "churn_gini": 0.6731,
+        "n_files": 31,
+        "mean_churn": 6.323
+      },
+      "runtime_ms": 61.2
+    },
+    {
+      "name": "glances",
+      "url": "https://github.com/nicolargo/glances.git",
+      "agq": {
+        "modularity": 0.5243766617401525,
+        "acyclicity": 1.0,
+        "stability": 0.9310693877551034,
+        "cohesion": 0.5142045454545454,
+        "agq_score": 0.7424126487374504,
+        "nodes": 203,
+        "edges": 417,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1241,
+        "churn_gini": 0.6501,
+        "n_files": 403,
+        "mean_churn": 9.412
+      },
+      "runtime_ms": 8.1
+    },
+    {
+      "name": "sqlalchemy",
+      "url": "https://github.com/sqlalchemy/sqlalchemy.git",
+      "agq": {
+        "modularity": 0.5391340801388326,
+        "acyclicity": 1.0,
+        "stability": 0.8122128092369,
+        "cohesion": 0.5007482229704452,
+        "agq_score": 0.7130237780865445,
+        "nodes": 821,
+        "edges": 3222,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1117,
+        "churn_gini": 0.507,
+        "n_files": 725,
+        "mean_churn": 4.859
+      },
+      "runtime_ms": 121.9
+    },
+    {
+      "name": "django-rest-framework",
+      "url": "https://github.com/encode/django-rest-framework.git",
+      "agq": {
+        "modularity": 0.45937208702723126,
+        "acyclicity": 1.0,
+        "stability": 0.8456103557822814,
+        "cohesion": 0.704225352112676,
+        "agq_score": 0.7523019487305471,
+        "nodes": 273,
+        "edges": 1029,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1406,
+        "churn_gini": 0.4826,
+        "n_files": 192,
+        "mean_churn": 2.917
+      },
+      "runtime_ms": 19.0
+    },
+    {
+      "name": "boto3",
+      "url": "https://github.com/boto/boto3.git",
+      "agq": {
+        "modularity": 0.6191808127572018,
+        "acyclicity": 1.0,
+        "stability": 0.9518222222222232,
+        "cohesion": 0.7463235294117647,
+        "agq_score": 0.8293316410977973,
+        "nodes": 93,
+        "edges": 144,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0045,
+        "churn_gini": 0.2574,
+        "n_files": 4180,
+        "mean_churn": 2.363
+      },
+      "runtime_ms": 2.9
+    },
+    {
+      "name": "paramiko",
+      "url": "https://github.com/paramiko/paramiko.git",
+      "agq": {
+        "modularity": 0.3909238658777123,
+        "acyclicity": 1.0,
+        "stability": 0.8992189468379965,
+        "cohesion": 0.5824468085106382,
+        "agq_score": 0.7181474053065868,
+        "nodes": 133,
+        "edges": 325,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0909,
+        "churn_gini": 0.3965,
+        "n_files": 33,
+        "mean_churn": 2.182
+      },
+      "runtime_ms": 12.7
+    },
+    {
+      "name": "fabric",
+      "url": "https://github.com/fabric/fabric.git",
+      "agq": {
+        "modularity": 0.8546219349543444,
+        "acyclicity": 1.0,
+        "stability": 0.7301097393689987,
+        "cohesion": 0.6041666666666667,
+        "agq_score": 0.7972245852475024,
+        "nodes": 54,
+        "edges": 57,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 1,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 3.5
+    },
+    {
+      "name": "sphinx",
+      "url": "https://github.com/sphinx-doc/sphinx.git",
+      "agq": {
+        "modularity": 0.555772757209952,
+        "acyclicity": 1.0,
+        "stability": 0.9806172839506188,
+        "cohesion": 0.6796218487394958,
+        "agq_score": 0.8040029724750166,
+        "nodes": 500,
+        "edges": 2091,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1063,
+        "churn_gini": 0.6227,
+        "n_files": 847,
+        "mean_churn": 7.666
+      },
+      "runtime_ms": 31.1
+    },
+    {
+      "name": "black",
+      "url": "https://github.com/psf/black.git",
+      "agq": {
+        "modularity": 0.48295475530932613,
+        "acyclicity": 1.0,
+        "stability": 0.7334862939258534,
+        "cohesion": 0.63,
+        "agq_score": 0.7116102623087949,
+        "nodes": 95,
+        "edges": 190,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1622,
+        "churn_gini": 0.5895,
+        "n_files": 111,
+        "mean_churn": 8.459
+      },
+      "runtime_ms": 7.7
+    },
+    {
+      "name": "mypy",
+      "url": "https://github.com/python/mypy.git",
+      "agq": {
+        "modularity": 0.5750616504650066,
+        "acyclicity": 1.0,
+        "stability": 0.9896225932566918,
+        "cohesion": 0.5730042016806722,
+        "agq_score": 0.7844221113505927,
+        "nodes": 411,
+        "edges": 1780,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1062,
+        "churn_gini": 0.6162,
+        "n_files": 1365,
+        "mean_churn": 6.042
+      },
+      "runtime_ms": 70.5
+    },
+    {
+      "name": "ruff",
+      "url": "https://github.com/astral-sh/ruff.git",
+      "agq": {
+        "modularity": 0.7371037319168284,
+        "acyclicity": 1.0,
+        "stability": 0.17790041663820894,
+        "cohesion": 0.8333333333333334,
+        "agq_score": 0.6870843704720927,
+        "nodes": 3604,
+        "edges": 2716,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0888,
+        "churn_gini": 0.6141,
+        "n_files": 11339,
+        "mean_churn": 5.072
+      },
+      "runtime_ms": 51.0
+    },
+    {
+      "name": "poetry",
+      "url": "https://github.com/python-poetry/poetry.git",
+      "agq": {
+        "modularity": 0.48547662568429417,
+        "acyclicity": 1.0,
+        "stability": 0.9209021849792484,
+        "cohesion": 0.6008522727272727,
+        "agq_score": 0.7518077708477038,
+        "nodes": 428,
+        "edges": 1314,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1405,
+        "churn_gini": 0.5688,
+        "n_files": 185,
+        "mean_churn": 6.059
+      },
+      "runtime_ms": 8.4
+    },
+    {
+      "name": "pillow",
+      "url": "https://github.com/python-pillow/Pillow.git",
+      "agq": {
+        "modularity": 0.3643772509715271,
+        "acyclicity": 1.0,
+        "stability": 0.8724882951843037,
+        "cohesion": 0.7040816326530612,
+        "agq_score": 0.7352367947022229,
+        "nodes": 389,
+        "edges": 1037,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.122,
+        "churn_gini": 0.657,
+        "n_files": 590,
+        "mean_churn": 6.622
+      },
+      "runtime_ms": 26.6
+    },
+    {
+      "name": "scikit-learn",
+      "url": "https://github.com/scikit-learn/scikit-learn.git",
+      "agq": {
+        "modularity": 0.6081838019749737,
+        "acyclicity": 0.9889455782312925,
+        "stability": 0.8160238451431404,
+        "cohesion": 0.7042341220423411,
+        "agq_score": 0.7793468368479369,
+        "nodes": 1176,
+        "edges": 7968,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1041,
+        "churn_gini": 0.6026,
+        "n_files": 1642,
+        "mean_churn": 5.419
+      },
+      "runtime_ms": 77.0
+    },
+    {
+      "name": "pandas",
+      "url": "https://github.com/pandas-dev/pandas.git",
+      "agq": {
+        "modularity": 0.6791350424347357,
+        "acyclicity": 1.0,
+        "stability": 0.9873377949539696,
+        "cohesion": 0.33172720533728683,
+        "agq_score": 0.7495500106814981,
+        "nodes": 1721,
+        "edges": 9379,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1096,
+        "churn_gini": 0.7028,
+        "n_files": 666,
+        "mean_churn": 10.728
+      },
+      "runtime_ms": 147.6
+    },
+    {
+      "name": "numpy",
+      "url": "https://github.com/numpy/numpy.git",
+      "agq": {
+        "modularity": 0.5114315719604847,
+        "acyclicity": 1.0,
+        "stability": 0.9390243902439024,
+        "cohesion": 0.5669968717413973,
+        "agq_score": 0.7543632084864461,
+        "nodes": 616,
+        "edges": 1876,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1242,
+        "churn_gini": 0.6325,
+        "n_files": 1393,
+        "mean_churn": 6.373
+      },
+      "runtime_ms": 106.9
+    },
+    {
+      "name": "matplotlib",
+      "url": "https://github.com/matplotlib/matplotlib.git",
+      "agq": {
+        "modularity": 0.5057369063444117,
+        "acyclicity": 1.0,
+        "stability": 0.36222029320987503,
+        "cohesion": 0.6532349602724177,
+        "agq_score": 0.6302980399566761,
+        "nodes": 1217,
+        "edges": 4098,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.095,
+        "churn_gini": 0.6007,
+        "n_files": 1263,
+        "mean_churn": 4.151
+      },
+      "runtime_ms": 142.5
+    },
+    {
+      "name": "sympy",
+      "url": "https://github.com/sympy/sympy.git",
+      "agq": {
+        "modularity": 0.6429787422938924,
+        "acyclicity": 1.0,
+        "stability": 0.7527886584853422,
+        "cohesion": 0.48487846240814014,
+        "agq_score": 0.7201614657968436,
+        "nodes": 2246,
+        "edges": 13499,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1073,
+        "churn_gini": 0.6321,
+        "n_files": 1267,
+        "mean_churn": 4.949
+      },
+      "runtime_ms": 225.2
+    },
+    {
+      "name": "networkx",
+      "url": "https://github.com/networkx/networkx.git",
+      "agq": {
+        "modularity": 0.41084871783844146,
+        "acyclicity": 1.0,
+        "stability": 0.861730717549048,
+        "cohesion": 0.42785571142284573,
+        "agq_score": 0.6751087867025838,
+        "nodes": 685,
+        "edges": 1698,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1211,
+        "churn_gini": 0.4939,
+        "n_files": 413,
+        "mean_churn": 3.38
+      },
+      "runtime_ms": 40.8
+    },
+    {
+      "name": "dask",
+      "url": "https://github.com/dask/dask.git",
+      "agq": {
+        "modularity": 0.6191958044402989,
+        "acyclicity": 1.0,
+        "stability": 0.9564492678006257,
+        "cohesion": 0.6973118279569892,
+        "agq_score": 0.8182392250494784,
+        "nodes": 670,
+        "edges": 3275,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1183,
+        "churn_gini": 0.5815,
+        "n_files": 338,
+        "mean_churn": 6.349
+      },
+      "runtime_ms": 84.9
+    },
+    {
+      "name": "luigi",
+      "url": "https://github.com/spotify/luigi.git",
+      "agq": {
+        "modularity": 0.45688206776734036,
+        "acyclicity": 1.0,
+        "stability": 0.9075382320641238,
+        "cohesion": 0.5847750865051904,
+        "agq_score": 0.7372988465841637,
+        "nodes": 270,
+        "edges": 716,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0634,
+        "churn_gini": 0.5171,
+        "n_files": 142,
+        "mean_churn": 2.563
+      },
+      "runtime_ms": 11.6
+    },
+    {
+      "name": "prefect",
+      "url": "https://github.com/PrefectHQ/prefect.git",
+      "agq": {
+        "modularity": 0.6900382222780479,
+        "acyclicity": 1.0,
+        "stability": 0.98176257229684,
+        "cohesion": 0.7292899408284024,
+        "agq_score": 0.8502726838508226,
+        "nodes": 1251,
+        "edges": 5681,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1022,
+        "churn_gini": 0.5598,
+        "n_files": 7875,
+        "mean_churn": 3.527
+      },
+      "runtime_ms": 36.3
+    },
+    {
+      "name": "dramatiq",
+      "url": "https://github.com/Bogdanp/dramatiq.git",
+      "agq": {
+        "modularity": 0.536686390532544,
+        "acyclicity": 1.0,
+        "stability": 0.8312923850837673,
+        "cohesion": 0.5725806451612903,
+        "agq_score": 0.7351398551944004,
+        "nodes": 93,
+        "edges": 130,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1429,
+        "churn_gini": 0.4984,
+        "n_files": 98,
+        "mean_churn": 4.469
+      },
+      "runtime_ms": 9.6
+    },
+    {
+      "name": "huey",
+      "url": "https://github.com/coleifer/huey.git",
+      "agq": {
+        "modularity": 0.40337694423401077,
+        "acyclicity": 1.0,
+        "stability": 0.8686868686868674,
+        "cohesion": 0.6395348837209303,
+        "agq_score": 0.7278996741604522,
+        "nodes": 105,
+        "edges": 221,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.16,
+        "churn_gini": 0.3583,
+        "n_files": 25,
+        "mean_churn": 2.76
+      },
+      "runtime_ms": 10.4
+    },
+    {
+      "name": "gunicorn",
+      "url": "https://github.com/benoitc/gunicorn.git",
+      "agq": {
+        "modularity": 0.5162287968441811,
+        "acyclicity": 1.0,
+        "stability": 0.8870758310249317,
+        "cohesion": 0.712890625,
+        "agq_score": 0.7790488132172783,
+        "nodes": 168,
+        "edges": 325,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.087,
+        "churn_gini": 0.4865,
+        "n_files": 322,
+        "mean_churn": 2.752
+      },
+      "runtime_ms": 8.8
+    },
+    {
+      "name": "uvicorn",
+      "url": "https://github.com/encode/uvicorn.git",
+      "agq": {
+        "modularity": 0.5017148133491625,
+        "acyclicity": 1.0,
+        "stability": 0.7574175580119559,
+        "cohesion": 0.5862068965517242,
+        "agq_score": 0.7113348169782107,
+        "nodes": 117,
+        "edges": 266,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.137,
+        "churn_gini": 0.5355,
+        "n_files": 73,
+        "mean_churn": 5.685
+      },
+      "runtime_ms": 4.3
+    },
+    {
+      "name": "werkzeug",
+      "url": "https://github.com/pallets/werkzeug.git",
+      "agq": {
+        "modularity": 0.4489250493096637,
+        "acyclicity": 1.0,
+        "stability": 0.9205535755718858,
+        "cohesion": 0.5593220338983051,
+        "agq_score": 0.7322001646949636,
+        "nodes": 123,
+        "edges": 260,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0702,
+        "churn_gini": 0.5912,
+        "n_files": 114,
+        "mean_churn": 5.175
+      },
+      "runtime_ms": 5.3
+    },
+    {
+      "name": "jinja",
+      "url": "https://github.com/pallets/jinja.git",
+      "agq": {
+        "modularity": 0.503265380859375,
+        "acyclicity": 1.0,
+        "stability": 0.8172249886826611,
+        "cohesion": 0.5880503144654088,
+        "agq_score": 0.7271351710018612,
+        "nodes": 124,
+        "edges": 256,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1412,
+        "churn_gini": 0.5096,
+        "n_files": 85,
+        "mean_churn": 4.235
+      },
+      "runtime_ms": 10.8
+    },
+    {
+      "name": "mako",
+      "url": "https://github.com/sqlalchemy/mako.git",
+      "agq": {
+        "modularity": 0.6483619060628824,
+        "acyclicity": 1.0,
+        "stability": 0.9031872008062475,
+        "cohesion": 0.6915584415584415,
+        "agq_score": 0.8107768871068929,
+        "nodes": 87,
+        "edges": 121,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.125,
+        "churn_gini": 0.4684,
+        "n_files": 40,
+        "mean_churn": 2.475
+      },
+      "runtime_ms": 7.1
+    },
+    {
+      "name": "pyjwt",
+      "url": "https://github.com/jpadilla/pyjwt.git",
+      "agq": {
+        "modularity": 0.5063828000335937,
+        "acyclicity": 1.0,
+        "stability": 0.8261615047118693,
+        "cohesion": 0.2592592592592593,
+        "agq_score": 0.6479508910011806,
+        "nodes": 64,
+        "edges": 126,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1176,
+        "churn_gini": 0.5391,
+        "n_files": 34,
+        "mean_churn": 7.176
+      },
+      "runtime_ms": 5.8
+    },
+    {
+      "name": "cryptography",
+      "url": "https://github.com/pyca/cryptography.git",
+      "agq": {
+        "modularity": 0.4167421457367644,
+        "acyclicity": 1.0,
+        "stability": 0.8657885368458531,
+        "cohesion": 0.6558641975308642,
+        "agq_score": 0.7345987200283705,
+        "nodes": 124,
+        "edges": 274,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0868,
+        "churn_gini": 0.7848,
+        "n_files": 403,
+        "mean_churn": 13.357
+      },
+      "runtime_ms": 10.0
+    },
+    {
+      "name": "itsdangerous",
+      "url": "https://github.com/pallets/itsdangerous.git",
+      "agq": {
+        "modularity": 0.6391184573002754,
+        "acyclicity": 1.0,
+        "stability": 0.9307479224376732,
+        "cohesion": 0.75,
+        "agq_score": 0.8299665949344871,
+        "nodes": 19,
+        "edges": 22,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1852,
+        "churn_gini": 0.4638,
+        "n_files": 54,
+        "mean_churn": 3.241
+      },
+      "runtime_ms": 1.6
+    },
+    {
+      "name": "httpie",
+      "url": "https://github.com/httpie/cli.git",
+      "agq": {
+        "modularity": 0.49047866789581535,
+        "acyclicity": 1.0,
+        "stability": 0.8782154132808869,
+        "cohesion": 0.7195945945945945,
+        "agq_score": 0.7720721689428243,
+        "nodes": 178,
+        "edges": 331,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.2308,
+        "n_files": 13,
+        "mean_churn": 2.308
+      },
+      "runtime_ms": 5.6
+    },
+    {
+      "name": "dulwich",
+      "url": "https://github.com/jelmer/dulwich.git",
+      "agq": {
+        "modularity": 0.36059362638939857,
+        "acyclicity": 1.0,
+        "stability": 0.9454716467414178,
+        "cohesion": 0.7469437652811737,
+        "agq_score": 0.7632522596029976,
+        "nodes": 201,
+        "edges": 562,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1078,
+        "churn_gini": 0.6826,
+        "n_files": 167,
+        "mean_churn": 16.455
+      },
+      "runtime_ms": 81.4
+    },
+    {
+      "name": "pygments",
+      "url": "https://github.com/pygments/pygments.git",
+      "agq": {
+        "modularity": 0.5618219052326823,
+        "acyclicity": 1.0,
+        "stability": 0.9417497432934114,
+        "cohesion": 0.8487569060773481,
+        "agq_score": 0.8380821386508605,
+        "nodes": 455,
+        "edges": 1190,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0538,
+        "churn_gini": 0.3293,
+        "n_files": 390,
+        "mean_churn": 3.21
+      },
+      "runtime_ms": 122.8
+    },
+    {
+      "name": "beautifulsoup4",
+      "url": "https://github.com/wention/BeautifulSoup4.git",
+      "agq": {
+        "modularity": 0.5278000000000002,
+        "acyclicity": 1.0,
+        "stability": 0.46569223357569295,
+        "cohesion": 0.6902985074626866,
+        "agq_score": 0.6709476852595949,
+        "nodes": 54,
+        "edges": 100,
+        "language": "Python"
+      },
+      "churn": null,
+      "runtime_ms": 21.9
+    },
+    {
+      "name": "lxml",
+      "url": "https://github.com/lxml/lxml.git",
+      "agq": {
+        "modularity": 0.5050494047375893,
+        "acyclicity": 1.0,
+        "stability": 0.9557760000000008,
+        "cohesion": 0.7411504424778761,
+        "agq_score": 0.8004939618038664,
+        "nodes": 140,
+        "edges": 271,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1026,
+        "churn_gini": 0.7241,
+        "n_files": 78,
+        "mean_churn": 9.551
+      },
+      "runtime_ms": 102.3
+    },
+    {
+      "name": "tox",
+      "url": "https://github.com/tox-dev/tox.git",
+      "agq": {
+        "modularity": 0.48692260134958154,
+        "acyclicity": 1.0,
+        "stability": 0.8270918367346949,
+        "cohesion": 0.5327102803738317,
+        "agq_score": 0.711681179614527,
+        "nodes": 260,
+        "edges": 899,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1184,
+        "churn_gini": 0.4996,
+        "n_files": 380,
+        "mean_churn": 4.089
+      },
+      "runtime_ms": 10.7
+    },
+    {
+      "name": "nox",
+      "url": "https://github.com/wntrblm/nox.git",
+      "agq": {
+        "modularity": 0.4897683176763106,
+        "acyclicity": 1.0,
+        "stability": 0.6913580246913587,
+        "cohesion": 0.7159090909090908,
+        "agq_score": 0.72425885831919,
+        "nodes": 90,
+        "edges": 179,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1087,
+        "churn_gini": 0.4797,
+        "n_files": 46,
+        "mean_churn": 9.87
+      },
+      "runtime_ms": 3.8
+    },
+    {
+      "name": "hypothesis",
+      "url": "https://github.com/HypothesisWorks/hypothesis.git",
+      "agq": {
+        "modularity": 0.6608178770115717,
+        "acyclicity": 1.0,
+        "stability": 0.23153249668401257,
+        "cohesion": 0.798951048951049,
+        "agq_score": 0.6728253556616584,
+        "nodes": 699,
+        "edges": 3123,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1022,
+        "churn_gini": 0.7823,
+        "n_files": 372,
+        "mean_churn": 13.688
+      },
+      "runtime_ms": 29.1
+    },
+    {
+      "name": "responses",
+      "url": "https://github.com/getsentry/responses.git",
+      "agq": {
+        "modularity": 0.5837140553614618,
+        "acyclicity": 1.0,
+        "stability": 0.6778670562454348,
+        "cohesion": 0.6029411764705883,
+        "agq_score": 0.7161305720193712,
+        "nodes": 38,
+        "edges": 61,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.2143,
+        "churn_gini": 0.5369,
+        "n_files": 14,
+        "mean_churn": 4.429
+      },
+      "runtime_ms": 10.3
+    },
+    {
+      "name": "sentry-sdk",
+      "url": "https://github.com/getsentry/sentry-python.git",
+      "agq": {
+        "modularity": 0.4670208527656918,
+        "acyclicity": 0.9944320712694877,
+        "stability": 0.4016700572237209,
+        "cohesion": 0.7416918429003021,
+        "agq_score": 0.6512037060398006,
+        "nodes": 898,
+        "edges": 3186,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1133,
+        "churn_gini": 0.639,
+        "n_files": 362,
+        "mean_churn": 11.099
+      },
+      "runtime_ms": 34.3
+    },
+    {
+      "name": "kombu",
+      "url": "https://github.com/celery/kombu.git",
+      "agq": {
+        "modularity": 0.49941929122666767,
+        "acyclicity": 1.0,
+        "stability": 0.8519502603889912,
+        "cohesion": 0.48655913978494625,
+        "agq_score": 0.7094821728501512,
+        "nodes": 227,
+        "edges": 453,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1579,
+        "churn_gini": 0.5805,
+        "n_files": 95,
+        "mean_churn": 5.147
+      },
+      "runtime_ms": 8.6
+    },
+    {
+      "name": "peewee",
+      "url": "https://github.com/coleifer/peewee.git",
+      "agq": {
+        "modularity": 0.44434412466272394,
+        "acyclicity": 1.0,
+        "stability": 0.8694103520042255,
+        "cohesion": 0.7814029363784666,
+        "agq_score": 0.773789353261354,
+        "nodes": 194,
+        "edges": 473,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1062,
+        "churn_gini": 0.5416,
+        "n_files": 113,
+        "mean_churn": 5.504
+      },
+      "runtime_ms": 37.7
+    },
+    {
+      "name": "alembic",
+      "url": "https://github.com/sqlalchemy/alembic.git",
+      "agq": {
+        "modularity": 0.5162413311038617,
+        "acyclicity": 1.0,
+        "stability": 0.9242697157177542,
+        "cohesion": 0.5515873015873016,
+        "agq_score": 0.7480245871022293,
+        "nodes": 161,
+        "edges": 382,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1472,
+        "churn_gini": 0.5126,
+        "n_files": 163,
+        "mean_churn": 4.337
+      },
+      "runtime_ms": 7.6
+    },
+    {
+      "name": "textual",
+      "url": "https://github.com/Textualize/textual.git",
+      "agq": {
+        "modularity": 0.557713701208023,
+        "acyclicity": 1.0,
+        "stability": 0.9861872239124138,
+        "cohesion": 0.6529745042492918,
+        "agq_score": 0.7992188573424321,
+        "nodes": 523,
+        "edges": 1894,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0984,
+        "churn_gini": 0.7748,
+        "n_files": 630,
+        "mean_churn": 10.27
+      },
+      "runtime_ms": 28.8
+    },
+    {
+      "name": "yt-dlp",
+      "url": "https://github.com/yt-dlp/yt-dlp.git",
+      "agq": {
+        "modularity": 0.6502517029245635,
+        "acyclicity": 1.0,
+        "stability": 0.870128871665174,
+        "cohesion": 0.8599028716216216,
+        "agq_score": 0.8450708615528397,
+        "nodes": 1337,
+        "edges": 2270,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0578,
+        "churn_gini": 0.5522,
+        "n_files": 1229,
+        "mean_churn": 3.557
+      },
+      "runtime_ms": 77.9
+    },
+    {
+      "name": "supervisor",
+      "url": "https://github.com/Supervisor/supervisor.git",
+      "agq": {
+        "modularity": 0.532701846512689,
+        "acyclicity": 1.0,
+        "stability": 0.933222268499237,
+        "cohesion": 0.6245901639344262,
+        "agq_score": 0.772628569736588,
+        "nodes": 167,
+        "edges": 399,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1364,
+        "churn_gini": 0.4967,
+        "n_files": 22,
+        "mean_churn": 2.5
+      },
+      "runtime_ms": 20.7
+    },
+    {
+      "name": "locust",
+      "url": "https://github.com/locustio/locust.git",
+      "agq": {
+        "modularity": 0.45411650318854013,
+        "acyclicity": 1.0,
+        "stability": 0.8711111111111123,
+        "cohesion": 0.736842105263158,
+        "agq_score": 0.7655174298907026,
+        "nodes": 256,
+        "edges": 561,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1006,
+        "churn_gini": 0.669,
+        "n_files": 358,
+        "mean_churn": 5.816
+      },
+      "runtime_ms": 36.3
+    },
+    {
+      "name": "whoosh",
+      "url": "https://github.com/mchaput/whoosh.git",
+      "agq": {
+        "modularity": 0.5373814967230596,
+        "acyclicity": 1.0,
+        "stability": 0.9880147146078097,
+        "cohesion": 0.6415730337078651,
+        "agq_score": 0.7917423112596835,
+        "nodes": 200,
+        "edges": 405,
+        "language": "Python"
+      },
+      "churn": null,
+      "runtime_ms": 11.6
+    },
+    {
+      "name": "bottle",
+      "url": "https://github.com/bottlepy/bottle.git",
+      "agq": {
+        "modularity": 0.526193293885602,
+        "acyclicity": 1.0,
+        "stability": 0.9194193747560369,
+        "cohesion": 0.7476190476190476,
+        "agq_score": 0.7983079290651716,
+        "nodes": 73,
+        "edges": 130,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1026,
+        "churn_gini": 0.5699,
+        "n_files": 39,
+        "mean_churn": 4.282
+      },
+      "runtime_ms": 20.7
+    },
+    {
+      "name": "falcon",
+      "url": "https://github.com/falconry/falcon.git",
+      "agq": {
+        "modularity": 0.41731804124966526,
+        "acyclicity": 1.0,
+        "stability": 0.9399864659777069,
+        "cohesion": 0.8656914893617021,
+        "agq_score": 0.8057489991472686,
+        "nodes": 197,
+        "edges": 468,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1293,
+        "churn_gini": 0.5182,
+        "n_files": 317,
+        "mean_churn": 4.047
+      },
+      "runtime_ms": 8.3
+    }
+  ]
+}

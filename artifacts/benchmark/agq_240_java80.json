@@ -1,0 +1,1681 @@
+{
+  "generated_at": "2026-03-08T02:21:56.981941+00:00",
+  "repos_file": "scripts/repos_java80_benchmark.json",
+  "repos_total": 80,
+  "repos_ok": 79,
+  "agq_mean": 0.6253,
+  "agq_spread": 0.442,
+  "agq_std": 0.0966,
+  "correlations": {
+    "spearman_agq_vs_hotspot_ratio": {
+      "r_s": 0.1231,
+      "p": 0.283,
+      "n": 78
+    },
+    "spearman_agq_vs_churn_gini": {
+      "r_s": -0.1435,
+      "p": 0.21,
+      "n": 78
+    }
+  },
+  "results": [
+    {
+      "name": "guava",
+      "url": "https://github.com/google/guava.git",
+      "agq": {
+        "modularity": 0.7264914591198206,
+        "acyclicity": 1.0,
+        "stability": 0.7028285129444712,
+        "cohesion": 0.19948921679909193,
+        "agq_score": 0.6572022972158459,
+        "nodes": 1831,
+        "edges": 10744,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1052,
+        "churn_gini": 0.4568,
+        "n_files": 2073,
+        "mean_churn": 5.087
+      },
+      "runtime_ms": 132.0
+    },
+    {
+      "name": "spring-boot",
+      "url": "https://github.com/spring-projects/spring-boot.git",
+      "agq": {
+        "modularity": 0.7248491687063098,
+        "acyclicity": 0.9994588158891655,
+        "stability": 0.943172009916603,
+        "cohesion": 0.5217256362507758,
+        "agq_score": 0.7973014076907134,
+        "nodes": 9239,
+        "edges": 35962,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0634,
+        "churn_gini": 0.454,
+        "n_files": 18141,
+        "mean_churn": 2.257
+      },
+      "runtime_ms": 184.9
+    },
+    {
+      "name": "spring-framework",
+      "url": "https://github.com/spring-projects/spring-framework.git",
+      "agq": {
+        "modularity": 0.6534594034709728,
+        "acyclicity": 0.9991267646630767,
+        "stability": 0.5481427638430042,
+        "cohesion": 0.39428108646897586,
+        "agq_score": 0.6487525046115074,
+        "nodes": 6871,
+        "edges": 40593,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0742,
+        "churn_gini": 0.3661,
+        "n_files": 6256,
+        "mean_churn": 3.754
+      },
+      "runtime_ms": 376.9
+    },
+    {
+      "name": "mockito",
+      "url": "https://github.com/mockito/mockito.git",
+      "agq": {
+        "modularity": 0.5832987054798083,
+        "acyclicity": 0.8679245283018868,
+        "stability": 0.24943310657596368,
+        "cohesion": 0.47435897435897434,
+        "agq_score": 0.5437538286791582,
+        "nodes": 901,
+        "edges": 2532,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0533,
+        "churn_gini": 0.3577,
+        "n_files": 713,
+        "mean_churn": 1.62
+      },
+      "runtime_ms": 13.1
+    },
+    {
+      "name": "okhttp",
+      "url": "https://github.com/square/okhttp.git",
+      "agq": {
+        "modularity": 0.4802666048253408,
+        "acyclicity": 1.0,
+        "stability": 0.44253074750869303,
+        "cohesion": 0.5520833333333333,
+        "agq_score": 0.6187201714168418,
+        "nodes": 172,
+        "edges": 394,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0717,
+        "churn_gini": 0.5327,
+        "n_files": 697,
+        "mean_churn": 3.548
+      },
+      "runtime_ms": 5.6
+    },
+    {
+      "name": "retrofit",
+      "url": "https://github.com/square/retrofit.git",
+      "agq": {
+        "modularity": 0.6132971990605643,
+        "acyclicity": 0.9895561357702349,
+        "stability": 0.6677839459569747,
+        "cohesion": 0.5571428571428572,
+        "agq_score": 0.7069450344826578,
+        "nodes": 383,
+        "edges": 1199,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0158,
+        "churn_gini": 0.3108,
+        "n_files": 1074,
+        "mean_churn": 1.459
+      },
+      "runtime_ms": 11.3
+    },
+    {
+      "name": "gson",
+      "url": "https://github.com/google/gson.git",
+      "agq": {
+        "modularity": 0.5446123400044687,
+        "acyclicity": 0.942652329749104,
+        "stability": 0.47187672559000077,
+        "cohesion": 0.4097938144329897,
+        "agq_score": 0.5922338024441408,
+        "nodes": 279,
+        "edges": 885,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1185,
+        "churn_gini": 0.6684,
+        "n_files": 135,
+        "mean_churn": 4.904
+      },
+      "runtime_ms": 5.6
+    },
+    {
+      "name": "jackson-core",
+      "url": "https://github.com/FasterXML/jackson-core.git",
+      "agq": {
+        "modularity": 0.5340706730605723,
+        "acyclicity": 0.966183574879227,
+        "stability": 0.44444444444444453,
+        "cohesion": 0.1504424778761062,
+        "agq_score": 0.5237852925650875,
+        "nodes": 207,
+        "edges": 495,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.051,
+        "churn_gini": 0.7235,
+        "n_files": 157,
+        "mean_churn": 6.618
+      },
+      "runtime_ms": 15.8
+    },
+    {
+      "name": "jackson-databind",
+      "url": "https://github.com/FasterXML/jackson-databind.git",
+      "agq": {
+        "modularity": 0.598003949365397,
+        "acyclicity": 0.8504027617951668,
+        "stability": 0.2629757785467129,
+        "cohesion": 0.1606796116504854,
+        "agq_score": 0.4680155253394405,
+        "nodes": 869,
+        "edges": 4003,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0952,
+        "churn_gini": 0.6374,
+        "n_files": 704,
+        "mean_churn": 4.967
+      },
+      "runtime_ms": 22.1
+    },
+    {
+      "name": "netty",
+      "url": "https://github.com/netty/netty.git",
+      "agq": {
+        "modularity": 0.7175657586126164,
+        "acyclicity": 0.9987376925018935,
+        "stability": 0.547654682863796,
+        "cohesion": 0.27611596870685684,
+        "agq_score": 0.6350185256712907,
+        "nodes": 3961,
+        "edges": 18163,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0584,
+        "churn_gini": 0.7253,
+        "n_files": 1917,
+        "mean_churn": 4.959
+      },
+      "runtime_ms": 101.1
+    },
+    {
+      "name": "hibernate-orm",
+      "url": "https://github.com/hibernate/hibernate-orm.git",
+      "agq": {
+        "modularity": 0.7569435901971668,
+        "acyclicity": 0.8401913875598086,
+        "stability": 0.21135347895179946,
+        "cohesion": 0.3018490754622689,
+        "agq_score": 0.5275843830427609,
+        "nodes": 10450,
+        "edges": 67759,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0941,
+        "churn_gini": 0.4697,
+        "n_files": 8574,
+        "mean_churn": 5.398
+      },
+      "runtime_ms": 276.0
+    },
+    {
+      "name": "commons-lang",
+      "url": "https://github.com/apache/commons-lang.git",
+      "agq": {
+        "modularity": 0.579212394104878,
+        "acyclicity": 0.9552238805970149,
+        "stability": 0.33057851239669406,
+        "cohesion": 0.2823275862068966,
+        "agq_score": 0.5368355933263709,
+        "nodes": 469,
+        "edges": 1104,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0774,
+        "churn_gini": 0.6367,
+        "n_files": 349,
+        "mean_churn": 7.722
+      },
+      "runtime_ms": 25.1
+    },
+    {
+      "name": "commons-collections",
+      "url": "https://github.com/apache/commons-collections.git",
+      "agq": {
+        "modularity": 0.5359144480837598,
+        "acyclicity": 0.9868995633187773,
+        "stability": 0.4375,
+        "cohesion": 0.15074626865671636,
+        "agq_score": 0.5277650700148133,
+        "nodes": 458,
+        "edges": 1890,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0644,
+        "churn_gini": 0.4971,
+        "n_files": 419,
+        "mean_churn": 5.671
+      },
+      "runtime_ms": 29.8
+    },
+    {
+      "name": "commons-io",
+      "url": "https://github.com/apache/commons-io.git",
+      "agq": {
+        "modularity": 0.5602501254368607,
+        "acyclicity": 0.9473684210526316,
+        "stability": 0.36000000000000004,
+        "cohesion": 0.19715447154471544,
+        "agq_score": 0.5161932545085519,
+        "nodes": 494,
+        "edges": 1743,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0689,
+        "churn_gini": 0.5857,
+        "n_files": 334,
+        "mean_churn": 7.434
+      },
+      "runtime_ms": 11.1
+    },
+    {
+      "name": "commons-math",
+      "url": "https://github.com/apache/commons-math.git",
+      "agq": {
+        "modularity": 0.667265324046491,
+        "acyclicity": 0.9977997799779978,
+        "stability": 0.3288888888888889,
+        "cohesion": 0.35357737104825293,
+        "agq_score": 0.5868828409904077,
+        "nodes": 909,
+        "edges": 2937,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0506,
+        "churn_gini": 0.4473,
+        "n_files": 257,
+        "mean_churn": 1.911
+      },
+      "runtime_ms": 29.9
+    },
+    {
+      "name": "log4j",
+      "url": "https://github.com/apache/logging-log4j2.git",
+      "agq": {
+        "modularity": 0.6844530259313446,
+        "acyclicity": 0.967686342093925,
+        "stability": 0.9614704401818686,
+        "cohesion": 0.31517183570829843,
+        "agq_score": 0.7321954109788591,
+        "nodes": 2321,
+        "edges": 10711,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0577,
+        "churn_gini": 0.3684,
+        "n_files": 4297,
+        "mean_churn": 1.68
+      },
+      "runtime_ms": 78.4
+    },
+    {
+      "name": "logback",
+      "url": "https://github.com/qos-ch/logback.git",
+      "agq": {
+        "modularity": 0.6246666211324386,
+        "acyclicity": 0.9920948616600791,
+        "stability": 0.8398245567385584,
+        "cohesion": 0.43966876971608837,
+        "agq_score": 0.7240637023117912,
+        "nodes": 1012,
+        "edges": 3025,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0498,
+        "churn_gini": 0.4763,
+        "n_files": 803,
+        "mean_churn": 2.142
+      },
+      "runtime_ms": 67.6
+    },
+    {
+      "name": "slf4j",
+      "url": "https://github.com/qos-ch/slf4j.git",
+      "agq": {
+        "modularity": 0.6426869909904799,
+        "acyclicity": 0.9821428571428571,
+        "stability": 0.46209319433875856,
+        "cohesion": 0.2618110236220472,
+        "agq_score": 0.5871835165235357,
+        "nodes": 280,
+        "edges": 531,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.3721,
+        "churn_gini": 0.469,
+        "n_files": 43,
+        "mean_churn": 4.791
+      },
+      "runtime_ms": 15.1
+    },
+    {
+      "name": "junit4",
+      "url": "https://github.com/junit-team/junit4.git",
+      "agq": {
+        "modularity": 0.563426556035099,
+        "acyclicity": 0.9852507374631269,
+        "stability": 0.7777471768924744,
+        "cohesion": 0.3820224719101124,
+        "agq_score": 0.6771117355752031,
+        "nodes": 339,
+        "edges": 1073,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0769,
+        "churn_gini": 0.2462,
+        "n_files": 13,
+        "mean_churn": 1.538
+      },
+      "runtime_ms": 16.7
+    },
+    {
+      "name": "junit5",
+      "url": "https://github.com/junit-team/junit5.git",
+      "agq": {
+        "modularity": 0.5981764551577452,
+        "acyclicity": 0.9976190476190476,
+        "stability": 0.913190446867587,
+        "cohesion": 0.3324132492113565,
+        "agq_score": 0.7103497997139341,
+        "nodes": 1680,
+        "edges": 7945,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0847,
+        "churn_gini": 0.4973,
+        "n_files": 1570,
+        "mean_churn": 5.875
+      },
+      "runtime_ms": 76.5
+    },
+    {
+      "name": "assertj",
+      "url": "https://github.com/assertj/assertj.git",
+      "agq": {
+        "modularity": 0.7226929838622826,
+        "acyclicity": 0.987603305785124,
+        "stability": 0.2839506172839507,
+        "cohesion": 0.39453621346886913,
+        "agq_score": 0.5971957801000566,
+        "nodes": 1694,
+        "edges": 4737,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0482,
+        "churn_gini": 0.3082,
+        "n_files": 913,
+        "mean_churn": 7.464
+      },
+      "runtime_ms": 28.4
+    },
+    {
+      "name": "checkstyle",
+      "url": "https://github.com/checkstyle/checkstyle.git",
+      "agq": {
+        "modularity": 0.8225204021009037,
+        "acyclicity": 0.9989655172413793,
+        "stability": 0.24476938095869524,
+        "cohesion": 0.4163770634231103,
+        "agq_score": 0.6206580909310222,
+        "nodes": 2900,
+        "edges": 6127,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0886,
+        "churn_gini": 0.5322,
+        "n_files": 4223,
+        "mean_churn": 3.018
+      },
+      "runtime_ms": 42.0
+    },
+    {
+      "name": "spotbugs",
+      "url": "https://github.com/spotbugs/spotbugs.git",
+      "agq": {
+        "modularity": 0.7325102880658436,
+        "acyclicity": 1.0,
+        "stability": 0.8888888888888891,
+        "cohesion": 1.0,
+        "agq_score": 0.9053497942386832,
+        "nodes": 10,
+        "edges": 9,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0606,
+        "churn_gini": 0.5534,
+        "n_files": 1089,
+        "mean_churn": 2.657
+      },
+      "runtime_ms": 7.3
+    },
+    {
+      "name": "mapstruct",
+      "url": "https://github.com/mapstruct/mapstruct.git",
+      "agq": {
+        "modularity": 0.59279132855871,
+        "acyclicity": 0.9971870604781997,
+        "stability": 0.2003780718336484,
+        "cohesion": 0.2944444444444444,
+        "agq_score": 0.5212002263287506,
+        "nodes": 711,
+        "edges": 2941,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0705,
+        "churn_gini": 0.5241,
+        "n_files": 227,
+        "mean_churn": 2.608
+      },
+      "runtime_ms": 14.1
+    },
+    {
+      "name": "mybatis",
+      "url": "https://github.com/mybatis/mybatis-3.git",
+      "agq": {
+        "modularity": 0.6861049967567295,
+        "acyclicity": 0.9104234527687296,
+        "stability": 0.14792899408284013,
+        "cohesion": 0.23070175438596496,
+        "agq_score": 0.49378979949856605,
+        "nodes": 614,
+        "edges": 2322,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0901,
+        "churn_gini": 0.5882,
+        "n_files": 222,
+        "mean_churn": 3.986
+      },
+      "runtime_ms": 19.7
+    },
+    {
+      "name": "flyway",
+      "url": "https://github.com/flyway/flyway.git",
+      "agq": {
+        "modularity": 0.6191620547930167,
+        "acyclicity": 0.9156829679595279,
+        "stability": 0.0908599242833965,
+        "cohesion": 0.38228155339805825,
+        "agq_score": 0.5019966251084998,
+        "nodes": 1186,
+        "edges": 5311,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0612,
+        "churn_gini": 0.5451,
+        "n_files": 2141,
+        "mean_churn": 4.322
+      },
+      "runtime_ms": 24.4
+    },
+    {
+      "name": "liquibase",
+      "url": "https://github.com/liquibase/liquibase.git",
+      "agq": {
+        "modularity": 0.5587392710415975,
+        "acyclicity": 0.8566919191919192,
+        "stability": 0.5185631715940395,
+        "cohesion": 0.27117486338797814,
+        "agq_score": 0.5512923063038836,
+        "nodes": 1584,
+        "edges": 9648,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0834,
+        "churn_gini": 0.5835,
+        "n_files": 863,
+        "mean_churn": 3.263
+      },
+      "runtime_ms": 42.2
+    },
+    {
+      "name": "resilience4j",
+      "url": "https://github.com/resilience4j/resilience4j.git",
+      "agq": {
+        "modularity": 0.7017548886943447,
+        "acyclicity": 0.9943548387096774,
+        "stability": 0.9913305952370794,
+        "cohesion": 0.368,
+        "agq_score": 0.7638600806602754,
+        "nodes": 1240,
+        "edges": 5703,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1034,
+        "churn_gini": 0.2585,
+        "n_files": 232,
+        "mean_churn": 1.453
+      },
+      "runtime_ms": 38.7
+    },
+    {
+      "name": "micrometer",
+      "url": "https://github.com/micrometer-metrics/micrometer.git",
+      "agq": {
+        "modularity": 0.6789192081088871,
+        "acyclicity": 0.9990503323836657,
+        "stability": 0.8124496248992522,
+        "cohesion": 0.3238276299112801,
+        "agq_score": 0.7035616988257712,
+        "nodes": 2106,
+        "edges": 7346,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0396,
+        "churn_gini": 0.6508,
+        "n_files": 834,
+        "mean_churn": 4.088
+      },
+      "runtime_ms": 42.5
+    },
+    {
+      "name": "caffeine",
+      "url": "https://github.com/ben-manes/caffeine.git",
+      "agq": {
+        "modularity": 0.8476349504464973,
+        "acyclicity": 0.992,
+        "stability": 0.29649686814031406,
+        "cohesion": 0.2506561679790026,
+        "agq_score": 0.5966969966414535,
+        "nodes": 1375,
+        "edges": 4794,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0973,
+        "churn_gini": 0.6739,
+        "n_files": 668,
+        "mean_churn": 7.156
+      },
+      "runtime_ms": 88.1
+    },
+    {
+      "name": "failsafe",
+      "url": "https://github.com/failsafe-lib/failsafe.git",
+      "agq": {
+        "modularity": 0.5272714956210384,
+        "acyclicity": 0.96,
+        "stability": 0.26530612244897955,
+        "cohesion": 0.3278301886792453,
+        "agq_score": 0.5201019516873158,
+        "nodes": 175,
+        "edges": 415,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.0,
+        "n_files": 2,
+        "mean_churn": 1.0
+      },
+      "runtime_ms": 7.2
+    },
+    {
+      "name": "jooq",
+      "url": "https://github.com/jOOQ/jOOQ.git",
+      "agq": {
+        "modularity": 0.8030210553245737,
+        "acyclicity": 0.9966313763233878,
+        "stability": 0.7870510980789647,
+        "cohesion": 0.23353365384615388,
+        "agq_score": 0.70505929589327,
+        "nodes": 6234,
+        "edges": 31590,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1405,
+        "churn_gini": 0.5006,
+        "n_files": 3096,
+        "mean_churn": 4.274
+      },
+      "runtime_ms": 340.1
+    },
+    {
+      "name": "testcontainers",
+      "url": "https://github.com/testcontainers/testcontainers-java.git",
+      "agq": {
+        "modularity": 0.5153136492383278,
+        "acyclicity": 0.9865853658536585,
+        "stability": 0.23167200121932635,
+        "cohesion": 0.3788927335640139,
+        "agq_score": 0.5281159374688316,
+        "nodes": 820,
+        "edges": 2691,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1641,
+        "churn_gini": 0.5596,
+        "n_files": 396,
+        "mean_churn": 5.058
+      },
+      "runtime_ms": 31.5
+    },
+    {
+      "name": "opentelemetry-java",
+      "url": "https://github.com/open-telemetry/opentelemetry-java.git",
+      "agq": {
+        "modularity": 0.6769011620856488,
+        "acyclicity": 0.9835657370517928,
+        "stability": 0.7799592159303629,
+        "cohesion": 0.3123861566484517,
+        "agq_score": 0.688203067929064,
+        "nodes": 2008,
+        "edges": 10136,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0826,
+        "churn_gini": 0.6127,
+        "n_files": 1659,
+        "mean_churn": 3.428
+      },
+      "runtime_ms": 35.0
+    },
+    {
+      "name": "grpc-java",
+      "url": "https://github.com/grpc/grpc-java.git",
+      "agq": {
+        "modularity": 0.5557089172544042,
+        "acyclicity": 1.0,
+        "stability": 0.17773166453698405,
+        "cohesion": 0.2697784810126582,
+        "agq_score": 0.5008047657010115,
+        "nodes": 2553,
+        "edges": 11945,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0918,
+        "churn_gini": 0.5491,
+        "n_files": 915,
+        "mean_churn": 3.718
+      },
+      "runtime_ms": 49.7
+    },
+    {
+      "name": "reactor-core",
+      "url": "https://github.com/reactor/reactor-core.git",
+      "agq": {
+        "modularity": 0.6362331799699085,
+        "acyclicity": 0.9853862212943633,
+        "stability": 0.7928080308765502,
+        "cohesion": 0.29117647058823526,
+        "agq_score": 0.6764009756822642,
+        "nodes": 958,
+        "edges": 4842,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0347,
+        "churn_gini": 0.5807,
+        "n_files": 547,
+        "mean_churn": 3.309
+      },
+      "runtime_ms": 46.8
+    },
+    {
+      "name": "rxjava",
+      "url": "https://github.com/ReactiveX/RxJava.git",
+      "agq": {
+        "modularity": 0.5415132962138045,
+        "acyclicity": 0.9882005899705015,
+        "stability": 0.5306122448979591,
+        "cohesion": 0.5579793340987371,
+        "agq_score": 0.6545763662952505,
+        "nodes": 1017,
+        "edges": 5138,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.16,
+        "churn_gini": 0.7749,
+        "n_files": 50,
+        "mean_churn": 9.46
+      },
+      "runtime_ms": 40.8
+    },
+    {
+      "name": "vertx-core",
+      "url": "https://github.com/eclipse-vertx/vert.x.git",
+      "agq": {
+        "modularity": 0.579183176701374,
+        "acyclicity": 0.930416068866571,
+        "stability": 0.961875904691414,
+        "cohesion": 0.21534653465346532,
+        "agq_score": 0.6717054212282061,
+        "nodes": 1394,
+        "edges": 5875,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.126,
+        "churn_gini": 0.538,
+        "n_files": 1325,
+        "mean_churn": 3.47
+      },
+      "runtime_ms": 33.3
+    },
+    {
+      "name": "quarkus",
+      "url": "https://github.com/quarkusio/quarkus.git",
+      "agq": {
+        "modularity": 0.7432380216607277,
+        "acyclicity": 0.9987497158445101,
+        "stability": 0.404573556674192,
+        "cohesion": 0.44156604238541153,
+        "agq_score": 0.6470318341412103,
+        "nodes": 17596,
+        "edges": 85819,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0832,
+        "churn_gini": 0.5219,
+        "n_files": 11581,
+        "mean_churn": 2.658
+      },
+      "runtime_ms": 458.0
+    },
+    {
+      "name": "micronaut-core",
+      "url": "https://github.com/micronaut-projects/micronaut-core.git",
+      "agq": {
+        "modularity": 0.6759229856321789,
+        "acyclicity": 0.9972059234423023,
+        "stability": 0.9678778038912738,
+        "cohesion": 0.3671617161716172,
+        "agq_score": 0.7520421072843431,
+        "nodes": 3579,
+        "edges": 20802,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0635,
+        "churn_gini": 0.4801,
+        "n_files": 2345,
+        "mean_churn": 3.029
+      },
+      "runtime_ms": 87.9
+    },
+    {
+      "name": "dropwizard",
+      "url": "https://github.com/dropwizard/dropwizard.git",
+      "agq": {
+        "modularity": 0.7142791002016442,
+        "acyclicity": 0.9939759036144579,
+        "stability": 0.19667772865201646,
+        "cohesion": 0.4607623318385651,
+        "agq_score": 0.5914237660766709,
+        "nodes": 1328,
+        "edges": 3997,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1907,
+        "churn_gini": 0.758,
+        "n_files": 257,
+        "mean_churn": 8.486
+      },
+      "runtime_ms": 20.5
+    },
+    {
+      "name": "jersey",
+      "url": "https://github.com/eclipse-ee4j/jersey.git",
+      "agq": {
+        "modularity": 0.676608374297362,
+        "acyclicity": 0.9933621933621933,
+        "stability": 0.34101310361803927,
+        "cohesion": 0.38475952529668955,
+        "agq_score": 0.5989357991435711,
+        "nodes": 3465,
+        "edges": 16248,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.2556,
+        "churn_gini": 0.669,
+        "n_files": 708,
+        "mean_churn": 13.174
+      },
+      "runtime_ms": 88.1
+    },
+    {
+      "name": "resteasy",
+      "url": "https://github.com/resteasy/resteasy.git",
+      "agq": {
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.888888888888889,
+        "cohesion": 1.0,
+        "agq_score": 0.8472222222222222,
+        "nodes": 9,
+        "edges": 8,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1372,
+        "churn_gini": 0.6813,
+        "n_files": 481,
+        "mean_churn": 5.012
+      },
+      "runtime_ms": 28.3
+    },
+    {
+      "name": "weld-core",
+      "url": "https://github.com/weld/core.git",
+      "agq": {
+        "modularity": 0.570355223827829,
+        "acyclicity": 0.9216617210682493,
+        "stability": 0.668503213957759,
+        "cohesion": 0.2657142857142857,
+        "agq_score": 0.6065586111420307,
+        "nodes": 1685,
+        "edges": 8804,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0969,
+        "churn_gini": 0.6593,
+        "n_files": 320,
+        "mean_churn": 3.65
+      },
+      "runtime_ms": 37.0
+    },
+    {
+      "name": "guice",
+      "url": "https://github.com/google/guice.git",
+      "agq": {
+        "modularity": 0.6255495159595451,
+        "acyclicity": 0.9619422572178478,
+        "stability": 0.28006694825105966,
+        "cohesion": 0.325735294117647,
+        "agq_score": 0.5483235038865248,
+        "nodes": 762,
+        "edges": 3090,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1622,
+        "churn_gini": 0.4358,
+        "n_files": 111,
+        "mean_churn": 2.82
+      },
+      "runtime_ms": 13.7
+    },
+    {
+      "name": "dagger",
+      "url": "https://github.com/google/dagger.git",
+      "agq": {
+        "modularity": 0.5683333333333332,
+        "acyclicity": 1.0,
+        "stability": 0.7822222222222224,
+        "cohesion": 1.0,
+        "agq_score": 0.8376388888888889,
+        "nodes": 15,
+        "edges": 20,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1315,
+        "churn_gini": 0.414,
+        "n_files": 3528,
+        "mean_churn": 2.438
+      },
+      "runtime_ms": 9.4
+    },
+    {
+      "name": "lombok",
+      "url": "https://github.com/projectlombok/lombok.git",
+      "agq": {
+        "modularity": 0.8470584491958791,
+        "acyclicity": 0.9972801450589301,
+        "stability": 0.6049147060013113,
+        "cohesion": 0.3568840579710145,
+        "agq_score": 0.7015343395567838,
+        "nodes": 1103,
+        "edges": 5134,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1377,
+        "churn_gini": 0.5258,
+        "n_files": 138,
+        "mean_churn": 3.659
+      },
+      "runtime_ms": 110.4
+    },
+    {
+      "name": "vavr",
+      "url": "https://github.com/vavr-io/vavr.git",
+      "agq": {
+        "modularity": 0.3917255016217877,
+        "acyclicity": 0.8616071428571428,
+        "stability": 0.484375,
+        "cohesion": 0.21238938053097345,
+        "agq_score": 0.487524256252476,
+        "nodes": 224,
+        "edges": 851,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0473,
+        "churn_gini": 0.4269,
+        "n_files": 148,
+        "mean_churn": 9.345
+      },
+      "runtime_ms": 86.8
+    },
+    {
+      "name": "immutables",
+      "url": "https://github.com/immutables/immutables.git",
+      "agq": {
+        "modularity": 0.7287194477601525,
+        "acyclicity": 1.0,
+        "stability": 0.8563201426311166,
+        "cohesion": 0.5271883289124668,
+        "agq_score": 0.7780569798259339,
+        "nodes": 1776,
+        "edges": 5111,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1542,
+        "churn_gini": 0.6554,
+        "n_files": 253,
+        "mean_churn": 4.921
+      },
+      "runtime_ms": 72.3
+    },
+    {
+      "name": "auto",
+      "url": "https://github.com/google/auto.git",
+      "agq": {
+        "modularity": 0.445692737922227,
+        "acyclicity": 1.0,
+        "stability": 0.5945384001481581,
+        "cohesion": 0.25,
+        "agq_score": 0.5725577845175963,
+        "nodes": 464,
+        "edges": 1740,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1059,
+        "churn_gini": 0.7207,
+        "n_files": 85,
+        "mean_churn": 5.941
+      },
+      "runtime_ms": 31.5
+    },
+    {
+      "name": "error-prone",
+      "url": "https://github.com/google/error-prone.git",
+      "agq": {
+        "modularity": 0.5181543427213705,
+        "acyclicity": 0.9949865021210953,
+        "stability": 0.19270833333333334,
+        "cohesion": 0.4729800629590766,
+        "agq_score": 0.5447073102837189,
+        "nodes": 2593,
+        "edges": 20917,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1212,
+        "churn_gini": 0.4769,
+        "n_files": 891,
+        "mean_churn": 3.487
+      },
+      "runtime_ms": 156.4
+    },
+    {
+      "name": "byte-buddy",
+      "url": "https://github.com/raphw/byte-buddy.git",
+      "agq": {
+        "modularity": 0.5647468593422852,
+        "acyclicity": 0.821831869510665,
+        "stability": 0.686624907843381,
+        "cohesion": 0.40038314176245215,
+        "agq_score": 0.6183966946146958,
+        "nodes": 797,
+        "edges": 5218,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0935,
+        "churn_gini": 0.7732,
+        "n_files": 246,
+        "mean_churn": 8.008
+      },
+      "runtime_ms": 44.3
+    },
+    {
+      "name": "asm",
+      "url": "https://gitlab.ow2.org/asm/asm.git",
+      "agq": {
+        "modularity": 0.8053769558263523,
+        "acyclicity": 1.0,
+        "stability": 0.549506217902092,
+        "cohesion": 0.27108433734939763,
+        "agq_score": 0.6564918777694604,
+        "nodes": 373,
+        "edges": 929,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1509,
+        "churn_gini": 0.4581,
+        "n_files": 53,
+        "mean_churn": 2.434
+      },
+      "runtime_ms": 17.6
+    },
+    {
+      "name": "cglib",
+      "url": "https://github.com/cglib/cglib.git",
+      "agq": {
+        "modularity": 0.5216308410628008,
+        "acyclicity": 1.0,
+        "stability": 0.3305785123966941,
+        "cohesion": 0.4007633587786259,
+        "agq_score": 0.5632431780595302,
+        "nodes": 210,
+        "edges": 431,
+        "language": "Java"
+      },
+      "churn": null,
+      "runtime_ms": 7.0
+    },
+    {
+      "name": "javassist",
+      "url": "https://github.com/jboss-javassist/javassist.git",
+      "agq": {
+        "modularity": 0.630278053296308,
+        "acyclicity": 0.9758064516129032,
+        "stability": 0.7173181160743326,
+        "cohesion": 0.1975190839694656,
+        "agq_score": 0.6302304262382523,
+        "nodes": 372,
+        "edges": 1420,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0,
+        "churn_gini": 0.25,
+        "n_files": 4,
+        "mean_churn": 1.5
+      },
+      "runtime_ms": 16.3
+    },
+    {
+      "name": "snakeyaml",
+      "url": "https://bitbucket.org/snakeyaml/snakeyaml.git",
+      "agq": {
+        "modularity": 0.5376899742795697,
+        "acyclicity": 0.9693877551020408,
+        "stability": 0.40999999999999986,
+        "cohesion": 0.4041666666666667,
+        "agq_score": 0.5803110990120692,
+        "nodes": 196,
+        "edges": 607,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0851,
+        "churn_gini": 0.5252,
+        "n_files": 47,
+        "mean_churn": 3.17
+      },
+      "runtime_ms": 11.8
+    },
+    {
+      "name": "jsoup",
+      "url": "https://github.com/jhy/jsoup.git",
+      "agq": {
+        "modularity": 0.44725096542347426,
+        "acyclicity": 0.9118773946360154,
+        "stability": 0.3541666666666667,
+        "cohesion": 0.1402439024390244,
+        "agq_score": 0.4633847322912952,
+        "nodes": 261,
+        "edges": 801,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.086,
+        "churn_gini": 0.6138,
+        "n_files": 93,
+        "mean_churn": 8.925
+      },
+      "runtime_ms": 10.3
+    },
+    {
+      "name": "commons-csv",
+      "url": "https://github.com/apache/commons-csv.git",
+      "agq": {
+        "modularity": 0.7087017813661407,
+        "acyclicity": 1.0,
+        "stability": 0.5555555555555556,
+        "cohesion": 0.3055555555555556,
+        "agq_score": 0.642453223119313,
+        "nodes": 74,
+        "edges": 102,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1207,
+        "churn_gini": 0.7275,
+        "n_files": 58,
+        "mean_churn": 14.948
+      },
+      "runtime_ms": 4.7
+    },
+    {
+      "name": "opencsv",
+      "error": "missing"
+    },
+    {
+      "name": "poi",
+      "url": "https://github.com/apache/poi.git",
+      "agq": {
+        "modularity": 0.7721163512740842,
+        "acyclicity": 0.9996413199426112,
+        "stability": 0.603263034328058,
+        "cohesion": 0.22467672413793105,
+        "agq_score": 0.6499243574206711,
+        "nodes": 5576,
+        "edges": 21372,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0679,
+        "churn_gini": 0.4776,
+        "n_files": 1090,
+        "mean_churn": 2.211
+      },
+      "runtime_ms": 110.8
+    },
+    {
+      "name": "pdfbox",
+      "url": "https://github.com/apache/pdfbox.git",
+      "agq": {
+        "modularity": 0.6270588932203952,
+        "acyclicity": 0.9798697454114861,
+        "stability": 0.3175803402646503,
+        "cohesion": 0.2446653734238603,
+        "agq_score": 0.542293588080098,
+        "nodes": 1689,
+        "edges": 9404,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0962,
+        "churn_gini": 0.5216,
+        "n_files": 426,
+        "mean_churn": 3.176
+      },
+      "runtime_ms": 49.7
+    },
+    {
+      "name": "itext7",
+      "url": "https://github.com/itext/itext7.git",
+      "agq": {
+        "modularity": 0.8381817766355163,
+        "acyclicity": 1.0,
+        "stability": 0.976906414190142,
+        "cohesion": 0.3072990965287684,
+        "agq_score": 0.7805968218386068,
+        "nodes": 4334,
+        "edges": 15357,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0708,
+        "churn_gini": 0.3417,
+        "n_files": 2400,
+        "mean_churn": 3.337
+      },
+      "runtime_ms": 90.9
+    },
+    {
+      "name": "jfreechart",
+      "url": "https://github.com/jfree/jfreechart.git",
+      "agq": {
+        "modularity": 0.5891132596443284,
+        "acyclicity": 0.9522727272727273,
+        "stability": 0.3112244897959185,
+        "cohesion": 0.2974358974358975,
+        "agq_score": 0.5375115935372179,
+        "nodes": 880,
+        "edges": 5520,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0123,
+        "churn_gini": 0.1385,
+        "n_files": 651,
+        "mean_churn": 2.899
+      },
+      "runtime_ms": 31.9
+    },
+    {
+      "name": "xstream",
+      "url": "https://github.com/x-stream/xstream.git",
+      "agq": {
+        "modularity": 0.6823944482013197,
+        "acyclicity": 0.9902506963788301,
+        "stability": 0.11418685121107253,
+        "cohesion": 0.3211488250652742,
+        "agq_score": 0.5269952052141241,
+        "nodes": 718,
+        "edges": 2471,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.05,
+        "churn_gini": 0.6218,
+        "n_files": 60,
+        "mean_churn": 3.15
+      },
+      "runtime_ms": 15.7
+    },
+    {
+      "name": "kryo",
+      "url": "https://github.com/EsotericSoftware/kryo.git",
+      "agq": {
+        "modularity": 0.6650857335175565,
+        "acyclicity": 0.9277456647398844,
+        "stability": 0.19944598337950134,
+        "cohesion": 0.16764705882352937,
+        "agq_score": 0.4899811101151179,
+        "nodes": 346,
+        "edges": 776,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0495,
+        "churn_gini": 0.629,
+        "n_files": 101,
+        "mean_churn": 2.832
+      },
+      "runtime_ms": 11.8
+    },
+    {
+      "name": "protobuf-java",
+      "url": "https://github.com/protocolbuffers/protobuf.git",
+      "agq": {
+        "modularity": 0.7260402519993988,
+        "acyclicity": 1.0,
+        "stability": 0.8791821736306448,
+        "cohesion": 0.16149068322981364,
+        "agq_score": 0.6916782772149643,
+        "nodes": 502,
+        "edges": 1128,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1197,
+        "churn_gini": 0.6752,
+        "n_files": 2522,
+        "mean_churn": 8.779
+      },
+      "runtime_ms": 82.6
+    },
+    {
+      "name": "thrift",
+      "url": "https://github.com/apache/thrift.git",
+      "agq": {
+        "modularity": 0.5714289779841989,
+        "acyclicity": 1.0,
+        "stability": 0.39803804994054615,
+        "cohesion": 0.6751700680272108,
+        "agq_score": 0.661159273987989,
+        "nodes": 207,
+        "edges": 484,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0773,
+        "churn_gini": 0.419,
+        "n_files": 660,
+        "mean_churn": 2.132
+      },
+      "runtime_ms": 11.3
+    },
+    {
+      "name": "avro",
+      "url": "https://github.com/apache/avro.git",
+      "agq": {
+        "modularity": 0.5153753746562744,
+        "acyclicity": 1.0,
+        "stability": 0.11102040816326535,
+        "cohesion": 0.6407766990291262,
+        "agq_score": 0.5667931204621665,
+        "nodes": 110,
+        "edges": 289,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0783,
+        "churn_gini": 0.5811,
+        "n_files": 613,
+        "mean_churn": 3.227
+      },
+      "runtime_ms": 14.3
+    },
+    {
+      "name": "kafka",
+      "url": "https://github.com/apache/kafka.git",
+      "agq": {
+        "modularity": 0.652461826487078,
+        "acyclicity": 1.0,
+        "stability": 0.735413328306155,
+        "cohesion": 0.6265243902439024,
+        "agq_score": 0.7535998862592839,
+        "nodes": 273,
+        "edges": 914,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0853,
+        "churn_gini": 0.5692,
+        "n_files": 4101,
+        "mean_churn": 4.092
+      },
+      "runtime_ms": 24.0
+    },
+    {
+      "name": "flink",
+      "url": "https://github.com/apache/flink.git",
+      "agq": {
+        "modularity": 0.5186745188460694,
+        "acyclicity": 1.0,
+        "stability": 0.2450954044611661,
+        "cohesion": 0.6270810210876804,
+        "agq_score": 0.597712736098729,
+        "nodes": 560,
+        "edges": 1826,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0922,
+        "churn_gini": 0.4259,
+        "n_files": 7599,
+        "mean_churn": 2.177
+      },
+      "runtime_ms": 68.2
+    },
+    {
+      "name": "spark",
+      "url": "https://github.com/apache/spark.git",
+      "agq": {
+        "modularity": 0.8044682553517716,
+        "acyclicity": 1.0,
+        "stability": 0.4213602162320128,
+        "cohesion": 0.6592261904761905,
+        "agq_score": 0.7212636655149938,
+        "nodes": 2106,
+        "edges": 9124,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0921,
+        "churn_gini": 0.6078,
+        "n_files": 4367,
+        "mean_churn": 5.639
+      },
+      "runtime_ms": 123.2
+    },
+    {
+      "name": "hadoop",
+      "url": "https://github.com/apache/hadoop.git",
+      "agq": {
+        "modularity": 0.6855961918208716,
+        "acyclicity": 0.9902412940311477,
+        "stability": 0.5900542045230738,
+        "cohesion": 0.2596774193548387,
+        "agq_score": 0.6313922774324829,
+        "nodes": 14961,
+        "edges": 90068,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0728,
+        "churn_gini": 0.4228,
+        "n_files": 2349,
+        "mean_churn": 2.136
+      },
+      "runtime_ms": 423.8
+    },
+    {
+      "name": "hbase",
+      "url": "https://github.com/apache/hbase.git",
+      "agq": {
+        "modularity": 0.6837401380670611,
+        "acyclicity": 1.0,
+        "stability": 0.6508264462809913,
+        "cohesion": 0.3119158878504673,
+        "agq_score": 0.6616206180496299,
+        "nodes": 57,
+        "edges": 104,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.1059,
+        "churn_gini": 0.4014,
+        "n_files": 1737,
+        "mean_churn": 1.986
+      },
+      "runtime_ms": 56.0
+    },
+    {
+      "name": "cassandra",
+      "url": "https://github.com/apache/cassandra.git",
+      "agq": {
+        "modularity": 0.583195266272188,
+        "acyclicity": 1.0,
+        "stability": 0.1680956406231129,
+        "cohesion": 0.7045454545454546,
+        "agq_score": 0.6139590903601888,
+        "nodes": 117,
+        "edges": 195,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0964,
+        "churn_gini": 0.5658,
+        "n_files": 2802,
+        "mean_churn": 3.842
+      },
+      "runtime_ms": 25.8
+    },
+    {
+      "name": "elasticsearch",
+      "url": "https://github.com/elastic/elasticsearch.git",
+      "agq": {
+        "modularity": 0.6853741496598635,
+        "acyclicity": 1.0,
+        "stability": 0.4710743801652893,
+        "cohesion": 1.0,
+        "agq_score": 0.7891121324562882,
+        "nodes": 22,
+        "edges": 28,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0899,
+        "churn_gini": 0.5339,
+        "n_files": 32184,
+        "mean_churn": 3.792
+      },
+      "runtime_ms": 95.0
+    },
+    {
+      "name": "lucene",
+      "url": "https://github.com/apache/lucene.git",
+      "agq": {
+        "modularity": 0.6792267785891685,
+        "acyclicity": 0.9792949076664801,
+        "stability": 0.3806399152443337,
+        "cohesion": 0.2438987187309335,
+        "agq_score": 0.570765080057729,
+        "nodes": 5361,
+        "edges": 28137,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0952,
+        "churn_gini": 0.5109,
+        "n_files": 2825,
+        "mean_churn": 2.979
+      },
+      "runtime_ms": 281.0
+    },
+    {
+      "name": "solr",
+      "url": "https://github.com/apache/solr.git",
+      "agq": {
+        "modularity": 0.5192233756247587,
+        "acyclicity": 1.0,
+        "stability": 0.22454889730452232,
+        "cohesion": 0.7419354838709677,
+        "agq_score": 0.6214269392000622,
+        "nodes": 86,
+        "edges": 204,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0308,
+        "churn_gini": 0.2975,
+        "n_files": 13519,
+        "mean_churn": 2.288
+      },
+      "runtime_ms": 27.9
+    },
+    {
+      "name": "zookeeper",
+      "url": "https://github.com/apache/zookeeper.git",
+      "agq": {
+        "modularity": 0.8205780233752255,
+        "acyclicity": 1.0,
+        "stability": 0.4442975206611572,
+        "cohesion": 0.7045454545454546,
+        "agq_score": 0.7423552496454593,
+        "nodes": 84,
+        "edges": 143,
+        "language": "Python"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0885,
+        "churn_gini": 0.3456,
+        "n_files": 305,
+        "mean_churn": 1.652
+      },
+      "runtime_ms": 6.3
+    },
+    {
+      "name": "dubbo",
+      "url": "https://github.com/apache/dubbo.git",
+      "agq": {
+        "modularity": 0.6068108597284817,
+        "acyclicity": 0.9816459443457667,
+        "stability": 0.07480103417846024,
+        "cohesion": 0.37340726757904674,
+        "agq_score": 0.5091662764579388,
+        "nodes": 5067,
+        "edges": 22017,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0672,
+        "churn_gini": 0.4904,
+        "n_files": 1816,
+        "mean_churn": 2.325
+      },
+      "runtime_ms": 109.3
+    },
+    {
+      "name": "skywalking",
+      "url": "https://github.com/apache/skywalking.git",
+      "agq": {
+        "modularity": 0.6060153325305773,
+        "acyclicity": 0.9641982864137086,
+        "stability": 0.1312555614332364,
+        "cohesion": 0.4967658473479948,
+        "agq_score": 0.5495587569313793,
+        "nodes": 3268,
+        "edges": 17623,
+        "language": "Java"
+      },
+      "churn": {
+        "hotspot_ratio": 0.0834,
+        "churn_gini": 0.4892,
+        "n_files": 1631,
+        "mean_churn": 2.491
+      },
+      "runtime_ms": 97.9
+    }
+  ]
+}
