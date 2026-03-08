@@ -277,105 +277,99 @@ LOO-CV MSE = 0.006 ± 0.013 — model stabilny, nie przeucza się.
 | click | 0.604 | 0.510 | 0.797 | 0.483 | 0.785 |
 | aiohttp | 0.497 | 0.339 | 0.714 | 0.563 | 0.855 |
 
-### 4.2 Benchmark Java-30
+### 4.2 Benchmark Java-77 (pełne klony)
 
-**Zbiór danych:** 29 z 30 repozytoriów Java (spotbugs błędnie wykryty jako Python)
+**Zbiór danych:** 77 z 80 repozytoriów Java — **pełne klony**, pełna historia git.
+Kluczowa różnica vs poprzednie benchmarki: shallow clone maskował 73% cykli w Javie.
 
 **Statystyki zbiorcze:**
 
 | Metryka | Wartość |
 |---|---|
-| Liczba repo | 29 |
-| Średnie AGQ | 0.666 |
-| Min AGQ | 0.459 (jackson-databind) |
-| Max AGQ | 0.814 (spring-boot) |
-| Spread | 0.355 |
-| Std | 0.089 |
+| Liczba repo | 77 |
+| Średnie AGQ | 0.621 |
+| Spread | 0.368 |
+| Std | 0.087 |
+| Min AGQ | 0.471 (jackson-databind, TANGLED) |
+| Max AGQ | 0.839 (dagger, LAYERED) |
+| Repo z cyklami | **59/77 = 77%** (niewidoczne w shallow clone!) |
 
-**Wyniki per repo:**
+**Najlepsze i najgorsze (z AGQ-z i fingerprint):**
 
-| Repo | AGQ | Nodes | Cohesion | Acyclicity | Stability |
-|---|---|---|---|---|---|
-| spring-boot | 0.814 | 10520 | 0.512 | 1.000 | 0.929 |
-| resilience4j | 0.780 | 1578 | 0.384 | 1.000 | 0.981 |
-| log4j | 0.750 | 2955 | 0.337 | 1.000 | 0.899 |
-| netty | 0.748 | 4768 | 0.220 | 1.000 | 0.902 |
-| testcontainers | 0.735 | 939 | 0.336 | 1.000 | 0.869 |
-| opentelemetry | 0.720 | 2526 | 0.275 | 1.000 | 0.921 |
-| junit5 | 0.717 | 2039 | 0.303 | 1.000 | 0.868 |
-| slf4j | 0.723 | 347 | 0.366 | 1.000 | 0.873 |
-| hibernate-orm | 0.706 | 14994 | 0.211 | 1.000 | 0.912 |
-| guava | 0.698 | 3110 | 0.199 | 1.000 | 0.902 |
-| gson | 0.703 | 348 | 0.228 | 1.000 | 0.880 |
-| jooq | 0.707 | 6538 | 0.183 | 1.000 | 0.945 |
-| retrofit | 0.733 | 425 | 0.351 | 1.000 | 0.848 |
-| flyway | 0.745 | 1540 | 0.299 | 1.000 | 0.936 |
-| mockito | 0.673 | 1204 | 0.262 | 1.000 | 0.575 |
-| okhttp | 0.675 | 172 | 0.311 | 1.000 | 0.507 |
-| caffeine | 0.631 | 1577 | 0.142 | 1.000 | 0.634 |
-| assertj | 0.627 | 1899 | 0.182 | 1.000 | 0.627 |
-| commons-lang | 0.533 | 536 | 0.100 | 1.000 | 0.566 |
-| checkstyle | 0.582 | 3189 | 0.163 | 1.000 | 0.581 |
-| junit4 | 0.576 | 460 | 0.150 | 1.000 | 0.578 |
-| jackson-core | 0.531 | 207 | 0.124 | 1.000 | 0.534 |
-| jackson-databind | 0.459 | 869 | 0.059 | 1.000 | 0.459 |
+| Repo | AGQ | Fingerprint | AGQ-z | Percentyl |
+|---|---|---|---|---|
+| dagger | 0.839 | LAYERED | +2.51 | 99% |
+| spring-boot | 0.803 | LAYERED | +2.09 | 98% |
+| immutables | 0.784 | LAYERED | +1.87 | 97% |
+| resilience4j | 0.777 | LOW_COHESION | +1.80 | 96% |
+| log4j | 0.731 | LOW_COHESION | +1.27 | 90% |
+| ... | ... | ... | ... | ... |
+| commons-lang | 0.533 | CYCLIC | -1.01 | 16% |
+| flyway | 0.498 | CYCLIC | -1.40 | 8% |
+| kryo | 0.502 | TANGLED | -1.36 | 9% |
+| jsoup | 0.478 | TANGLED | -1.60 | 5% |
+| jackson-databind | 0.471 | TANGLED | -1.71 | 4% |
 
-**Kluczowa obserwacja:** Acyclicity = 1.000 dla WSZYSTKICH repozytoriów Java. Java enforces package structure kompilacyjnie → żadne duże projekty nie mają cykli między pakietami.
+**Odkrycie metodologiczne:** Poprzednie analizy (shallow clone) pokazywały acy=1.000 dla wszystkich Java repo. Pełne klony ujawniają że **59/77 (77%) ma cykliczne zależności** — fundamentalna zmiana interpretacji. Jednak obecność cykli NIE koreluje jednoznacznie z niską jakością: spring-boot (LAYERED, top 2%) też ma drobne cykle (acy=0.999).
 
-### 4.3 Benchmark Go-20
+### 4.3 Benchmark Go-80 (pełne klony)
 
-**Zbiór danych:** 20/20 repozytoriów Go
+**Zbiór danych:** 80 repozytoriów Go — **pełne klony**.
+
+**Statystyki zbiorcze:**
 
 | Metryka | Wartość |
 |---|---|
-| Liczba repo | 20 |
+| Liczba repo | 80 |
 | Średnie AGQ | 0.816 |
-| Min AGQ | 0.652 (kubernetes) |
-| Max AGQ | 0.879 (vault) |
-| Spread | 0.227 |
-| Std | 0.062 |
+| Spread | 0.266 |
+| Std | 0.061 |
+| Min AGQ | 0.655 (kubernetes, FLAT) |
+| Max AGQ | 0.920 (staticcheck, CLEAN) |
+| Repo z cyklami | **0/80 = 0%** |
+| Cohesion = 1.000 | **80/80 = 100%** |
 
-**Wyniki per repo:**
+**Najlepsze i najgorsze (z AGQ-z):**
 
-| Repo | AGQ | Nodes | Cohesion | Acyclicity | Stability |
-|---|---|---|---|---|---|
-| vault | 0.879 | 2919 | 1.000 | 1.000 | 0.985 |
-| fx | 0.877 | 208 | 1.000 | 1.000 | 0.922 |
-| prometheus | 0.873 | 1078 | 1.000 | 1.000 | 0.965 |
-| hugo | 0.873 | 1284 | 1.000 | 1.000 | 0.983 |
-| etcd | 0.863 | 1448 | 1.000 | 1.000 | 0.900 |
-| grpc-go | 0.862 | 1412 | 1.000 | 1.000 | 0.862 |
-| testify | 0.856 | 114 | 1.000 | 1.000 | 0.854 |
-| viper | 0.854 | 74 | 1.000 | 1.000 | 0.801 |
-| fiber | 0.849 | 347 | 1.000 | 1.000 | 0.977 |
-| gin | 0.845 | 167 | 1.000 | 1.000 | 0.956 |
-| cobra | 0.830 | 62 | 1.000 | 1.000 | 0.963 |
-| docker | 0.816 | 12005 | 1.000 | 1.000 | 0.734 |
-| echo | 0.814 | 142 | 1.000 | 1.000 | 0.921 |
-| traefik | 0.790 | 1215 | 1.000 | 1.000 | 0.517 |
-| caddy | 0.788 | 519 | 1.000 | 1.000 | 0.724 |
-| gorm | 0.784 | 216 | 1.000 | 1.000 | 0.764 |
-| zap | 0.784 | 205 | 1.000 | 1.000 | 0.792 |
-| terraform | 0.762 | 2346 | 1.000 | 1.000 | 0.540 |
-| grafana | 0.677 | 7457 | 1.000 | 1.000 | 0.160 |
-| kubernetes | 0.652 | 20237 | 1.000 | 1.000 | 0.107 |
+| Repo | AGQ | Fingerprint | AGQ-z | Percentyl |
+|---|---|---|---|---|
+| staticcheck | 0.920 | CLEAN | +1.66 | 95% |
+| grpc-gateway | 0.920 | CLEAN | +1.65 | 95% |
+| protoc-gen-go | 0.902 | CLEAN | +1.35 | 91% |
+| connect-go | 0.898 | CLEAN | +1.30 | 90% |
+| gore | 0.891 | CLEAN | +1.18 | 88% |
+| ... | ... | ... | ... | ... |
+| buf | 0.684 | FLAT | -2.12 | 1% |
+| flux | 0.681 | FLAT | -2.17 | 1% |
+| grafana | 0.678 | FLAT | -2.21 | 1% |
+| kubernetes | 0.655 | FLAT | -2.58 | 0.5% |
 
-**Kluczowa obserwacja:** Cohesion = 1.000 dla WSZYSTKICH repozytoriów Go. Go strukturalnie uniemożliwia patterns które LCOM4 penalizuje.
+**Odkrycie:** Wzorzec FLAT dominuje wśród najgorszych Go projektów — nie CYCLIC (cykli nie ma) ani TANGLED (cohesion=1.0 zawsze), ale brak hierarchii warstw (stability niska). kubernetes, grafana to "platform" projekty gdzie flat structure jest bardziej design decision niż defekt.
 
-### 4.4 Porównanie między językami — odkrycie language bias
+### 4.4 Porównanie między językami — odkrycie language bias (237 repo, pełne klony)
 
-| Wymiar | Python (78) | Java (29) | Go (20) |
+| Wymiar | Python (78) | Java (77) | Go (80) |
 |---|---|---|---|
-| Średnie AGQ | 0.745 | 0.666 | **0.816** |
-| Cohesion śr. | ~0.750 | **0.328** | **1.000** |
-| Acyclicity śr. | 0.978 | **1.000** | **1.000** |
-| Stability śr. | 0.733 | 0.718 | 0.771 |
-| Modularity śr. | 0.523 | **0.671** | 0.494 |
+| Średnie AGQ | 0.746 | 0.621 | **0.816** |
+| Cohesion śr. | 0.647 | **0.379** | **1.000** |
+| Acyclicity śr. | 0.999 | 0.973 | **1.000** |
+| % repo z cyklami | 4% | **77%** | **0%** |
+| Stability śr. | 0.806 | 0.486 | 0.736 |
+| Modularity śr. | 0.533 | **0.637** | 0.531 |
+| Dominant pattern | LAYERED | LOW_COHESION | CLEAN |
 
-**To jest pierwsze empiryczne potwierdzenie language bias w metrykach architektonicznych.** Różnice nie wynikają z jakości kodu, ale z paradygmatów językowych:
-- Go: interfejsy zamiast klas → cohesion zawsze 1.0; cykle niemożliwe
-- Java: hierarchie klas → cohesion naturalnie niskie; package structure → wyższa modularność
-- Python: dynamiczny typing → pośredni wynik
+**To jest pierwsze empiryczne potwierdzenie language bias w metrykach architektonicznych na 237 repozytoriach.** Różnice nie wynikają z jakości kodu, ale z paradygmatów językowych:
+
+- **Go:** interfejsy zamiast dziedziczenia → LCOM4=1 zawsze → cohesion=1.0; ekosystem wymusza brak cykli → acy=1.0
+- **Java:** hierarchie klas → cohesion 0.38 średnio; pełne klony ujawniają 77% repo z cyklami (niewidoczne w shallow clone!)
+- **Python:** dynamiczny typing → wartości pośrednie; dominant pattern LAYERED (warstwowa architektura)
+
+**Implikacja dla produktu:** Cross-language porównanie AGQ bez normalizacji jest metodologicznie błędne. AGQ-z (percentyl w języku) rozwiązuje ten problem — jackson-databind (4.3%ile Java) i kubernetes (0.5%ile Go) obie są "najgorszymi w swojej klasie" mimo że mają różne absolute AGQ.
+
+**Nowe odkrycie (enhanced metrics, n=237):**
+- AGQ-adj (size-adjusted) vs churn_gini: **r=-0.162, p=0.014** ✅
+- ChurnRisk vs hotspot_ratio: **r=-0.149, p=0.024** ✅
+- TANGLED pattern: mean churn_gini=0.585 (najgorszy), CLEAN: 0.488 (najlepszy)
 
 ---
 
