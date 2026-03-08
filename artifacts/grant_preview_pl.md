@@ -516,3 +516,46 @@ Dla samej Javy (n=10): wyższy AGQ → niższe churn_gini (bardziej równomierny
 2. **Acyclicity jako cross-language predictor** wymaga replikacji na większym zbiorze (n=100+)
 3. **Java-specific validation** — 30 Java repo z pełną historią git jest minimalnym zbiorze dla statystycznie istotnych wniosków
 
+
+---
+
+## 11. Addendum — Pełny benchmark 235 repozytoriów (Python-78, Java-77, Go-80)
+
+Przeprowadzono największy do tej pory benchmark architektoniczny cross-language na **235 w pełni sklonowanych repozytoriach** (bez ograniczenia historii git).
+
+### Statystyki zbiorcze
+
+| Język | n | Średnie AGQ | Std | Min | Max | Cohesion | Acyclicity | Stability |
+|---|---|---|---|---|---|---|---|---|
+| Go | 80 | **0.817** | 0.063 | 0.657 | **0.937** | **1.000** | **1.000** | 0.736 |
+| Python | 78 | 0.746 | 0.055 | 0.581 | 0.860 | 0.647 | 0.999 | 0.806 |
+| Java | 77 | **0.619** | 0.089 | **0.463** | 0.838 | **0.379** | 0.973 | **0.486** |
+
+### Odkrycie 9: Java ma cykliczne zależności w 73% repozytoriów
+
+Pełny klon (nie shallow) ujawnił: **56 z 77 repozytoriów Java** (73%) posiada cykliczne zależności między klasami. Dla porównania: Python 4%, Go 0%.
+
+Jest to fundamentalne odkrycie metodologiczne: **poprzednie badania używające shallow clone nieświadomie maskowały cykle w Javie**. Acyclicity=1.000 w poprzednich pracach dla Java wynikała z niekompletności pobierania kodu, nie z faktycznej jakości architektury.
+
+### Odkrycie 10: Pierwsze statystycznie istotne korelacje cross-language (n=235)
+
+| Para | r_s | p-value | Interpretacja |
+|---|---|---|---|
+| acyclicity vs hotspot_ratio | +0.223 | **0.001** | Dominujący signal cross-language |
+| stability vs hotspot_ratio | +0.173 | **0.009** | Drugi statystycznie istotny predictor |
+| AGQ vs churn_gini | -0.139 | **0.036** | Wyższy AGQ → równomierniejszy churn |
+| Go: AGQ vs churn_gini | -0.270 | **0.017** | Najsilniejszy per-language signal |
+
+Pozytywny kierunek korelacji acyclicity/stability z hotspot wynika z confounding variable — projekty Go (acy=1.0, stab wysoka) są aktywnie rozwijane i naturalnie mają więcej hotspotów. Negatywna korelacja AGQ z churn_gini (-0.139, p=0.036) jest pierwszym poprawnie ukierunkowanym, istotnym statystycznie sygnałem.
+
+### Odkrycie 11: Size bias w AGQ — r_s(nodes, AGQ) = -0.269, p<0.001
+
+Większe repozytoria systematycznie uzyskują niższy AGQ. Jest to ograniczenie metodologiczne wymagające normalizacji per-rozmiar lub osobnych kalibracji dla małych (<500 nodes), średnich (500-5000) i dużych (>5000) projektów.
+
+### Odkrycie 12: Language paradigm dominuje nad jakością kodu
+
+**Bottom 10** cross-language: wyłącznie Java (jsoup, jackson-databind, vavr, kryo, mybatis...)
+**Top 10** cross-language: wyłącznie Go (protoc-gen-go, staticcheck, grpc-gateway, connect-go...)
+
+AGQ w formie composite metric mierzy cechy paradygmatu językowego silniej niż indywidualną jakość kodu. **Wniosek: cross-language porównania AGQ wymagają normalizacji per-język.** Per-language AGQ (z-score relative to language distribution) jest metodologicznie poprawniejszy niż absolute AGQ.
+
