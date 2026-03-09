@@ -1,6 +1,6 @@
 # QSE — Quality Score Engine
 ## Wniosek grantowy — opis projektu
-### Wersja robocza do EU / NCBiR / NCN
+### Wersja do EU / NCBiR / NCN
 
 ---
 
@@ -8,25 +8,28 @@
 
 ### 1.1 Era AI i nowe zagrożenia dla jakości oprogramowania
 
-Sztuczna inteligencja rewolucjonizuje tworzenie oprogramowania. Narzędzia takie jak GitHub Copilot, Cursor czy Claude Code generują dziś ponad 46% nowego kodu na platformie GitHub (dane 2025). Programista opisuje w języku naturalnym co chce osiągnąć, a AI pisze kod w ciągu sekund.
+Sztuczna inteligencja rewolucjonizuje tworzenie oprogramowania. Narzędzia takie jak GitHub Copilot, Cursor czy Claude Code generują dziś ponad 46% kodu w plikach gdzie są aktywnie używane (GitHub, 2023)¹. Programista opisuje w języku naturalnym co chce osiągnąć, a AI pisze kod w ciągu sekund.
 
 Problem polega na tym, że **AI optymalizuje pod kątem "działa teraz", nie "będzie działać za rok"**. Kod wygenerowany przez AI przechodzi testy jednostkowe, nie zawiera oczywistych błędów, ale systematycznie niszczy wewnętrzną strukturę systemu — jego architekturę.
 
 Wyobraźmy sobie firmę budującą oprogramowanie bankowe. Po roku używania AI do generowania kodu:
+
 - Moduł odpowiedzialny za płatności zaczął importować dane z modułu użytkowników (których nie powinien dotykać)
-- W systemie pojawiły się "cykliczne zależności" — moduł A potrzebuje modułu B, moduł B potrzebuje modułu A — co sprawia że zmiana jednego wymaga zmiany drugiego
+- W systemie pojawiły się cykliczne zależności — moduł A potrzebuje modułu B, moduł B potrzebuje modułu A — co sprawia że zmiana jednego wymaga zmiany drugiego
 - Klasy stały się "god objects" — jeden obiekt robi 20 różnych rzeczy zamiast jednej
 
-Żadne istniejące narzędzie tego nie wykrywa. SonarQube (lider rynku) sprawdza jakość kodu linijka po linijce — czy nie ma błędów, czy kod jest czytelny, czy nie ma luk bezpieczeństwa. **Nie sprawdza czy architektura systemu jako całości jest zdrowa.**
+Żadne powszechnie stosowane narzędzie tego nie wykrywa. SonarQube (lider rynku) sprawdza jakość kodu na poziomie pliku — błędy, czytelność, luki bezpieczeństwa, duplikaty. **Nie mierzy struktury systemu jako całości — modularity, acyclicity, stability ani cohesion.**
 
 ### 1.2 Czym jest "dobra architektura" — dla niespecjalisty
 
 Wyobraźmy sobie budynek. Dobry budynek ma:
+
 - **Niezależne pomieszczenia** — łazienka nie musi "wiedzieć" co dzieje się w kuchni
 - **Jasne wejścia i wyjścia** — drzwi są tam gdzie powinny być, nie ma dziur w ścianach
 - **Hierarchię** — piwnica nie opiera się na dachu
 
-W oprogramowaniu:
+W oprogramowaniu przekłada się to na cztery mierzalne właściwości:
+
 - **Niezależne moduły** (modularity) — zmiana w module płatności nie powinna wymuszać zmian w module raportowania
 - **Brak cykli** (acyclicity) — moduł A może zależeć od B, ale B nie może zależeć od A
 - **Warstwy** (stability) — "jądro" systemu jest stabilne, zmiany zachodzą na "obrzeżach"
@@ -34,60 +37,67 @@ W oprogramowaniu:
 
 ---
 
+¹ *"GitHub Copilot for Business is now available"*, GitHub Blog, 14 lutego 2023. https://github.blog/news-insights/product-news/github-copilot-for-business-is-now-available/
+
+---
+
 ## 2. QSE — nasze rozwiązanie
 
 ### 2.1 Co to jest QSE
 
-**QSE (Quality Score Engine)** to system który automatycznie mierzy jakość architektoniczną oprogramowania, klasyfikuje jej typ oraz egzekwuje reguły architektoniczne w procesie wytwarzania oprogramowania (CI/CD). Działa dla **Python, Java i Go** z jednego interfejsu.
+**QSE (Quality Score Engine)** to system który automatycznie mierzy jakość architektoniczną oprogramowania, klasyfikuje jej wzorzec oraz egzekwuje reguły architektoniczne w procesie wytwarzania oprogramowania (CI/CD). Działa dla **Python, Java i Go** z jednego interfejsu.
 
-QSE składa się z pięciu warstw:
+System QSE jest zbudowany w trzech konceptualnie odrębnych warstwach:
+
+**AGQ Core** stanowi fundament: cztery kalibrowane metryki grafowe (modularity, acyclicity, stability, cohesion) agregowane do jednego score'u z empirycznie wyznaczonymi wagami. Warstwa zaprojektowana pod kątem interpretowalności i stabilności — każda składowa ma jednoznaczne znaczenie architektoniczne, wynik końcowy można wyjaśnić deweloperowi w terminach grafu zależności. AGQ Core jest deterministyczny, szybki (mediana <1s) i niezależny od warstw wyższych.
+
+**AGQ Enhanced** rozszerza Core o kontekst i klasyfikację: normalizację per-język (AGQ-z, AGQ-adj), klasyfikację wzorca architektonicznego (Fingerprint), ocenę powagi cykli (CycleSeverity) i szacunek ryzyka procesowego (ChurnRisk). Warstwa ta dodaje wartość diagnostyczną bez modyfikowania AGQ Core — jej wyjścia są pochodnymi Core'u, nie osobnym modelem.
+
+**Predictor** (warstwa planowana badawczo) jest konceptualnie odrębny od obu powyższych. Jego zadaniem nie jest obliczanie score'u architektonicznego, lecz szacowanie prawdopodobieństwa przyszłych zdarzeń procesowych. Przyjmuje jako wejście cechy z AGQ Core i Enhanced, uzupełnione o cechy temporalne, procesowe i boundary features. Wymaga osobnego datasetu z etykietami procesowymi, osobnego pipeline'u walidacji i osobnych metryk jakości — niezależnych od metryk AGQ.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  WARSTWA 5: AGQ Enhanced                                │
+│  WARSTWA 3 (planowana): Predictor                       │
+│  Model predykcji ryzyka utrzymaniowego                  │
+│  Wejście: AGQ + cechy temporalne/procesowe/boundary     │
+├─────────────────────────────────────────────────────────┤
+│  WARSTWA 2: AGQ Enhanced + Policy-as-a-Service          │
 │  AGQ-z, Fingerprint, CycleSeverity, ChurnRisk, AGQ-adj  │
+│  Quality Gate, qse discover                             │
 ├─────────────────────────────────────────────────────────┤
-│  WARSTWA 4: Policy-as-a-Service                         │
-│  Automatyczne reguły architektoniczne (qse discover)    │
-├─────────────────────────────────────────────────────────┤
-│  WARSTWA 3: Quality Gate (TRL4 + ratchet)               │
-│  Blokada gdy jakość spada poniżej progu                 │
-├─────────────────────────────────────────────────────────┤
-│  WARSTWA 2: AGQ Metrics (4 naprawione + kalibracja)     │
+│  WARSTWA 1: AGQ Core (Scanner + Metrics)                │
 │  Modularity, Acyclicity, Stability, Cohesion            │
-├─────────────────────────────────────────────────────────┤
-│  WARSTWA 1: Scanner (Python AST + Rust tree-sitter)     │
-│  Python, Java (Maven/Gradle), Go — 30× szybszy w Rust   │
+│  Rust tree-sitter — Python, Java, Go — 7-46× szybszy    │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ### 2.2 Jak działa — krok po kroku
 
-**Krok 1: Skanowanie kodu — wykrywanie języka automatyczne**
+**Krok 1: Skanowanie kodu**
 
 ```bash
 $ qse agq /ścieżka/do/projektu
 ```
 
-System zlicza pliki `.py/.java/.go` i wybiera silnik. Wszystkie trzy języki używają **Rust qse-core** z tree-sitter (7-46× szybszy niż Python dla Pythona, 30-46× dla Java/Go). Python AST scanner pozostaje jako fallback gdy Rust nie jest zainstalowany.
-
-Kluczowa innowacja dla Javy: zamiast ścieżki pliku (`android.guava-testlib.src.com.google.common...`) QSE czyta deklarację `package com.google.common.collect;` → semantycznie poprawne nazwy modułów (`com.google.common.collect.ImmutableList`).
+System wykrywa język automatycznie (zlicza pliki `.py/.java/.go`) i używa skanera Rust opartego na tree-sitter — 7–46× szybszego niż tradycyjne podejście oparte na interpreterze języka. Obsługuje wszystkie trzy języki z jednego silnika.
 
 **Krok 2: Graf wewnętrznych zależności**
 
-QSE buduje graf gdzie węzły = moduły źródłowe, krawędzie = importy. Kluczowe: `internal_graph` odfiltruje węzły zewnętrzne (stdlib, biblioteki third-party). Cykl przez `os` czy `java.util` nie jest architektonicznym problemem — cykl między własymi modułami tak.
+QSE buduje graf gdzie węzły = moduły źródłowe, krawędzie = importy. Kluczowe: filtrujemy węzły zewnętrzne (stdlib, biblioteki third-party) — cykl przez `os` czy `java.util` nie jest architektonicznym problemem. Liczymy tylko zależności między własnymi modułami projektu.
 
-**Krok 3: Cztery metryki AGQ** (szczegóły w sekcji 3)
+**Krok 3: Cztery metryki AGQ**
 
-**Krok 4: Pięć metryk Enhanced** — NOWE
+(szczegóły w sekcji 3)
+
+**Krok 4: Pięć metryk Enhanced**
 
 Na podstawie czterech bazowych QSE oblicza pięć dodatkowych wymiarów:
 
 | Metryka | Co daje | Przykład |
 |---|---|---|
-| **AGQ-z** | Percentyl w języku — usuwa language bias | jackson: 4.3%ile Java |
-| **Fingerprint** | Typ architektury (7 wzorców) | [TANGLED], [CLEAN], [LAYERED] |
-| **CycleSeverity** | Powaga cykli: NONE/LOW/MEDIUM/HIGH/CRITICAL | HIGH = 15% klas w pętli |
+| **AGQ-z** | Percentyl w danym języku — usuwa language bias | jackson: 5.3%ile Java |
+| **Fingerprint** | Wzorzec architektoniczny (klasyfikacja na podstawie acyclicity, cohesion i stability) | [CLEAN], [LAYERED], [FLAT], [MODERATE], [LOW_COHESION], [TANGLED], [CYCLIC] |
+| **CycleSeverity** | Powaga cykli: NONE / LOW / MEDIUM / HIGH / CRITICAL | HIGH = 15% klas w pętli |
 | **ChurnRisk** | Ryzyko nierównego rozkładu zmian | CRITICAL → pilna refaktoryzacja |
 | **AGQ-adj** | Score skorygowany o rozmiar projektu | małe i duże repo porównywalne |
 
@@ -96,7 +106,7 @@ Na podstawie czterech bazowych QSE oblicza pięć dodatkowych wymiarów:
 ```
 # Zamiast suchego "AGQ=0.46 FAIL":
 AGQ GATE PASS  agq=0.4618  M=0.57 A=0.85 St=0.26 Co=0.16  lang=Java
-  [TANGLED]  z=-1.71 (4.3%ile Java)  cycles=HIGH (15% klas w cyklach)
+  [TANGLED]  z=-1.61 (5.3%ile Java)  cycles=HIGH (15% klas w cyklach)
   → Projekt jest w dolnych 5% repozytoriów Java
   → 15% klas uwięzionych w cyklach zależności — HIGH priority fix
   → Wzorzec TANGLED: niska spójność + cykle = architektoniczny dług
@@ -111,263 +121,303 @@ AGQ GATE PASS  agq=0.8760  lang=Go
 
 ```bash
 $ qse discover /ścieżka/do/repo --output-constraints .qse/arch.json
-# Wynik dla Spring Boot:
-# 27 reguł m.in.: forbidden: org.springframework.boot.loader/* → org.springframework/*
-# (classloader nie może zależeć od kodu aplikacji)
-
 $ qse agq . --constraints .qse/arch.json
 # Każdy PR sprawdzany czy respektuje granice architektoniczne
 ```
 
+**Krok 7: Integracja z CI/CD**
+
+QSE zwraca wynik w poniżej 1 sekundy dla typowych projektów, co umożliwia integrację jako pre-commit hook lub krok w pipeline CI/CD — bez spowalniania procesu wytwarzania.
+
 ---
 
-## 3. Metryki AGQ — wyjaśnienie dla niespecjalisty
+## 3. Metryki AGQ — wyjaśnienie
 
-### 3.1 Modularity (Modularność) — "czy moduły są naprawdę niezależne?"
+### 3.1 Modularity — "czy moduły są naprawdę niezależne?"
 
-**Co mierzy:** Czy system jest podzielony na grupy modułów które intensywnie komunikują się wewnętrznie, ale rzadko z innymi grupami.
+**Co mierzy**
 
-**Analogia:** Wyobraź sobie miasto. Dobra dzielnica mieszkalna ma dużo wewnętrznych połączeń (ulice, chodniki między budynkami), ale kilka głównych dróg łączących ją z innymi dzielnicami. Jeśli każda ulica w mieście łączy się z każdą inną — to chaos, nie dzielnice.
+Czy system dzieli się na grupy modułów które intensywnie komunikują się wewnętrznie, ale rzadko z innymi grupami.
 
-**Jak obliczamy:** Używamy algorytmu Louvain — ten sam który Facebook używa do wykrywania "społeczności" w sieciach społecznych. Obliczamy stosunek połączeń wewnątrz grup do połączeń między grupami.
+**Analogia**
 
-**Wynik 0:** Wszystkie moduły łączą się ze wszystkimi — brak struktury ("big ball of mud")
-**Wynik 1:** Moduły tworzą wyraźne, izolowane grupy — idealna modularność
+Wyobraź sobie miasto. Dobra dzielnica mieszkalna ma dużo wewnętrznych połączeń (ulice, chodniki między budynkami), ale tylko kilka głównych dróg łączących ją z innymi dzielnicami. Jeśli każda ulica w mieście łączy się z każdą inną — to chaos, nie dzielnice.
 
-**Kalibracja na danych:** Max Q w zbiorze 237 repo = 0.80. Normalizujemy: `max(0, Q) / 0.75`.
+**Jak obliczamy**
 
-### 3.2 Acyclicity (Acykliczność) — "czy nie ma błędnych pętli zależności?"
+Używamy algorytmu Louvain — ten sam który stosuje się do wykrywania "społeczności" w sieciach społecznych. Obliczamy stosunek połączeń wewnątrz grup do połączeń między grupami (Newman's Q).
 
-**Co mierzy:** Czy istnieją "cykliczne zależności" — sytuacje gdzie A zależy od B, B od C, C od A. To architektoniczny odpowiednik "jajka i kury" — co kompilować/testować pierwsze?
+- **Wynik 0:** Wszystkie moduły łączą się ze wszystkimi — brak struktury ("big ball of mud")
+- **Wynik 1:** Moduły tworzą wyraźne, izolowane grupy — idealna modularność
 
-**Analogia:** Wyobraź sobie firmę gdzie dział kadr czeka na decyzję finansową, finanse czekają na plan HR, a HR czeka na decyzję finansową. Nikt nic nie zrobi. W kodzie — zmiana w A wymusza zmianę w B, która wymusza zmianę w C, która wymusza zmianę w A. Niekończąca się pętla.
+Normalizacja: maksymalne Q w zbiorze 240 repo wyniosło 0.80. Stosujemy: `max(0, Q) / 0.75`.
 
-**Jak obliczamy:** Tarjan's Strongly Connected Components — algorytm z teorii grafów. Szukamy największej "pętli" w grafie zależności.
+---
 
-**Wynik 0:** Cały system jest jedną wielką pętlą — wszystko jest od wszystkiego zależne
-**Wynik 1:** Brak jakichkolwiek cykli — każda zależność idzie "w dół"
+### 3.2 Acyclicity — "czy nie ma błędnych pętli zależności?"
 
-**Kluczowe odkrycie naukowe:** Ta metryka dominuje w kalibracji — waga 0.73 z 4 metryk. Potwierdzone przez niezależne badania (Gnoyke et al., JSS 2024): "cyclic dependencies correlate with defects most among architectural smells." Nasze obliczenia i literatura są zgodne.
+**Co mierzy**
 
-### 3.3 Stability (Stabilność warstw) — "czy architektura ma wyraźne warstwy?"
+Czy istnieją cykliczne zależności — sytuacje gdzie A zależy od B, B od C, C od A.
 
-**Co mierzy:** Stopień w jakim moduły systemu pełnią wyraźnie różne role architektoniczne — jedne są "jądrem" (stabilnym, od wszystkiego zależnym), inne są "obrzeżem" (zmieniającym się, od mało zależnym).
+**Analogia**
 
-**Analogia:** Wyobraź sobie armię. Generałowie są stabilni — wielu oficerów raportuje do nich, oni sami raportują do niewielu. Żołnierze są niestabilni — raportują do oficerów, ale nikt do nich nie raportuje. Dobrze zorganizowana armia ma wyraźną hierarchię. Kiepska armia — wszyscy raportują do wszystkich, żaden stopień nie ma jasnej roli.
+Wyobraź sobie firmę gdzie dział kadr czeka na decyzję finansową, finanse czekają na plan HR, a HR czeka na decyzję finansową. Nikt nic nie zrobi. W kodzie — zmiana w A wymusza zmianę w B, która wymusza zmianę w C, która wymusza zmianę w A.
 
-**Jak obliczamy:** Dla każdego pakietu obliczamy I (Instability) = `wychodzące_importy / (wychodzące + przychodzące)`. Pakiet "jądra" ma I≈0 (wiele go importuje, on mało). Pakiet "obrzeża" ma I≈1 (on importuje wiele, mało go importuje). Mierzymy wariancję I — im wyższa, tym wyraźniejsza hierarchia.
+**Jak obliczamy**
 
-**Odkrycie:** Oryginalny wzór Martina (Distance from Main Sequence) degeneruje bez danych o abstrakcji. Nasz wzór oparty na wariancji instability'ego jest pierwszym empirycznie walidowanym zamiennikiem.
+Algorytm Tarjana (Strongly Connected Components) z teorii grafów. Szukamy największego "splotu" w grafie zależności wewnętrznych modułów.
 
-### 3.4 Cohesion (Spójność) — "czy każda klasa robi jedną rzecz?"
+- **Wynik 0:** Cały system jest jedną wielką pętlą
+- **Wynik 1:** Brak jakichkolwiek cykli — każda zależność idzie "w dół"
 
-**Co mierzy:** Czy metody (funkcje) w klasie faktycznie współpracują, dzieląc dane, czy są "przypadkowymi sąsiadami" w tym samym pliku.
+**Znaczenie empiryczne**
 
-**Analogia:** Dobra klasa to jak dobry pracownik — ma jedno stanowisko pracy, wszystkie jego narzędzia służą do jednego celu. Zła klasa to "człowiek-orkiestra" — ma biurko, stół operacyjny i stanowisko kierowcy tira jednocześnie.
+Metryka ta uzyskała najwyższą wagę w kalibracji empirycznej (szczegóły w sekcji 4.1). Jest to zgodne z niezależnymi badaniami: Gnoyke et al. (JSS 2024) wykazali, że zależności cykliczne najsilniej korelują z defektami spośród wszystkich architektonicznych code smells.
 
-**Jak obliczamy:** LCOM4 (Lack of Cohesion of Methods v4) — liczymy ile "wysp" tworzą metody klasy jeśli połączymy te które dzielą atrybuty. Klasa z LCOM4=1 to jeden spójny byt. Klasa z LCOM4=5 powinna być podzielona na 5 mniejszych klas.
+---
 
-**Odkrycie language bias:** Go zawsze = 1.00, Java średnio = 0.33. To nie dlatego że Go jest "lepiej napisane" — Go strukturalnie nie ma wielodziedziczenia → LCOM4=1 zawsze. Java ma złożone hierarchie klas → niższe cohesion jest normą, nie błędem.
+### 3.3 Stability — "czy architektura ma wyraźne warstwy?"
+
+**Co mierzy**
+
+Stopień w jakim moduły systemu pełnią wyraźnie różne role architektoniczne — jedne są "jądrem" (stabilnym), inne są "obrzeżem" (zmieniającym się).
+
+**Analogia**
+
+Wyobraź sobie armię. Generałowie są stabilni — wielu oficerów raportuje do nich, oni sami raportują do niewielu. Żołnierze są niestabilni — raportują do oficerów, ale nikt do nich nie raportuje. Dobrze zorganizowana armia ma wyraźną hierarchię. Kiepska armia — wszyscy raportują do wszystkich, żaden stopień nie ma jasnej roli.
+
+**Jak obliczamy**
+
+Dla każdego pakietu obliczamy I (Instability) = `wychodzące_importy / (wychodzące + przychodzące)`. Pakiet "jądra" ma I≈0, pakiet "obrzeża" ma I≈1. Mierzymy wariancję I między pakietami — im wyższa, tym wyraźniejsza hierarchia warstw.
+
+- **Wynik 0:** Wszystkie pakiety mają podobną instability — brak warstw
+- **Wynik 1:** Wyraźna separacja jądra od obrzeża
+
+**Uwaga metodologiczna**
+
+Oryginalny wzór Martina (Distance from Main Sequence, 1994) wymaga danych o abstrakcji klas, które w praktyce są niedostępne (w Pythonie prawie zawsze A=0). Nasz wzór oparty na wariancji instability jest empirycznie zwalidowanym zamiennikiem.
+
+---
+
+### 3.4 Cohesion — "czy każda klasa robi jedną rzecz?"
+
+**Co mierzy**
+
+Czy metody w klasie faktycznie współpracują (dzielą dane), czy są przypadkowymi sąsiadami w tym samym pliku.
+
+**Analogia**
+
+Dobra klasa to jak dobry pracownik — ma jedno stanowisko pracy, wszystkie jego narzędzia służą do jednego celu. Zła klasa to "człowiek-orkiestra" — ma biurko, stół operacyjny i stanowisko kierowcy tira jednocześnie.
+
+**Jak obliczamy**
+
+LCOM4 (Lack of Cohesion of Methods v4) — liczymy ile "wysp" tworzą metody klasy jeśli połączymy te które dzielą atrybuty. Klasa z LCOM4=1 to jeden spójny byt. Klasa z LCOM4=5 powinna być podzielona na 5 mniejszych klas.
+
+- **Wynik 0:** Klasy są zbiorami niezwiązanych metod
+- **Wynik 1:** Każda klasa jest spójną jednostką
+
+**Language bias**
+
+Go zawsze osiąga cohesion=1.0, Java średnio 0.38. To nie wynik jakości kodu — Go strukturalnie nie ma wielodziedziczenia (interfejsy zamiast hierarchii klas), więc LCOM4=1 zawsze. Java ma złożone hierarchie → niższe cohesion jest normą dla tego języka. Dlatego porównanie cross-language wymaga normalizacji per-język (metryka AGQ-z).
+
+---
 
 ### 3.5 QSE_test — "czy testy są dobrej jakości?"
 
-Pięć wymiarów jakości testów:
+QSE_test jest zaimplementowany i mierzy pięć wymiarów jakości zestawu testów:
 
-1. **Assertion density** — ile asercji (sprawdzeń) ma przeciętny test? Test z 0 asercjami niczego nie sprawdza.
-2. **Test-to-code ratio** — ile kodu testowego na ile kodu produkcyjnego?
-3. **Naming quality** — czy testy mają opisowe nazwy (`test_should_reject_invalid_payment` vs `test_1`)?
-4. **Isolation score** — czy testy używają mocków/fictures (izolacja od zewnętrznych systemów)?
-5. **Coverage potential** — jaki procent klas domenowych ma co najmniej jeden test?
+**1. Assertion density**
+Średnia liczba asercji (sprawdzeń) per test. Test z 0 asercjami niczego nie weryfikuje — wykonuje kod bez sprawdzania wyników.
+
+**2. Test-to-code ratio**
+Stosunek linii kodu testowego do linii kodu produkcyjnego. Niska wartość może wskazywać na niewystarczające pokrycie.
+
+**3. Naming quality**
+Procent testów z opisową nazwą — np. `test_should_reject_invalid_payment` zamiast `test_1`. Opisowe nazwy stanowią dokumentację i ułatwiają diagnozę błędów.
+
+**4. Isolation score**
+Procent testów korzystających z mocków, patchów lub fixtures (izolacja od zewnętrznych systemów — bazy danych, HTTP, filesystem). Testy bez izolacji są niestabilne i wolne.
+
+**5. Coverage potential**
+Proxy: procent klas domenowych które mają co najmniej jeden test. Nie wymaga uruchomienia coverage tool.
+
+```
+QSE_test = mean(powyższych 5 metryk) ∈ [0, 1]
+```
 
 ---
 
-## 4. Wyniki eksperymentalne — pełne dane
+## 4. Wyniki eksperymentalne
 
-### 4.0 Benchmark 237 repozytoriów — podsumowanie cross-language (NOWE)
+### 4.0 Benchmark 240 repozytoriów — podsumowanie cross-language
 
-Największy benchmark architektoniczny cross-language: **237 w pełni sklonowanych repozytoriów** (Python-78, Java-77, Go-80) z pełną historią git.
+Benchmark architektoniczny cross-language: **240 w pełni sklonowanych repozytoriów** (Python-80, Java-79, Go-81) z pełną historią git.
 
-**Kluczowe statystyki:**
+**Statystyki zbiorcze:**
 
-| Język | n | Średnie AGQ | Cohesion | Acyclicity | % z cyklami |
+| Język | n | Średnie AGQ | Cohesion śr. | Acyclicity śr. | % z cyklami |
 |---|---|---|---|---|---|
-| Go | 80 | **0.817** | **1.000** | **1.000** | **0%** |
-| Python | 78 | 0.746 | 0.647 | 0.999 | 4% |
-| Java | 77 | **0.619** | **0.379** | 0.973 | **73%** |
+| Go | 81 | **0.815** | **1.000** | **1.000** | **0%** |
+| Python | 80 | 0.753 | 0.647 | 0.999 | 4% |
+| Java | 79 | **0.627** | **0.379** | 0.973 | **71%** |
 
-**Fingerprint distribution (237 repo):**
+**Rozkład wzorców Fingerprint (240 repo):**
 
 | Wzorzec | Total | Python | Java | Go | Interpretacja |
 |---|---|---|---|---|---|
-| LAYERED | 68 | 57 | 4 | 7 | Warstwowa architektura — dobra |
-| CLEAN | 49 | 1 | 1 | **47** | Strukturalnie czysty — Go dominuje |
-| LOW_COHESION | 44 | 4 | **40** | 0 | Klasy robią za dużo — Java problem |
-| MODERATE | 39 | 12 | 11 | 16 | Przeciętny, bez patologii |
-| FLAT | 23 | 5 | 8 | 10 | Brak warstw — **dominujący pattern złej arch.** |
-| TANGLED | 9 | 0 | **9** | 0 | Cykle + niska spójność — Java OOP dług |
+| LAYERED | 68 | 57 | 4 | 7 | Warstwowa architektura |
+| CLEAN | 51 | 2 | 2 | **47** | Strukturalnie czysty — Go dominuje |
+| LOW_COHESION | 44 | 4 | **40** | 0 | Klasy robią za dużo — Java |
+| MODERATE | 40 | 12 | 11 | 17 | Bez wyraźnych patologii |
+| FLAT | 23 | 5 | 8 | 10 | Brak hierarchii warstw |
+| TANGLED | 9 | 0 | **9** | 0 | Cykle + niska spójność — Java |
 | CYCLIC | 5 | 0 | **5** | 0 | Cykle bez innych patologii |
 
-**NAJWAŻNIEJSZE ODKRYCIE:** Wzorzec FLAT (brak warstw architektonicznych) jest dominującym wzorcem złej architektury cross-language — pojawia się u najgorszych projektów w każdym języku: `home-assistant` (Python, z=-2.81), `avro` (Java, z=-3.11), `kubernetes` (Go, z=-2.58).
+**Uwaga interpretacyjna:** Wzorzec FLAT (brak warstw) pojawia się najczęściej u projektów z najniższym AGQ-z w każdym języku (`home-assistant`, `avro`, `kubernetes`). Należy jednak odróżnić FLAT jako defekt architektoniczny od FLAT jako świadomą decyzję projektową — duże projekty platformowe (kubernetes, grafana) mogą mieć płaską strukturę z uzasadnienia domenowego, nie z zaniedbania. AGQ-z pozwala odróżnić te przypadki przez porównanie w obrębie języka i rozmiaru.
 
-**Nowe statystycznie istotne korelacje (n=231-237):**
+**Statystycznie istotne korelacje cross-language (n=234, Spearman):**
 
-| Para | r_s / r | p-value |
+| Para | r_s | p-value |
 |---|---|---|
 | acyclicity vs hotspot_ratio | +0.223 | **0.001** |
-| stability vs hotspot_ratio | +0.173 | **0.009** |
-| AGQ vs churn_gini | -0.128 | 0.052 |
-| **AGQ-z vs churn_gini** | **-0.130** | **0.048*** |
-| **AGQ-adj vs churn_gini** | **-0.162** | **0.014*** |
-| **AGQ-adj vs hotspot_ratio** | **+0.232** | **<0.001*** |
-| **ChurnRisk vs hotspot_ratio** | **-0.149** | **0.024*** |
+| stability vs hotspot_ratio | +0.180 | **0.006** |
+| AGQ-adj vs churn_gini | -0.154 | **0.018** |
+| AGQ-adj vs hotspot_ratio | +0.236 | **<0.001** |
 
-Size-adjusted AGQ (AGQ-adj) ma **najsilniejszą korelację** z churn — usunięcie bias rozmiaru wzmacnia sygnał architektoniczny.
+AGQ skorygowany o rozmiar projektu (AGQ-adj) wykazuje silniejszą korelację z metrykami procesu wytwarzania niż surowe AGQ — usunięcie bias rozmiaru wzmacnia sygnał architektoniczny. Efekty są statystycznie istotne lecz umiarkowane (r²≈3–6%), co wskazuje na ortogonalność metryk architektonicznych i procesowych, a nie na bezpośrednią predykcję.
+
+---
 
 ### 4.1 Benchmark Python OSS-80
 
-**Zbiór danych:** 78 z 80 repozytoriów Python (2 błędy: ruff — null bytes, lxml — non-UTF-8)
+**Zbiór danych:** 80 repozytoriów Python, pełne klony z pełną historią git.
 
 **Weryfikacja tez:**
 
 | ID | Teza | Wynik | Dowód liczbowy |
 |---|---|---|---|
-| T1 | AGQ jest deterministyczne | ✅ PASS | max delta = 0.0000000000 na 78 repo |
-| T2 | AGQ ortogonalne do Sonara | ✅ PASS* | r=-0.21 (komplementarność) |
-| T3 | AGQ widzi to czego Sonar nie widzi | ✅ PASS | 21 z 78 repo: Sonar=A, AGQ<próg |
-| T4 | AGQ jest szybszy od Sonara | ✅ PASS | mediana 0.32s vs 15.0s (~47× szybciej) |
-| T5 | AGQ różnicuje jakość | ✅ PASS | spread=0.548, std=0.093 |
+| T1 | AGQ jest deterministyczne | ✅ PASS | max delta = 0.0000000000 na 80 repo |
+| T2 | AGQ mierzy wymiar ortogonalny do Sonara | ✅ PASS | brak istotnej korelacji AGQ z metrykami Sonara (n=78, wszystkie p>0.10) |
+| T3 | AGQ wykrywa problemy niewidoczne dla Sonara | ✅ PASS | projekty z Sonar=A i AGQ<0.7 zidentyfikowane w zbiorze |
+| T4 | AGQ umożliwia szybki feedback architektoniczny | ✅ PASS | mediana 0.32s — możliwość integracji jako pre-commit hook |
+| T5 | AGQ różnicuje jakość architektoniczną | ✅ PASS | spread=0.425, std=0.065 |
 
-*T2 reinterpretowane: nie "AGQ lepszy od Sonara" ale "AGQ i Sonar mierzą ortogonalne wymiary"
+**Nota do T2:** Brak istotnej korelacji między AGQ a metrykami Sonara (bugs_per_kloc, smells_per_kloc, vulns_per_kloc — wszystkie p>0.10 na n=78) wskazuje że narzędzia mierzą ortogonalne wymiary jakości. Sonar wykrywa problemy na poziomie kodu (błędy, code smells, bezpieczeństwo), QSE na poziomie struktury systemu (zależności między modułami). Projekt może mieć Sonar=A (czyste pliki) i niskie AGQ (zdegradowaną architekturę) — i odwrotnie. To właśnie czyni QSE komplementarnym, a nie konkurencyjnym narzędziem.
 
-**Ewolucja metryk v1→v4:**
+**Nota do T4:** Porównanie prędkości z SonarQube nie jest bezpośrednio miarodajne — narzędzia mierzą różne rzeczy. Istotne jest że QSE zwraca wynik architektoniczny w poniżej 1 sekundy, co umożliwia jego użycie w pre-commit hooku bez spowalniania pracy dewelopera.
 
-| Wersja | Zmiana | Spread | Std |
-|---|---|---|---|
-| v1 | Baseline (Martin's D) | 0.286 | 0.050 |
-| v2 | Per-node stability variance | 0.337 | 0.057 |
-| v3 | Package-level stability | 0.401 | 0.073 |
-| v4 | + boundary crossing ratio | **0.548** | **0.093** |
+**Kalibracja wag (L-BFGS-B, n=74):**
 
-**Interpretacja:** Każda naprawa metryk zwiększała zdolność do rozróżniania projektów. v4 ma spread prawie 2× większy niż v1 — metryki "widzą" więcej.
+Wagi czterech składowych AGQ zostały wyznaczone empirycznie metodą optymalizacji numerycznej (L-BFGS-B). Jako signal optymalizacji użyto code churn — miarę częstości zmian plików w historii git, będącą pośrednim wskaźnikiem kosztów utrzymania (Nagappan & Ball, ICSE 2005; Faragó et al., SCAM 2015). Model dobiera wagi minimalizując błąd predykcji churn na podstawie AGQ.
 
-**Kalibracja wag (L-BFGS-B, LOO-CV, n=74):**
+Walidacja stabilności modelu: Leave-One-Out Cross-Validation (LOO-CV) — każdy z 74 projektów jest kolejno wyłączany ze zbioru treningowego, model jest rekalibrowany na pozostałych 73, i testowany na wykluczonym projekcie. Niska wartość MSE w LOO-CV oznacza że model nie "nauczył się na pamięć" danych — jest odporny na jednostkowe obserwacje.
 
-| Składowa | Waga empiryczna | Waga równa | Zmiana |
-|---|---|---|---|
-| Acyclicity | **0.730** | 0.250 | +193% |
-| Cohesion | **0.174** | 0.250 | -30% |
-| Stability | **0.050** | 0.250 | -80% |
-| Modularity | **0.000** | 0.250 | -100% |
+| Składowa | Waga empiryczna | Waga równa |
+|---|---|---|
+| Acyclicity | **0.730** | 0.250 |
+| Cohesion | **0.174** | 0.250 |
+| Stability | **0.050** | 0.250 |
+| Modularity | **0.000** | 0.250 |
 
-LOO-CV MSE = 0.006 ± 0.013 — model stabilny, nie przeucza się.
+Dominacja acyclicity (0.73) jest zgodna z niezależnymi badaniami literaturowymi (Gnoyke et al., JSS 2024). Waga modularity=0 oznacza że modularity nie wnosi niezależnego sygnału predykcyjnego gdy pozostałe trzy metryki są obecne — co może wynikać z korelacji między metrykamił lub z tego że Q Louvaina nie dyskryminuje dobrze w zakresie wartości obserwowanych w tym zbiorze. Należy traktować te wagi jako wstępne, wyznaczone na konkretnym zbiorze danych OSS-Python — kalibracja per-język (Python, Java, Go osobno) stanowi jeden z planowanych kierunków badań.
 
-**Wyniki per repo (top 10 i bottom 10):**
+**Wyniki per repo (wybrane):**
 
-| Repo | AGQ v4 | Modularity | Acyclicity | Stability | Cohesion |
+| Repo | AGQ | Modularity | Acyclicity | Stability | Cohesion |
 |---|---|---|---|---|---|
 | attrs | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
-| boto3 | 0.889 | 0.724 | 1.000 | 0.827 | 0.869 |
-| whoosh | 0.860 | 0.667 | 1.000 | 0.983 | 0.791 |
-| django-rest-framework | 0.847 | 0.565 | 1.000 | 0.967 | 0.857 |
-| mako | 0.876 | 0.738 | 1.000 | 0.859 | 0.821 |
+| pytest | 0.875 | 0.500 | 1.000 | 1.000 | 1.000 |
+| boto3 | 0.869 | 0.778 | 1.000 | 0.952 | 0.746 |
+| youtube-dl | 0.857 | 0.681 | 1.000 | 0.862 | 0.884 |
 | ... | ... | ... | ... | ... | ... |
-| flask | 0.457 | 0.417 | 0.795 | 0.488 | 0.692 |
-| click | 0.604 | 0.510 | 0.797 | 0.483 | 0.785 |
-| aiohttp | 0.497 | 0.339 | 0.714 | 0.563 | 0.855 |
+| hypothesis | 0.644 | 0.547 | 1.000 | 0.232 | 0.799 |
+| home-assistant | 0.575 | 0.512 | 1.000 | 0.078 | 0.711 |
 
-### 4.2 Benchmark Java-77 (pełne klony)
+---
 
-**Zbiór danych:** 77 z 80 repozytoriów Java — **pełne klony**, pełna historia git.
-Kluczowa różnica vs poprzednie benchmarki: shallow clone maskował 73% cykli w Javie.
+### 4.2 Benchmark Java-79
+
+**Zbiór danych:** 79 z 80 repozytoriów Java, pełne klony z pełną historią git.
 
 **Statystyki zbiorcze:**
 
 | Metryka | Wartość |
 |---|---|
-| Liczba repo | 77 |
-| Średnie AGQ | 0.621 |
-| Spread | 0.368 |
-| Std | 0.087 |
+| Liczba repo | 79 |
+| Średnie AGQ | 0.627 |
+| Spread | 0.434 |
+| Std | 0.096 |
 | Min AGQ | 0.471 (jackson-databind, TANGLED) |
-| Max AGQ | 0.839 (dagger, LAYERED) |
-| Repo z cyklami | **59/77 = 77%** (niewidoczne w shallow clone!) |
+| Max AGQ | 0.905 (spotbugs, CLEAN) |
+| Repo z cyklami | **56/79 = 71%** |
 
-**Najlepsze i najgorsze (z AGQ-z i fingerprint):**
+**Najlepsze i najgorsze:**
 
 | Repo | AGQ | Fingerprint | AGQ-z | Percentyl |
 |---|---|---|---|---|
-| dagger | 0.839 | LAYERED | +2.51 | 99% |
-| spring-boot | 0.803 | LAYERED | +2.09 | 98% |
-| immutables | 0.784 | LAYERED | +1.87 | 97% |
-| resilience4j | 0.777 | LOW_COHESION | +1.80 | 96% |
-| log4j | 0.731 | LOW_COHESION | +1.27 | 90% |
+| spotbugs | 0.905 | CLEAN | +2.52 | 99% |
+| resteasy | 0.847 | CLEAN | +1.58 | 94% |
+| dagger | 0.839 | LAYERED | +1.44 | 93% |
+| spring-boot | 0.803 | LAYERED | +1.93 | 97% |
+| immutables | 0.784 | LAYERED | +1.72 | 96% |
 | ... | ... | ... | ... | ... |
-| commons-lang | 0.533 | CYCLIC | -1.01 | 16% |
-| flyway | 0.498 | CYCLIC | -1.40 | 8% |
-| kryo | 0.502 | TANGLED | -1.36 | 9% |
-| jsoup | 0.478 | TANGLED | -1.60 | 5% |
-| jackson-databind | 0.471 | TANGLED | -1.71 | 4% |
+| flyway | 0.498 | CYCLIC | -1.32 | 9% |
+| jsoup | 0.478 | TANGLED | -1.54 | 6% |
+| jackson-databind | 0.471 | TANGLED | -1.61 | 5% |
 
-**Odkrycie metodologiczne:** Poprzednie analizy (shallow clone) pokazywały acy=1.000 dla wszystkich Java repo. Pełne klony ujawniają że **59/77 (77%) ma cykliczne zależności** — fundamentalna zmiana interpretacji. Jednak obecność cykli NIE koreluje jednoznacznie z niską jakością: spring-boot (LAYERED, top 2%) też ma drobne cykle (acy=0.999).
+---
 
-### 4.3 Benchmark Go-80 (pełne klony)
+### 4.3 Benchmark Go-81
 
-**Zbiór danych:** 80 repozytoriów Go — **pełne klony**.
+**Zbiór danych:** 81 repozytoriów Go, pełne klony.
 
 **Statystyki zbiorcze:**
 
 | Metryka | Wartość |
 |---|---|
-| Liczba repo | 80 |
-| Średnie AGQ | 0.816 |
+| Liczba repo | 81 |
+| Średnie AGQ | 0.815 |
 | Spread | 0.266 |
-| Std | 0.061 |
+| Std | 0.062 |
 | Min AGQ | 0.655 (kubernetes, FLAT) |
 | Max AGQ | 0.920 (staticcheck, CLEAN) |
-| Repo z cyklami | **0/80 = 0%** |
-| Cohesion = 1.000 | **80/80 = 100%** |
+| Repo z cyklami | **0/81 = 0%** |
+| Cohesion = 1.000 | **81/81 = 100%** |
 
-**Najlepsze i najgorsze (z AGQ-z):**
+**Najlepsze i najgorsze:**
 
 | Repo | AGQ | Fingerprint | AGQ-z | Percentyl |
 |---|---|---|---|---|
 | staticcheck | 0.920 | CLEAN | +1.66 | 95% |
 | grpc-gateway | 0.920 | CLEAN | +1.65 | 95% |
-| protoc-gen-go | 0.902 | CLEAN | +1.35 | 91% |
-| connect-go | 0.898 | CLEAN | +1.30 | 90% |
-| gore | 0.891 | CLEAN | +1.18 | 88% |
 | ... | ... | ... | ... | ... |
-| buf | 0.684 | FLAT | -2.12 | 1% |
-| flux | 0.681 | FLAT | -2.17 | 1% |
 | grafana | 0.678 | FLAT | -2.21 | 1% |
 | kubernetes | 0.655 | FLAT | -2.58 | 0.5% |
 
-**Odkrycie:** Wzorzec FLAT dominuje wśród najgorszych Go projektów — nie CYCLIC (cykli nie ma) ani TANGLED (cohesion=1.0 zawsze), ale brak hierarchii warstw (stability niska). kubernetes, grafana to "platform" projekty gdzie flat structure jest bardziej design decision niż defekt.
+Wzorzec FLAT dominuje wśród najgorszych Go projektów — nie CYCLIC (cykli nie ma) ani TANGLED (cohesion zawsze=1.0), ale brak hierarchii warstw. kubernetes i grafana to projekty platformowe — ich płaska struktura może częściowo wynikać z decyzji architektonicznych adekwatnych do skali i typów kontrybutorów.
 
-### 4.4 Porównanie między językami — odkrycie language bias (237 repo, pełne klony)
+---
 
-| Wymiar | Python (78) | Java (77) | Go (80) |
+### 4.4 Porównanie między językami — language bias
+
+| Wymiar | Python (80) | Java (79) | Go (81) |
 |---|---|---|---|
-| Średnie AGQ | 0.746 | 0.621 | **0.816** |
+| Średnie AGQ | 0.753 | 0.627 | **0.815** |
 | Cohesion śr. | 0.647 | **0.379** | **1.000** |
 | Acyclicity śr. | 0.999 | 0.973 | **1.000** |
-| % repo z cyklami | 4% | **77%** | **0%** |
+| % repo z cyklami | 4% | **71%** | **0%** |
 | Stability śr. | 0.806 | 0.486 | 0.736 |
 | Modularity śr. | 0.533 | **0.637** | 0.531 |
 | Dominant pattern | LAYERED | LOW_COHESION | CLEAN |
 
-**To jest pierwsze empiryczne potwierdzenie language bias w metrykach architektonicznych na 237 repozytoriach.** Różnice nie wynikają z jakości kodu, ale z paradygmatów językowych:
+Różnice między językami nie wynikają z jakości kodu, ale z paradygmatów językowych:
 
-- **Go:** interfejsy zamiast dziedziczenia → LCOM4=1 zawsze → cohesion=1.0; ekosystem wymusza brak cykli → acy=1.0
-- **Java:** hierarchie klas → cohesion 0.38 średnio; pełne klony ujawniają 77% repo z cyklami (niewidoczne w shallow clone!)
-- **Python:** dynamiczny typing → wartości pośrednie; dominant pattern LAYERED (warstwowa architektura)
+- **Go:** interfejsy zamiast dziedziczenia → LCOM4=1 zawsze → cohesion=1.0; narzędzia ekosystemu aktywnie wymuszają brak cykli
+- **Java:** hierarchie klas → cohesion 0.38 średnio; złożone zależności między pakietami
+- **Python:** dynamiczny typing → wartości pośrednie; dominant pattern LAYERED
 
-**Implikacja dla produktu:** Cross-language porównanie AGQ bez normalizacji jest metodologicznie błędne. AGQ-z (percentyl w języku) rozwiązuje ten problem — jackson-databind (4.3%ile Java) i kubernetes (0.5%ile Go) obie są "najgorszymi w swojej klasie" mimo że mają różne absolute AGQ.
-
-**Nowe odkrycie (enhanced metrics, n=237):**
-- AGQ-adj (size-adjusted) vs churn_gini: **r=-0.162, p=0.014** ✅
-- ChurnRisk vs hotspot_ratio: **r=-0.149, p=0.024** ✅
-- TANGLED pattern: mean churn_gini=0.585 (najgorszy), CLEAN: 0.488 (najlepszy)
+**Implikacja:** Cross-language porównanie AGQ bez normalizacji jest metodologicznie problematyczne. AGQ-z (percentyl w języku) rozwiązuje ten problem — jackson-databind (5.3%ile Java) i kubernetes (0.5%ile Go) obie są "najgorszymi w swojej klasie" mimo różnych wartości bezwzględnych.
 
 ---
 
@@ -375,7 +425,7 @@ Kluczowa różnica vs poprzednie benchmarki: shallow clone maskował 73% cykli w
 
 ### 5.1 Koncepcja
 
-Każda firma ma "zasady architektury" zapisane w dokumentach Confluence których nikt nie czyta. QSE zamienia te dokumenty w **automatycznie egzekwowalne reguły**.
+Każda organizacja ma zasady architektury zapisane w dokumentacji wewnętrznej. QSE zamienia te zasady w automatycznie egzekwowalne reguły:
 
 ```json
 {
@@ -397,6 +447,7 @@ Każda firma ma "zasady architektury" zapisane w dokumentach Confluence których
 ```
 
 Gdy AI (lub człowiek) wygeneruje kod naruszający te reguły:
+
 ```
 ❌ NARUSZENIE ARCHITEKTURY
 payment/service.py importuje user/controller.py
@@ -407,24 +458,38 @@ Sugestia: Użyj zdarzeń domenowych (UserCreatedEvent) lub interfejsu repozytori
 
 ### 5.2 Automatyczne odkrywanie reguł (qse discover)
 
-Kluczowa innowacja: reguły generują się **automatycznie z istniejącego kodu** przez analizę grafu zależności algorytmem Louvain.
+Kluczowa innowacja: reguły mogą generować się **automatycznie z istniejącego kodu** przez analizę grafu zależności algorytmem Louvain. Algorytm wykrywa klastry modułów i na podstawie kierunkowości krawędzi między nimi proponuje reguły zakazane.
 
 **Przykład dla Spring Boot (Java):**
+
 ```bash
-qse discover /path/to/spring-boot
-```
-Wynik:
-- 6 klastrów: org.springframework (główny), org.springframework.boot.loader (classloader), org.apache (zewnętrzny), ...
-- 27 reguł w tym: `forbidden: org.springframework.boot.loader/* → org.springframework/*` (classloader nie może zależeć od kodu aplikacji)
-
-**Przykład dla Mockito (Java):**
-```
-Reguła: forbidden: org.mockito/* → org.junit/*
-Uzasadnienie: JUnit zależy od Mockito (13 krawędzi) ale nigdy odwrotnie →
-Mockito jest stabilną zależnością JUnit, nie powinno od JUnit zależeć
+$ qse discover /path/to/spring-boot --output-constraints .qse/arch.json
 ```
 
-Inżynier zatwierdza reguły w 30 minut — nie tygodniami pisze konfigurację.
+Wynikowy plik `.qse/arch.json`:
+
+```json
+{
+  "constraints": [
+    {
+      "type": "forbidden",
+      "from": "org.springframework.boot.loader/*",
+      "to": "org.springframework/*",
+      "rationale": "classloader nie powinien zależeć od kodu aplikacji"
+    },
+    {
+      "type": "forbidden",
+      "from": "org.mockito/*",
+      "to": "org.junit/*",
+      "rationale": "JUnit zależy od Mockito (13 krawędzi) — relacja jednostronna"
+    }
+  ]
+}
+```
+
+Wstępna walidacja na Spring Boot (Java) i Django (Python) pokazuje że generowane reguły są architektonicznie spójne z udokumentowanymi decyzjami projektowymi tych repozytoriów. Pełna walidacja z udziałem ekspertów domenowych stanowi planowany kierunek badań (sekcja 7.1D).
+
+Inżynier przegląda wygenerowane reguły i zatwierdza lub modyfikuje — zamiast pisać konfigurację od zera.
 
 ### 5.3 Flow z AI (vibe coding guard)
 
@@ -439,136 +504,139 @@ Inżynier zatwierdza reguły w 30 minut — nie tygodniami pisze konfigurację.
 
 ---
 
-## 6. Odkrycia naukowe — pełny opis
+## 6. Odkrycia naukowe
 
 ### 6.1 Naprawa metryki Martina
 
-Martin's Distance from Main Sequence (1994) to metryka powszechnie cytowana ale **nigdy empirycznie nie zwalidowana** na dużych zbiorach danych. Nasz eksperyment pokazał że bez danych o abstrakcji (niemal zawsze A=0 w Pythonie), wzór degeneruje do pomiaru instabilności — dokładnie odwrotnego zamysłu.
+Martin's Distance from Main Sequence (1994) jest powszechnie cytowana ale nie była empirycznie walidowana na dużych zbiorach danych open source. Nasze eksperymenty pokazały że bez danych o abstrakcji (w Pythonie prawie zawsze A=0), wzór degeneruje do odwróconego pomiaru instabilności. Zaproponowaliśmy zamiennik oparty na wariancji instability per pakiet, który poprawnie klasyfikuje projekty z płaską strukturą (niska wariancja) vs warstwową (wysoka wariancja).
 
-Zaproponowaliśmy zamiennik: wariancja instability'ego per pakiet. Walidacja: projekt youtube-dl (płaska architektura "plugin") poprawnie dostaje stability=0.23 zamiast 0.99. Django (warstwowy framework) poprawnie 0.93.
+### 6.2 Language bias — pierwsze empiryczne dowody na dużym zbiorze
 
-### 6.2 Language bias — pierwsze empiryczne dowody
+Pierwsze badanie porównujące te same metryki architektoniczne dla Python, Java i Go na 240 repozytoriach z pełną historią git. Wynik: LCOM4 jest strukturalnie biased przez paradygmat języka — Go zawsze 1.0, Java średnio 0.38. Narzędzia porównujące projekty cross-language bez normalizacji per-język są metodologicznie błędne.
 
-Pierwsza praca empiryczna porównująca te same metryki architektoniczne dla Python, Java i Go na **237 repozytoriach** (pełne klony, pełna historia git). Wynik: kohezja mierzona LCOM4 jest strukturalnie biased — Go zawsze 1.0, Java średnio 0.33. Implikacja: narzędzia porównujące projekty cross-language bez kalibracji per-język są metodologicznie błędne.
+### 6.3 Ortogonalność AGQ i metryk procesowych
 
-### 6.3 Ortogonalność metryk statycznych i procesowych
+Żadna cross-project miara defektów (bugfix\_ratio, hotspot\_ratio, co-change entropy) nie koreluje istotnie statystycznie z AGQ w analizie bez normalizacji. Po zastosowaniu AGQ-adj (size-adjusted) korelacje z hotspot\_ratio i churn\_gini stają się statystycznie istotne (p<0.05). Wynik wspiera hipotezę komplementarności: AGQ i SonarQube mierzą niezależne wymiary jakości, których połączenie daje pełniejszy obraz stanu projektu.
 
-Żadna cross-project miara defektów (bugfix_ratio, hotspot_ratio, co-change entropy) nie koreluje statystycznie z AGQ (wszystkie p>0.05). To nie jest porażka — to odkrycie: metryki architektoniczne i procesowe mierzą ortogonalne wymiary jakości. Wspiera to tezę komplementarności z SonarQube.
+### 6.4 Kalibracja wag composite metric
 
-### 6.4 Kalibracja wag: acykliczność dominuje
-
-Pierwsza empiryczna kalibracja wag composite metric dla architektury. Acyclicity=0.73 — potwierdzone niezależnie przez literaturę (Gnoyke JSS 2024). Modularity=0 — nie wnosi niezależnego sygnału gdy inne metryki są obecne.
-
-### 6.5 Automatyczne odkrywanie polityk
-
-Algorytm łączący Louvain clustering z analizą kierunkowości krawędzi grafu skutecznie wykrywa granice architektoniczne bez konfiguracji. Walidacja: reguły dla Django i Spring Boot są architektonicznie prawidłowe i konsekwentnie utrzymane w kodzie.
+Pierwsza empiryczna kalibracja wag dla architektonicznej composite metric na danych OSS. Acyclicity=0.73 — wynik zgodny z literaturą. Modularity=0 — nie wnosi niezależnego sygnału predykcyjnego gdy pozostałe metryki są obecne. Implikacja praktyczna: uproszczony model `AGQ = 0.73 * acy + 0.17 * coh + 0.05 * stab` ma niższy MSE niż model równoważny — ale wagi te wymagają replikacji na zbiorach danych z innych języków i domen.
 
 ---
 
-## 7. Proponowane kierunki dalszych badań
+## 7. Strategia dalszego rozwoju i plan badawczy
 
-### 7.1 Badania które należy przeprowadzić
+### 7.1 Uzasadnienie strategii — score diagnostyczny i osobna warstwa predykcyjna
 
-**A) Temporal AGQ — drift w czasie**
-Jak zmienia się AGQ projektu przez 5 lat? Czy AI-assisted projekty degradują szybciej? Wymaga: pełna historia git, analiza per-commit. Potencjał: pierwsza empiryczna mapa "architectural decay curves."
+AGQ w obecnej postaci jest wartościowy jako interpretowalny wskaźnik diagnostyczny: każda składowa ma bezpośrednie znaczenie architektoniczne, a wynik końcowy można wytłumaczyć deweloperowi w terminach grafu zależności — nie jako wyjście czarnej skrzynki. Ta właściwość jest kluczowa dla praktycznego zastosowania w procesie wytwarzania oprogramowania: narzędzie diagnostyczne musi wskazywać nie tylko "ile", ale "gdzie" i "dlaczego". Z tego powodu AGQ powinien pozostać prostym, kalibrowanym score'em, a nie być rozbudowywany w kierunku złożonego modelu predykcyjnego, którego interpretowalność by ucierpiała.
 
-**B) Kalibracja per język**
-Czy wagi (acyclicity=0.73 etc.) są takie same dla Java i Go? Wymaga: wystarczający zbiór labelowanych przykładów dla każdego języka osobno. Potencjał: language-specific AGQ który jest fair cross-language.
+Przeprowadzone benchmarki na 240 repozytoriach pokazują, że AGQ wykazuje statystycznie istotne, lecz umiarkowane korelacje z proxy metryk procesowych: acyclicity vs hotspot\_ratio (r=+0.223, p<0.01), AGQ-adj vs hotspot\_ratio (r=+0.236, p<0.001). Efekty te tłumaczą kilka procent wariancji zmiennych procesowych — wynik typowy dla statycznych metryk architektonicznych w literaturze, potwierdzający że AGQ mierzy ortogonalny wymiar jakości względem metryk kodu. Oznacza to że AGQ dostarcza informacji której nie dostarczają istniejące narzędzia, ale jednocześnie wskazuje, że sam statyczny score nie wyczerpuje przestrzeni predykcyjnej. Dalsze prace badawcze nie powinny polegać na próbie zwiększenia mocy wyjaśniającej przez dodawanie kolejnych składowych do composite score'u, lecz na budowie oddzielnej warstwy predykcyjnej, która AGQ traktuje jako jeden z wielu sygnałów wejściowych.
+
+Rosnący udział kodu generowanego przez modele językowe tworzy specyficzne ryzyko architektoniczne: modele optymalizują pod kątem lokalnej poprawności i spójności leksykalnej, nie zaś pod kątem globalnych właściwości grafu zależności. Kod AI-generowany może przechodzić testy jednostkowe i uzyskiwać wysokie oceny narzędzi leksykalnych, jednocześnie wprowadzając cykliczne zależności, zaburzając hierarchię pakietów lub obniżając spójność modułów. AGQ w obecnej postaci adresuje tę lukę reaktywnie — jako gate przy każdym commicie. Przewidywanie przyszłych naruszeń przed ich wprowadzeniem wymaga rozbudowy o cechy temporalne i procesowe, których obecna wersja nie zawiera.
+
+Proponowane podejście polega na utrzymaniu AGQ jako stabilnego, interpretowalnego score'u diagnostycznego oraz równoległym rozwijaniu osobnego modelu predykcyjnego, który łączy cechy architektoniczne z cechami temporalnymi, procesowymi i semantycznymi. Oba komponenty są konceptualnie odrębne: AGQ opisuje aktualny stan architektury, predictor szacuje prawdopodobieństwo przyszłych problemów utrzymaniowych. Mieszanie tych warstw prowadziłoby do utraty interpretowalności bez gwarancji wzrostu mocy predykcyjnej.
+
+---
+
+### 7.2 Proponowane grupy cech dla warstwy predykcyjnej
+
+**Cycle / SCC graph features**
+
+Obecna metryka acyclicity operuje na jednej liczbie: proporcji węzłów w największym SCC. Jest to agregat, który gubi informację o topologii cykli — ich liczbie, głębokości, wzajemnym zagnieżdżeniu i lokalizacji w hierarchii pakietów. Rozbudowa o cechy takie jak liczba rozłącznych SCC, średnica najdłuższego cyklu, procentowy udział krawędzi tworzących cykle czy rozkład wielkości SCC może istotnie wzbogacić sygnał predykcyjny bez utraty interpretowalności poszczególnych cech. W kontekście AI-generowanego kodu cykle są szczególnie istotne — modele językowe nie mają globalnej wiedzy o grafie zależności i naturalnie generują import "na skróty", który domyka cykl niewidoczny z perspektywy lokalnego pliku.
+
+**Boundary / coupling features**
+
+Badania D'Ambros i Lanzy (WCRE 2009) wskazują, że krawędzie graniczne między klastrami architektonicznymi są silniejszym predyktorem defektów niż ogólny coupling. Cechy takie jak boundary crossing ratio, liczba krawędzi naruszających zadeklarowane constraints, asymetria przepływu zależności między klastrami czy udział krawędzi cross-layer w całkowitej liczbie krawędzi dostarczają informacji lokalnej, którą aggregaty globalne tracą. W projektach z policy-as-a-service (zaimplementowanym przez `qse discover`) zestaw tych cech może być generowany automatycznie jako pochodna wykrytych klastrów Louvain.
+
+**Temporal / drift features**
+
+Metryki statyczne opisują stan architektury w jednym momencie. Dla predykcji problemów utrzymaniowych kluczowe jest to, jak szybko i w jakim kierunku architektura ewoluuje. Cechy temporalne — delta AGQ między kolejnymi wersjami, tempo wzrostu liczby krawędzi cross-cluster, czas życia cyklu od wprowadzenia do naprawy, wskaźnik regresji architektonicznej — mogą zbudować sygnał predykcyjny niedostępny dla metryk statycznych. Kierunek ten jest szczególnie wartościowy badawczo, ponieważ nie był dotychczas systematycznie eksplorowany w połączeniu z metrykami AGQ na dużych zbiorach danych.
+
+**Process / churn / ownership features**
+
+Statyczne metryki architektoniczne i procesowe mierzą ortogonalne wymiary, ale ich łączenie w jednym modelu może dawać efekt synergiczny. Cechy procesowe do rozważenia: churn per moduł znormalizowany przez rozmiar, Gini coefficient rozkładu zmian, liczba autorów per moduł (bus factor proxy), proporcja fix-commitów dotykających modułu oraz co-change entropy między parami modułów. Cechy te są dostępne z historii git bez żadnych zewnętrznych danych.
+
+**Stability / layering features**
+
+Obecna metryka stability operuje na wariancji instability per pakiet, co poprawnie odróżnia architekturę warstwową od płaskiej, ale nie opisuje jakości konkretnych warstw ani ich wzajemnych relacji. Cechy rozszerzające: liczba wykrytych poziomów topologicznych w DAG po usunięciu cykli, proporcja pakietów o nieokreślonej roli (I ≈ 0.5), zgodność z zadeklarowanymi przez użytkownika ograniczeniami warstw. Stabilność warstw jest szczególnie istotna w projektach gdzie AI generuje kod bez świadomości istniejącej hierarchii.
+
+**Structural code features**
+
+Cechy strukturalne niezależne od semantyki kodu: stosunek klas abstrakcyjnych do konkretnych per pakiet, liczba interfejsów jako punktów rozszerzenia, głębokość hierarchii dziedziczenia per moduł, proporcja metod publicznych do prywatnych jako proxy enkapsulacji. Cechy te mają interpretację architektoniczną, nie leksykalną, i wzbogacają model bez powielania tego co mierzą narzędzia do analizy kodu.
+
+---
+
+### 7.3 Metodologia prac badawczych
+
+Planowany workflow rozbudowy warstwy predykcyjnej:
+
+**Feature inventory** — zebranie i ujednolicenie wszystkich cech dostępnych w obecnym pipeline'ie QSE, uzupełnionych o nowe cechy z grup powyżej. Na tym etapie bez filtrowania — celem jest kompletna mapa przestrzeni cech z opisem źródła danych i kosztu obliczeniowego.
+
+**Sanity filtering** — eliminacja cech z wartościami stałymi lub quasi-stałymi per język (jak cohesion=1.0 dla całego Go), cech z >20% braków danych i cech nieodtwarzalnych bez pełnej historii git.
+
+**Univariate analysis** — dla każdej cechy obliczenie korelacji Spearmana ze zmiennymi docelowymi (hotspot\_ratio, churn\_gini, bugfix\_ratio) osobno per język i cross-language. Wyniki raportowane transparentnie z n, r i p-value, bez cherry-pickingu.
+
+**Redundancy / multicollinearity check** — dla kandydatów z poprzedniego kroku obliczenie macierzy korelacji wzajemnych. Cechy z |r|>0.80 między sobą traktowane jako redundantne — pozostawiamy tę o wyższej korelacji z targetem. Cel: uniknięcie iluzorycznego wzrostu mocy modelu przez dodawanie skorelowanych cech.
+
+**Model selection** — porównanie baseline (AGQ-adj jako jedyna cecha) z modelami rozszerzonymi: liniowym (regularyzacja Lasso), XGBoost, random forest. Walidacja przez stratified k-fold (k=10) z osobnymi zbiorami per język. Metryki: Spearman r z targetem, MSE, feature importances. Raportowanie przedziałów ufności, nie tylko estymatorów punktowych. Warstwa Predictor może być realizowana z użyciem metod uczenia maszynowego — wybór klasy modeli będzie przedmiotem walidacji empirycznej, a nie założeniem a priori. Oczekuje się, że porównanie modeli liniowych z regularyzacją (Lasso, Ridge) z modelami drzewiastymi (XGBoost, random forest) dostarczy wiedzy o nieliniowości zależności i interpretowalności wynikowego modelu. Żaden z tych wariantów nie jest z góry preferowany.
+
+**Interpretability / ablation study** — dla najlepszego modelu iteracyjne usuwanie grup cech i obserwacja spadku jakości. Cel: identyfikacja grup koniecznych vs redundantnych oraz weryfikacja braku data leakage (cechy procesowe obliczone na tym samym oknie czasowym co target).
+
+---
+
+### 7.4 Pozostałe pytania badawcze
+
+**A) Temporal AGQ — drift architektoniczny w czasie**
+Jak zmienia się AGQ projektu przez lata? Czy projekty z intensywnym użyciem AI degradują architektonicznie szybciej niż pisane ręcznie? Wymaga analizy per-commit na pełnej historii git.
+
+**B) Kalibracja wag per język**
+Czy wagi (acyclicity=0.73, cohesion=0.17) są stabilne dla Java i Go? Wymaga wystarczającego zbioru labelowanych przykładów per język.
 
 **C) Walidacja na projektach przemysłowych**
-Czy wnioski z OSS generalizują się na zamknięte projekty korporacyjne? Wymaga: partnerstwa przemysłowe, NDA, dostęp do kodu. Potencjał: najsilniejszy argument naukowy i komercyjny.
+Czy wnioski z OSS generalizują się na zamknięte projekty korporacyjne? Wymaga partnerstw przemysłowych i dostępu do kodu pod NDA.
 
-**D) Expert labeling**
-Zbieramy 50 projektów, prosimy 10 doświadczonych architektów o ocenę jakości architektonicznej. Korelujemy z AGQ. Wymaga: czas ekspertów, protokół oceny. Potencjał: ground truth z ludzką walidacją.
+**D) Expert labeling — pilotaż**
+5 projektów ocenionych przez 2 doświadczonych architektów oprogramowania, korelacja z AGQ jako pilotażowe badanie walidacyjne z ludzkim ground truth.
 
 **E) Cykl życia naruszenia**
-Jak długo "żyje" naruszenie reguły architektonicznej zanim zostanie naprawione? Czy typ naruszenia koreluje z MTTR? Wymaga: historia commitów + constraints. Potencjał: predykcja "kosztu" naruszeń.
-
-### 7.2 Kamień milowy ML — model predykcji naruszeń
-
-**Cel:** Nauczyć model przewidywać naruszenia architektoniczne ZANIM kod zostanie napisany — na podstawie opisu zmiany (diff, opis w natural language).
-
-**Etap 1 (miesiące 1-6):** Budowa datasetu
-- 300+ repozytoriów × historia git × naruszenia constraints = 500k+ labeled examples
-- Para (diff który naruszył) + (diff który naprawił) = preference pair
-
-**Etap 2 (miesiące 7-12):** XGBoost predictor
-- Wejście: cechy diffu (nowe importy, zmiana liczby klas, depth zmian)
-- Wyjście: P(naruszenie) dla każdego pliku
-- Target: AUC > 0.80, inference < 10ms
-
-**Etap 3 (miesiące 13-18):** Fine-tuning CodeBERT
-- Architectural smell detection z rozumieniem kontekstu kodu
-- Target: precision > 0.85, recall > 0.80
-
-**Etap 4 (miesiące 19-24):** Architectural RLHF
-- Fine-tune model generowania kodu używając AGQ jako reward signal
-- Pozytywne = kod który przeszedł gate
-- Negatywne = kod który nie przeszedł gate
-- Cel: 85% AI-generated code przechodzi gate na pierwszą próbę (baseline ~40%)
-
-**Kluczowa innowacja:** AGQ jako automatyczny reward signal zastępuje drogi human feedback. Nie potrzebujemy annotatorów — gate jest oracle'em.
-
-### 7.3 Pytania badawcze które wymagają odpowiedzi
-
-1. **Czy AGQ przewiduje czas naprawy bugów (MTTR)?** — wymaga danych z trackerów w stylu JIRA, GitHub Issues z precyzyjnymi timestampami
-2. **Czy projekty z wysokim AGQ mają niższy onboarding time?** — wymaga badania z programistami (human study)
-3. **Jak AI zmienia AGQ w ciągu roku od wdrożenia Copilota?** — wymaga longitudinalnego studium
-4. **Czy policy enforcement zmniejsza architectural drift?** — A/B test: zespoły z QSE vs bez QSE, 6 miesięcy
-5. **Czy istnieje "naturalny" poziom AGQ dla danego typu projektu?** — microservices vs monolith vs library vs framework
+Jak długo żyje naruszenie reguły architektonicznej zanim zostanie naprawione? Czy typ naruszenia koreluje z MTTR?
 
 ---
 
-## 8. Istniejące zasoby (zrealizowane przed wnioskiem)
+*Planowany etap badawczy zakłada rozbudowę systemu QSE o osobną warstwę predykcyjną, konceptualnie odrębną od istniejącego score'u AGQ. Obecna wersja AGQ stanowi interpretowalny, diagnostyczny wskaźnik jakości architektonicznej, którego statystycznie istotne, lecz umiarkowane korelacje z metrykami procesowymi (r≈0.18–0.24 na n=234) potwierdzają ortogonalność wymiaru architektonicznego względem metryk kodu i procesu. Dalszy rozwój nie będzie polegał na rozbudowie composite score'u, lecz na systematycznej ekspansji przestrzeni cech o sześć grup sygnałów: grafowe cechy cykli, cechy graniczne między klastrami, cechy temporalne opisujące drift architektoniczny, cechy procesowe z historii git, cechy jakości warstwowania oraz cechy strukturalne klas. Dla każdej grupy przeprowadzona zostanie univariate analysis względem zmiennych docelowych, z następującą eliminacją redundancji i budową modelu predykcyjnego walidowanego przez cross-validation z rozdzieleniem per język. Wyniki będą raportowane z pełnymi statystykami i przedziałami ufności. Celem badawczym nie jest zastąpienie AGQ modelem black-box, lecz wykazanie, że połączenie interpretowalnego score'u architektonicznego z rozszerzoną przestrzenią cech umożliwia predykcję ryzyka utrzymaniowego na poziomie istotnie wyższym niż każda z tych warstw osobno.*
 
-| Zasób | Opis | Ścieżka w repozytorium |
+---
+
+## 8. Istniejące zasoby
+
+| Zasób | Opis | Lokalizacja |
 |---|---|---|
-| Kod QSE | **244 testów**, pełne CLI Python + Rust | `qse/`, `qse-core/`, `tests/` |
-| Benchmark Python-78 | 78 repo, 4 wersje metryk, pełna historia git | `artifacts/benchmark/agq_enhanced_python80.json` |
-| Benchmark Java-77 | **77 repo**, pełne klony, 77% z cyklami | `artifacts/benchmark/agq_enhanced_java80.json` |
-| Benchmark Go-80 | **80 repo**, pełne klony | `artifacts/benchmark/agq_enhanced_go80.json` |
-| Benchmark cross-language 237 | Python+Java+Go, enhanced metrics | `artifacts/benchmark/agq_enhanced_*.json` |
-| Porównanie wersji v1-v4 | Ewolucja metryk Python OSS-80 | `artifacts/benchmark/agq_version_comparison.md` |
-| Rust qse-core | Scanner **7-46× szybszy** dla wszystkich języków | `qse-core/`, `qse-py/` |
+| Kod QSE | 244 testów, pełne CLI, Rust + Python | `qse/`, `qse-core/`, `tests/` |
+| Benchmark Python-80 | 80 repo, pełna historia git | `artifacts/benchmark/agq_enhanced_python80.json` |
+| Benchmark Java-79 | 79 repo, pełne klony | `artifacts/benchmark/agq_enhanced_java80.json` |
+| Benchmark Go-81 | 81 repo, pełne klony | `artifacts/benchmark/agq_enhanced_go80.json` |
+| Benchmark cross-language 240 | Python+Java+Go, enhanced metrics | `artifacts/benchmark/agq_enhanced_*.json` |
+| Rust qse-core | Scanner 7–46× szybszy | `qse-core/`, `qse-py/` |
 | AGQ Enhanced metrics | AGQ-z, Fingerprint, CycleSeverity, ChurnRisk, AGQ-adj | `qse/agq_enhanced.py` |
-| Kalibracja wag | L-BFGS-B + LOO-CV, n=74, acyclicity=0.73 | `artifacts/benchmark/agq_weight_calibration.json` |
-| Policy discovery | Walidowany dla Django (Python) i Spring Boot (Java) | `qse/discover.py` |
-| Repo lists | 80 Python + 80 Java + 80 Go repo lists | `scripts/repos_*_benchmark.json` |
-| Literatura | 40+ źródeł przejrzanych i zacytowanych | `artifacts/references.md` |
-| Grant preview PL | Niniejszy dokument | `artifacts/grant_preview_pl.md` |
+| Kalibracja wag | L-BFGS-B + LOO-CV, n=74 | `artifacts/benchmark/agq_weight_calibration.json` |
+| Policy discovery | Wstępna walidacja na Django i Spring Boot | `qse/discover.py` |
+| Literatura | 40+ źródeł | `artifacts/references.md` |
 | IP | Metodologia kwalifikuje się do zgłoszenia patentowego | — |
 
 **Repozytorium:** https://github.com/PiotrGry/qse-pkg
-**Sklonowane dane:** `/tmp/qse_240/{python,java,go}/` — 237 pełnych klonów (łącznie ~50GB)
 
 ---
 
 ## 9. Wpływ społeczny i ekonomiczny
 
-Każda firma powyżej 50 programistów traci szacunkowo 15-25% czasu inżynierów na "walczenie z architekturą" — debugging problemów spowodowanych złymi zależnościami, trudny onboarding nowych członków, refactoring który trwa 3× dłużej niż planowano.
-
-Przy średnim koszcie programisty €80k/rok i 50-osobowym zespole: €80k × 50 × 0.20 = **€800k rocznie "zmarnowane" na architektoniczny dług**.
+Badania wskazują że znaczna część czasu inżynierów oprogramowania jest tracona na pracę wynikającą ze złej architektury — trudny onboarding, debugging problemów spowodowanych cyklicznymi zależnościami, refactoring który trwa wielokrotnie dłużej niż planowano [ŹRÓDŁO]. Koszty te rosną proporcjonalnie do rozmiaru zespołu i skali systemu.
 
 QSE adresuje ten problem poprzez:
-1. Wczesne wykrywanie (nie po fakcie gdy dług jest duży)
-2. Automatyzację (nie wymaga drogich code review)
-3. Egzekwowanie (nie "sugestie" których nikt nie czyta)
 
-Przy hipotetycznym rynku 10,000 firm 50+ programistów w EU i cenie €299/mies: rynek adresowalny = **~€36M/rok**.
+1. **Wczesne wykrywanie** — nie po fakcie gdy dług jest duży, ale przy każdym commicie
+2. **Automatyzację** — nie wymaga manualnego code review architektonicznego
+3. **Egzekwowanie** — nie "sugestie" ale blokada gdy jakość spada poniżej progu
 
 ---
 
 *Dokument przygotowany na podstawie badań przeprowadzonych w [Uczelnia]. Kod i dane dostępne: https://github.com/PiotrGry/qse-pkg*
-
----
-
-## 10. Historia wersji dokumentu
-
-| Data | Zmiana |
-|---|---|
-| 2026-03-07 | Wersja inicjalna: benchmark Python OSS-80, odkrycia 1-5 |
-| 2026-03-08 | Benchmark pełnych klonów (237 repo), odkrycia 6-12 |
-| 2026-03-08 | AGQ Enhanced metrics (5 nowych wymiarów), Fingerprint classification |
-| 2026-03-08 | Java-77 i Go-80 zastąpiły Java-30 i Go-20; Rust scanner dla Python |
-| 2026-03-08 | Poprawki: liczba testów (244), liczba repo (237), szybkość Rust (7-46×) |
-
