@@ -32,3 +32,4 @@ artifacts/
 !artifacts/benchmark/*.json
 !artifacts/benchmark/*.md
 target/
+artifacts/
