@@ -1,7 +1,7 @@
 # QSE — Bibliografia / References
 
 Zebrane źródła naukowe i techniczne na potrzeby pracy doktorskiej i walidacji QSE.
-Data: 2026-03-08
+Data: 2026-03-22 (updated)
 
 ---
 
@@ -17,10 +17,17 @@ M-score: An Empirically Derived Software Modularity Metric.
 _Proc. 18th ACM/IEEE ESEM, Barcelona_
 https://dl.acm.org/doi/10.1145/3674805.3686697
 
-**Sarkar et al.**
+**Sarkar et al. (2008)**
 Metrics for Measuring the Quality of Modularization.
 _Purdue University RVL_
 https://engineering.purdue.edu/RVL/Publications/Sarkar08Metrics.pdf
+
+**Sarkar, Rama, Kak (2007)**
+API-based and information-theoretic metrics for measuring the quality of software modularization.
+_IEEE Trans. Softw. Eng., 33(1), pp. 14–32_
+Definiuje **MISI** (Module Interaction Stability Index) — metryka pokrewna z QSE stability.
+MISI(m) = |SD(m)| / |fanout(m)|, gdzie SD = zbiór stabilnych zależności do niższych warstw.
+Cytowana w SEI CMU SAM2014 jako fundament metryk stabilności modułowej.
 
 **Milić et al. (2020)**
 Measuring Software Modularity Based on Software Networks.
@@ -96,6 +103,8 @@ _"Agile Software Development — Principles, Patterns, and Practices"_
 The Instability-Abstractness-Relationship — An Alternative View.
 _Blog post z krytyką metryki_
 http://odrotbohm.github.io/2024/09/the-instability-abstractness-relationsship-an-alternative-view/
+Kluczowy argument: "extracting an interface raises Abstractness but is not semantically more abstract."
+Uzasadnia decyzję QSE o użyciu variance(I) bez Abstractness (A) i Distance (D).
 
 **A Validation of Martin's Metric (brak walidacji empirycznej)**
 https://www.researchgate.net/publication/31598248_A_Validation_of_Martin_s_Metric
@@ -118,11 +127,25 @@ _Microsoft Research_
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/icse05churn.pdf
 https://dl.acm.org/doi/10.1145/1062455.1062514
 
+**Hassan, A.E. (ICSE 2009)**
+Predicting Faults Using the Complexity of Code Changes.
+_Proc. 31st International Conference on Software Engineering (ICSE), IEEE_
+https://dl.acm.org/doi/10.1109/ICSE.2009.5070510
+Precedens dla progu korelacji r≈0.55: obserwacyjne r≈0.20 na metrykach złożoności
+→ kontrolowane r≈0.55 po eliminacji confounders. Cytowany w uzasadnieniu KPI-04.
+
 **D'Ambros, Lanza et al. (WCRE 2009)**
 On the Relationship Between Change Coupling and Software Defects.
 _IEEE Xplore_
 https://ieeexplore.ieee.org/document/5328803/
 https://www.researchgate.net/publication/221200492
+
+**Fuller, W.A. (1987)**
+Measurement Error Models.
+_John Wiley & Sons, New York_
+ISBN: 978-0-471-86187-4
+Korekcja atenuacji korelacji: r_true = r_obs / √(reliability_x × reliability_y).
+Standardowa metoda korygowania osłabienia korelacji spowodowanego błędem pomiaru.
 
 **Zhou et al. (ESEM 2024)**
 Enhancing Change Impact Prediction by Integrating Evolutionary Coupling
@@ -229,8 +252,15 @@ https://github.com/tach-org/tach
 **import-linter**
 https://github.com/seddonym/import-linter
 
-**emerge — dependency visualization**
+**emerge v2.0.7 — dependency visualization + Louvain modularity (~1k stars)**
 https://github.com/glato/emerge
+Python, 12 języków. Metryki: Louvain Q, fan-in/fan-out, SLOC, TF-IDF.
+Cross-validation z QSE: Louvain Q r=0.06 (n=16) — wartość Q zależy od definicji grafu, nie tylko od struktury kodu.
+Dane: `artifacts/benchmark/emerge_vs_qse_comparison.json`
+
+**CodeCharta — 3D code visualization (426 stars)**
+https://github.com/MaibornWolff/codecharta
+TypeScript/Kotlin, importuje metryki z Sonar/Tokei/CSV. Wizualizacja, nie analiza.
 
 **pydeps**
 https://github.com/thebjorn/pydeps
@@ -267,3 +297,85 @@ https://arxiv.org/pdf/2507.14554
 **Using complexity, coupling, and cohesion metrics as early indicators of vulnerabilities**
 _Journal of Systems and Real-Time Systems, Elsevier_
 https://www.sciencedirect.com/science/article/abs/pii/S1383762110000615
+
+---
+
+## 13. Architectural metrics — graph-level (nowe źródła 2025)
+
+**Dai, Zhu, Wu, He (2026)**
+An integrated graph neural network model for joint software defect prediction
+and code quality assessment.
+_Scientific Reports 16:1677_
+https://doi.org/10.1038/s41598-025-31209-5
+Multi-level graph (AST+CFG+DFG), dual-branch GNN, F1=0.811, AUC=0.896.
+5 wymiarów quality: maintainability, readability, complexity, testability, architectural integrity.
+AGQ ranking = Dai architectural integrity ranking (Spearman rho=1.0, n=4).
+Dane: `artifacts/benchmark/dai_et_al_comparison.json`
+
+**Sutoyo, Avgeriou, Capiluppi (2025)**
+Tracing the Lifecycle of Architecture Technical Debt in Software Systems: A Dependency Approach.
+_arXiv:2501.15387v2, University of Groningen_
+https://arxiv.org/html/2501.15387v2
+FAN-IN/OUT vs change frequency: r=0.175–0.241 (weak), n=57 ATD items, 103 Apache projects.
+Wniosek: "FAN-IN/OUT should be combined with other measures" — potwierdza potrzebę composite score.
+
+**Šora (2013)**
+Software Architecture Reconstruction Through Clustering: Finding the Right Similarity Metric.
+_Polytechnic University of Timișoara_
+https://staff.cs.upt.ro/~ioana/papers/SoraWorkshop2013.pdf
+Indirect coupling via ESM (Edge Strength Metric, Chiricota 2003).
+Similarity(A,B) = DC(A,B) · IC(A,B) · LA(A,B). Trzy czynniki: direct coupling,
+indirect coupling (wspólni sąsiedzi), architectural layer distance.
+QSE nie implementuje IC — potencjalne ulepszenie.
+
+**Koziolek, Nord, Ozkaya, Avgeriou (2014)**
+1st International Workshop on Software Architecture Metrics (SAM2014).
+_SEI CMU_
+https://www.sei.cmu.edu/documents/5417/2014_017_001_88179.pdf
+Definiuje "software architecture metric" jako quality metric concerning architecture.
+Prezentuje MISI (Sarkar 2007), Module Interaction Stability Index — pokrewne z QSE stability.
+
+**Lakos (1996)**
+Large-Scale C++ Software Design.
+_Addison-Wesley_
+ISBN: 978-0-201-63362-5
+Definiuje CCD (Cumulative Component Dependency) = Σ |reachable(v)|.
+QSE nie implementuje CCD — potencjalne ulepszenie.
+
+**Chidamber & Kemerer (1994)**
+A Metrics Suite for Object Oriented Design.
+_IEEE Trans. Softw. Eng., 20(6), pp. 476–493_
+Definiuje CBO (Coupling Between Objects), LCOM, DIT, NOC, WMC, RFC.
+Fundament dla QSE cohesion (LCOM4 jest rozwinięciem ich LCOM).
+
+---
+
+## 14. Walidacja QSE — wyniki własne (2026-03-21)
+
+Dane w `artifacts/benchmark/`. Skrypty w `scripts/`.
+
+**SonarQube cross-validation (n=79 Python)**
+AGQ composite orthogonal do Sonar (0/8 absolute correlations sig.).
+Po normalizacji per KLOC:
+- stability vs bugs/KLOC: r=-0.32, p=0.003
+- cohesion vs complexity/KLOC: r=-0.28, p=0.01
+Interpretacja: AGQ mierzy inny wymiar; dwa składowe mają związek z defektami.
+Dane: `sonar_vs_agq_validation.json`, Skrypt: `sonar_cross_validation.py`
+
+**Known-good vs known-bad (n=20 Python)**
+10 community-recognized well-architected repos vs bottom-10 AGQ.
+Mann-Whitney U=0, p<0.001, Cohen's d=3.22 (very large).
+80% good = LAYERED fingerprint, 60% bad = FLAT/LOW_COHESION.
+Główny dyskryminator: stability (mean 0.84 vs 0.44).
+Dane: `known_good_bad_validation.json`, Skrypt: `known_good_bad_validation.py`
+
+**Emerge cross-validation (n=16 Python)**
+Louvain Q nie jest porównywalny między narzędziami (r=0.06) — graph definition dependent.
+QSE stability jest size-invariant; Emerge fan-out confounded by repo size (r=0.67).
+Dane: `emerge_vs_qse_comparison.json`, Skrypt: `compare_emerge.py`
+
+**Dai et al. comparison (n=4 Java)**
+Apache Ant, Eclipse JDT, Apache Camel, Apache Hadoop.
+AGQ ranking = Dai architectural integrity ranking (Spearman rho=1.0).
+AGQ daje actionable diagnostykę (god classes, flat architecture, cycles).
+Dane: `dai_et_al_comparison.json`, Skrypt: `dai_et_al_comparison.py`

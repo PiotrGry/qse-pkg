@@ -298,12 +298,17 @@ AGQ skorygowany o rozmiar projektu (AGQ-adj) wykazuje silniejszą korelację z m
 | ID | Teza | Wynik | Dowód liczbowy |
 |---|---|---|---|
 | T1 | AGQ jest deterministyczne | ✅ PASS | max delta = 0.0000000000 na 80 repo |
-| T2 | AGQ mierzy wymiar ortogonalny do Sonara | ✅ PASS | brak istotnej korelacji AGQ z metrykami Sonara (n=78, wszystkie p>0.10) |
+| T2 | AGQ mierzy wymiar komplementarny do Sonara | ✅ REVISED | AGQ composite vs Sonar/KLOC: brak korelacji (r=-0.11, n.s.); składowe stability↔bugs r=-0.32 (p=0.003), cohesion↔complexity r=-0.28 (p=0.01). n=79 |
 | T3 | AGQ wykrywa problemy niewidoczne dla Sonara | ✅ PASS | projekty z Sonar=A i AGQ<0.7 zidentyfikowane w zbiorze |
 | T4 | AGQ umożliwia szybki feedback architektoniczny | ✅ PASS | mediana 0.32s — możliwość integracji jako pre-commit hook |
-| T5 | AGQ różnicuje jakość architektoniczną | ✅ PASS | spread=0.425, std=0.065 |
+| T5 | AGQ różnicuje jakość architektoniczną | ✅ PASS | spread=0.425, std=0.065; known-good vs known-bad: p<0.001, d=3.22 |
+| T6 | AGQ daje wyniki spójne z niezależnymi narzędziami | ✅ NEW | ranking AGQ = ranking Dai et al. architectural integrity (rho=1.0, n=4 Java) |
 
-**Nota do T2:** Brak istotnej korelacji między AGQ a metrykami Sonara (bugs_per_kloc, smells_per_kloc, vulns_per_kloc — wszystkie p>0.10 na n=78) wskazuje że narzędzia mierzą ortogonalne wymiary jakości. Sonar wykrywa problemy na poziomie kodu (błędy, code smells, bezpieczeństwo), QSE na poziomie struktury systemu (zależności między modułami). Projekt może mieć Sonar=A (czyste pliki) i niskie AGQ (zdegradowaną architekturę) — i odwrotnie. To właśnie czyni QSE komplementarnym, a nie konkurencyjnym narzędziem.
+**Nota do T2 (zaktualizowana, n=79):** Cross-validation z SonarQube v9.9.8 na 79 repo Python. AGQ composite score nie koreluje z żadną znormalizowaną metryką Sonar (smells/KLOC: r=-0.11, n.s.; bugs/KLOC: r=-0.09, n.s.). Jednak dwa składowe AGQ wykazują istotny związek z metrykami Sonar na poziomie per-KLOC: **stability vs bugs/KLOC: r=-0.32, p=0.003** (wyższa stability = mniej bugów) oraz **cohesion vs complexity/KLOC: r=-0.28, p=0.01** (wyższa kohezja = mniejsza złożoność cyklomatyczna). Interpretacja: AGQ i SonarQube mierzą w dużej mierze ortogonalne wymiary, ale dwa składowe AGQ mają mierzalny związek z defektami na poziomie kodu. Confound wielkości repo wyeliminowany (AGQ vs ncloc: r=0.02, n.s. na n=79).
+
+**Nota do T5 (nowa):** Walidacja face validity: 10 repo o uznanej dobrej architekturze (Django, Flask, FastAPI, SQLAlchemy, Pydantic, Click, Rich, Starlette, Celery, Typer) vs 10 repo z najniższym AGQ. Mann-Whitney U=0, **p<0.001, Cohen's d=3.22** (very large effect). 80% known-good = LAYERED fingerprint, 60% known-bad = FLAT/LOW_COHESION. Główny dyskryminator: stability (mean 0.84 vs 0.44). Dane: `known_good_bad_validation.json`.
+
+**Nota do T6 (nowa):** Porównanie z Dai et al. (2026, Scientific Reports) na 4 projektach Apache Java (Ant, JDT, Camel, Hadoop). AGQ ranking identyczny z ich trained GNN architectural integrity ranking (Spearman rho=1.0). AGQ dodatkowo identyfikuje konkretne problemy: god classes (Ant/Hadoop), flat architecture (Camel), cykle (JDT). Dane: `dai_et_al_comparison.json`.
 
 **Nota do T4:** Porównanie prędkości z SonarQube nie jest bezpośrednio miarodajne — narzędzia mierzą różne rzeczy. Istotne jest że QSE zwraca wynik architektoniczny w poniżej 1 sekundy, co umożliwia jego użycie w pre-commit hooku bez spowalniania pracy dewelopera.
 

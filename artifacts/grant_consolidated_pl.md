@@ -40,7 +40,7 @@ Narzędzia takie jak GitHub Copilot, Cursor i Claude Code generują ponad 46% no
 
 SonarQube sprawdza kod linijka po linijce (bugs, smells, security). **Nie mierzy architektury jako całości.**
 
-Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 78 (27%) dostaje od SonarQube rating "A"** (najwyższy możliwy), ale AGQ identyfikuje u nich problemy architektoniczne poniżej progu jakości. SonarQube i AGQ mierzą ortogonalne wymiary — są komplementarne, nie konkurencyjne.
+Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 78 (27%) dostaje od SonarQube rating "A"** (najwyższy możliwy), ale AGQ identyfikuje u nich problemy architektoniczne poniżej progu jakości. Cross-validation z SonarQube (n=79, metryki znormalizowane per KLOC) potwierdza: AGQ composite nie koreluje ze smells/KLOC (r=-0.11, n.s.), ale składowe stability i cohesion wykazują istotny inverse z bugs/KLOC (r=-0.32, p=0.003) i complexity/KLOC (r=-0.28, p=0.01). AGQ i SonarQube mierzą **komplementarne** wymiary — z mierzalnym overlap w stability↔bugs i cohesion↔complexity.
 
 ### 2.3 Cel projektu
 
