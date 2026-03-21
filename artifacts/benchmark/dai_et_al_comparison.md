@@ -9,7 +9,7 @@
 
 ## 1. Cel
 
-Porównanie wyników QSE AGQ z published results Dai et al. na **tych samych repozytoriach Java**. Cel: sprawdzić czy AGQ daje wyniki spójne z niezależnym narzędziem badawczym (GNN model) na tych samych danych.
+Porównanie wyników QSE AGQ z published results Dai et al. na **tych samych 4 repozytoriach Java**.
 
 ---
 
@@ -17,21 +17,10 @@ Porównanie wyników QSE AGQ z published results Dai et al. na **tych samych rep
 
 | | Dai et al. | QSE AGQ |
 |---|---|---|
-| Metoda | Supervised GNN (AST+CFG+DFG) | Deterministyczne metryki grafowe |
-| Granularność | Per-file | Per-repo |
-| Training | 6.8h na RTX 3090 | 0 (zero-shot) |
-| Output | 5-class quality + defect prediction | Score 0-1 + fingerprint |
-| Wymiar "architectural integrity" | Trained classifier (accuracy 0.800-0.815) | stability + acyclicity + modularity |
-
-### Repozytoria (3/4 z paperu)
-
-| Projekt | Files | Defects | LOC | Dai complexity |
-|---|---|---|---|---|
-| Apache Ant | 1,248 | 345 | 158K | Low |
-| Apache Camel | 3,874 | 789 | 453K | High |
-| Apache Hadoop | 2,893 | 678 | 567K | Medium |
-
-Eclipse JDT (2,156 files) pominięty — Rust scanner crash na 9,267 plikach Java.
+| Metoda | Supervised GNN (AST+CFG+DFG), 32GB GPU | Deterministyczne metryki grafowe, zero-shot |
+| Training | 6.8h na RTX 3090 | 0 (brak) |
+| Output | 5-class quality + defect prediction | Score 0-1 + fingerprint + diagnostyka |
+| Scanner | QSE Rust qse-core (tree-sitter-java) | — |
 
 ---
 
@@ -44,68 +33,86 @@ Project             AGQ   Mod   Acy  Stab   Coh  Def/file  Dai F1  Dai Arch
 Apache Ant        0.549  0.50  0.97  0.47  0.26    0.276   0.811    0.800
 Apache Camel      0.570  0.79  1.00  0.15  0.34    0.204   0.811    0.801
 Apache Hadoop     0.626  0.66  0.99  0.59  0.26    0.234   0.809    0.815
+Eclipse JDT       0.632  0.77  0.96  0.48  0.31    0.251   0.808    0.823
 ```
 
-### 3.2 Zgodność rankingów
+### 3.2 Zgodność rankingów (n=4)
 
-| Ranking | 1st (best) | 2nd | 3rd (worst) |
-|---|---|---|---|
-| **QSE AGQ** | **Hadoop (0.626)** | **Camel (0.570)** | **Ant (0.549)** |
-| **Dai arch. integrity** | **Hadoop (0.815)** | **Camel (0.801)** | **Ant (0.800)** |
-| Defect density (best=lowest) | Camel (0.204) | Hadoop (0.234) | Ant (0.276) |
+| Ranking | 1st (best) | 2nd | 3rd | 4th (worst) |
+|---|---|---|---|---|
+| **QSE AGQ** | **JDT (0.632)** | **Hadoop (0.626)** | **Camel (0.570)** | **Ant (0.549)** |
+| **Dai arch. integrity** | **JDT (0.823)** | **Hadoop (0.815)** | **Camel (0.801)** | **Ant (0.800)** |
+| Defect density (lower=better) | Camel (0.204) | Hadoop (0.234) | JDT (0.251) | Ant (0.276) |
 
-**AGQ ranking jest identyczny z Dai et al. architectural integrity ranking (Spearman rho=1.0).**
+**AGQ ranking = Dai et al. architectural integrity ranking (Spearman rho=1.0, n=4).**
 
-AGQ vs defect density: rho=0.5 (częściowa zgodność — Hadoop i Ant zgadzają się, Camel nie).
+AGQ vs defect density: rho=0.2 (słaba — defect density bardziej koreluje z wielkością projektu i dojrzałością).
 
-### 3.3 Co AGQ diagnozuje
+### 3.3 Diagnostyka AGQ
 
-| Projekt | AGQ diagnoza | Spójne z Dai et al.? |
+| Projekt | AGQ diagnoza | Kontekst Dai et al. |
 |---|---|---|
-| **Apache Ant** | Niska kohezja (0.26) — god classes | Tak — najniższy Dai arch. integrity |
-| **Apache Camel** | Bardzo niska stability (0.15) — flat architecture | Tak — "High complexity" w Dai Table 8, +11.2% improvement (biggest gain = worst baseline) |
-| **Apache Hadoop** | Najlepszy AGQ, ale niska kohezja (0.26) | Tak — najwyższy Dai arch. integrity |
+| **Apache Ant** | Niska kohezja (0.26) — god classes | Najniższy arch. integrity (0.800), "Low complexity" ale najwyższy defect density |
+| **Apache Camel** | Bardzo niska stability (0.15) — flat architecture | "High complexity" w Dai, +11.2% improvement (biggest gain = worst baseline) |
+| **Apache Hadoop** | Niska kohezja (0.26) — god classes | Medium we wszystkim |
+| **Eclipse JDT** | Najlepszy AGQ, cycles=MEDIUM | Najwyższy Dai arch. integrity (0.823) |
 
 ---
 
 ## 4. Interpretacja
 
-### Co potwierdza ten benchmark
+### Perfektna zgodność rankingu (rho=1.0)
 
-1. **Ranking AGQ = ranking Dai et al. architectural integrity** (rho=1.0, n=3). Pomimo fundamentalnie różnych metod (deterministyczny graf vs trained GNN), oba narzędzia rankują te same projekty w tej samej kolejności.
+Pomimo fundamentalnie różnych metod:
+- Dai et al.: supervised GNN trenowany na labeled data (6.8h, 32GB VRAM)
+- QSE AGQ: deterministyczny graf zależności, zero training
 
-2. **AGQ daje actionable diagnostykę**: dla Ant wskazuje god classes (LCOM4), dla Camel wskazuje flat architecture (brak zróżnicowania warstw). Dai et al. dają tylko accuracy score per dimension — nie mówią *co* jest źle.
+Oba narzędzia rankują te 4 projekty **identycznie**. To silny argument za face validity AGQ.
 
-3. **Complementary approaches**: Dai et al. potrzebują labeled data + GPU. AGQ działa zero-shot w <1s. Oba dają spójne wyniki.
+### AGQ daje więcej niż ranking
 
-### Ograniczenia
+Dai et al. daje accuracy per quality dimension — ale nie mówi *co* jest źle. AGQ identyfikuje:
+- **Ant/Hadoop**: god classes (LCOM4 wskazuje klasy bez kohezji)
+- **Camel**: flat architecture (stability=0.15 — brak zróżnicowania ról pakietów)
+- **JDT**: cycles detected (acyclicity=0.96 — 4% węzłów w cyklu)
 
-- **n=3** — za mało na statystykę. Ranking rho=1.0 przy n=3 ma tylko 6 możliwych permutacji — nie jest istotny statystycznie (p=0.17 dla exact test). To obserwacja jakościowa, nie dowód.
-- Eclipse JDT pominięty (scanner crash) — zmniejsza próbkę.
-- Wersje repo mogą się różnić (Dai et al. nie podają commitów).
+### Fix scannera: enterprise-ready
+
+Przy okazji naprawiono Rust scanner:
+- Pomijanie katalogów `workspace`, `*.tests.*`, `*.test.*` (Eclipse-style test fixtures)
+- Skip plików >1MB (wygenerowane/fixture data)
+- Skip plików non-UTF-8
+
+Te poprawki są konieczne do skanowania enterprise repo (Eclipse, IntelliJ, duże mono-repo).
+
+---
+
+## 5. Ograniczenia
+
+- **n=4** — za mało na statystykę. rho=1.0 przy n=4 ma p=0.083 (exact permutation test) — nie osiąga p<0.05.
+- Wersje repo mogą się różnić od Dai et al. (nie podają commitów).
 - Porównanie ranking vs ranking, nie score vs score (różne skale).
+- Dai et al. mierzą per-file, QSE per-repo — różna granularność.
 
 ---
 
-## 5. Wniosek dla grantu
+## 6. Wniosek dla grantu
 
-> "Comparison with published GNN results (Dai et al. 2026, Scientific Reports) on the same 3 Apache Java projects shows perfect rank concordance between AGQ and their trained architectural integrity classifier (Spearman rho=1.0, n=3). While this sample is too small for statistical significance, the qualitative alignment between a zero-shot deterministic metric (AGQ) and a supervised deep learning model provides evidence that AGQ captures meaningful architectural properties. Notably, AGQ additionally identifies specific architectural issues (low cohesion in Ant/Hadoop, flat architecture in Camel) that the GNN model does not expose."
+> "Comparison with Dai et al. (2026, Scientific Reports) on all 4 Apache Java projects shows perfect rank concordance between AGQ and their trained architectural integrity classifier (Spearman rho=1.0, n=4, p=0.083). While not statistically significant due to small sample, the qualitative alignment between a zero-shot deterministic metric and a supervised deep learning model trained on labeled data provides convergent validity evidence. AGQ additionally provides actionable architectural diagnostics (god classes, flat architecture, cycle detection) that the GNN model does not expose."
 
 ---
 
-## 6. Reprodukcja
+## 7. Reprodukcja
 
 ```bash
-# Clone repos
+# Requires Rust scanner
+make build
+
+# Clone and scan
 git clone --depth 1 https://github.com/apache/ant.git /tmp/dai-repos/ant
+git clone --depth 1 https://github.com/eclipse-jdt/eclipse.jdt.core.git /tmp/dai-repos/eclipse-jdt-core
 git clone --depth 1 https://github.com/apache/camel.git /tmp/dai-repos/camel
 git clone --depth 1 https://github.com/apache/hadoop.git /tmp/dai-repos/hadoop
 
-# Run QSE (requires Rust scanner)
-qse agq /tmp/dai-repos/ant --threshold 0
-qse agq /tmp/dai-repos/camel --threshold 0
-qse agq /tmp/dai-repos/hadoop --threshold 0
-
-# Full comparison
 python3 scripts/dai_et_al_comparison.py
 ```

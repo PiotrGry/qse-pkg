@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T23:35:18.177505",
+  "generated_at": "2026-03-21T23:52:30.962998",
   "paper": {
     "title": "An integrated graph neural network model for joint software defect prediction and code quality assessment",
     "authors": "Dai, Zhu, Wu, He",
@@ -11,7 +11,7 @@
     "qse_scanner": "Rust qse-core (tree-sitter-java)",
     "qse_metrics": "AGQ with default equal weights (0.25 each)",
     "dai_data": "Extracted from Table 5, Table 8, Table 10 of paper",
-    "note": "Eclipse JDT excluded — scanner crash on 9267 files"
+    "note": "All 4 Dai et al. Java projects scanned (scanner fix: skip workspace/test fixture dirs, skip >1MB files)"
   },
   "comparison": [
     {
@@ -94,10 +94,37 @@
         "dai_testability": 0.787,
         "dai_architectural_integrity": 0.815
       }
+    },
+    {
+      "project": "Eclipse JDT",
+      "qse": {
+        "agq_score": 0.632,
+        "modularity": 0.773,
+        "acyclicity": 0.9571,
+        "stability": 0.4833,
+        "cohesion": 0.3145
+      },
+      "dai": {
+        "language": "Java",
+        "file_count": 2156,
+        "defect_count": 542,
+        "lines_of_code": 289753,
+        "defect_density": 0.25139146567717996,
+        "defect_density_kloc": 1.8705587172522804,
+        "dai_complexity": "Medium",
+        "dai_baseline_f1": 0.741,
+        "dai_model_f1": 0.808,
+        "dai_improvement": "+9.0%",
+        "dai_maintainability": 0.818,
+        "dai_readability": 0.79,
+        "dai_complexity_acc": 0.857,
+        "dai_testability": 0.797,
+        "dai_architectural_integrity": 0.823
+      }
     }
   ],
   "rank_correlations": {
-    "agq_vs_defect_density_inverted": 0.5,
+    "agq_vs_defect_density_inverted": 0.19999999999999996,
     "agq_vs_dai_architectural_integrity": 1.0
   }
 }

@@ -255,14 +255,18 @@ fn collect_recursive(dir: &Path, ext: &str, out: &mut Vec<PathBuf>) {
         let path = entry.path();
         if path.is_dir() {
             let name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            // Skip hidden dirs, build artifacts, and test directories for Java
+            // Skip hidden dirs, build artifacts, and test directories
             if name.starts_with('.')
                 || matches!(name, "node_modules" | "target" | "__pycache__" | ".git")
             {
                 continue;
             }
-            // For Java: skip test source directories
-            if ext == "java" && matches!(name, "test" | "tests" | "androidTest" | "testFixtures") {
+            // For Java: skip test source directories + fixture/workspace dirs
+            if ext == "java"
+                && (matches!(name, "test" | "tests" | "androidTest" | "testFixtures" | "workspace")
+                    || name.contains(".tests.")
+                    || name.contains(".test."))
+            {
                 continue;
             }
             collect_recursive(&path, ext, out);
@@ -702,6 +706,9 @@ pub fn scan_repo(base_dir: &str) -> ScanResult {
     // Parse files in parallel using rayon — each thread gets its own Parser
     let file_results: Vec<FileResult> = files.par_iter().filter_map(|file_path| {
         let Ok(source) = std::fs::read(file_path) else { return None };
+        // Skip files >1MB (likely generated/fixture data) and non-UTF-8
+        if source.len() > 1_048_576 { return None; }
+        if std::str::from_utf8(&source).is_err() { return None; }
         let mut parser = Parser::new();
         parser.set_language(&ts_lang).ok()?;
         let tree = parser.parse(&source, None)?;

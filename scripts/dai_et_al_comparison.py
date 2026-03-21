@@ -70,7 +70,24 @@ DAI_PROJECTS = {
         "dai_testability": 0.787,
         "dai_architectural_integrity": 0.815,
     },
-    # Eclipse JDT excluded — scanner crash on 9267 files
+    "eclipse-jdt": {
+        "full_name": "Eclipse JDT",
+        "language": "Java",
+        "file_count": 2156,
+        "defect_count": 542,
+        "lines_of_code": 289753,
+        "defect_density": 542 / 2156,
+        "defect_density_kloc": 542 / 289.753,
+        "dai_complexity": "Medium",
+        "dai_baseline_f1": 0.741,
+        "dai_model_f1": 0.808,
+        "dai_improvement": "+9.0%",
+        "dai_maintainability": 0.818,
+        "dai_readability": 0.790,
+        "dai_complexity_acc": 0.857,
+        "dai_testability": 0.797,
+        "dai_architectural_integrity": 0.823,
+    },
 }
 
 # QSE results (from scan)
@@ -95,6 +112,13 @@ QSE_RESULTS = {
         "acyclicity": 0.9902,
         "stability": 0.5901,
         "cohesion": 0.2597,
+    },
+    "eclipse-jdt": {
+        "agq_score": 0.6320,
+        "modularity": 0.7730,
+        "acyclicity": 0.9571,
+        "stability": 0.4833,
+        "cohesion": 0.3145,
     },
 }
 
@@ -140,9 +164,10 @@ def main():
 
     # Rankings
     print(f"\n=== RANKING COMPARISON (n=3) ===")
-    agq_rank = [projects[i] for i in sorted(range(3), key=lambda i: -agqs[i])]
-    defect_rank = [projects[i] for i in sorted(range(3), key=lambda i: defect_densities[i])]
-    arch_rank = [projects[i] for i in sorted(range(3), key=lambda i: -dai_archs[i])]
+    n = len(projects)
+    agq_rank = [projects[i] for i in sorted(range(n), key=lambda i: -agqs[i])]
+    defect_rank = [projects[i] for i in sorted(range(n), key=lambda i: defect_densities[i])]
+    arch_rank = [projects[i] for i in sorted(range(n), key=lambda i: -dai_archs[i])]
 
     print(f"  By AGQ (best→worst):           {' > '.join(agq_rank)}")
     print(f"  By defect density (best→worst): {' > '.join(defect_rank)}")
@@ -189,7 +214,7 @@ def main():
             "qse_scanner": "Rust qse-core (tree-sitter-java)",
             "qse_metrics": "AGQ with default equal weights (0.25 each)",
             "dai_data": "Extracted from Table 5, Table 8, Table 10 of paper",
-            "note": "Eclipse JDT excluded — scanner crash on 9267 files",
+            "note": "All 4 Dai et al. Java projects scanned (scanner fix: skip workspace/test fixture dirs, skip >1MB files)",
         },
         "comparison": [],
         "rank_correlations": {
