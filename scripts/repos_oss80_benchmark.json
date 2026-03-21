@@ -1,82 +1,402 @@
 [
-  {"name": "httpx", "url": "https://github.com/encode/httpx.git"},
-  {"name": "requests", "url": "https://github.com/psf/requests.git"},
-  {"name": "urllib3", "url": "https://github.com/urllib3/urllib3.git"},
-  {"name": "flask", "url": "https://github.com/pallets/flask.git"},
-  {"name": "click", "url": "https://github.com/pallets/click.git"},
-  {"name": "pydantic", "url": "https://github.com/pydantic/pydantic.git"},
-  {"name": "fastapi", "url": "https://github.com/fastapi/fastapi.git"},
-  {"name": "rich", "url": "https://github.com/Textualize/rich.git"},
-  {"name": "pytest", "url": "https://github.com/pytest-dev/pytest.git"},
-  {"name": "sanic", "url": "https://github.com/sanic-org/sanic.git"},
-  {"name": "scrapy", "url": "https://github.com/scrapy/scrapy.git"},
-  {"name": "aiohttp", "url": "https://github.com/aio-libs/aiohttp.git"},
-  {"name": "django", "url": "https://github.com/django/django.git"},
-  {"name": "starlette", "url": "https://github.com/encode/starlette.git"},
-  {"name": "celery", "url": "https://github.com/celery/celery.git"},
-  {"name": "tornado", "url": "https://github.com/tornadoweb/tornado.git"},
-  {"name": "typer", "url": "https://github.com/fastapi/typer.git"},
-  {"name": "arrow", "url": "https://github.com/arrow-py/arrow.git"},
-  {"name": "pendulum", "url": "https://github.com/sdispater/pendulum.git"},
-  {"name": "httpcore", "url": "https://github.com/encode/httpcore.git"},
-  {"name": "attrs", "url": "https://github.com/python-attrs/attrs.git"},
-  {"name": "marshmallow", "url": "https://github.com/marshmallow-code/marshmallow.git"},
-  {"name": "ansible", "url": "https://github.com/ansible/ansible.git"},
-  {"name": "salt", "url": "https://github.com/saltstack/salt.git"},
-  {"name": "home-assistant", "url": "https://github.com/home-assistant/core.git"},
-  {"name": "airflow", "url": "https://github.com/apache/airflow.git"},
-  {"name": "thefuck", "url": "https://github.com/nvbn/thefuck.git"},
-  {"name": "you-get", "url": "https://github.com/soimort/you-get.git"},
-  {"name": "youtube-dl", "url": "https://github.com/ytdl-org/youtube-dl.git"},
-  {"name": "glances", "url": "https://github.com/nicolargo/glances.git"},
-  {"name": "sqlalchemy", "url": "https://github.com/sqlalchemy/sqlalchemy.git"},
-  {"name": "django-rest-framework", "url": "https://github.com/encode/django-rest-framework.git"},
-  {"name": "boto3", "url": "https://github.com/boto/boto3.git"},
-  {"name": "paramiko", "url": "https://github.com/paramiko/paramiko.git"},
-  {"name": "fabric", "url": "https://github.com/fabric/fabric.git"},
-  {"name": "sphinx", "url": "https://github.com/sphinx-doc/sphinx.git"},
-  {"name": "black", "url": "https://github.com/psf/black.git"},
-  {"name": "mypy", "url": "https://github.com/python/mypy.git"},
-  {"name": "ruff", "url": "https://github.com/astral-sh/ruff.git"},
-  {"name": "poetry", "url": "https://github.com/python-poetry/poetry.git"},
-  {"name": "pillow", "url": "https://github.com/python-pillow/Pillow.git"},
-  {"name": "scikit-learn", "url": "https://github.com/scikit-learn/scikit-learn.git"},
-  {"name": "pandas", "url": "https://github.com/pandas-dev/pandas.git"},
-  {"name": "numpy", "url": "https://github.com/numpy/numpy.git"},
-  {"name": "matplotlib", "url": "https://github.com/matplotlib/matplotlib.git"},
-  {"name": "sympy", "url": "https://github.com/sympy/sympy.git"},
-  {"name": "networkx", "url": "https://github.com/networkx/networkx.git"},
-  {"name": "dask", "url": "https://github.com/dask/dask.git"},
-  {"name": "luigi", "url": "https://github.com/spotify/luigi.git"},
-  {"name": "prefect", "url": "https://github.com/PrefectHQ/prefect.git"},
-  {"name": "dramatiq", "url": "https://github.com/Bogdanp/dramatiq.git"},
-  {"name": "huey", "url": "https://github.com/coleifer/huey.git"},
-  {"name": "gunicorn", "url": "https://github.com/benoitc/gunicorn.git"},
-  {"name": "uvicorn", "url": "https://github.com/encode/uvicorn.git"},
-  {"name": "werkzeug", "url": "https://github.com/pallets/werkzeug.git"},
-  {"name": "jinja", "url": "https://github.com/pallets/jinja.git"},
-  {"name": "mako", "url": "https://github.com/sqlalchemy/mako.git"},
-  {"name": "pyjwt", "url": "https://github.com/jpadilla/pyjwt.git"},
-  {"name": "cryptography", "url": "https://github.com/pyca/cryptography.git"},
-  {"name": "itsdangerous", "url": "https://github.com/pallets/itsdangerous.git"},
-  {"name": "httpie", "url": "https://github.com/httpie/cli.git"},
-  {"name": "dulwich", "url": "https://github.com/jelmer/dulwich.git"},
-  {"name": "pygments", "url": "https://github.com/pygments/pygments.git"},
-  {"name": "beautifulsoup4", "url": "https://github.com/wention/BeautifulSoup4.git"},
-  {"name": "lxml", "url": "https://github.com/lxml/lxml.git"},
-  {"name": "tox", "url": "https://github.com/tox-dev/tox.git"},
-  {"name": "nox", "url": "https://github.com/wntrblm/nox.git"},
-  {"name": "hypothesis", "url": "https://github.com/HypothesisWorks/hypothesis.git"},
-  {"name": "responses", "url": "https://github.com/getsentry/responses.git"},
-  {"name": "sentry-sdk", "url": "https://github.com/getsentry/sentry-python.git"},
-  {"name": "kombu", "url": "https://github.com/celery/kombu.git"},
-  {"name": "peewee", "url": "https://github.com/coleifer/peewee.git"},
-  {"name": "alembic", "url": "https://github.com/sqlalchemy/alembic.git"},
-  {"name": "textual", "url": "https://github.com/Textualize/textual.git"},
-  {"name": "yt-dlp", "url": "https://github.com/yt-dlp/yt-dlp.git"},
-  {"name": "supervisor", "url": "https://github.com/Supervisor/supervisor.git"},
-  {"name": "locust", "url": "https://github.com/locustio/locust.git"},
-  {"name": "whoosh", "url": "https://github.com/mchaput/whoosh.git"},
-  {"name": "bottle", "url": "https://github.com/bottlepy/bottle.git"},
-  {"name": "falcon", "url": "https://github.com/falconry/falcon.git"}
+  {
+    "name": "httpx",
+    "url": "https://github.com/encode/httpx.git",
+    "commit": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254"
+  },
+  {
+    "name": "requests",
+    "url": "https://github.com/psf/requests.git",
+    "commit": "ebf71906798ec82f34e07d3168f8b8aecaf8a3be"
+  },
+  {
+    "name": "urllib3",
+    "url": "https://github.com/urllib3/urllib3.git",
+    "commit": "6d2e3a5b7b361b44604609a2aba35ba9cef26544"
+  },
+  {
+    "name": "flask",
+    "url": "https://github.com/pallets/flask.git",
+    "commit": "4cae5d8e411b1e69949d8fae669afeacbd3e5908"
+  },
+  {
+    "name": "click",
+    "url": "https://github.com/pallets/click.git",
+    "commit": "cdab890e57a30a9f437b88ce9652f7bfce980c1f"
+  },
+  {
+    "name": "pydantic",
+    "url": "https://github.com/pydantic/pydantic.git",
+    "commit": "0e4be5e64777542a06eebbfa298e4e6e5884593e"
+  },
+  {
+    "name": "fastapi",
+    "url": "https://github.com/fastapi/fastapi.git",
+    "commit": "64feaec80244578bbdabe51e866bcfad1df8b708"
+  },
+  {
+    "name": "rich",
+    "url": "https://github.com/Textualize/rich.git",
+    "commit": "fc41075a3206d2a5fd846c6f41c4d2becab814fa"
+  },
+  {
+    "name": "pytest",
+    "url": "https://github.com/pytest-dev/pytest.git",
+    "commit": "ecac57287b679cc707fb4d22aa9d48426eaacac4"
+  },
+  {
+    "name": "sanic",
+    "url": "https://github.com/sanic-org/sanic.git",
+    "commit": "785d77f8fe208576a48d339bd81d866021154092"
+  },
+  {
+    "name": "scrapy",
+    "url": "https://github.com/scrapy/scrapy.git",
+    "commit": "c148ec44332797b0b7b1ec9b4ce9b9e63c6e8e2f"
+  },
+  {
+    "name": "aiohttp",
+    "url": "https://github.com/aio-libs/aiohttp.git",
+    "commit": "2602b711710dfe20131ec74d0753db746e56808a"
+  },
+  {
+    "name": "django",
+    "url": "https://github.com/django/django.git",
+    "commit": "f2169ef3688422d394d36007e320bac839117f0b"
+  },
+  {
+    "name": "starlette",
+    "url": "https://github.com/encode/starlette.git",
+    "commit": "9ee951980bae776103715b66305f807d9e8245da"
+  },
+  {
+    "name": "celery",
+    "url": "https://github.com/celery/celery.git",
+    "commit": "b8f85213f45c937670a6a6806ce55326a0eb537f"
+  },
+  {
+    "name": "tornado",
+    "url": "https://github.com/tornadoweb/tornado.git",
+    "commit": "6d326fa4757acd06be39c760c7d233591d8ab98c"
+  },
+  {
+    "name": "typer",
+    "url": "https://github.com/fastapi/typer.git",
+    "commit": "5111ed578c9a364acd469ca6eb7d4481b36d899b"
+  },
+  {
+    "name": "arrow",
+    "url": "https://github.com/arrow-py/arrow.git",
+    "commit": "b423717da81aaf8117313b4b377efaa6413a9639"
+  },
+  {
+    "name": "pendulum",
+    "url": "https://github.com/sdispater/pendulum.git",
+    "commit": "ae4c4052dc1aaf2614aa68d7ab8a3ca4396ec6aa"
+  },
+  {
+    "name": "httpcore",
+    "url": "https://github.com/encode/httpcore.git",
+    "commit": "10a658221deb38a4c5b16db55ab554b0bf731707"
+  },
+  {
+    "name": "attrs",
+    "url": "https://github.com/python-attrs/attrs.git",
+    "commit": "25b74d6a4274d938b1ef15a4df658ad5d2c92310"
+  },
+  {
+    "name": "marshmallow",
+    "url": "https://github.com/marshmallow-code/marshmallow.git",
+    "commit": "546be2f728faca68a88130a6406c20994355c853"
+  },
+  {
+    "name": "ansible",
+    "url": "https://github.com/ansible/ansible.git",
+    "commit": "02a65ab2923b9a4ec30ad82024ec4fa547080b6a"
+  },
+  {
+    "name": "salt",
+    "url": "https://github.com/saltstack/salt.git",
+    "commit": "e512b80d766edb3e2103aa50cf798a781a1a5d49"
+  },
+  {
+    "name": "home-assistant",
+    "url": "https://github.com/home-assistant/core.git",
+    "commit": "573d4eba0239b11fd514bdcdc6b3ecf2cdc536d5"
+  },
+  {
+    "name": "airflow",
+    "url": "https://github.com/apache/airflow.git",
+    "commit": "741102eccf6ba2b5c8980f3f26191fcb3a74af9a"
+  },
+  {
+    "name": "thefuck",
+    "url": "https://github.com/nvbn/thefuck.git",
+    "commit": "c7e7e1d884d3bb241ea6448f72a989434c2a35ec"
+  },
+  {
+    "name": "you-get",
+    "url": "https://github.com/soimort/you-get.git",
+    "commit": "049548f3f3f35e67ba8d3181c71fdc71d11cf260"
+  },
+  {
+    "name": "youtube-dl",
+    "url": "https://github.com/ytdl-org/youtube-dl.git",
+    "commit": "956b8c585591b401a543e409accb163eeaaa1193"
+  },
+  {
+    "name": "glances",
+    "url": "https://github.com/nicolargo/glances.git",
+    "commit": "bf08f61c4a8430bef77ab453311a25e894970c8a"
+  },
+  {
+    "name": "sqlalchemy",
+    "url": "https://github.com/sqlalchemy/sqlalchemy.git",
+    "commit": "912726f9965ee0e473a54ec1afa11d3b5ff5a9e8"
+  },
+  {
+    "name": "django-rest-framework",
+    "url": "https://github.com/encode/django-rest-framework.git",
+    "commit": "30d58a75eeef7097f97cdc9f171d2ec741b36d30"
+  },
+  {
+    "name": "boto3",
+    "url": "https://github.com/boto/boto3.git",
+    "commit": "04dfc51bfc4d6288ad581aa7dc8677e67bd0f762"
+  },
+  {
+    "name": "paramiko",
+    "url": "https://github.com/paramiko/paramiko.git",
+    "commit": "8697158113a3eab25ed1d1d541ebe2cad10169a7"
+  },
+  {
+    "name": "fabric",
+    "url": "https://github.com/fabric/fabric.git",
+    "commit": "2e5dffbc35e30f5d34500ae7ccd419005dc6b760"
+  },
+  {
+    "name": "sphinx",
+    "url": "https://github.com/sphinx-doc/sphinx.git",
+    "commit": "cc7c6f435ad37bb12264f8118c8461b230e6830c"
+  },
+  {
+    "name": "black",
+    "url": "https://github.com/psf/black.git",
+    "commit": "cbbbf64d2aefbd5797580e60e918fa6a21edca3e"
+  },
+  {
+    "name": "mypy",
+    "url": "https://github.com/python/mypy.git",
+    "commit": "ac071665b3055bac6748194f267550eff7a78877"
+  },
+  {
+    "name": "ruff",
+    "url": "https://github.com/astral-sh/ruff.git",
+    "commit": "962e0b7293e2352af5707a7c0a824eb49c5b9d20"
+  },
+  {
+    "name": "poetry",
+    "url": "https://github.com/python-poetry/poetry.git",
+    "commit": "157715887a0c538aec3ecc600467674818e0731e"
+  },
+  {
+    "name": "pillow",
+    "url": "https://github.com/python-pillow/Pillow.git",
+    "commit": "1bb14c4ef5384cc9e7165a428c2ab9bca350811f"
+  },
+  {
+    "name": "scikit-learn",
+    "url": "https://github.com/scikit-learn/scikit-learn.git",
+    "commit": "070f14098469e55dcc792324c3ed77929b961ce4"
+  },
+  {
+    "name": "pandas",
+    "url": "https://github.com/pandas-dev/pandas.git",
+    "commit": "c6ee315053e039b1479b0aa96ae2e71ff1348490"
+  },
+  {
+    "name": "numpy",
+    "url": "https://github.com/numpy/numpy.git",
+    "commit": "6f721564ad94da4ba2138d2b216cd43c38ff172d"
+  },
+  {
+    "name": "matplotlib",
+    "url": "https://github.com/matplotlib/matplotlib.git",
+    "commit": "0f46f27f59f59109d9c780df5dd8026c4cbe3282"
+  },
+  {
+    "name": "sympy",
+    "url": "https://github.com/sympy/sympy.git",
+    "commit": "99e8816659474b2365c9cf533f430f9e016a7a45"
+  },
+  {
+    "name": "networkx",
+    "url": "https://github.com/networkx/networkx.git",
+    "commit": "ee541721917014eec25f0aa19eed3b66f3d7f532"
+  },
+  {
+    "name": "dask",
+    "url": "https://github.com/dask/dask.git",
+    "commit": "0d40a604284e021d098682b71c55d0387a414925"
+  },
+  {
+    "name": "luigi",
+    "url": "https://github.com/spotify/luigi.git",
+    "commit": "0be72e20a2e65f0c3cda3cff1f52dd9ec11aabd2"
+  },
+  {
+    "name": "prefect",
+    "url": "https://github.com/PrefectHQ/prefect.git",
+    "commit": "a74453a3544b6e146a7b422d9bfb3d9bd0a55594"
+  },
+  {
+    "name": "dramatiq",
+    "url": "https://github.com/Bogdanp/dramatiq.git",
+    "commit": "4a5ca3e896bf46a93c56354e7791daf8acca2918"
+  },
+  {
+    "name": "huey",
+    "url": "https://github.com/coleifer/huey.git",
+    "commit": "374f09ef7f6ba3d8e352567fd8703f6c91146832"
+  },
+  {
+    "name": "gunicorn",
+    "url": "https://github.com/benoitc/gunicorn.git",
+    "commit": "2cc38503b7846c27554e8a57e497cc8b1a4d58a2"
+  },
+  {
+    "name": "uvicorn",
+    "url": "https://github.com/encode/uvicorn.git",
+    "commit": "02bed6f8c38e74f684bb0e572977a9bfdc1f6fea"
+  },
+  {
+    "name": "werkzeug",
+    "url": "https://github.com/pallets/werkzeug.git",
+    "commit": "64b09e734b1db8afbf770f1feb8d3cb48de157d5"
+  },
+  {
+    "name": "jinja",
+    "url": "https://github.com/pallets/jinja.git",
+    "commit": "5ef70112a1ff19c05324ff889dd30405b1002044"
+  },
+  {
+    "name": "mako",
+    "url": "https://github.com/sqlalchemy/mako.git",
+    "commit": "91232d80e4914fd82b42628bb2e2b061abb3dcfc"
+  },
+  {
+    "name": "pyjwt",
+    "url": "https://github.com/jpadilla/pyjwt.git",
+    "commit": "40e3147eb5f790d8d041772e5fc00728a176c812"
+  },
+  {
+    "name": "cryptography",
+    "url": "https://github.com/pyca/cryptography.git",
+    "commit": "7d42cdd25ff6996033f578da34033435a5175c73"
+  },
+  {
+    "name": "itsdangerous",
+    "url": "https://github.com/pallets/itsdangerous.git",
+    "commit": "672971d66a2ef9f85151e53283113f33d642dabd"
+  },
+  {
+    "name": "httpie",
+    "url": "https://github.com/httpie/cli.git",
+    "commit": "5b604c37c6c67e18e7c3e9aee6c88a8c22b98345"
+  },
+  {
+    "name": "dulwich",
+    "url": "https://github.com/jelmer/dulwich.git",
+    "commit": "124221de3ce65d2950753a301e1789f9fd7943e6"
+  },
+  {
+    "name": "pygments",
+    "url": "https://github.com/pygments/pygments.git",
+    "commit": "75cbbe6d5a31324dca4b74aa5ffa73e279093ecf"
+  },
+  {
+    "name": "beautifulsoup4",
+    "url": "https://github.com/wention/BeautifulSoup4.git",
+    "commit": "03a2b3a9d1fc5877212d9d382a512663f24c887d"
+  },
+  {
+    "name": "lxml",
+    "url": "https://github.com/lxml/lxml.git",
+    "commit": "8096c644bc53d596c26288825cc8ea3e1d0479f0"
+  },
+  {
+    "name": "tox",
+    "url": "https://github.com/tox-dev/tox.git",
+    "commit": "72839128eef5ec4cb56ba1dbc95fef87b314601d"
+  },
+  {
+    "name": "nox",
+    "url": "https://github.com/wntrblm/nox.git",
+    "commit": "5a901362f78d0ac1a6e7ef4b8b856e7f944553ee"
+  },
+  {
+    "name": "hypothesis",
+    "url": "https://github.com/HypothesisWorks/hypothesis.git",
+    "commit": "9fe714de9b90f425c2dd70c5d2a367bab3988f3d"
+  },
+  {
+    "name": "responses",
+    "url": "https://github.com/getsentry/responses.git",
+    "commit": "cc53d778e2adf7a060f1eb04bc5c107d49d4d1a9"
+  },
+  {
+    "name": "sentry-sdk",
+    "url": "https://github.com/getsentry/sentry-python.git",
+    "commit": "48dc5661dcfde7a588392caea82f8da5be0ed335"
+  },
+  {
+    "name": "kombu",
+    "url": "https://github.com/celery/kombu.git",
+    "commit": "3c5c1bd86376ee73d52a4cc770bdaeab15bbc2f3"
+  },
+  {
+    "name": "peewee",
+    "url": "https://github.com/coleifer/peewee.git",
+    "commit": "4e08dd7b69d2e122c28d67c88ac6598bf07b358e"
+  },
+  {
+    "name": "alembic",
+    "url": "https://github.com/sqlalchemy/alembic.git",
+    "commit": "7b510dc52c7e931f393b6387f183bf888a08dee9"
+  },
+  {
+    "name": "textual",
+    "url": "https://github.com/Textualize/textual.git",
+    "commit": "0f0849fd37fbd0d4d6f81889476c22340129df67"
+  },
+  {
+    "name": "yt-dlp",
+    "url": "https://github.com/yt-dlp/yt-dlp.git",
+    "commit": "f01e1a1ced581c13f28c7da45eb6396cb9fff6e4"
+  },
+  {
+    "name": "supervisor",
+    "url": "https://github.com/Supervisor/supervisor.git",
+    "commit": "abc60468ea4b78c446cf3a194f6fccb83d90f670"
+  },
+  {
+    "name": "locust",
+    "url": "https://github.com/locustio/locust.git",
+    "commit": "9de4b47e81d47282bdc43eb07e96fd9663ae1848"
+  },
+  {
+    "name": "whoosh",
+    "url": "https://github.com/mchaput/whoosh.git",
+    "commit": "d9a3fa2a4905e7326c9623c89e6395713c189161"
+  },
+  {
+    "name": "bottle",
+    "url": "https://github.com/bottlepy/bottle.git",
+    "commit": "24e80dc026c0c6e5026981530b37887a43122cb6"
+  },
+  {
+    "name": "falcon",
+    "url": "https://github.com/falconry/falcon.git",
+    "commit": "0d8c48729b19e25c85e1a12f777a8ec61aefb9cb"
+  }
 ]

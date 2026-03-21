@@ -1,83 +1,407 @@
 [
-  {"name":"gin","url":"https://github.com/gin-gonic/gin.git"},
-  {"name":"vault","url":"https://github.com/hashicorp/vault.git"},
-  {"name":"hugo","url":"https://github.com/gohugoio/hugo.git"},
-  {"name":"prometheus","url":"https://github.com/prometheus/prometheus.git"},
-  {"name":"grafana","url":"https://github.com/grafana/grafana.git"},
-  {"name":"traefik","url":"https://github.com/traefik/traefik.git"},
-  {"name":"cobra","url":"https://github.com/spf13/cobra.git"},
-  {"name":"viper","url":"https://github.com/spf13/viper.git"},
-  {"name":"zap","url":"https://github.com/uber-go/zap.git"},
-  {"name":"fiber","url":"https://github.com/gofiber/fiber.git"},
-  {"name":"echo","url":"https://github.com/labstack/echo.git"},
-  {"name":"testify","url":"https://github.com/stretchr/testify.git"},
-  {"name":"fx","url":"https://github.com/uber-go/fx.git"},
-  {"name":"gorm","url":"https://github.com/go-gorm/gorm.git"},
-  {"name":"grpc-go","url":"https://github.com/grpc/grpc-go.git"},
-  {"name":"kubernetes","url":"https://github.com/kubernetes/kubernetes.git"},
-  {"name":"terraform","url":"https://github.com/hashicorp/terraform.git"},
-  {"name":"etcd","url":"https://github.com/etcd-io/etcd.git"},
-  {"name":"docker","url":"https://github.com/moby/moby.git"},
-  {"name":"caddy","url":"https://github.com/caddyserver/caddy.git"},
-  {"name":"consul","url":"https://github.com/hashicorp/consul.git"},
-  {"name":"nomad","url":"https://github.com/hashicorp/nomad.git"},
-  {"name":"packer","url":"https://github.com/hashicorp/packer.git"},
-  {"name":"helm","url":"https://github.com/helm/helm.git"},
-  {"name":"kubectl","url":"https://github.com/kubernetes/kubectl.git"},
-  {"name":"containerd","url":"https://github.com/containerd/containerd.git"},
-  {"name":"runc","url":"https://github.com/opencontainers/runc.git"},
-  {"name":"buildkit","url":"https://github.com/moby/buildkit.git"},
-  {"name":"skaffold","url":"https://github.com/GoogleContainerTools/skaffold.git"},
-  {"name":"argo-cd","url":"https://github.com/argoproj/argo-cd.git"},
-  {"name":"flux","url":"https://github.com/fluxcd/flux2.git"},
-  {"name":"istio","url":"https://github.com/istio/istio.git"},
-  {"name":"envoy-go","url":"https://github.com/envoyproxy/go-control-plane.git"},
-  {"name":"cilium","url":"https://github.com/cilium/cilium.git"},
-  {"name":"linkerd2","url":"https://github.com/linkerd/linkerd2.git"},
-  {"name":"jaeger","url":"https://github.com/jaegertracing/jaeger.git"},
-  {"name":"opentelemetry-go","url":"https://github.com/open-telemetry/opentelemetry-go.git"},
-  {"name":"logrus","url":"https://github.com/sirupsen/logrus.git"},
-  {"name":"chi","url":"https://github.com/go-chi/chi.git"},
-  {"name":"mux","url":"https://github.com/gorilla/mux.git"},
-  {"name":"httprouter","url":"https://github.com/julienschmidt/httprouter.git"},
-  {"name":"fasthttp","url":"https://github.com/valyala/fasthttp.git"},
-  {"name":"sqlx","url":"https://github.com/jmoiron/sqlx.git"},
-  {"name":"pgx","url":"https://github.com/jackc/pgx.git"},
-  {"name":"ent","url":"https://github.com/ent/ent.git"},
-  {"name":"redis-go","url":"https://github.com/redis/go-redis.git"},
-  {"name":"mongo-go","url":"https://github.com/mongodb/mongo-go-driver.git"},
-  {"name":"wire","url":"https://github.com/google/wire.git"},
-  {"name":"dig","url":"https://github.com/uber-go/dig.git"},
-  {"name":"nats-go","url":"https://github.com/nats-io/nats.go.git"},
-  {"name":"nsq","url":"https://github.com/nsqio/nsq.git"},
-  {"name":"sarama","url":"https://github.com/IBM/sarama.git"},
-  {"name":"ginkgo","url":"https://github.com/onsi/ginkgo.git"},
-  {"name":"gomock","url":"https://github.com/uber-go/mock.git"},
-  {"name":"golangci-lint","url":"https://github.com/golangci/golangci-lint.git"},
-  {"name":"staticcheck","url":"https://github.com/dominikh/go-tools.git"},
-  {"name":"delve","url":"https://github.com/go-delve/delve.git"},
-  {"name":"gore","url":"https://github.com/x-motemen/gore.git"},
-  {"name":"buf","url":"https://github.com/bufbuild/buf.git"},
-  {"name":"protoc-gen-go","url":"https://github.com/protocolbuffers/protobuf-go.git"},
-  {"name":"grpc-gateway","url":"https://github.com/grpc-ecosystem/grpc-gateway.git"},
-  {"name":"connect-go","url":"https://github.com/connectrpc/connect-go.git"},
-  {"name":"quic-go","url":"https://github.com/quic-go/quic-go.git"},
-  {"name":"websocket","url":"https://github.com/gorilla/websocket.git"},
-  {"name":"ssh","url":"https://github.com/gliderlabs/ssh.git"},
-  {"name":"crypto","url":"https://github.com/golang/crypto.git"},
-  {"name":"oauth2","url":"https://github.com/golang/oauth2.git"},
-  {"name":"casbin","url":"https://github.com/casbin/casbin.git"},
-  {"name":"jwt-go","url":"https://github.com/golang-jwt/jwt.git"},
-  {"name":"cron","url":"https://github.com/robfig/cron.git"},
-  {"name":"urfave-cli","url":"https://github.com/urfave/cli.git"},
-  {"name":"pflag","url":"https://github.com/spf13/pflag.git"},
-  {"name":"lo","url":"https://github.com/samber/lo.git"},
-  {"name":"mo","url":"https://github.com/samber/mo.git"},
-  {"name":"syncthing","url":"https://github.com/syncthing/syncthing.git"},
-  {"name":"rclone","url":"https://github.com/rclone/rclone.git"},
-  {"name":"minio","url":"https://github.com/minio/minio.git"},
-  {"name":"influxdb","url":"https://github.com/influxdata/influxdb.git"},
-  {"name":"cockroach","url":"https://github.com/cockroachdb/cockroach.git"},
-  {"name":"tidb","url":"https://github.com/pingcap/tidb.git"},
-  {"name":"vitess","url":"https://github.com/vitessio/vitess.git"}
+  {
+    "name": "gin",
+    "url": "https://github.com/gin-gonic/gin.git",
+    "commit": "d3ffc9985281dcf4d3bef604cce4e662b1a327a6"
+  },
+  {
+    "name": "vault",
+    "url": "https://github.com/hashicorp/vault.git",
+    "commit": "a097d1fa36f751d08406145cc4267ddfe66bb15f"
+  },
+  {
+    "name": "hugo",
+    "url": "https://github.com/gohugoio/hugo.git",
+    "commit": "3ff9b7f89ffd3672e0c02cd43f61ff05128f3d83"
+  },
+  {
+    "name": "prometheus",
+    "url": "https://github.com/prometheus/prometheus.git",
+    "commit": "5b96e611dcc847e58cd3871bd741cbbdbac47b08"
+  },
+  {
+    "name": "grafana",
+    "url": "https://github.com/grafana/grafana.git",
+    "commit": "f0a0379c0f8595dcb0df818f116ede055e49964a"
+  },
+  {
+    "name": "traefik",
+    "url": "https://github.com/traefik/traefik.git",
+    "commit": "67c64ed9b25fbb90f1086977a62827133a7aa01b"
+  },
+  {
+    "name": "cobra",
+    "url": "https://github.com/spf13/cobra.git",
+    "commit": "61968e893eee2f27696c2fbc8e34fa5c4afaf7c4"
+  },
+  {
+    "name": "viper",
+    "url": "https://github.com/spf13/viper.git",
+    "commit": "528f7416c4b56a4948673984b190bf8713f0c3c4"
+  },
+  {
+    "name": "zap",
+    "url": "https://github.com/uber-go/zap.git",
+    "commit": "0ab0d5aae5986395e2ca497385d977ccd7cdfc5e"
+  },
+  {
+    "name": "fiber",
+    "url": "https://github.com/gofiber/fiber.git",
+    "commit": "e56b937ff494dab1c235fbc17ecf52ca986d0291"
+  },
+  {
+    "name": "echo",
+    "url": "https://github.com/labstack/echo.git",
+    "commit": "675712da34c15a72b87cd67a2e7f24510742fc76"
+  },
+  {
+    "name": "testify",
+    "url": "https://github.com/stretchr/testify.git",
+    "commit": "5f80e4aef7bee125b7e9c0b620edf25f6fc93350"
+  },
+  {
+    "name": "fx",
+    "url": "https://github.com/uber-go/fx.git",
+    "commit": "d5da5b04ac906bfbad8b400baeee9b970c1be6f3"
+  },
+  {
+    "name": "gorm",
+    "url": "https://github.com/go-gorm/gorm.git",
+    "commit": "ba38501922bb6ce1cc34216eb79d593c4acedc8b"
+  },
+  {
+    "name": "grpc-go",
+    "url": "https://github.com/grpc/grpc-go.git",
+    "commit": "12e91ddb6df6150efa1dd13affc7e6cae7d12ff5"
+  },
+  {
+    "name": "kubernetes",
+    "url": "https://github.com/kubernetes/kubernetes.git",
+    "commit": "0e71d2d28f29514e4e55e5a4f3d0e57436fe1f0b"
+  },
+  {
+    "name": "terraform",
+    "url": "https://github.com/hashicorp/terraform.git",
+    "commit": "a42d5b9f62055e1f46d9b003213373528a718d3d"
+  },
+  {
+    "name": "etcd",
+    "url": "https://github.com/etcd-io/etcd.git",
+    "commit": "be3acf4ed017efb7008beb08585d890e5364ce93"
+  },
+  {
+    "name": "docker",
+    "url": "https://github.com/moby/moby.git",
+    "commit": "78f80de210394902498dae0e9a1510d4f7e7f302"
+  },
+  {
+    "name": "caddy",
+    "url": "https://github.com/caddyserver/caddy.git",
+    "commit": "5d189aff40dcfd6e8245310eb696e0de3775a690"
+  },
+  {
+    "name": "consul",
+    "url": "https://github.com/hashicorp/consul.git",
+    "commit": "1939aa348e65c3ce31cdafbd931b8d95c9238b96"
+  },
+  {
+    "name": "nomad",
+    "url": "https://github.com/hashicorp/nomad.git",
+    "commit": "a19bb7ccfd3c4c56f58d1361849e3a2768883ad7"
+  },
+  {
+    "name": "packer",
+    "url": "https://github.com/hashicorp/packer.git",
+    "commit": "897d4a57d70f3b284eef0d18da702178f6f8ed5f"
+  },
+  {
+    "name": "helm",
+    "url": "https://github.com/helm/helm.git",
+    "commit": "42f78ba60edf531d5161e00d9819a7c34d976343"
+  },
+  {
+    "name": "kubectl",
+    "url": "https://github.com/kubernetes/kubectl.git",
+    "commit": "82a3c054228a186e09d62e606a4028b10da87250"
+  },
+  {
+    "name": "containerd",
+    "url": "https://github.com/containerd/containerd.git",
+    "commit": "db971c89777fbf1eb9aa1780999d3c5a68bdd216"
+  },
+  {
+    "name": "runc",
+    "url": "https://github.com/opencontainers/runc.git",
+    "commit": "132498f869159c18dc682335aace1294c3a50ba2"
+  },
+  {
+    "name": "buildkit",
+    "url": "https://github.com/moby/buildkit.git",
+    "commit": "676a48cb335023355106beca7b2f9003fe9e0a0a"
+  },
+  {
+    "name": "skaffold",
+    "url": "https://github.com/GoogleContainerTools/skaffold.git",
+    "commit": "1514b19052f67b233f8c7fa06ef17c28c5b256dd"
+  },
+  {
+    "name": "argo-cd",
+    "url": "https://github.com/argoproj/argo-cd.git",
+    "commit": "77732d89b37f4005d092b4570ad69348bed7cf75"
+  },
+  {
+    "name": "flux",
+    "url": "https://github.com/fluxcd/flux2.git",
+    "commit": "d9f51d047dbb2e3184539ca40740f7b6f808f8d7"
+  },
+  {
+    "name": "istio",
+    "url": "https://github.com/istio/istio.git",
+    "commit": "28c83112477be45880e5a5dcfb2ba62e3c9a123d"
+  },
+  {
+    "name": "envoy-go",
+    "url": "https://github.com/envoyproxy/go-control-plane.git",
+    "commit": "96e6f9406571d7759539d1915a7c91c7f95e2333"
+  },
+  {
+    "name": "cilium",
+    "url": "https://github.com/cilium/cilium.git",
+    "commit": "7be1b3108f6801a2a204bddcf2a52102cd99759d"
+  },
+  {
+    "name": "linkerd2",
+    "url": "https://github.com/linkerd/linkerd2.git",
+    "commit": "f3311c7391efa055b019876d168b202676cec0ca"
+  },
+  {
+    "name": "jaeger",
+    "url": "https://github.com/jaegertracing/jaeger.git",
+    "commit": "4afa357000ddfebd00d2c0090694f74f4b1fbee1"
+  },
+  {
+    "name": "opentelemetry-go",
+    "url": "https://github.com/open-telemetry/opentelemetry-go.git",
+    "commit": "b8301a29d95f8b43d18a10d31db5d8ec360739bf"
+  },
+  {
+    "name": "logrus",
+    "url": "https://github.com/sirupsen/logrus.git",
+    "commit": "9f0600962f750e07df31280b76cfe3fcebda5fdf"
+  },
+  {
+    "name": "chi",
+    "url": "https://github.com/go-chi/chi.git",
+    "commit": "a54874f0e2f12647a19e82ee70dfa8185014100c"
+  },
+  {
+    "name": "mux",
+    "url": "https://github.com/gorilla/mux.git",
+    "commit": "db9d1d0073d27a0a2d9a8c1bc52aa0af4374d265"
+  },
+  {
+    "name": "httprouter",
+    "url": "https://github.com/julienschmidt/httprouter.git",
+    "commit": "484018016424d215c0b87c42f4c9b57d980fbd00"
+  },
+  {
+    "name": "fasthttp",
+    "url": "https://github.com/valyala/fasthttp.git",
+    "commit": "87f0fe1394dea443b31db4c76e3f3d6c8541e4db"
+  },
+  {
+    "name": "sqlx",
+    "url": "https://github.com/jmoiron/sqlx.git",
+    "commit": "41dac167fdad5e3fd81d66cafba0951dc6823a30"
+  },
+  {
+    "name": "pgx",
+    "url": "https://github.com/jackc/pgx.git",
+    "commit": "b4d8e62b6616d0c09c5021500363de0c56e01631"
+  },
+  {
+    "name": "ent",
+    "url": "https://github.com/ent/ent.git",
+    "commit": "e0ba79d911cca949468293d4e2899d4c61cfc823"
+  },
+  {
+    "name": "redis-go",
+    "url": "https://github.com/redis/go-redis.git",
+    "commit": "7c6b09e2975f111c8a840b7d9c8b4fbcf133519e"
+  },
+  {
+    "name": "mongo-go",
+    "url": "https://github.com/mongodb/mongo-go-driver.git",
+    "commit": "8fe7e71d20cb313b3cc9ea9a0987ea17b6358c23"
+  },
+  {
+    "name": "wire",
+    "url": "https://github.com/google/wire.git",
+    "commit": "9c25c9016f6825302537c4efdd5e897976f9c826"
+  },
+  {
+    "name": "dig",
+    "url": "https://github.com/uber-go/dig.git",
+    "commit": "770912487056bfe8bc9bd5879a4e049f68989ab0"
+  },
+  {
+    "name": "nats-go",
+    "url": "https://github.com/nats-io/nats.go.git",
+    "commit": "6c41799b052e25e09f9d92424897d11a3234ca9a"
+  },
+  {
+    "name": "nsq",
+    "url": "https://github.com/nsqio/nsq.git",
+    "commit": "9ea507128926c83b7dd8f32d8c38bbbe8ef41beb"
+  },
+  {
+    "name": "sarama",
+    "url": "https://github.com/IBM/sarama.git",
+    "commit": "3a0f0a4c0c50dfec25841711766d4730388c1d20"
+  },
+  {
+    "name": "ginkgo",
+    "url": "https://github.com/onsi/ginkgo.git",
+    "commit": "c1021613df439a0d5d68fc04238c0fe06a201e89"
+  },
+  {
+    "name": "gomock",
+    "url": "https://github.com/uber-go/mock.git",
+    "commit": "349aac660616b1492317714bff32347e90563340"
+  },
+  {
+    "name": "golangci-lint",
+    "url": "https://github.com/golangci/golangci-lint.git",
+    "commit": "b96b110d3c6585554a526b600c4411fcfd5d6db5"
+  },
+  {
+    "name": "staticcheck",
+    "url": "https://github.com/dominikh/go-tools.git",
+    "commit": "31e1ee5e554a3ea6217dbbcfb21c2435ace7e579"
+  },
+  {
+    "name": "delve",
+    "url": "https://github.com/go-delve/delve.git",
+    "commit": "28c9219ffa8fb46b6e420712a6df6761cfada58a"
+  },
+  {
+    "name": "gore",
+    "url": "https://github.com/x-motemen/gore.git",
+    "commit": "666639b7689788dc1ead40fffefb67f5e9397812"
+  },
+  {
+    "name": "buf",
+    "url": "https://github.com/bufbuild/buf.git",
+    "commit": "185bc027f9e53673a1af8b062007e7ab8dd09e0f"
+  },
+  {
+    "name": "protoc-gen-go",
+    "url": "https://github.com/protocolbuffers/protobuf-go.git",
+    "commit": "f2248ac996afc39b3df0777cdcc269f6ade50b07"
+  },
+  {
+    "name": "grpc-gateway",
+    "url": "https://github.com/grpc-ecosystem/grpc-gateway.git",
+    "commit": "343d4a45942ce44aa4052a3758b34a62a0393806"
+  },
+  {
+    "name": "connect-go",
+    "url": "https://github.com/connectrpc/connect-go.git",
+    "commit": "7b531c03580c4ea12390a022184ca5bf5418f31b"
+  },
+  {
+    "name": "quic-go",
+    "url": "https://github.com/quic-go/quic-go.git",
+    "commit": "cf0826593dac77e6827f241ef9263d2016a4d433"
+  },
+  {
+    "name": "websocket",
+    "url": "https://github.com/gorilla/websocket.git",
+    "commit": "e064f32e3674d9d79a8fd417b5bc06fa5c6cad8f"
+  },
+  {
+    "name": "ssh",
+    "url": "https://github.com/gliderlabs/ssh.git",
+    "commit": "909fa952d4e4cea072e860c61ecdd365764b4dce"
+  },
+  {
+    "name": "crypto",
+    "url": "https://github.com/golang/crypto.git",
+    "commit": "81c6cb34a8fc386ed53293cd79e3c0c232ee7366"
+  },
+  {
+    "name": "oauth2",
+    "url": "https://github.com/golang/oauth2.git",
+    "commit": "4d954e69a88d9e1ccb8439f8d5b6cbef230c4ef9"
+  },
+  {
+    "name": "casbin",
+    "url": "https://github.com/casbin/casbin.git",
+    "commit": "098508551fe30a208aafc7732b19c779fbc4059d"
+  },
+  {
+    "name": "jwt-go",
+    "url": "https://github.com/golang-jwt/jwt.git",
+    "commit": "7ceae619e739dc8a7bf577214aa8ebf26668e9db"
+  },
+  {
+    "name": "cron",
+    "url": "https://github.com/robfig/cron.git",
+    "commit": "bc59245fe10efaed9d51b56900192527ed733435"
+  },
+  {
+    "name": "urfave-cli",
+    "url": "https://github.com/urfave/cli.git",
+    "commit": "4dc6aa66962b42149d6a95c722577c7cadc28bcd"
+  },
+  {
+    "name": "pflag",
+    "url": "https://github.com/spf13/pflag.git",
+    "commit": "3d32e71abc0bd7f78417460609bd5efca87508be"
+  },
+  {
+    "name": "lo",
+    "url": "https://github.com/samber/lo.git",
+    "commit": "4d1dbfadf75304e20f8333c78a1900fb9625fbd7"
+  },
+  {
+    "name": "mo",
+    "url": "https://github.com/samber/mo.git",
+    "commit": "16445295ea19f7b570e81599a2a6fc53efca96a1"
+  },
+  {
+    "name": "syncthing",
+    "url": "https://github.com/syncthing/syncthing.git",
+    "commit": "3b05ba2a8fc2cb397e75a1483d157d5935c477d4"
+  },
+  {
+    "name": "rclone",
+    "url": "https://github.com/rclone/rclone.git",
+    "commit": "d5deec353471c0f74f1e963c2d05a78a23172e46"
+  },
+  {
+    "name": "minio",
+    "url": "https://github.com/minio/minio.git",
+    "commit": "7aac2a2c5b7c882e68c1ce017d8256be2feea27f"
+  },
+  {
+    "name": "influxdb",
+    "url": "https://github.com/influxdata/influxdb.git",
+    "commit": "ff8ba631e4d27ac67eae398bb60a214bb181f5a8"
+  },
+  {
+    "name": "cockroach",
+    "url": "https://github.com/cockroachdb/cockroach.git",
+    "commit": "f23224058c9abebd8a5c1c7a64056255ae3c0d70"
+  },
+  {
+    "name": "tidb",
+    "url": "https://github.com/pingcap/tidb.git",
+    "commit": "3b531d4e3d99cb988bebccb8f63a96afff0ec6cd"
+  },
+  {
+    "name": "vitess",
+    "url": "https://github.com/vitessio/vitess.git",
+    "commit": "3e92db9dca71b39963dc789a8618e56e53d9a5cf"
+  }
 ]

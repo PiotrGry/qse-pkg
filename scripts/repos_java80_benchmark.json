@@ -1,82 +1,401 @@
 [
-  {"name":"guava","url":"https://github.com/google/guava.git"},
-  {"name":"spring-boot","url":"https://github.com/spring-projects/spring-boot.git"},
-  {"name":"spring-framework","url":"https://github.com/spring-projects/spring-framework.git"},
-  {"name":"mockito","url":"https://github.com/mockito/mockito.git"},
-  {"name":"okhttp","url":"https://github.com/square/okhttp.git"},
-  {"name":"retrofit","url":"https://github.com/square/retrofit.git"},
-  {"name":"gson","url":"https://github.com/google/gson.git"},
-  {"name":"jackson-core","url":"https://github.com/FasterXML/jackson-core.git"},
-  {"name":"jackson-databind","url":"https://github.com/FasterXML/jackson-databind.git"},
-  {"name":"netty","url":"https://github.com/netty/netty.git"},
-  {"name":"hibernate-orm","url":"https://github.com/hibernate/hibernate-orm.git"},
-  {"name":"commons-lang","url":"https://github.com/apache/commons-lang.git"},
-  {"name":"commons-collections","url":"https://github.com/apache/commons-collections.git"},
-  {"name":"commons-io","url":"https://github.com/apache/commons-io.git"},
-  {"name":"commons-math","url":"https://github.com/apache/commons-math.git"},
-  {"name":"log4j","url":"https://github.com/apache/logging-log4j2.git"},
-  {"name":"logback","url":"https://github.com/qos-ch/logback.git"},
-  {"name":"slf4j","url":"https://github.com/qos-ch/slf4j.git"},
-  {"name":"junit4","url":"https://github.com/junit-team/junit4.git"},
-  {"name":"junit5","url":"https://github.com/junit-team/junit5.git"},
-  {"name":"assertj","url":"https://github.com/assertj/assertj.git"},
-  {"name":"checkstyle","url":"https://github.com/checkstyle/checkstyle.git"},
-  {"name":"spotbugs","url":"https://github.com/spotbugs/spotbugs.git"},
-  {"name":"mapstruct","url":"https://github.com/mapstruct/mapstruct.git"},
-  {"name":"mybatis","url":"https://github.com/mybatis/mybatis-3.git"},
-  {"name":"flyway","url":"https://github.com/flyway/flyway.git"},
-  {"name":"liquibase","url":"https://github.com/liquibase/liquibase.git"},
-  {"name":"resilience4j","url":"https://github.com/resilience4j/resilience4j.git"},
-  {"name":"micrometer","url":"https://github.com/micrometer-metrics/micrometer.git"},
-  {"name":"caffeine","url":"https://github.com/ben-manes/caffeine.git"},
-  {"name":"failsafe","url":"https://github.com/failsafe-lib/failsafe.git"},
-  {"name":"jooq","url":"https://github.com/jOOQ/jOOQ.git"},
-  {"name":"testcontainers","url":"https://github.com/testcontainers/testcontainers-java.git"},
-  {"name":"opentelemetry-java","url":"https://github.com/open-telemetry/opentelemetry-java.git"},
-  {"name":"grpc-java","url":"https://github.com/grpc/grpc-java.git"},
-  {"name":"reactor-core","url":"https://github.com/reactor/reactor-core.git"},
-  {"name":"rxjava","url":"https://github.com/ReactiveX/RxJava.git"},
-  {"name":"vertx-core","url":"https://github.com/eclipse-vertx/vert.x.git"},
-  {"name":"quarkus","url":"https://github.com/quarkusio/quarkus.git"},
-  {"name":"micronaut-core","url":"https://github.com/micronaut-projects/micronaut-core.git"},
-  {"name":"dropwizard","url":"https://github.com/dropwizard/dropwizard.git"},
-  {"name":"jersey","url":"https://github.com/eclipse-ee4j/jersey.git"},
-  {"name":"resteasy","url":"https://github.com/resteasy/resteasy.git"},
-  {"name":"weld-core","url":"https://github.com/weld/core.git"},
-  {"name":"guice","url":"https://github.com/google/guice.git"},
-  {"name":"dagger","url":"https://github.com/google/dagger.git"},
-  {"name":"lombok","url":"https://github.com/projectlombok/lombok.git"},
-  {"name":"vavr","url":"https://github.com/vavr-io/vavr.git"},
-  {"name":"immutables","url":"https://github.com/immutables/immutables.git"},
-  {"name":"auto","url":"https://github.com/google/auto.git"},
-  {"name":"error-prone","url":"https://github.com/google/error-prone.git"},
-  {"name":"byte-buddy","url":"https://github.com/raphw/byte-buddy.git"},
-  {"name":"asm","url":"https://gitlab.ow2.org/asm/asm.git"},
-  {"name":"cglib","url":"https://github.com/cglib/cglib.git"},
-  {"name":"javassist","url":"https://github.com/jboss-javassist/javassist.git"},
-  {"name":"snakeyaml","url":"https://bitbucket.org/snakeyaml/snakeyaml.git"},
-  {"name":"jsoup","url":"https://github.com/jhy/jsoup.git"},
-  {"name":"commons-csv","url":"https://github.com/apache/commons-csv.git"},
-  {"name":"opencsv","url":"https://github.com/opencsv/opencsv.git"},
-  {"name":"poi","url":"https://github.com/apache/poi.git"},
-  {"name":"pdfbox","url":"https://github.com/apache/pdfbox.git"},
-  {"name":"itext7","url":"https://github.com/itext/itext7.git"},
-  {"name":"jfreechart","url":"https://github.com/jfree/jfreechart.git"},
-  {"name":"xstream","url":"https://github.com/x-stream/xstream.git"},
-  {"name":"kryo","url":"https://github.com/EsotericSoftware/kryo.git"},
-  {"name":"protobuf-java","url":"https://github.com/protocolbuffers/protobuf.git"},
-  {"name":"thrift","url":"https://github.com/apache/thrift.git"},
-  {"name":"avro","url":"https://github.com/apache/avro.git"},
-  {"name":"kafka","url":"https://github.com/apache/kafka.git"},
-  {"name":"flink","url":"https://github.com/apache/flink.git"},
-  {"name":"spark","url":"https://github.com/apache/spark.git"},
-  {"name":"hadoop","url":"https://github.com/apache/hadoop.git"},
-  {"name":"hbase","url":"https://github.com/apache/hbase.git"},
-  {"name":"cassandra","url":"https://github.com/apache/cassandra.git"},
-  {"name":"elasticsearch","url":"https://github.com/elastic/elasticsearch.git"},
-  {"name":"lucene","url":"https://github.com/apache/lucene.git"},
-  {"name":"solr","url":"https://github.com/apache/solr.git"},
-  {"name":"zookeeper","url":"https://github.com/apache/zookeeper.git"},
-  {"name":"dubbo","url":"https://github.com/apache/dubbo.git"},
-  {"name":"skywalking","url":"https://github.com/apache/skywalking.git"}
+  {
+    "name": "guava",
+    "url": "https://github.com/google/guava.git",
+    "commit": "8e1cff497a98ef6bf49d05deb904d71b039b5642"
+  },
+  {
+    "name": "spring-boot",
+    "url": "https://github.com/spring-projects/spring-boot.git",
+    "commit": "eff95e98a5a9d41542779eaedd0da33fe9abd6ac"
+  },
+  {
+    "name": "spring-framework",
+    "url": "https://github.com/spring-projects/spring-framework.git",
+    "commit": "c1e90d51ca6a8379a0366f30cd77e5c1be019447"
+  },
+  {
+    "name": "mockito",
+    "url": "https://github.com/mockito/mockito.git",
+    "commit": "82998ff78a14b2111e07ba24c5a7fa731a5f0a82"
+  },
+  {
+    "name": "okhttp",
+    "url": "https://github.com/square/okhttp.git",
+    "commit": "21ad1aa6aa4d5de7f5f52956f0841a5c304ab849"
+  },
+  {
+    "name": "retrofit",
+    "url": "https://github.com/square/retrofit.git",
+    "commit": "77e6ba21d9ba372d1b23ef29881912910da23347"
+  },
+  {
+    "name": "gson",
+    "url": "https://github.com/google/gson.git",
+    "commit": "1fa9b7a0a994b006b3be00e2df9de778e71e6807"
+  },
+  {
+    "name": "jackson-core",
+    "url": "https://github.com/FasterXML/jackson-core.git",
+    "commit": "032014d1c9a2f95c2425b7519ee04d223e2f83ef"
+  },
+  {
+    "name": "jackson-databind",
+    "url": "https://github.com/FasterXML/jackson-databind.git",
+    "commit": "21cfb7cf31f95fcf1c40527fb78bf745875b09f1"
+  },
+  {
+    "name": "netty",
+    "url": "https://github.com/netty/netty.git",
+    "commit": "8f744ecfabbe3f5e96a5adfcaf9966525a856f09"
+  },
+  {
+    "name": "hibernate-orm",
+    "url": "https://github.com/hibernate/hibernate-orm.git",
+    "commit": "d0770b91e5d7706e1857a255ba96e9eb46b82605"
+  },
+  {
+    "name": "commons-lang",
+    "url": "https://github.com/apache/commons-lang.git",
+    "commit": "e9d7d3508bd825fdce00d673f06968a75bb50b23"
+  },
+  {
+    "name": "commons-collections",
+    "url": "https://github.com/apache/commons-collections.git",
+    "commit": "3e713212929fc5e51793203c40006c57eeb0e9bb"
+  },
+  {
+    "name": "commons-io",
+    "url": "https://github.com/apache/commons-io.git",
+    "commit": "a49555745be5c35b466532b33722c4afe70e73f7"
+  },
+  {
+    "name": "commons-math",
+    "url": "https://github.com/apache/commons-math.git",
+    "commit": "bef067cffbaaa712a9c1a0e3968e2314b3bcd77e"
+  },
+  {
+    "name": "log4j",
+    "url": "https://github.com/apache/logging-log4j2.git",
+    "commit": "1fdfe142d57febdd22a9e7d91ccdcc6d71a6efb0"
+  },
+  {
+    "name": "logback",
+    "url": "https://github.com/qos-ch/logback.git",
+    "commit": "4d0975eee7f1541ef198bf400afaac895021fd12"
+  },
+  {
+    "name": "slf4j",
+    "url": "https://github.com/qos-ch/slf4j.git",
+    "commit": "d2073bece8310017914e1ff65d7107b2d4869c7d"
+  },
+  {
+    "name": "junit4",
+    "url": "https://github.com/junit-team/junit4.git",
+    "commit": "71c33ce555230d9dfb6cab5e133e22a4cc95cdff"
+  },
+  {
+    "name": "junit5",
+    "url": "https://github.com/junit-team/junit5.git",
+    "commit": "a9515c57613b2a7568eb7aeba6fd700098394395"
+  },
+  {
+    "name": "assertj",
+    "url": "https://github.com/assertj/assertj.git",
+    "commit": "aad1cf67814b45ce5252c4a4a1b71defdf319097"
+  },
+  {
+    "name": "checkstyle",
+    "url": "https://github.com/checkstyle/checkstyle.git",
+    "commit": "61d9820f79deb203f17bf6cc21d2bb49263fbdac"
+  },
+  {
+    "name": "spotbugs",
+    "url": "https://github.com/spotbugs/spotbugs.git",
+    "commit": "e463e395154932a4827ba43204336c35870763cc"
+  },
+  {
+    "name": "mapstruct",
+    "url": "https://github.com/mapstruct/mapstruct.git",
+    "commit": "dab3eaf237eb025a0d59f997263fea515cb6db64"
+  },
+  {
+    "name": "mybatis",
+    "url": "https://github.com/mybatis/mybatis-3.git",
+    "commit": "1bb22017d100afca8cb4401307fefcb5ec98ecb6"
+  },
+  {
+    "name": "flyway",
+    "url": "https://github.com/flyway/flyway.git",
+    "commit": "64e5c3c9491eb0c61d1a23d9c257d3380d2519e6"
+  },
+  {
+    "name": "liquibase",
+    "url": "https://github.com/liquibase/liquibase.git",
+    "commit": "eeedf09f9eb1201352e6c3804ac3e11a420e89fe"
+  },
+  {
+    "name": "resilience4j",
+    "url": "https://github.com/resilience4j/resilience4j.git",
+    "commit": "8b3cc84a333ec4e860ffa56f98b642d5bc321110"
+  },
+  {
+    "name": "micrometer",
+    "url": "https://github.com/micrometer-metrics/micrometer.git",
+    "commit": "04096266e526d6ff3817d245ef12477625daca20"
+  },
+  {
+    "name": "caffeine",
+    "url": "https://github.com/ben-manes/caffeine.git",
+    "commit": "d49bece2dca0b670d46858a734bee4677c864f8b"
+  },
+  {
+    "name": "failsafe",
+    "url": "https://github.com/failsafe-lib/failsafe.git",
+    "commit": "ed3f92739669769274cf5c9567fd422929c20ad2"
+  },
+  {
+    "name": "jooq",
+    "url": "https://github.com/jOOQ/jOOQ.git",
+    "commit": "e3926267f730e4f24fc7c7a54a52ec23916a08ac"
+  },
+  {
+    "name": "testcontainers",
+    "url": "https://github.com/testcontainers/testcontainers-java.git",
+    "commit": "18e55b8dd8c5ec8e6c46364847419ea2d27f8b33"
+  },
+  {
+    "name": "opentelemetry-java",
+    "url": "https://github.com/open-telemetry/opentelemetry-java.git",
+    "commit": "def1c400b366efadf74ea4211d311ba707a8a5d8"
+  },
+  {
+    "name": "grpc-java",
+    "url": "https://github.com/grpc/grpc-java.git",
+    "commit": "91e9491d7b59681cd68aa70da42da525f949ed85"
+  },
+  {
+    "name": "reactor-core",
+    "url": "https://github.com/reactor/reactor-core.git",
+    "commit": "2a22bcc1bb957f14df3d1cd0819d2b12b931efc2"
+  },
+  {
+    "name": "rxjava",
+    "url": "https://github.com/ReactiveX/RxJava.git",
+    "commit": "e2990a59b020619fc2157eb50ef96e4c19920976"
+  },
+  {
+    "name": "vertx-core",
+    "url": "https://github.com/eclipse-vertx/vert.x.git",
+    "commit": "436dfdfc0a596cd5aa20364d94d79f54938d25a6"
+  },
+  {
+    "name": "quarkus",
+    "url": "https://github.com/quarkusio/quarkus.git",
+    "commit": "860902f3d230fe191497cc6c336c18ca0491a7c3"
+  },
+  {
+    "name": "micronaut-core",
+    "url": "https://github.com/micronaut-projects/micronaut-core.git",
+    "commit": "4dc4299f8dd0faccc0c45c2f83a223b456dc0731"
+  },
+  {
+    "name": "dropwizard",
+    "url": "https://github.com/dropwizard/dropwizard.git",
+    "commit": "1f5bf766a7e4a5f23fe9125b856f635210fb4f55"
+  },
+  {
+    "name": "jersey",
+    "url": "https://github.com/eclipse-ee4j/jersey.git",
+    "commit": "f645f4add78fc042234bc3234ced6d56ddc2be3d"
+  },
+  {
+    "name": "resteasy",
+    "url": "https://github.com/resteasy/resteasy.git",
+    "commit": "04111b7176581c226b4770ed6914c89199002763"
+  },
+  {
+    "name": "weld-core",
+    "url": "https://github.com/weld/core.git",
+    "commit": "fe37482f036ddca3715c8e8c532ab5da5015ada1"
+  },
+  {
+    "name": "guice",
+    "url": "https://github.com/google/guice.git",
+    "commit": "6682b69d081371cceff2a100075a74f41b819a87"
+  },
+  {
+    "name": "dagger",
+    "url": "https://github.com/google/dagger.git",
+    "commit": "a119ba68c7f618d148b1482734e84af5f4c5a523"
+  },
+  {
+    "name": "lombok",
+    "url": "https://github.com/projectlombok/lombok.git",
+    "commit": "9683977c679fee3c2367e7b4e889e53c15185ff5"
+  },
+  {
+    "name": "vavr",
+    "url": "https://github.com/vavr-io/vavr.git",
+    "commit": "598a6914c02a0e377d7ec82374f3625362e649c1"
+  },
+  {
+    "name": "immutables",
+    "url": "https://github.com/immutables/immutables.git",
+    "commit": "b008dce2a54359a696b8b5a0f11b4b6085d521cc"
+  },
+  {
+    "name": "auto",
+    "url": "https://github.com/google/auto.git",
+    "commit": "74bb96d2ef9f38c35abb6fb7f94fd0bfc882edca"
+  },
+  {
+    "name": "error-prone",
+    "url": "https://github.com/google/error-prone.git",
+    "commit": "2961b19a33d5647387a50c9f2eb447ef0328a237"
+  },
+  {
+    "name": "byte-buddy",
+    "url": "https://github.com/raphw/byte-buddy.git",
+    "commit": "7d35c666558e7173e225fa62cdaf07ff5ac8fa52"
+  },
+  {
+    "name": "asm",
+    "url": "https://gitlab.ow2.org/asm/asm.git",
+    "commit": "7f3098fdc88742b855b8ecc67dbd9645869ad514"
+  },
+  {
+    "name": "cglib",
+    "url": "https://github.com/cglib/cglib.git",
+    "commit": "9d67875290d269c9b1ff5e4f4bc578a9f05c392e"
+  },
+  {
+    "name": "javassist",
+    "url": "https://github.com/jboss-javassist/javassist.git",
+    "commit": "bbe0e077ef36ef399c67e3683d7bc8c2a8ad0444"
+  },
+  {
+    "name": "snakeyaml",
+    "url": "https://bitbucket.org/snakeyaml/snakeyaml.git",
+    "commit": "e6eb1b7274ea42aceb4194b56392ab42954e1120"
+  },
+  {
+    "name": "jsoup",
+    "url": "https://github.com/jhy/jsoup.git",
+    "commit": "8951f55c5965337ee24889b96a9343dd8177efbc"
+  },
+  {
+    "name": "commons-csv",
+    "url": "https://github.com/apache/commons-csv.git",
+    "commit": "b639f788aa3650a556630918502a463ac3f20241"
+  },
+  {
+    "name": "opencsv",
+    "url": "https://github.com/opencsv/opencsv.git"
+  },
+  {
+    "name": "poi",
+    "url": "https://github.com/apache/poi.git",
+    "commit": "702be5bfb5a401f662738f9414cbdbdc3a2fb557"
+  },
+  {
+    "name": "pdfbox",
+    "url": "https://github.com/apache/pdfbox.git",
+    "commit": "b4633712116b097ac37047c10d15155110eeaa33"
+  },
+  {
+    "name": "itext7",
+    "url": "https://github.com/itext/itext7.git",
+    "commit": "f19a68272785baff53c8245169a584f91d01601d"
+  },
+  {
+    "name": "jfreechart",
+    "url": "https://github.com/jfree/jfreechart.git",
+    "commit": "98d9c90b6e0a1e553a506497daaf64a5704a4413"
+  },
+  {
+    "name": "xstream",
+    "url": "https://github.com/x-stream/xstream.git",
+    "commit": "3a83dee4aa6d41b36828648d082df2d240a671b7"
+  },
+  {
+    "name": "kryo",
+    "url": "https://github.com/EsotericSoftware/kryo.git",
+    "commit": "609b66dbe5717c869cfec193ccd56a06ebf34feb"
+  },
+  {
+    "name": "protobuf-java",
+    "url": "https://github.com/protocolbuffers/protobuf.git",
+    "commit": "267de056242d958b6da2bc5603cb90c9d0431ee5"
+  },
+  {
+    "name": "thrift",
+    "url": "https://github.com/apache/thrift.git",
+    "commit": "821140cfba71b5d159e888a3c006e739dc5b31f3"
+  },
+  {
+    "name": "avro",
+    "url": "https://github.com/apache/avro.git",
+    "commit": "4e376735ebbd14cc17e53116183039c8c4ced8ab"
+  },
+  {
+    "name": "kafka",
+    "url": "https://github.com/apache/kafka.git",
+    "commit": "9e8bb29f131150fd7e997a4c3bf218ebd11ad976"
+  },
+  {
+    "name": "flink",
+    "url": "https://github.com/apache/flink.git",
+    "commit": "14d9e6bcc57109589bf69773e5fcd4d0db01bad3"
+  },
+  {
+    "name": "spark",
+    "url": "https://github.com/apache/spark.git",
+    "commit": "6049f0b176eac8f89fb99042879b7038c5dac73d"
+  },
+  {
+    "name": "hadoop",
+    "url": "https://github.com/apache/hadoop.git",
+    "commit": "33a5e7ab76c5e2d2ccc095d4e0a6e7efab4e57fb"
+  },
+  {
+    "name": "hbase",
+    "url": "https://github.com/apache/hbase.git",
+    "commit": "c5e5d51e0447edc844c96bc27849c03fa27fdfb8"
+  },
+  {
+    "name": "cassandra",
+    "url": "https://github.com/apache/cassandra.git",
+    "commit": "5c07c122be4299e6a30e025444dee251a408ea7d"
+  },
+  {
+    "name": "elasticsearch",
+    "url": "https://github.com/elastic/elasticsearch.git",
+    "commit": "dee4729732f69be83316b3ace7bee296d45bc348"
+  },
+  {
+    "name": "lucene",
+    "url": "https://github.com/apache/lucene.git",
+    "commit": "b40b8d1ada5791edc395bcd1d7994e450584b9be"
+  },
+  {
+    "name": "solr",
+    "url": "https://github.com/apache/solr.git",
+    "commit": "002e89aa5d8fc63f1d23a5aa179ba1abfbb3e96d"
+  },
+  {
+    "name": "zookeeper",
+    "url": "https://github.com/apache/zookeeper.git",
+    "commit": "f9865650ed34749d2b6c57a71e2f961a16347eb1"
+  },
+  {
+    "name": "dubbo",
+    "url": "https://github.com/apache/dubbo.git",
+    "commit": "63fe8c3a982a554ba40cd5e62f07d74cebb45e39"
+  },
+  {
+    "name": "skywalking",
+    "url": "https://github.com/apache/skywalking.git",
+    "commit": "4f706459e76201a2dd23cb83e4fd727b6c0337f0"
+  }
 ]

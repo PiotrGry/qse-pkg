@@ -1,0 +1,274 @@
+{
+  "generated_at": "2026-03-21T22:33:24.902963",
+  "methodology": {
+    "known_good_selection": "Community reputation: widely recognized for clean architecture in Python community (PyCon talks, books, maintainer reputation)",
+    "known_bad_selection": "Spaghetti repos (intentionally poor) + bottom-10 AGQ from Python-80 benchmark",
+    "statistical_test": "Mann-Whitney U (non-parametric, two-tailed)",
+    "effect_size": "Cohen's d"
+  },
+  "known_good": {
+    "repos": [
+      {
+        "name": "django",
+        "agq_score": 0.7911862605470571,
+        "modularity": 0.5119995076902167,
+        "acyclicity": 1.0,
+        "stability": 0.9733001837639169,
+        "cohesion": 0.6794453507340946,
+        "nodes": 1229,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "flask",
+        "agq_score": 0.7021428755314003,
+        "modularity": 0.4934499076638967,
+        "acyclicity": 1.0,
+        "stability": 0.7373438166839266,
+        "cohesion": 0.5777777777777777,
+        "nodes": 79,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "fastapi",
+        "agq_score": 0.7967693955909846,
+        "modularity": 0.5622552579492224,
+        "acyclicity": 1.0,
+        "stability": 0.8367788461538461,
+        "cohesion": 0.7880434782608696,
+        "nodes": 145,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "starlette",
+        "agq_score": 0.7659447339700296,
+        "modularity": 0.5446202149498848,
+        "acyclicity": 1.0,
+        "stability": 0.8592750000000011,
+        "cohesion": 0.6598837209302326,
+        "nodes": 103,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "sqlalchemy",
+        "agq_score": 0.6915810387619423,
+        "modularity": 0.453363122840424,
+        "acyclicity": 1.0,
+        "stability": 0.8122128092369001,
+        "cohesion": 0.5007482229704452,
+        "nodes": 821,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "pydantic",
+        "agq_score": 0.819048237422124,
+        "modularity": 0.6060467009673572,
+        "acyclicity": 0.99,
+        "stability": 0.9290098850847748,
+        "cohesion": 0.7511363636363636,
+        "nodes": 200,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "click",
+        "agq_score": 0.7369705898034853,
+        "modularity": 0.4994822305946638,
+        "acyclicity": 1.0,
+        "stability": 0.763784744003893,
+        "cohesion": 0.6846153846153846,
+        "nodes": 59,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "rich",
+        "agq_score": 0.7880275206609757,
+        "modularity": 0.4880191055937444,
+        "acyclicity": 1.0,
+        "stability": 0.9467832847424661,
+        "cohesion": 0.7173076923076923,
+        "nodes": 175,
+        "fingerprint": "LAYERED",
+        "source": "benchmark"
+      },
+      {
+        "name": "celery",
+        "agq_score": 0.7324710910586002,
+        "modularity": 0.515962479794185,
+        "acyclicity": 1.0,
+        "stability": 0.9330660285843599,
+        "cohesion": 0.4808558558558559,
+        "nodes": 420,
+        "fingerprint": "MODERATE",
+        "source": "benchmark"
+      },
+      {
+        "name": "typer",
+        "agq_score": 0.7421440687687539,
+        "modularity": 0.5814080977367059,
+        "acyclicity": 1.0,
+        "stability": 0.6179374081075405,
+        "cohesion": 0.7692307692307692,
+        "nodes": 69,
+        "fingerprint": "MODERATE",
+        "source": "benchmark"
+      }
+    ],
+    "n": 10,
+    "mean_agq": 0.7566,
+    "std_agq": 0.0424
+  },
+  "known_bad": {
+    "repos": [
+      {
+        "name": "home-assistant",
+        "agq_score": 0.5751691492579599,
+        "modularity": 0.5116903607434752,
+        "acyclicity": 1.0,
+        "stability": 0.07786588461912361,
+        "cohesion": 0.7111203516692408,
+        "nodes": 17595,
+        "fingerprint": "FLAT",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "ansible",
+        "agq_score": 0.6081054850534475,
+        "modularity": 0.518751853875734,
+        "acyclicity": 1.0,
+        "stability": 0.2228993917614626,
+        "cohesion": 0.6907706945765937,
+        "nodes": 2155,
+        "fingerprint": "FLAT",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "matplotlib",
+        "agq_score": 0.6251867090793577,
+        "modularity": 0.4852915828351381,
+        "acyclicity": 1.0,
+        "stability": 0.3622202932098747,
+        "cohesion": 0.6532349602724177,
+        "nodes": 1217,
+        "fingerprint": "MODERATE",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "you-get",
+        "agq_score": 0.6312495180109882,
+        "modularity": 0.5724961425353344,
+        "acyclicity": 1.0,
+        "stability": 0.28402366863905315,
+        "cohesion": 0.6684782608695652,
+        "nodes": 190,
+        "fingerprint": "FLAT",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "hypothesis",
+        "agq_score": 0.6443846367908224,
+        "modularity": 0.5470550015282278,
+        "acyclicity": 1.0,
+        "stability": 0.23153249668401243,
+        "cohesion": 0.798951048951049,
+        "nodes": 699,
+        "fingerprint": "FLAT",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "thefuck",
+        "agq_score": 0.650843862752696,
+        "modularity": 0.5532710064934603,
+        "acyclicity": 1.0,
+        "stability": 0.7108187302316096,
+        "cohesion": 0.3392857142857143,
+        "nodes": 273,
+        "fingerprint": "LOW_COHESION",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "pyjwt",
+        "agq_score": 0.6512052791762037,
+        "modularity": 0.5194003527336858,
+        "acyclicity": 1.0,
+        "stability": 0.8261615047118694,
+        "cohesion": 0.2592592592592593,
+        "nodes": 64,
+        "fingerprint": "LOW_COHESION",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "sentry-sdk",
+        "agq_score": 0.6539075866789281,
+        "modularity": 0.47783637532220097,
+        "acyclicity": 0.9944320712694877,
+        "stability": 0.40167005722372146,
+        "cohesion": 0.7416918429003021,
+        "nodes": 898,
+        "fingerprint": "MODERATE",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "beautifulsoup4",
+        "agq_score": 0.6625476852595948,
+        "modularity": 0.4941999999999999,
+        "acyclicity": 1.0,
+        "stability": 0.465692233575693,
+        "cohesion": 0.6902985074626866,
+        "nodes": 54,
+        "fingerprint": "MODERATE",
+        "source": "bottom_10_benchmark"
+      },
+      {
+        "name": "networkx",
+        "agq_score": 0.6815845107003773,
+        "modularity": 0.43675161382961564,
+        "acyclicity": 1.0,
+        "stability": 0.8617307175490477,
+        "cohesion": 0.42785571142284573,
+        "nodes": 685,
+        "fingerprint": "MODERATE",
+        "source": "bottom_10_benchmark"
+      }
+    ],
+    "n": 10,
+    "mean_agq": 0.6384,
+    "std_agq": 0.0302
+  },
+  "mann_whitney_u": {
+    "U": 0.0,
+    "z": -3.7796,
+    "p": 0.000157,
+    "significant_005": true,
+    "significant_001": true,
+    "n_x": 10,
+    "n_y": 10
+  },
+  "cohens_d": {
+    "name": "home-assistant",
+    "agq_score": 0.5751691492579599,
+    "modularity": 0.5116903607434752,
+    "acyclicity": 1.0,
+    "stability": 0.07786588461912361,
+    "cohesion": 0.7111203516692408,
+    "nodes": 17595,
+    "fingerprint": "FLAT",
+    "source": "bottom_10_benchmark"
+  },
+  "fingerprint_distribution": {
+    "good": {
+      "LAYERED": 8,
+      "MODERATE": 2
+    },
+    "bad": {
+      "FLAT": 4,
+      "MODERATE": 4,
+      "LOW_COHESION": 2
+    }
+  }
+}
