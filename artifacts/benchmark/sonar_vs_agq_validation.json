@@ -1,307 +1,307 @@
 {
-  "generated_at": "2026-03-21T23:02:46.951907",
+  "generated_at": "2026-03-21T23:42:51.311420",
   "sonar_version": "9.9.8 (LTS Community)",
-  "n_repos": 20,
-  "n_scanned": 20,
+  "n_repos": 79,
+  "n_scanned": 80,
   "correlations": {
     "agq_score_vs_sonar_code_smells": {
-      "r": 0.4201,
-      "t": 1.964,
-      "p": 0.049552,
-      "n": 20,
-      "df": 18
+      "r": -0.0365,
+      "t": -0.32,
+      "p": 0.748613,
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_code_smells": {
-      "r": 0.1585,
-      "t": 0.681,
-      "p": 0.495818,
-      "n": 20,
-      "df": 18
+      "r": 0.1182,
+      "t": 1.044,
+      "p": 0.296281,
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_code_smells": {
-      "r": -0.8198,
-      "t": -6.074,
-      "p": 0.0,
-      "n": 20,
-      "df": 18
+      "r": -0.1229,
+      "t": -1.086,
+      "p": 0.277321,
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_code_smells": {
-      "r": 0.0946,
-      "t": 0.403,
-      "p": 0.686775,
-      "n": 20,
-      "df": 18
+      "r": -0.017,
+      "t": -0.149,
+      "p": 0.881639,
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_code_smells": {
-      "r": 0.3784,
-      "t": 1.734,
-      "p": 0.082897,
-      "n": 20,
-      "df": 18
+      "r": -0.1387,
+      "t": -1.229,
+      "p": 0.219049,
+      "n": 79,
+      "df": 77
     },
     "agq_score_vs_sonar_bugs": {
-      "r": -0.2923,
-      "t": -1.297,
-      "p": 0.194796,
-      "n": 20,
-      "df": 18
+      "r": -0.1141,
+      "t": -1.008,
+      "p": 0.313389,
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_bugs": {
-      "r": 0.3938,
-      "t": 1.817,
-      "p": 0.06915,
-      "n": 20,
-      "df": 18
+      "r": 0.2664,
+      "t": 2.425,
+      "p": 0.015294,
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_bugs": {
-      "r": -0.012,
-      "t": -0.051,
-      "p": 0.959235,
-      "n": 20,
-      "df": 18
+      "r": 0.0007,
+      "t": 0.006,
+      "p": 0.994913,
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_bugs": {
-      "r": -0.7848,
-      "t": -5.372,
-      "p": 0.0,
-      "n": 20,
-      "df": 18
+      "r": -0.2726,
+      "t": -2.486,
+      "p": 0.012907,
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_bugs": {
-      "r": 0.4313,
-      "t": 2.028,
-      "p": 0.042542,
-      "n": 20,
-      "df": 18
+      "r": -0.0447,
+      "t": -0.393,
+      "p": 0.69456,
+      "n": 79,
+      "df": 77
     },
     "agq_score_vs_sonar_vulnerabilities": {
-      "r": 0.3478,
-      "t": 1.574,
-      "p": 0.115525,
-      "n": 20,
-      "df": 18
+      "r": 0.1806,
+      "t": 1.611,
+      "p": 0.107121,
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_vulnerabilities": {
-      "r": -0.0935,
-      "t": -0.398,
-      "p": 0.690368,
-      "n": 20,
-      "df": 18
+      "r": 0.0639,
+      "t": 0.562,
+      "p": 0.574353,
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_vulnerabilities": {
-      "r": 0.1074,
-      "t": 0.458,
-      "p": 0.646702,
-      "n": 20,
-      "df": 18
+      "r": 0.0805,
+      "t": 0.709,
+      "p": 0.478366,
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_vulnerabilities": {
-      "r": 0.201,
-      "t": 0.871,
-      "p": 0.383919,
-      "n": 20,
-      "df": 18
+      "r": 0.098,
+      "t": 0.864,
+      "p": 0.38756,
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_vulnerabilities": {
-      "r": 0.2974,
-      "t": 1.322,
-      "p": 0.186285,
-      "n": 20,
-      "df": 18
+      "r": 0.1399,
+      "t": 1.24,
+      "p": 0.214995,
+      "n": 79,
+      "df": 77
     },
     "agq_score_vs_sonar_complexity": {
-      "r": 0.6108,
-      "t": 3.273,
-      "p": 0.001064,
-      "n": 20,
-      "df": 18
+      "r": -0.0452,
+      "t": -0.397,
+      "p": 0.691343,
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_complexity": {
-      "r": 0.15,
-      "t": 0.643,
-      "p": 0.519903,
-      "n": 20,
-      "df": 18
+      "r": 0.1509,
+      "t": 1.339,
+      "p": 0.18048,
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_complexity": {
-      "r": -0.4318,
-      "t": -2.031,
-      "p": 0.042268,
-      "n": 20,
-      "df": 18
+      "r": -0.0321,
+      "t": -0.282,
+      "p": 0.778085,
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_complexity": {
-      "r": 0.2155,
-      "t": 0.936,
-      "p": 0.349229,
-      "n": 20,
-      "df": 18
+      "r": -0.0631,
+      "t": -0.555,
+      "p": 0.578775,
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_complexity": {
-      "r": 0.4823,
-      "t": 2.336,
-      "p": 0.019489,
-      "n": 20,
-      "df": 18
+      "r": -0.1177,
+      "t": -1.04,
+      "p": 0.298235,
+      "n": 79,
+      "df": 77
     },
     "agq_score_vs_sonar_cognitive_complexity": {
-      "r": 0.5905,
-      "t": 3.104,
-      "p": 0.001907,
-      "n": 20,
-      "df": 18
+      "r": -0.0423,
+      "t": -0.371,
+      "p": 0.710464,
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_cognitive_complexity": {
-      "r": 0.1191,
-      "t": 0.509,
-      "p": 0.610777,
-      "n": 20,
-      "df": 18
+      "r": 0.1142,
+      "t": 1.009,
+      "p": 0.313203,
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_cognitive_complexity": {
-      "r": -0.4124,
-      "t": -1.921,
-      "p": 0.054775,
-      "n": 20,
-      "df": 18
+      "r": -0.0266,
+      "t": -0.233,
+      "p": 0.815379,
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_cognitive_complexity": {
-      "r": 0.2102,
-      "t": 0.912,
-      "p": 0.361707,
-      "n": 20,
-      "df": 18
+      "r": -0.0502,
+      "t": -0.441,
+      "p": 0.659207,
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_cognitive_complexity": {
-      "r": 0.4851,
-      "t": 2.353,
-      "p": 0.018609,
-      "n": 20,
-      "df": 18
+      "r": -0.1005,
+      "t": -0.886,
+      "p": 0.375601,
+      "n": 79,
+      "df": 77
     },
     "agq_score_vs_sonar_duplicated_lines_density": {
-      "r": 0.142,
-      "t": 0.609,
-      "p": 0.542778,
-      "n": 20,
-      "df": 18
+      "r": 0.1087,
+      "t": 0.96,
+      "p": 0.337268,
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_duplicated_lines_density": {
-      "r": -0.0206,
-      "t": -0.088,
-      "p": 0.930188,
-      "n": 20,
-      "df": 18
+      "r": 0.2756,
+      "t": 2.515,
+      "p": 0.01189,
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_duplicated_lines_density": {
-      "r": 0.0561,
-      "t": 0.238,
-      "p": 0.81171,
-      "n": 20,
-      "df": 18
+      "r": 0.0348,
+      "t": 0.306,
+      "p": 0.7599,
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_duplicated_lines_density": {
-      "r": 0.2196,
-      "t": 0.955,
-      "p": 0.339605,
-      "n": 20,
-      "df": 18
+      "r": -0.0182,
+      "t": -0.16,
+      "p": 0.872929,
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_duplicated_lines_density": {
-      "r": -0.1054,
-      "t": -0.45,
-      "p": 0.65286,
-      "n": 20,
-      "df": 18
+      "r": -0.0019,
+      "t": -0.017,
+      "p": 0.986757,
+      "n": 79,
+      "df": 77
     },
     "agq_score_vs_sonar_sqale_rating": {
       "r": 0,
       "t": 0.0,
       "p": 1.0,
-      "n": 20,
-      "df": 18
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_sqale_rating": {
       "r": 0,
       "t": 0.0,
       "p": 1.0,
-      "n": 20,
-      "df": 18
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_sqale_rating": {
       "r": 0,
       "t": 0.0,
       "p": 1.0,
-      "n": 20,
-      "df": 18
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_sqale_rating": {
       "r": 0,
       "t": 0.0,
       "p": 1.0,
-      "n": 20,
-      "df": 18
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_sqale_rating": {
       "r": 0,
       "t": 0.0,
       "p": 1.0,
-      "n": 20,
-      "df": 18
+      "n": 79,
+      "df": 77
     },
     "agq_score_vs_sonar_ncloc": {
-      "r": 0.5806,
-      "t": 3.026,
-      "p": 0.00248,
-      "n": 20,
-      "df": 18
+      "r": 0.0209,
+      "t": 0.183,
+      "p": 0.854589,
+      "n": 79,
+      "df": 77
     },
     "modularity_vs_sonar_ncloc": {
-      "r": 0.1549,
-      "t": 0.665,
-      "p": 0.505928,
-      "n": 20,
-      "df": 18
+      "r": 0.1789,
+      "t": 1.596,
+      "p": 0.110563,
+      "n": 79,
+      "df": 77
     },
     "acyclicity_vs_sonar_ncloc": {
-      "r": -0.3487,
-      "t": -1.578,
-      "p": 0.114466,
-      "n": 20,
-      "df": 18
+      "r": -0.0429,
+      "t": -0.376,
+      "p": 0.706628,
+      "n": 79,
+      "df": 77
     },
     "stability_vs_sonar_ncloc": {
-      "r": 0.1617,
-      "t": 0.695,
-      "p": 0.486967,
-      "n": 20,
-      "df": 18
+      "r": -0.0696,
+      "t": -0.613,
+      "p": 0.540114,
+      "n": 79,
+      "df": 77
     },
     "cohesion_vs_sonar_ncloc": {
-      "r": 0.5132,
-      "t": 2.537,
-      "p": 0.011185,
-      "n": 20,
-      "df": 18
+      "r": -0.0102,
+      "t": -0.089,
+      "p": 0.928833,
+      "n": 79,
+      "df": 77
     }
   },
-  "significant_count": 11,
+  "significant_count": 3,
   "total_correlations": 40,
-  "interpretation": "orthogonal_with_stability_cohesion_overlap",
+  "interpretation": "orthogonal_dimensions",
   "results": [
     {
       "repo": "httpx",
       "sonar": {
-        "cognitive_complexity": 1009.0,
-        "code_smells": 36.0,
-        "bugs": 7.0,
-        "vulnerabilities": 3.0,
-        "reliability_rating": 5.0,
-        "duplicated_lines_density": 5.1,
-        "sqale_rating": 1.0,
-        "complexity": 1102.0,
         "ncloc": 5760.0,
-        "security_rating": 4.0
+        "reliability_rating": 5.0,
+        "code_smells": 36.0,
+        "duplicated_lines_density": 5.1,
+        "bugs": 7.0,
+        "security_rating": 4.0,
+        "complexity": 1102.0,
+        "vulnerabilities": 3.0,
+        "cognitive_complexity": 1009.0,
+        "sqale_rating": 1.0
       },
       "agq_score": 0.7832569160997729,
       "modularity": 0.620533333333333,
@@ -322,15 +322,15 @@
       "repo": "requests",
       "sonar": {
         "vulnerabilities": 0.0,
-        "reliability_rating": 1.0,
-        "security_rating": 1.0,
-        "ncloc": 2966.0,
         "duplicated_lines_density": 0.0,
-        "code_smells": 29.0,
+        "ncloc": 2966.0,
         "bugs": 0.0,
-        "cognitive_complexity": 865.0,
         "complexity": 729.0,
-        "sqale_rating": 1.0
+        "reliability_rating": 1.0,
+        "cognitive_complexity": 865.0,
+        "sqale_rating": 1.0,
+        "security_rating": 1.0,
+        "code_smells": 29.0
       },
       "agq_score": 0.7276253298693636,
       "modularity": 0.8119806094182828,
@@ -348,18 +348,221 @@
       }
     },
     {
-      "repo": "sanic",
+      "repo": "urllib3",
       "sonar": {
+        "reliability_rating": 1.0,
+        "duplicated_lines_density": 0.7,
+        "ncloc": 8134.0,
+        "complexity": 1680.0,
+        "code_smells": 87.0,
+        "bugs": 0.0,
+        "security_rating": 4.0,
+        "vulnerabilities": 7.0,
+        "cognitive_complexity": 1745.0,
+        "sqale_rating": 1.0
+      },
+      "agq_score": 0.7386554956878078,
+      "modularity": 0.497753290480563,
+      "acyclicity": 1.0,
+      "stability": 0.8779213238496153,
+      "cohesion": 0.5789473684210527,
+      "nodes": 87,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1057,
+      "sonar_normalized": {
+        "smells_per_kloc": 10.7,
+        "complexity_per_kloc": 206.54,
+        "cognitive_per_kloc": 214.53,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "flask",
+      "sonar": {
+        "sqale_rating": 1.0,
         "vulnerabilities": 0.0,
         "security_rating": 1.0,
-        "sqale_rating": 1.0,
-        "bugs": 18.0,
-        "ncloc": 39997.0,
-        "cognitive_complexity": 9384.0,
-        "code_smells": 1268.0,
-        "complexity": 5134.0,
+        "cognitive_complexity": 792.0,
+        "bugs": 0.0,
+        "code_smells": 15.0,
+        "ncloc": 4118.0,
         "duplicated_lines_density": 0.3,
+        "reliability_rating": 1.0,
+        "complexity": 901.0
+      },
+      "agq_score": 0.7021428755314003,
+      "modularity": 0.4934499076638967,
+      "acyclicity": 1.0,
+      "stability": 0.7373438166839266,
+      "cohesion": 0.5777777777777777,
+      "nodes": 79,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1379,
+      "sonar_normalized": {
+        "smells_per_kloc": 3.64,
+        "complexity_per_kloc": 218.8,
+        "cognitive_per_kloc": 192.33,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "click",
+      "sonar": {
+        "code_smells": 60.0,
+        "duplicated_lines_density": 0.3,
+        "ncloc": 5872.0,
+        "security_rating": 1.0,
+        "sqale_rating": 1.0,
+        "cognitive_complexity": 1556.0,
+        "vulnerabilities": 0.0,
+        "complexity": 1501.0,
+        "reliability_rating": 1.0,
+        "bugs": 0.0
+      },
+      "agq_score": 0.7369705898034853,
+      "modularity": 0.4994822305946638,
+      "acyclicity": 1.0,
+      "stability": 0.763784744003893,
+      "cohesion": 0.6846153846153846,
+      "nodes": 59,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1053,
+      "sonar_normalized": {
+        "smells_per_kloc": 10.22,
+        "complexity_per_kloc": 255.62,
+        "cognitive_per_kloc": 264.99,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "pydantic",
+      "sonar": {
+        "ncloc": 31983.0,
+        "bugs": 13.0,
+        "complexity": 6008.0,
+        "security_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "sqale_rating": 1.0,
+        "duplicated_lines_density": 2.5,
+        "code_smells": 375.0,
+        "cognitive_complexity": 7078.0,
         "reliability_rating": 5.0
+      },
+      "agq_score": 0.819048237422124,
+      "modularity": 0.6060467009673572,
+      "acyclicity": 0.99,
+      "stability": 0.9290098850847748,
+      "cohesion": 0.7511363636363636,
+      "nodes": 200,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1243,
+      "sonar_normalized": {
+        "smells_per_kloc": 11.72,
+        "complexity_per_kloc": 187.85,
+        "cognitive_per_kloc": 221.31,
+        "bugs_per_kloc": 0.41
+      }
+    },
+    {
+      "repo": "fastapi",
+      "sonar": {
+        "security_rating": 1.0,
+        "bugs": 4.0,
+        "reliability_rating": 5.0,
+        "cognitive_complexity": 2206.0,
+        "sqale_rating": 1.0,
+        "code_smells": 172.0,
+        "duplicated_lines_density": 28.9,
+        "vulnerabilities": 0.0,
+        "complexity": 2380.0,
+        "ncloc": 26265.0
+      },
+      "agq_score": 0.7967693955909846,
+      "modularity": 0.5622552579492224,
+      "acyclicity": 1.0,
+      "stability": 0.8367788461538461,
+      "cohesion": 0.7880434782608696,
+      "nodes": 145,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0756,
+      "sonar_normalized": {
+        "smells_per_kloc": 6.55,
+        "complexity_per_kloc": 90.61,
+        "cognitive_per_kloc": 83.99,
+        "bugs_per_kloc": 0.15
+      }
+    },
+    {
+      "repo": "rich",
+      "sonar": {
+        "code_smells": 272.0,
+        "reliability_rating": 5.0,
+        "security_rating": 1.0,
+        "cognitive_complexity": 3707.0,
+        "complexity": 2928.0,
+        "bugs": 3.0,
+        "duplicated_lines_density": 29.2,
+        "sqale_rating": 1.0,
+        "ncloc": 31959.0,
+        "vulnerabilities": 0.0
+      },
+      "agq_score": 0.7880275206609757,
+      "modularity": 0.4880191055937444,
+      "acyclicity": 1.0,
+      "stability": 0.9467832847424661,
+      "cohesion": 0.7173076923076923,
+      "nodes": 175,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.084,
+      "sonar_normalized": {
+        "smells_per_kloc": 8.51,
+        "complexity_per_kloc": 91.62,
+        "cognitive_per_kloc": 115.99,
+        "bugs_per_kloc": 0.09
+      }
+    },
+    {
+      "repo": "pytest",
+      "sonar": {
+        "duplicated_lines_density": 0.1,
+        "cognitive_complexity": 5468.0,
+        "code_smells": 273.0,
+        "vulnerabilities": 0.0,
+        "reliability_rating": 5.0,
+        "security_rating": 1.0,
+        "complexity": 4950.0,
+        "bugs": 6.0,
+        "sqale_rating": 1.0,
+        "ncloc": 22346.0
+      },
+      "agq_score": 0.875,
+      "modularity": 0.5,
+      "acyclicity": 1.0,
+      "stability": 1.0,
+      "cohesion": 1.0,
+      "nodes": 2,
+      "fingerprint": "CLEAN",
+      "hotspot_ratio": 0.1154,
+      "sonar_normalized": {
+        "smells_per_kloc": 12.22,
+        "complexity_per_kloc": 221.52,
+        "cognitive_per_kloc": 244.7,
+        "bugs_per_kloc": 0.27
+      }
+    },
+    {
+      "repo": "sanic",
+      "sonar": {
+        "security_rating": 1.0,
+        "code_smells": 1268.0,
+        "vulnerabilities": 0.0,
+        "complexity": 5134.0,
+        "bugs": 18.0,
+        "reliability_rating": 5.0,
+        "sqale_rating": 1.0,
+        "ncloc": 39997.0,
+        "duplicated_lines_density": 0.3,
+        "cognitive_complexity": 9384.0
       },
       "agq_score": 0.732759679624039,
       "modularity": 0.3850994499362244,
@@ -379,16 +582,16 @@
     {
       "repo": "scrapy",
       "sonar": {
-        "code_smells": 266.0,
+        "sqale_rating": 1.0,
         "duplicated_lines_density": 0.2,
-        "security_rating": 4.0,
-        "ncloc": 19859.0,
-        "vulnerabilities": 7.0,
-        "complexity": 4028.0,
-        "bugs": 3.0,
         "reliability_rating": 5.0,
+        "ncloc": 19859.0,
+        "code_smells": 266.0,
+        "bugs": 3.0,
+        "security_rating": 4.0,
+        "complexity": 4028.0,
         "cognitive_complexity": 3336.0,
-        "sqale_rating": 1.0
+        "vulnerabilities": 7.0
       },
       "agq_score": 0.7543527117213156,
       "modularity": 0.45213964290898695,
@@ -406,18 +609,250 @@
       }
     },
     {
+      "repo": "aiohttp",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "complexity": 3833.0,
+        "ncloc": 18007.0,
+        "vulnerabilities": 1.0,
+        "reliability_rating": 1.0,
+        "security_rating": 4.0,
+        "cognitive_complexity": 4159.0,
+        "code_smells": 165.0,
+        "bugs": 0.0,
+        "duplicated_lines_density": 5.0
+      },
+      "agq_score": 0.7272982295583632,
+      "modularity": 0.3830076938556352,
+      "acyclicity": 1.0,
+      "stability": 0.9147566529492462,
+      "cohesion": 0.6114285714285714,
+      "nodes": 135,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0749,
+      "sonar_normalized": {
+        "smells_per_kloc": 9.16,
+        "complexity_per_kloc": 212.86,
+        "cognitive_per_kloc": 230.97,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "django",
+      "sonar": {
+        "complexity": 25304.0,
+        "security_rating": 1.0,
+        "ncloc": 120162.0,
+        "cognitive_complexity": 26747.0,
+        "bugs": 40.0,
+        "duplicated_lines_density": 0.3,
+        "vulnerabilities": 0.0,
+        "code_smells": 1076.0,
+        "reliability_rating": 5.0,
+        "sqale_rating": 1.0
+      },
+      "agq_score": 0.7911862605470571,
+      "modularity": 0.5119995076902167,
+      "acyclicity": 1.0,
+      "stability": 0.9733001837639169,
+      "cohesion": 0.6794453507340946,
+      "nodes": 1229,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1087,
+      "sonar_normalized": {
+        "smells_per_kloc": 8.95,
+        "complexity_per_kloc": 210.58,
+        "cognitive_per_kloc": 222.59,
+        "bugs_per_kloc": 0.33
+      }
+    },
+    {
+      "repo": "starlette",
+      "sonar": {
+        "cognitive_complexity": 1029.0,
+        "security_rating": 1.0,
+        "sqale_rating": 1.0,
+        "code_smells": 40.0,
+        "ncloc": 4422.0,
+        "duplicated_lines_density": 0.0,
+        "complexity": 1051.0,
+        "reliability_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "bugs": 0.0
+      },
+      "agq_score": 0.7659447339700296,
+      "modularity": 0.5446202149498848,
+      "acyclicity": 1.0,
+      "stability": 0.8592750000000011,
+      "cohesion": 0.6598837209302326,
+      "nodes": 103,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.125,
+      "sonar_normalized": {
+        "smells_per_kloc": 9.05,
+        "complexity_per_kloc": 237.68,
+        "cognitive_per_kloc": 232.7,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "celery",
+      "sonar": {
+        "bugs": 12.0,
+        "vulnerabilities": 1.0,
+        "code_smells": 441.0,
+        "cognitive_complexity": 6288.0,
+        "sqale_rating": 1.0,
+        "reliability_rating": 5.0,
+        "complexity": 6770.0,
+        "duplicated_lines_density": 0.0,
+        "security_rating": 5.0,
+        "ncloc": 28037.0
+      },
+      "agq_score": 0.7324710910586002,
+      "modularity": 0.515962479794185,
+      "acyclicity": 1.0,
+      "stability": 0.9330660285843599,
+      "cohesion": 0.4808558558558559,
+      "nodes": 420,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.1388,
+      "sonar_normalized": {
+        "smells_per_kloc": 15.73,
+        "complexity_per_kloc": 241.47,
+        "cognitive_per_kloc": 224.28,
+        "bugs_per_kloc": 0.43
+      }
+    },
+    {
+      "repo": "tornado",
+      "sonar": {
+        "cognitive_complexity": 3325.0,
+        "reliability_rating": 3.0,
+        "security_rating": 4.0,
+        "code_smells": 252.0,
+        "duplicated_lines_density": 0.1,
+        "bugs": 10.0,
+        "ncloc": 14136.0,
+        "complexity": 3158.0,
+        "sqale_rating": 1.0,
+        "vulnerabilities": 3.0
+      },
+      "agq_score": 0.7737712479440306,
+      "modularity": 0.4365554741005191,
+      "acyclicity": 1.0,
+      "stability": 0.9060928705021141,
+      "cohesion": 0.7524366471734893,
+      "nodes": 199,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1169,
+      "sonar_normalized": {
+        "smells_per_kloc": 17.83,
+        "complexity_per_kloc": 223.4,
+        "cognitive_per_kloc": 235.22,
+        "bugs_per_kloc": 0.71
+      }
+    },
+    {
+      "repo": "typer",
+      "sonar": {
+        "cognitive_complexity": 1332.0,
+        "code_smells": 89.0,
+        "ncloc": 9350.0,
+        "duplicated_lines_density": 8.1,
+        "sqale_rating": 1.0,
+        "bugs": 1.0,
+        "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "complexity": 1446.0,
+        "reliability_rating": 5.0
+      },
+      "agq_score": 0.7421440687687539,
+      "modularity": 0.5814080977367059,
+      "acyclicity": 1.0,
+      "stability": 0.6179374081075405,
+      "cohesion": 0.7692307692307692,
+      "nodes": 69,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.0896,
+      "sonar_normalized": {
+        "smells_per_kloc": 9.52,
+        "complexity_per_kloc": 154.65,
+        "cognitive_per_kloc": 142.46,
+        "bugs_per_kloc": 0.11
+      }
+    },
+    {
+      "repo": "arrow",
+      "sonar": {
+        "complexity": 508.0,
+        "security_rating": 1.0,
+        "duplicated_lines_density": 1.1,
+        "bugs": 0.0,
+        "sqale_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "reliability_rating": 1.0,
+        "cognitive_complexity": 601.0,
+        "code_smells": 71.0,
+        "ncloc": 7852.0
+      },
+      "agq_score": 0.7574012016192082,
+      "modularity": 0.44675829515479654,
+      "acyclicity": 1.0,
+      "stability": 0.7736359850062471,
+      "cohesion": 0.8092105263157895,
+      "nodes": 28,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1667,
+      "sonar_normalized": {
+        "smells_per_kloc": 9.04,
+        "complexity_per_kloc": 64.7,
+        "cognitive_per_kloc": 76.54,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "pendulum",
+      "sonar": {
+        "code_smells": 75.0,
+        "reliability_rating": 3.0,
+        "security_rating": 1.0,
+        "bugs": 147.0,
+        "duplicated_lines_density": 5.8,
+        "sqale_rating": 1.0,
+        "cognitive_complexity": 1233.0,
+        "complexity": 1262.0,
+        "vulnerabilities": 0.0,
+        "ncloc": 10779.0
+      },
+      "agq_score": 0.7498004556408444,
+      "modularity": 0.6601889955799413,
+      "acyclicity": 1.0,
+      "stability": 0.9501239380945473,
+      "cohesion": 0.38888888888888884,
+      "nodes": 153,
+      "fingerprint": "LOW_COHESION",
+      "hotspot_ratio": 0.1481,
+      "sonar_normalized": {
+        "smells_per_kloc": 6.96,
+        "complexity_per_kloc": 117.08,
+        "cognitive_per_kloc": 114.39,
+        "bugs_per_kloc": 13.64
+      }
+    },
+    {
       "repo": "httpcore",
       "sonar": {
-        "code_smells": 23.0,
+        "complexity": 934.0,
+        "bugs": 1.0,
+        "ncloc": 5173.0,
+        "sqale_rating": 1.0,
         "vulnerabilities": 0.0,
         "cognitive_complexity": 740.0,
-        "duplicated_lines_density": 16.0,
-        "bugs": 1.0,
-        "sqale_rating": 1.0,
-        "ncloc": 5173.0,
-        "security_rating": 1.0,
         "reliability_rating": 5.0,
-        "complexity": 934.0
+        "duplicated_lines_density": 16.0,
+        "security_rating": 1.0,
+        "code_smells": 23.0
       },
       "agq_score": 0.7824054312407565,
       "modularity": 0.5700979154392165,
@@ -435,18 +870,163 @@
       }
     },
     {
-      "repo": "thefuck",
+      "repo": "attrs",
       "sonar": {
         "sqale_rating": 1.0,
+        "ncloc": 3676.0,
+        "security_rating": 1.0,
+        "bugs": 13.0,
+        "code_smells": 26.0,
+        "complexity": 684.0,
+        "cognitive_complexity": 785.0,
+        "duplicated_lines_density": 0.0,
+        "vulnerabilities": 0.0,
+        "reliability_rating": 5.0
+      },
+      "agq_score": 1.0,
+      "modularity": 1.0,
+      "acyclicity": 1.0,
+      "stability": 1.0,
+      "cohesion": 1.0,
+      "nodes": 10,
+      "fingerprint": "CLEAN",
+      "hotspot_ratio": 0.1217,
+      "sonar_normalized": {
+        "smells_per_kloc": 7.07,
+        "complexity_per_kloc": 186.07,
+        "cognitive_per_kloc": 213.55,
+        "bugs_per_kloc": 3.54
+      }
+    },
+    {
+      "repo": "marshmallow",
+      "sonar": {
+        "ncloc": 2969.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 21.0,
+        "cognitive_complexity": 678.0,
+        "security_rating": 1.0,
         "reliability_rating": 2.0,
+        "bugs": 1.0,
+        "duplicated_lines_density": 0.6,
+        "sqale_rating": 1.0,
+        "complexity": 648.0
+      },
+      "agq_score": 0.7784557755564098,
+      "modularity": 0.6000576701268739,
+      "acyclicity": 1.0,
+      "stability": 0.7387654320987652,
+      "cohesion": 0.775,
+      "nodes": 45,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1071,
+      "sonar_normalized": {
+        "smells_per_kloc": 7.07,
+        "complexity_per_kloc": 218.26,
+        "cognitive_per_kloc": 228.36,
+        "bugs_per_kloc": 0.34
+      }
+    },
+    {
+      "repo": "ansible",
+      "sonar": {
+        "complexity": 18238.0,
+        "bugs": 9.0,
+        "reliability_rating": 5.0,
+        "code_smells": 1484.0,
+        "security_rating": 4.0,
+        "cognitive_complexity": 28231.0,
+        "duplicated_lines_density": 1.5,
+        "sqale_rating": 1.0,
+        "vulnerabilities": 2.0,
+        "ncloc": 89364.0
+      },
+      "agq_score": 0.6081054850534475,
+      "modularity": 0.518751853875734,
+      "acyclicity": 1.0,
+      "stability": 0.2228993917614626,
+      "cohesion": 0.6907706945765937,
+      "nodes": 2155,
+      "fingerprint": "FLAT",
+      "hotspot_ratio": 0.0903,
+      "sonar_normalized": {
+        "smells_per_kloc": 16.61,
+        "complexity_per_kloc": 204.09,
+        "cognitive_per_kloc": 315.91,
+        "bugs_per_kloc": 0.1
+      }
+    },
+    {
+      "repo": "salt",
+      "sonar": {
+        "reliability_rating": 5.0,
+        "code_smells": 5058.0,
+        "ncloc": 275495.0,
+        "security_rating": 5.0,
+        "complexity": 55294.0,
+        "duplicated_lines_density": 2.5,
+        "sqale_rating": 1.0,
+        "bugs": 130.0,
+        "vulnerabilities": 13.0,
+        "cognitive_complexity": 90619.0
+      },
+      "agq_score": 0.7598013301722379,
+      "modularity": 0.48028851856689064,
+      "acyclicity": 1.0,
+      "stability": 0.9022574134757735,
+      "cohesion": 0.6566593886462881,
+      "nodes": 1534,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0769,
+      "sonar_normalized": {
+        "smells_per_kloc": 18.36,
+        "complexity_per_kloc": 200.71,
+        "cognitive_per_kloc": 328.93,
+        "bugs_per_kloc": 0.47
+      }
+    },
+    {
+      "repo": "airflow",
+      "sonar": {
+        "security_rating": 1.0,
+        "complexity": 57963.0,
+        "code_smells": 2600.0,
+        "vulnerabilities": 0.0,
+        "sqale_rating": 1.0,
+        "bugs": 44.0,
+        "ncloc": 397349.0,
+        "cognitive_complexity": 59211.0,
+        "reliability_rating": 5.0,
+        "duplicated_lines_density": 7.2
+      },
+      "agq_score": 0.7037589839255978,
+      "modularity": 0.7461516480810504,
+      "acyclicity": 1.0,
+      "stability": 0.46353892142904657,
+      "cohesion": 0.6053453661922943,
+      "nodes": 8017,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.1099,
+      "sonar_normalized": {
+        "smells_per_kloc": 6.54,
+        "complexity_per_kloc": 145.87,
+        "cognitive_per_kloc": 149.02,
+        "bugs_per_kloc": 0.11
+      }
+    },
+    {
+      "repo": "thefuck",
+      "sonar": {
+        "code_smells": 26.0,
+        "vulnerabilities": 0.0,
+        "reliability_rating": 2.0,
+        "complexity": 1266.0,
         "ncloc": 4664.0,
         "duplicated_lines_density": 0.3,
-        "code_smells": 26.0,
-        "security_rating": 1.0,
+        "sqale_rating": 1.0,
         "bugs": 2.0,
         "cognitive_complexity": 897.0,
-        "vulnerabilities": 0.0,
-        "complexity": 1266.0
+        "security_rating": 1.0
       },
       "agq_score": 0.650843862752696,
       "modularity": 0.5532710064934603,
@@ -464,18 +1044,76 @@
       }
     },
     {
+      "repo": "you-get",
+      "sonar": {
+        "complexity": 2305.0,
+        "reliability_rating": 5.0,
+        "vulnerabilities": 6.0,
+        "bugs": 8.0,
+        "code_smells": 715.0,
+        "sqale_rating": 1.0,
+        "security_rating": 4.0,
+        "cognitive_complexity": 3158.0,
+        "ncloc": 11273.0,
+        "duplicated_lines_density": 2.7
+      },
+      "agq_score": 0.6312495180109882,
+      "modularity": 0.5724961425353344,
+      "acyclicity": 1.0,
+      "stability": 0.28402366863905315,
+      "cohesion": 0.6684782608695652,
+      "nodes": 190,
+      "fingerprint": "FLAT",
+      "hotspot_ratio": 0.1,
+      "sonar_normalized": {
+        "smells_per_kloc": 63.43,
+        "complexity_per_kloc": 204.47,
+        "cognitive_per_kloc": 280.14,
+        "bugs_per_kloc": 0.71
+      }
+    },
+    {
+      "repo": "youtube-dl",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "complexity": 16026.0,
+        "cognitive_complexity": 22287.0,
+        "security_rating": 5.0,
+        "ncloc": 134661.0,
+        "vulnerabilities": 12.0,
+        "duplicated_lines_density": 0.0,
+        "bugs": 23.0,
+        "reliability_rating": 5.0,
+        "code_smells": 1079.0
+      },
+      "agq_score": 0.8566817049961675,
+      "modularity": 0.6812670677549041,
+      "acyclicity": 1.0,
+      "stability": 0.8618644673574669,
+      "cohesion": 0.8835952848722987,
+      "nodes": 1003,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.129,
+      "sonar_normalized": {
+        "smells_per_kloc": 8.01,
+        "complexity_per_kloc": 119.01,
+        "cognitive_per_kloc": 165.5,
+        "bugs_per_kloc": 0.17
+      }
+    },
+    {
       "repo": "glances",
       "sonar": {
-        "vulnerabilities": 0.0,
-        "code_smells": 503.0,
-        "reliability_rating": 5.0,
-        "sqale_rating": 1.0,
-        "duplicated_lines_density": 1.3,
-        "bugs": 64.0,
-        "complexity": 4723.0,
-        "ncloc": 23500.0,
         "cognitive_complexity": 4745.0,
-        "security_rating": 1.0
+        "security_rating": 1.0,
+        "duplicated_lines_density": 1.3,
+        "reliability_rating": 5.0,
+        "ncloc": 23500.0,
+        "sqale_rating": 1.0,
+        "complexity": 4723.0,
+        "code_smells": 503.0,
+        "vulnerabilities": 0.0,
+        "bugs": 64.0
       },
       "agq_score": 0.7399436407304268,
       "modularity": 0.5145006297120579,
@@ -493,18 +1131,105 @@
       }
     },
     {
+      "repo": "sqlalchemy",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "security_rating": 1.0,
+        "bugs": 24.0,
+        "duplicated_lines_density": 0.9,
+        "vulnerabilities": 0.0,
+        "code_smells": 1438.0,
+        "reliability_rating": 5.0,
+        "ncloc": 125005.0,
+        "complexity": 23067.0,
+        "cognitive_complexity": 23401.0
+      },
+      "agq_score": 0.6915810387619423,
+      "modularity": 0.453363122840424,
+      "acyclicity": 1.0,
+      "stability": 0.8122128092369001,
+      "cohesion": 0.5007482229704452,
+      "nodes": 821,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1117,
+      "sonar_normalized": {
+        "smells_per_kloc": 11.5,
+        "complexity_per_kloc": 184.53,
+        "cognitive_per_kloc": 187.2,
+        "bugs_per_kloc": 0.19
+      }
+    },
+    {
+      "repo": "django-rest-framework",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "ncloc": 12409.0,
+        "reliability_rating": 3.0,
+        "cognitive_complexity": 2206.0,
+        "code_smells": 155.0,
+        "vulnerabilities": 0.0,
+        "bugs": 16.0,
+        "complexity": 2459.0,
+        "duplicated_lines_density": 2.4,
+        "security_rating": 1.0
+      },
+      "agq_score": 0.7406436040561972,
+      "modularity": 0.41273870832983134,
+      "acyclicity": 1.0,
+      "stability": 0.8456103557822814,
+      "cohesion": 0.704225352112676,
+      "nodes": 273,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1406,
+      "sonar_normalized": {
+        "smells_per_kloc": 12.49,
+        "complexity_per_kloc": 198.16,
+        "cognitive_per_kloc": 177.77,
+        "bugs_per_kloc": 1.29
+      }
+    },
+    {
+      "repo": "boto3",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "reliability_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "ncloc": 3150.0,
+        "duplicated_lines_density": 0.0,
+        "bugs": 0.0,
+        "complexity": 582.0,
+        "code_smells": 132.0,
+        "cognitive_complexity": 452.0,
+        "security_rating": 1.0
+      },
+      "agq_score": 0.8689889199043817,
+      "modularity": 0.7778099279835392,
+      "acyclicity": 1.0,
+      "stability": 0.9518222222222227,
+      "cohesion": 0.7463235294117647,
+      "nodes": 93,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0045,
+      "sonar_normalized": {
+        "smells_per_kloc": 41.9,
+        "complexity_per_kloc": 184.76,
+        "cognitive_per_kloc": 143.49,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
       "repo": "paramiko",
       "sonar": {
-        "ncloc": 12272.0,
+        "vulnerabilities": 0.0,
         "code_smells": 328.0,
-        "reliability_rating": 2.0,
-        "complexity": 2469.0,
         "cognitive_complexity": 2590.0,
         "duplicated_lines_density": 1.7,
-        "vulnerabilities": 0.0,
-        "security_rating": 1.0,
+        "ncloc": 12272.0,
         "sqale_rating": 1.0,
-        "bugs": 2.0
+        "security_rating": 1.0,
+        "reliability_rating": 2.0,
+        "bugs": 2.0,
+        "complexity": 2469.0
       },
       "agq_score": 0.7450412909081643,
       "modularity": 0.4984994082840228,
@@ -522,18 +1247,134 @@
       }
     },
     {
+      "repo": "fabric",
+      "sonar": {
+        "cognitive_complexity": 548.0,
+        "bugs": 0.0,
+        "complexity": 627.0,
+        "vulnerabilities": 0.0,
+        "sqale_rating": 1.0,
+        "reliability_rating": 1.0,
+        "code_smells": 257.0,
+        "ncloc": 2865.0,
+        "security_rating": 1.0,
+        "duplicated_lines_density": 86.9
+      },
+      "agq_score": 0.7972758830827338,
+      "modularity": 0.8548271262952691,
+      "acyclicity": 1.0,
+      "stability": 0.7301097393689988,
+      "cohesion": 0.6041666666666667,
+      "nodes": 54,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0,
+      "sonar_normalized": {
+        "smells_per_kloc": 89.7,
+        "complexity_per_kloc": 218.85,
+        "cognitive_per_kloc": 191.27,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "sphinx",
+      "sonar": {
+        "cognitive_complexity": 20100.0,
+        "ncloc": 92250.0,
+        "vulnerabilities": 0.0,
+        "reliability_rating": 5.0,
+        "security_rating": 1.0,
+        "complexity": 16351.0,
+        "sqale_rating": 1.0,
+        "bugs": 26.0,
+        "duplicated_lines_density": 9.0,
+        "code_smells": 4710.0
+      },
+      "agq_score": 0.7966007339943093,
+      "modularity": 0.5261638032871223,
+      "acyclicity": 1.0,
+      "stability": 0.9806172839506189,
+      "cohesion": 0.6796218487394958,
+      "nodes": 500,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1063,
+      "sonar_normalized": {
+        "smells_per_kloc": 51.06,
+        "complexity_per_kloc": 177.25,
+        "cognitive_per_kloc": 217.89,
+        "bugs_per_kloc": 0.28
+      }
+    },
+    {
+      "repo": "black",
+      "sonar": {
+        "cognitive_complexity": 4004.0,
+        "code_smells": 147.0,
+        "security_rating": 1.0,
+        "reliability_rating": 2.0,
+        "ncloc": 96481.0,
+        "sqale_rating": 1.0,
+        "duplicated_lines_density": 17.6,
+        "vulnerabilities": 0.0,
+        "complexity": 3120.0,
+        "bugs": 1.0
+      },
+      "agq_score": 0.717228914201685,
+      "modularity": 0.5054293628808869,
+      "acyclicity": 1.0,
+      "stability": 0.7334862939258533,
+      "cohesion": 0.63,
+      "nodes": 95,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1622,
+      "sonar_normalized": {
+        "smells_per_kloc": 1.52,
+        "complexity_per_kloc": 32.34,
+        "cognitive_per_kloc": 41.5,
+        "bugs_per_kloc": 0.01
+      }
+    },
+    {
+      "repo": "mypy",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "code_smells": 2620.0,
+        "reliability_rating": 5.0,
+        "bugs": 9.0,
+        "duplicated_lines_density": 0.4,
+        "vulnerabilities": 2.0,
+        "security_rating": 5.0,
+        "ncloc": 107111.0,
+        "complexity": 27135.0,
+        "cognitive_complexity": 32654.0
+      },
+      "agq_score": 0.8045478320087587,
+      "modularity": 0.6555645330976708,
+      "acyclicity": 1.0,
+      "stability": 0.9896225932566913,
+      "cohesion": 0.5730042016806722,
+      "nodes": 411,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1062,
+      "sonar_normalized": {
+        "smells_per_kloc": 24.46,
+        "complexity_per_kloc": 253.34,
+        "cognitive_per_kloc": 304.86,
+        "bugs_per_kloc": 0.08
+      }
+    },
+    {
       "repo": "ruff",
       "sonar": {
-        "reliability_rating": 5.0,
-        "cognitive_complexity": 1887.0,
-        "complexity": 1972.0,
-        "sqale_rating": 1.0,
-        "ncloc": 12884.0,
-        "bugs": 463.0,
-        "code_smells": 468.0,
         "duplicated_lines_density": 0.2,
+        "sqale_rating": 1.0,
+        "bugs": 463.0,
         "security_rating": 1.0,
-        "vulnerabilities": 0.0
+        "ncloc": 12884.0,
+        "reliability_rating": 5.0,
+        "vulnerabilities": 0.0,
+        "complexity": 1972.0,
+        "code_smells": 468.0,
+        "cognitive_complexity": 1887.0
       },
       "agq_score": 0.6853853621409471,
       "modularity": 0.730307698592246,
@@ -554,15 +1395,15 @@
       "repo": "poetry",
       "sonar": {
         "complexity": 3979.0,
-        "reliability_rating": 1.0,
-        "ncloc": 18780.0,
-        "sqale_rating": 1.0,
-        "duplicated_lines_density": 0.0,
-        "code_smells": 120.0,
-        "vulnerabilities": 0.0,
-        "security_rating": 1.0,
         "cognitive_complexity": 4728.0,
-        "bugs": 0.0
+        "duplicated_lines_density": 0.0,
+        "sqale_rating": 1.0,
+        "code_smells": 120.0,
+        "ncloc": 18780.0,
+        "security_rating": 1.0,
+        "reliability_rating": 1.0,
+        "bugs": 0.0,
+        "vulnerabilities": 0.0
       },
       "agq_score": 0.7695563736862758,
       "modularity": 0.5564710370385823,
@@ -580,18 +1421,47 @@
       }
     },
     {
+      "repo": "pillow",
+      "sonar": {
+        "code_smells": 399.0,
+        "bugs": 1.0,
+        "security_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "complexity": 4873.0,
+        "cognitive_complexity": 7016.0,
+        "reliability_rating": 5.0,
+        "duplicated_lines_density": 0.3,
+        "ncloc": 24019.0,
+        "sqale_rating": 1.0
+      },
+      "agq_score": 0.7453801346472404,
+      "modularity": 0.40495061075159633,
+      "acyclicity": 1.0,
+      "stability": 0.8724882951843037,
+      "cohesion": 0.7040816326530612,
+      "nodes": 389,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.122,
+      "sonar_normalized": {
+        "smells_per_kloc": 16.61,
+        "complexity_per_kloc": 202.88,
+        "cognitive_per_kloc": 292.1,
+        "bugs_per_kloc": 0.04
+      }
+    },
+    {
       "repo": "scikit-learn",
       "sonar": {
+        "cognitive_complexity": 17652.0,
+        "ncloc": 97770.0,
         "security_rating": 1.0,
-        "complexity": 14939.0,
+        "duplicated_lines_density": 0.8,
         "sqale_rating": 1.0,
         "bugs": 38.0,
-        "duplicated_lines_density": 0.8,
-        "cognitive_complexity": 17652.0,
-        "vulnerabilities": 0.0,
         "code_smells": 3248.0,
         "reliability_rating": 5.0,
-        "ncloc": 97770.0
+        "complexity": 14939.0,
+        "vulnerabilities": 0.0
       },
       "agq_score": 0.7949978623438297,
       "modularity": 0.6707879039585448,
@@ -609,18 +1479,192 @@
       }
     },
     {
-      "repo": "luigi",
+      "repo": "pandas",
+      "sonar": {
+        "complexity": 25817.0,
+        "reliability_rating": 5.0,
+        "bugs": 178.0,
+        "cognitive_complexity": 30374.0,
+        "code_smells": 2255.0,
+        "vulnerabilities": 4.0,
+        "ncloc": 125295.0,
+        "security_rating": 5.0,
+        "sqale_rating": 1.0,
+        "duplicated_lines_density": 0.5
+      },
+      "agq_score": 0.7628896622393175,
+      "modularity": 0.7324936486660135,
+      "acyclicity": 1.0,
+      "stability": 0.9873377949539696,
+      "cohesion": 0.33172720533728683,
+      "nodes": 1721,
+      "fingerprint": "LOW_COHESION",
+      "hotspot_ratio": 0.1096,
+      "sonar_normalized": {
+        "smells_per_kloc": 18.0,
+        "complexity_per_kloc": 206.05,
+        "cognitive_per_kloc": 242.42,
+        "bugs_per_kloc": 1.42
+      }
+    },
+    {
+      "repo": "numpy",
+      "sonar": {
+        "code_smells": 1065.0,
+        "bugs": 42.0,
+        "vulnerabilities": 0.0,
+        "duplicated_lines_density": 0.5,
+        "cognitive_complexity": 13613.0,
+        "sqale_rating": 1.0,
+        "reliability_rating": 3.0,
+        "security_rating": 1.0,
+        "ncloc": 58720.0,
+        "complexity": 10287.0
+      },
+      "agq_score": 0.737628755181845,
+      "modularity": 0.44449375874208025,
+      "acyclicity": 1.0,
+      "stability": 0.9390243902439024,
+      "cohesion": 0.5669968717413973,
+      "nodes": 616,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1242,
+      "sonar_normalized": {
+        "smells_per_kloc": 18.14,
+        "complexity_per_kloc": 175.19,
+        "cognitive_per_kloc": 231.83,
+        "bugs_per_kloc": 0.72
+      }
+    },
+    {
+      "repo": "matplotlib",
+      "sonar": {
+        "bugs": 36.0,
+        "complexity": 17617.0,
+        "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "cognitive_complexity": 18240.0,
+        "reliability_rating": 5.0,
+        "duplicated_lines_density": 0.3,
+        "sqale_rating": 1.0,
+        "ncloc": 90813.0,
+        "code_smells": 1631.0
+      },
+      "agq_score": 0.6251867090793577,
+      "modularity": 0.4852915828351381,
+      "acyclicity": 1.0,
+      "stability": 0.3622202932098747,
+      "cohesion": 0.6532349602724177,
+      "nodes": 1217,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.095,
+      "sonar_normalized": {
+        "smells_per_kloc": 17.96,
+        "complexity_per_kloc": 193.99,
+        "cognitive_per_kloc": 200.85,
+        "bugs_per_kloc": 0.4
+      }
+    },
+    {
+      "repo": "sympy",
+      "sonar": {
+        "complexity": 68750.0,
+        "vulnerabilities": 0.0,
+        "reliability_rating": 5.0,
+        "cognitive_complexity": 87186.0,
+        "bugs": 90.0,
+        "ncloc": 249327.0,
+        "security_rating": 1.0,
+        "sqale_rating": 1.0,
+        "code_smells": 8786.0,
+        "duplicated_lines_density": 1.1
+      },
+      "agq_score": 0.7236676322146998,
+      "modularity": 0.6570034079653161,
+      "acyclicity": 1.0,
+      "stability": 0.7527886584853425,
+      "cohesion": 0.48487846240814014,
+      "nodes": 2246,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.1073,
+      "sonar_normalized": {
+        "smells_per_kloc": 35.24,
+        "complexity_per_kloc": 275.74,
+        "cognitive_per_kloc": 349.69,
+        "bugs_per_kloc": 0.36
+      }
+    },
+    {
+      "repo": "networkx",
+      "sonar": {
+        "code_smells": 2250.0,
+        "bugs": 16.0,
+        "ncloc": 40550.0,
+        "cognitive_complexity": 16309.0,
+        "duplicated_lines_density": 0.6,
+        "reliability_rating": 5.0,
+        "complexity": 10570.0,
+        "sqale_rating": 1.0,
+        "security_rating": 1.0,
+        "vulnerabilities": 0.0
+      },
+      "agq_score": 0.6815845107003773,
+      "modularity": 0.43675161382961564,
+      "acyclicity": 1.0,
+      "stability": 0.8617307175490477,
+      "cohesion": 0.42785571142284573,
+      "nodes": 685,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.1211,
+      "sonar_normalized": {
+        "smells_per_kloc": 55.49,
+        "complexity_per_kloc": 260.67,
+        "cognitive_per_kloc": 402.19,
+        "bugs_per_kloc": 0.39
+      }
+    },
+    {
+      "repo": "dask",
       "sonar": {
         "sqale_rating": 1.0,
-        "bugs": 15.0,
-        "ncloc": 19136.0,
-        "complexity": 4846.0,
-        "duplicated_lines_density": 0.1,
-        "security_rating": 1.0,
+        "ncloc": 58567.0,
+        "duplicated_lines_density": 8.3,
         "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "complexity": 13207.0,
+        "code_smells": 609.0,
+        "reliability_rating": 3.0,
+        "bugs": 7.0,
+        "cognitive_complexity": 15060.0
+      },
+      "agq_score": 0.8088835464759689,
+      "modularity": 0.5817730901462606,
+      "acyclicity": 1.0,
+      "stability": 0.9564492678006258,
+      "cohesion": 0.6973118279569892,
+      "nodes": 670,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1183,
+      "sonar_normalized": {
+        "smells_per_kloc": 10.4,
+        "complexity_per_kloc": 225.5,
+        "cognitive_per_kloc": 257.14,
+        "bugs_per_kloc": 0.12
+      }
+    },
+    {
+      "repo": "luigi",
+      "sonar": {
+        "ncloc": 19136.0,
         "cognitive_complexity": 4281.0,
+        "duplicated_lines_density": 0.1,
         "reliability_rating": 5.0,
-        "code_smells": 560.0
+        "security_rating": 1.0,
+        "complexity": 4846.0,
+        "bugs": 15.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 560.0,
+        "sqale_rating": 1.0
       },
       "agq_score": 0.7603172058738237,
       "modularity": 0.548955504925981,
@@ -638,18 +1682,134 @@
       }
     },
     {
+      "repo": "prefect",
+      "sonar": {
+        "duplicated_lines_density": 4.6,
+        "ncloc": 194576.0,
+        "bugs": 23.0,
+        "cognitive_complexity": 23843.0,
+        "sqale_rating": 1.0,
+        "vulnerabilities": 14.0,
+        "security_rating": 4.0,
+        "complexity": 21727.0,
+        "code_smells": 1036.0,
+        "reliability_rating": 5.0
+      },
+      "agq_score": 0.834419361601416,
+      "modularity": 0.6266249332804216,
+      "acyclicity": 1.0,
+      "stability": 0.9817625722968403,
+      "cohesion": 0.7292899408284024,
+      "nodes": 1251,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1022,
+      "sonar_normalized": {
+        "smells_per_kloc": 5.32,
+        "complexity_per_kloc": 111.66,
+        "cognitive_per_kloc": 122.54,
+        "bugs_per_kloc": 0.12
+      }
+    },
+    {
+      "repo": "dramatiq",
+      "sonar": {
+        "bugs": 1.0,
+        "sqale_rating": 1.0,
+        "duplicated_lines_density": 1.1,
+        "security_rating": 1.0,
+        "ncloc": 4049.0,
+        "complexity": 875.0,
+        "cognitive_complexity": 758.0,
+        "reliability_rating": 2.0,
+        "code_smells": 22.0,
+        "vulnerabilities": 0.0
+      },
+      "agq_score": 0.7395284153521913,
+      "modularity": 0.5542406311637076,
+      "acyclicity": 1.0,
+      "stability": 0.8312923850837672,
+      "cohesion": 0.5725806451612903,
+      "nodes": 93,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1429,
+      "sonar_normalized": {
+        "smells_per_kloc": 5.43,
+        "complexity_per_kloc": 216.1,
+        "cognitive_per_kloc": 187.21,
+        "bugs_per_kloc": 0.25
+      }
+    },
+    {
+      "repo": "huey",
+      "sonar": {
+        "duplicated_lines_density": 0.0,
+        "bugs": 0.0,
+        "reliability_rating": 1.0,
+        "security_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 32.0,
+        "sqale_rating": 1.0,
+        "complexity": 946.0,
+        "cognitive_complexity": 736.0,
+        "ncloc": 3321.0
+      },
+      "agq_score": 0.7280191093344521,
+      "modularity": 0.4038546849300106,
+      "acyclicity": 1.0,
+      "stability": 0.8686868686868677,
+      "cohesion": 0.6395348837209303,
+      "nodes": 105,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.16,
+      "sonar_normalized": {
+        "smells_per_kloc": 9.64,
+        "complexity_per_kloc": 284.85,
+        "cognitive_per_kloc": 221.62,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "gunicorn",
+      "sonar": {
+        "cognitive_complexity": 4050.0,
+        "security_rating": 4.0,
+        "duplicated_lines_density": 3.4,
+        "code_smells": 160.0,
+        "sqale_rating": 1.0,
+        "vulnerabilities": 3.0,
+        "reliability_rating": 3.0,
+        "complexity": 3111.0,
+        "ncloc": 15958.0,
+        "bugs": 2.0
+      },
+      "agq_score": 0.7772957560180672,
+      "modularity": 0.5092165680473374,
+      "acyclicity": 1.0,
+      "stability": 0.8870758310249315,
+      "cohesion": 0.712890625,
+      "nodes": 168,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.087,
+      "sonar_normalized": {
+        "smells_per_kloc": 10.03,
+        "complexity_per_kloc": 194.95,
+        "cognitive_per_kloc": 253.79,
+        "bugs_per_kloc": 0.13
+      }
+    },
+    {
       "repo": "uvicorn",
       "sonar": {
-        "cognitive_complexity": 960.0,
-        "sqale_rating": 1.0,
         "complexity": 793.0,
-        "vulnerabilities": 0.0,
-        "security_rating": 1.0,
-        "ncloc": 4632.0,
-        "code_smells": 60.0,
-        "bugs": 0.0,
         "duplicated_lines_density": 5.2,
-        "reliability_rating": 1.0
+        "reliability_rating": 1.0,
+        "cognitive_complexity": 960.0,
+        "bugs": 0.0,
+        "ncloc": 4632.0,
+        "security_rating": 1.0,
+        "sqale_rating": 1.0,
+        "code_smells": 60.0,
+        "vulnerabilities": 0.0
       },
       "agq_score": 0.711735254161394,
       "modularity": 0.5033165620818966,
@@ -667,18 +1827,76 @@
       }
     },
     {
+      "repo": "werkzeug",
+      "sonar": {
+        "complexity": 2595.0,
+        "code_smells": 131.0,
+        "ncloc": 11239.0,
+        "reliability_rating": 3.0,
+        "security_rating": 1.0,
+        "bugs": 3.0,
+        "vulnerabilities": 0.0,
+        "cognitive_complexity": 2653.0,
+        "sqale_rating": 1.0,
+        "duplicated_lines_density": 0.2
+      },
+      "agq_score": 0.7426612100598553,
+      "modularity": 0.4907692307692304,
+      "acyclicity": 1.0,
+      "stability": 0.9205535755718852,
+      "cohesion": 0.5593220338983051,
+      "nodes": 123,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0702,
+      "sonar_normalized": {
+        "smells_per_kloc": 11.66,
+        "complexity_per_kloc": 230.89,
+        "cognitive_per_kloc": 236.05,
+        "bugs_per_kloc": 0.27
+      }
+    },
+    {
+      "repo": "jinja",
+      "sonar": {
+        "cognitive_complexity": 2096.0,
+        "sqale_rating": 1.0,
+        "bugs": 1.0,
+        "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "duplicated_lines_density": 0.2,
+        "complexity": 1911.0,
+        "code_smells": 94.0,
+        "ncloc": 8479.0,
+        "reliability_rating": 5.0
+      },
+      "agq_score": 0.7446497177141008,
+      "modularity": 0.5733235677083334,
+      "acyclicity": 1.0,
+      "stability": 0.8172249886826611,
+      "cohesion": 0.5880503144654088,
+      "nodes": 124,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1412,
+      "sonar_normalized": {
+        "smells_per_kloc": 11.09,
+        "complexity_per_kloc": 225.38,
+        "cognitive_per_kloc": 247.2,
+        "bugs_per_kloc": 0.12
+      }
+    },
+    {
       "repo": "mako",
       "sonar": {
-        "ncloc": 5360.0,
-        "sqale_rating": 1.0,
-        "duplicated_lines_density": 0.0,
-        "security_rating": 1.0,
-        "cognitive_complexity": 1164.0,
         "vulnerabilities": 0.0,
-        "code_smells": 113.0,
         "bugs": 1.0,
+        "cognitive_complexity": 1164.0,
+        "ncloc": 5360.0,
+        "code_smells": 113.0,
         "complexity": 1182.0,
-        "reliability_rating": 2.0
+        "security_rating": 1.0,
+        "reliability_rating": 2.0,
+        "duplicated_lines_density": 0.0,
+        "sqale_rating": 1.0
       },
       "agq_score": 0.8130991328551342,
       "modularity": 0.6576508890558477,
@@ -696,18 +1914,279 @@
       }
     },
     {
+      "repo": "pyjwt",
+      "sonar": {
+        "code_smells": 12.0,
+        "reliability_rating": 1.0,
+        "cognitive_complexity": 396.0,
+        "ncloc": 1957.0,
+        "vulnerabilities": 0.0,
+        "sqale_rating": 1.0,
+        "complexity": 372.0,
+        "security_rating": 1.0,
+        "bugs": 0.0,
+        "duplicated_lines_density": 0.0
+      },
+      "agq_score": 0.6512052791762037,
+      "modularity": 0.5194003527336858,
+      "acyclicity": 1.0,
+      "stability": 0.8261615047118694,
+      "cohesion": 0.2592592592592593,
+      "nodes": 64,
+      "fingerprint": "LOW_COHESION",
+      "hotspot_ratio": 0.1176,
+      "sonar_normalized": {
+        "smells_per_kloc": 6.13,
+        "complexity_per_kloc": 190.09,
+        "cognitive_per_kloc": 202.35,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "cryptography",
+      "sonar": {
+        "complexity": 1817.0,
+        "ncloc": 11295.0,
+        "cognitive_complexity": 1046.0,
+        "bugs": 0.0,
+        "duplicated_lines_density": 1.4,
+        "reliability_rating": 1.0,
+        "code_smells": 73.0,
+        "vulnerabilities": 6.0,
+        "sqale_rating": 1.0,
+        "security_rating": 4.0
+      },
+      "agq_score": 0.7480806139314377,
+      "modularity": 0.470669721349033,
+      "acyclicity": 1.0,
+      "stability": 0.8657885368458531,
+      "cohesion": 0.6558641975308642,
+      "nodes": 124,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0868,
+      "sonar_normalized": {
+        "smells_per_kloc": 6.46,
+        "complexity_per_kloc": 160.87,
+        "cognitive_per_kloc": 92.61,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "itsdangerous",
+      "sonar": {
+        "security_rating": 1.0,
+        "cognitive_complexity": 91.0,
+        "sqale_rating": 1.0,
+        "code_smells": 2.0,
+        "vulnerabilities": 0.0,
+        "complexity": 110.0,
+        "bugs": 0.0,
+        "reliability_rating": 1.0,
+        "ncloc": 633.0,
+        "duplicated_lines_density": 5.1
+      },
+      "agq_score": 0.8299665949344871,
+      "modularity": 0.6391184573002756,
+      "acyclicity": 1.0,
+      "stability": 0.9307479224376728,
+      "cohesion": 0.75,
+      "nodes": 19,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1852,
+      "sonar_normalized": {
+        "smells_per_kloc": 3.16,
+        "complexity_per_kloc": 173.78,
+        "cognitive_per_kloc": 143.76,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "httpie",
+      "sonar": {
+        "complexity": 1271.0,
+        "ncloc": 7672.0,
+        "code_smells": 53.0,
+        "sqale_rating": 1.0,
+        "cognitive_complexity": 1315.0,
+        "security_rating": 4.0,
+        "reliability_rating": 1.0,
+        "vulnerabilities": 1.0,
+        "bugs": 0.0,
+        "duplicated_lines_density": 0.0
+      },
+      "agq_score": 0.7794805228887234,
+      "modularity": 0.5201120836794125,
+      "acyclicity": 1.0,
+      "stability": 0.8782154132808868,
+      "cohesion": 0.7195945945945945,
+      "nodes": 178,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0,
+      "sonar_normalized": {
+        "smells_per_kloc": 6.91,
+        "complexity_per_kloc": 165.67,
+        "cognitive_per_kloc": 171.4,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "dulwich",
+      "sonar": {
+        "reliability_rating": 5.0,
+        "security_rating": 1.0,
+        "duplicated_lines_density": 1.2,
+        "cognitive_complexity": 14794.0,
+        "code_smells": 655.0,
+        "vulnerabilities": 0.0,
+        "complexity": 10250.0,
+        "sqale_rating": 1.0,
+        "bugs": 9.0,
+        "ncloc": 48481.0
+      },
+      "agq_score": 0.7573062862743924,
+      "modularity": 0.3368097330749778,
+      "acyclicity": 1.0,
+      "stability": 0.9454716467414185,
+      "cohesion": 0.7469437652811737,
+      "nodes": 201,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1078,
+      "sonar_normalized": {
+        "smells_per_kloc": 13.51,
+        "complexity_per_kloc": 211.42,
+        "cognitive_per_kloc": 305.15,
+        "bugs_per_kloc": 0.19
+      }
+    },
+    {
+      "repo": "pygments",
+      "sonar": {
+        "complexity": 3395.0,
+        "ncloc": 105746.0,
+        "reliability_rating": 3.0,
+        "duplicated_lines_density": 1.3,
+        "bugs": 6.0,
+        "code_smells": 1090.0,
+        "security_rating": 1.0,
+        "cognitive_complexity": 4884.0,
+        "sqale_rating": 1.0,
+        "vulnerabilities": 0.0
+      },
+      "agq_score": 0.828974377899502,
+      "modularity": 0.5253908622272488,
+      "acyclicity": 1.0,
+      "stability": 0.941749743293411,
+      "cohesion": 0.8487569060773481,
+      "nodes": 455,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.0538,
+      "sonar_normalized": {
+        "smells_per_kloc": 10.31,
+        "complexity_per_kloc": 32.11,
+        "cognitive_per_kloc": 46.19,
+        "bugs_per_kloc": 0.06
+      }
+    },
+    {
+      "repo": "beautifulsoup4",
+      "sonar": {
+        "vulnerabilities": 0.0,
+        "reliability_rating": 5.0,
+        "duplicated_lines_density": 0.0,
+        "code_smells": 169.0,
+        "ncloc": 2866.0,
+        "sqale_rating": 1.0,
+        "security_rating": 1.0,
+        "complexity": 783.0,
+        "bugs": 3.0,
+        "cognitive_complexity": 877.0
+      },
+      "agq_score": 0.6625476852595948,
+      "modularity": 0.4941999999999999,
+      "acyclicity": 1.0,
+      "stability": 0.465692233575693,
+      "cohesion": 0.6902985074626866,
+      "nodes": 54,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": null,
+      "sonar_normalized": {
+        "smells_per_kloc": 58.97,
+        "complexity_per_kloc": 273.2,
+        "cognitive_per_kloc": 306.0,
+        "bugs_per_kloc": 1.05
+      }
+    },
+    {
+      "repo": "lxml",
+      "sonar": {
+        "reliability_rating": 5.0,
+        "security_rating": 5.0,
+        "sqale_rating": 1.0,
+        "vulnerabilities": 9.0,
+        "complexity": 2534.0,
+        "cognitive_complexity": 3208.0,
+        "duplicated_lines_density": 0.0,
+        "ncloc": 12328.0,
+        "code_smells": 372.0,
+        "bugs": 5.0
+      },
+      "agq_score": 0.8118863266500242,
+      "modularity": 0.5506188641222204,
+      "acyclicity": 1.0,
+      "stability": 0.9557760000000006,
+      "cohesion": 0.7411504424778761,
+      "nodes": 140,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1026,
+      "sonar_normalized": {
+        "smells_per_kloc": 30.18,
+        "complexity_per_kloc": 205.55,
+        "cognitive_per_kloc": 260.22,
+        "bugs_per_kloc": 0.41
+      }
+    },
+    {
+      "repo": "tox",
+      "sonar": {
+        "bugs": 6.0,
+        "sqale_rating": 1.0,
+        "ncloc": 11781.0,
+        "cognitive_complexity": 3144.0,
+        "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "code_smells": 96.0,
+        "reliability_rating": 5.0,
+        "duplicated_lines_density": 1.2,
+        "complexity": 2878.0
+      },
+      "agq_score": 0.7044740203393798,
+      "modularity": 0.45809396424899246,
+      "acyclicity": 1.0,
+      "stability": 0.8270918367346949,
+      "cohesion": 0.5327102803738317,
+      "nodes": 260,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1184,
+      "sonar_normalized": {
+        "smells_per_kloc": 8.15,
+        "complexity_per_kloc": 244.29,
+        "cognitive_per_kloc": 266.87,
+        "bugs_per_kloc": 0.51
+      }
+    },
+    {
       "repo": "nox",
       "sonar": {
-        "code_smells": 19.0,
-        "duplicated_lines_density": 0.6,
-        "sqale_rating": 1.0,
-        "bugs": 0.0,
+        "reliability_rating": 1.0,
+        "security_rating": 1.0,
         "complexity": 797.0,
         "cognitive_complexity": 702.0,
-        "reliability_rating": 1.0,
+        "code_smells": 19.0,
+        "bugs": 0.0,
         "ncloc": 3911.0,
-        "security_rating": 1.0,
-        "vulnerabilities": 0.0
+        "duplicated_lines_density": 0.6,
+        "vulnerabilities": 0.0,
+        "sqale_rating": 1.0
       },
       "agq_score": 0.7242692616565807,
       "modularity": 0.4898099310258735,
@@ -725,18 +2204,192 @@
       }
     },
     {
+      "repo": "hypothesis",
+      "sonar": {
+        "complexity": 6108.0,
+        "security_rating": 1.0,
+        "reliability_rating": 5.0,
+        "code_smells": 256.0,
+        "vulnerabilities": 0.0,
+        "ncloc": 28936.0,
+        "duplicated_lines_density": 0.1,
+        "sqale_rating": 1.0,
+        "cognitive_complexity": 7092.0,
+        "bugs": 13.0
+      },
+      "agq_score": 0.6443846367908224,
+      "modularity": 0.5470550015282278,
+      "acyclicity": 1.0,
+      "stability": 0.23153249668401243,
+      "cohesion": 0.798951048951049,
+      "nodes": 699,
+      "fingerprint": "FLAT",
+      "hotspot_ratio": 0.1022,
+      "sonar_normalized": {
+        "smells_per_kloc": 8.85,
+        "complexity_per_kloc": 211.09,
+        "cognitive_per_kloc": 245.09,
+        "bugs_per_kloc": 0.45
+      }
+    },
+    {
+      "repo": "responses",
+      "sonar": {
+        "ncloc": 1392.0,
+        "code_smells": 15.0,
+        "complexity": 284.0,
+        "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "duplicated_lines_density": 0.0,
+        "sqale_rating": 1.0,
+        "reliability_rating": 1.0,
+        "cognitive_complexity": 284.0,
+        "bugs": 0.0
+      },
+      "agq_score": 0.715100383002082,
+      "modularity": 0.5795932992923046,
+      "acyclicity": 1.0,
+      "stability": 0.6778670562454351,
+      "cohesion": 0.6029411764705883,
+      "nodes": 38,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.2143,
+      "sonar_normalized": {
+        "smells_per_kloc": 10.78,
+        "complexity_per_kloc": 204.02,
+        "cognitive_per_kloc": 204.02,
+        "bugs_per_kloc": 0.0
+      }
+    },
+    {
+      "repo": "sentry-sdk",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "code_smells": 388.0,
+        "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "complexity": 6876.0,
+        "cognitive_complexity": 8104.0,
+        "reliability_rating": 3.0,
+        "bugs": 2.0,
+        "duplicated_lines_density": 1.7,
+        "ncloc": 33947.0
+      },
+      "agq_score": 0.6539075866789281,
+      "modularity": 0.47783637532220097,
+      "acyclicity": 0.9944320712694877,
+      "stability": 0.40167005722372146,
+      "cohesion": 0.7416918429003021,
+      "nodes": 898,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.1133,
+      "sonar_normalized": {
+        "smells_per_kloc": 11.43,
+        "complexity_per_kloc": 202.55,
+        "cognitive_per_kloc": 238.73,
+        "bugs_per_kloc": 0.06
+      }
+    },
+    {
+      "repo": "kombu",
+      "sonar": {
+        "sqale_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "cognitive_complexity": 2860.0,
+        "reliability_rating": 3.0,
+        "bugs": 7.0,
+        "security_rating": 1.0,
+        "code_smells": 210.0,
+        "complexity": 3414.0,
+        "ncloc": 13888.0,
+        "duplicated_lines_density": 0.2
+      },
+      "agq_score": 0.713455357911885,
+      "modularity": 0.5153120314736032,
+      "acyclicity": 1.0,
+      "stability": 0.8519502603889905,
+      "cohesion": 0.48655913978494625,
+      "nodes": 227,
+      "fingerprint": "MODERATE",
+      "hotspot_ratio": 0.1579,
+      "sonar_normalized": {
+        "smells_per_kloc": 15.12,
+        "complexity_per_kloc": 245.82,
+        "cognitive_per_kloc": 205.93,
+        "bugs_per_kloc": 0.5
+      }
+    },
+    {
+      "repo": "peewee",
+      "sonar": {
+        "duplicated_lines_density": 0.2,
+        "vulnerabilities": 0.0,
+        "ncloc": 13068.0,
+        "complexity": 3979.0,
+        "bugs": 5.0,
+        "code_smells": 154.0,
+        "reliability_rating": 3.0,
+        "security_rating": 1.0,
+        "cognitive_complexity": 3653.0,
+        "sqale_rating": 1.0
+      },
+      "agq_score": 0.7938232633341057,
+      "modularity": 0.5244797649537304,
+      "acyclicity": 1.0,
+      "stability": 0.8694103520042256,
+      "cohesion": 0.7814029363784666,
+      "nodes": 194,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1062,
+      "sonar_normalized": {
+        "smells_per_kloc": 11.78,
+        "complexity_per_kloc": 304.48,
+        "cognitive_per_kloc": 279.54,
+        "bugs_per_kloc": 0.38
+      }
+    },
+    {
+      "repo": "alembic",
+      "sonar": {
+        "security_rating": 1.0,
+        "complexity": 2680.0,
+        "duplicated_lines_density": 1.7,
+        "sqale_rating": 1.0,
+        "bugs": 12.0,
+        "code_smells": 154.0,
+        "vulnerabilities": 0.0,
+        "ncloc": 15813.0,
+        "cognitive_complexity": 2746.0,
+        "reliability_rating": 5.0
+      },
+      "agq_score": 0.7526171604052274,
+      "modularity": 0.5346116243158539,
+      "acyclicity": 1.0,
+      "stability": 0.9242697157177542,
+      "cohesion": 0.5515873015873016,
+      "nodes": 161,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1472,
+      "sonar_normalized": {
+        "smells_per_kloc": 9.74,
+        "complexity_per_kloc": 169.48,
+        "cognitive_per_kloc": 173.65,
+        "bugs_per_kloc": 0.76
+      }
+    },
+    {
       "repo": "textual",
       "sonar": {
-        "vulnerabilities": 0.0,
+        "reliability_rating": 3.0,
         "cognitive_complexity": 9935.0,
-        "bugs": 20.0,
+        "sqale_rating": 1.0,
+        "duplicated_lines_density": 0.5,
+        "security_rating": 1.0,
         "complexity": 9463.0,
         "ncloc": 51180.0,
-        "reliability_rating": 3.0,
-        "code_smells": 624.0,
-        "security_rating": 1.0,
-        "duplicated_lines_density": 0.5,
-        "sqale_rating": 1.0
+        "bugs": 20.0,
+        "vulnerabilities": 0.0,
+        "code_smells": 624.0
       },
       "agq_score": 0.8031844453327401,
       "modularity": 0.5735760531692548,
@@ -756,16 +2409,16 @@
     {
       "repo": "yt-dlp",
       "sonar": {
-        "reliability_rating": 5.0,
-        "ncloc": 204544.0,
         "duplicated_lines_density": 0.0,
+        "code_smells": 1747.0,
         "security_rating": 5.0,
         "complexity": 23876.0,
         "cognitive_complexity": 29889.0,
-        "vulnerabilities": 9.0,
-        "code_smells": 1747.0,
         "sqale_rating": 1.0,
-        "bugs": 21.0
+        "reliability_rating": 5.0,
+        "ncloc": 204544.0,
+        "bugs": 21.0,
+        "vulnerabilities": 9.0
       },
       "agq_score": 0.8383033131820198,
       "modularity": 0.6231815094412835,
@@ -783,123 +2436,236 @@
       }
     },
     {
-      "repo": "urllib3",
+      "repo": "supervisor",
       "sonar": {
+        "cognitive_complexity": 3554.0,
+        "bugs": 4.0,
+        "ncloc": 11578.0,
+        "code_smells": 304.0,
+        "vulnerabilities": 0.0,
         "sqale_rating": 1.0,
-        "bugs": 0.0,
-        "cognitive_complexity": 1745.0,
-        "security_rating": 4.0,
-        "duplicated_lines_density": 0.7,
-        "ncloc": 8134.0,
-        "complexity": 1680.0,
-        "reliability_rating": 1.0,
-        "code_smells": 87.0,
-        "vulnerabilities": 7.0
+        "duplicated_lines_density": 0.0,
+        "reliability_rating": 3.0,
+        "security_rating": 1.0,
+        "complexity": 2680.0
       },
-      "agq_score": 0.7386554956878078,
-      "modularity": 0.497753290480563,
+      "agq_score": 0.7572643446374996,
+      "modularity": 0.47124494611633483,
       "acyclicity": 1.0,
-      "stability": 0.8779213238496153,
-      "cohesion": 0.5789473684210527,
-      "nodes": 87,
+      "stability": 0.933222268499237,
+      "cohesion": 0.6245901639344262,
+      "nodes": 167,
       "fingerprint": "LAYERED",
-      "hotspot_ratio": 0.1057,
+      "hotspot_ratio": 0.1364,
       "sonar_normalized": {
-        "smells_per_kloc": 10.7,
-        "complexity_per_kloc": 206.54,
-        "cognitive_per_kloc": 214.53,
-        "bugs_per_kloc": 0.0
+        "smells_per_kloc": 26.26,
+        "complexity_per_kloc": 231.47,
+        "cognitive_per_kloc": 306.96,
+        "bugs_per_kloc": 0.35
       }
     },
     {
-      "repo": "flask",
+      "repo": "locust",
       "sonar": {
-        "ncloc": 4118.0,
-        "vulnerabilities": 0.0,
-        "duplicated_lines_density": 0.3,
-        "cognitive_complexity": 792.0,
         "sqale_rating": 1.0,
-        "bugs": 0.0,
-        "reliability_rating": 1.0,
-        "complexity": 901.0,
-        "code_smells": 15.0,
+        "complexity": 2294.0,
+        "ncloc": 13273.0,
+        "duplicated_lines_density": 0.2,
+        "code_smells": 104.0,
+        "bugs": 1.0,
+        "reliability_rating": 3.0,
+        "vulnerabilities": 0.0,
+        "security_rating": 1.0,
+        "cognitive_complexity": 2302.0
+      },
+      "agq_score": 0.7661232574861495,
+      "modularity": 0.4565398135703283,
+      "acyclicity": 1.0,
+      "stability": 0.871111111111112,
+      "cohesion": 0.736842105263158,
+      "nodes": 256,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1006,
+      "sonar_normalized": {
+        "smells_per_kloc": 7.84,
+        "complexity_per_kloc": 172.83,
+        "cognitive_per_kloc": 173.43,
+        "bugs_per_kloc": 0.08
+      }
+    },
+    {
+      "repo": "whoosh",
+      "sonar": {
+        "bugs": 9.0,
+        "cognitive_complexity": 7713.0,
+        "sqale_rating": 1.0,
+        "complexity": 7806.0,
+        "vulnerabilities": 0.0,
+        "duplicated_lines_density": 0.4,
+        "code_smells": 409.0,
+        "reliability_rating": 5.0,
+        "ncloc": 27412.0,
         "security_rating": 1.0
       },
-      "agq_score": 0.7021428755314003,
-      "modularity": 0.4934499076638967,
+      "agq_score": 0.7669361333396508,
+      "modularity": 0.4381567850429297,
       "acyclicity": 1.0,
-      "stability": 0.7373438166839266,
-      "cohesion": 0.5777777777777777,
-      "nodes": 79,
+      "stability": 0.9880147146078084,
+      "cohesion": 0.6415730337078651,
+      "nodes": 200,
       "fingerprint": "LAYERED",
-      "hotspot_ratio": 0.1379,
+      "hotspot_ratio": null,
       "sonar_normalized": {
-        "smells_per_kloc": 3.64,
-        "complexity_per_kloc": 218.8,
-        "cognitive_per_kloc": 192.33,
-        "bugs_per_kloc": 0.0
+        "smells_per_kloc": 14.92,
+        "complexity_per_kloc": 284.77,
+        "cognitive_per_kloc": 281.37,
+        "bugs_per_kloc": 0.33
       }
     },
     {
-      "repo": "click",
+      "repo": "bottle",
+      "sonar": {
+        "complexity": 977.0,
+        "reliability_rating": 5.0,
+        "cognitive_complexity": 979.0,
+        "security_rating": 1.0,
+        "vulnerabilities": 0.0,
+        "duplicated_lines_density": 0.0,
+        "sqale_rating": 1.0,
+        "code_smells": 36.0,
+        "ncloc": 2980.0,
+        "bugs": 3.0
+      },
+      "agq_score": 0.799244812694363,
+      "modularity": 0.5299408284023672,
+      "acyclicity": 1.0,
+      "stability": 0.9194193747560371,
+      "cohesion": 0.7476190476190476,
+      "nodes": 73,
+      "fingerprint": "LAYERED",
+      "hotspot_ratio": 0.1026,
+      "sonar_normalized": {
+        "smells_per_kloc": 12.08,
+        "complexity_per_kloc": 327.85,
+        "cognitive_per_kloc": 328.52,
+        "bugs_per_kloc": 1.01
+      }
+    },
+    {
+      "repo": "falcon",
       "sonar": {
         "sqale_rating": 1.0,
-        "code_smells": 60.0,
-        "ncloc": 5872.0,
-        "cognitive_complexity": 1556.0,
-        "reliability_rating": 1.0,
+        "code_smells": 152.0,
+        "cognitive_complexity": 2401.0,
         "security_rating": 1.0,
-        "complexity": 1501.0,
-        "duplicated_lines_density": 0.3,
-        "bugs": 0.0,
+        "ncloc": 13451.0,
+        "reliability_rating": 3.0,
+        "complexity": 2169.0,
+        "duplicated_lines_density": 1.8,
+        "bugs": 3.0,
         "vulnerabilities": 0.0
       },
-      "agq_score": 0.7369705898034853,
-      "modularity": 0.4994822305946638,
+      "agq_score": 0.8103915649543643,
+      "modularity": 0.4358883044780481,
       "acyclicity": 1.0,
-      "stability": 0.763784744003893,
-      "cohesion": 0.6846153846153846,
-      "nodes": 59,
+      "stability": 0.9399864659777069,
+      "cohesion": 0.8656914893617021,
+      "nodes": 197,
       "fingerprint": "LAYERED",
-      "hotspot_ratio": 0.1053,
+      "hotspot_ratio": 0.1293,
       "sonar_normalized": {
-        "smells_per_kloc": 10.22,
-        "complexity_per_kloc": 255.62,
-        "cognitive_per_kloc": 264.99,
-        "bugs_per_kloc": 0.0
+        "smells_per_kloc": 11.3,
+        "complexity_per_kloc": 161.25,
+        "cognitive_per_kloc": 178.5,
+        "bugs_per_kloc": 0.22
       }
     }
   ],
   "normalized_correlations": {
-    "agq_vs_smells_per_kloc": {
-      "r": 0.009,
-      "p": 0.97,
-      "n": 20
+    "agq_score_vs_smells_per_kloc": {
+      "r": -0.1099,
+      "p": 0.331968,
+      "n": 79
     },
-    "agq_vs_complexity_per_kloc": {
-      "r": -0.387,
-      "p": 0.075,
-      "n": 20
+    "agq_score_vs_complexity_per_kloc": {
+      "r": -0.1975,
+      "p": 0.077154,
+      "n": 79
+    },
+    "agq_score_vs_cognitive_per_kloc": {
+      "r": -0.2193,
+      "p": 0.0486,
+      "n": 79
+    },
+    "agq_score_vs_bugs_per_kloc": {
+      "r": -0.092,
+      "p": 0.41737,
+      "n": 79
+    },
+    "modularity_vs_smells_per_kloc": {
+      "r": 0.1863,
+      "p": 0.096061,
+      "n": 79
+    },
+    "modularity_vs_complexity_per_kloc": {
+      "r": -0.0805,
+      "p": 0.47825,
+      "n": 79
+    },
+    "modularity_vs_cognitive_per_kloc": {
+      "r": -0.1462,
+      "p": 0.194765,
+      "n": 79
+    },
+    "modularity_vs_bugs_per_kloc": {
+      "r": 0.2509,
+      "p": 0.022938,
+      "n": 79
+    },
+    "stability_vs_smells_per_kloc": {
+      "r": -0.1951,
+      "p": 0.080891,
+      "n": 79
+    },
+    "stability_vs_complexity_per_kloc": {
+      "r": -0.0124,
+      "p": 0.913313,
+      "n": 79
+    },
+    "stability_vs_cognitive_per_kloc": {
+      "r": -0.0615,
+      "p": 0.588831,
+      "n": 79
     },
     "stability_vs_bugs_per_kloc": {
-      "r": -0.809,
-      "p": 0.0,
-      "n": 20
+      "r": -0.3168,
+      "p": 0.00338,
+      "n": 79
+    },
+    "cohesion_vs_smells_per_kloc": {
+      "r": -0.0795,
+      "p": 0.483868,
+      "n": 79
     },
     "cohesion_vs_complexity_per_kloc": {
-      "r": -0.611,
-      "p": 0.001,
-      "n": 20
+      "r": -0.2796,
+      "p": 0.010594,
+      "n": 79
     },
     "cohesion_vs_cognitive_per_kloc": {
-      "r": -0.426,
-      "p": 0.046,
-      "n": 20
+      "r": -0.1958,
+      "p": 0.079705,
+      "n": 79
+    },
+    "cohesion_vs_bugs_per_kloc": {
+      "r": 0.0705,
+      "p": 0.535187,
+      "n": 79
     }
   },
   "confound_agq_vs_ncloc": {
-    "r": 0.5806,
-    "p": 0.0025,
-    "n": 20
+    "r": 0.0209,
+    "p": 0.854589,
+    "n": 79
   }
 }

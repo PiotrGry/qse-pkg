@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-03-21T23:35:18.177505",
+  "paper": {
+    "title": "An integrated graph neural network model for joint software defect prediction and code quality assessment",
+    "authors": "Dai, Zhu, Wu, He",
+    "journal": "Scientific Reports",
+    "year": 2026,
+    "doi": "10.1038/s41598-025-31209-5"
+  },
+  "methodology": {
+    "qse_scanner": "Rust qse-core (tree-sitter-java)",
+    "qse_metrics": "AGQ with default equal weights (0.25 each)",
+    "dai_data": "Extracted from Table 5, Table 8, Table 10 of paper",
+    "note": "Eclipse JDT excluded — scanner crash on 9267 files"
+  },
+  "comparison": [
+    {
+      "project": "Apache Ant",
+      "qse": {
+        "agq_score": 0.5487,
+        "modularity": 0.4972,
+        "acyclicity": 0.9685,
+        "stability": 0.468,
+        "cohesion": 0.2611
+      },
+      "dai": {
+        "language": "Java",
+        "file_count": 1248,
+        "defect_count": 345,
+        "lines_of_code": 158426,
+        "defect_density": 0.2764423076923077,
+        "defect_density_kloc": 2.1776728567280625,
+        "dai_complexity": "Low",
+        "dai_baseline_f1": 0.755,
+        "dai_model_f1": 0.811,
+        "dai_improvement": "+7.4%",
+        "dai_maintainability": 0.822,
+        "dai_readability": 0.826,
+        "dai_complexity_acc": 0.858,
+        "dai_testability": 0.799,
+        "dai_architectural_integrity": 0.8
+      }
+    },
+    {
+      "project": "Apache Camel",
+      "qse": {
+        "agq_score": 0.57,
+        "modularity": 0.7872,
+        "acyclicity": 0.9984,
+        "stability": 0.1504,
+        "cohesion": 0.3441
+      },
+      "dai": {
+        "language": "Java",
+        "file_count": 3874,
+        "defect_count": 789,
+        "lines_of_code": 452891,
+        "defect_density": 0.2036654620547238,
+        "defect_density_kloc": 1.7421410449755017,
+        "dai_complexity": "High",
+        "dai_baseline_f1": 0.729,
+        "dai_model_f1": 0.811,
+        "dai_improvement": "+11.2%",
+        "dai_maintainability": 0.804,
+        "dai_readability": 0.826,
+        "dai_complexity_acc": 0.863,
+        "dai_testability": 0.78,
+        "dai_architectural_integrity": 0.801
+      }
+    },
+    {
+      "project": "Apache Hadoop",
+      "qse": {
+        "agq_score": 0.6262,
+        "modularity": 0.6646,
+        "acyclicity": 0.9902,
+        "stability": 0.5901,
+        "cohesion": 0.2597
+      },
+      "dai": {
+        "language": "Java",
+        "file_count": 2893,
+        "defect_count": 678,
+        "lines_of_code": 567234,
+        "defect_density": 0.23435879709643967,
+        "defect_density_kloc": 1.1952739081225736,
+        "dai_complexity": "Medium",
+        "dai_baseline_f1": 0.746,
+        "dai_model_f1": 0.809,
+        "dai_improvement": "+8.4%",
+        "dai_maintainability": 0.834,
+        "dai_readability": 0.785,
+        "dai_complexity_acc": 0.836,
+        "dai_testability": 0.787,
+        "dai_architectural_integrity": 0.815
+      }
+    }
+  ],
+  "rank_correlations": {
+    "agq_vs_defect_density_inverted": 0.5,
+    "agq_vs_dai_architectural_integrity": 1.0
+  }
+}
