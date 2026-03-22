@@ -78,6 +78,18 @@ Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 
 - acyclicity vs hotspot_ratio: r=+0.223, **p=0.001** ✅
 - Go per-language: AGQ vs churn_gini r=−0.270, **p=0.017** ✅
 
+**Walidacja z niezależnymi źródłami:**
+- SonarQube (n=79, per KLOC): stability↔bugs r=-0.32 (p=0.003), cohesion↔complexity r=-0.28 (p=0.01)
+- Expert classification (n=20): known-good vs known-bad **p<0.001, d=3.22**, 80% good=LAYERED
+- Dai et al. architectural integrity (n=4 Java): Spearman **rho=1.0** (ranking agreement)
+- Emerge modularity (n=16): r=0.06 — Louvain Q graph-definition dependent
+
+**Extended metrics (CCD, IC, fan-out — benchmark 240 repo × 3 języki):**
+- fan_out_std / log(n) vs churn_gini: **r=+0.13, p=0.048** (jedyna cross-lang po normalizacji rozmiaru)
+- Indirect Coupling vs churn_gini: **r=-0.27, p=0.007** (po kontroli rozmiaru, n=97)
+- CCD: brak istotnych korelacji — odłożona
+- Size confound poważny: max_fan_out r=+0.50 z nodes. Normalizacja per log(n) konieczna.
+
 **Kalibracja wag (L-BFGS-B, LOO-CV, n=74):**
 - Acyclicity = **0.730** (dominuje)
 - Cohesion = 0.174

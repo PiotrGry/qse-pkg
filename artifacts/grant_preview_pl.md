@@ -312,6 +312,27 @@ AGQ skorygowany o rozmiar projektu (AGQ-adj) wykazuje silniejszą korelację z m
 
 **Nota do T4:** Porównanie prędkości z SonarQube nie jest bezpośrednio miarodajne — narzędzia mierzą różne rzeczy. Istotne jest że QSE zwraca wynik architektoniczny w poniżej 1 sekundy, co umożliwia jego użycie w pre-commit hooku bez spowalniania pracy dewelopera.
 
+**Extended metrics — metryki drugiego rzędu (benchmark 240 repo, 3 języki):**
+
+Oprócz czterech składowych AGQ Core zaimplementowano i zbenchmarkowano dodatkowe metryki grafowe obliczane z istniejącego grafu zależności, bez zmiany architektury scannera:
+
+| Metryka | Źródło | Co mierzy | Cross-lang r vs churn_gini | Size-confound? |
+|---|---|---|---|---|
+| **fan_out_std / log(n)** | Martin (1994) + normalizacja | Nierówność sprzężenia między modułami | **r=+0.13, p=0.048 (n=234)** | Nie (r=-0.05 vs nodes) |
+| **mean Indirect Coupling** | Šora (2013), Chiricota (2003) | Pośrednie sprzężenie przez wspólne zależności | r=-0.11 cross-lang (n.s.), ale **r=-0.27, p=0.007 po kontroli rozmiaru (n=97)** | Tak (r=-0.25) |
+| **CCD / log(n)** | Lakos (1996) | Propagacja zależności (ripple effect) | n.s. | Nie (r=+0.08) |
+| **Per-module fan-in/fan-out** | Sutoyo et al. (2025) | Identyfikacja god modules | Diagnostyka, nie predykcja | N/A |
+
+Kluczowe wnioski:
+- **fan_out_std_norm** jest jedyną nową metryką istotną cross-language po normalizacji na rozmiar. Mierzy nierówność coupling — repo z dużą rozpiętością fan-out (kilka god modules + wiele lekkich) mają bardziej nierówny rozkład zmian.
+- **Indirect Coupling** działa po kontroli rozmiaru (50–500 modułów): r=-0.27, p=0.007. Wyższe IC = niższa nierówność churn (współdzielone zależności rozkładają zmiany równomiernie). Wymaga size-bracket lub normalizacji — kandydat do Predictor layer.
+- **CCD** nie koreluje z żadnym targetem maintenance — odłożona. Hipoteza: CCD mierzy reachability, ale na sparse internal graph (mało krawędzi internal→internal) nie daje sygnału.
+- **Confound rozmiaru** jest poważny: max_fan_out koreluje r=+0.50 z liczbą nodes, fan_out_std r=+0.32. Normalizacja per log(n) jest konieczna. Po normalizacji fan_out_std_norm jest size-independent (r=-0.05 vs nodes).
+
+Metryki per-language: Go wykazuje najsilniejsze korelacje (IC vs churn_gini: r=-0.32, p=0.003), Python umiarkowane (fan_out_std vs churn_gini: r=+0.28, p=0.01), Java brak istotnych. Różnice częściowo wynikają z gęstości internal graph (Go ma jawne package imports, Python/Java mniej internal→internal krawędzi w current scannerze).
+
+Dane: `artifacts/benchmark/extended_metrics_normalized.json` (240 repo × 3 języki).
+
 **Kalibracja wag (L-BFGS-B, n=74):**
 
 Wagi czterech składowych AGQ zostały wyznaczone empirycznie metodą optymalizacji numerycznej (L-BFGS-B). Jako signal optymalizacji użyto code churn — miarę częstości zmian plików w historii git, będącą pośrednim wskaźnikiem kosztów utrzymania (Nagappan & Ball, ICSE 2005; Faragó et al., SCAM 2015). Model dobiera wagi minimalizując błąd predykcji churn na podstawie AGQ.

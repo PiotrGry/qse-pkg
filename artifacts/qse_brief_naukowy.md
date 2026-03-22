@@ -57,6 +57,8 @@ Spread wyników: 0.425, std=0.065 na zbiorze Python. Metryka rzeczywiście rozr�
 
 Zaimplementowano: AGQ Core + warstwa Enhanced (normalizacja per-język, klasyfikacja wzorca architektonicznego, ocena powagi cykli), CLI (`qse agq / gate / discover`), skaner Rust (tree-sitter, Python/Java/Go), 244 testy automatyczne.
 
+**Extended metrics (nowe):** CCD (Lakos 1996), Indirect Coupling (Šora 2013), per-module fan-in/fan-out breakdown. Benchmark 240 repo × 3 języki. Po normalizacji na rozmiar: fan_out_std/log(n) jedyna cross-language istotna (r=+0.13, p=0.048 vs churn_gini). IC istotne po kontroli rozmiaru (r=-0.27, p=0.007, n=97). Size confound poważny — normalizacja konieczna.
+
 ---
 
 ### Kierunki dalszych badań
