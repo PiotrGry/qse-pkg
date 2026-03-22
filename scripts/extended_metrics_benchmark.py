@@ -36,7 +36,8 @@ def main():
     parser.add_argument("--clone-dir", default="/tmp/emerge-test")
     parser.add_argument("--output", default="artifacts/benchmark/extended_metrics_benchmark.json")
     parser.add_argument("--benchmark", default="artifacts/benchmark/agq_enhanced_python80.json")
-    parser.add_argument("--max-repos", type=int, default=80)
+    parser.add_argument("--repos-file", default="scripts/repos_oss80_benchmark.json")
+    parser.add_argument("--max-repos", type=int, default=999)
     args = parser.parse_args()
 
     clone_dir = Path(args.clone_dir)
@@ -53,7 +54,7 @@ def main():
     agq_by_name = {r["name"]: r for r in benchmark["results"]}
 
     # Get repo list
-    with open("scripts/repos_oss80_benchmark.json") as f:
+    with open(args.repos_file) as f:
         repos = json.load(f)
 
     results = []
