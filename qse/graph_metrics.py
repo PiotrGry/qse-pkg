@@ -346,6 +346,181 @@ def compute_cohesion(classes_lcom4: List[int]) -> float:
 
 
 # ---------------------------------------------------------------------------
+# CCD — Cumulative Component Dependency (Lakos 1996)
+# ---------------------------------------------------------------------------
+
+def compute_ccd(G: nx.DiGraph) -> Dict[str, float]:
+    """Cumulative Component Dependency — measures ripple effect.
+
+    CCD = sum of reachable nodes from each node (including self).
+    Normalized by CCD of a balanced binary tree: n * log2(n).
+
+    High CCD_norm means a change in one module propagates widely.
+
+    Returns dict with ccd_raw, ccd_norm, avg_reachable.
+    Only internal nodes (with 'file' attribute) are considered.
+    """
+    internal = [n for n, d in G.nodes(data=True) if d.get("file")]
+    nodes = internal if internal else list(G.nodes())
+    n = len(nodes)
+    if n <= 1:
+        return {"ccd_raw": 0, "ccd_norm": 0.0, "avg_reachable": 0.0}
+
+    subgraph = G.subgraph(nodes)
+
+    # For large graphs, sample to avoid O(V*(V+E)) explosion
+    import math as _math
+    sample_nodes = nodes
+    if n > 2000:
+        import random
+        random.seed(42)
+        sample_nodes = random.sample(nodes, min(500, n))
+
+    total_reachable = 0
+    for node in sample_nodes:
+        reachable = nx.descendants(subgraph, node)
+        total_reachable += len(reachable) + 1  # +1 for self
+
+    if len(sample_nodes) < n:
+        # Extrapolate from sample
+        total_reachable = int(total_reachable * n / len(sample_nodes))
+
+    # CCD of balanced binary tree = n * log2(n+1)
+    ccd_tree = n * _math.log2(n + 1) if n > 1 else 1
+    ccd_norm = min(total_reachable / ccd_tree, 10.0) if ccd_tree > 0 else 0.0
+    avg_reachable = total_reachable / n if n > 0 else 0.0
+
+    return {
+        "ccd_raw": total_reachable,
+        "ccd_norm": round(ccd_norm, 4),
+        "avg_reachable": round(avg_reachable, 2),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Indirect Coupling — Edge Strength Metric (Šora 2013, Chiricota 2003)
+# ---------------------------------------------------------------------------
+
+def compute_indirect_coupling(G: nx.DiGraph) -> Dict[str, float]:
+    """Indirect coupling via shared neighbors (Edge Strength Metric).
+
+    For each edge (u,v), ESM = |neighbors(u) ∩ neighbors(v)| / |neighbors(u) ∪ neighbors(v)|
+    High ESM means u and v share many dependencies — strongly coupled indirectly.
+
+    Returns dict with mean_ic, max_ic, ic_above_05 (fraction of edges with IC > 0.5).
+    Only internal nodes considered.
+    """
+    internal = set(n for n, d in G.nodes(data=True) if d.get("file"))
+    nodes = internal if internal else set(G.nodes())
+
+    # Use full graph for neighbor computation (including external nodes)
+    # but only measure IC for edges involving internal nodes
+    edges = [(u, v) for u, v in G.edges() if u in nodes]
+    if not edges:
+        return {"mean_ic": 0.0, "max_ic": 0.0, "ic_above_05": 0.0}
+
+    # Precompute undirected neighbor sets on full graph for ESM
+    neighbors = {}
+    undirected = G.to_undirected()
+    for node in G.nodes():
+        neighbors[node] = set(undirected.neighbors(node))
+
+    esm_values = []
+    for u, v in edges:
+        if u not in neighbors or v not in neighbors:
+            continue
+        nu, nv = neighbors[u], neighbors[v]
+        union = nu | nv
+        if not union:
+            continue
+        intersection = nu & nv
+        esm = len(intersection) / len(union)
+        esm_values.append(esm)
+
+    if not esm_values:
+        return {"mean_ic": 0.0, "max_ic": 0.0, "ic_above_05": 0.0}
+
+    mean_ic = sum(esm_values) / len(esm_values)
+    max_ic = max(esm_values)
+    ic_above_05 = sum(1 for v in esm_values if v > 0.5) / len(esm_values)
+
+    return {
+        "mean_ic": round(mean_ic, 4),
+        "max_ic": round(max_ic, 4),
+        "ic_above_05": round(ic_above_05, 4),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Per-module metrics (fan-in, fan-out, SCC membership)
+# ---------------------------------------------------------------------------
+
+def compute_per_module_metrics(G: nx.DiGraph) -> Dict[str, object]:
+    """Per-module breakdown: fan-in, fan-out, instability, SCC membership.
+
+    Returns dict with:
+      - summary: avg/max/variance stats
+      - modules: list of per-module dicts (sorted by fan_out desc)
+      - scc_modules: list of module names in cycles
+    """
+    internal = [n for n, d in G.nodes(data=True) if d.get("file")]
+    nodes = internal if internal else list(G.nodes())
+    if not nodes:
+        return {"summary": {}, "modules": [], "scc_modules": []}
+
+    node_set = set(nodes)
+    subgraph = G.subgraph(nodes)
+
+    # SCC membership
+    scc_nodes = set()
+    for scc in nx.strongly_connected_components(subgraph):
+        if len(scc) > 1:
+            scc_nodes.update(scc)
+
+    modules = []
+    fan_ins, fan_outs = [], []
+
+    for node in nodes:
+        # Fan-in: all predecessors (internal + external imports of this module)
+        fi = G.in_degree(node)
+        # Fan-out: all successors (what this module imports, including external)
+        fo = G.out_degree(node)
+        instability = fo / (fi + fo) if (fi + fo) > 0 else 0.5
+
+        fan_ins.append(fi)
+        fan_outs.append(fo)
+
+        modules.append({
+            "name": node,
+            "fan_in": fi,
+            "fan_out": fo,
+            "instability": round(instability, 3),
+            "in_scc": node in scc_nodes,
+        })
+
+    # Sort by fan_out descending (hotspot ranking)
+    modules.sort(key=lambda m: -m["fan_out"])
+
+    import statistics as _stats
+    summary = {
+        "n_modules": len(nodes),
+        "avg_fan_in": round(sum(fan_ins) / len(fan_ins), 2) if fan_ins else 0,
+        "max_fan_in": max(fan_ins) if fan_ins else 0,
+        "avg_fan_out": round(sum(fan_outs) / len(fan_outs), 2) if fan_outs else 0,
+        "max_fan_out": max(fan_outs) if fan_outs else 0,
+        "fan_out_std": round(_stats.stdev(fan_outs), 3) if len(fan_outs) > 1 else 0,
+        "n_in_scc": len(scc_nodes),
+        "scc_fraction": round(len(scc_nodes) / len(nodes), 4) if nodes else 0,
+    }
+
+    return {
+        "summary": summary,
+        "modules": modules[:50],  # top 50 by fan-out
+        "scc_modules": sorted(scc_nodes),
+    }
+
+
+# ---------------------------------------------------------------------------
 # Composite
 # ---------------------------------------------------------------------------
 
