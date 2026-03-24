@@ -1,33 +1,29 @@
 # QSE-PKG
 
-Quality Score Engine — dwuwarstwowy silnik jakości architektonicznej dla Pythona.
+Quality Score Engine — silnik jakości architektonicznej dla Python, Java i Go.
 
 ## Architektura
 
 ```
 qse/                          # Core (architecture-agnostic)
-  scanner.py                  # AST parser: klasy, importy, abstrakcyjność
   graph_metrics.py            # AGQ: Modularity, Acyclicity, Stability, Cohesion
-  hybrid_graph.py             # Merge static + dynamic edges
-  tracer.py                   # Dynamic tracing via sys.settrace
+  agq_enhanced.py             # AGQ-z, AGQ-adj, Fingerprint, CycleSeverity, ChurnRisk
+  extended_metrics.py         # CCD, IC, fan-out (size-normalized)
+  discover.py                 # Policy discovery (architectural constraints)
+  cli.py                      # CLI entry point (qse agq / qse gate / qse discover)
   test_quality.py             # QSE_test: assertion density, naming, isolation
-  cli.py                      # CLI entry point (qse scan / qse gate)
 
-qse/presets/ddd/              # DDD Extension (opt-in via layer_map)
-  detectors.py                # anemic, fat, zombie, layer violation
-  symbol_map.py               # Zombie v2 (AST symbol map, F1=0.964)
-  metrics.py                  # S, T_ddd, G, E, Risk
-  aggregator.py               # QSE_total weighted sum
-  calibrator.py               # Weight calibration (L-BFGS-B + LOO-CV)
-  pipeline.py                 # scan → trace → graph → metrics → defects
-  gate.py                     # Quality gate with feedback prompts
-  config.py                   # QSEConfig with layer_map
-  report.py                   # JSON/table formatters
-  generate_loop.py            # LLM code generation loop with gate
+qse-core/                     # Rust scanner (PRIMARY — tree-sitter, PyO3)
+qse-py/                       # PyO3 bindings → _qse_core
 ```
 
 Pakiet: `pip install git+https://github.com/PiotrGry/qse-pkg.git`
-CLI: `qse gate <path> --threshold 0.80 --config qse.json --output-json report.json`
+CLI: `qse agq <path> --threshold 0.80 --output-json report.json`
+Rust scanner: `maturin develop --release -m qse-py/Cargo.toml`
+
+## Source of Truth
+
+Indeks autorytatywnych plików: `artifacts/DOCUMENT_MAP.md`
 
 ---
 

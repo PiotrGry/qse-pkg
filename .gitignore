@@ -19,6 +19,7 @@ htmlcov/
 .vscode/
 *.swp
 .DS_Store
+._*
 results/
 experiments/
 papiers/

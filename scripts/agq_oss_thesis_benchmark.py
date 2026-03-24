@@ -39,7 +39,10 @@ if str(ROOT) not in sys.path:
 from qse.graph_metrics import (compute_agq, compute_lcom4,
                                compute_hierarchical_modularity,
                                compute_boundary_crossing_ratio)
-from qse.scanner import scan_repo
+try:
+    from qse.scanner import scan_repo
+except (ImportError, ModuleNotFoundError):
+    scan_repo = None  # Python scanner removed; Rust scanner used instead
 
 
 @dataclass(frozen=True)

@@ -1,0 +1,172 @@
+{
+  "generated_at": "2026-03-07T08:13:53.557746+00:00",
+  "config": "/home/pepus/dev/qse-pkg/scripts/trl4_weekend_config.json",
+  "workdir": "/tmp/trl4_weekend_swkl0bm7",
+  "overall_pass": true,
+  "checks": [
+    {
+      "name": "constraints_detection",
+      "passed": true,
+      "details": {
+        "clean": {
+          "gate": "PASS",
+          "qse4": 0.9127,
+          "constraint_score": 1.0,
+          "constraint_violations": [],
+          "failures": [],
+          "ratchet": {
+            "enabled": false,
+            "baseline_file": "/tmp/trl4_weekend_swkl0bm7/constraints_ratchet_baseline.json",
+            "delta": 0.01,
+            "baseline_found": false
+          }
+        },
+        "bad": {
+          "gate": "FAIL",
+          "qse4": 0.9023,
+          "constraint_score": 0.6667,
+          "constraint_violations": [
+            {
+              "rule": {
+                "name": "no_api_to_core",
+                "from": "api/*",
+                "to": "core/*",
+                "type": "forbidden"
+              },
+              "source": "api.routes",
+              "target": "core.repo"
+            }
+          ],
+          "failures": [
+            "Constraint score=0.6667 below minimum 0.95"
+          ],
+          "ratchet": {
+            "enabled": false,
+            "baseline_file": "/tmp/trl4_weekend_swkl0bm7/constraints_ratchet_baseline.json",
+            "delta": 0.01,
+            "baseline_found": false
+          }
+        }
+      }
+    },
+    {
+      "name": "ratchet_regression_block",
+      "passed": true,
+      "details": {
+        "first": {
+          "gate": "PASS",
+          "qse4": 0.9127,
+          "constraint_score": 1.0,
+          "constraint_violations": [],
+          "failures": [],
+          "ratchet": {
+            "enabled": true,
+            "baseline_file": "/tmp/trl4_weekend_swkl0bm7/ratchet_baseline.json",
+            "delta": 0.0,
+            "baseline_found": false,
+            "baseline_updated": true
+          }
+        },
+        "regress": {
+          "gate": "FAIL",
+          "qse4": 0.9023,
+          "constraint_score": 0.6667,
+          "constraint_violations": [
+            {
+              "rule": {
+                "name": "no_api_to_core",
+                "from": "api/*",
+                "to": "core/*",
+                "type": "forbidden"
+              },
+              "source": "api.routes",
+              "target": "core.repo"
+            }
+          ],
+          "failures": [
+            "Ratchet violation: qse4=0.9023 < baseline=0.9127 - delta=0.0000",
+            "Ratchet violation: constraint_score=0.6667 < baseline=1.0000 - delta=0.0000"
+          ],
+          "ratchet": {
+            "enabled": true,
+            "baseline_file": "/tmp/trl4_weekend_swkl0bm7/ratchet_baseline.json",
+            "delta": 0.0,
+            "baseline_found": true,
+            "baseline_qse4": 0.9126961721537876,
+            "baseline_constraint_score": 1.0
+          }
+        },
+        "baseline_file": "/tmp/trl4_weekend_swkl0bm7/ratchet_baseline.json"
+      }
+    },
+    {
+      "name": "reproducibility_static_mode",
+      "passed": true,
+      "details": {
+        "run1": {
+          "gate": "PASS",
+          "qse4": 0.891,
+          "constraint_score": 1.0,
+          "constraint_violations": [],
+          "failures": [],
+          "ratchet": {
+            "enabled": false,
+            "baseline_file": "/tmp/trl4_weekend_swkl0bm7/repro_baseline.json",
+            "delta": 0.01,
+            "baseline_found": false
+          }
+        },
+        "run2": {
+          "gate": "PASS",
+          "qse4": 0.891,
+          "constraint_score": 1.0,
+          "constraint_violations": [],
+          "failures": [],
+          "ratchet": {
+            "enabled": false,
+            "baseline_file": "/tmp/trl4_weekend_swkl0bm7/repro_baseline.json",
+            "delta": 0.01,
+            "baseline_found": false
+          }
+        }
+      }
+    },
+    {
+      "name": "benchmark_snapshot",
+      "passed": true,
+      "details": {
+        "case": {
+          "nodes": 1000,
+          "edges": 20000,
+          "rules": 100
+        },
+        "legacy_baseline": "legacy_fallback_baseline",
+        "exp4_baseline": "experiments.exp4_constraints.run::check_constraints",
+        "legacy_result": {
+          "nodes": 1000,
+          "edges": 20000,
+          "rules": 100,
+          "violations": 162433,
+          "score": 0.0,
+          "baseline_median_s": 1.1709107460046653,
+          "optimized_median_s": 0.23466870250558713,
+          "baseline_p95_s": 1.1714286370115587,
+          "optimized_p95_s": 0.24728634000348393,
+          "speedup_x": 4.989633187138739
+        },
+        "exp4_result": {
+          "nodes": 1000,
+          "edges": 20000,
+          "rules": 100,
+          "violations": 162433,
+          "score": 0.0,
+          "baseline_median_s": 0.22691670950007392,
+          "optimized_median_s": 0.22649315249873325,
+          "baseline_p95_s": 0.23044477999792434,
+          "optimized_p95_s": 0.22833325200190302,
+          "speedup_x": 1.0018700653713717
+        }
+      }
+    }
+  ]
+}

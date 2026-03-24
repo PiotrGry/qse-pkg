@@ -101,10 +101,10 @@ def discover_multilang(repo_path: str, **kwargs) -> "DiscoveryReport":
             G.add_edge(src, tgt)
         return discover_policies(G, **kwargs)
     except ImportError:
-        # Fallback: Python scanner (Python only)
-        from qse.scanner import scan_repo
-        analysis = scan_repo(repo_path)
-        return discover_policies(analysis.graph, **kwargs)
+        raise RuntimeError(
+            "Rust scanner (_qse_core) is required. Install it: "
+            "pip install qse-core (or: maturin develop --release -m qse-py/Cargo.toml)"
+        )
 
 
 # ---------------------------------------------------------------------------

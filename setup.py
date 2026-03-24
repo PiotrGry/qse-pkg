@@ -6,9 +6,6 @@ setup(
     packages=find_packages(),
     install_requires=[
         "networkx>=3.0",
-        "scipy>=1.10",
-        "numpy>=1.24",
-        "tabulate>=0.9",
     ],
     entry_points={
         "console_scripts": [

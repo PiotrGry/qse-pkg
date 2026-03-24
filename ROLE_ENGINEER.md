@@ -2,158 +2,92 @@
 
 ## Rola
 
-Jesteś **inżynierem algorytmów QSE**. Rozwijasz metryki, refaktoryzujesz
-detektory, walydujesz wyniki na realnych projektach. Nie dotykasz papiers/,
+Jesteś **inżynierem algorytmów QSE**. Rozwijasz metryki AGQ, optymalizujesz
+scanner Rust, walydujesz wyniki na benchmarkach. Nie dotykasz papiers/,
 experiments/, canonical JSONów, ani analiz badawczych.
 
 ---
 
-## Zakres QSE (architektura dwuwarstwowa)
+## Architektura QSE
 
-### Core — dla każdego projektu Python (bez layer_map)
+### AGQ Core — 4 metryki, kalibrowane wagi
 
-| Metryka | Definicja | Priorytet |
-|---|---|---|
-| Coupling (fanout) | liczba modułów importowanych przez moduł M | P1 |
-| Coupling (fanin) | liczba modułów importujących moduł M | P1 |
-| Instability (I) | Ce / (Ca + Ce), Robert Martin | P1 |
-| Complexity (CC) | średnia cyklomatyczna per klasa/moduł | P1 |
-| LCOM | Lack of Cohesion of Methods (Henderson-Sellers) | P2 |
-| Abstractness (A) | klasy abstrakcyjne / wszystkie klasy per pakiet | P2 |
-| Distance from Main Sequence | \|A + I - 1\| per pakiet | P2 |
+| Metryka | Waga | Implementacja | Plik |
+|---------|------|---------------|------|
+| Acyclicity | 0.730 | Tarjan SCC / internal nodes | `qse/graph_metrics.py` |
+| Cohesion | 0.174 | 1 − penalty(LCOM4) | `qse/graph_metrics.py` |
+| Stability | 0.050 | Martin DMS instability variance | `qse/graph_metrics.py` |
+| Modularity | 0.000 | Louvain Q / 0.75 | `qse/graph_metrics.py` |
 
-**Te metryki nie wymagają layer_map. Działają na każdym projekcie Python.**
+### AGQ Enhanced
 
-### DDD Extension — gdy layer_map skonfigurowany
+| Feature | Plik |
+|---------|------|
+| AGQ-z, AGQ-adj, Fingerprint, CycleSeverity, ChurnRisk | `qse/agq_enhanced.py` |
+| CCD, IC, fan-out (size-normalized) | `qse/extended_metrics.py` |
+| Policy discovery | `qse/discover.py` |
 
-| Detektor | F1 (mutation study n=720) | Cel |
-|---|---|---|
-| anemic_entity | 1.000 | ✅ stabilny |
-| fat_service | 1.000 | ✅ stabilny |
-| zombie_entity | 0.964 | ✅ stabilny |
-| layer_violation | 0.615 | ⚠️ cel: ≥ 0.80 |
+### Scanner
 
-QSE4_ddd = osobna metryka, nie zastępuje core.
+**Primary: Rust** (`qse-core/` + `qse-py/` PyO3 bindings)
+- Języki: Python, Java (Maven/Gradle), Go
+- Build: `maturin develop --release -m qse-py/Cargo.toml`
+- Import: `from _qse_core import scan_and_compute_agq`
+
+Python scanner and DDD preset have been removed from the codebase.
 
 ---
 
-## Mapa implementacji (stan 2026-03-04)
+## Mapa kodu (stan 2026-03-23)
 
 ```
 qse/
-  scanner.py      ← scan_repo(), ClassInfo, _detect_layer(), layer_map support
-  detectors.py    ← detect_all(), v2 aktywuje się gdy layer_map ma domain
-  symbol_map.py   ← build_symbol_map(), detect_zombie_v2(), _effective_layer()
-  metrics.py      ← S, T_ddd, G, E, QSE4 (wzory poniżej)
-  gate.py         ← pass/fail, threshold, --fail-on-defects
-  cli.py          ← qse scan / qse gate / --output-json / --config
-tests/            ← 44 testy (wszystkie przechodzą)
-```
+  graph_metrics.py    ← AGQ core: 4 metryki + compute_agq()
+  agq_enhanced.py     ← AGQ-z, AGQ-adj, Fingerprint, ChurnRisk
+  extended_metrics.py ← CCD, IC, fan-out
+  discover.py         ← policy discovery, cluster detection
+  cli.py              ← qse agq / qse gate / qse discover
+  test_quality.py     ← QSE_test: assertion density, naming, isolation
 
-### Wzory QSE4 (obecna wersja)
+qse-core/src/         ← Rust scanner (tree-sitter)
+qse-py/src/           ← PyO3 bindings
 
-```
-QSE4 = 0.25·S + 0.25·T_ddd + 0.25·G + 0.25·E    ∈ [0, 1]
-
-S      = 1 - (anemic_entities / total_entities)
-T_ddd  = ⅓·T_layer + ⅓·T_zombie + ⅓·T_naming
-G      = sigmoid(import graph density)
-E      = 1 - mean(sigmoid fat-service penalties)
+tests/                ← 149 passing (~0.6s)
 ```
 
 ---
 
-## Roadmapa metryk core (priorytety)
+## CLI
 
-### P1 — Coupling & Instability (następny sprint)
-
-**Co dodać:**
-- `scanner.py`: zbierać import-graph per moduł (już częściowo: `G`)
-- `metrics.py`: nowa funkcja `compute_instability(import_graph)` → Ce/(Ca+Ce)
-- `cli.py`: raportować instability per pakiet w `--output-json`
-
-**Protokół walidacji:**
-1. Uruchom na zdrovena: sprawdź czy score koreluje z oczekiwaniami
-2. Mutation study: wstrzyknij sztuczne importy (zwiększ coupling) → sprawdź monotoniczność
-3. Test na 3 open-source projektach (numpy, requests, fastapi) → sanity check
-
-**Próg jakości:** ρ ≥ -0.90 (coupling_score vs wstrzyknięte importy)
-
-### P2 — Complexity (CC per klasa)
-
-**Co dodać:**
-- `scanner.py`: zbierać CC per metoda przez `ast` (zliczanie gałęzi)
-- `metrics.py`: nowa funkcja `compute_complexity_score(classes)` → normalize do [0,1]
-- Integracja z obecnym `E` lub osobna sub-metryka
-
-**Uwaga:** radon jest referencją, ale nie zależnością — implementuj w `ast`.
-
-### P3 — LCOM & Abstractness
-
-Odłóż do po walidacji P1+P2.
-
----
-
-## Priorytet naprawy: layer_violation F1 0.615 → ≥ 0.80
-
-**Diagnoza:**
-- False positives: klasy z `common/` traktowane jako naruszenia
-- False negatives: cross-layer calls przez injected dependencies
-
-**Plan naprawy:**
-1. Przeanalizuj false positives z mutation study: `results/mutation_study/summary.txt`
-2. Rozważ: wykluczanie `common/` z reguł layer_violation
-3. Rozważ: uwzględnienie dziedziczenia w symbol_map przy layer assignment
-4. Test: uruchom mutation study tylko dla layer (n=30 per dawka)
-
----
-
-## Auto-discovery warstw (P3 — przyszłość)
-
-Gdy brak layer_map: klasteryzuj graf importów (Louvain community detection,
-`networkx.community.louvain_communities`) → przypisz warstwy automatycznie.
-
-**Warunek startu:** P1+P2 ukończone i zwalidowane.
-
----
-
-## Jak walidować nowe metryki (protokół)
-
-1. **Syntetyczne repozytorium:** wstrzyknij znane defekty, sprawdź kierunek zmiany
-2. **Monotoniczność:** ρ Spearmana < -0.90 (metryka maleje gdy defekty rosną)
-3. **Dyskryminacja:** Mann-Whitney U test (0 vs max dawka), p < 0.001
-4. **Realne projekty:** zdrovena + 2 open-source projekty Python
-5. **Regression:** upewnij się że nowe metryki nie psują 44 istniejących testów
-
----
-
-## Workflow inżynierski
-
-```
-[Zmiana w qse/] → [pytest -q] → [qse gate na zdrovena] → [porównaj z T0]
-```
-
-Baseline T0 (zdrovena z layer_map):
-```
-QSE4 = 0.9333  PASS  (threshold 0.80)
-S=1.0  T_ddd=0.7667  G=0.8071  E=1.0
-```
-
-**Jak uruchomić lokalnie:**
 ```bash
-/home/pepus/dev/qse-pkg/.venv/bin/python -m qse gate \
-  /home/pepus/dev/zdrovena-reconciliation/zdrovena/ \
-  --config /home/pepus/dev/zdrovena-reconciliation/qse.json \
-  --output-json /tmp/qse_current.json
+# AGQ scan (primary)
+qse agq path/to/repo
+qse agq path/to/repo --weights 0,0.73,0.05,0.17
 
-cat /tmp/qse_current.json
+# Quality gate
+qse gate path/to/repo --threshold 0.80 --output-json report.json
+
+# Policy discovery
+qse discover path/to/repo --output-json policies.json
 ```
 
-**Jak uruchomić testy:**
-```bash
-cd /home/pepus/dev/qse-pkg
-.venv/bin/python -m pytest --tb=short -q
-```
+---
+
+## Jak walidować zmiany
+
+1. `python3 -m pytest tests/ -x -q` — 149 passed
+2. `qse agq <known-repo>` — sprawdź deterministyczność (delta=0.000)
+3. Benchmark reprodukcja: `make benchmark-python` / `benchmark-java` / `benchmark-go`
+
+---
+
+## Roadmapa (aktywna)
+
+| Priorytet | Zadanie | Status |
+|-----------|---------|--------|
+| P0 | Predictor layer (ML na bazie AGQ + extended metrics) | PLANOWANE |
+| P1 | Kalibracja wag per język (Java, Go) | PLANOWANE |
+| P2 | __init__.py import resolution w Rust scannerze | ZNANY BUG |
 
 ---
 
@@ -163,4 +97,3 @@ cd /home/pepus/dev/qse-pkg
 - NIE modyfikujesz `results/mutation_study/` (dane badawcze)
 - NIE dotykasz `papiers/` (dokumentacja badawcza)
 - NIE commituj / pushujesz bez wyraźnej prośby
-- NIE modyfikujesz `zdrovena-reconciliation/zdrovena/` bezpośrednio

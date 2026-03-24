@@ -1,0 +1,1606 @@
+{
+  "generated_at": "2026-03-07T21:54:03.305453+00:00",
+  "config": {
+    "input_json": "artifacts/benchmark/agq_thesis_oss80_v2.json",
+    "repos_dir": "/tmp/agq_bench80",
+    "since": "2 years ago"
+  },
+  "summary": {
+    "repos_total": 80,
+    "repos_with_churn": 74,
+    "repos_missing": 0,
+    "repos_no_data": 4
+  },
+  "correlations": [
+    {
+      "pair": "agq vs mean_churn",
+      "n": 74,
+      "pearson": -0.0003,
+      "p_pearson": 0.0764,
+      "spearman": -0.1734,
+      "p_spearman": 0.1394
+    },
+    {
+      "pair": "agq vs median_churn",
+      "n": 74,
+      "pearson": 0.0195,
+      "p_pearson": 0.8685,
+      "spearman": -0.1381,
+      "p_spearman": 0.2407
+    },
+    {
+      "pair": "agq vs churn_gini",
+      "n": 74,
+      "pearson": -0.2354,
+      "p_pearson": 0.0435,
+      "spearman": -0.2482,
+      "p_spearman": 0.033
+    },
+    {
+      "pair": "agq vs hotspot_ratio",
+      "n": 74,
+      "pearson": -0.2268,
+      "p_pearson": 0.052,
+      "spearman": -0.2774,
+      "p_spearman": 0.0167
+    },
+    {
+      "pair": "agq vs module_churn_cv",
+      "n": 74,
+      "pearson": 0.1536,
+      "p_pearson": 0.1914,
+      "spearman": 0.1354,
+      "p_spearman": 0.25
+    },
+    {
+      "pair": "agq vs max_churn",
+      "n": 74,
+      "pearson": 0.1412,
+      "p_pearson": 0.2301,
+      "spearman": 0.1427,
+      "p_spearman": 0.2251
+    }
+  ],
+  "results": [
+    {
+      "name": "httpx",
+      "agq": 0.6872031313435427,
+      "churn": {
+        "n_files": 19,
+        "mean_churn": 4.263,
+        "median_churn": 4,
+        "max_churn": 9,
+        "churn_gini": 0.3184,
+        "hotspot_ratio": 0.0526,
+        "module_churn_cv": 0.0,
+        "top_hotspots": [
+          "httpx/_config.py",
+          "httpx/_transports/default.py",
+          "httpx/_client.py",
+          "httpx/_models.py",
+          "httpx/_urls.py"
+        ]
+      }
+    },
+    {
+      "name": "requests",
+      "agq": 0.6979952712506592,
+      "churn": {
+        "n_files": 17,
+        "mean_churn": 3.412,
+        "median_churn": 2,
+        "max_churn": 10,
+        "churn_gini": 0.4544,
+        "hotspot_ratio": 0.2353,
+        "module_churn_cv": 1.0561,
+        "top_hotspots": [
+          "src/requests/adapters.py",
+          "src/requests/utils.py",
+          "setup.py",
+          "src/requests/__version__.py",
+          "src/requests/models.py"
+        ]
+      }
+    },
+    {
+      "name": "urllib3",
+      "agq": 0.6920285086300573,
+      "churn": {
+        "n_files": 43,
+        "mean_churn": 2.442,
+        "median_churn": 1,
+        "max_churn": 16,
+        "churn_gini": 0.4288,
+        "hotspot_ratio": 0.093,
+        "module_churn_cv": 1.2781,
+        "top_hotspots": [
+          "src/urllib3/response.py",
+          "noxfile.py",
+          "src/urllib3/util/ssl_.py",
+          "src/urllib3/connection.py",
+          "src/urllib3/contrib/pyopenssl.py"
+        ]
+      }
+    },
+    {
+      "name": "flask",
+      "agq": 0.6294063290309495,
+      "churn": {
+        "n_files": 24,
+        "mean_churn": 4.833,
+        "median_churn": 3.0,
+        "max_churn": 21,
+        "churn_gini": 0.4921,
+        "hotspot_ratio": 0.1667,
+        "module_churn_cv": 1.2866,
+        "top_hotspots": [
+          "src/flask/app.py",
+          "src/flask/sansio/app.py",
+          "src/flask/helpers.py",
+          "src/flask/sessions.py",
+          "src/flask/ctx.py"
+        ]
+      }
+    },
+    {
+      "name": "click",
+      "agq": 0.6435330464759864,
+      "churn": {
+        "n_files": 18,
+        "mean_churn": 9.611,
+        "median_churn": 5.5,
+        "max_churn": 65,
+        "churn_gini": 0.5321,
+        "hotspot_ratio": 0.0556,
+        "module_churn_cv": 1.3289,
+        "top_hotspots": [
+          "src/click/core.py",
+          "src/click/_termui_impl.py",
+          "src/click/testing.py",
+          "src/click/exceptions.py",
+          "src/click/termui.py"
+        ]
+      }
+    },
+    {
+      "name": "pydantic",
+      "agq": 0.7999388602040749,
+      "churn": {
+        "n_files": 119,
+        "mean_churn": 1.513,
+        "median_churn": 1,
+        "max_churn": 7,
+        "churn_gini": 0.2639,
+        "hotspot_ratio": 0.042,
+        "module_churn_cv": 1.7642,
+        "top_hotspots": [
+          "pydantic/main.py",
+          "pydantic/json_schema.py",
+          "pydantic/types.py",
+          "pydantic/_internal/_generate_schema.py",
+          "pydantic/config.py"
+        ]
+      }
+    },
+    {
+      "name": "fastapi",
+      "agq": 0.8258969080693594,
+      "churn": {
+        "n_files": 525,
+        "mean_churn": 1.048,
+        "median_churn": 1,
+        "max_churn": 9,
+        "churn_gini": 0.0448,
+        "hotspot_ratio": 0.0095,
+        "module_churn_cv": 1.0522,
+        "top_hotspots": [
+          "fastapi/__init__.py",
+          "fastapi/routing.py",
+          "fastapi/openapi/utils.py",
+          "fastapi/responses.py",
+          "fastapi/applications.py"
+        ]
+      }
+    },
+    {
+      "name": "rich",
+      "agq": 0.7227130033884769,
+      "churn": {
+        "n_files": 68,
+        "mean_churn": 5.044,
+        "median_churn": 5.0,
+        "max_churn": 30,
+        "churn_gini": 0.4812,
+        "hotspot_ratio": 0.0882,
+        "module_churn_cv": 1.6514,
+        "top_hotspots": [
+          "rich/cells.py",
+          "rich/traceback.py",
+          "rich/progress.py",
+          "rich/console.py",
+          "rich/_unicode_data/__init__.py"
+        ]
+      }
+    },
+    {
+      "name": "pytest",
+      "agq": 0.8055555555555556,
+      "churn": {
+        "n_files": 124,
+        "mean_churn": 2.685,
+        "median_churn": 2.0,
+        "max_churn": 12,
+        "churn_gini": 0.2136,
+        "hotspot_ratio": 0.0323,
+        "module_churn_cv": 1.3993,
+        "top_hotspots": [
+          "src/_pytest/config/__init__.py",
+          "src/_pytest/config/argparsing.py",
+          "src/_pytest/fixtures.py",
+          "src/_pytest/assertion/truncate.py",
+          "src/_pytest/subtests.py"
+        ]
+      }
+    },
+    {
+      "name": "sanic",
+      "agq": 0.8109126432321425,
+      "churn": {
+        "n_files": 111,
+        "mean_churn": 2.955,
+        "median_churn": 2,
+        "max_churn": 12,
+        "churn_gini": 0.3704,
+        "hotspot_ratio": 0.1171,
+        "module_churn_cv": 1.5501,
+        "top_hotspots": [
+          "sanic/app.py",
+          "setup.py",
+          "sanic/worker/manager.py",
+          "sanic/mixins/startup.py",
+          "sanic/cookies/response.py"
+        ]
+      }
+    },
+    {
+      "name": "scrapy",
+      "agq": 0.7982768471011734,
+      "churn": {
+        "n_files": 185,
+        "mean_churn": 2.751,
+        "median_churn": 2,
+        "max_churn": 15,
+        "churn_gini": 0.4098,
+        "hotspot_ratio": 0.0973,
+        "module_churn_cv": 1.655,
+        "top_hotspots": [
+          "scrapy/core/engine.py",
+          "scrapy/utils/defer.py",
+          "scrapy/core/downloader/__init__.py",
+          "scrapy/core/scraper.py",
+          "scrapy/crawler.py"
+        ]
+      }
+    },
+    {
+      "name": "aiohttp",
+      "agq": 0.6589023892542243,
+      "churn": {
+        "n_files": 84,
+        "mean_churn": 1.524,
+        "median_churn": 1.0,
+        "max_churn": 7,
+        "churn_gini": 0.2697,
+        "hotspot_ratio": 0.0357,
+        "module_churn_cv": 1.5898,
+        "top_hotspots": [
+          "aiohttp/client.py",
+          "aiohttp/http_parser.py",
+          "aiohttp/client_proto.py",
+          "aiohttp/formdata.py",
+          "aiohttp/connector.py"
+        ]
+      }
+    },
+    {
+      "name": "django",
+      "agq": 0.8451548113014568,
+      "churn": {
+        "n_files": 904,
+        "mean_churn": 1.076,
+        "median_churn": 1.0,
+        "max_churn": 4,
+        "churn_gini": 0.0671,
+        "hotspot_ratio": 0.0111,
+        "module_churn_cv": 1.3924,
+        "top_hotspots": [
+          "django/db/models/expressions.py",
+          "django/db/models/query.py",
+          "django/core/handlers/asgi.py",
+          "django/contrib/staticfiles/storage.py",
+          "django/utils/deprecation.py"
+        ]
+      }
+    },
+    {
+      "name": "starlette",
+      "agq": 0.7960702164539697,
+      "churn": {
+        "n_files": 34,
+        "mean_churn": 3.029,
+        "median_churn": 2.5,
+        "max_churn": 14,
+        "churn_gini": 0.3629,
+        "hotspot_ratio": 0.0588,
+        "module_churn_cv": 0.0,
+        "top_hotspots": [
+          "starlette/__init__.py",
+          "starlette/responses.py",
+          "starlette/requests.py",
+          "starlette/applications.py",
+          "starlette/routing.py"
+        ]
+      }
+    },
+    {
+      "name": "celery",
+      "agq": 0.7709480075063351,
+      "churn": {
+        "n_files": 258,
+        "mean_churn": 1.244,
+        "median_churn": 1.0,
+        "max_churn": 8,
+        "churn_gini": 0.1779,
+        "hotspot_ratio": 0.0698,
+        "module_churn_cv": 1.4554,
+        "top_hotspots": [
+          "celery/__init__.py",
+          "celery/backends/redis.py",
+          "celery/fixups/django.py",
+          "celery/app/task.py",
+          "celery/concurrency/asynpool.py"
+        ]
+      }
+    },
+    {
+      "name": "tornado",
+      "agq": 0.8108703625496081,
+      "churn": {
+        "n_files": 41,
+        "mean_churn": 4.439,
+        "median_churn": 4,
+        "max_churn": 22,
+        "churn_gini": 0.443,
+        "hotspot_ratio": 0.0976,
+        "module_churn_cv": 1.4915,
+        "top_hotspots": [
+          "tornado/httputil.py",
+          "tornado/web.py",
+          "tornado/websocket.py",
+          "tornado/gen.py",
+          "tornado/auth.py"
+        ]
+      }
+    },
+    {
+      "name": "typer",
+      "agq": 0.7078535701252299,
+      "churn": {
+        "n_files": 576,
+        "mean_churn": 1.115,
+        "median_churn": 1.0,
+        "max_churn": 8,
+        "churn_gini": 0.0961,
+        "hotspot_ratio": 0.0139,
+        "module_churn_cv": 1.541,
+        "top_hotspots": [
+          "typer/__init__.py",
+          "pdm_build.py",
+          "typer/main.py",
+          "typer/core.py",
+          "typer/_completion_shared.py"
+        ]
+      }
+    },
+    {
+      "name": "arrow",
+      "agq": 0.806969972608859,
+      "churn": {
+        "n_files": 10,
+        "mean_churn": 4,
+        "median_churn": 2.0,
+        "max_churn": 13,
+        "churn_gini": 0.515,
+        "hotspot_ratio": 0.2,
+        "module_churn_cv": 0.0,
+        "top_hotspots": [
+          "arrow/locales.py",
+          "arrow/arrow.py",
+          "arrow/parser.py",
+          "arrow/factory.py",
+          "arrow/formatter.py"
+        ]
+      }
+    },
+    {
+      "name": "pendulum",
+      "agq": 0.7868208627321901,
+      "churn": {
+        "n_files": 32,
+        "mean_churn": 2.438,
+        "median_churn": 2.0,
+        "max_churn": 7,
+        "churn_gini": 0.359,
+        "hotspot_ratio": 0.0938,
+        "module_churn_cv": 0.0,
+        "top_hotspots": [
+          "src/pendulum/__init__.py",
+          "src/pendulum/duration.py",
+          "src/pendulum/parsing/__init__.py",
+          "src/pendulum/formatting/formatter.py",
+          "src/pendulum/parsing/iso8601.py"
+        ]
+      }
+    },
+    {
+      "name": "httpcore",
+      "agq": 0.776205307402752,
+      "churn": {
+        "n_files": 27,
+        "mean_churn": 2.889,
+        "median_churn": 2,
+        "max_churn": 7,
+        "churn_gini": 0.2754,
+        "hotspot_ratio": 0.0741,
+        "module_churn_cv": 0.0,
+        "top_hotspots": [
+          "httpcore/__init__.py",
+          "httpcore/_backends/anyio.py",
+          "httpcore/_async/connection_pool.py",
+          "httpcore/_sync/connection_pool.py",
+          "httpcore/_synchronization.py"
+        ]
+      }
+    },
+    {
+      "name": "attrs",
+      "agq": 0.9666666666666667,
+      "churn": {
+        "n_files": 25,
+        "mean_churn": 1.76,
+        "median_churn": 1,
+        "max_churn": 8,
+        "churn_gini": 0.3436,
+        "hotspot_ratio": 0.08,
+        "module_churn_cv": 1.2792,
+        "top_hotspots": [
+          "src/attr/_make.py",
+          "typing-examples/baseline_examples.py",
+          "src/attr/_next_gen.py",
+          "src/attr/_funcs.py",
+          "src/attr/validators.py"
+        ]
+      }
+    },
+    {
+      "name": "marshmallow",
+      "agq": 0.7951908606280043,
+      "churn": {
+        "n_files": 23,
+        "mean_churn": 8.609,
+        "median_churn": 4,
+        "max_churn": 42,
+        "churn_gini": 0.5007,
+        "hotspot_ratio": 0.087,
+        "module_churn_cv": 1.3048,
+        "top_hotspots": [
+          "src/marshmallow/schema.py",
+          "src/marshmallow/fields.py",
+          "src/marshmallow/utils.py",
+          "docs/conf.py",
+          "src/marshmallow/validate.py"
+        ]
+      }
+    },
+    {
+      "name": "ansible",
+      "agq": 0.8232412628116769,
+      "churn": {
+        "n_files": 587,
+        "mean_churn": 1.153,
+        "median_churn": 1,
+        "max_churn": 7,
+        "churn_gini": 0.1232,
+        "hotspot_ratio": 0.0307,
+        "module_churn_cv": 1.6742,
+        "top_hotspots": [
+          "lib/ansible/modules/user.py",
+          "lib/ansible/galaxy/collection/__init__.py",
+          "lib/ansible/modules/dnf.py",
+          "lib/ansible/galaxy/dependency_resolution/dataclasses.py",
+          "lib/ansible/plugins/action/__init__.py"
+        ]
+      }
+    },
+    {
+      "name": "salt",
+      "agq": 0.8381767214815494,
+      "churn": {
+        "n_files": 949,
+        "mean_churn": 1.121,
+        "median_churn": 1,
+        "max_churn": 11,
+        "churn_gini": 0.1043,
+        "hotspot_ratio": 0.0232,
+        "module_churn_cv": 2.7063,
+        "top_hotspots": [
+          "salt/states/ssh_pki.py",
+          "salt/modules/ssh_pki.py",
+          "salt/config/__init__.py",
+          "salt/client/ssh/wrapper/ssh_pki.py",
+          "salt/utils/sshpki.py"
+        ]
+      }
+    },
+    {
+      "name": "home-assistant",
+      "agq": 0.8009320413875646,
+      "churn": {
+        "n_files": 9178,
+        "mean_churn": 1.019,
+        "median_churn": 1.0,
+        "max_churn": 4,
+        "churn_gini": 0.0184,
+        "hotspot_ratio": 0.0005,
+        "module_churn_cv": 1.3873,
+        "top_hotspots": [
+          "homeassistant/components/automation/__init__.py",
+          "homeassistant/bootstrap.py",
+          "script/hassfest/quality_scale.py",
+          "homeassistant/generated/config_flows.py",
+          "homeassistant/components/proxmoxve/coordinator.py"
+        ]
+      }
+    },
+    {
+      "name": "airflow",
+      "agq": 0.8276868979478966,
+      "churn": {
+        "n_files": 3360,
+        "mean_churn": 1.041,
+        "median_churn": 1.0,
+        "max_churn": 6,
+        "churn_gini": 0.0385,
+        "hotspot_ratio": 0.0042,
+        "module_churn_cv": 2.2335,
+        "top_hotspots": [
+          "providers/common/ai/src/airflow/providers/common/ai/get_provider_info.py",
+          "dev/breeze/src/airflow_breeze/global_constants.py",
+          "dev/breeze/src/airflow_breeze/utils/selective_checks.py",
+          "providers/fab/src/airflow/providers/fab/auth_manager/security_manager/override.py",
+          "airflow-core/src/airflow/utils/log/file_task_handler.py"
+        ]
+      }
+    },
+    {
+      "name": "thefuck",
+      "agq": 0.7423531219611814,
+      "churn": null,
+      "error": "no_data"
+    },
+    {
+      "name": "you-get",
+      "agq": 0.8201290363401481,
+      "churn": {
+        "n_files": 41,
+        "mean_churn": 2.049,
+        "median_churn": 1,
+        "max_churn": 19,
+        "churn_gini": 0.4321,
+        "hotspot_ratio": 0.0732,
+        "module_churn_cv": 0.9524,
+        "top_hotspots": [
+          "src/you_get/extractors/youtube.py",
+          "src/you_get/common.py",
+          "src/you_get/version.py",
+          "src/you_get/extractors/twitter.py",
+          "src/you_get/extractors/tumblr.py"
+        ]
+      }
+    },
+    {
+      "name": "youtube-dl",
+      "agq": 0.8761466830099816,
+      "churn": {
+        "n_files": 870,
+        "mean_churn": 1.128,
+        "median_churn": 1.0,
+        "max_churn": 52,
+        "churn_gini": 0.1124,
+        "hotspot_ratio": 0.0115,
+        "module_churn_cv": 1.6713,
+        "top_hotspots": [
+          "youtube_dl/extractor/youtube.py",
+          "youtube_dl/jsinterp.py",
+          "youtube_dl/compat.py",
+          "youtube_dl/utils.py",
+          "youtube_dl/extractor/common.py"
+        ]
+      }
+    },
+    {
+      "name": "glances",
+      "agq": 0.8173952480976638,
+      "churn": {
+        "n_files": 164,
+        "mean_churn": 4.61,
+        "median_churn": 4.0,
+        "max_churn": 16,
+        "churn_gini": 0.1636,
+        "hotspot_ratio": 0.0366,
+        "module_churn_cv": 2.2401,
+        "top_hotspots": [
+          "glances/__init__.py",
+          "glances/plugins/smart/__init__.py",
+          "glances/outputs/glances_restful_api.py",
+          "glances/plugins/processlist/__init__.py",
+          "glances/processes.py"
+        ]
+      }
+    },
+    {
+      "name": "sqlalchemy",
+      "agq": 0.834801290905064,
+      "churn": {
+        "n_files": 326,
+        "mean_churn": 5.89,
+        "median_churn": 5.0,
+        "max_churn": 22,
+        "churn_gini": 0.1887,
+        "hotspot_ratio": 0.0337,
+        "module_churn_cv": 1.9253,
+        "top_hotspots": [
+          "lib/sqlalchemy/dialects/postgresql/base.py",
+          "lib/sqlalchemy/sql/selectable.py",
+          "noxfile.py",
+          "lib/sqlalchemy/sql/compiler.py",
+          "lib/sqlalchemy/sql/functions.py"
+        ]
+      }
+    },
+    {
+      "name": "django-rest-framework",
+      "agq": 0.8176050542353762,
+      "churn": {
+        "n_files": 76,
+        "mean_churn": 1.434,
+        "median_churn": 1.0,
+        "max_churn": 6,
+        "churn_gini": 0.2502,
+        "hotspot_ratio": 0.1316,
+        "module_churn_cv": 1.3559,
+        "top_hotspots": [
+          "rest_framework/serializers.py",
+          "rest_framework/fields.py",
+          "rest_framework/__init__.py",
+          "rest_framework/settings.py",
+          "rest_framework/decorators.py"
+        ]
+      }
+    },
+    {
+      "name": "boto3",
+      "agq": 0.8549029423063282,
+      "churn": {
+        "n_files": 41,
+        "mean_churn": 7.976,
+        "median_churn": 2,
+        "max_churn": 106,
+        "churn_gini": 0.6825,
+        "hotspot_ratio": 0.0488,
+        "module_churn_cv": 0.813,
+        "top_hotspots": [
+          "setup.py",
+          "boto3/__init__.py",
+          "boto3/s3/transfer.py",
+          "boto3/crt.py",
+          "boto3/exceptions.py"
+        ]
+      }
+    },
+    {
+      "name": "paramiko",
+      "agq": 0.8062354410002882,
+      "churn": {
+        "n_files": 18,
+        "mean_churn": 1.944,
+        "median_churn": 1.0,
+        "max_churn": 6,
+        "churn_gini": 0.3635,
+        "hotspot_ratio": 0.1111,
+        "module_churn_cv": 1.704,
+        "top_hotspots": [
+          "paramiko/transport.py",
+          "paramiko/_version.py",
+          "paramiko/pkey.py",
+          "paramiko/packet.py",
+          "paramiko/ssh_gss.py"
+        ]
+      }
+    },
+    {
+      "name": "fabric",
+      "agq": 0.7543040505319244,
+      "churn": null,
+      "error": "no_data"
+    },
+    {
+      "name": "sphinx",
+      "agq": 0.8306063622864066,
+      "churn": {
+        "n_files": 257,
+        "mean_churn": 1.685,
+        "median_churn": 1,
+        "max_churn": 22,
+        "churn_gini": 0.305,
+        "hotspot_ratio": 0.0389,
+        "module_churn_cv": 1.3211,
+        "top_hotspots": [
+          "sphinx/__init__.py",
+          "sphinx/writers/latex.py",
+          "sphinx/builders/html/__init__.py",
+          "sphinx/util/docutils.py",
+          "sphinx/transforms/i18n.py"
+        ]
+      }
+    },
+    {
+      "name": "black",
+      "agq": 0.7833531043781864,
+      "churn": {
+        "n_files": 61,
+        "mean_churn": 2.623,
+        "median_churn": 2,
+        "max_churn": 11,
+        "churn_gini": 0.4049,
+        "hotspot_ratio": 0.0984,
+        "module_churn_cv": 1.6161,
+        "top_hotspots": [
+          "src/black/linegen.py",
+          "src/black/comments.py",
+          "src/black/__init__.py",
+          "src/black/lines.py",
+          "src/black/mode.py"
+        ]
+      }
+    },
+    {
+      "name": "mypy",
+      "agq": 0.8072311551961424,
+      "churn": {
+        "n_files": 348,
+        "mean_churn": 1.563,
+        "median_churn": 1.0,
+        "max_churn": 23,
+        "churn_gini": 0.3244,
+        "hotspot_ratio": 0.0603,
+        "module_churn_cv": 1.4787,
+        "top_hotspots": [
+          "mypy/build.py",
+          "mypy/checker.py",
+          "mypy/nodes.py",
+          "mypy/semanal.py",
+          "mypy/checkpattern.py"
+        ]
+      }
+    },
+    {
+      "name": "ruff",
+      "agq": null,
+      "churn": {
+        "n_files": 937,
+        "mean_churn": 1.015,
+        "median_churn": 1,
+        "max_churn": 5,
+        "churn_gini": 0.0146,
+        "hotspot_ratio": 0.0021,
+        "module_churn_cv": 1.3072,
+        "top_hotspots": [
+          "scripts/conformance.py",
+          "python/ruff-ecosystem/ruff_ecosystem/check.py",
+          "crates/ruff_python_parser/resources/inline/ok/from_import_soft_keyword_module_name.py",
+          "crates/ruff_python_parser/resources/inline/ok/import_as_name_soft_keyword.py",
+          "scripts/check_ecosystem.py"
+        ]
+      }
+    },
+    {
+      "name": "poetry",
+      "agq": 0.8063251668660556,
+      "churn": {
+        "n_files": 191,
+        "mean_churn": 1.586,
+        "median_churn": 1,
+        "max_churn": 7,
+        "churn_gini": 0.2705,
+        "hotspot_ratio": 0.0524,
+        "module_churn_cv": 0.0,
+        "top_hotspots": [
+          "src/poetry/packages/locker.py",
+          "src/poetry/repositories/http_repository.py",
+          "src/poetry/vcs/git/backend.py",
+          "src/poetry/console/commands/remove.py",
+          "src/poetry/installation/installer.py"
+        ]
+      }
+    },
+    {
+      "name": "pillow",
+      "agq": 0.8430138465089946,
+      "churn": {
+        "n_files": 148,
+        "mean_churn": 28.074,
+        "median_churn": 27.0,
+        "max_churn": 120,
+        "churn_gini": 0.2602,
+        "hotspot_ratio": 0.0338,
+        "module_churn_cv": 2.2313,
+        "top_hotspots": [
+          "src/PIL/Image.py",
+          "winbuild/build_prepare.py",
+          "src/PIL/TiffImagePlugin.py",
+          "src/PIL/ImageFile.py",
+          "setup.py"
+        ]
+      }
+    },
+    {
+      "name": "scikit-learn",
+      "agq": 0.7795744958519673,
+      "churn": {
+        "n_files": 682,
+        "mean_churn": 1.144,
+        "median_churn": 1.0,
+        "max_churn": 5,
+        "churn_gini": 0.1166,
+        "hotspot_ratio": 0.0279,
+        "module_churn_cv": 1.6168,
+        "top_hotspots": [
+          "sklearn/metrics/_classification.py",
+          "sklearn/inspection/_plot/decision_boundary.py",
+          "build_tools/update_environments_and_lock_files.py",
+          "sklearn/_loss/loss.py",
+          "sklearn/linear_model/_base.py"
+        ]
+      }
+    },
+    {
+      "name": "pandas",
+      "agq": 0.7010489919017995,
+      "churn": {
+        "n_files": 375,
+        "mean_churn": 1.405,
+        "median_churn": 1,
+        "max_churn": 9,
+        "churn_gini": 0.2476,
+        "hotspot_ratio": 0.0933,
+        "module_churn_cv": 2.0073,
+        "top_hotspots": [
+          "pandas/core/frame.py",
+          "pandas/core/generic.py",
+          "pandas/core/arrays/period.py",
+          "pandas/core/series.py",
+          "pandas/core/arrays/arrow/array.py"
+        ]
+      }
+    },
+    {
+      "name": "numpy",
+      "agq": 0.8042339292288769,
+      "churn": {
+        "n_files": 323,
+        "mean_churn": 8.916,
+        "median_churn": 9,
+        "max_churn": 24,
+        "churn_gini": 0.0995,
+        "hotspot_ratio": 0.0155,
+        "module_churn_cv": 1.7744,
+        "top_hotspots": [
+          "numpy/lib/_function_base_impl.py",
+          "numpy/ma/core.py",
+          "benchmarks/benchmarks/bench_lib.py",
+          "numpy/testing/_private/utils.py",
+          "numpy/_core/numeric.py"
+        ]
+      }
+    },
+    {
+      "name": "matplotlib",
+      "agq": 0.8080589047047221,
+      "churn": {
+        "n_files": 827,
+        "mean_churn": 9.932,
+        "median_churn": 8,
+        "max_churn": 162,
+        "churn_gini": 0.2634,
+        "hotspot_ratio": 0.0532,
+        "module_churn_cv": 1.5572,
+        "top_hotspots": [
+          "lib/matplotlib/axes/_axes.py",
+          "lib/matplotlib/pyplot.py",
+          "lib/matplotlib/axes/_base.py",
+          "lib/mpl_toolkits/mplot3d/axes3d.py",
+          "lib/matplotlib/backend_bases.py"
+        ]
+      }
+    },
+    {
+      "name": "sympy",
+      "agq": 0.7869849550466439,
+      "churn": {
+        "n_files": 944,
+        "mean_churn": 20.965,
+        "median_churn": 19.0,
+        "max_churn": 121,
+        "churn_gini": 0.1506,
+        "hotspot_ratio": 0.0244,
+        "module_churn_cv": 2.6456,
+        "top_hotspots": [
+          "sympy/physics/control/lti.py",
+          "sympy/polys/polytools.py",
+          "sympy/polys/rings.py",
+          "sympy/physics/continuum_mechanics/beam.py",
+          "sympy/assumptions/handlers/sets.py"
+        ]
+      }
+    },
+    {
+      "name": "networkx",
+      "agq": 0.7151374315498107,
+      "churn": {
+        "n_files": 388,
+        "mean_churn": 1.289,
+        "median_churn": 1.0,
+        "max_churn": 5,
+        "churn_gini": 0.1907,
+        "hotspot_ratio": 0.0619,
+        "module_churn_cv": 1.4831,
+        "top_hotspots": [
+          "networkx/classes/graph.py",
+          "networkx/__init__.py",
+          "networkx/algorithms/walks.py",
+          "networkx/algorithms/traversal/breadth_first_search.py",
+          "networkx/algorithms/isomorphism/isomorph.py"
+        ]
+      }
+    },
+    {
+      "name": "dask",
+      "agq": 0.8460929047466563,
+      "churn": {
+        "n_files": 189,
+        "mean_churn": 2.328,
+        "median_churn": 2,
+        "max_churn": 15,
+        "churn_gini": 0.3578,
+        "hotspot_ratio": 0.0899,
+        "module_churn_cv": 1.6901,
+        "top_hotspots": [
+          "dask/array/core.py",
+          "dask/dataframe/dask_expr/_collection.py",
+          "dask/base.py",
+          "dask/array/__init__.py",
+          "dask/dataframe/utils.py"
+        ]
+      }
+    },
+    {
+      "name": "luigi",
+      "agq": 0.7988462049831226,
+      "churn": {
+        "n_files": 119,
+        "mean_churn": 1.739,
+        "median_churn": 1,
+        "max_churn": 14,
+        "churn_gini": 0.3445,
+        "hotspot_ratio": 0.084,
+        "module_churn_cv": 1.434,
+        "top_hotspots": [
+          "luigi/parameter.py",
+          "luigi/mypy.py",
+          "luigi/__version__.py",
+          "luigi/task.py",
+          "doc/conf.py"
+        ]
+      }
+    },
+    {
+      "name": "prefect",
+      "agq": 0.8715398718626667,
+      "churn": {
+        "n_files": 1040,
+        "mean_churn": 1.151,
+        "median_churn": 1.0,
+        "max_churn": 13,
+        "churn_gini": 0.1214,
+        "hotspot_ratio": 0.026,
+        "module_churn_cv": 2.6987,
+        "top_hotspots": [
+          "src/integrations/prefect-dbt/prefect_dbt/core/_orchestrator.py",
+          "src/prefect/cli/work_pool.py",
+          "src/prefect/cli/task_run.py",
+          "src/prefect/task_runners.py",
+          "src/integrations/prefect-dbt/prefect_dbt/core/_executor.py"
+        ]
+      }
+    },
+    {
+      "name": "dramatiq",
+      "agq": 0.7937618614442234,
+      "churn": {
+        "n_files": 81,
+        "mean_churn": 4.148,
+        "median_churn": 3,
+        "max_churn": 15,
+        "churn_gini": 0.4098,
+        "hotspot_ratio": 0.0988,
+        "module_churn_cv": 1.7953,
+        "top_hotspots": [
+          "dramatiq/cli.py",
+          "dramatiq/brokers/rabbitmq.py",
+          "dramatiq/worker.py",
+          "setup.py",
+          "dramatiq/broker.py"
+        ]
+      }
+    },
+    {
+      "name": "huey",
+      "agq": 0.8120636811142503,
+      "churn": {
+        "n_files": 15,
+        "mean_churn": 2.667,
+        "median_churn": 2,
+        "max_churn": 6,
+        "churn_gini": 0.39,
+        "hotspot_ratio": 0.2,
+        "module_churn_cv": 1.0542,
+        "top_hotspots": [
+          "setup.py",
+          "huey/__init__.py",
+          "huey/api.py",
+          "huey/storage.py",
+          "huey/contrib/valkey_glide.py"
+        ]
+      }
+    },
+    {
+      "name": "gunicorn",
+      "agq": 0.8437026382516449,
+      "churn": {
+        "n_files": 140,
+        "mean_churn": 2.743,
+        "median_churn": 2.0,
+        "max_churn": 22,
+        "churn_gini": 0.3984,
+        "hotspot_ratio": 0.0857,
+        "module_churn_cv": 1.266,
+        "top_hotspots": [
+          "gunicorn/config.py",
+          "gunicorn/dirty/arbiter.py",
+          "gunicorn/arbiter.py",
+          "gunicorn/asgi/protocol.py",
+          "gunicorn/workers/gthread.py"
+        ]
+      }
+    },
+    {
+      "name": "uvicorn",
+      "agq": 0.8145253156631607,
+      "churn": {
+        "n_files": 41,
+        "mean_churn": 3.22,
+        "median_churn": 2,
+        "max_churn": 14,
+        "churn_gini": 0.4353,
+        "hotspot_ratio": 0.122,
+        "module_churn_cv": 0.9545,
+        "top_hotspots": [
+          "uvicorn/config.py",
+          "uvicorn/__init__.py",
+          "uvicorn/main.py",
+          "uvicorn/server.py",
+          "uvicorn/protocols/websockets/websockets_impl.py"
+        ]
+      }
+    },
+    {
+      "name": "werkzeug",
+      "agq": 0.7381957661104563,
+      "churn": {
+        "n_files": 106,
+        "mean_churn": 2.981,
+        "median_churn": 1.0,
+        "max_churn": 11,
+        "churn_gini": 0.4798,
+        "hotspot_ratio": 0.1887,
+        "module_churn_cv": 1.027,
+        "top_hotspots": [
+          "src/werkzeug/routing/rules.py",
+          "src/werkzeug/serving.py",
+          "src/werkzeug/test.py",
+          "src/werkzeug/datastructures/structures.py",
+          "src/werkzeug/utils.py"
+        ]
+      }
+    },
+    {
+      "name": "jinja",
+      "agq": 0.7943574369904265,
+      "churn": {
+        "n_files": 29,
+        "mean_churn": 4.69,
+        "median_churn": 5,
+        "max_churn": 11,
+        "churn_gini": 0.4037,
+        "hotspot_ratio": 0.1379,
+        "module_churn_cv": 1.8359,
+        "top_hotspots": [
+          "src/jinja2/compiler.py",
+          "src/jinja2/filters.py",
+          "src/jinja2/environment.py",
+          "src/jinja2/loaders.py",
+          "src/jinja2/__init__.py"
+        ]
+      }
+    },
+    {
+      "name": "mako",
+      "agq": 0.8546054010833284,
+      "churn": {
+        "n_files": 25,
+        "mean_churn": 2.16,
+        "median_churn": 1,
+        "max_churn": 9,
+        "churn_gini": 0.4311,
+        "hotspot_ratio": 0.12,
+        "module_churn_cv": 0.7037,
+        "top_hotspots": [
+          "mako/__init__.py",
+          "doc/build/conf.py",
+          "mako/pyparser.py",
+          "mako/parsetree.py",
+          "mako/codegen.py"
+        ]
+      }
+    },
+    {
+      "name": "pyjwt",
+      "agq": 0.736625164316063,
+      "churn": {
+        "n_files": 13,
+        "mean_churn": 5.615,
+        "median_churn": 5,
+        "max_churn": 15,
+        "churn_gini": 0.3562,
+        "hotspot_ratio": 0.0769,
+        "module_churn_cv": 0.9178,
+        "top_hotspots": [
+          "jwt/api_jwt.py",
+          "jwt/algorithms.py",
+          "jwt/jwks_client.py",
+          "jwt/types.py",
+          "jwt/__init__.py"
+        ]
+      }
+    },
+    {
+      "name": "cryptography",
+      "agq": 0.8422271669263286,
+      "churn": {
+        "n_files": 124,
+        "mean_churn": 1.065,
+        "median_churn": 1.0,
+        "max_churn": 5,
+        "churn_gini": 0.0589,
+        "hotspot_ratio": 0.0081,
+        "module_churn_cv": 1.7845,
+        "top_hotspots": [
+          "src/cryptography/hazmat/primitives/_serialization.py",
+          "src/cryptography/hazmat/primitives/asymmetric/ec.py",
+          "src/cryptography/hazmat/primitives/hpke.py",
+          "src/_cffi_src/openssl/ssl.py",
+          "src/cryptography/hazmat/bindings/openssl/_conditional.py"
+        ]
+      }
+    },
+    {
+      "name": "itsdangerous",
+      "agq": 0.7040309679815835,
+      "churn": {
+        "n_files": 9,
+        "mean_churn": 2.889,
+        "median_churn": 2,
+        "max_churn": 7,
+        "churn_gini": 0.3333,
+        "hotspot_ratio": 0.1111,
+        "module_churn_cv": 0.7692,
+        "top_hotspots": [
+          "src/itsdangerous/timed.py",
+          "src/itsdangerous/serializer.py",
+          "docs/conf.py",
+          "src/itsdangerous/_json.py",
+          "src/itsdangerous/__init__.py"
+        ]
+      }
+    },
+    {
+      "name": "httpie",
+      "agq": 0.8023836778410476,
+      "churn": {
+        "n_files": 4,
+        "mean_churn": 1.75,
+        "median_churn": 1.5,
+        "max_churn": 3,
+        "churn_gini": 0.25,
+        "hotspot_ratio": 0.0,
+        "module_churn_cv": 0.7143,
+        "top_hotspots": [
+          "httpie/ssl_.py",
+          "httpie/__init__.py",
+          "httpie/compat.py",
+          "setup.py"
+        ]
+      }
+    },
+    {
+      "name": "dulwich",
+      "agq": 0.7520172798273785,
+      "churn": {
+        "n_files": 107,
+        "mean_churn": 6.467,
+        "median_churn": 5,
+        "max_churn": 30,
+        "churn_gini": 0.4026,
+        "hotspot_ratio": 0.1121,
+        "module_churn_cv": 2.0316,
+        "top_hotspots": [
+          "dulwich/porcelain/__init__.py",
+          "dulwich/cli.py",
+          "dulwich/object_store.py",
+          "dulwich/client.py",
+          "dulwich/pack.py"
+        ]
+      }
+    },
+    {
+      "name": "pygments",
+      "agq": 0.8539738156275009,
+      "churn": {
+        "n_files": 357,
+        "mean_churn": 9.501,
+        "median_churn": 9,
+        "max_churn": 30,
+        "churn_gini": 0.07,
+        "hotspot_ratio": 0.0028,
+        "module_churn_cv": 1.6231,
+        "top_hotspots": [
+          "pygments/lexers/_mapping.py",
+          "pygments/lexers/scripting.py",
+          "pygments/lexers/python.py",
+          "pygments/lexers/sql.py",
+          "pygments/lexers/rell.py"
+        ]
+      }
+    },
+    {
+      "name": "beautifulsoup4",
+      "agq": 0.7924499725877192,
+      "churn": null,
+      "error": "no_data"
+    },
+    {
+      "name": "lxml",
+      "agq": null,
+      "churn": {
+        "n_files": 50,
+        "mean_churn": 2.58,
+        "median_churn": 2.0,
+        "max_churn": 12,
+        "churn_gini": 0.2002,
+        "hotspot_ratio": 0.06,
+        "module_churn_cv": 1.3024,
+        "top_hotspots": [
+          "buildlibxml.py",
+          "setup.py",
+          "setupinfo.py",
+          "src/lxml/__init__.py",
+          "tools/pypistats.py"
+        ]
+      }
+    },
+    {
+      "name": "tox",
+      "agq": 0.7841352090834358,
+      "churn": {
+        "n_files": 126,
+        "mean_churn": 1.992,
+        "median_churn": 1.0,
+        "max_churn": 8,
+        "churn_gini": 0.3555,
+        "hotspot_ratio": 0.1349,
+        "module_churn_cv": 1.3636,
+        "top_hotspots": [
+          "src/tox/tox_env/python/api.py",
+          "src/tox/config/loader/ini/factor.py",
+          "src/tox/tox_env/python/virtual_env/package/pyproject.py",
+          "src/tox/config/loader/toml/_replace.py",
+          "src/tox/session/cmd/run/common.py"
+        ]
+      }
+    },
+    {
+      "name": "nox",
+      "agq": 0.7776180693853127,
+      "churn": {
+        "n_files": 24,
+        "mean_churn": 5.917,
+        "median_churn": 5.0,
+        "max_churn": 15,
+        "churn_gini": 0.3991,
+        "hotspot_ratio": 0.1667,
+        "module_churn_cv": 1.4612,
+        "top_hotspots": [
+          "nox/virtualenv.py",
+          "noxfile.py",
+          "nox/sessions.py",
+          "nox/tasks.py",
+          "nox/_options.py"
+        ]
+      }
+    },
+    {
+      "name": "hypothesis",
+      "agq": 0.8512815475213082,
+      "churn": {
+        "n_files": 137,
+        "mean_churn": 14.204,
+        "median_churn": 10,
+        "max_churn": 125,
+        "churn_gini": 0.3745,
+        "hotspot_ratio": 0.0949,
+        "module_churn_cv": 1.4947,
+        "top_hotspots": [
+          "hypothesis-python/src/hypothesis/version.py",
+          "hypothesis-python/src/hypothesis/core.py",
+          "tooling/src/hypothesistooling/__main__.py",
+          "hypothesis-python/src/hypothesis/strategies/_internal/core.py",
+          "hypothesis-python/src/hypothesis/internal/conjecture/engine.py"
+        ]
+      }
+    },
+    {
+      "name": "responses",
+      "agq": 0.7445545401609228,
+      "churn": {
+        "n_files": 4,
+        "mean_churn": 7.75,
+        "median_churn": 7.5,
+        "max_churn": 13,
+        "churn_gini": 0.2984,
+        "hotspot_ratio": 0.0,
+        "module_churn_cv": 0.2903,
+        "top_hotspots": [
+          "responses/__init__.py",
+          "setup.py",
+          "responses/_recorder.py",
+          "responses/matchers.py"
+        ]
+      }
+    },
+    {
+      "name": "sentry-sdk",
+      "agq": 0.8025511903389118,
+      "churn": {
+        "n_files": 202,
+        "mean_churn": 1.465,
+        "median_churn": 1.0,
+        "max_churn": 9,
+        "churn_gini": 0.2784,
+        "hotspot_ratio": 0.0842,
+        "module_churn_cv": 1.8237,
+        "top_hotspots": [
+          "sentry_sdk/integrations/openai.py",
+          "sentry_sdk/integrations/openai_agents/__init__.py",
+          "sentry_sdk/traces.py",
+          "sentry_sdk/consts.py",
+          "sentry_sdk/integrations/openai_agents/patches/__init__.py"
+        ]
+      }
+    },
+    {
+      "name": "kombu",
+      "agq": 0.7560754561444606,
+      "churn": {
+        "n_files": 119,
+        "mean_churn": 1.395,
+        "median_churn": 1,
+        "max_churn": 9,
+        "churn_gini": 0.2576,
+        "hotspot_ratio": 0.0672,
+        "module_churn_cv": 1.6269,
+        "top_hotspots": [
+          "kombu/__init__.py",
+          "kombu/transport/redis.py",
+          "kombu/transport/SQS.py",
+          "kombu/common.py",
+          "kombu/utils/compat.py"
+        ]
+      }
+    },
+    {
+      "name": "peewee",
+      "agq": 0.8397312151975969,
+      "churn": {
+        "n_files": 43,
+        "mean_churn": 2.279,
+        "median_churn": 1,
+        "max_churn": 13,
+        "churn_gini": 0.4409,
+        "hotspot_ratio": 0.1163,
+        "module_churn_cv": 1.489,
+        "top_hotspots": [
+          "peewee.py",
+          "playhouse/postgres_ext.py",
+          "playhouse/sqlite_ext.py",
+          "docs/conf.py",
+          "playhouse/cysqlite_ext.py"
+        ]
+      }
+    },
+    {
+      "name": "alembic",
+      "agq": 0.7502197965819597,
+      "churn": {
+        "n_files": 76,
+        "mean_churn": 2.934,
+        "median_churn": 2.0,
+        "max_churn": 15,
+        "churn_gini": 0.458,
+        "hotspot_ratio": 0.1447,
+        "module_churn_cv": 1.7139,
+        "top_hotspots": [
+          "alembic/__init__.py",
+          "docs/build/conf.py",
+          "noxfile.py",
+          "alembic/operations/base.py",
+          "tools/toxnox.py"
+        ]
+      }
+    },
+    {
+      "name": "textual",
+      "agq": 0.8508013212069236,
+      "churn": {
+        "n_files": 576,
+        "mean_churn": 4.894,
+        "median_churn": 3.0,
+        "max_churn": 104,
+        "churn_gini": 0.3729,
+        "hotspot_ratio": 0.0729,
+        "module_churn_cv": 1.0654,
+        "top_hotspots": [
+          "src/textual/widget.py",
+          "src/textual/app.py",
+          "src/textual/widgets/_markdown.py",
+          "src/textual/content.py",
+          "src/textual/dom.py"
+        ]
+      }
+    },
+    {
+      "name": "yt-dlp",
+      "agq": 0.8818095509889592,
+      "churn": {
+        "n_files": 1156,
+        "mean_churn": 1.105,
+        "median_churn": 1.0,
+        "max_churn": 14,
+        "churn_gini": 0.0912,
+        "hotspot_ratio": 0.0208,
+        "module_churn_cv": 1.3679,
+        "top_hotspots": [
+          "yt_dlp/extractor/_extractors.py",
+          "yt_dlp/extractor/youtube/_video.py",
+          "yt_dlp/version.py",
+          "yt_dlp/extractor/youtube/_base.py",
+          "yt_dlp/extractor/xhamster.py"
+        ]
+      }
+    },
+    {
+      "name": "supervisor",
+      "agq": 0.8028523030690928,
+      "churn": {
+        "n_files": 11,
+        "mean_churn": 1.909,
+        "median_churn": 1,
+        "max_churn": 7,
+        "churn_gini": 0.381,
+        "hotspot_ratio": 0.0909,
+        "module_churn_cv": 0.3333,
+        "top_hotspots": [
+          "setup.py",
+          "supervisor/options.py",
+          "supervisor/supervisord.py",
+          "supervisor/scripts/loop_eventgen.py",
+          "supervisor/scripts/loop_listener.py"
+        ]
+      }
+    },
+    {
+      "name": "locust",
+      "agq": 0.8019298537990691,
+      "churn": {
+        "n_files": 107,
+        "mean_churn": 2.262,
+        "median_churn": 1,
+        "max_churn": 15,
+        "churn_gini": 0.4543,
+        "hotspot_ratio": 0.1028,
+        "module_churn_cv": 1.5126,
+        "top_hotspots": [
+          "locust/argument_parser.py",
+          "locust/main.py",
+          "locust/runners.py",
+          "locust/contrib/fasthttp.py",
+          "locust/clients.py"
+        ]
+      }
+    },
+    {
+      "name": "whoosh",
+      "agq": 0.8600964897968963,
+      "churn": null,
+      "error": "no_data"
+    },
+    {
+      "name": "bottle",
+      "agq": 0.7900572681366208,
+      "churn": {
+        "n_files": 3,
+        "mean_churn": 16,
+        "median_churn": 1,
+        "max_churn": 46,
+        "churn_gini": 0.625,
+        "hotspot_ratio": 0.3333,
+        "module_churn_cv": 1.3258,
+        "top_hotspots": [
+          "bottle.py",
+          "setup.py",
+          "docs/conf.py"
+        ]
+      }
+    },
+    {
+      "name": "falcon",
+      "agq": 0.836913418536021,
+      "churn": {
+        "n_files": 160,
+        "mean_churn": 2.15,
+        "median_churn": 1.0,
+        "max_churn": 12,
+        "churn_gini": 0.3878,
+        "hotspot_ratio": 0.075,
+        "module_churn_cv": 1.5518,
+        "top_hotspots": [
+          "falcon/asgi/app.py",
+          "falcon/version.py",
+          "falcon/request.py",
+          "falcon/app.py",
+          "falcon/_typing.py"
+        ]
+      }
+    }
+  ]
+}

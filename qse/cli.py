@@ -1,52 +1,110 @@
-"""QSE command-line interface."""
+"""QSE command-line interface.
+
+Commands:
+    qse agq       — AGQ gate (architecture graph quality)
+    qse discover  — auto-discover architectural boundaries
+"""
 
 import argparse
 import json
+import re
 import sys
-
-import numpy as np
-
-from qse.presets.ddd.config import QSEConfig
-from qse.presets.ddd.pipeline import analyze_repo
-from qse.presets.ddd.report import format_json, format_table
-from qse.trl4_gate import TRL4Rules, run_trl4_gate
-
-DEFECT_TYPES = ["anemic_entity", "fat_service", "zombie_entity", "layer_violation"]
+from fnmatch import translate as fnmatch_translate
+from typing import List, Optional, Sequence, Tuple
 
 
-def _build_config(args) -> QSEConfig:
-    config = QSEConfig.from_file(args.config) if args.config else QSEConfig()
-    if args.no_trace:
-        config.enable_trace = False
-    if hasattr(args, "weights") and args.weights:
-        vals = [float(x) for x in args.weights.split(",")]
-        if len(vals) != 5:
-            print("Error: --weights requires exactly 5 values", file=sys.stderr)
-            sys.exit(1)
-        config.weights = np.array(vals)
-    return config
+# ---------------------------------------------------------------------------
+# Constraint checking (formerly in trl4_gate.py)
+# ---------------------------------------------------------------------------
 
+def _root_prefix(pattern: str) -> Optional[str]:
+    """Return first path segment if no wildcard is present there."""
+    clean = pattern.strip("/")
+    if not clean:
+        return None
+    first = clean.split("/", 1)[0]
+    if any(ch in first for ch in "*?[]"):
+        return None
+    return first
+
+
+def check_constraints_graph(graph, constraints: Sequence[dict]) -> List[dict]:
+    """Detect forbidden-edge violations on a module dependency graph."""
+    edge_rows = []
+    by_root: dict[str, list[Tuple[str, str, str, str]]] = {}
+    for src, tgt in graph.edges():
+        src_path = src.replace(".", "/")
+        tgt_path = tgt.replace(".", "/")
+        row = (src, tgt, src_path, tgt_path)
+        edge_rows.append(row)
+        root = src_path.split("/", 1)[0]
+        by_root.setdefault(root, []).append(row)
+
+    compiled = []
+    for rule in constraints:
+        if rule.get("type") != "forbidden":
+            continue
+        from_pat = rule["from"]
+        to_pat = rule["to"]
+        compiled.append(
+            (
+                rule,
+                re.compile(fnmatch_translate(from_pat)),
+                re.compile(fnmatch_translate(to_pat)),
+                _root_prefix(from_pat),
+            )
+        )
+
+    violations: List[dict] = []
+    for rule, from_re, to_re, root_prefix in compiled:
+        candidates = by_root.get(root_prefix, []) if root_prefix is not None else edge_rows
+        for src, tgt, src_path, tgt_path in candidates:
+            if from_re.fullmatch(src_path) and to_re.fullmatch(tgt_path):
+                violations.append({"rule": rule, "source": src, "target": tgt})
+    return violations
+
+
+def compute_constraint_score(graph, violations: Sequence[dict]) -> float:
+    total_edges = graph.number_of_edges()
+    if total_edges == 0:
+        return 1.0
+    return max(0.0, 1.0 - (len(violations) / total_edges))
+
+
+# ---------------------------------------------------------------------------
+# Graph loading
+# ---------------------------------------------------------------------------
 
 def _load_graph_json(path: str):
-    """Load dependency graph from JSON.
-
-    Expected format:
-        {"nodes": ["mod_a", "mod_b", ...],
-         "edges": [["mod_a", "mod_b"], ...],
-         "abstract_modules": ["mod_b"],       // optional
-         "classes_lcom4": [1, 2, 1]}          // optional
-    """
+    """Load dependency graph from JSON file."""
     import networkx as nx
     with open(path) as f:
         data = json.load(f)
     G = nx.DiGraph()
     for node in data.get("nodes", []):
-        G.add_node(node)
+        if isinstance(node, dict):
+            G.add_node(node["id"], internal=node.get("internal", True))
+        else:
+            G.add_node(node)
     for src, tgt in data.get("edges", []):
         G.add_edge(src, tgt)
     abstract = set(data.get("abstract_modules", []))
     lcom4 = data.get("classes_lcom4", [])
     return G, abstract, lcom4
+
+
+def _scan_repo(path: str):
+    """Scan repository using Rust scanner. Returns (result_dict, AGQMetrics, agq_score)."""
+    from _qse_core import scan_and_compute_agq
+    from qse.graph_metrics import AGQMetrics
+    r = scan_and_compute_agq(path)
+    metrics = AGQMetrics(
+        modularity=r["modularity"],
+        acyclicity=r["acyclicity"],
+        stability=r["stability"],
+        cohesion=r["cohesion"],
+    )
+    return r, metrics, r["agq_score"]
 
 
 def _detect_repo_language(path: str) -> str:
@@ -64,236 +122,121 @@ def _detect_repo_language(path: str) -> str:
     return max(counts, key=counts.get) if any(counts.values()) else "py"
 
 
-def _run_agq(args) -> None:
-    """Execute the language-agnostic AGQ gate.
+def _enhanced_str(agq, metrics, nodes, lang_name):
+    """Compute enhanced metrics string (fingerprint, z-score, cycles)."""
+    try:
+        from qse.agq_enhanced import compute_agq_enhanced
+        enh = compute_agq_enhanced(
+            agq, metrics.modularity, metrics.acyclicity,
+            metrics.stability, metrics.cohesion, nodes, lang_name)
+        return (f"  [{enh.fingerprint}]"
+                f"  z={enh.agq_z:+.2f} ({enh.agq_percentile}%ile)"
+                f"  cycles={enh.cycle_severity['severity_level']}")
+    except Exception:
+        return ""
 
-    Auto-detects language: Python uses scanner.py, Java/Go use Rust qse-core.
-    """
+
+# ---------------------------------------------------------------------------
+# qse agq
+# ---------------------------------------------------------------------------
+
+def _run_agq(args) -> None:
+    """Execute the AGQ gate."""
     from qse.graph_metrics import compute_agq
 
     if args.graph:
         G, abstract, lcom4 = _load_graph_json(args.graph)
-        metrics = compute_agq(G, abstract_modules=set(abstract), classes_lcom4=lcom4)
-    else:
-        # Auto-detect language
-        lang = _detect_repo_language(args.path)
 
-        if lang in ("java", "go"):
-            # Use Rust scanner for Java/Go
-            try:
-                from _qse_core import scan_and_compute_agq
-                r = scan_and_compute_agq(args.path)
-                from qse.graph_metrics import AGQMetrics
-                metrics = AGQMetrics(
-                    modularity=r["modularity"],
-                    acyclicity=r["acyclicity"],
-                    stability=r["stability"],
-                    cohesion=r["cohesion"],
-                )
-                agq = r["agq_score"]
-
-                result = {
-                    "gate": "PASS",
-                    "agq_score": round(agq, 4),
-                    "threshold": args.threshold,
-                    "language": r["language"],
-                    "metrics": {k: round(r[k], 4) for k in
-                                ["modularity","acyclicity","stability","cohesion"]},
-                    "graph": {"nodes": r["nodes"], "edges": r["edges"]},
-                    "failures": [],
-                }
-                if agq < args.threshold:
-                    result["gate"] = "FAIL"
-                    result["failures"].append(
-                        f"agq_score={agq:.4f} below threshold {args.threshold:.2f}")
-
-                if args.output_json:
-                    with open(args.output_json, "w") as f:
-                        json.dump(result, f, indent=2)
-
-                if result["failures"]:
-                    print("AGQ GATE FAIL", file=sys.stderr)
-                    for fail in result["failures"]:
-                        print(f"  - {fail}", file=sys.stderr)
-                    sys.exit(1)
-
-                try:
-                    from qse.agq_enhanced import compute_agq_enhanced
-                    lang_map = {"Java": "Java", "Go": "Go", "Python": "Python"}
-                    enh = compute_agq_enhanced(
-                        agq, metrics.modularity, metrics.acyclicity,
-                        metrics.stability, metrics.cohesion,
-                        r["nodes"], lang_map.get(r["language"], "Python"))
-                    fp_str = f"  [{enh.fingerprint}]"
-                    z_str = f"  z={enh.agq_z:+.2f} ({enh.agq_percentile}%ile)"
-                    cyc_str = f"  cycles={enh.cycle_severity['severity_level']}"
-                except Exception:
-                    fp_str = z_str = cyc_str = ""
-
-                print(f"AGQ GATE PASS  agq={agq:.4f}  "
-                      f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
-                      f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}  "
-                      f"lang={r['language']}{fp_str}{z_str}{cyc_str}")
-                sys.exit(0)
-            except ImportError:
-                print(f"[warn] Rust qse-core not available, falling back to Python scanner",
+        weights = None
+        if args.agq_weights:
+            vals = [float(x) for x in args.agq_weights.split(",")]
+            if len(vals) != 4:
+                print("Error: --weights requires exactly 4 values (mod,acy,stab,coh)",
                       file=sys.stderr)
-
-        # Try Rust scanner for Python too — 7-46× faster
-        try:
-            from _qse_core import scan_and_compute_agq
-            r = scan_and_compute_agq(args.path)
-            from qse.graph_metrics import AGQMetrics
-            metrics = AGQMetrics(
-                modularity=r["modularity"], acyclicity=r["acyclicity"],
-                stability=r["stability"], cohesion=r["cohesion"],
-            )
-            agq = r["agq_score"]
-
-            result = {
-                "gate": "PASS" if agq >= args.threshold else "FAIL",
-                "agq_score": round(agq, 4), "threshold": args.threshold,
-                "language": r["language"],
-                "metrics": {k: round(r[k], 4) for k in
-                            ["modularity","acyclicity","stability","cohesion"]},
-                "graph": {"nodes": r["nodes"], "edges": r["edges"]},
-                "failures": ([] if agq >= args.threshold else
-                             [f"agq_score={agq:.4f} below threshold {args.threshold:.2f}"]),
-            }
-            if args.output_json:
-                with open(args.output_json, "w") as f:
-                    json.dump(result, f, indent=2)
-            if result["failures"]:
-                print("AGQ GATE FAIL", file=sys.stderr)
-                for fail in result["failures"]: print(f"  - {fail}", file=sys.stderr)
                 sys.exit(1)
+            total = sum(vals)
+            weights = tuple(v / total for v in vals)
 
-            try:
-                from qse.agq_enhanced import compute_agq_enhanced
-                lang_map = {"Java":"Java","Go":"Go","Python":"Python"}
-                enh = compute_agq_enhanced(
-                    agq, metrics.modularity, metrics.acyclicity,
-                    metrics.stability, metrics.cohesion,
-                    r["nodes"], lang_map.get(r["language"],"Python"))
-                fp_str = f"  [{enh.fingerprint}]"
-                z_str = f"  z={enh.agq_z:+.2f} ({enh.agq_percentile}%ile)"
-                cyc_str = f"  cycles={enh.cycle_severity['severity_level']}"
-            except Exception:
-                fp_str = z_str = cyc_str = ""
+        metrics = compute_agq(G, abstract_modules=set(abstract), classes_lcom4=lcom4,
+                              weights=weights or (0.25, 0.25, 0.25, 0.25))
+        agq = metrics.agq_score
 
-            print(f"AGQ GATE PASS  agq={agq:.4f}  "
-                  f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
-                  f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}  "
-                  f"lang={r['language']}{fp_str}{z_str}{cyc_str}")
-            sys.exit(0)
-        except ImportError:
-            pass  # Fall through to Python scanner
+        failures = []
+        if agq < args.threshold:
+            failures.append(f"agq_score={agq:.4f} below threshold {args.threshold:.2f}")
 
-        # Python scanner fallback (when Rust not installed)
-        from qse.scanner import scan_repo
-        from qse.graph_metrics import compute_lcom4 as _compute_lcom4
-        analysis = scan_repo(args.path)
-        G = analysis.graph
-        abstract = {c.name for c in analysis.classes.values() if c.is_abstract}
-        lcom4 = [
-            _compute_lcom4(c.method_attrs)
-            for c in analysis.classes.values()
-            if c.method_attrs
-        ]
+        # Constraint checking
+        constraint_score = None
+        if args.constraints:
+            with open(args.constraints) as f:
+                cd = json.load(f)
+            constraints = cd if isinstance(cd, list) else cd.get("constraints", [])
+            violations = check_constraints_graph(G, constraints)
+            constraint_score = compute_constraint_score(G, violations)
+            if constraint_score < args.min_constraint_score:
+                failures.append(
+                    f"constraint_score={constraint_score:.4f} below minimum {args.min_constraint_score:.2f}")
 
-    weights = None
-    if hasattr(args, "agq_weights") and args.agq_weights:
-        import numpy as np
-        vals = [float(x) for x in args.agq_weights.split(",")]
-        if len(vals) != 4:
-            print("Error: --weights requires exactly 4 values (mod,acy,stab,coh)",
-                  file=sys.stderr)
-            sys.exit(1)
-        total = sum(vals)
-        weights = tuple(v / total for v in vals)  # normalize to sum=1
+        result = {
+            "gate": "PASS" if not failures else "FAIL",
+            "agq_score": round(agq, 4),
+            "threshold": args.threshold,
+            "metrics": {k: round(getattr(metrics, k), 4)
+                        for k in ("modularity", "acyclicity", "stability", "cohesion")},
+            "graph": {"nodes": G.number_of_nodes(), "edges": G.number_of_edges()},
+            "failures": failures,
+        }
+        if constraint_score is not None:
+            result["constraint_score"] = round(constraint_score, 4)
 
-    metrics = compute_agq(G, abstract_modules=abstract, classes_lcom4=lcom4,
-                          weights=weights if weights else (0.25, 0.25, 0.25, 0.25))
-    agq = metrics.agq_score
+        if args.output_json:
+            with open(args.output_json, "w") as f:
+                json.dump(result, f, indent=2)
 
-    failures = []
-    if agq < args.threshold:
-        failures.append(f"agq_score={agq:.4f} below threshold {args.threshold:.2f}")
+        enh = _enhanced_str(agq, metrics, G.number_of_nodes(),
+                            _detect_repo_language(args.path) if args.path != "." else "Python")
+    else:
+        # Rust scanner
+        r, metrics, agq = _scan_repo(args.path)
 
-    # Constraint checking (policy-as-a-service)
-    constraint_score = None
-    constraint_violations = []
-    if args.constraints:
-        from qse.trl4_gate import check_constraints_graph, compute_constraint_score
-        with open(args.constraints) as f:
-            constraints_data = json.load(f)
-        constraints = (constraints_data if isinstance(constraints_data, list)
-                       else constraints_data.get("constraints", []))
-        constraint_violations = check_constraints_graph(G, constraints)
-        constraint_score = compute_constraint_score(G, constraint_violations)
-        min_cs = args.min_constraint_score
-        if constraint_score < min_cs:
-            failures.append(
-                f"constraint_score={constraint_score:.4f} below minimum {min_cs:.2f}"
-            )
+        failures = []
+        if agq < args.threshold:
+            failures.append(f"agq_score={agq:.4f} below threshold {args.threshold:.2f}")
 
-    result = {
-        "gate": "PASS" if not failures else "FAIL",
-        "agq_score": round(agq, 4),
-        "threshold": args.threshold,
-        "metrics": {
-            "modularity": round(metrics.modularity, 4),
-            "acyclicity": round(metrics.acyclicity, 4),
-            "stability": round(metrics.stability, 4),
-            "cohesion": round(metrics.cohesion, 4),
-        },
-        "graph": {
-            "nodes": G.number_of_nodes(),
-            "edges": G.number_of_edges(),
-        },
-        "failures": failures,
-    }
-    if constraint_score is not None:
-        result["constraint_score"] = round(constraint_score, 4)
-        result["constraint_violations"] = [
-            {"rule": v["rule"], "source": v["source"], "target": v["target"]}
-            for v in constraint_violations
-        ]
+        result = {
+            "gate": "PASS" if not failures else "FAIL",
+            "agq_score": round(agq, 4),
+            "threshold": args.threshold,
+            "language": r["language"],
+            "metrics": {k: round(r[k], 4)
+                        for k in ("modularity", "acyclicity", "stability", "cohesion")},
+            "graph": {"nodes": r["nodes"], "edges": r["edges"]},
+            "failures": failures,
+        }
+        if args.output_json:
+            with open(args.output_json, "w") as f:
+                json.dump(result, f, indent=2)
 
-    if args.output_json:
-        with open(args.output_json, "w") as f:
-            json.dump(result, f, indent=2)
+        lang_map = {"Java": "Java", "Go": "Go", "Python": "Python"}
+        enh = _enhanced_str(agq, metrics, r["nodes"],
+                            lang_map.get(r["language"], "Python"))
 
     if failures:
         print("AGQ GATE FAIL", file=sys.stderr)
-        for f in failures:
-            print(f"  - {f}", file=sys.stderr)
+        for fail in failures:
+            print(f"  - {fail}", file=sys.stderr)
         sys.exit(1)
 
-    # Enhanced metrics
-    try:
-        from qse.agq_enhanced import compute_agq_enhanced
-        detected_lang = _detect_repo_language(args.path)
-        lang_map = {"java": "Java", "go": "Go", "py": "Python"}
-        lang_name = lang_map.get(detected_lang, "Python")
-        enh = compute_agq_enhanced(agq, metrics.modularity, metrics.acyclicity,
-                                   metrics.stability, metrics.cohesion,
-                                   G.number_of_nodes(), lang_name)
-        fp_str = f"  [{enh.fingerprint}]"
-        z_str = f"  z={enh.agq_z:+.2f} ({enh.agq_percentile}%ile)"
-        cyc_str = f"  cycles={enh.cycle_severity['severity_level']}"
-    except Exception:
-        fp_str = z_str = cyc_str = ""
+    cs = f"  constraints={constraint_score:.2f}" if 'constraint_score' in dir() and constraint_score is not None else ""
+    print(f"AGQ GATE PASS  agq={agq:.4f}  "
+          f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
+          f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}"
+          f"{enh}{cs}")
 
-    parts = [f"AGQ GATE PASS  agq={agq:.4f}  "
-             f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
-             f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}"
-             f"{fp_str}{z_str}{cyc_str}"]
-    if constraint_score is not None:
-        parts.append(f"  constraints={constraint_score:.2f}")
-    print("".join(parts))
-    sys.exit(0)
 
+# ---------------------------------------------------------------------------
+# qse discover
+# ---------------------------------------------------------------------------
 
 def _run_discover(args) -> None:
     """Auto-discover architectural boundaries and propose constraints."""
@@ -302,13 +245,18 @@ def _run_discover(args) -> None:
     if args.graph:
         G, _, _ = _load_graph_json(args.graph)
     else:
-        from qse.scanner import scan_repo
-        analysis = scan_repo(args.path)
-        G = analysis.graph
+        import networkx as nx
+        from _qse_core import scan_to_graph_json
+        raw = scan_to_graph_json(args.path)
+        data = json.loads(raw)
+        G = nx.DiGraph()
+        for node in data["nodes"]:
+            G.add_node(node["id"], internal=node["internal"])
+        for src, tgt in data["edges"]:
+            G.add_edge(src, tgt)
 
     report = discover_policies(G, min_confidence=args.min_confidence)
 
-    # Console output
     print(f"Clusters found: {len(report.clusters)}")
     for c in report.clusters:
         print(f"  {c['label']} ({c['size']} modules)")
@@ -319,7 +267,6 @@ def _run_discover(args) -> None:
         print(f"  [{marker} {r.confidence:.0%}] forbidden: {r.from_pattern} -> {r.to_pattern}")
         print(f"         {r.rationale}")
 
-    # JSON outputs
     if args.output_json:
         with open(args.output_json, "w") as f:
             f.write(report.to_json())
@@ -334,6 +281,10 @@ def _run_discover(args) -> None:
         print(f"Use with: qse agq --constraints {args.output_constraints}")
 
 
+# ---------------------------------------------------------------------------
+# CLI entry point
+# ---------------------------------------------------------------------------
+
 def main():
     parser = argparse.ArgumentParser(
         prog="qse",
@@ -341,165 +292,45 @@ def main():
     )
     sub = parser.add_subparsers(dest="command")
 
-    # ── qse scan ──────────────────────────────────────────────────────────────
-    scan = sub.add_parser("scan", help="Analyze a repository and print report")
-    scan.add_argument("path", help="Path to the repository root")
-    scan.add_argument("--format", choices=["table", "json"], default="table")
-    scan.add_argument("--output-json", type=str, default=None, metavar="FILE")
-    scan.add_argument("--no-trace", action="store_true")
-    scan.add_argument("--weights", type=str, default=None)
-    scan.add_argument("--config", type=str, default=None)
-
-    # ── qse gate ──────────────────────────────────────────────────────────────
-    gate = sub.add_parser("gate", help="Run QSE and exit non-zero if gate fails")
-    gate.add_argument("path", help="Path to the repository root")
-    gate.add_argument("--threshold", type=float, default=0.80, metavar="N",
-                      help="Minimum QSE total score (default: 0.80)")
-    gate.add_argument("--fail-on-defects", type=str, default=None, metavar="LIST",
-                      help=f"Comma-separated defect types that must be zero. "
-                           f"Available: {', '.join(DEFECT_TYPES)}")
-    gate.add_argument("--output-json", type=str, default=None, metavar="FILE")
-    gate.add_argument("--no-trace", action="store_true")
-    gate.add_argument("--config", type=str, default=None)
-
-    # ── qse trl4 ──────────────────────────────────────────────────────────────
-    trl4 = sub.add_parser("trl4", help="Run TRL4 gate (QSE + constraints + ratchet)")
-    trl4.add_argument("path", help="Path to the repository root")
-    trl4.add_argument("--config", type=str, default=None, help="JSON config path")
-    trl4.add_argument("--output-json", type=str, default=None, metavar="FILE")
-    trl4.add_argument("--threshold", type=float, default=None,
-                      help="Override QSE threshold from config/default")
-    trl4.add_argument("--min-constraint-score", type=float, default=None,
-                      help="Override minimum constraints score from config/default")
-    trl4.add_argument("--ratchet", action="store_true", help="Force enable ratchet")
-    trl4.add_argument("--no-ratchet", action="store_true", help="Force disable ratchet")
-    trl4.add_argument("--baseline-file", type=str, default=None,
-                      help="Ratchet baseline JSON file path")
-    trl4.add_argument("--no-trace", action="store_true")
-
-    # ── qse agq ──────────────────────────────────────────────────────────────
-    agq = sub.add_parser("agq",
-                         help="Language-agnostic AGQ gate (graph metrics + optional constraints)")
+    # ── qse agq ──
+    agq = sub.add_parser("agq", help="AGQ gate (architecture graph quality)")
     agq.add_argument("path", nargs="?", default=".",
-                     help="Path to repo root (used for Python auto-scan if --graph not given)")
+                     help="Path to repo root")
     agq.add_argument("--graph", type=str, default=None, metavar="FILE",
-                     help="JSON dependency graph file (language-agnostic input)")
+                     help="JSON dependency graph file (skip auto-scan)")
     agq.add_argument("--threshold", type=float, default=0.70, metavar="N",
                      help="Minimum AGQ score (default: 0.70)")
     agq.add_argument("--constraints", type=str, default=None, metavar="FILE",
-                     help="JSON file with forbidden-edge constraints (policy-as-a-service)")
+                     help="JSON file with forbidden-edge constraints")
     agq.add_argument("--min-constraint-score", type=float, default=0.95, metavar="N",
                      help="Minimum constraint score (default: 0.95)")
     agq.add_argument("--output-json", type=str, default=None, metavar="FILE")
     agq.add_argument("--weights", dest="agq_weights", type=str, default=None,
                      metavar="W1,W2,W3,W4",
-                     help="Custom weights for mod,acy,stab,coh (auto-normalized, "
-                          "e.g. --weights 0,0.73,0.05,0.17 for churn-calibrated)")
+                     help="Custom weights mod,acy,stab,coh (e.g. 0,0.73,0.05,0.17)")
 
-    # ── qse discover ────────────────────────────────────────────────────────
+    # ── qse discover ──
     disc = sub.add_parser("discover",
                           help="Auto-discover architectural boundaries and propose constraints")
     disc.add_argument("path", nargs="?", default=".",
-                      help="Path to repo root (Python auto-scan if --graph not given)")
+                      help="Path to repo root")
     disc.add_argument("--graph", type=str, default=None, metavar="FILE",
-                      help="JSON dependency graph file (language-agnostic input)")
+                      help="JSON dependency graph file (skip auto-scan)")
     disc.add_argument("--min-confidence", type=float, default=0.5, metavar="N",
                       help="Minimum confidence for proposed rules (default: 0.5)")
-    disc.add_argument("--output-json", type=str, default=None, metavar="FILE",
-                      help="Write full discovery report to JSON file")
+    disc.add_argument("--output-json", type=str, default=None, metavar="FILE")
     disc.add_argument("--output-constraints", type=str, default=None, metavar="FILE",
-                      help="Write high-confidence constraints to JSON file (ready for --constraints)")
+                      help="Write high-confidence constraints to JSON (ready for --constraints)")
 
     args = parser.parse_args()
 
-    if args.command == "discover":
-        _run_discover(args)
-        return
-
     if args.command == "agq":
         _run_agq(args)
-        return
-
-    if args.command not in ("scan", "gate", "trl4"):
+    elif args.command == "discover":
+        _run_discover(args)
+    else:
         parser.print_help()
         sys.exit(1)
-
-    config = _build_config(args)
-    if args.command == "trl4":
-        rules = TRL4Rules.from_file(args.config) if args.config else TRL4Rules()
-        if args.threshold is not None:
-            rules.threshold = args.threshold
-        if args.min_constraint_score is not None:
-            rules.min_constraint_score = args.min_constraint_score
-        if args.ratchet:
-            rules.ratchet_enabled = True
-        if args.no_ratchet:
-            rules.ratchet_enabled = False
-        if args.baseline_file:
-            rules.ratchet_baseline_file = args.baseline_file
-
-        result = run_trl4_gate(args.path, rules=rules, qse_config=config)
-        payload = result.to_dict()
-
-        if args.output_json:
-            with open(args.output_json, "w") as f:
-                json.dump(payload, f, indent=2)
-
-        if result.passed:
-            print(f"TRL4 GATE PASS  qse_total={result.qse_total:.4f}  constraint_score={result.constraint_score:.4f}")
-            sys.exit(0)
-
-        print("TRL4 GATE FAIL", file=sys.stderr)
-        for failure in result.failures:
-            print(f"  - {failure}", file=sys.stderr)
-        sys.exit(1)
-
-    report = analyze_repo(args.path, config)
-
-    # ── scan ──────────────────────────────────────────────────────────────────
-    if args.command == "scan":
-        output = format_json(report) if args.format == "json" else format_table(report)
-        print(output)
-        if args.output_json:
-            with open(args.output_json, "w") as f:
-                f.write(format_json(report))
-        sys.exit(0)
-
-    # ── gate ──────────────────────────────────────────────────────────────────
-    failures = []
-    qse_total = report.qse_total
-
-    if qse_total < args.threshold:
-        failures.append(f"qse_total={qse_total:.4f} below threshold {args.threshold:.2f}")
-
-    if args.fail_on_defects:
-        for dtype in args.fail_on_defects.split(","):
-            dtype = dtype.strip()
-            count = len(report.defects.get(dtype, set()))
-            if count > 0:
-                files = sorted(report.defects[dtype])
-                failures.append(f"{dtype}: {count} instance(s) — {', '.join(files)}")
-
-    result = {
-        "gate":       "PASS" if not failures else "FAIL",
-        "qse_total":  round(qse_total, 4),
-        "threshold":  args.threshold,
-        "failures":   failures,
-        "report":     report.to_dict(),
-    }
-
-    if args.output_json:
-        with open(args.output_json, "w") as f:
-            json.dump(result, f, indent=2)
-
-    if failures:
-        print("QSE GATE FAIL", file=sys.stderr)
-        for f in failures:
-            print(f"  ✗ {f}", file=sys.stderr)
-        sys.exit(1)
-
-    print(f"QSE GATE PASS  qse_total={qse_total:.4f}")
-    sys.exit(0)
 
 
 if __name__ == "__main__":
