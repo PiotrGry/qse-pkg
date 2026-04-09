@@ -1,0 +1,218 @@
+[
+  {
+    "name": "home-assistant",
+    "url": "https://github.com/home-assistant/core.git",
+    "commit": "573d4eba0239b11fd514bdcdc6b3ecf2cdc536d5",
+    "language": "Python",
+    "nodes": 17595,
+    "bucket": "L"
+  },
+  {
+    "name": "airflow",
+    "url": "https://github.com/apache/airflow.git",
+    "commit": "741102eccf6ba2b5c8980f3f26191fcb3a74af9a",
+    "language": "Python",
+    "nodes": 8017,
+    "bucket": "L"
+  },
+  {
+    "name": "ruff",
+    "url": "https://github.com/astral-sh/ruff.git",
+    "commit": "962e0b7293e2352af5707a7c0a824eb49c5b9d20",
+    "language": "Python",
+    "nodes": 3604,
+    "bucket": "L"
+  },
+  {
+    "name": "sentry-sdk",
+    "url": "https://github.com/getsentry/sentry-python.git",
+    "commit": "48dc5661dcfde7a588392caea82f8da5be0ed335",
+    "language": "Python",
+    "nodes": 898,
+    "bucket": "M"
+  },
+  {
+    "name": "sqlalchemy",
+    "url": "https://github.com/sqlalchemy/sqlalchemy.git",
+    "commit": "912726f9965ee0e473a54ec1afa11d3b5ff5a9e8",
+    "language": "Python",
+    "nodes": 821,
+    "bucket": "M"
+  },
+  {
+    "name": "hypothesis",
+    "url": "https://github.com/HypothesisWorks/hypothesis.git",
+    "commit": "9fe714de9b90f425c2dd70c5d2a367bab3988f3d",
+    "language": "Python",
+    "nodes": 699,
+    "bucket": "M"
+  },
+  {
+    "name": "pydantic",
+    "url": "https://github.com/pydantic/pydantic.git",
+    "commit": "0e4be5e64777542a06eebbfa298e4e6e5884593e",
+    "language": "Python",
+    "nodes": 200,
+    "bucket": "S"
+  },
+  {
+    "name": "whoosh",
+    "url": "https://github.com/mchaput/whoosh.git",
+    "commit": "d9a3fa2a4905e7326c9623c89e6395713c189161",
+    "language": "Python",
+    "nodes": 200,
+    "bucket": "S"
+  },
+  {
+    "name": "tornado",
+    "url": "https://github.com/tornadoweb/tornado.git",
+    "commit": "6d326fa4757acd06be39c760c7d233591d8ab98c",
+    "language": "Python",
+    "nodes": 199,
+    "bucket": "S"
+  },
+  {
+    "name": "quarkus",
+    "url": "https://github.com/quarkusio/quarkus.git",
+    "commit": "860902f3d230fe191497cc6c336c18ca0491a7c3",
+    "language": "Java",
+    "nodes": 17596,
+    "bucket": "L"
+  },
+  {
+    "name": "hadoop",
+    "url": "https://github.com/apache/hadoop.git",
+    "commit": "33a5e7ab76c5e2d2ccc095d4e0a6e7efab4e57fb",
+    "language": "Java",
+    "nodes": 14961,
+    "bucket": "L"
+  },
+  {
+    "name": "hibernate-orm",
+    "url": "https://github.com/hibernate/hibernate-orm.git",
+    "commit": "d0770b91e5d7706e1857a255ba96e9eb46b82605",
+    "language": "Java",
+    "nodes": 10450,
+    "bucket": "L"
+  },
+  {
+    "name": "reactor-core",
+    "url": "https://github.com/reactor/reactor-core.git",
+    "commit": "2a22bcc1bb957f14df3d1cd0819d2b12b931efc2",
+    "language": "Java",
+    "nodes": 958,
+    "bucket": "M"
+  },
+  {
+    "name": "commons-math",
+    "url": "https://github.com/apache/commons-math.git",
+    "commit": "bef067cffbaaa712a9c1a0e3968e2314b3bcd77e",
+    "language": "Java",
+    "nodes": 909,
+    "bucket": "M"
+  },
+  {
+    "name": "mockito",
+    "url": "https://github.com/mockito/mockito.git",
+    "commit": "82998ff78a14b2111e07ba24c5a7fa731a5f0a82",
+    "language": "Java",
+    "nodes": 901,
+    "bucket": "M"
+  },
+  {
+    "name": "snakeyaml",
+    "url": "https://bitbucket.org/snakeyaml/snakeyaml.git",
+    "commit": "e6eb1b7274ea42aceb4194b56392ab42954e1120",
+    "language": "Java",
+    "nodes": 196,
+    "bucket": "S"
+  },
+  {
+    "name": "failsafe",
+    "url": "https://github.com/failsafe-lib/failsafe.git",
+    "commit": "ed3f92739669769274cf5c9567fd422929c20ad2",
+    "language": "Java",
+    "nodes": 175,
+    "bucket": "S"
+  },
+  {
+    "name": "okhttp",
+    "url": "https://github.com/square/okhttp.git",
+    "commit": "21ad1aa6aa4d5de7f5f52956f0841a5c304ab849",
+    "language": "Java",
+    "nodes": 172,
+    "bucket": "S"
+  },
+  {
+    "name": "cilium",
+    "url": "https://github.com/cilium/cilium.git",
+    "commit": "7be1b3108f6801a2a204bddcf2a52102cd99759d",
+    "language": "Go",
+    "nodes": 23119,
+    "bucket": "L"
+  },
+  {
+    "name": "kubernetes",
+    "url": "https://github.com/kubernetes/kubernetes.git",
+    "commit": "0e71d2d28f29514e4e55e5a4f3d0e57436fe1f0b",
+    "language": "Go",
+    "nodes": 20237,
+    "bucket": "L"
+  },
+  {
+    "name": "skaffold",
+    "url": "https://github.com/GoogleContainerTools/skaffold.git",
+    "commit": "1514b19052f67b233f8c7fa06ef17c28c5b256dd",
+    "language": "Go",
+    "nodes": 13445,
+    "bucket": "L"
+  },
+  {
+    "name": "linkerd2",
+    "url": "https://github.com/linkerd/linkerd2.git",
+    "commit": "f3311c7391efa055b019876d168b202676cec0ca",
+    "language": "Go",
+    "nodes": 924,
+    "bucket": "M"
+  },
+  {
+    "name": "helm",
+    "url": "https://github.com/helm/helm.git",
+    "commit": "42f78ba60edf531d5161e00d9819a7c34d976343",
+    "language": "Go",
+    "nodes": 781,
+    "bucket": "M"
+  },
+  {
+    "name": "syncthing",
+    "url": "https://github.com/syncthing/syncthing.git",
+    "commit": "3b05ba2a8fc2cb397e75a1483d157d5935c477d4",
+    "language": "Go",
+    "nodes": 767,
+    "bucket": "M"
+  },
+  {
+    "name": "nsq",
+    "url": "https://github.com/nsqio/nsq.git",
+    "commit": "9ea507128926c83b7dd8f32d8c38bbbe8ef41beb",
+    "language": "Go",
+    "nodes": 193,
+    "bucket": "S"
+  },
+  {
+    "name": "nats-go",
+    "url": "https://github.com/nats-io/nats.go.git",
+    "commit": "6c41799b052e25e09f9d92424897d11a3234ca9a",
+    "language": "Go",
+    "nodes": 173,
+    "bucket": "S"
+  },
+  {
+    "name": "gin",
+    "url": "https://github.com/gin-gonic/gin.git",
+    "commit": "d3ffc9985281dcf4d3bef604cce4e662b1a327a6",
+    "language": "Go",
+    "nodes": 167,
+    "bucket": "S"
+  }
+]
