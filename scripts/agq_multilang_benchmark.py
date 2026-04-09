@@ -28,7 +28,7 @@ try:
     RUST_AVAILABLE = True
 except ImportError:
     RUST_AVAILABLE = False
-    print("[warn] _qse_core not available — build with maturin first")
+    print("[warn] _qse_core not available - build with maturin first")
 
 
 _TEST_RE = re.compile(r"(^|/)tests?/|test_.*\.py$|_test\.py$|Test\.java$|Tests\.java$")

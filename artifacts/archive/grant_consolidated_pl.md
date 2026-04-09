@@ -1,4 +1,4 @@
-# QSE — Kompletny wsad do wniosku grantowego
+# QSE - Kompletny wsad do wniosku grantowego
 ## Wersja skonsolidowana | Marzec 2026 | TRL 4→7 | Wariant 70/30 BI/PR
 
 > **Pliki źródłowe:**
@@ -28,9 +28,9 @@
 
 ## 2. PROBLEM I MOTYWACJA
 
-### 2.1 Era AI-assisted development — nowe zagrożenia
+### 2.1 Era AI-assisted development - nowe zagrożenia
 
-Narzędzia takie jak GitHub Copilot, Cursor i Claude Code generują ponad 46% nowego kodu na GitHubie (dane 2025). AI optymalizuje pod kątem "działa teraz" — nie pod kątem "będzie działać za rok". Kod przechodzi testy jednostkowe, lecz systematycznie degraduje architekturę systemu:
+Narzędzia takie jak GitHub Copilot, Cursor i Claude Code generują ponad 46% nowego kodu na GitHubie (dane 2025). AI optymalizuje pod kątem "działa teraz" - nie pod kątem "będzie działać za rok". Kod przechodzi testy jednostkowe, lecz systematycznie degraduje architekturę systemu:
 
 - Moduły zaczynają importować z warstw których nie powinny dotykać
 - Pojawiają się cykliczne zależności (A importuje B, B importuje A)
@@ -40,7 +40,7 @@ Narzędzia takie jak GitHub Copilot, Cursor i Claude Code generują ponad 46% no
 
 SonarQube sprawdza kod linijka po linijce (bugs, smells, security). **Nie mierzy architektury jako całości.**
 
-Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 78 (27%) dostaje od SonarQube rating "A"** (najwyższy możliwy), ale AGQ identyfikuje u nich problemy architektoniczne poniżej progu jakości. Cross-validation z SonarQube (n=79, metryki znormalizowane per KLOC) potwierdza: AGQ composite nie koreluje ze smells/KLOC (r=-0.11, n.s.), ale składowe stability i cohesion wykazują istotny inverse z bugs/KLOC (r=-0.32, p=0.003) i complexity/KLOC (r=-0.28, p=0.01). AGQ i SonarQube mierzą **komplementarne** wymiary — z mierzalnym overlap w stability↔bugs i cohesion↔complexity.
+Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 78 (27%) dostaje od SonarQube rating "A"** (najwyższy możliwy), ale AGQ identyfikuje u nich problemy architektoniczne poniżej progu jakości. Cross-validation z SonarQube (n=79, metryki znormalizowane per KLOC) potwierdza: AGQ composite nie koreluje ze smells/KLOC (r=-0.11, n.s.), ale składowe stability i cohesion wykazują istotny inverse z bugs/KLOC (r=-0.32, p=0.003) i complexity/KLOC (r=-0.28, p=0.01). AGQ i SonarQube mierzą **komplementarne** wymiary - z mierzalnym overlap w stability↔bugs i cohesion↔complexity.
 
 ### 2.3 Cel projektu
 
@@ -82,12 +82,12 @@ Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 
 - SonarQube (n=79, per KLOC): stability↔bugs r=-0.32 (p=0.003), cohesion↔complexity r=-0.28 (p=0.01)
 - Expert classification (n=20): known-good vs known-bad **p<0.001, d=3.22**, 80% good=LAYERED
 - Dai et al. architectural integrity (n=4 Java): Spearman **rho=1.0** (ranking agreement)
-- Emerge modularity (n=16): r=0.06 — Louvain Q graph-definition dependent
+- Emerge modularity (n=16): r=0.06 - Louvain Q graph-definition dependent
 
-**Extended metrics (CCD, IC, fan-out — benchmark 240 repo × 3 języki):**
+**Extended metrics (CCD, IC, fan-out - benchmark 240 repo × 3 języki):**
 - fan_out_std / log(n) vs churn_gini: **r=+0.13, p=0.048** (jedyna cross-lang po normalizacji rozmiaru)
 - Indirect Coupling vs churn_gini: **r=-0.27, p=0.007** (po kontroli rozmiaru, n=97)
-- CCD: brak istotnych korelacji — odłożona
+- CCD: brak istotnych korelacji - odłożona
 - Size confound poważny: max_fan_out r=+0.50 z nodes. Normalizacja per log(n) konieczna.
 
 **Kalibracja wag (L-BFGS-B, LOO-CV, n=74):**
@@ -97,19 +97,19 @@ Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 
 - Modularity = 0.000
 - LOO-CV MSE = 0.006 ± 0.013 (stabilny)
 
-### 3.3 Granice POC — dlaczego TRL 4, nie 5
+### 3.3 Granice POC - dlaczego TRL 4, nie 5
 
-1. **Brak integracji z rzeczywistym CI/CD** — żaden zespół nie używa QSE w produkcyjnym pipeline
-2. **Brak walidacji eksperta-architekta** — KPI r_s(AGQ, expert_score) nie jest jeszcze osiągnięty
-3. **Korelacje z proxy, nie z docelową zmienną** — churn/hotspot ≠ defect_rate
-4. **Środowisko badacza** — 237 OSS repo kontrolowane przez badacza, nie przez użytkownika
-5. **Brak pętli feedbacku** — żaden developer nie potwierdził że AGQ zmienia jego decyzje architektoniczne
+1. **Brak integracji z rzeczywistym CI/CD** - żaden zespół nie używa QSE w produkcyjnym pipeline
+2. **Brak walidacji eksperta-architekta** - KPI r_s(AGQ, expert_score) nie jest jeszcze osiągnięty
+3. **Korelacje z proxy, nie z docelową zmienną** - churn/hotspot ≠ defect_rate
+4. **Środowisko badacza** - 237 OSS repo kontrolowane przez badacza, nie przez użytkownika
+5. **Brak pętli feedbacku** - żaden developer nie potwierdził że AGQ zmienia jego decyzje architektoniczne
 
 **Framing dla eksperta:** *"Wstępna walidacja laboratoryjna potwierdzająca obliczalność i deterministyczność metryk. TRL 5 wymaga walidacji w środowisku relewantnym: ekspert-architekt potwierdza że AGQ odpowiada jego ocenie (KPI-01, WP-BR1)."*
 
 ---
 
-## 4. SYSTEM QSE — OPIS TECHNICZNY
+## 4. SYSTEM QSE - OPIS TECHNICZNY
 
 ### 4.1 Architektura 5-warstwowa
 
@@ -128,7 +128,7 @@ Dowód empiryczny z POC: spośród 78 dojrzałych projektów Python OSS, **21 z 
 │  Modularity, Acyclicity, Stability, Cohesion            │
 ├─────────────────────────────────────────────────────────┤
 │  WARSTWA 1: Scanner (Rust tree-sitter, 7-46× szybszy)   │
-│  Python, Java (Maven/Gradle), Go — jeden silnik         │
+│  Python, Java (Maven/Gradle), Go - jeden silnik         │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -147,24 +147,24 @@ z pliku źródłowego → semantycznie poprawne nazwy modułów
 
 ### 4.3 Cztery metryki AGQ
 
-**Modularity** — "czy moduły są naprawdę niezależne?"
+**Modularity** - "czy moduły są naprawdę niezależne?"
 Algorytm Louvain wykrywa klastry w grafie zależności.
 Normalizacja: max(0, Q) / 0.75. Dla n<10: 0.5 neutralne.
 Wynik 0 = "big ball of mud", wynik 1 = idealna izolacja modułów.
 
-**Acyclicity** — "czy nie ma błędnych pętli zależności?"
+**Acyclicity** - "czy nie ma błędnych pętli zależności?"
 Tarjan SCC na wewnętrznych nodach (filtruje stdlib/third-party).
 A = 1 − (largest_SCC_size / internal_nodes).
 Waga empiryczna: **0.730** (dominuje w kalibracji).
 Odkrycie: 77% repo Java ma cykliczne zależności (niewidoczne w shallow clone).
 
-**Stability** — "czy architektura ma wyraźne warstwy?"
+**Stability** - "czy architektura ma wyraźne warstwy?"
 Package-level instability variance: var(I_per_package) / 0.25.
 I = Ce/(Ca+Ce) per pakiet. Wysoka wariancja = wyraźne warstwy (core vs leaves).
 *Naprawa POC:* oryginalny wzór Martina (Distance from Main Sequence)
-degeneruje bez danych o abstrakcji — zastąpiony wariancją.
+degeneruje bez danych o abstrakcji - zastąpiony wariancją.
 
-**Cohesion** — "czy każda klasa robi jedną rzecz?"
+**Cohesion** - "czy każda klasa robi jedną rzecz?"
 LCOM4: liczba spójnych komponentów w grafie metoda-atrybut.
 LCOM4=1 → klasa spójna, LCOM4=5 → powinna być podzielona na 5.
 *Odkrycie language bias:* Go = 1.000 zawsze (interfaces/structs),
@@ -174,21 +174,21 @@ Java = 0.379 średnio (złożone hierarchie klas).
 
 | Metryka | Wzór | Co daje |
 |---|---|---|
-| **AGQ-z** | (AGQ − μ_lang) / σ_lang | Percentyl w języku — usuwa language bias. jackson: 4.3%ile Java |
+| **AGQ-z** | (AGQ − μ_lang) / σ_lang | Percentyl w języku - usuwa language bias. jackson: 4.3%ile Java |
 | **AGQ-adj** | AGQ × log(500) / log(n) | Score niezależny od rozmiaru repo. r=-0.162 vs gini p=0.014 |
 | **Fingerprint** | reguły na (mod,acy,stab,coh) | 7 wzorców: CLEAN/LAYERED/MODERATE/FLAT/LOW_COHESION/CYCLIC/TANGLED |
 | **CycleSeverity** | 1 − acyclicity → 5 poziomów | NONE/LOW/MEDIUM/HIGH/CRITICAL z % klas w cyklu |
 | **ChurnRisk** | 1−(0.5·acy+0.3·stab+0.2·mod) | Predykcja hotspot files. r=-0.149 vs hotspot p=0.024 |
 
-**Fingerprint — 7 wzorców architektonicznych (237 repo):**
+**Fingerprint - 7 wzorców architektonicznych (237 repo):**
 
 | Wzorzec | n | Py | Java | Go | Opis |
 |---|---|---|---|---|---|
-| LAYERED | 68 | 57 | 4 | 7 | Warstwowa — dobra |
-| CLEAN | 49 | 1 | 1 | 47 | Strukturalnie czysty — Go dominuje |
-| LOW_COHESION | 44 | 4 | 40 | 0 | Klasy robią za dużo — Java |
+| LAYERED | 68 | 57 | 4 | 7 | Warstwowa - dobra |
+| CLEAN | 49 | 1 | 1 | 47 | Strukturalnie czysty - Go dominuje |
+| LOW_COHESION | 44 | 4 | 40 | 0 | Klasy robią za dużo - Java |
 | MODERATE | 39 | 12 | 11 | 16 | Bez patologii |
-| FLAT | 23 | 5 | 8 | 10 | Brak warstw — dominujący bad pattern |
+| FLAT | 23 | 5 | 8 | 10 | Brak warstw - dominujący bad pattern |
 | TANGLED | 9 | 0 | 9 | 0 | Cykle + niska spójność |
 | CYCLIC | 5 | 0 | 5 | 0 | Cykle bez innych patologii |
 
@@ -232,14 +232,14 @@ $ qse agq . --constraints .qse/arch.json
 Walidacja: reguły dla Django (Python) i Spring Boot (Java) są
 architektonicznie prawidłowe i konsekwentnie utrzymane w kodzie.
 
-### 4.7 QSE_test — jakość testów
+### 4.7 QSE_test - jakość testów
 
 5 wymiarów: assertion_density, test_to_code_ratio, naming_quality,
 isolation_score, coverage_potential. Moduł: `qse/test_quality.py`.
 
 ---
 
-## 5. WYNIKI EKSPERYMENTALNE — NAJŚWIEŻSZE DANE
+## 5. WYNIKI EKSPERYMENTALNE - NAJŚWIEŻSZE DANE
 
 > **Dane finalne:** `artifacts/benchmark/agq_enhanced_{python,java,go}80.json`
 > **Data:** marzec 2026 | **Pełne klony** (bez depth limit)
@@ -252,7 +252,7 @@ isolation_score, coverage_potential. Moduł: `qse/test_quality.py`.
 | Python | 78 | 0.746 | 0.055 | 0.581 | 0.860 | 0.647 | 0.999 | 4% |
 | Java | 77 | **0.619** | 0.087 | 0.463 | 0.839 | **0.379** | 0.973 | **77%** |
 
-### 5.2 Fingerprint — rozkład (237 repo)
+### 5.2 Fingerprint - rozkład (237 repo)
 
 *Patrz tabela w sekcji 4.4.*
 
@@ -262,7 +262,7 @@ cross-language. Najgorsze projekty w każdym języku:
 - Java: avro (z=−3.11), solr (z=−2.33), flink (z=−2.32) → FLAT
 - Go: kubernetes (z=−2.58), grafana (z=−2.21) → FLAT
 
-### 5.3 Language bias — tabela porównawcza (n=237)
+### 5.3 Language bias - tabela porównawcza (n=237)
 
 | Wymiar | Python (78) | Java (77) | Go (80) |
 |---|---|---|---|
@@ -275,7 +275,7 @@ cross-language. Najgorsze projekty w każdym języku:
 | Dominant pattern | LAYERED | LOW_COHESION | CLEAN |
 
 **Wniosek:** Cross-language porównania AGQ bez normalizacji (AGQ-z) są
-metodologicznie błędne — language paradigm dominuje nad jakością kodu.
+metodologicznie błędne - language paradigm dominuje nad jakością kodu.
 
 ### 5.4 Korelacje statystycznie istotne (n=229–237)
 
@@ -289,7 +289,7 @@ metodologicznie błędne — language paradigm dominuje nad jakością kodu.
 | **ChurnRisk vs hotspot_ratio** | **−0.149** | **0.024** | ✅ właściwy |
 | Go: AGQ vs churn_gini | −0.270 | **0.017** | ✅ per-language |
 
-*Uwaga:* Korelacje z "+" na acyclicity/stability wynikają z confoundera dojrzałości —
+*Uwaga:* Korelacje z "+" na acyclicity/stability wynikają z confoundera dojrzałości -
 projekty Go (acy=1.0) są aktywnie rozwijane i mają naturalnie więcej hotspotów.
 
 ### 5.5 Kalibracja wag (L-BFGS-B, LOO-CV, n=74)
@@ -331,26 +331,26 @@ solr Java −2.33, home-assistant Python −2.81, flink Java −2.32
 
 ---
 
-## 6. ODKRYCIA NAUKOWE — 12 TWIERDZEŃ
+## 6. ODKRYCIA NAUKOWE - 12 TWIERDZEŃ
 
 | # | Twierdzenie | Dowód liczbowy | Literatura |
 |---|---|---|---|
 | 1 | Martin's D degeneruje bez abstrakcji | spread 0.286→0.548 po naprawie | Drotbohm 2024 |
-| 2 | Language bias w cohesion | Go=1.0, Java=0.38, Py=0.65 | — pierwsze empiryczne |
-| 3 | AGQ ⊥ SonarQube (komplementarność) | 21/78 Sonar=A, AGQ<próg | — |
+| 2 | Language bias w cohesion | Go=1.0, Java=0.38, Py=0.65 | - pierwsze empiryczne |
+| 3 | AGQ ⊥ SonarQube (komplementarność) | 21/78 Sonar=A, AGQ<próg | - |
 | 4 | Acyclicity=0.73 w kalibracji | LOO-CV MSE=0.006 | Gnoyke JSS 2024 |
-| 5 | Auto policy discovery działa | Django, Spring Boot walidacja | — |
-| 6 | Shallow clone maskuje 77% cykli Java | 59/77 repo z cyklami | — metodologiczne |
-| 7 | Acyclicity koreluje cross-language | r=+0.223, p=0.001, n=229 | — |
-| 8 | Stability koreluje cross-language | r=+0.173, p=0.009, n=229 | — |
-| 9 | AGQ-adj vs churn_gini istotne | r=−0.162, p=0.014 | — |
-| 10 | AGQ-adj vs hotspot istotne | r=+0.232, p<0.001 | — |
-| 11 | Size bias AGQ | r=−0.269, p<0.001 | — |
-| 12 | FLAT = dominant bad pattern | bottom 10 wszystkich języków = FLAT | — |
+| 5 | Auto policy discovery działa | Django, Spring Boot walidacja | - |
+| 6 | Shallow clone maskuje 77% cykli Java | 59/77 repo z cyklami | - metodologiczne |
+| 7 | Acyclicity koreluje cross-language | r=+0.223, p=0.001, n=229 | - |
+| 8 | Stability koreluje cross-language | r=+0.173, p=0.009, n=229 | - |
+| 9 | AGQ-adj vs churn_gini istotne | r=−0.162, p=0.014 | - |
+| 10 | AGQ-adj vs hotspot istotne | r=+0.232, p<0.001 | - |
+| 11 | Size bias AGQ | r=−0.269, p<0.001 | - |
+| 12 | FLAT = dominant bad pattern | bottom 10 wszystkich języków = FLAT | - |
 
 ---
 
-## 7. PLAN BADAŃ — WORK PACKAGES
+## 7. PLAN BADAŃ - WORK PACKAGES
 
 ### 7.1 Oś korelacji przez projekt
 
@@ -378,18 +378,18 @@ TRL 7 (koniec)
 
 **Ratio: 70% BI / 30% PR**
 
-### 7.3 WP-BR1 — Construct validity (BI, m-c 1–6)
+### 7.3 WP-BR1 - Construct validity (BI, m-c 1–6)
 
 **Pytanie badawcze:** Czy AGQ mierzy to samo co ekspert-architekt ocenia jako "jakość architektury"?
 
 **Deliverables:**
 - D1.1 Expert labeling: 3 architektów × 50 repo, ocena 0–5 per składowa
 - D1.2 Call graph inter-proceduralny (nie tylko import graph)
-- D1.3 Korekcja language bias: AGQ-z per język — czy poprawia construct validity
+- D1.3 Korekcja language bias: AGQ-z per język - czy poprawia construct validity
 - D1.4 Partial correlation controlling for project age confounder
 - D1.5 Ground truth corpus opublikowany (Zenodo)
 
-**Uzasadnienie BI:** Wynik niepewny — AGQ może nie zgadzać się z ekspertem.
+**Uzasadnienie BI:** Wynik niepewny - AGQ może nie zgadzać się z ekspertem.
 Human labeling study = typowe BI. F1 layer detection: poprawa 0.615→0.80
 wymaga nowego algorytmu o niepewnym wyniku.
 
@@ -398,7 +398,7 @@ wymaga nowego algorytmu o niepewnym wyniku.
 - KPI-02: Partial r po kontrolowaniu za dojrzałość ≥ 0.55; p<0.05
 - KPI-03: Czas skanowania 80k LOC ≤ 2 min
 
-### 7.4 WP-BR2 — Predictive validity / DoE (BI, m-c 7–12)
+### 7.4 WP-BR2 - Predictive validity / DoE (BI, m-c 7–12)
 
 **Pytanie badawcze:** Czy AGQ przewiduje defect_rate w kontrolowanym eksperymencie?
 
@@ -416,10 +416,10 @@ Zmienna zależna: defect_rate = regresje / zmiany_kodu
 ```
 
 **Uzasadnienie BI:** DoE z kontrolowaną injekcją defektów = klasyczne BI.
-Wynik r(ΔAGQ, defect_rate) niepewny — może nie osiągnąć 0.55.
+Wynik r(ΔAGQ, defect_rate) niepewny - może nie osiągnąć 0.55.
 
 **KPI M2:**
-- KPI-04: r(ΔAGQ, defect_rate) ≥ 0.55; p<0.01; n≥250 *[GŁÓWNY — H2 wniosku]*
+- KPI-04: r(ΔAGQ, defect_rate) ≥ 0.55; p<0.01; n≥250 *[GŁÓWNY - H2 wniosku]*
 - KPI-05: Cross-validation r na held-out 20% ≥ 0.50
 - KPI-06: Dataset opublikowany Zenodo ≥ 250 obs.
 
@@ -432,10 +432,10 @@ Korekcja atenuacji (Fuller 1987):
 Przejście do bezpośredniego pomiaru (rel=0.85):
   r_controlled ≥ 0.37 × √(0.85/0.40) ≈ 0.54
 Próg 0.55 jest konserwatywny.
-Precedens: Hassan (2009) — obs. r≈0.20 → kontrolowane r≈0.55.
+Precedens: Hassan (2009) - obs. r≈0.20 → kontrolowane r≈0.55.
 ```
 
-### 7.5 WP-BR3 — Architectural RLHF / QSELiner (BI, m-c 13–18)
+### 7.5 WP-BR3 - Architectural RLHF / QSELiner (BI, m-c 13–18)
 
 **Pytanie badawcze:** Czy AGQ jako reward signal konwerguje w DPO dla open-source LLM?
 Czy monotoniczność konwergencji zależy od rozmiaru modelu (7B→70B)?
@@ -447,12 +447,12 @@ ciągła wielowymiarowa miara architektoniczna (AGQ 0–1, 4 składowe)
 jako reward signal w DPO dla open-source LLM (7B–70B).
 Hipoteza H5: monotoniczność konwergencji reward względem rozmiaru modelu
 nie ma precedensu w literaturze dla domain-specific structural code metrics.
-DPO jako technika jest znana — ten konkretny reward signal + typ modelu + hipoteza = BI.
+DPO jako technika jest znana - ten konkretny reward signal + typ modelu + hipoteza = BI.
 
 **Deliverables:**
 - D3.1 Preference dataset ≥ 10k par (fail_diff, pass_diff)
 - D3.2 DPO fine-tuning: 4 rozmiary (7B, 13B, 34B, 70B)
-- D3.3 Learning curves — dokumentacja H5 (monotoniczność)
+- D3.3 Learning curves - dokumentacja H5 (monotoniczność)
 - D3.4 Model "ArchitectureAware-Coder" na HuggingFace
 - D3.5 Policy-as-a-Service v2: multi-language, UI zarządzania regułami
 
@@ -462,7 +462,7 @@ DPO jako technika jest znana — ten konkretny reward signal + typ modelu + hipo
 - KPI-09: r(AGQ_generated, defect_rate) ≥ 0.55 na kodzie LLM
 - KPI-10: Model opublikowany HuggingFace
 
-### 7.6 WP-BR4 — Walidacja eksperymentalna (PR, m-c 19–24)
+### 7.6 WP-BR4 - Walidacja eksperymentalna (PR, m-c 19–24)
 
 **Uwaga terminologiczna:** "Wdrożenie" = nie B+R (wykluczone wg kryteriów str. 8).
 Poprawnie: "walidacja eksperymentalna w warunkach zbliżonych do operacyjnych",
@@ -484,7 +484,7 @@ Poprawnie: "walidacja eksperymentalna w warunkach zbliżonych do operacyjnych",
 
 | KPI-ID | KPI | Próg PASS | WP |
 |---|---|---|---|
-| KPI-01 | r_s(AGQ, expert_score) — construct validity | ≥ 0.60; p<0.01 | WP-BR1 |
+| KPI-01 | r_s(AGQ, expert_score) - construct validity | ≥ 0.60; p<0.01 | WP-BR1 |
 | KPI-02 | Partial r controlling age confounder | ≥ 0.55; p<0.05 | WP-BR1 |
 | KPI-03 | Czas skanowania 80k LOC | ≤ 2 min | WP-BR1 |
 | KPI-04 | r(ΔAGQ, defect_rate) DoE | ≥ 0.55; p<0.01 | WP-BR2 |
@@ -506,7 +506,7 @@ Poprawnie: "walidacja eksperymentalna w warunkach zbliżonych do operacyjnych",
 | **70/30 (wybrany)** | **3 078 888 PLN** | NIE | ŚREDNIE (WP-BR3) |
 | 40/60 | 2 829 249 PLN | TAK | NISKIE |
 
-Decyzja: 70/30 — +166k PLN grantu vs brak punktu K3.
+Decyzja: 70/30 - +166k PLN grantu vs brak punktu K3.
 Ryzyko WP-BR3 zarządzalne po przeformułowaniu argumentu
 (nowy reward signal + nowa hipoteza H5 = BI).
 
@@ -533,25 +533,25 @@ odpowiada jego ocenie (KPI-01, WP-BR1, miesiąc 6)."
 
 Rozbieżność r=0.23 (POC) vs r≥0.55 (cel) wynika z trzech efektów:
 
-**Efekt 1 — Atenuacja (Fuller 1987):**
+**Efekt 1 - Atenuacja (Fuller 1987):**
 ```
 r_true = r_obs / √(rel_x × rel_y) = 0.23 / √(0.95×0.40) ≈ 0.37
 ```
 Proxy churn_gini ma rzetelność ≈ 0.40 (zaszumiony, confounded).
 
-**Efekt 2 — Usunięcie confoundera (DoE):**
+**Efekt 2 - Usunięcie confoundera (DoE):**
 Dojrzałość projektu koreluje zarówno z AGQ jak i niskim churnem.
 W DoE ten confounder jest usunięty przez randomizację θ.
 
-**Efekt 3 — Bezpośrednia miara (defect_rate vs proxy):**
+**Efekt 3 - Bezpośrednia miara (defect_rate vs proxy):**
 ```
 r_controlled ≥ 0.37 × √(rel_controlled/rel_proxy)
              = 0.37 × √(0.85/0.40) ≈ 0.54
 ```
 Próg 0.55 jest konserwatywny.
-Precedens: Hassan (2009) — obserwacyjne r≈0.20 → kontrolowane r≈0.55.
+Precedens: Hassan (2009) - obserwacyjne r≈0.20 → kontrolowane r≈0.55.
 
-### 8.3 WP-BR3 jako BI — nowy reward signal, nowa hipoteza konwergencji
+### 8.3 WP-BR3 jako BI - nowy reward signal, nowa hipoteza konwergencji
 
 POC (generate_loop.py) używał binarnych detektorów kodu (sygnał zwrotny
 PASS/FAIL) na modelu komercyjnym (Sonnet, API). WP-BR3 bada inny,
@@ -561,7 +561,7 @@ PASS/FAIL) na modelu komercyjnym (Sonnet, API). WP-BR3 bada inny,
   ≠ binarny detektor kodu
 - Model: open-source LLM (7B–70B) ≠ model komercyjny
 - Hipoteza H5: monotoniczność konwergencji reward względem rozmiaru modelu
-  — **brak precedensu w literaturze** dla domain-specific structural metrics
+  - **brak precedensu w literaturze** dla domain-specific structural metrics
 
 DPO jako technika jest znana (Rafailov 2023).
 Zastosowanie z tym konkretnym reward signal + tej konkretnej hipotezy
@@ -622,7 +622,7 @@ konwergencji = BI zgodnie z Frascati.
 - Rust: `~/.cargo/bin/` (rustc 1.94.0)
 - Build: `python3 -m maturin develop --release -m qse-py/Cargo.toml`
 
-### 9.5 IP — podstawy patentowe
+### 9.5 IP - podstawy patentowe
 
 Metodologia kwalifikuje się do zgłoszenia patentowego:
 - Metoda obliczania AGQ (package-level instability variance jako zamiennik Martin's D)
@@ -633,7 +633,7 @@ Metodologia kwalifikuje się do zgłoszenia patentowego:
 
 ## 10. DALSZE KIERUNKI BADAŃ (poza zakresem projektu)
 
-**A) Temporal AGQ — architectural decay curves**
+**A) Temporal AGQ - architectural decay curves**
 Jak zmienia się AGQ projektu przez 5 lat? Czy AI-assisted projekty degradują szybciej?
 Wymaga: per-commit AGQ na pełnej historii git.
 
@@ -656,14 +656,14 @@ prowadzi do dłuższego time-to-fix? Wymaga: human study z programistami.
 > Pełna lista 40+ pozycji: `/home/pepus/dev/qse-pkg/artifacts/references.md`
 
 **Kluczowe pozycje:**
-- Nagappan & Ball (ICSE 2005) — code churn, defect prediction
-- D'Ambros & Lanza (WCRE 2009) — change coupling vs defects
-- Gnoyke, Schulze, Krüger (JSS 2024) — architectural smell evolution, 485 releases
-- Pisch, Cai, Kazman (ESEM 2024) — M-score, hierarchical modularity
-- Fuller (1987) — measurement error, attenuation correction
-- Zimmermann et al. (FSE 2009) — cross-project defect prediction limitations
-- Hassan (2009) — observational vs controlled software metrics
-- Rafailov et al. (2023) — Direct Preference Optimization (DPO)
+- Nagappan & Ball (ICSE 2005) - code churn, defect prediction
+- D'Ambros & Lanza (WCRE 2009) - change coupling vs defects
+- Gnoyke, Schulze, Krüger (JSS 2024) - architectural smell evolution, 485 releases
+- Pisch, Cai, Kazman (ESEM 2024) - M-score, hierarchical modularity
+- Fuller (1987) - measurement error, attenuation correction
+- Zimmermann et al. (FSE 2009) - cross-project defect prediction limitations
+- Hassan (2009) - observational vs controlled software metrics
+- Rafailov et al. (2023) - Direct Preference Optimization (DPO)
 
 ---
 

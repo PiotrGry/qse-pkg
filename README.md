@@ -1,7 +1,7 @@
-# QSE — Quality Score Engine
+# QSE - Quality Score Engine
 
 Automatic architecture quality scoring for Python, Java, and Go codebases.
-Computes **AGQ** (Architecture Graph Quality) — a calibrated composite of four graph-based metrics.
+Computes **AGQ** (Architecture Graph Quality) - a calibrated composite of four graph-based metrics.
 
 ## Architecture
 
@@ -30,7 +30,7 @@ Weights calibrated via L-BFGS-B + LOO-CV on 240 OSS repositories.
 
 ### Scanner
 
-Primary scanner is written in **Rust** (tree-sitter) with PyO3 bindings — 7-46× faster than the legacy Python scanner.
+Primary scanner is written in **Rust** (tree-sitter) with PyO3 bindings - 7-46× faster than the legacy Python scanner.
 
 ```bash
 # Build Rust scanner
@@ -66,9 +66,9 @@ qse discover path/to/repo --output-json policies.json
 | Flag | Default | Description |
 |------|---------|-------------|
 | `--threshold N` | 0.70 | Minimum AGQ score |
-| `--output-json FILE` | — | Write JSON report to file |
+| `--output-json FILE` | - | Write JSON report to file |
 | `--no-trace` | off | Skip dynamic tracing (faster, static only) |
-| `--config FILE` | — | JSON config with weights, thresholds |
+| `--config FILE` | - | JSON config with weights, thresholds |
 
 ## GitHub Actions
 
@@ -87,7 +87,7 @@ qse discover path/to/repo --output-json policies.json
 - **Churn correlation**: AGQ-adj vs hotspot_ratio r=0.236, p<0.001 (n=234)
 - **SonarQube orthogonality**: stability↔bugs/KLOC r=-0.32, p=0.003 (n=79)
 - **Dai et al. agreement**: 4/4 Java projects, rank rho=1.0
-- **Emerge comparison**: Louvain Q alone r=0.06 vs AGQ — composite outperforms single metric
+- **Emerge comparison**: Louvain Q alone r=0.06 vs AGQ - composite outperforms single metric
 
 See `artifacts/DOCUMENT_MAP.md` for full evidence index.
 

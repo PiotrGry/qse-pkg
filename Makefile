@@ -1,4 +1,4 @@
-# QSE — Quality Score Engine
+# QSE - Quality Score Engine
 # Reproducible benchmark targets
 
 PYTHON := python3

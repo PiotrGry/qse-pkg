@@ -1,4 +1,4 @@
-# Benchmark: QSE AGQ vs Emerge — walidacja krzyżowa modularity
+# Benchmark: QSE AGQ vs Emerge - walidacja krzyżowa modularity
 
 **Data:** 2026-03-21
 **Dane:** `artifacts/benchmark/emerge_vs_qse_comparison.json`
@@ -33,9 +33,9 @@ Oba narzędzia implementują algorytm Louvain community detection na grafie zale
 ### Próbka
 
 16 repozytoriów Python z benchmarku AGQ (Python-80), dobranych z pełnego rozkładu AGQ:
-- Zakres AGQ: 0.651 (thefuck) — 0.838 (yt-dlp)
-- Zakres wielkości: 54 nodes (httpcore) — 1337 nodes (yt-dlp)
-- Emerge files: 18 (requests) — 1128 (yt-dlp)
+- Zakres AGQ: 0.651 (thefuck) - 0.838 (yt-dlp)
+- Zakres wielkości: 54 nodes (httpcore) - 1337 nodes (yt-dlp)
+- Emerge files: 18 (requests) - 1128 (yt-dlp)
 
 ### Procedura
 
@@ -155,7 +155,7 @@ Pomimo identycznego algorytmu (Louvain), narzędzia budują **fundamentalnie ró
 
 2. **Różna granularność krawędzi**: QSE parsuje import statements do dotted module paths; Emerge rozwiązuje do plików. To zmienia strukturę community detection.
 
-3. **Louvain jest niestabilny**: Algorytm Louvain jest heurystyczny i niedeterministyczny — drobne zmiany w grafie mogą istotnie zmienić wartość Q. Przy różnych definicjach grafu Q może być całkowicie rozbieżne.
+3. **Louvain jest niestabilny**: Algorytm Louvain jest heurystyczny i niedeterministyczny - drobne zmiany w grafie mogą istotnie zmienić wartość Q. Przy różnych definicjach grafu Q może być całkowicie rozbieżne.
 
 **Wniosek**: Raw Louvain Q **nie jest metrą porównywalną między narzędziami**. Sam algorytm jest identyczny, ale Q zależy od definicji grafu, nie tylko od struktury kodu.
 
@@ -163,16 +163,16 @@ Pomimo identycznego algorytmu (Louvain), narzędzia budują **fundamentalnie ró
 
 **Kluczowy wynik fazy 2**: Emerge avg fan-out koreluje istotnie z QSE AGQ (**r=+0.505, p<0.05**) oraz marginalnie z QSE stability (r=+0.462, p<0.10). Emerge max fan-out koreluje z QSE cohesion (**r=+0.579, p<0.05**).
 
-Kierunek jest **pozytywny** — wyższy fan-out = wyższy AGQ/stability/cohesion. To jest kontraintuicyjne (spodziewalibyśmy się, że "więcej zależności = gorsze"). Wyjaśnienie: **confound wielkości repo**. Fan-out avg silnie koreluje z liczbą węzłów (r=+0.673, p<0.05) — większe repo mają naturalnie wyższy fan-out. Natomiast QSE stability **nie koreluje** z wielkością repo (r=+0.129, n.s.).
+Kierunek jest **pozytywny** - wyższy fan-out = wyższy AGQ/stability/cohesion. To jest kontraintuicyjne (spodziewalibyśmy się, że "więcej zależności = gorsze"). Wyjaśnienie: **confound wielkości repo**. Fan-out avg silnie koreluje z liczbą węzłów (r=+0.673, p<0.05) - większe repo mają naturalnie wyższy fan-out. Natomiast QSE stability **nie koreluje** z wielkością repo (r=+0.129, n.s.).
 
 To oznacza:
-1. **Emerge fan-out jest confounded przez wielkość projektu** — nie można go interpretować bez normalizacji na rozmiar
-2. **QSE stability jest size-invariant** — to ważna przewaga, bo stability mierzy variance instability per pakiet, nie bezwzględną liczbę zależności
+1. **Emerge fan-out jest confounded przez wielkość projektu** - nie można go interpretować bez normalizacji na rozmiar
+2. **QSE stability jest size-invariant** - to ważna przewaga, bo stability mierzy variance instability per pakiet, nie bezwzględną liczbę zależności
 3. **Fan-out i stability mierzą różne rzeczy**: fan-out = ile modułów importujesz, stability = jak zróżnicowane są role pakietów (stabilne jądro vs niestabilne adaptery). Oba są użyteczne, ale nie wymienne
 
 Fan-out nie koreluje istotnie z churn (r=-0.41, n.s.) ani z churn_gini (r=+0.18, n.s.), co potwierdza, że sam fan-out bez normalizacji nie jest dobrym predyktorem maintenance outcomes.
 
-### 4.3 Korelacje z hotspot_ratio — wyniki i zastrzeżenia
+### 4.3 Korelacje z hotspot_ratio - wyniki i zastrzeżenia
 
 Na podpróbce 16 repo (Emerge subset) zaobserwowano:
 
@@ -191,11 +191,11 @@ Te korelacje dotyczą **podpróbki 16 repo** wybranych do testu Emerge. Na pełn
 
 | Metryka | r (n=16 Emerge subset) | r (n=77 Python-80) | r (n=234 cross-language) |
 |---|---|---|---|
-| QSE modularity (raw Q) vs hotspot | — | -0.133 (n.s.) | -0.066 (n.s.) |
+| QSE modularity (raw Q) vs hotspot | - | -0.133 (n.s.) | -0.066 (n.s.) |
 | QSE AGQ vs hotspot | -0.547 (p<0.05) | -0.127 (n.s.) | +0.067 (n.s.) |
-| QSE AGQ-adj vs hotspot | — | — | +0.143 (p<0.05) |
+| QSE AGQ-adj vs hotspot | - | - | +0.143 (p<0.05) |
 
-**Interpretacja**: Silna korelacja na n=16 jest prawdopodobnie artefaktem doboru próbki. Na pełnym benchmarku (n=77, n=234) ani sam Louvain Q, ani AGQ nie korelują istotnie z hotspot_ratio. Jedyna istotna korelacja cross-language to AGQ-adj vs hotspot (r=+0.14, p<0.05) — słaba i w odwrotnym kierunku niż oczekiwano.
+**Interpretacja**: Silna korelacja na n=16 jest prawdopodobnie artefaktem doboru próbki. Na pełnym benchmarku (n=77, n=234) ani sam Louvain Q, ani AGQ nie korelują istotnie z hotspot_ratio. Jedyna istotna korelacja cross-language to AGQ-adj vs hotspot (r=+0.14, p<0.05) - słaba i w odwrotnym kierunku niż oczekiwano.
 
 Wcześniej zweryfikowane korelacje cross-language (z MEMORY.md) dotyczą **poszczególnych składowych**, nie composite AGQ:
 - acyclicity vs hotspot_ratio: r=+0.223, p=0.001
@@ -219,14 +219,14 @@ Niezależnie od predykcyjności, porównanie ujawnia fundamentalną różnicę s
 | Cross-language normalization | **nie** | tak (AGQ-z) |
 | Architectural fingerprint | **nie** | tak |
 
-QSE dostarcza **4 ortogonalne wymiary** vs 1 u Emerge. Czy ten composite score predykuje lepiej niż sam Q — na dużej próbce efekt jest słaby i wymaga dalszych badań.
+QSE dostarcza **4 ortogonalne wymiary** vs 1 u Emerge. Czy ten composite score predykuje lepiej niż sam Q - na dużej próbce efekt jest słaby i wymaga dalszych badań.
 
 ### 4.4 Ablacja składowych AGQ na podpróbce
 
-- **Acyclicity**: prawie wszędzie = 1.0 (Python repos rzadko mają cykle) — nie różnicuje w tej próbce
-- **Stability**: zakres 0.65–1.00 — różnicuje dobrze
-- **Cohesion**: zakres 0.34–0.86 — najwyższy spread, silnie różnicuje
-- **Modularity**: zakres 0.29–0.61 (raw) — różnicuje
+- **Acyclicity**: prawie wszędzie = 1.0 (Python repos rzadko mają cykle) - nie różnicuje w tej próbce
+- **Stability**: zakres 0.65–1.00 - różnicuje dobrze
+- **Cohesion**: zakres 0.34–0.86 - najwyższy spread, silnie różnicuje
+- **Modularity**: zakres 0.29–0.61 (raw) - różnicuje
 
 ---
 
@@ -234,32 +234,32 @@ QSE dostarcza **4 ortogonalne wymiary** vs 1 u Emerge. Czy ten composite score p
 
 ### Co potwierdza ten benchmark
 
-1. **Louvain Q nie jest porównywalny między narzędziami** (r=0.06) — definicja grafu decyduje o wartości, nie tylko struktura kodu
+1. **Louvain Q nie jest porównywalny między narzędziami** (r=0.06) - definicja grafu decyduje o wartości, nie tylko struktura kodu
 2. **QSE mierzy więcej**: 4 wymiary architektoniczne vs 1 u Emerge (+ fingerprint, AGQ-z, ChurnRisk)
-3. **Emerge daje per-file fan-in/fan-out**, czego QSE nie eksponuje — potencjalne ulepszenie
+3. **Emerge daje per-file fan-in/fan-out**, czego QSE nie eksponuje - potencjalne ulepszenie
 
 ### Czego NIE potwierdza (uczciwie)
 
-1. ~~QSE AGQ predykuje hotspoty lepiej niż sam Louvain Q~~ — na podpróbce n=16 efekt jest widoczny (r=-0.55 vs r=+0.45), ale na pełnym benchmarku n=77/234 korelacje AGQ vs hotspot są bliskie zeru
-2. Predykcyjność architektonicznych metryk grafowych dla maintenance outcomes **pozostaje otwartym pytaniem badawczym** — to centralna hipoteza grantu, nie potwierdzona konkluzja
+1. ~~QSE AGQ predykuje hotspoty lepiej niż sam Louvain Q~~ - na podpróbce n=16 efekt jest widoczny (r=-0.55 vs r=+0.45), ale na pełnym benchmarku n=77/234 korelacje AGQ vs hotspot są bliskie zeru
+2. Predykcyjność architektonicznych metryk grafowych dla maintenance outcomes **pozostaje otwartym pytaniem badawczym** - to centralna hipoteza grantu, nie potwierdzona konkluzja
 
-### Dla grantu — co można bezpiecznie cytować
+### Dla grantu - co można bezpiecznie cytować
 
 > "Cross-validation with independent tool Emerge (n=16 Python repos) confirms that Louvain modularity values are graph-definition dependent (r=0.06 between tools despite identical algorithm), motivating the need for standardized graph construction methodology. QSE extends single-metric tools like Emerge with three additional architectural dimensions (acyclicity, stability, cohesion), providing richer characterization of software structure."
 
 ### Otwarte pytania
 
-1. Dlaczego acyclicity i stability korelują **pozytywnie** z hotspot_ratio? (Hipoteza: confounding — większe, bardziej dojrzałe repo mają zarówno lepszą architekturę, jak i więcej hotspotów)
+1. Dlaczego acyclicity i stability korelują **pozytywnie** z hotspot_ratio? (Hipoteza: confounding - większe, bardziej dojrzałe repo mają zarówno lepszą architekturę, jak i więcej hotspotów)
 2. Czy per-file breakdown AGQ (zamiast jednego score per repo) poprawi predykcyjność?
 3. Czy dodanie Emerge-style fan-in/fan-out jako feature poprawi korelacje?
 
 ### Ograniczenia
 
-- n=16 (tylko Python) — wyniki wymagają replikacji na Java/Go z Emerge
+- n=16 (tylko Python) - wyniki wymagają replikacji na Java/Go z Emerge
 - Shallow clones mogą wpływać na Emerge (brak pełnej historii git)
-- Emerge v2.0.7 — nowsze wersje mogą mieć inny parser
+- Emerge v2.0.7 - nowsze wersje mogą mieć inny parser
 - QSE benchmark pochodzi z 2026-03-08; wersje repo mogą się różnić
-- Podpróbka 16 nie jest losowa — wybrana co 5-ty z posortowanego AGQ, co może wprowadzać bias
+- Podpróbka 16 nie jest losowa - wybrana co 5-ty z posortowanego AGQ, co może wprowadzać bias
 
 ---
 

@@ -1,4 +1,4 @@
-# QSE — Quality Score Engine
+# QSE - Quality Score Engine
 ## Research Discoveries, Contributions, and Innovation Potential
 ### Input Document for EU Grant Application (Horizon Europe / NCN / NCBiR)
 
@@ -10,7 +10,7 @@
 
 ## 1. Executive Summary
 
-The proliferation of AI-assisted code generation (GitHub Copilot, Cursor, Claude Code) introduces a new class of software quality risk: **architectural erosion**. While AI tools produce syntactically correct code that passes unit tests, they systematically violate architectural boundaries, introduce cyclic dependencies, and degrade module cohesion — degradations invisible to existing tools like SonarQube.
+The proliferation of AI-assisted code generation (GitHub Copilot, Cursor, Claude Code) introduces a new class of software quality risk: **architectural erosion**. While AI tools produce syntactically correct code that passes unit tests, they systematically violate architectural boundaries, introduce cyclic dependencies, and degrade module cohesion - degradations invisible to existing tools like SonarQube.
 
 This project introduces **QSE (Quality Score Engine)**, a novel framework for automated architectural quality measurement, empirical calibration, and policy enforcement across programming languages. Our experimental validation on 127 open-source repositories (Python, Java, Go) yields five scientifically significant findings, introduces a practical CI/CD gate for architectural regression prevention, and establishes the foundation for training language models on architectural quality signals.
 
@@ -22,8 +22,8 @@ This project introduces **QSE (Quality Score Engine)**, a novel framework for au
 
 AI-assisted development is becoming the norm. GitHub reports that over 46% of new code on their platform is AI-generated (2025). This creates a fundamental tension:
 
-- **Existing quality tools** (SonarQube, CodeClimate) measure syntactic and security properties — line-level metrics
-- **Architectural quality** — module independence, dependency hierarchy, cohesion — is not measured by any widely-adopted tool
+- **Existing quality tools** (SonarQube, CodeClimate) measure syntactic and security properties - line-level metrics
+- **Architectural quality** - module independence, dependency hierarchy, cohesion - is not measured by any widely-adopted tool
 - **AI systems** optimize for "works now," not "maintainable in 12 months"
 
 The result: codebases that pass all automated checks but have degraded architectural integrity, leading to increased maintenance costs, slower feature delivery, and higher defect rates over time.
@@ -47,9 +47,9 @@ This project fills this gap.
 
 **Problem in literature:** Robert C. Martin's "Distance from Main Sequence" metric (D = |A + I - 1|) is widely referenced but has no empirical validation (confirmed by systematic literature review; Drotbohm 2024 notes the metric is "unvalidated in practice").
 
-**Our finding:** In Python codebases, abstractness A ≈ 0 for virtually all modules (ABC/Protocol usage is rare). This causes D = |I - 1| = 1 - I, making "stability" score equivalent to mean(instability) — semantically inverted. High scores reward flat, leaf-heavy architectures and penalize properly layered systems.
+**Our finding:** In Python codebases, abstractness A ≈ 0 for virtually all modules (ABC/Protocol usage is rare). This causes D = |I - 1| = 1 - I, making "stability" score equivalent to mean(instability) - semantically inverted. High scores reward flat, leaf-heavy architectures and penalize properly layered systems.
 
-**Evidence:** youtube-dl (flat extractor architecture) scored stability=0.99 under the original formula — higher than django (layered framework) at stability=0.38. Architecturally nonsensical.
+**Evidence:** youtube-dl (flat extractor architecture) scored stability=0.99 under the original formula - higher than django (layered framework) at stability=0.38. Architecturally nonsensical.
 
 **Proposed solution:** Package-level instability variance as replacement:
 ```
@@ -63,7 +63,7 @@ This rewards codebases where packages have differentiated coupling roles (core v
 
 ---
 
-### Discovery 2: Architectural Metrics Are Not Language-Neutral — Language Bias in Cohesion
+### Discovery 2: Architectural Metrics Are Not Language-Neutral - Language Bias in Cohesion
 
 **Problem in literature:** No study compares the same architectural metrics across programming language paradigms on real repositories.
 
@@ -75,11 +75,11 @@ This rewards codebases where packages have differentiated coupling roles (core v
 | Python | 78 | ~0.750 | Mixed OOP paradigm |
 | Java | 29 | **0.328** | Complex class hierarchies, multiple inheritance |
 
-Go achieves cohesion=1.00 on every single repository — not because Go code is "better," but because Go's type system structurally prevents the patterns LCOM4 penalizes.
+Go achieves cohesion=1.00 on every single repository - not because Go code is "better," but because Go's type system structurally prevents the patterns LCOM4 penalizes.
 
 **Implication:** Any composite metric including LCOM4 as equal-weight component will systematically rank Go above Java regardless of actual code quality. Cross-language comparisons using such metrics are methodologically invalid without language-specific normalization.
 
-**Evidence:** 127 repositories across 3 languages. Java's jackson-databind (industry standard, 10k+ stars, widely considered excellent) scores AGQ=0.459 due to cohesion=0.10 — a reflection of its "universal serializer" design intent, not a quality defect.
+**Evidence:** 127 repositories across 3 languages. Java's jackson-databind (industry standard, 10k+ stars, widely considered excellent) scores AGQ=0.459 due to cohesion=0.10 - a reflection of its "universal serializer" design intent, not a quality defect.
 
 **Publication potential:** First empirical demonstration of language paradigm bias in architectural quality metrics. Target: ACM ESEC/FSE or MSR.
 
@@ -97,7 +97,7 @@ Go achieves cohesion=1.00 on every single repository — not because Go code is 
 | hotspot_ratio (churn) | -0.007 | 0.93 |
 | co-change graph entropy | -0.012 | 0.91 |
 
-This is not a failure of our metrics — it is a scientifically significant result. Static architectural metrics and dynamic process metrics measure **orthogonal dimensions** of software quality, consistent with Zimmermann et al. (2009) who showed cross-project defect prediction fundamentally fails due to project-level confounders (maturity, community size, development velocity).
+This is not a failure of our metrics - it is a scientifically significant result. Static architectural metrics and dynamic process metrics measure **orthogonal dimensions** of software quality, consistent with Zimmermann et al. (2009) who showed cross-project defect prediction fundamentally fails due to project-level confounders (maturity, community size, development velocity).
 
 **Implication for T3 (Complementarity):** 21 of 78 mature OSS projects receive SonarQube maintainability rating "A" (maximum) but score below the AGQ mean threshold. AGQ detects architectural issues that SonarQube cannot, and SonarQube detects code-level issues AGQ cannot. The two tools are complementary, not competing.
 
@@ -107,7 +107,7 @@ This is not a failure of our metrics — it is a scientifically significant resu
 
 ---
 
-### Discovery 4: Empirically Calibrated Weights — Acyclicity Dominates
+### Discovery 4: Empirically Calibrated Weights - Acyclicity Dominates
 
 **Problem in literature:** Composite architectural quality metrics universally use equal weights (1/n) without empirical justification. This is arbitrary.
 
@@ -122,9 +122,9 @@ w(modularity)  = 0.000   ← no independent signal
 
 **This is independently confirmed by literature:** Gnoyke et al. (JSS 2024), analyzing 485 releases of 14 OSS systems: "practitioners perceive cyclic dependencies to affect quality, speed, and occurrence of bugs the most among architectural smell types."
 
-Our empirical calibration aligns with expert assessment without using expert input — the calibration emerges from the data.
+Our empirical calibration aligns with expert assessment without using expert input - the calibration emerges from the data.
 
-**LOO-CV MSE = 0.006 ± 0.013** — the model is stable and not overfitting.
+**LOO-CV MSE = 0.006 ± 0.013** - the model is stable and not overfitting.
 
 **Publication potential:** First empirically calibrated architectural composite metric with LOO-CV validation. Resolves a long-standing methodological weakness in composite metric literature. Target: IEEE TSE.
 
@@ -132,7 +132,7 @@ Our empirical calibration aligns with expert assessment without using expert inp
 
 ### Discovery 5: Automatic Policy Discovery from Code Structure
 
-**Problem in literature:** Architectural policy enforcement tools (import-linter, tach) require manual rule specification — a barrier to adoption.
+**Problem in literature:** Architectural policy enforcement tools (import-linter, tach) require manual rule specification - a barrier to adoption.
 
 **Our finding:** Combining Louvain community detection with directional edge analysis on the dependency graph automatically discovers architecturally meaningful boundaries:
 
@@ -142,7 +142,7 @@ Our empirical calibration aligns with expert assessment without using expert inp
 
 Key insight: when A→B (A imports B but B never imports A), the correct rule is `forbidden: B→A` (preserve the hierarchy), not `forbidden: A→B` (which forbids the existing, correct dependency). This directional interpretation was incorrect in prior work.
 
-**Validated:** Automatically discovered rules for Django produce `constraint_score=1.00` when run against the actual codebase — the rules are consistent with the existing architecture.
+**Validated:** Automatically discovered rules for Django produce `constraint_score=1.00` when run against the actual codebase - the rules are consistent with the existing architecture.
 
 **Publication potential:** Novel algorithm for architectural policy auto-discovery with cross-language validation. Target: ICSA or ECSA.
 
@@ -189,7 +189,7 @@ Key insight: when A→B (A imports B but B never imports A), the correct rule is
 - GitHub Copilot: 1.3M paid users (2024), growing
 - The AI code generation market: $1.7B (2024) → $12.3B (2029) projected
 - No existing tool addresses architectural quality in AI-generated code
-- SonarQube enterprise: €15k-€150k/year — QSE addresses a gap Sonar explicitly doesn't cover
+- SonarQube enterprise: €15k-€150k/year - QSE addresses a gap Sonar explicitly doesn't cover
 
 ### 5.2 Target Applications
 
@@ -201,14 +201,14 @@ Key insight: when A→B (A imports B but B never imports A), the correct rule is
 ### 5.3 Policy-as-a-Service Business Model
 
 ```
-Tier 1 (Open Source): CLI tool, GitHub Action — viral adoption
+Tier 1 (Open Source): CLI tool, GitHub Action - viral adoption
 Tier 2 (Pro, €99-499/month): Policy Manager UI, trend dashboard, templates
 Tier 3 (Enterprise, €999+/month): Compliance reporting, multi-repo, SSO
 ```
 
 ---
 
-## 6. Research and Development Roadmap — Milestones
+## 6. Research and Development Roadmap - Milestones
 
 ### Milestone 1 (Months 1-6): Empirical Foundation
 **Status: COMPLETED**
@@ -272,7 +272,7 @@ Training signal: AGQ as reward in RLHF-style loop
   - Preference pairs: (fail_diff, fixed_diff) from generate_loop.py
 ```
 
-**Key innovation:** AGQ replaces human feedback as reward signal — **automated architectural RLHF**. No human annotation required; the quality gate IS the preference model.
+**Key innovation:** AGQ replaces human feedback as reward signal - **automated architectural RLHF**. No human annotation required; the quality gate IS the preference model.
 
 ```python
 # Training loop
@@ -355,7 +355,7 @@ for prompt in architecture_aware_tasks:
 
 ---
 
-## 10. Existing Assets (Sunk Costs — Already Delivered)
+## 10. Existing Assets (Sunk Costs - Already Delivered)
 
 The following deliverables exist as working code and empirical results, representing significant prior investment:
 

@@ -2,9 +2,9 @@
 """Collect architectural ground truth metrics for AGQ benchmark repos.
 
 Enriches existing benchmark JSON with:
-1) Bugfix Blast Radius — files/dirs/packages touched per bugfix commit.
-2) GitHub Bug Issues — issue counts, MTTR from GitHub API.
-3) Composite architectural defect score — rank-normalized aggregate.
+1) Bugfix Blast Radius - files/dirs/packages touched per bugfix commit.
+2) GitHub Bug Issues - issue counts, MTTR from GitHub API.
+3) Composite architectural defect score - rank-normalized aggregate.
 
 Usage:
     python3 scripts/agq_ground_truth_collector.py \
@@ -840,7 +840,7 @@ def main() -> None:
         print("GitHub API enabled (token provided)")
     elif not args.no_github:
         github = GitHubClient(token=None)
-        print("GitHub API enabled (no token — 60 req/hour limit)")
+        print("GitHub API enabled (no token - 60 req/hour limit)")
     else:
         print("GitHub API disabled (--no-github)")
 
@@ -969,7 +969,7 @@ def main() -> None:
     theses = _evaluate_theses(flat_rows)
     for t in theses:
         status = "PASS" if t["passed"] else "FAIL"
-        print(f"  {t['id']}: {status} — {t['evidence']}")
+        print(f"  {t['id']}: {status} - {t['evidence']}")
 
     # Correlation matrix
     print("Computing correlation matrix...")

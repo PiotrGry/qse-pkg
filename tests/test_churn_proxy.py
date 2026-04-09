@@ -1,7 +1,7 @@
 """
 Unit tests for _churn_proxy() in agq_oss_thesis_benchmark.py.
 
-Uses tmp git repos created in-process — no network, no /tmp/agq_bench80.
+Uses tmp git repos created in-process - no network, no /tmp/agq_bench80.
 """
 
 import subprocess
@@ -105,7 +105,7 @@ class TestChurnProxy:
         repo = _make_repo(tmp_path, [
             ("old commit", {"module.py": "x=1"}),
         ])
-        # Future date — no existing commits can match
+        # Future date - no existing commits can match
         result = _churn_proxy(repo, since="2099-01-01")
         assert result["n_files"] == 0
         assert result["hotspot_ratio"] is None

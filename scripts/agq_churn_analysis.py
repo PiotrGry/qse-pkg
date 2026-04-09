@@ -5,12 +5,12 @@ Code churn = how often each .py file is modified in git history.
 High-churn files are defect-prone (Nagappan & Ball 2005, Moser et al. 2008).
 
 Metrics per repo:
-  mean_churn        — mean commits-per-file (production .py only)
-  max_churn         — max commits for any single file (hotspot severity)
-  churn_gini        — Gini coefficient of churn distribution
+  mean_churn        - mean commits-per-file (production .py only)
+  max_churn         - max commits for any single file (hotspot severity)
+  churn_gini        - Gini coefficient of churn distribution
                       (high = few hotspot files carry all changes)
-  hotspot_ratio     — fraction of files with churn > 2x mean
-  module_churn_cv   — coefficient of variation of per-module churn
+  hotspot_ratio     - fraction of files with churn > 2x mean
+  module_churn_cv   - coefficient of variation of per-module churn
                       (high CV = uneven distribution = architectural smell)
 
 Hypothesis: high AGQ -> lower mean_churn, lower hotspot_ratio, lower churn_gini.
@@ -227,7 +227,7 @@ def _to_markdown(report: Dict) -> str:
         "Well-modularized code changes in small isolated units.",
         "Ref: Nagappan & Ball (2005); Moser et al. (2008).",
         "",
-        "## Correlations (AGQ vs churn — negative = AGQ predicts lower churn)",
+        "## Correlations (AGQ vs churn - negative = AGQ predicts lower churn)",
         "",
         "| Pair | n | Pearson | p | Spearman | p | Sig |",
         "|---|---:|---:|---:|---:|---:|---|",

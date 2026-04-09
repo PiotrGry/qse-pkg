@@ -1,4 +1,4 @@
-# Spaghetti OSS vs Mainstream OSS — Comparison
+# Spaghetti OSS vs Mainstream OSS - Comparison
 
 - generated_at: `2026-03-07T08:05:28.289271+00:00`
 - source_main: `artifacts/benchmark/agq_thesis_oss15.json`

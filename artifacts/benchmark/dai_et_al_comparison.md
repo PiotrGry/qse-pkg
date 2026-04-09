@@ -1,4 +1,4 @@
-# Porównanie QSE AGQ z Dai et al. (2026) — published baseline
+# Porównanie QSE AGQ z Dai et al. (2026) - published baseline
 
 **Data:** 2026-03-21
 **Dane:** `artifacts/benchmark/dai_et_al_comparison.json`
@@ -20,7 +20,7 @@ Porównanie wyników QSE AGQ z published results Dai et al. na **tych samych 4 r
 | Metoda | Supervised GNN (AST+CFG+DFG), 32GB GPU | Deterministyczne metryki grafowe, zero-shot |
 | Training | 6.8h na RTX 3090 | 0 (brak) |
 | Output | 5-class quality + defect prediction | Score 0-1 + fingerprint + diagnostyka |
-| Scanner | QSE Rust qse-core (tree-sitter-java) | — |
+| Scanner | QSE Rust qse-core (tree-sitter-java) | - |
 
 ---
 
@@ -46,15 +46,15 @@ Eclipse JDT       0.632  0.77  0.96  0.48  0.31    0.251   0.808    0.823
 
 **AGQ ranking = Dai et al. architectural integrity ranking (Spearman rho=1.0, n=4).**
 
-AGQ vs defect density: rho=0.2 (słaba — defect density bardziej koreluje z wielkością projektu i dojrzałością).
+AGQ vs defect density: rho=0.2 (słaba - defect density bardziej koreluje z wielkością projektu i dojrzałością).
 
 ### 3.3 Diagnostyka AGQ
 
 | Projekt | AGQ diagnoza | Kontekst Dai et al. |
 |---|---|---|
-| **Apache Ant** | Niska kohezja (0.26) — god classes | Najniższy arch. integrity (0.800), "Low complexity" ale najwyższy defect density |
-| **Apache Camel** | Bardzo niska stability (0.15) — flat architecture | "High complexity" w Dai, +11.2% improvement (biggest gain = worst baseline) |
-| **Apache Hadoop** | Niska kohezja (0.26) — god classes | Medium we wszystkim |
+| **Apache Ant** | Niska kohezja (0.26) - god classes | Najniższy arch. integrity (0.800), "Low complexity" ale najwyższy defect density |
+| **Apache Camel** | Bardzo niska stability (0.15) - flat architecture | "High complexity" w Dai, +11.2% improvement (biggest gain = worst baseline) |
+| **Apache Hadoop** | Niska kohezja (0.26) - god classes | Medium we wszystkim |
 | **Eclipse JDT** | Najlepszy AGQ, cycles=MEDIUM | Najwyższy Dai arch. integrity (0.823) |
 
 ---
@@ -71,10 +71,10 @@ Oba narzędzia rankują te 4 projekty **identycznie**. To silny argument za face
 
 ### AGQ daje więcej niż ranking
 
-Dai et al. daje accuracy per quality dimension — ale nie mówi *co* jest źle. AGQ identyfikuje:
+Dai et al. daje accuracy per quality dimension - ale nie mówi *co* jest źle. AGQ identyfikuje:
 - **Ant/Hadoop**: god classes (LCOM4 wskazuje klasy bez kohezji)
-- **Camel**: flat architecture (stability=0.15 — brak zróżnicowania ról pakietów)
-- **JDT**: cycles detected (acyclicity=0.96 — 4% węzłów w cyklu)
+- **Camel**: flat architecture (stability=0.15 - brak zróżnicowania ról pakietów)
+- **JDT**: cycles detected (acyclicity=0.96 - 4% węzłów w cyklu)
 
 ### Fix scannera: enterprise-ready
 
@@ -89,10 +89,10 @@ Te poprawki są konieczne do skanowania enterprise repo (Eclipse, IntelliJ, duż
 
 ## 5. Ograniczenia
 
-- **n=4** — za mało na statystykę. rho=1.0 przy n=4 ma p=0.083 (exact permutation test) — nie osiąga p<0.05.
+- **n=4** - za mało na statystykę. rho=1.0 przy n=4 ma p=0.083 (exact permutation test) - nie osiąga p<0.05.
 - Wersje repo mogą się różnić od Dai et al. (nie podają commitów).
 - Porównanie ranking vs ranking, nie score vs score (różne skale).
-- Dai et al. mierzą per-file, QSE per-repo — różna granularność.
+- Dai et al. mierzą per-file, QSE per-repo - różna granularność.
 
 ---
 

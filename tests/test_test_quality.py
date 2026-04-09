@@ -1,4 +1,4 @@
-"""Unit tests for test_quality.py — QSE_test metrics."""
+"""Unit tests for test_quality.py - QSE_test metrics."""
 
 import textwrap
 from pathlib import Path

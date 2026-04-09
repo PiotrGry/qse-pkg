@@ -1,8 +1,8 @@
 """QSE command-line interface.
 
 Commands:
-    qse agq       — AGQ gate (architecture graph quality)
-    qse discover  — auto-discover architectural boundaries
+    qse agq       - AGQ gate (architecture graph quality)
+    qse discover  - auto-discover architectural boundaries
 """
 
 import argparse
@@ -288,7 +288,7 @@ def _run_discover(args) -> None:
 def main():
     parser = argparse.ArgumentParser(
         prog="qse",
-        description="QSE — Quality Score Engine for architecture validation",
+        description="QSE - Quality Score Engine for architecture validation",
     )
     sub = parser.add_subparsers(dest="command")
 

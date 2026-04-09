@@ -10,7 +10,7 @@ High AGQ → lower mean_churn, lower hotspot_ratio, lower churn_gini.
 Well-modularized code changes in small isolated units.
 Ref: Nagappan & Ball (2005); Moser et al. (2008).
 
-## Correlations (AGQ vs churn — negative = AGQ predicts lower churn)
+## Correlations (AGQ vs churn - negative = AGQ predicts lower churn)
 
 | Pair | n | Pearson | p | Spearman | p | Sig |
 |---|---:|---:|---:|---:|---:|---|

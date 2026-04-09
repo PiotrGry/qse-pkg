@@ -34,7 +34,7 @@ Normalizacja na rozmiar: metric / log(n_modules + 1).
 
 ### IC po kontroli rozmiaru (50-500 modules, n=97)
 
-IC vs churn_gini: **r=-0.27, p=0.007** — istotne cross-language po usunięciu confoundu.
+IC vs churn_gini: **r=-0.27, p=0.007** - istotne cross-language po usunięciu confoundu.
 
 ### Per-language
 
@@ -60,8 +60,8 @@ IC vs churn_gini: **r=-0.27, p=0.007** — istotne cross-language po usunięciu 
 
 ## Wnioski
 
-1. **fan_out_std / log(n)** — jedyna metryka istotna cross-language po normalizacji (r=+0.13)
-2. **IC** — istotna po kontroli rozmiaru (r=-0.27), kandydat do Predictor z size-bracket
-3. **CCD** — nie daje sygnału, odłożona
-4. **Per-module fan-out** — wartość diagnostyczna (identyfikacja god modules), nie predykcyjna
-5. Normalizacja na rozmiar jest **konieczna** — raw metryki są zdominowane przez confound
+1. **fan_out_std / log(n)** - jedyna metryka istotna cross-language po normalizacji (r=+0.13)
+2. **IC** - istotna po kontroli rozmiaru (r=-0.27), kandydat do Predictor z size-bracket
+3. **CCD** - nie daje sygnału, odłożona
+4. **Per-module fan-out** - wartość diagnostyczna (identyfikacja god modules), nie predykcyjna
+5. Normalizacja na rozmiar jest **konieczna** - raw metryki są zdominowane przez confound

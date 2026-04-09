@@ -1,7 +1,7 @@
 # AGQ Co-Change Entropy Analysis
 
 - generated_at: `2026-03-07T22:59:48.569435+00:00`
-- reference: `arXiv:2504.18511 — Co-Change Graph Entropy (2025)`
+- reference: `arXiv:2504.18511 - Co-Change Graph Entropy (2025)`
 - repos_analysed: `74`
 - git_window: `2 years ago`
 

@@ -1,5 +1,5 @@
 """
-AGQ Graph Metrics — architecture-agnostic, Level 1.
+AGQ Graph Metrics - architecture-agnostic, Level 1.
 
 Modularity (Q):  Newman's modularity via Louvain on import graph
 Acyclicity (A):  1 - (largest_SCC / internal_nodes) via Tarjan SCC
@@ -7,7 +7,7 @@ Stability (St):  package-level instability variance (layering quality)
 Cohesion (Co):   1 - mean(LCOM4) per class (connected components in method-attribute graph)
 
 Additional metrics:
-  hierarchical_modularity: M-score inspired — density ratio within vs between
+  hierarchical_modularity: M-score inspired - density ratio within vs between
                            second-level packages. Fixes leaf-module size bias
                            in Newman Q (Pisch et al. ESEM 2024).
   boundary_crossing_ratio: fraction of cross-package edges vs total internal edges.
@@ -39,7 +39,7 @@ class AGQMetrics:
 
 
 # ---------------------------------------------------------------------------
-# Modularity — Newman's Q via Louvain
+# Modularity - Newman's Q via Louvain
 # ---------------------------------------------------------------------------
 
 def compute_modularity(G: nx.DiGraph) -> float:
@@ -80,7 +80,7 @@ def compute_modularity(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Acyclicity — Tarjan SCC
+# Acyclicity - Tarjan SCC
 # ---------------------------------------------------------------------------
 
 def compute_acyclicity(G: nx.DiGraph) -> float:
@@ -122,7 +122,7 @@ def compute_acyclicity(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Stability — Martin's Distance from Main Sequence
+# Stability - Martin's Distance from Main Sequence
 # ---------------------------------------------------------------------------
 
 def compute_stability(G: nx.DiGraph,
@@ -175,7 +175,7 @@ def compute_stability(G: nx.DiGraph,
 
 
 def compute_instability_variance(G: nx.DiGraph) -> float:
-    """Per-node instability variance — kept for backward compatibility.
+    """Per-node instability variance - kept for backward compatibility.
 
     Deprecated: use compute_stability() which applies package-level grouping
     to prevent leaf-module inflation in large repos.
@@ -199,7 +199,7 @@ def compute_instability_variance(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Adaptive Package Boundary Crossing — depth-aware (D'Ambros & Lanza 2009)
+# Adaptive Package Boundary Crossing - depth-aware (D'Ambros & Lanza 2009)
 # ---------------------------------------------------------------------------
 
 def _detect_package_depth(G: nx.DiGraph) -> int:
@@ -221,9 +221,9 @@ def _detect_package_depth(G: nx.DiGraph) -> int:
     mean_depth = sum(depths) / len(depths)
 
     # Group one level above the leaves: round(mean_depth) - 1
-    # flask (mean=1.3) → 1   — group at "flask"
-    # django (mean=3.3) → 2  — group at "django.db"
-    # ansible (mean=5)  → 4  — group at "ansible.modules.cloud"
+    # flask (mean=1.3) → 1   - group at "flask"
+    # django (mean=3.3) → 2  - group at "django.db"
+    # ansible (mean=5)  → 4  - group at "ansible.modules.cloud"
     level = max(1, min(4, round(mean_depth) - 1))
     return level
 
@@ -256,7 +256,7 @@ def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
         parts = node.split(".")
         packages[node] = ".".join(parts[:depth]) if len(parts) >= depth else parts[0]
 
-    # Don't short-circuit on single package — compute normally.
+    # Don't short-circuit on single package - compute normally.
     # All edges within one package → 0 crossing → BCR = 1.0 (correct: perfectly isolated).
 
     internal = {n for n, d in G.nodes(data=True) if d.get("file")}
@@ -279,7 +279,7 @@ def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
 
 
 def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
-    """Deprecated alias — use compute_boundary_crossing_ratio() instead.
+    """Deprecated alias - use compute_boundary_crossing_ratio() instead.
 
     hierarchical_modularity was redundant with Newman modularity Q when
     package boundaries align with natural graph clusters. BCR with adaptive
@@ -289,7 +289,7 @@ def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Cohesion — LCOM4
+# Cohesion - LCOM4
 # ---------------------------------------------------------------------------
 
 def compute_lcom4(methods_attrs: List[Tuple[str, Set[str]]]) -> int:
@@ -346,11 +346,11 @@ def compute_cohesion(classes_lcom4: List[int]) -> float:
 
 
 # ---------------------------------------------------------------------------
-# CCD — Cumulative Component Dependency (Lakos 1996)
+# CCD - Cumulative Component Dependency (Lakos 1996)
 # ---------------------------------------------------------------------------
 
 def compute_ccd(G: nx.DiGraph) -> Dict[str, float]:
-    """Cumulative Component Dependency — measures ripple effect.
+    """Cumulative Component Dependency - measures ripple effect.
 
     CCD = sum of reachable nodes from each node (including self).
     Normalized by CCD of a balanced binary tree: n * log2(n).
@@ -398,14 +398,14 @@ def compute_ccd(G: nx.DiGraph) -> Dict[str, float]:
 
 
 # ---------------------------------------------------------------------------
-# Indirect Coupling — Edge Strength Metric (Šora 2013, Chiricota 2003)
+# Indirect Coupling - Edge Strength Metric (Šora 2013, Chiricota 2003)
 # ---------------------------------------------------------------------------
 
 def compute_indirect_coupling(G: nx.DiGraph) -> Dict[str, float]:
     """Indirect coupling via shared neighbors (Edge Strength Metric).
 
     For each edge (u,v), ESM = |neighbors(u) ∩ neighbors(v)| / |neighbors(u) ∪ neighbors(v)|
-    High ESM means u and v share many dependencies — strongly coupled indirectly.
+    High ESM means u and v share many dependencies - strongly coupled indirectly.
 
     Returns dict with mean_ic, max_ic, ic_above_05 (fraction of edges with IC > 0.5).
     Only internal nodes considered.
@@ -531,7 +531,7 @@ def compute_agq(G: nx.DiGraph,
                 ) -> AGQMetrics:
     """Compute all AGQ metrics.
 
-    weights: (modularity, acyclicity, stability, cohesion) — auto-normalized.
+    weights: (modularity, acyclicity, stability, cohesion) - auto-normalized.
     Default equal weights. Calibrated churn-optimal: (0.0, 0.73, 0.05, 0.17).
 
     Scope note: meaningful discrimination requires ~50+ internal modules.

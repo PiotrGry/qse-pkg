@@ -1,4 +1,4 @@
-# ROLE_RESEARCH.md — QSE Research Analyst
+# ROLE_RESEARCH.md - QSE Research Analyst
 
 ## Rola
 
@@ -11,7 +11,7 @@ Nie implementujesz kodu w `qse/`.
 ## Zakres QSE (perspektywa badawcza)
 
 QSE to **composite structural quality metric** dla Python, Java i Go oparty na AGQ
-(Architecture Graph Quality) — kalibrowany wskaźnik topologii grafu zależności.
+(Architecture Graph Quality) - kalibrowany wskaźnik topologii grafu zależności.
 
 ### AGQ Core (4 składowe, kalibrowane wagi)
 | Metryka | Waga | Algorytm |
@@ -24,10 +24,10 @@ QSE to **composite structural quality metric** dla Python, Java i Go oparty na A
 Wagi kalibrowane L-BFGS-B + LOO-CV na 240 repo OSS.
 
 ### AGQ Enhanced
-- **AGQ-z** — z-score per język (normalizacja cross-language)
-- **AGQ-adj** — korekta na rozmiar (log n)
-- **Fingerprint** — 8 archetypów: CLEAN, LAYERED, MODERATE, FLAT, LOW_COHESION, TANGLED, CYCLIC, UNKNOWN
-- **CycleSeverity**, **ChurnRisk** — proxy dla maintenance cost
+- **AGQ-z** - z-score per język (normalizacja cross-language)
+- **AGQ-adj** - korekta na rozmiar (log n)
+- **Fingerprint** - 7 archetypów: CLEAN, LAYERED, MODERATE, FLAT, LOW_COHESION, TANGLED, CYCLIC
+- **CycleSeverity**, **ChurnRisk** - proxy dla maintenance cost
 
 ---
 
@@ -55,9 +55,9 @@ Wagi kalibrowane L-BFGS-B + LOO-CV na 240 repo OSS.
 Indeks plików: `artifacts/DOCUMENT_MAP.md`
 
 ### Dane benchmarkowe (SoT)
-- `artifacts/benchmark/agq_enhanced_*.json` — per-language AGQ + fingerprints
-- `artifacts/benchmark/agq_weight_calibration.json` — kalibracja wag
-- `artifacts/benchmark/agq_correlation_breakdown.json` — korelacje cross-language
+- `artifacts/benchmark/agq_enhanced_*.json` - per-language AGQ + fingerprints
+- `artifacts/benchmark/agq_weight_calibration.json` - kalibracja wag
+- `artifacts/benchmark/agq_correlation_breakdown.json` - korelacje cross-language
 
 ### Walidacje (SoT)
 - `artifacts/benchmark/known_good_bad_validation.json`
@@ -67,13 +67,13 @@ Indeks plików: `artifacts/DOCUMENT_MAP.md`
 - `artifacts/benchmark/extended_metrics_normalized.json`
 
 ### Grant
-- `artifacts/grant_preview_pl.md` — główny wniosek
-- `artifacts/wniosek_verification_2026-03-23.md` — raport weryfikacyjny
+- `artifacts/grant_preview_pl.md` - główny wniosek
+- `artifacts/wniosek_verification_2026-03-23.md` - raport weryfikacyjny
 
 ### Archiwum (NIE używać jako źródło)
-- `artifacts/benchmark/archive/` — starsze iteracje benchmarków
-- `artifacts/archive/` — superseded grant docs
-- `papiers/archive/` — przestarzałe raporty DDD-centric
+- `artifacts/benchmark/archive/` - starsze iteracje benchmarków
+- `artifacts/archive/` - superseded grant docs
+- `papiers/archive/` - przestarzałe raporty DDD-centric
 
 ---
 
@@ -91,8 +91,8 @@ Wymaga Rust scannera: `maturin develop --release -m qse-py/Cargo.toml`
 ## Znane ograniczenia (cytuj w materiałach)
 
 - AGQ scope: <50 nodes → neutral/inflated scores
-- Wagi kalibrowane na OSS-Python — wymagają replikacji per język
-- rho=1.0 (Dai et al.) to n=4, p=0.083 — kierunkowo zgodne, nie istotne statystycznie
+- Wagi kalibrowane na OSS-Python - wymagają replikacji per język
+- rho=1.0 (Dai et al.) to n=4, p=0.083 - kierunkowo zgodne, nie istotne statystycznie
 - Hotspot ratio to churn proxy, nie bezpośrednia ocena jakości przez ekspertów
 
 ---

@@ -212,7 +212,7 @@ def main() -> None:
     for path in args.jsons:
         p = Path(path)
         if not p.exists():
-            print(f"[warn] {path} not found — skipping")
+            print(f"[warn] {path} not found - skipping")
             continue
         datasets.append(_load(path))
 
@@ -239,7 +239,7 @@ def main() -> None:
     for label, data in zip(labels, datasets):
         row = _thesis_row(data)
         total = sum(1 for v in row.values() if v == "PASS")
-        print(f"  {label}: {total}/{len(row)} — {row}")
+        print(f"  {label}: {total}/{len(row)} - {row}")
 
 
 if __name__ == "__main__":

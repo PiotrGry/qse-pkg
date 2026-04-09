@@ -2,9 +2,9 @@
 Golden path regression tests for AGQ metrics.
 
 Tests three levels:
-1. Synthetic architectural patterns — known exact or bounded outputs
-2. Structural ordering invariants — "good" architecture scores higher
-3. Determinism — repeated calls produce identical results
+1. Synthetic architectural patterns - known exact or bounded outputs
+2. Structural ordering invariants - "good" architecture scores higher
+3. Determinism - repeated calls produce identical results
 
 These tests catch regressions when metric formulas change.
 Do NOT use real repos (slow, requires /tmp). Use synthetic graphs only.
@@ -83,7 +83,7 @@ def _layered(n_layers: int, n_per_layer: int) -> nx.DiGraph:
 
 
 # ---------------------------------------------------------------------------
-# 1. Acyclicity — architectural pattern checks
+# 1. Acyclicity - architectural pattern checks
 # ---------------------------------------------------------------------------
 
 class TestAcyclicityGolden:
@@ -133,11 +133,11 @@ class TestAcyclicityGolden:
 
     def test_external_cycle_ignored(self):
         """Cycle between external nodes (no 'file' attr) must not affect score.
-        External = stdlib/third-party modules — cycles there are not architectural."""
+        External = stdlib/third-party modules - cycles there are not architectural."""
         G = nx.DiGraph()
         G.add_node("app.mod", file="/src/mod.py")  # internal
-        G.add_node("ext.a")   # external — no file
-        G.add_node("ext.b")   # external — no file
+        G.add_node("ext.a")   # external - no file
+        G.add_node("ext.b")   # external - no file
         G.add_edge("app.mod", "ext.a")
         G.add_edge("ext.a", "ext.b")
         G.add_edge("ext.b", "ext.a")   # cycle between externals only
@@ -159,7 +159,7 @@ class TestAcyclicityGolden:
 
 
 # ---------------------------------------------------------------------------
-# 2. Stability — instability variance checks
+# 2. Stability - instability variance checks
 # ---------------------------------------------------------------------------
 
 class TestStabilityGolden:
@@ -212,7 +212,7 @@ class TestStabilityGolden:
         # extractors: Ca=0, Ce=500 → I=1.0
         # core: Ca=500, Ce=0 → I=0.0
         # Two packages only → variance of [0.0, 1.0] = 0.25 → stability=1.0?
-        # NO — this is actually the correct bimodal case. The inflation bug was
+        # NO - this is actually the correct bimodal case. The inflation bug was
         # when ALL nodes had I=1.0 (no hub imports the extractors back).
         # True inflation test: all extractors import only stdlib (nothing imports them)
         G2 = nx.DiGraph()
@@ -234,7 +234,7 @@ class TestStabilityGolden:
 
 
 # ---------------------------------------------------------------------------
-# 3. Modularity — community structure checks
+# 3. Modularity - community structure checks
 # ---------------------------------------------------------------------------
 
 class TestModularityGolden:
@@ -269,7 +269,7 @@ class TestModularityGolden:
 
 
 # ---------------------------------------------------------------------------
-# 4. Cohesion — LCOM4 checks
+# 4. Cohesion - LCOM4 checks
 # ---------------------------------------------------------------------------
 
 class TestCohesionGolden:
@@ -307,7 +307,7 @@ class TestCohesionGolden:
 
 
 # ---------------------------------------------------------------------------
-# 5. Composite AGQ — ordering invariants
+# 5. Composite AGQ - ordering invariants
 # ---------------------------------------------------------------------------
 
 class TestAGQOrderingInvariants:
@@ -342,7 +342,7 @@ class TestAGQOrderingInvariants:
         """Clear layered hierarchy > flat graph where all nodes have same I."""
         G_layered = _layered(4, 5)  # 4 layers, 5 modules each
         G_flat = nx.DiGraph()
-        # Flat: ring — all nodes have I ≈ 0.5
+        # Flat: ring - all nodes have I ≈ 0.5
         for i in range(20):
             G_flat.add_edge(f"m{i}", f"m{(i+1)%20}")
 
@@ -437,7 +437,7 @@ class TestWeightedAGQ:
 
 class TestDeterminism:
     def test_modularity_deterministic(self):
-        """Louvain uses fixed seed=42 — must return identical results."""
+        """Louvain uses fixed seed=42 - must return identical results."""
         G = _two_clusters(20)
         results = [compute_modularity(G) for _ in range(5)]
         assert len(set(results)) == 1, f"modularity not deterministic: {results}"

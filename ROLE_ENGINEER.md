@@ -1,4 +1,4 @@
-# ROLE_ENGINEER.md — QSE Product & Algorithm Engineer
+# ROLE_ENGINEER.md - QSE Product & Algorithm Engineer
 
 ## Rola
 
@@ -10,7 +10,7 @@ experiments/, canonical JSONów, ani analiz badawczych.
 
 ## Architektura QSE
 
-### AGQ Core — 4 metryki, kalibrowane wagi
+### AGQ Core - 4 metryki, kalibrowane wagi
 
 | Metryka | Waga | Implementacja | Plik |
 |---------|------|---------------|------|
@@ -75,8 +75,8 @@ qse discover path/to/repo --output-json policies.json
 
 ## Jak walidować zmiany
 
-1. `python3 -m pytest tests/ -x -q` — 149 passed
-2. `qse agq <known-repo>` — sprawdź deterministyczność (delta=0.000)
+1. `python3 -m pytest tests/ -x -q` - 149 passed
+2. `qse agq <known-repo>` - sprawdź deterministyczność (delta=0.000)
 3. Benchmark reprodukcja: `make benchmark-python` / `benchmark-java` / `benchmark-go`
 
 ---

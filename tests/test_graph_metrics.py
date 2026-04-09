@@ -1,4 +1,4 @@
-"""Unit tests for qse.graph_metrics — AGQ Level 1 metrics."""
+"""Unit tests for qse.graph_metrics - AGQ Level 1 metrics."""
 
 import networkx as nx
 import pytest
@@ -93,7 +93,7 @@ class TestAcyclicity:
 
     def test_two_disconnected_cycles(self):
         """Two separate 2-node cycles: largest SCC=2, total=4 → 1 - 2/4 = 0.5.
-        Less catastrophic than one large SCC — new formula captures severity."""
+        Less catastrophic than one large SCC - new formula captures severity."""
         G = nx.DiGraph()
         G.add_edges_from([("a", "b"), ("b", "a"), ("c", "d"), ("d", "c")])
         assert compute_acyclicity(G) == pytest.approx(0.5)

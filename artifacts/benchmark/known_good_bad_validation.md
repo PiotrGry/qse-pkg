@@ -8,7 +8,7 @@
 
 ## 1. Cel
 
-Sprawdzić czy AGQ rozróżnia repozytoria o **uznanej dobrej architekturze** od tych z **niską jakością architektoniczną**. To face validity test — czy metryka odpowiada intuicji inżynierskiej?
+Sprawdzić czy AGQ rozróżnia repozytoria o **uznanej dobrej architekturze** od tych z **niską jakością architektoniczną**. To face validity test - czy metryka odpowiada intuicji inżynierskiej?
 
 ---
 
@@ -35,7 +35,7 @@ Repozytoria wielokrotnie uznane za wzorcowe w community Python:
 
 ### Known-bad (n=10)
 
-Bottom-10 AGQ z benchmarku Python-80. To nie są "złe" projekty — to projekty z **najniższymi scorami architektonicznymi** w naszym zbiorze. Obejmują:
+Bottom-10 AGQ z benchmarku Python-80. To nie są "złe" projekty - to projekty z **najniższymi scorami architektonicznymi** w naszym zbiorze. Obejmują:
 - Projekty z flat architecture (brak zróżnicowania ról pakietów)
 - Projekty z niską kohezją klas
 - Mono-repo z wieloma luźno powiązanymi komponentami
@@ -101,7 +101,7 @@ BAD   home-assistant            0.575  Mod=0.51 Acy=1.00 Stab=0.08 Coh=0.71  FLA
 
 - **Stability** jest głównym dyskryminatorem: good mean=0.84, bad mean=0.44. Dobrze zarchitekturyzowane projekty mają wyraźnie zróżnicowane warstwy (stabilne core, niestabilne adaptery).
 - **Cohesion** jest drugą osią: good mean=0.66, bad mean=0.60. Mniejsza różnica, ale LOW_COHESION fingerprinty pojawiają się tylko w bad.
-- **Modularity** nie różnicuje (good=0.53, bad=0.50) — sam Louvain Q nie wystarczy.
+- **Modularity** nie różnicuje (good=0.53, bad=0.50) - sam Louvain Q nie wystarczy.
 - **Acyclicity** = 1.0 prawie wszędzie (Python repos rzadko mają cykle).
 
 ---
@@ -109,14 +109,14 @@ BAD   home-assistant            0.575  Mod=0.51 Acy=1.00 Stab=0.08 Coh=0.71  FLA
 ## 4. Ograniczenia
 
 1. **Selection bias**: Known-good wybrane ręcznie na podstawie community reputation. Ktoś mógłby argumentować że wybrano repo które "pasują" do metryki.
-2. **Known-bad = bottom AGQ**: Nie są obiektywnie "złe" — to po prostu najniższe w benchmarku. Spaghetti repos nie dały się zeskanować (za małe/niekompletne).
+2. **Known-bad = bottom AGQ**: Nie są obiektywnie "złe" - to po prostu najniższe w benchmarku. Spaghetti repos nie dały się zeskanować (za małe/niekompletne).
 3. **Brak ślepej oceny**: Ideałem byłby blind expert survey.
 
 ### Mitygacja bias
 
-- Known-good repos wybrane **przed** sprawdzeniem ich AGQ scores — lista jest ugruntowana w literaturze
-- Test jest dwustronny — gdyby AGQ nie rozróżniał, Mann-Whitney dałby p>>0.05
-- Effect size d=3.22 jest ekstremalnie duży — nawet przy pewnym bias trudno go wyjaśnić artefaktem
+- Known-good repos wybrane **przed** sprawdzeniem ich AGQ scores - lista jest ugruntowana w literaturze
+- Test jest dwustronny - gdyby AGQ nie rozróżniał, Mann-Whitney dałby p>>0.05
+- Effect size d=3.22 jest ekstremalnie duży - nawet przy pewnym bias trudno go wyjaśnić artefaktem
 
 ---
 

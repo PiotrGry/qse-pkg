@@ -138,7 +138,7 @@ def main():
     projects = list(DAI_PROJECTS.keys())
 
     print("=" * 70)
-    print("QSE AGQ vs Dai et al. (2026) — comparison on same Java repos")
+    print("QSE AGQ vs Dai et al. (2026) - comparison on same Java repos")
     print("=" * 70)
 
     # Table
@@ -188,9 +188,9 @@ def main():
         qse = QSE_RESULTS[name]
         issues = []
         if qse["stability"] < 0.3:
-            issues.append(f"very low stability ({qse['stability']:.2f}) — flat architecture")
+            issues.append(f"very low stability ({qse['stability']:.2f}) - flat architecture")
         if qse["cohesion"] < 0.3:
-            issues.append(f"low cohesion ({qse['cohesion']:.2f}) — god classes")
+            issues.append(f"low cohesion ({qse['cohesion']:.2f}) - god classes")
         if qse["acyclicity"] < 0.95:
             issues.append(f"cycles detected (acy={qse['acyclicity']:.2f})")
         print(f"  {dai['full_name']}: AGQ={qse['agq_score']:.3f}")

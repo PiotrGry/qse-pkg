@@ -1,5 +1,5 @@
 """
-AGQ Enhanced Metrics — product-ready extensions to base AGQ.
+AGQ Enhanced Metrics - product-ready extensions to base AGQ.
 
 Addresses limitations discovered in 235-repo cross-language benchmark:
   1. AGQ-z       : language-normalized score (z-score per language)
@@ -8,7 +8,7 @@ Addresses limitations discovered in 235-repo cross-language benchmark:
   4. ChurnRisk   : composite predictor for uneven change distribution
   5. AGQ-adj     : size-adjusted score (normalized to 500-node baseline)
 
-All derived from base AGQ metrics — no additional scanning required.
+All derived from base AGQ metrics - no additional scanning required.
 """
 
 from __future__ import annotations
@@ -40,7 +40,7 @@ SIZE_QUARTILES = {
 
 
 # ---------------------------------------------------------------------------
-# 1. AGQ-z — Language-normalized score
+# 1. AGQ-z - Language-normalized score
 # ---------------------------------------------------------------------------
 
 def compute_agq_z(agq: float, language: str) -> Optional[float]:
@@ -79,15 +79,15 @@ def compute_agq_percentile(agq: float, language: str) -> Optional[float]:
 # ---------------------------------------------------------------------------
 
 FINGERPRINT_DESCRIPTIONS = {
-    "CLEAN":        "Structurally pure — no cycles, high cohesion, clear layers. "
+    "CLEAN":        "Structurally pure - no cycles, high cohesion, clear layers. "
                     "Named for mathematical graph properties, NOT Uncle Bob's Clean Architecture. "
                     "Dominant in Go (enforced by language/ecosystem conventions).",
-    "LAYERED":      "Layered architecture — good stability and acyclicity, medium cohesion",
-    "MODERATE":     "Moderate architecture — no strong pathologies, room for improvement",
-    "LOW_COHESION": "Low cohesion — classes do too many things, consider splitting (Java OOP)",
-    "FLAT":         "Flat architecture — no clear layering, all modules on same level",
-    "TANGLED":      "Tangled — low cohesion AND cycles (Java monolith smell)",
-    "CYCLIC":       "Cyclic dependencies — acyclicity critical, refactoring needed",
+    "LAYERED":      "Layered architecture - good stability and acyclicity, medium cohesion",
+    "MODERATE":     "Moderate architecture - no strong pathologies, room for improvement",
+    "LOW_COHESION": "Low cohesion - classes do too many things, consider splitting (Java OOP)",
+    "FLAT":         "Flat architecture - no clear layering, all modules on same level",
+    "TANGLED":      "Tangled - low cohesion AND cycles (Java monolith smell)",
+    "CYCLIC":       "Cyclic dependencies - acyclicity critical, refactoring needed",
     "UNKNOWN":      "Unknown pattern",
 }
 
@@ -141,9 +141,9 @@ def compute_cycle_severity(acyclicity: float) -> Dict[str, object]:
     → severity = 1 - acyclicity = fraction of nodes in largest cycle
 
     Returns dict with:
-      severity_ratio: float  — fraction of nodes in cycles [0,1]
-      severity_level: str    — NONE/LOW/MEDIUM/HIGH/CRITICAL
-      message:        str    — human-readable description
+      severity_ratio: float  - fraction of nodes in cycles [0,1]
+      severity_level: str    - NONE/LOW/MEDIUM/HIGH/CRITICAL
+      message:        str    - human-readable description
     """
     sev = max(0.0, 1.0 - acyclicity)
 
@@ -221,7 +221,7 @@ _LOG_BASELINE = math.log(500)  # normalize to 500-node reference project
 
 
 def compute_agq_size_adjusted(agq: float, n_nodes: int) -> float:
-    """Size-adjusted AGQ — removes bias where larger repos score lower.
+    """Size-adjusted AGQ - removes bias where larger repos score lower.
 
     Uses log-normalization to 500-node baseline:
       AGQ_adj = AGQ * log(500) / log(n_nodes)   [capped at 1.0]
@@ -231,7 +231,7 @@ def compute_agq_size_adjusted(agq: float, n_nodes: int) -> float:
       AGQ_adj < AGQ  → large project, adjusted down
       AGQ_adj = AGQ  → exactly 500-node project
 
-    Note: use with caution — very small projects (<20 nodes) get
+    Note: use with caution - very small projects (<20 nodes) get
     unrealistically high adjusted scores. Recommended range: 50-10000 nodes.
     """
     if n_nodes < 10:
@@ -271,12 +271,12 @@ class AGQEnhanced:
             f"AGQ: {self.agq_score:.4f}  "
             f"({self.language} percentile: {self.agq_percentile or '?'}%,  "
             f"z={self.agq_z:+.2f})" if self.agq_z else "",
-            f"Pattern: {self.fingerprint} — {self.fingerprint_description}",
+            f"Pattern: {self.fingerprint} - {self.fingerprint_description}",
             f"Cycles: {self.cycle_severity['severity_level']} "
-            f"({self.cycle_severity['severity_pct']}% nodes) — "
+            f"({self.cycle_severity['severity_pct']}% nodes) - "
             f"{self.cycle_severity['message']}",
             f"Churn risk: {self.churn_risk['churn_risk_level']} "
-            f"(score={self.churn_risk['churn_risk_score']:.3f}) — "
+            f"(score={self.churn_risk['churn_risk_score']:.3f}) - "
             f"{self.churn_risk['message']}",
         ]
         return "\n".join(l for l in lines if l)

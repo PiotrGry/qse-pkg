@@ -3,11 +3,11 @@ Auto-discovery of architectural boundaries from dependency graphs.
 
 Analyzes an existing graph to propose constraints (forbidden edges)
 based on detected clusters, directional patterns, and isolation.
-No manual configuration needed — rules are inferred from code structure.
+No manual configuration needed - rules are inferred from code structure.
 
 Fixes vs v1:
   1. Filters internal nodes only (removes stdlib/test/external noise)
-  2. Smarter cluster labeling — uses longest common prefix, not just root
+  2. Smarter cluster labeling - uses longest common prefix, not just root
   3. Directional rules forbid the REVERSE of the observed direction
      (A→B means B should never import A, not the other way)
   4. Deduplicates rules with same from/to pattern
@@ -202,7 +202,7 @@ def _cluster_label(members: Set[str]) -> str:
     if prefix and prefix.count(".") >= 1:
         return prefix
 
-    # Prefix is just root (e.g. 'scrapy') — find most common second-level
+    # Prefix is just root (e.g. 'scrapy') - find most common second-level
     second_level = Counter()
     for m in members:
         parts = m.split(".")
@@ -222,7 +222,7 @@ def _cluster_label(members: Set[str]) -> str:
 
 
 def _glob_pattern(label: str) -> str:
-    """Create glob pattern — label/* catches all sub-modules."""
+    """Create glob pattern - label/* catches all sub-modules."""
     return f"{label}/*"
 
 
@@ -256,7 +256,7 @@ def detect_clusters(graph: nx.DiGraph,
                     min_cluster_size: int = 3) -> List[Dict]:
     """Detect module clusters via Louvain on internal-only nodes."""
     internal_nodes = _get_internal_nodes(graph)
-    # Run Louvain ONLY on internal nodes — not on external import targets
+    # Run Louvain ONLY on internal nodes - not on external import targets
     g = graph.subgraph(internal_nodes).copy()
 
     if g.number_of_nodes() <= 1:
@@ -414,23 +414,23 @@ def discover_policies(graph: nx.DiGraph,
         if direction == "isolated":
             _add_rule(pat_a, pat_b, confidence,
                       f"No dependencies between '{ca['label']}' and '{cb['label']}' "
-                      f"— they are independent boundaries.")
+                      f"- they are independent boundaries.")
             _add_rule(pat_b, pat_a, confidence,
                       f"No dependencies between '{cb['label']}' and '{ca['label']}' "
-                      f"— they are independent boundaries.")
+                      f"- they are independent boundaries.")
 
         elif direction == "a_to_b":
             # A imports B → B is more stable/core → forbid B→A (reverse)
             _add_rule(pat_b, pat_a, confidence,
                       f"'{ca['label']}' depends on '{cb['label']}' ({edges_a_to_b} edges) "
-                      f"but never reverse — '{cb['label']}' is a stable dependency of "
+                      f"but never reverse - '{cb['label']}' is a stable dependency of "
                       f"'{ca['label']}', forbidding reverse import preserves layering.")
 
         elif direction == "b_to_a":
             # B imports A → A is more stable → forbid A→B
             _add_rule(pat_a, pat_b, confidence,
                       f"'{cb['label']}' depends on '{ca['label']}' ({edges_b_to_a} edges) "
-                      f"but never reverse — '{ca['label']}' is a stable dependency of "
+                      f"but never reverse - '{ca['label']}' is a stable dependency of "
                       f"'{cb['label']}', forbidding reverse import preserves layering.")
 
     proposed.sort(key=lambda r: r.confidence, reverse=True)

@@ -1,4 +1,4 @@
-# QSE — Bibliografia / References
+# QSE - Bibliografia / References
 
 Zebrane źródła naukowe i techniczne na potrzeby pracy doktorskiej i walidacji QSE.
 Data: 2026-03-22 (updated)
@@ -25,7 +25,7 @@ https://engineering.purdue.edu/RVL/Publications/Sarkar08Metrics.pdf
 **Sarkar, Rama, Kak (2007)**
 API-based and information-theoretic metrics for measuring the quality of software modularization.
 _IEEE Trans. Softw. Eng., 33(1), pp. 14–32_
-Definiuje **MISI** (Module Interaction Stability Index) — metryka pokrewna z QSE stability.
+Definiuje **MISI** (Module Interaction Stability Index) - metryka pokrewna z QSE stability.
 MISI(m) = |SD(m)| / |fanout(m)|, gdzie SD = zbiór stabilnych zależności do niższych warstw.
 Cytowana w SEI CMU SAM2014 jako fundament metryk stabilności modułowej.
 
@@ -95,12 +95,12 @@ https://www.mdpi.com/2076-3417/13/6/3722
 ## 4. Stabilność i metryki Martina
 
 **Martin R.C.**
-Instability and Abstractness — Distance from Main Sequence.
-_"Agile Software Development — Principles, Patterns, and Practices"_
-(brak linku — książka)
+Instability and Abstractness - Distance from Main Sequence.
+_"Agile Software Development - Principles, Patterns, and Practices"_
+(brak linku - książka)
 
 **Drotbohm (2024)**
-The Instability-Abstractness-Relationship — An Alternative View.
+The Instability-Abstractness-Relationship - An Alternative View.
 _Blog post z krytyką metryki_
 http://odrotbohm.github.io/2024/09/the-instability-abstractness-relationsship-an-alternative-view/
 Kluczowy argument: "extracting an interface raises Abstractness but is not semantically more abstract."
@@ -119,7 +119,7 @@ https://thesai.org/Downloads/Volume8No10/Paper_45-Evaluating_Dependency_based_Pa
 
 ---
 
-## 5. Predykcja defektów — ground truth
+## 5. Predykcja defektów - ground truth
 
 **Nagappan & Ball (ICSE 2005)**
 Use of Relative Code Churn Measures to Predict System Defect Density.
@@ -199,7 +199,7 @@ https://kblincoe.github.io/publications/2020_JSS_ArchSmellsSMS.pdf
 
 ## 7. Composite metrics / Modularity Maturity Index
 
-**MMI — Software Architecture Metrics (O'Reilly)**
+**MMI - Software Architecture Metrics (O'Reilly)**
 Improve Your Architecture with the Modularity Maturity Index.
 https://www.oreilly.com/library/view/software-architecture-metrics/9781098112226/ch04.html
 
@@ -231,7 +231,7 @@ https://www.researchgate.net/publication/372584277
 
 ---
 
-## 9. Cross-project defect prediction — ograniczenia
+## 9. Cross-project defect prediction - ograniczenia
 
 **Zimmermann et al. (FSE 2009)**
 Cross-project defect prediction.
@@ -246,19 +246,19 @@ https://dl.acm.org/doi/10.1145/3183339
 
 ## 10. Narzędzia open-source (krajobraz)
 
-**tach — dependency enforcer (Rust, 2.7k stars)**
+**tach - dependency enforcer (Rust, 2.7k stars)**
 https://github.com/tach-org/tach
 
 **import-linter**
 https://github.com/seddonym/import-linter
 
-**emerge v2.0.7 — dependency visualization + Louvain modularity (~1k stars)**
+**emerge v2.0.7 - dependency visualization + Louvain modularity (~1k stars)**
 https://github.com/glato/emerge
 Python, 12 języków. Metryki: Louvain Q, fan-in/fan-out, SLOC, TF-IDF.
-Cross-validation z QSE: Louvain Q r=0.06 (n=16) — wartość Q zależy od definicji grafu, nie tylko od struktury kodu.
+Cross-validation z QSE: Louvain Q r=0.06 (n=16) - wartość Q zależy od definicji grafu, nie tylko od struktury kodu.
 Dane: `artifacts/benchmark/emerge_vs_qse_comparison.json`
 
-**CodeCharta — 3D code visualization (426 stars)**
+**CodeCharta - 3D code visualization (426 stars)**
 https://github.com/MaibornWolff/codecharta
 TypeScript/Kotlin, importuje metryki z Sonar/Tokei/CSV. Wizualizacja, nie analiza.
 
@@ -272,16 +272,16 @@ https://github.com/mschwager/cohesion
 
 ## 11. IP / ochrona prawna
 
-**UPRP — Wytyczne dotyczące wynalazków (PDF)**
+**UPRP - Wytyczne dotyczące wynalazków (PDF)**
 https://uprp.gov.pl/sites/default/files/inline-files/Og%C3%B3lne%20wytyczne%20Prezesa%20Urz%C4%99du%20Patentowego%20RP%20w%20zakresie%20wynalazk%C3%B3w%20i%20wzor%C3%B3w%20u%C5%BCytkowych.pdf
 
-**EY — Ulga IP Box i działalność B+R**
+**EY - Ulga IP Box i działalność B+R**
 https://www.ey.com/pl_pl/insights/tax/dzialalnosc-badawczo-rozwojowa-i-ulga-ip-box-co-to-jest-kwalifikowane-prawo-wlasnosci-intelektualnej
 
-**LAWMORE — Patentowanie algorytmów**
+**LAWMORE - Patentowanie algorytmów**
 https://lawmore.pl/patentowanie-algorytmow-i-oprogramowania/
 
-**PARP — Patentowanie programów komputerowych**
+**PARP - Patentowanie programów komputerowych**
 https://www.parp.gov.pl/component/content/article/85768:patentowanie-programow-komputerowych
 
 ---
@@ -300,7 +300,7 @@ https://www.sciencedirect.com/science/article/abs/pii/S1383762110000615
 
 ---
 
-## 13. Architectural metrics — graph-level (nowe źródła 2025)
+## 13. Architectural metrics - graph-level (nowe źródła 2025)
 
 **Dai, Zhu, Wu, He (2026)**
 An integrated graph neural network model for joint software defect prediction
@@ -317,7 +317,7 @@ Tracing the Lifecycle of Architecture Technical Debt in Software Systems: A Depe
 _arXiv:2501.15387v2, University of Groningen_
 https://arxiv.org/html/2501.15387v2
 FAN-IN/OUT vs change frequency: r=0.175–0.241 (weak), n=57 ATD items, 103 Apache projects.
-Wniosek: "FAN-IN/OUT should be combined with other measures" — potwierdza potrzebę composite score.
+Wniosek: "FAN-IN/OUT should be combined with other measures" - potwierdza potrzebę composite score.
 
 **Šora (2013)**
 Software Architecture Reconstruction Through Clustering: Finding the Right Similarity Metric.
@@ -326,21 +326,21 @@ https://staff.cs.upt.ro/~ioana/papers/SoraWorkshop2013.pdf
 Indirect coupling via ESM (Edge Strength Metric, Chiricota 2003).
 Similarity(A,B) = DC(A,B) · IC(A,B) · LA(A,B). Trzy czynniki: direct coupling,
 indirect coupling (wspólni sąsiedzi), architectural layer distance.
-QSE nie implementuje IC — potencjalne ulepszenie.
+QSE nie implementuje IC - potencjalne ulepszenie.
 
 **Koziolek, Nord, Ozkaya, Avgeriou (2014)**
 1st International Workshop on Software Architecture Metrics (SAM2014).
 _SEI CMU_
 https://www.sei.cmu.edu/documents/5417/2014_017_001_88179.pdf
 Definiuje "software architecture metric" jako quality metric concerning architecture.
-Prezentuje MISI (Sarkar 2007), Module Interaction Stability Index — pokrewne z QSE stability.
+Prezentuje MISI (Sarkar 2007), Module Interaction Stability Index - pokrewne z QSE stability.
 
 **Lakos (1996)**
 Large-Scale C++ Software Design.
 _Addison-Wesley_
 ISBN: 978-0-201-63362-5
 Definiuje CCD (Cumulative Component Dependency) = Σ |reachable(v)|.
-QSE nie implementuje CCD — potencjalne ulepszenie.
+QSE nie implementuje CCD - potencjalne ulepszenie.
 
 **Chidamber & Kemerer (1994)**
 A Metrics Suite for Object Oriented Design.
@@ -350,7 +350,7 @@ Fundament dla QSE cohesion (LCOM4 jest rozwinięciem ich LCOM).
 
 ---
 
-## 14. Walidacja QSE — wyniki własne (2026-03-21)
+## 14. Walidacja QSE - wyniki własne (2026-03-21)
 
 Dane w `artifacts/benchmark/`. Skrypty w `scripts/`.
 
@@ -370,7 +370,7 @@ Główny dyskryminator: stability (mean 0.84 vs 0.44).
 Dane: `known_good_bad_validation.json`, Skrypt: `known_good_bad_validation.py`
 
 **Emerge cross-validation (n=16 Python)**
-Louvain Q nie jest porównywalny między narzędziami (r=0.06) — graph definition dependent.
+Louvain Q nie jest porównywalny między narzędziami (r=0.06) - graph definition dependent.
 QSE stability jest size-invariant; Emerge fan-out confounded by repo size (r=0.67).
 Dane: `emerge_vs_qse_comparison.json`, Skrypt: `compare_emerge.py`
 

@@ -123,7 +123,7 @@ def compute_cochange_entropy(commits: List[List[str]]) -> Optional[Dict]:
         if p > 0:
             entropy -= p * math.log2(p)
 
-    # Normalize entropy by log2(N) — max entropy for N nodes
+    # Normalize entropy by log2(N) - max entropy for N nodes
     n_nodes = len(degrees)
     max_entropy = math.log2(n_nodes) if n_nodes > 1 else 1.0
     normalized_entropy = entropy / max_entropy if max_entropy > 0 else 0.0
@@ -287,7 +287,7 @@ def main() -> None:
               f"cross_pkg={entropy['cross_module_ratio']:.2%}")
         results.append({"name": name, "agq": agq, "entropy": entropy})
 
-    # Correlations — higher AGQ should predict lower cross_module_ratio
+    # Correlations - higher AGQ should predict lower cross_module_ratio
     joint = [(r["agq"], r["entropy"])
              for r in results if r["agq"] is not None and r.get("entropy")]
     agq_vals = [a for a, _ in joint]
@@ -310,7 +310,7 @@ def main() -> None:
 
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "reference": "arXiv:2504.18511 — Co-Change Graph Entropy (2025)",
+        "reference": "arXiv:2504.18511 - Co-Change Graph Entropy (2025)",
         "config": {"input_json": str(input_path), "since": args.since},
         "summary": {"repos_with_entropy": n, "repos_total": len(benchmark["results"])},
         "correlations": correlations,

@@ -1,6 +1,6 @@
 # QSE-PKG
 
-Quality Score Engine — silnik jakości architektonicznej dla Python, Java i Go.
+Quality Score Engine - silnik jakości architektonicznej dla Python, Java i Go.
 
 ## Architektura
 
@@ -13,7 +13,7 @@ qse/                          # Core (architecture-agnostic)
   cli.py                      # CLI entry point (qse agq / qse gate / qse discover)
   test_quality.py             # QSE_test: assertion density, naming, isolation
 
-qse-core/                     # Rust scanner (PRIMARY — tree-sitter, PyO3)
+qse-core/                     # Rust scanner (PRIMARY - tree-sitter, PyO3)
 qse-py/                       # PyO3 bindings → _qse_core
 ```
 

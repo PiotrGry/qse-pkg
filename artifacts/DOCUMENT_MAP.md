@@ -1,4 +1,4 @@
-# QSE-PKG — Mapa dokumentów
+# QSE-PKG - Mapa dokumentów
 **Aktualizacja:** 2026-03-23
 **Zasada:** ★★★ = source of truth | ★★☆ = pomocniczy/aktualny | ★☆☆ = archiwalny
 
@@ -9,7 +9,7 @@
 | Ścieżka | Wartość | Uwagi |
 |---------|---------|-------|
 | `artifacts/grant_preview_pl.md` | ★★★ SoT | Główny wniosek PL, zaudytowany, n=240 |
-| `artifacts/grant_wp_milestones.md` | ★★★ SoT | WP/milestones 70/30 BI/PR |
+| `artifacts/grant_wp_milestones.md` | ★★★ SoT | WP/milestones 71/29 BI/PR, V7 budget |
 | `artifacts/wniosek_verification_2026-03-23.md` | ★★★ SoT | Raport weryfikacyjny: 4 błędy, 4 ostrzeżenia, 13 OK |
 | `artifacts/references.md` | ★★★ SoT | 14 kategorii, ~50 pozycji |
 | `artifacts/archive/grant_description.md` | ★☆☆ ARCHIWUM | n=127, en, superseded |
@@ -17,7 +17,7 @@
 
 ---
 
-## 2. Benchmarki — SOURCE OF TRUTH
+## 2. Benchmarki - SOURCE OF TRUTH
 
 | Ścieżka | Uwagi |
 |---------|-------|
@@ -29,7 +29,7 @@
 
 ---
 
-## 3. Benchmarki — WALIDACJA
+## 3. Benchmarki - WALIDACJA
 
 | Ścieżka | Uwagi |
 |---------|-------|
@@ -44,7 +44,7 @@
 
 ---
 
-## 4. Benchmarki — POMOCNICZE
+## 4. Benchmarki - POMOCNICZE
 
 | Ścieżka | Uwagi |
 |---------|-------|
@@ -75,9 +75,9 @@ Starsze wersje → `benchmark/archive/` (51 plików: thesis_v1-v4, 240_*, full_*
 | `papiers/PILOT_RESULTS_FINAL.md` | ★★☆ Wyniki pilotu v3.1 |
 | `papiers/s41598-025-31209-5.pdf` | ★★☆ Published research paper |
 | `papiers/sources/*.pdf` | ★★☆ Referencyjne artykuły naukowe |
-| `papiers/archive/RAPORT_NAUKOWY_BR.md` | ★☆☆ ARCHIWUM — DDD/T_ddd |
-| `papiers/archive/FENG_BR_WNIOSKI_PILOT.md` | ★☆☆ ARCHIWUM — QSE4/T_ddd |
-| `papiers/archive/PODRECZNIK_DLA_STUDENTA.*` | ★☆☆ ARCHIWUM — DDD-centric |
+| `papiers/archive/RAPORT_NAUKOWY_BR.md` | ★☆☆ ARCHIWUM - DDD/T_ddd |
+| `papiers/archive/FENG_BR_WNIOSKI_PILOT.md` | ★☆☆ ARCHIWUM - QSE4/T_ddd |
+| `papiers/archive/PODRECZNIK_DLA_STUDENTA.*` | ★☆☆ ARCHIWUM - DDD-centric |
 
 ---
 
@@ -90,7 +90,7 @@ Starsze wersje → `benchmark/archive/` (51 plików: thesis_v1-v4, 240_*, full_*
 
 ---
 
-## Podsumowanie — co konsumować jako kontekst
+## Podsumowanie - co konsumować jako kontekst
 
 **Autorytatywne (SoT):** `grant_preview_pl.md`, `grant_wp_milestones.md`, `references.md`, `wniosek_verification_2026-03-23.md`, `agq_enhanced_*.json`, sekcja 3 (walidacja)
 **Pomocnicze:** outreach PDFs, `PILOT_RESULTS_FINAL.md`, `agq_churn_analysis_v3`

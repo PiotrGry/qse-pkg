@@ -1,12 +1,12 @@
 """
-QSE_test — metryka jakości testów.
+QSE_test - metryka jakości testów.
 
 Mierzy 5 wymiarów jakości zestawu testów:
-1. assertion_density   — średnia liczba asercji per test
-2. test_to_code_ratio  — stosunek LOC testów do LOC kodu produkcyjnego
-3. naming_quality      — % testów z opisową nazwą (test_should_*, test_when_*, itp.)
-4. isolation_score     — % testów bez zewnętrznych zależności (mock/patch/fixture)
-5. coverage_potential  — proxy: % klas domenowych które mają co najmniej 1 test
+1. assertion_density   - średnia liczba asercji per test
+2. test_to_code_ratio  - stosunek LOC testów do LOC kodu produkcyjnego
+3. naming_quality      - % testów z opisową nazwą (test_should_*, test_when_*, itp.)
+4. isolation_score     - % testów bez zewnętrznych zależności (mock/patch/fixture)
+5. coverage_potential  - proxy: % klas domenowych które mają co najmniej 1 test
 
 QSE_test = mean(powyższych 5 metryk) ∈ [0, 1]
 

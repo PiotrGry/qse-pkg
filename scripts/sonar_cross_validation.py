@@ -162,7 +162,7 @@ def main():
     if scanner:
         print(f"sonar-scanner: {scanner}")
     else:
-        print("sonar-scanner not found — will try Docker image")
+        print("sonar-scanner not found - will try Docker image")
 
     # Scan repos
     results = []
@@ -230,7 +230,7 @@ def main():
               f"AGQ={agq['agq_score']:.3f}")
 
     if len(results) < 3:
-        print(f"\nOnly {len(results)} repos scanned — too few for correlations.")
+        print(f"\nOnly {len(results)} repos scanned - too few for correlations.")
         print("Check that sonar-scanner is installed and repos are cloned.")
         sys.exit(1)
 
@@ -273,7 +273,7 @@ def main():
     if sig_count / total < 0.15 if total > 0 else True:
         print("INTERPRETATION: AGQ and SonarQube measure orthogonal dimensions.")
         print("  SonarQube: code-level smells, complexity, duplication")
-        print("  AGQ: architectural structure — modularity, cycles, stability, cohesion")
+        print("  AGQ: architectural structure - modularity, cycles, stability, cohesion")
 
     # Save
     output = {

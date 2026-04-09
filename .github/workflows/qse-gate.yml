@@ -70,7 +70,7 @@ jobs:
             cat /tmp/agq_baseline.json
           else
             echo "found=false" >> "$GITHUB_OUTPUT"
-            echo "No ratchet baseline found — first run will set it"
+            echo "No ratchet baseline found - first run will set it"
           fi
 
       - name: Run AGQ gate

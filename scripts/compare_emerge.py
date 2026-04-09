@@ -122,12 +122,12 @@ def main():
     for name in repo_names:
         repo_path = repos_dir / name
         if not repo_path.is_dir():
-            print(f"{name:<20} SKIPPED — not found at {repo_path}")
+            print(f"{name:<20} SKIPPED - not found at {repo_path}")
             continue
 
         src = find_source_dir(repo_path, name)
         if not src:
-            print(f"{name:<20} SKIPPED — no Python source found")
+            print(f"{name:<20} SKIPPED - no Python source found")
             continue
 
         out = repos_dir / f"{name}_output"
@@ -187,13 +187,13 @@ def main():
         print()
         print("Interpretation:")
         if r > 0.8:
-            print("  Strong correlation — both tools see similar modularity structure.")
+            print("  Strong correlation - both tools see similar modularity structure.")
         elif r > 0.5:
-            print("  Moderate correlation — similar trends, but graph construction differs.")
+            print("  Moderate correlation - similar trends, but graph construction differs.")
         else:
-            print("  Weak correlation — fundamentally different graph definitions.")
+            print("  Weak correlation - fundamentally different graph definitions.")
         if mean_diff > 0.05:
-            print(f"  QSE consistently higher by ~{mean_diff:.2f} — likely includes more nodes (transitive imports).")
+            print(f"  QSE consistently higher by ~{mean_diff:.2f} - likely includes more nodes (transitive imports).")
 
     if args.output:
         out = {

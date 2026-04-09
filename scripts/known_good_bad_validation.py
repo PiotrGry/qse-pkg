@@ -23,7 +23,7 @@ from pathlib import Path
 # Sources: PyCon talks, "Architecture Patterns with Python" (Percival & Gregory),
 # "Cosmic Python", conference recommendations, GitHub star count + maintainer reputation.
 KNOWN_GOOD = [
-    "django",       # 15+ years, layered MTV, 77k stars — gold standard
+    "django",       # 15+ years, layered MTV, 77k stars - gold standard
     "flask",        # Micro-framework, clean extension system
     "fastapi",      # Modern async, clean dependency injection
     "starlette",    # ASGI foundation, minimal, well-layered
@@ -40,7 +40,7 @@ KNOWN_GOOD = [
 # Python-80 benchmark with documented architectural issues.
 # The spaghetti repos are intentionally poorly structured (educational/demo).
 KNOWN_BAD_SPAGHETTI = [
-    # From repos_spaghetti_oss.json — explicitly spaghetti code
+    # From repos_spaghetti_oss.json - explicitly spaghetti code
     "python_code_disasters",
     "python_bad_project",
     "python_spaghetti",

@@ -369,9 +369,9 @@ def _churn_proxy(repo_path: Path, since: str) -> Dict[str, object]:
     """Code churn metrics from git log (production .py files only).
 
     Ref: Nagappan & Ball 2005; Moser et al. 2008.
-    hotspot_ratio: fraction of files changed more than 2x the mean — proxy
+    hotspot_ratio: fraction of files changed more than 2x the mean - proxy
     for architectural hotspots caused by poor separation of concerns.
-    churn_gini: Gini coefficient of per-file change counts — high Gini means
+    churn_gini: Gini coefficient of per-file change counts - high Gini means
     a few files absorb most changes, indicating coupling or god-file smell.
     """
     proc = subprocess.run(
@@ -768,7 +768,7 @@ def main() -> None:
     )
 
     # --- Churn-based proxy for T2 ---
-    # hotspot_ratio: fraction of files changed >2x mean — predicts defect-prone spots
+    # hotspot_ratio: fraction of files changed >2x mean - predicts defect-prone spots
     # Ref: Nagappan & Ball 2005; Moser et al. 2008
     rows_for_churn = []
     for r in rows_joint:
@@ -790,7 +790,7 @@ def main() -> None:
     spearman_agq_gini = _spearman(agq_for_churn, churn_ginis)
     spearman_sonar_gini = _spearman(sonar_for_churn, churn_ginis)
 
-    # T3: complementarity — Sonar says "A" but AGQ identifies architectural issues
+    # T3: complementarity - Sonar says "A" but AGQ identifies architectural issues
     # Threshold recalibrated to mean(AGQ) - 0.5*std to adapt to score distribution
     agq_mean = _mean(agq_scores) or 0.70
     agq_std = statistics.pstdev(agq_scores) if len(agq_scores) >= 2 else 0.05

@@ -8,7 +8,7 @@ Data: 2026-03-06
 - seed: `42`
 - kontrola poprawnosci: identyczny zbior `violations` + identyczny `score` (strict)
 
-## Run A — baseline `exp4` (aktualna implementacja w repo)
+## Run A - baseline `exp4` (aktualna implementacja w repo)
 
 Komenda:
 
@@ -31,7 +31,7 @@ Wyniki:
 
 Wniosek: aktualny checker `exp4` jest juz zoptymalizowany i bardzo zblizony do nowej metody.
 
-## Run B — baseline `legacy` (naiwna stara logika O(rules*edges))
+## Run B - baseline `legacy` (naiwna stara logika O(rules*edges))
 
 Komenda:
 
