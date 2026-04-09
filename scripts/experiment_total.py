@@ -91,33 +91,63 @@ def clone_repo(url: str, dest: Path, timeout: int = 300) -> bool:
 # ═══════════════════════════════════════════════════════════════════════════
 
 def run_agq(repo_path: Path, lang: str, timeout: int = 180) -> Optional[Dict]:
-    """Uruchamia qse agq i zwraca dict z metrykami."""
+    """Uruchamia qse agq i zwraca dict z metrykami.
+
+    qse agq API:
+      qse agq <path> [--output-json FILE] [--threshold N]
+      Nie ma --lang — skaner Rust auto-wykrywa język.
+      Output JSON zapisywany do pliku (nie do stdout).
+    """
+    import tempfile
     t0 = time.time()
-    # Próba JSON output
-    r = subprocess.run(
-        [sys.executable, "-m", "qse", "agq", str(repo_path),
-         "--lang", lang, "--output-json", "/dev/stdout"],
-        capture_output=True, text=True, timeout=timeout
-    )
-    elapsed_ms = round((time.time() - t0) * 1000)
 
-    if r.returncode == 0 and r.stdout.strip():
+    # Zapisz JSON output do pliku tymczasowego
+    with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as tf:
+        json_out = tf.name
+
+    try:
+        r = subprocess.run(
+            [sys.executable, "-m", "qse", "agq", str(repo_path),
+             "--output-json", json_out, "--threshold", "0.0"],
+            capture_output=True, text=True, timeout=timeout
+        )
+        elapsed_ms = round((time.time() - t0) * 1000)
+
+        # Próba odczytu JSON
+        json_path = Path(json_out)
+        if json_path.exists() and json_path.stat().st_size > 0:
+            try:
+                d = json.loads(json_path.read_text())
+                # Normalizuj strukturę — qse agq zwraca metrics jako sub-dict
+                result = {
+                    "agq_score":  d.get("agq_score"),
+                    "language":   d.get("language", lang),
+                    "nodes":      d.get("graph", {}).get("nodes", 0),
+                    "edges":      d.get("graph", {}).get("edges", 0),
+                    "modularity": d.get("metrics", {}).get("modularity"),
+                    "acyclicity": d.get("metrics", {}).get("acyclicity"),
+                    "stability":  d.get("metrics", {}).get("stability"),
+                    "cohesion":   d.get("metrics", {}).get("cohesion"),
+                    "runtime_ms": elapsed_ms,
+                    "gate":       d.get("gate"),
+                }
+                if result["agq_score"] is not None:
+                    return result
+            except Exception:
+                pass
+
+        # Fallback: parsowanie tekstu ze stdout+stderr
+        text = r.stdout + r.stderr
+        if text.strip():
+            return _parse_agq_text(text, elapsed_ms, lang)
+
+        return None
+
+    finally:
         try:
-            d = json.loads(r.stdout)
-            d["runtime_ms"] = elapsed_ms
-            d.setdefault("language", lang)
-            return d
-        except json.JSONDecodeError:
+            Path(json_out).unlink(missing_ok=True)
+        except Exception:
             pass
-
-    # Fallback: parsowanie tekstowego outputu
-    r2 = subprocess.run(
-        [sys.executable, "-m", "qse", "agq", str(repo_path)],
-        capture_output=True, text=True, timeout=timeout
-    )
-    if r2.returncode == 0:
-        return _parse_agq_text(r2.stdout + r2.stderr, elapsed_ms, lang)
-    return None
 
 
 def _parse_agq_text(text: str, elapsed_ms: int, lang: str) -> Optional[Dict]:
