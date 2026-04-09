@@ -1,0 +1,3985 @@
+[
+  {
+    "name": "strawberry-graphql",
+    "url": "https://github.com/strawberry-graphql/strawberry",
+    "stars": 4200,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "litestar",
+    "url": "https://github.com/litestar-org/litestar",
+    "stars": 5100,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "robyn",
+    "url": "https://github.com/sparckles/Robyn",
+    "stars": 4100,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "granian",
+    "url": "https://github.com/emmett-framework/granian",
+    "stars": 3200,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "faststream",
+    "url": "https://github.com/airtai/faststream",
+    "stars": 3400,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "transformers",
+    "url": "https://github.com/huggingface/transformers",
+    "stars": 138000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "pytorch",
+    "url": "https://github.com/pytorch/pytorch",
+    "stars": 85000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "tensorflow",
+    "url": "https://github.com/tensorflow/tensorflow",
+    "stars": 186000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "langchain",
+    "url": "https://github.com/langchain-ai/langchain",
+    "stars": 98000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "llama-index",
+    "url": "https://github.com/run-llama/llama_index",
+    "stars": 37000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "openai-python",
+    "url": "https://github.com/openai/openai-python",
+    "stars": 24000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "anthropic-sdk",
+    "url": "https://github.com/anthropics/anthropic-sdk-python",
+    "stars": 5200,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "litellm",
+    "url": "https://github.com/BerriAI/litellm",
+    "stars": 18000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "outlines",
+    "url": "https://github.com/outlines-dev/outlines",
+    "stars": 10000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "guidance",
+    "url": "https://github.com/guidance-ai/guidance",
+    "stars": 19000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "axolotl",
+    "url": "https://github.com/axolotl-ai-cloud/axolotl",
+    "stars": 8700,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "unsloth",
+    "url": "https://github.com/unslothai/unsloth",
+    "stars": 22000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "polars",
+    "url": "https://github.com/pola-rs/polars",
+    "stars": 31000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "great-expectations",
+    "url": "https://github.com/great-expectations/great_expectations",
+    "stars": 10000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "dbt-core",
+    "url": "https://github.com/dbt-labs/dbt-core",
+    "stars": 10000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "pyspark",
+    "url": "https://github.com/apache/spark",
+    "stars": 40000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "dagster",
+    "url": "https://github.com/dagster-io/dagster",
+    "stars": 12000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "feast",
+    "url": "https://github.com/feast-dev/feast",
+    "stars": 5600,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "copilot-cli",
+    "url": "https://github.com/aws/copilot-cli",
+    "stars": 3500,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "localstack",
+    "url": "https://github.com/localstack/localstack",
+    "stars": 56000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "checkov",
+    "url": "https://github.com/bridgecrewio/checkov",
+    "stars": 7200,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "detectron2",
+    "url": "https://github.com/facebookresearch/detectron2",
+    "stars": 30000,
+    "layer": "A",
+    "lang": "Python"
+  },
+  {
+    "name": "ward",
+    "url": "https://github.com/darrenburns/ward",
+    "stars": 1200,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "freezegun",
+    "url": "https://github.com/spulec/freezegun",
+    "stars": 4100,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "dirty-equals",
+    "url": "https://github.com/samuelcolvin/dirty-equals",
+    "stars": 830,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "respx",
+    "url": "https://github.com/lundberg/respx",
+    "stars": 710,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "polyfactory",
+    "url": "https://github.com/litestar-org/polyfactory",
+    "stars": 630,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "typer-cloup",
+    "url": "https://github.com/janluke/cloup",
+    "stars": 320,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "prompt-toolkit",
+    "url": "https://github.com/prompt-toolkit/python-prompt-toolkit",
+    "stars": 9300,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "tqdm",
+    "url": "https://github.com/tqdm/tqdm",
+    "stars": 28000,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "alive-progress",
+    "url": "https://github.com/rsalmei/alive-progress",
+    "stars": 5700,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "questionary",
+    "url": "https://github.com/tmbo/questionary",
+    "stars": 1500,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "trio",
+    "url": "https://github.com/python-trio/trio",
+    "stars": 6000,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "anyio",
+    "url": "https://github.com/agronholm/anyio",
+    "stars": 1900,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "websockets",
+    "url": "https://github.com/python-websockets/websockets",
+    "stars": 5300,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "httpx-ws",
+    "url": "https://github.com/frankie567/httpx-ws",
+    "stars": 280,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "stamina",
+    "url": "https://github.com/hynek/stamina",
+    "stars": 590,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "tortoise-orm",
+    "url": "https://github.com/tortoise/tortoise-orm",
+    "stars": 4600,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "databases",
+    "url": "https://github.com/encode/databases",
+    "stars": 3800,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "sqlmodel",
+    "url": "https://github.com/fastapi/sqlmodel",
+    "stars": 14000,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "piccolo",
+    "url": "https://github.com/piccolo-orm/piccolo",
+    "stars": 1500,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "ormar",
+    "url": "https://github.com/collerek/ormar",
+    "stars": 1600,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "cattrs",
+    "url": "https://github.com/python-attrs/cattrs",
+    "stars": 800,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "msgspec",
+    "url": "https://github.com/jcrist/msgspec",
+    "stars": 2100,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "dacite",
+    "url": "https://github.com/konradhalas/dacite",
+    "stars": 1700,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "schematics",
+    "url": "https://github.com/schematics/schematics",
+    "stars": 2600,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "voluptuous",
+    "url": "https://github.com/alecthomas/voluptuous",
+    "stars": 1800,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "dynaconf",
+    "url": "https://github.com/dynaconf/dynaconf",
+    "stars": 3600,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "python-decouple",
+    "url": "https://github.com/HBNetwork/python-decouple",
+    "stars": 2700,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "confuse",
+    "url": "https://github.com/beetbox/confuse",
+    "stars": 380,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "arq",
+    "url": "https://github.com/python-arq/arq",
+    "stars": 2100,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "rq",
+    "url": "https://github.com/rq/rq",
+    "stars": 9800,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "procrastinate",
+    "url": "https://github.com/procrastinate-org/procrastinate",
+    "stars": 980,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "bandit",
+    "url": "https://github.com/PyCQA/bandit",
+    "stars": 6300,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "safety",
+    "url": "https://github.com/pyupio/safety",
+    "stars": 1600,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "semgrep",
+    "url": "https://github.com/returntocorp/semgrep",
+    "stars": 10000,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "opentelemetry-python",
+    "url": "https://github.com/open-telemetry/opentelemetry-python",
+    "stars": 1900,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "sentry-python",
+    "url": "https://github.com/getsentry/sentry-python",
+    "stars": 1800,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "structlog",
+    "url": "https://github.com/hynek/structlog",
+    "stars": 3600,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "zipline",
+    "url": "https://github.com/quantopian/zipline",
+    "stars": 17000,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "bt",
+    "url": "https://github.com/pmorissette/bt",
+    "stars": 2100,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "vectorbt",
+    "url": "https://github.com/polakowo/vectorbt",
+    "stars": 4100,
+    "layer": "B",
+    "lang": "Python"
+  },
+  {
+    "name": "whenever",
+    "url": "https://github.com/ariebovenberg/whenever",
+    "stars": 1400,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "python-dateutil",
+    "url": "https://github.com/dateutil/dateutil",
+    "stars": 2300,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "result",
+    "url": "https://github.com/rustedpy/result",
+    "stars": 1400,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "returns",
+    "url": "https://github.com/dry-python/returns",
+    "stars": 3500,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "expression",
+    "url": "https://github.com/dbrattli/Expression",
+    "stars": 450,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "beartype",
+    "url": "https://github.com/beartype/beartype",
+    "stars": 2700,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "typeguard",
+    "url": "https://github.com/agronholm/typeguard",
+    "stars": 1500,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "injector",
+    "url": "https://github.com/python-injector/injector",
+    "stars": 1200,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "lagom",
+    "url": "https://github.com/meadsteve/lagom",
+    "stars": 290,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "punq",
+    "url": "https://github.com/bobthemighty/punq",
+    "stars": 280,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "dependency-injector",
+    "url": "https://github.com/ets-labs/python-dependency-injector",
+    "stars": 3900,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "wireup",
+    "url": "https://github.com/maldoinc/wireup",
+    "stars": 200,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "taskiq",
+    "url": "https://github.com/taskiq-python/taskiq",
+    "stars": 850,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "litequeue",
+    "url": "https://github.com/litements/litequeue",
+    "stars": 180,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "apscheduler",
+    "url": "https://github.com/agronholm/apscheduler",
+    "stars": 6200,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "schedule",
+    "url": "https://github.com/dbader/schedule",
+    "stars": 11000,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "tenacity",
+    "url": "https://github.com/jd/tenacity",
+    "stars": 6400,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "backoff",
+    "url": "https://github.com/litl/backoff",
+    "stars": 2200,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "limits",
+    "url": "https://github.com/alisaifee/limits",
+    "stars": 490,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "slowapi",
+    "url": "https://github.com/laurentS/slowapi",
+    "stars": 1000,
+    "layer": "C",
+    "lang": "Python"
+  },
+  {
+    "name": "odoo",
+    "url": "https://github.com/odoo/odoo",
+    "stars": 38000,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "mitmproxy",
+    "url": "https://github.com/mitmproxy/mitmproxy",
+    "stars": 37000,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "calibre",
+    "url": "https://github.com/kovidgoyal/calibre",
+    "stars": 19000,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "spacy",
+    "url": "https://github.com/explosion/spaCy",
+    "stars": 30000,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "nltk",
+    "url": "https://github.com/nltk/nltk",
+    "stars": 13000,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "gcloud-aio",
+    "url": "https://github.com/talkiq/gcloud-aio",
+    "stars": 290,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "invoke",
+    "url": "https://github.com/pyinvoke/invoke",
+    "stars": 4300,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "plumbum",
+    "url": "https://github.com/tomerfiliba-org/plumbum",
+    "stars": 2800,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "sh",
+    "url": "https://github.com/amoffat/sh",
+    "stars": 6900,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "cerberus",
+    "url": "https://github.com/pyeve/cerberus",
+    "stars": 3100,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "wtforms",
+    "url": "https://github.com/wtforms/wtforms",
+    "stars": 1500,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "deform",
+    "url": "https://github.com/Pylons/deform",
+    "stars": 400,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "colander",
+    "url": "https://github.com/Pylons/colander",
+    "stars": 440,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "cornice",
+    "url": "https://github.com/Cornices/cornice",
+    "stars": 380,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "pyramid",
+    "url": "https://github.com/Pylons/pyramid",
+    "stars": 3900,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "zope-interface",
+    "url": "https://github.com/zopefoundation/zope.interface",
+    "stars": 180,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "twisted",
+    "url": "https://github.com/twisted/twisted",
+    "stars": 5600,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "gevent",
+    "url": "https://github.com/gevent/gevent",
+    "stars": 6200,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "eventlet",
+    "url": "https://github.com/eventlet/eventlet",
+    "stars": 1200,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "cherrypy",
+    "url": "https://github.com/cherrypy/cherrypy",
+    "stars": 1900,
+    "layer": "D",
+    "lang": "Python"
+  },
+  {
+    "name": "spring-security",
+    "url": "https://github.com/spring-projects/spring-security",
+    "stars": 8800,
+    "layer": "A",
+    "lang": "Java"
+  },
+  {
+    "name": "spring-data-jpa",
+    "url": "https://github.com/spring-projects/spring-data-jpa",
+    "stars": 2900,
+    "layer": "A",
+    "lang": "Java"
+  },
+  {
+    "name": "spring-batch",
+    "url": "https://github.com/spring-projects/spring-batch",
+    "stars": 2700,
+    "layer": "A",
+    "lang": "Java"
+  },
+  {
+    "name": "spring-cloud",
+    "url": "https://github.com/spring-cloud/spring-cloud-commons",
+    "stars": 1500,
+    "layer": "A",
+    "lang": "Java"
+  },
+  {
+    "name": "assertj",
+    "url": "https://github.com/assertj/assertj",
+    "stars": 2600,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "truth",
+    "url": "https://github.com/google/truth",
+    "stars": 3200,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "wiremock",
+    "url": "https://github.com/wiremock/wiremock",
+    "stars": 6300,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "testcontainers",
+    "url": "https://github.com/testcontainers/testcontainers-java",
+    "stars": 7700,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "flyway",
+    "url": "https://github.com/flyway/flyway",
+    "stars": 7900,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "liquibase",
+    "url": "https://github.com/liquibase/liquibase",
+    "stars": 4500,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "jdbi",
+    "url": "https://github.com/jdbi/jdbi",
+    "stars": 1900,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "querydsl",
+    "url": "https://github.com/querydsl/querydsl",
+    "stars": 5200,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "jackson-databind",
+    "url": "https://github.com/FasterXML/jackson-databind",
+    "stars": 3500,
+    "layer": "D",
+    "lang": "Java"
+  },
+  {
+    "name": "moshi",
+    "url": "https://github.com/square/moshi",
+    "stars": 9700,
+    "layer": "A",
+    "lang": "Java"
+  },
+  {
+    "name": "avro",
+    "url": "https://github.com/apache/avro",
+    "stars": 2900,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "helidon",
+    "url": "https://github.com/helidon-io/helidon",
+    "stars": 3300,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "armeria",
+    "url": "https://github.com/line/armeria",
+    "stars": 4700,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "javalin",
+    "url": "https://github.com/javalin/javalin",
+    "stars": 7400,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "spark-java",
+    "url": "https://github.com/perwendel/spark",
+    "stars": 9700,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "struts",
+    "url": "https://github.com/apache/struts",
+    "stars": 1300,
+    "layer": "D",
+    "lang": "Java"
+  },
+  {
+    "name": "jsf-impl",
+    "url": "https://github.com/eclipse-ee4j/mojarra",
+    "stars": 260,
+    "layer": "D",
+    "lang": "Java"
+  },
+  {
+    "name": "freemarker",
+    "url": "https://github.com/apache/freemarker",
+    "stars": 860,
+    "layer": "D",
+    "lang": "Java"
+  },
+  {
+    "name": "velocity",
+    "url": "https://github.com/apache/velocity-engine",
+    "stars": 370,
+    "layer": "D",
+    "lang": "Java"
+  },
+  {
+    "name": "commons-lang",
+    "url": "https://github.com/apache/commons-lang",
+    "stars": 2400,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "commons-io",
+    "url": "https://github.com/apache/commons-io",
+    "stars": 1000,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "commons-collections",
+    "url": "https://github.com/apache/commons-collections",
+    "stars": 650,
+    "layer": "D",
+    "lang": "Java"
+  },
+  {
+    "name": "ehcache",
+    "url": "https://github.com/ehcache/ehcache3",
+    "stars": 1600,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "caffeine",
+    "url": "https://github.com/ben-manes/caffeine",
+    "stars": 15000,
+    "layer": "A",
+    "lang": "Java"
+  },
+  {
+    "name": "bucket4j",
+    "url": "https://github.com/bucket4j/bucket4j",
+    "stars": 2400,
+    "layer": "B",
+    "lang": "Java"
+  },
+  {
+    "name": "temporal",
+    "url": "https://github.com/temporalio/temporal",
+    "stars": 12000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "argo",
+    "url": "https://github.com/argoproj/argo-workflows",
+    "stars": 15000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "istio",
+    "url": "https://github.com/istio/istio",
+    "stars": 35000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "helm",
+    "url": "https://github.com/helm/helm",
+    "stars": 27000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "skaffold",
+    "url": "https://github.com/GoogleContainerTools/skaffold",
+    "stars": 15000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "kustomize",
+    "url": "https://github.com/kubernetes-sigs/kustomize",
+    "stars": 11000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "flux",
+    "url": "https://github.com/fluxcd/flux2",
+    "stars": 6600,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "crossplane",
+    "url": "https://github.com/crossplane/crossplane",
+    "stars": 9600,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "cilium",
+    "url": "https://github.com/cilium/cilium",
+    "stars": 20000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "containerd",
+    "url": "https://github.com/containerd/containerd",
+    "stars": 17000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "cri-o",
+    "url": "https://github.com/cri-o/cri-o",
+    "stars": 5200,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "buildkit",
+    "url": "https://github.com/moby/buildkit",
+    "stars": 8300,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "buf",
+    "url": "https://github.com/bufbuild/buf",
+    "stars": 9200,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "mockery",
+    "url": "https://github.com/vektra/mockery",
+    "stars": 6400,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "gotestsum",
+    "url": "https://github.com/gotestyourself/gotestsum",
+    "stars": 3900,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "golangci-lint",
+    "url": "https://github.com/golangci/golangci-lint",
+    "stars": 15000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "goreleaser",
+    "url": "https://github.com/goreleaser/goreleaser",
+    "stars": 14000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "air",
+    "url": "https://github.com/cosmtrek/air",
+    "stars": 19000,
+    "layer": "A",
+    "lang": "Go"
+  },
+  {
+    "name": "evans",
+    "url": "https://github.com/ktr0731/evans",
+    "stars": 4200,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "ghz",
+    "url": "https://github.com/bojand/ghz",
+    "stars": 3200,
+    "layer": "B",
+    "lang": "Go"
+  },
+  {
+    "name": "influxdb",
+    "url": "https://github.com/influxdata/influxdb",
+    "stars": 28000,
+    "layer": "D",
+    "lang": "Go"
+  },
+  {
+    "name": "gitea",
+    "url": "https://github.com/go-gitea/gitea",
+    "stars": 44000,
+    "layer": "D",
+    "lang": "Go"
+  },
+  {
+    "name": "gogs",
+    "url": "https://github.com/gogs/gogs",
+    "stars": 44000,
+    "layer": "D",
+    "lang": "Go"
+  },
+  {
+    "name": "cockroach",
+    "url": "https://github.com/cockroachdb/cockroach",
+    "stars": 29000,
+    "layer": "D",
+    "lang": "Go"
+  },
+  {
+    "name": "tidb",
+    "url": "https://github.com/pingcap/tidb",
+    "stars": 37000,
+    "layer": "D",
+    "lang": "Go"
+  },
+  {
+    "name": "nextjs",
+    "url": "https://github.com/vercel/next.js",
+    "stars": 127000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "nestjs",
+    "url": "https://github.com/nestjs/nest",
+    "stars": 66000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "trpc",
+    "url": "https://github.com/trpc/trpc",
+    "stars": 34000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "hono",
+    "url": "https://github.com/honojs/hono",
+    "stars": 20000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "elysia",
+    "url": "https://github.com/elysiajs/elysia",
+    "stars": 10000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "remix",
+    "url": "https://github.com/remix-run/remix",
+    "stars": 29000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "astro",
+    "url": "https://github.com/withastro/astro",
+    "stars": 46000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "zustand",
+    "url": "https://github.com/pmndrs/zustand",
+    "stars": 47000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "jotai",
+    "url": "https://github.com/pmndrs/jotai",
+    "stars": 18000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "xstate",
+    "url": "https://github.com/statelyai/xstate",
+    "stars": 27000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "biome",
+    "url": "https://github.com/biomejs/biome",
+    "stars": 16000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "oxc",
+    "url": "https://github.com/oxc-project/oxc",
+    "stars": 12000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "vitest",
+    "url": "https://github.com/vitest-dev/vitest",
+    "stars": 13000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "playwright",
+    "url": "https://github.com/microsoft/playwright",
+    "stars": 67000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "storybook",
+    "url": "https://github.com/storybookjs/storybook",
+    "stars": 84000,
+    "layer": "D",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "vercel-ai",
+    "url": "https://github.com/vercel/ai",
+    "stars": 13000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "mastra",
+    "url": "https://github.com/mastra-ai/mastra",
+    "stars": 12000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "llamafile",
+    "url": "https://github.com/Mozilla-Ocho/llamafile",
+    "stars": 20000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "elizaos",
+    "url": "https://github.com/elizaOS/eliza",
+    "stars": 32000,
+    "layer": "D",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "openai-node",
+    "url": "https://github.com/openai/openai-node",
+    "stars": 10000,
+    "layer": "A",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "typeorm",
+    "url": "https://github.com/typeorm/typeorm",
+    "stars": 34000,
+    "layer": "D",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "sequelize",
+    "url": "https://github.com/sequelize/sequelize",
+    "stars": 29000,
+    "layer": "D",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "mongoose",
+    "url": "https://github.com/Automattic/mongoose",
+    "stars": 26000,
+    "layer": "D",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "socket.io",
+    "url": "https://github.com/socketio/socket.io",
+    "stars": 61000,
+    "layer": "D",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "express",
+    "url": "https://github.com/expressjs/express",
+    "stars": 64000,
+    "layer": "D",
+    "lang": "TypeScript"
+  },
+  {
+    "name": "freecodecamp",
+    "full_name": "freeCodeCamp/freeCodeCamp",
+    "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "openclaw",
+    "full_name": "openclaw/openclaw",
+    "url": "https://github.com/openclaw/openclaw",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "996.icu",
+    "full_name": "996icu/996.ICU",
+    "url": "https://github.com/996icu/996.ICU",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "react",
+    "full_name": "facebook/react",
+    "url": "https://github.com/facebook/react",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "linux",
+    "full_name": "torvalds/linux",
+    "url": "https://github.com/torvalds/linux",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "the-book-of-secret-knowledge",
+    "full_name": "trimstray/the-book-of-secret-knowledge",
+    "url": "https://github.com/trimstray/the-book-of-secret-knowledge",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "vue",
+    "full_name": "vuejs/vue",
+    "url": "https://github.com/vuejs/vue",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "computer-science",
+    "full_name": "ossu/computer-science",
+    "url": "https://github.com/ossu/computer-science",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ohmyzsh",
+    "full_name": "ohmyzsh/ohmyzsh",
+    "url": "https://github.com/ohmyzsh/ohmyzsh",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "you-dont-know-js",
+    "full_name": "getify/You-Dont-Know-JS",
+    "url": "https://github.com/getify/You-Dont-Know-JS",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "cs-notes",
+    "full_name": "CyC2018/CS-Notes",
+    "url": "https://github.com/CyC2018/CS-Notes",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "vscode",
+    "full_name": "microsoft/vscode",
+    "url": "https://github.com/microsoft/vscode",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "autogpt",
+    "full_name": "Significant-Gravitas/AutoGPT",
+    "url": "https://github.com/Significant-Gravitas/AutoGPT",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "n8n",
+    "full_name": "n8n-io/n8n",
+    "url": "https://github.com/n8n-io/n8n",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "python-100-days",
+    "full_name": "jackfrued/Python-100-Days",
+    "url": "https://github.com/jackfrued/Python-100-Days",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "claw-code",
+    "full_name": "ultraworkers/claw-code",
+    "url": "https://github.com/ultraworkers/claw-code",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "flutter",
+    "full_name": "flutter/flutter",
+    "url": "https://github.com/flutter/flutter",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "bootstrap",
+    "full_name": "twbs/bootstrap",
+    "url": "https://github.com/twbs/bootstrap",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "gitignore",
+    "full_name": "github/gitignore",
+    "url": "https://github.com/github/gitignore",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "microsoft-activation-scripts",
+    "full_name": "massgravel/Microsoft-Activation-Scripts",
+    "url": "https://github.com/massgravel/Microsoft-Activation-Scripts",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ollama",
+    "full_name": "ollama/ollama",
+    "url": "https://github.com/ollama/ollama",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "stable-diffusion-webui",
+    "full_name": "AUTOMATIC1111/stable-diffusion-webui",
+    "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "the-art-of-command-line",
+    "full_name": "jlevy/the-art-of-command-line",
+    "url": "https://github.com/jlevy/the-art-of-command-line",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "prompts.chat",
+    "full_name": "f/prompts.chat",
+    "url": "https://github.com/f/prompts.chat",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "freedomain",
+    "full_name": "DigitalPlatDev/FreeDomain",
+    "url": "https://github.com/DigitalPlatDev/FreeDomain",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "javaguide",
+    "full_name": "Snailclimb/JavaGuide",
+    "url": "https://github.com/Snailclimb/JavaGuide",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "hellogithub",
+    "full_name": "521xueweihan/HelloGitHub",
+    "url": "https://github.com/521xueweihan/HelloGitHub",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "everything-claude-code",
+    "full_name": "affaan-m/everything-claude-code",
+    "url": "https://github.com/affaan-m/everything-claude-code",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "javascript",
+    "full_name": "airbnb/javascript",
+    "url": "https://github.com/airbnb/javascript",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "langflow",
+    "full_name": "langflow-ai/langflow",
+    "url": "https://github.com/langflow-ai/langflow",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "superpowers",
+    "full_name": "obra/superpowers",
+    "url": "https://github.com/obra/superpowers",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "opencode",
+    "full_name": "anomalyco/opencode",
+    "url": "https://github.com/anomalyco/opencode",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "next.js",
+    "full_name": "vercel/next.js",
+    "url": "https://github.com/vercel/next.js",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "scrcpy",
+    "full_name": "Genymobile/scrcpy",
+    "url": "https://github.com/Genymobile/scrcpy",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "dify",
+    "full_name": "langgenius/dify",
+    "url": "https://github.com/langgenius/dify",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "system-prompts-and-models-of-ai-tools",
+    "full_name": "x1xhlol/system-prompts-and-models-of-ai-tools",
+    "url": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "go",
+    "full_name": "golang/go",
+    "url": "https://github.com/golang/go",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "powertoys",
+    "full_name": "microsoft/PowerToys",
+    "url": "https://github.com/microsoft/PowerToys",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "open-webui",
+    "full_name": "open-webui/open-webui",
+    "url": "https://github.com/open-webui/open-webui",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "30-seconds-of-code",
+    "full_name": "Chalarangelo/30-seconds-of-code",
+    "url": "https://github.com/Chalarangelo/30-seconds-of-code",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "react-native",
+    "full_name": "facebook/react-native",
+    "url": "https://github.com/facebook/react-native",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "hello-algo",
+    "full_name": "krahets/hello-algo",
+    "url": "https://github.com/krahets/hello-algo",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "kubernetes",
+    "full_name": "kubernetes/kubernetes",
+    "url": "https://github.com/kubernetes/kubernetes",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "electron",
+    "full_name": "electron/electron",
+    "url": "https://github.com/electron/electron",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "excalidraw",
+    "full_name": "excalidraw/excalidraw",
+    "url": "https://github.com/excalidraw/excalidraw",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "free-for-dev",
+    "full_name": "ripienaar/free-for-dev",
+    "url": "https://github.com/ripienaar/free-for-dev",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "node",
+    "full_name": "nodejs/node",
+    "url": "https://github.com/nodejs/node",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "iptv",
+    "full_name": "iptv-org/iptv",
+    "url": "https://github.com/iptv-org/iptv",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "skills",
+    "full_name": "anthropics/skills",
+    "url": "https://github.com/anthropics/skills",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "d3",
+    "full_name": "d3/d3",
+    "url": "https://github.com/d3/d3",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ui",
+    "full_name": "shadcn-ui/ui",
+    "url": "https://github.com/shadcn-ui/ui",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "rust",
+    "full_name": "rust-lang/rust",
+    "url": "https://github.com/rust-lang/rust",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "three.js",
+    "full_name": "mrdoob/three.js",
+    "url": "https://github.com/mrdoob/three.js",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "claude-code",
+    "full_name": "anthropics/claude-code",
+    "url": "https://github.com/anthropics/claude-code",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "rustdesk",
+    "full_name": "rustdesk/rustdesk",
+    "url": "https://github.com/rustdesk/rustdesk",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "godot",
+    "full_name": "godotengine/godot",
+    "url": "https://github.com/godotengine/godot",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "clash-verge-rev",
+    "full_name": "clash-verge-rev/clash-verge-rev",
+    "url": "https://github.com/clash-verge-rev/clash-verge-rev",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "generative-ai-for-beginners",
+    "full_name": "microsoft/generative-ai-for-beginners",
+    "url": "https://github.com/microsoft/generative-ai-for-beginners",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "axios",
+    "full_name": "axios/axios",
+    "url": "https://github.com/axios/axios",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "typescript",
+    "full_name": "microsoft/TypeScript",
+    "url": "https://github.com/microsoft/TypeScript",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "comfyui",
+    "full_name": "Comfy-Org/ComfyUI",
+    "url": "https://github.com/Comfy-Org/ComfyUI",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "github-chinese-top-charts",
+    "full_name": "GrowingGit/GitHub-Chinese-Top-Charts",
+    "url": "https://github.com/GrowingGit/GitHub-Chinese-Top-Charts",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "deno",
+    "full_name": "denoland/deno",
+    "url": "https://github.com/denoland/deno",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "firecrawl",
+    "full_name": "firecrawl/firecrawl",
+    "url": "https://github.com/firecrawl/firecrawl",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "frp",
+    "full_name": "fatedier/frp",
+    "url": "https://github.com/fatedier/frp",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "tauri",
+    "full_name": "tauri-apps/tauri",
+    "url": "https://github.com/tauri-apps/tauri",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "nodebestpractices",
+    "full_name": "goldbergyoni/nodebestpractices",
+    "url": "https://github.com/goldbergyoni/nodebestpractices",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "papers-we-love",
+    "full_name": "papers-we-love/papers-we-love",
+    "url": "https://github.com/papers-we-love/papers-we-love",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "create-react-app",
+    "full_name": "facebook/create-react-app",
+    "url": "https://github.com/facebook/create-react-app",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "llama.cpp",
+    "full_name": "ggml-org/llama.cpp",
+    "url": "https://github.com/ggml-org/llama.cpp",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "terminal",
+    "full_name": "microsoft/terminal",
+    "url": "https://github.com/microsoft/terminal",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "deepseek-v3",
+    "full_name": "deepseek-ai/DeepSeek-V3",
+    "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "v2rayn",
+    "full_name": "2dust/v2rayN",
+    "url": "https://github.com/2dust/v2rayN",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "gemini-cli",
+    "full_name": "google-gemini/gemini-cli",
+    "url": "https://github.com/google-gemini/gemini-cli",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "supabase",
+    "full_name": "supabase/supabase",
+    "url": "https://github.com/supabase/supabase",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "angular",
+    "full_name": "angular/angular",
+    "url": "https://github.com/angular/angular",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "howtocook",
+    "full_name": "Anduin2017/HowToCook",
+    "url": "https://github.com/Anduin2017/HowToCook",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "every-programmer-should-know",
+    "full_name": "mtdvio/every-programmer-should-know",
+    "url": "https://github.com/mtdvio/every-programmer-should-know",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "neovim",
+    "full_name": "neovim/neovim",
+    "url": "https://github.com/neovim/neovim",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "material-ui",
+    "full_name": "mui/material-ui",
+    "url": "https://github.com/mui/material-ui",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ant-design",
+    "full_name": "ant-design/ant-design",
+    "url": "https://github.com/ant-design/ant-design",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "whisper",
+    "full_name": "openai/whisper",
+    "url": "https://github.com/openai/whisper",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "immich",
+    "full_name": "immich-app/immich",
+    "url": "https://github.com/immich-app/immich",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "markitdown",
+    "full_name": "microsoft/markitdown",
+    "url": "https://github.com/microsoft/markitdown",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "web-dev-for-beginners",
+    "full_name": "microsoft/Web-Dev-For-Beginners",
+    "url": "https://github.com/microsoft/Web-Dev-For-Beginners",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "tailwindcss",
+    "full_name": "tailwindlabs/tailwindcss",
+    "url": "https://github.com/tailwindlabs/tailwindcss",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "clean-code-javascript",
+    "full_name": "ryanmcdermott/clean-code-javascript",
+    "url": "https://github.com/ryanmcdermott/clean-code-javascript",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "puppeteer",
+    "full_name": "puppeteer/puppeteer",
+    "url": "https://github.com/puppeteer/puppeteer",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "java-design-patterns",
+    "full_name": "iluwatar/java-design-patterns",
+    "url": "https://github.com/iluwatar/java-design-patterns",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "nvm",
+    "full_name": "nvm-sh/nvm",
+    "url": "https://github.com/nvm-sh/nvm",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "app-ideas",
+    "full_name": "florinpop17/app-ideas",
+    "url": "https://github.com/florinpop17/app-ideas",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "deepseek-r1",
+    "full_name": "deepseek-ai/DeepSeek-R1",
+    "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "llms-from-scratch",
+    "full_name": "rasbt/LLMs-from-scratch",
+    "url": "https://github.com/rasbt/LLMs-from-scratch",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "vue-element-admin",
+    "full_name": "PanJiaChen/vue-element-admin",
+    "url": "https://github.com/PanJiaChen/vue-element-admin",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "deep-live-cam",
+    "full_name": "hacksider/Deep-Live-Cam",
+    "url": "https://github.com/hacksider/Deep-Live-Cam",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "bun",
+    "full_name": "oven-sh/bun",
+    "url": "https://github.com/oven-sh/bun",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "bitcoin",
+    "full_name": "bitcoin/bitcoin",
+    "url": "https://github.com/bitcoin/bitcoin",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "weekly",
+    "full_name": "ruanyf/weekly",
+    "url": "https://github.com/ruanyf/weekly",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "nextchat",
+    "full_name": "ChatGPTNextWeb/NextChat",
+    "url": "https://github.com/ChatGPTNextWeb/NextChat",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "mermaid",
+    "full_name": "mermaid-js/mermaid",
+    "url": "https://github.com/mermaid-js/mermaid",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "opencv",
+    "full_name": "opencv/opencv",
+    "url": "https://github.com/opencv/opencv",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "browser-use",
+    "full_name": "browser-use/browser-use",
+    "url": "https://github.com/browser-use/browser-use",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "spec-kit",
+    "full_name": "github/spec-kit",
+    "url": "https://github.com/github/spec-kit",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "svelte",
+    "full_name": "sveltejs/svelte",
+    "url": "https://github.com/sveltejs/svelte",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "core",
+    "full_name": "home-assistant/core",
+    "url": "https://github.com/home-assistant/core",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "manim",
+    "full_name": "3b1b/manim",
+    "url": "https://github.com/3b1b/manim",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "ml-for-beginners",
+    "full_name": "microsoft/ML-For-Beginners",
+    "url": "https://github.com/microsoft/ML-For-Beginners",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "uptime-kuma",
+    "full_name": "louislam/uptime-kuma",
+    "url": "https://github.com/louislam/uptime-kuma",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "laravel",
+    "full_name": "laravel/laravel",
+    "url": "https://github.com/laravel/laravel",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "mall",
+    "full_name": "macrozheng/mall",
+    "url": "https://github.com/macrozheng/mall",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "servers",
+    "full_name": "modelcontextprotocol/servers",
+    "url": "https://github.com/modelcontextprotocol/servers",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "realworld",
+    "full_name": "realworld-apps/realworld",
+    "url": "https://github.com/realworld-apps/realworld",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "uv",
+    "full_name": "astral-sh/uv",
+    "url": "https://github.com/astral-sh/uv",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "animate.css",
+    "full_name": "animate-css/animate.css",
+    "url": "https://github.com/animate-css/animate.css",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "syncthing",
+    "full_name": "syncthing/syncthing",
+    "url": "https://github.com/syncthing/syncthing",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "firacode",
+    "full_name": "tonsky/FiraCode",
+    "url": "https://github.com/tonsky/FiraCode",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "sherlock",
+    "full_name": "sherlock-project/sherlock",
+    "url": "https://github.com/sherlock-project/sherlock",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "funnlp",
+    "full_name": "fighting41love/funNLP",
+    "url": "https://github.com/fighting41love/funNLP",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "vite",
+    "full_name": "vitejs/vite",
+    "url": "https://github.com/vitejs/vite",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "fzf",
+    "full_name": "junegunn/fzf",
+    "url": "https://github.com/junegunn/fzf",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "github-readme-stats",
+    "full_name": "anuraghazra/github-readme-stats",
+    "url": "https://github.com/anuraghazra/github-readme-stats",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "advanced-java",
+    "full_name": "doocs/advanced-java",
+    "url": "https://github.com/doocs/advanced-java",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "hoppscotch",
+    "full_name": "hoppscotch/hoppscotch",
+    "url": "https://github.com/hoppscotch/hoppscotch",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "zed",
+    "full_name": "zed-industries/zed",
+    "url": "https://github.com/zed-industries/zed",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "netdata",
+    "full_name": "netdata/netdata",
+    "url": "https://github.com/netdata/netdata",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "localsend",
+    "full_name": "localsend/localsend",
+    "url": "https://github.com/localsend/localsend",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "models",
+    "full_name": "tensorflow/models",
+    "url": "https://github.com/tensorflow/models",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "ragflow",
+    "full_name": "infiniflow/ragflow",
+    "url": "https://github.com/infiniflow/ragflow",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "gpt4all",
+    "full_name": "nomic-ai/gpt4all",
+    "url": "https://github.com/nomic-ai/gpt4all",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "code-server",
+    "full_name": "coder/code-server",
+    "url": "https://github.com/coder/code-server",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "d2l-zh",
+    "full_name": "d2l-ai/d2l-zh",
+    "url": "https://github.com/d2l-ai/d2l-zh",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "agency-agents",
+    "full_name": "msitarzewski/agency-agents",
+    "url": "https://github.com/msitarzewski/agency-agents",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "payloadsallthethings",
+    "full_name": "swisskyrepo/PayloadsAllTheThings",
+    "url": "https://github.com/swisskyrepo/PayloadsAllTheThings",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "stirling-pdf",
+    "full_name": "Stirling-Tools/Stirling-PDF",
+    "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "lazygit",
+    "full_name": "jesseduffield/lazygit",
+    "url": "https://github.com/jesseduffield/lazygit",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "best-websites-a-programmer-should-visit",
+    "full_name": "sdmg15/Best-websites-a-programmer-should-visit",
+    "url": "https://github.com/sdmg15/Best-websites-a-programmer-should-visit",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "vllm",
+    "full_name": "vllm-project/vllm",
+    "url": "https://github.com/vllm-project/vllm",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "ventoy",
+    "full_name": "ventoy/Ventoy",
+    "url": "https://github.com/ventoy/Ventoy",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "json-server",
+    "full_name": "typicode/json-server",
+    "url": "https://github.com/typicode/json-server",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "paddleocr",
+    "full_name": "PaddlePaddle/PaddleOCR",
+    "url": "https://github.com/PaddlePaddle/PaddleOCR",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "nest",
+    "full_name": "nestjs/nest",
+    "url": "https://github.com/nestjs/nest",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "lobehub",
+    "full_name": "lobehub/lobehub",
+    "url": "https://github.com/lobehub/lobehub",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "union",
+    "full_name": "unionlabs/union",
+    "url": "https://github.com/unionlabs/union",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "codex",
+    "full_name": "openai/codex",
+    "url": "https://github.com/openai/codex",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "redis",
+    "full_name": "redis/redis",
+    "url": "https://github.com/redis/redis",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "tesseract",
+    "full_name": "tesseract-ocr/tesseract",
+    "url": "https://github.com/tesseract-ocr/tesseract",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "grafana",
+    "full_name": "grafana/grafana",
+    "url": "https://github.com/grafana/grafana",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "prompt-engineering-guide",
+    "full_name": "dair-ai/Prompt-Engineering-Guide",
+    "url": "https://github.com/dair-ai/Prompt-Engineering-Guide",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "stable-diffusion",
+    "full_name": "CompVis/stable-diffusion",
+    "url": "https://github.com/CompVis/stable-diffusion",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "openai-cookbook",
+    "full_name": "openai/openai-cookbook",
+    "url": "https://github.com/openai/openai-cookbook",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "imgui",
+    "full_name": "ocornut/imgui",
+    "url": "https://github.com/ocornut/imgui",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "front-end-checklist",
+    "full_name": "thedaviddias/Front-End-Checklist",
+    "url": "https://github.com/thedaviddias/Front-End-Checklist",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "superset",
+    "full_name": "apache/superset",
+    "url": "https://github.com/apache/superset",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "arduino-esp32",
+    "full_name": "espressif/arduino-esp32",
+    "url": "https://github.com/espressif/arduino-esp32",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "sentry",
+    "full_name": "getsentry/sentry",
+    "url": "https://github.com/getsentry/sentry",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "convex-backend",
+    "full_name": "get-convex/convex-backend",
+    "url": "https://github.com/get-convex/convex-backend",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "nixpkgs",
+    "full_name": "NixOS/nixpkgs",
+    "url": "https://github.com/NixOS/nixpkgs",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "gradle",
+    "full_name": "gradle/gradle",
+    "url": "https://github.com/gradle/gradle",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "mise",
+    "full_name": "jdx/mise",
+    "url": "https://github.com/jdx/mise",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "nemoclaw",
+    "full_name": "NVIDIA/NemoClaw",
+    "url": "https://github.com/NVIDIA/NemoClaw",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "kilocode",
+    "full_name": "Kilo-Org/kilocode",
+    "url": "https://github.com/Kilo-Org/kilocode",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "chromium",
+    "full_name": "chromium/chromium",
+    "url": "https://github.com/chromium/chromium",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "inquirer.js",
+    "full_name": "SBoudrias/Inquirer.js",
+    "url": "https://github.com/SBoudrias/Inquirer.js",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "sdk",
+    "full_name": "dart-lang/sdk",
+    "url": "https://github.com/dart-lang/sdk",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "nx",
+    "full_name": "nrwl/nx",
+    "url": "https://github.com/nrwl/nx",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "abseil-cpp",
+    "full_name": "abseil/abseil-cpp",
+    "url": "https://github.com/abseil/abseil-cpp",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "clickhouse",
+    "full_name": "ClickHouse/ClickHouse",
+    "url": "https://github.com/ClickHouse/ClickHouse",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "fiftyone",
+    "full_name": "voxel51/fiftyone",
+    "url": "https://github.com/voxel51/fiftyone",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "vlc",
+    "full_name": "videolan/vlc",
+    "url": "https://github.com/videolan/vlc",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "llvm-project",
+    "full_name": "llvm/llvm-project",
+    "url": "https://github.com/llvm/llvm-project",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "summer2026-internships",
+    "full_name": "SimplifyJobs/Summer2026-Internships",
+    "url": "https://github.com/SimplifyJobs/Summer2026-Internships",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "servo",
+    "full_name": "servo/servo",
+    "url": "https://github.com/servo/servo",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "termux-packages",
+    "full_name": "termux/termux-packages",
+    "url": "https://github.com/termux/termux-packages",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "freecad",
+    "full_name": "FreeCAD/FreeCAD",
+    "url": "https://github.com/FreeCAD/FreeCAD",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "new-grad-positions",
+    "full_name": "SimplifyJobs/New-Grad-Positions",
+    "url": "https://github.com/SimplifyJobs/New-Grad-Positions",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "linera-protocol",
+    "full_name": "linera-io/linera-protocol",
+    "url": "https://github.com/linera-io/linera-protocol",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "just",
+    "full_name": "casey/just",
+    "url": "https://github.com/casey/just",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "esphome",
+    "full_name": "esphome/esphome",
+    "url": "https://github.com/esphome/esphome",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "triton",
+    "full_name": "triton-lang/triton",
+    "url": "https://github.com/triton-lang/triton",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "quicklook",
+    "full_name": "QL-Win/QuickLook",
+    "url": "https://github.com/QL-Win/QuickLook",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "definitelytyped",
+    "full_name": "DefinitelyTyped/DefinitelyTyped",
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "free-servers",
+    "full_name": "Pawdroid/Free-servers",
+    "url": "https://github.com/Pawdroid/Free-servers",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "mcp-toolbox",
+    "full_name": "googleapis/mcp-toolbox",
+    "url": "https://github.com/googleapis/mcp-toolbox",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "fuse",
+    "full_name": "krisk/Fuse",
+    "url": "https://github.com/krisk/Fuse",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "kotlin",
+    "full_name": "JetBrains/kotlin",
+    "url": "https://github.com/JetBrains/kotlin",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "tldr",
+    "full_name": "tldr-pages/tldr",
+    "url": "https://github.com/tldr-pages/tldr",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "swift-evolution",
+    "full_name": "swiftlang/swift-evolution",
+    "url": "https://github.com/swiftlang/swift-evolution",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "adk-python",
+    "full_name": "google/adk-python",
+    "url": "https://github.com/google/adk-python",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "postgrest",
+    "full_name": "PostgREST/postgrest",
+    "url": "https://github.com/PostgREST/postgrest",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "quickwit",
+    "full_name": "quickwit-oss/quickwit",
+    "url": "https://github.com/quickwit-oss/quickwit",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "actual",
+    "full_name": "actualbudget/actual",
+    "url": "https://github.com/actualbudget/actual",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "owncast",
+    "full_name": "owncast/owncast",
+    "url": "https://github.com/owncast/owncast",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "chroma",
+    "full_name": "chroma-core/chroma",
+    "url": "https://github.com/chroma-core/chroma",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "vim",
+    "full_name": "vim/vim",
+    "url": "https://github.com/vim/vim",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "simdjson",
+    "full_name": "simdjson/simdjson",
+    "url": "https://github.com/simdjson/simdjson",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "appium",
+    "full_name": "appium/appium",
+    "url": "https://github.com/appium/appium",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "unciv",
+    "full_name": "yairm210/Unciv",
+    "url": "https://github.com/yairm210/Unciv",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "firefox-ios",
+    "full_name": "mozilla-mobile/firefox-ios",
+    "url": "https://github.com/mozilla-mobile/firefox-ios",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "great_expectations",
+    "full_name": "great-expectations/great_expectations",
+    "url": "https://github.com/great-expectations/great_expectations",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "dagger",
+    "full_name": "dagger/dagger",
+    "url": "https://github.com/dagger/dagger",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "chainlit",
+    "full_name": "Chainlit/chainlit",
+    "url": "https://github.com/Chainlit/chainlit",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "homebrew-core",
+    "full_name": "Homebrew/homebrew-core",
+    "url": "https://github.com/Homebrew/homebrew-core",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "first-contributions",
+    "full_name": "firstcontributions/first-contributions",
+    "url": "https://github.com/firstcontributions/first-contributions",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "presto",
+    "full_name": "prestodb/presto",
+    "url": "https://github.com/prestodb/presto",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "mongo",
+    "full_name": "mongodb/mongo",
+    "url": "https://github.com/mongodb/mongo",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "freshrss",
+    "full_name": "FreshRSS/FreshRSS",
+    "url": "https://github.com/FreshRSS/FreshRSS",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "opencli",
+    "full_name": "jackwener/OpenCLI",
+    "url": "https://github.com/jackwener/OpenCLI",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "onyx",
+    "full_name": "onyx-dot-app/onyx",
+    "url": "https://github.com/onyx-dot-app/onyx",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "skyvern",
+    "full_name": "Skyvern-AI/skyvern",
+    "url": "https://github.com/Skyvern-AI/skyvern",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "imgproxy",
+    "full_name": "imgproxy/imgproxy",
+    "url": "https://github.com/imgproxy/imgproxy",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "metabase",
+    "full_name": "metabase/metabase",
+    "url": "https://github.com/metabase/metabase",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ghost",
+    "full_name": "TryGhost/Ghost",
+    "url": "https://github.com/TryGhost/Ghost",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "appwrite",
+    "full_name": "appwrite/appwrite",
+    "url": "https://github.com/appwrite/appwrite",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "twenty",
+    "full_name": "twentyhq/twenty",
+    "url": "https://github.com/twentyhq/twenty",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ecma262",
+    "full_name": "tc39/ecma262",
+    "url": "https://github.com/tc39/ecma262",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "dapr",
+    "full_name": "dapr/dapr",
+    "url": "https://github.com/dapr/dapr",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "tailscale",
+    "full_name": "tailscale/tailscale",
+    "url": "https://github.com/tailscale/tailscale",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "mlflow",
+    "full_name": "mlflow/mlflow",
+    "url": "https://github.com/mlflow/mlflow",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "deepagents",
+    "full_name": "langchain-ai/deepagents",
+    "url": "https://github.com/langchain-ai/deepagents",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "teleport",
+    "full_name": "gravitational/teleport",
+    "url": "https://github.com/gravitational/teleport",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "opensearch",
+    "full_name": "opensearch-project/OpenSearch",
+    "url": "https://github.com/opensearch-project/OpenSearch",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "goose",
+    "full_name": "aaif-goose/goose",
+    "url": "https://github.com/aaif-goose/goose",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "picoclaw",
+    "full_name": "sipeed/picoclaw",
+    "url": "https://github.com/sipeed/picoclaw",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "spacetimedb",
+    "full_name": "clockworklabs/SpacetimeDB",
+    "url": "https://github.com/clockworklabs/SpacetimeDB",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "winget-pkgs",
+    "full_name": "microsoft/winget-pkgs",
+    "url": "https://github.com/microsoft/winget-pkgs",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "monogame",
+    "full_name": "MonoGame/MonoGame",
+    "url": "https://github.com/MonoGame/MonoGame",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "seaweedfs",
+    "full_name": "seaweedfs/seaweedfs",
+    "url": "https://github.com/seaweedfs/seaweedfs",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "hyperui",
+    "full_name": "markmead/hyperui",
+    "url": "https://github.com/markmead/hyperui",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "runtime",
+    "full_name": "dotnet/runtime",
+    "url": "https://github.com/dotnet/runtime",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "arangodb",
+    "full_name": "arangodb/arangodb",
+    "url": "https://github.com/arangodb/arangodb",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "social-app",
+    "full_name": "bluesky-social/social-app",
+    "url": "https://github.com/bluesky-social/social-app",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "payload",
+    "full_name": "payloadcms/payload",
+    "url": "https://github.com/payloadcms/payload",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "worldmonitor",
+    "full_name": "koala73/worldmonitor",
+    "url": "https://github.com/koala73/worldmonitor",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "plane",
+    "full_name": "makeplane/plane",
+    "url": "https://github.com/makeplane/plane",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "reactive-resume",
+    "full_name": "amruthpillai/reactive-resume",
+    "url": "https://github.com/amruthpillai/reactive-resume",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "harper",
+    "full_name": "Automattic/harper",
+    "url": "https://github.com/Automattic/harper",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "gitnexus",
+    "full_name": "abhigyanpatwari/GitNexus",
+    "url": "https://github.com/abhigyanpatwari/GitNexus",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "protobuf",
+    "full_name": "protocolbuffers/protobuf",
+    "url": "https://github.com/protocolbuffers/protobuf",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "hermes-agent",
+    "full_name": "NousResearch/hermes-agent",
+    "url": "https://github.com/NousResearch/hermes-agent",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "dns-blocklists",
+    "full_name": "hagezi/dns-blocklists",
+    "url": "https://github.com/hagezi/dns-blocklists",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "nim",
+    "full_name": "nim-lang/Nim",
+    "url": "https://github.com/nim-lang/Nim",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "adguardhome",
+    "full_name": "AdguardTeam/AdGuardHome",
+    "url": "https://github.com/AdguardTeam/AdGuardHome",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ironclaw",
+    "full_name": "nearai/ironclaw",
+    "url": "https://github.com/nearai/ironclaw",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "loki",
+    "full_name": "grafana/loki",
+    "url": "https://github.com/grafana/loki",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "shadps4",
+    "full_name": "shadps4-emu/shadPS4",
+    "url": "https://github.com/shadps4-emu/shadPS4",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "etherpad-lite",
+    "full_name": "ether/etherpad-lite",
+    "url": "https://github.com/ether/etherpad-lite",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "agno",
+    "full_name": "agno-agi/agno",
+    "url": "https://github.com/agno-agi/agno",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "kibana",
+    "full_name": "elastic/kibana",
+    "url": "https://github.com/elastic/kibana",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "gcc",
+    "full_name": "gcc-mirror/gcc",
+    "url": "https://github.com/gcc-mirror/gcc",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "tvm",
+    "full_name": "apache/tvm",
+    "url": "https://github.com/apache/tvm",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "jax",
+    "full_name": "jax-ml/jax",
+    "url": "https://github.com/jax-ml/jax",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "selenium",
+    "full_name": "SeleniumHQ/selenium",
+    "url": "https://github.com/SeleniumHQ/selenium",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "promptfoo",
+    "full_name": "promptfoo/promptfoo",
+    "url": "https://github.com/promptfoo/promptfoo",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "screenpipe",
+    "full_name": "screenpipe/screenpipe",
+    "url": "https://github.com/screenpipe/screenpipe",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "mattermost",
+    "full_name": "mattermost/mattermost",
+    "url": "https://github.com/mattermost/mattermost",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "grist-core",
+    "full_name": "gristlabs/grist-core",
+    "url": "https://github.com/gristlabs/grist-core",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "slint",
+    "full_name": "slint-ui/slint",
+    "url": "https://github.com/slint-ui/slint",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "pydantic-ai",
+    "full_name": "pydantic/pydantic-ai",
+    "url": "https://github.com/pydantic/pydantic-ai",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "rtk",
+    "full_name": "rtk-ai/rtk",
+    "url": "https://github.com/rtk-ai/rtk",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "renovate",
+    "full_name": "renovatebot/renovate",
+    "url": "https://github.com/renovatebot/renovate",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "logseq",
+    "full_name": "logseq/logseq",
+    "url": "https://github.com/logseq/logseq",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "langfuse",
+    "full_name": "langfuse/langfuse",
+    "url": "https://github.com/langfuse/langfuse",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "openhands",
+    "full_name": "OpenHands/OpenHands",
+    "url": "https://github.com/OpenHands/OpenHands",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "cc-switch",
+    "full_name": "farion1231/cc-switch",
+    "url": "https://github.com/farion1231/cc-switch",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "deck.gl",
+    "full_name": "visgl/deck.gl",
+    "url": "https://github.com/visgl/deck.gl",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "languagetool",
+    "full_name": "languagetool-org/languagetool",
+    "url": "https://github.com/languagetool-org/languagetool",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "sim",
+    "full_name": "simstudioai/sim",
+    "url": "https://github.com/simstudioai/sim",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "elasticsearch",
+    "full_name": "elastic/elasticsearch",
+    "url": "https://github.com/elastic/elasticsearch",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "zotero",
+    "full_name": "zotero/zotero",
+    "url": "https://github.com/zotero/zotero",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "tigerbeetle",
+    "full_name": "tigerbeetle/tigerbeetle",
+    "url": "https://github.com/tigerbeetle/tigerbeetle",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "posthog",
+    "full_name": "PostHog/posthog",
+    "url": "https://github.com/PostHog/posthog",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "snipe-it",
+    "full_name": "grokability/snipe-it",
+    "url": "https://github.com/grokability/snipe-it",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "super-productivity",
+    "full_name": "super-productivity/super-productivity",
+    "url": "https://github.com/super-productivity/super-productivity",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "readest",
+    "full_name": "readest/readest",
+    "url": "https://github.com/readest/readest",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "skia",
+    "full_name": "google/skia",
+    "url": "https://github.com/google/skia",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "wsl",
+    "full_name": "microsoft/WSL",
+    "url": "https://github.com/microsoft/WSL",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "jdk",
+    "full_name": "openjdk/jdk",
+    "url": "https://github.com/openjdk/jdk",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "foundry",
+    "full_name": "foundry-rs/foundry",
+    "url": "https://github.com/foundry-rs/foundry",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "imagemagick",
+    "full_name": "ImageMagick/ImageMagick",
+    "url": "https://github.com/ImageMagick/ImageMagick",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "pipedream",
+    "full_name": "PipedreamHQ/pipedream",
+    "url": "https://github.com/PipedreamHQ/pipedream",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "bazel",
+    "full_name": "bazelbuild/bazel",
+    "url": "https://github.com/bazelbuild/bazel",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "claude-code-best-practice",
+    "full_name": "shanraisshan/claude-code-best-practice",
+    "url": "https://github.com/shanraisshan/claude-code-best-practice",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "metamask-extension",
+    "full_name": "MetaMask/metamask-extension",
+    "url": "https://github.com/MetaMask/metamask-extension",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "grpc",
+    "full_name": "grpc/grpc",
+    "url": "https://github.com/grpc/grpc",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "rowboat",
+    "full_name": "rowboatlabs/rowboat",
+    "url": "https://github.com/rowboatlabs/rowboat",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "better-auth",
+    "full_name": "better-auth/better-auth",
+    "url": "https://github.com/better-auth/better-auth",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "pipecat",
+    "full_name": "pipecat-ai/pipecat",
+    "url": "https://github.com/pipecat-ai/pipecat",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "beads",
+    "full_name": "gastownhall/beads",
+    "url": "https://github.com/gastownhall/beads",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "react-native-windows",
+    "full_name": "microsoft/react-native-windows",
+    "url": "https://github.com/microsoft/react-native-windows",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ios_rule_script",
+    "full_name": "blackmatrix7/ios_rule_script",
+    "url": "https://github.com/blackmatrix7/ios_rule_script",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "expo",
+    "full_name": "expo/expo",
+    "url": "https://github.com/expo/expo",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "coder",
+    "full_name": "coder/coder",
+    "url": "https://github.com/coder/coder",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "crewai",
+    "full_name": "crewAIInc/crewAI",
+    "url": "https://github.com/crewAIInc/crewAI",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "v",
+    "full_name": "vlang/v",
+    "url": "https://github.com/vlang/v",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "meshery",
+    "full_name": "meshery/meshery",
+    "url": "https://github.com/meshery/meshery",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "archon",
+    "full_name": "coleam00/Archon",
+    "url": "https://github.com/coleam00/Archon",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "stagehand",
+    "full_name": "browserbase/stagehand",
+    "url": "https://github.com/browserbase/stagehand",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "oh-my-codex",
+    "full_name": "Yeachan-Heo/oh-my-codex",
+    "url": "https://github.com/Yeachan-Heo/oh-my-codex",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "php-src",
+    "full_name": "php/php-src",
+    "url": "https://github.com/php/php-src",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "ruview",
+    "full_name": "ruvnet/RuView",
+    "url": "https://github.com/ruvnet/RuView",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "windows-rs",
+    "full_name": "microsoft/windows-rs",
+    "url": "https://github.com/microsoft/windows-rs",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "github520",
+    "full_name": "521xueweihan/GitHub520",
+    "url": "https://github.com/521xueweihan/GitHub520",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "emscripten",
+    "full_name": "emscripten-core/emscripten",
+    "url": "https://github.com/emscripten-core/emscripten",
+    "lang": "Python",
+    "layer": "A"
+  },
+  {
+    "name": "novu",
+    "full_name": "novuhq/novu",
+    "url": "https://github.com/novuhq/novu",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "dynamo",
+    "full_name": "ai-dynamo/dynamo",
+    "url": "https://github.com/ai-dynamo/dynamo",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "webkit",
+    "full_name": "WebKit/WebKit",
+    "url": "https://github.com/WebKit/WebKit",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "intellij-community",
+    "full_name": "JetBrains/intellij-community",
+    "url": "https://github.com/JetBrains/intellij-community",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "fast",
+    "full_name": "microsoft/fast",
+    "url": "https://github.com/microsoft/fast",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "flower",
+    "full_name": "flwrlabs/flower",
+    "url": "https://github.com/flwrlabs/flower",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "spacebarchat",
+    "full_name": "spacebarchat/spacebarchat",
+    "url": "https://github.com/spacebarchat/spacebarchat",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "binaryen",
+    "full_name": "WebAssembly/binaryen",
+    "url": "https://github.com/WebAssembly/binaryen",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "openapi-typescript",
+    "full_name": "openapi-ts/openapi-typescript",
+    "url": "https://github.com/openapi-ts/openapi-typescript",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "airi",
+    "full_name": "moeru-ai/airi",
+    "url": "https://github.com/moeru-ai/airi",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "fleet",
+    "full_name": "fleetdm/fleet",
+    "url": "https://github.com/fleetdm/fleet",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "anytype-ts",
+    "full_name": "anyproto/anytype-ts",
+    "url": "https://github.com/anyproto/anytype-ts",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "instant",
+    "full_name": "instantdb/instant",
+    "url": "https://github.com/instantdb/instant",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "beam",
+    "full_name": "apache/beam",
+    "url": "https://github.com/apache/beam",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "specs",
+    "full_name": "CocoaPods/Specs",
+    "url": "https://github.com/CocoaPods/Specs",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "podman-desktop",
+    "full_name": "podman-desktop/podman-desktop",
+    "url": "https://github.com/podman-desktop/podman-desktop",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "cppcheck",
+    "full_name": "danmar/cppcheck",
+    "url": "https://github.com/danmar/cppcheck",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "hosts",
+    "full_name": "ineo6/hosts",
+    "url": "https://github.com/ineo6/hosts",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "gephi",
+    "full_name": "gephi/gephi",
+    "url": "https://github.com/gephi/gephi",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "captum",
+    "full_name": "meta-pytorch/captum",
+    "url": "https://github.com/meta-pytorch/captum",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "graphhopper",
+    "full_name": "graphhopper/graphhopper",
+    "url": "https://github.com/graphhopper/graphhopper",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "throne",
+    "full_name": "throneproj/Throne",
+    "url": "https://github.com/throneproj/Throne",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "androidx",
+    "full_name": "androidx/androidx",
+    "url": "https://github.com/androidx/androidx",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "qownnotes",
+    "full_name": "pbek/QOwnNotes",
+    "url": "https://github.com/pbek/QOwnNotes",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "gumroad",
+    "full_name": "antiwork/gumroad",
+    "url": "https://github.com/antiwork/gumroad",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "proxy-list",
+    "full_name": "TheSpeedX/PROXY-List",
+    "url": "https://github.com/TheSpeedX/PROXY-List",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "openmediavault",
+    "full_name": "openmediavault/openmediavault",
+    "url": "https://github.com/openmediavault/openmediavault",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "rallly",
+    "full_name": "lukevella/rallly",
+    "url": "https://github.com/lukevella/rallly",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "stack-auth",
+    "full_name": "stack-auth/stack-auth",
+    "url": "https://github.com/stack-auth/stack-auth",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "iperf",
+    "full_name": "esnet/iperf",
+    "url": "https://github.com/esnet/iperf",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "landscape",
+    "full_name": "cncf/landscape",
+    "url": "https://github.com/cncf/landscape",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "operator-sdk",
+    "full_name": "operator-framework/operator-sdk",
+    "url": "https://github.com/operator-framework/operator-sdk",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "emacs",
+    "full_name": "emacs-mirror/emacs",
+    "url": "https://github.com/emacs-mirror/emacs",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "pixelorama",
+    "full_name": "Orama-Interactive/Pixelorama",
+    "url": "https://github.com/Orama-Interactive/Pixelorama",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "caveman",
+    "full_name": "JuliusBrussee/caveman",
+    "url": "https://github.com/JuliusBrussee/caveman",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "poc-in-github",
+    "full_name": "nomi-sec/PoC-in-GitHub",
+    "url": "https://github.com/nomi-sec/PoC-in-GitHub",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "openmetadata",
+    "full_name": "open-metadata/OpenMetadata",
+    "url": "https://github.com/open-metadata/OpenMetadata",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "panda-vpn-pro",
+    "full_name": "DiningFactory/panda-vpn-pro",
+    "url": "https://github.com/DiningFactory/panda-vpn-pro",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "perfetto",
+    "full_name": "google/perfetto",
+    "url": "https://github.com/google/perfetto",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "osmand",
+    "full_name": "osmandapp/OsmAnd",
+    "url": "https://github.com/osmandapp/OsmAnd",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "omni-tools",
+    "full_name": "iib0011/omni-tools",
+    "url": "https://github.com/iib0011/omni-tools",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "headlamp",
+    "full_name": "kubernetes-sigs/headlamp",
+    "url": "https://github.com/kubernetes-sigs/headlamp",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "openstack",
+    "full_name": "openstack/openstack",
+    "url": "https://github.com/openstack/openstack",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "freebsd-src",
+    "full_name": "freebsd/freebsd-src",
+    "url": "https://github.com/freebsd/freebsd-src",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "terragrunt",
+    "full_name": "gruntwork-io/terragrunt",
+    "url": "https://github.com/gruntwork-io/terragrunt",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "cog",
+    "full_name": "replicate/cog",
+    "url": "https://github.com/replicate/cog",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "civitai",
+    "full_name": "civitai/civitai",
+    "url": "https://github.com/civitai/civitai",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "steel-browser",
+    "full_name": "steel-dev/steel-browser",
+    "url": "https://github.com/steel-dev/steel-browser",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "miri",
+    "full_name": "rust-lang/miri",
+    "url": "https://github.com/rust-lang/miri",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "vike",
+    "full_name": "vikejs/vike",
+    "url": "https://github.com/vikejs/vike",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "forge",
+    "full_name": "electron/forge",
+    "url": "https://github.com/electron/forge",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "pumpkin",
+    "full_name": "Pumpkin-MC/Pumpkin",
+    "url": "https://github.com/Pumpkin-MC/Pumpkin",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "virtualenv",
+    "full_name": "pypa/virtualenv",
+    "url": "https://github.com/pypa/virtualenv",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "desktopcommandermcp",
+    "full_name": "wonderwhy-er/DesktopCommanderMCP",
+    "url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "repomix",
+    "full_name": "yamadashy/repomix",
+    "url": "https://github.com/yamadashy/repomix",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "tools",
+    "full_name": "golang/tools",
+    "url": "https://github.com/golang/tools",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "omlx",
+    "full_name": "jundot/omlx",
+    "url": "https://github.com/jundot/omlx",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "sui",
+    "full_name": "MystenLabs/sui",
+    "url": "https://github.com/MystenLabs/sui",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "vpn",
+    "full_name": "YoulianBoshi/vpn",
+    "url": "https://github.com/YoulianBoshi/vpn",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "open-swe",
+    "full_name": "langchain-ai/open-swe",
+    "url": "https://github.com/langchain-ai/open-swe",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "mcp-use",
+    "full_name": "mcp-use/mcp-use",
+    "url": "https://github.com/mcp-use/mcp-use",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "kreuzberg",
+    "full_name": "kreuzberg-dev/kreuzberg",
+    "url": "https://github.com/kreuzberg-dev/kreuzberg",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "typespec",
+    "full_name": "microsoft/typespec",
+    "url": "https://github.com/microsoft/typespec",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "napi-rs",
+    "full_name": "napi-rs/napi-rs",
+    "url": "https://github.com/napi-rs/napi-rs",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "fresh",
+    "full_name": "sinelaw/fresh",
+    "url": "https://github.com/sinelaw/fresh",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "up-for-grabs.net",
+    "full_name": "up-for-grabs/up-for-grabs.net",
+    "url": "https://github.com/up-for-grabs/up-for-grabs.net",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "vmaf",
+    "full_name": "Netflix/vmaf",
+    "url": "https://github.com/Netflix/vmaf",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "openwrt-packages",
+    "full_name": "kenzok8/openwrt-packages",
+    "url": "https://github.com/kenzok8/openwrt-packages",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "vega-lite",
+    "full_name": "vega/vega-lite",
+    "url": "https://github.com/vega/vega-lite",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "compose-examples",
+    "full_name": "Haxxnet/Compose-Examples",
+    "url": "https://github.com/Haxxnet/Compose-Examples",
+    "lang": "Java",
+    "layer": "A"
+  },
+  {
+    "name": "opa",
+    "full_name": "open-policy-agent/opa",
+    "url": "https://github.com/open-policy-agent/opa",
+    "lang": "Go",
+    "layer": "A"
+  },
+  {
+    "name": "gradio",
+    "full_name": "gradio-app/gradio",
+    "url": "https://github.com/gradio-app/gradio",
+    "lang": "Go",
+    "layer": "A"
+  },
+  {
+    "name": "editor",
+    "full_name": "pascalorg/editor",
+    "url": "https://github.com/pascalorg/editor",
+    "lang": "Go",
+    "layer": "A"
+  },
+  {
+    "name": "uassets",
+    "full_name": "uBlockOrigin/uAssets",
+    "url": "https://github.com/uBlockOrigin/uAssets",
+    "lang": "Go",
+    "layer": "A"
+  },
+  {
+    "name": "hackrf",
+    "full_name": "greatscottgadgets/hackrf",
+    "url": "https://github.com/greatscottgadgets/hackrf",
+    "lang": "Go",
+    "layer": "A"
+  },
+  {
+    "name": "reverse-engineering",
+    "full_name": "mytechnotalent/Reverse-Engineering",
+    "url": "https://github.com/mytechnotalent/Reverse-Engineering",
+    "lang": "TypeScript",
+    "layer": "A"
+  },
+  {
+    "name": "dyad",
+    "full_name": "dyad-sh/dyad",
+    "url": "https://github.com/dyad-sh/dyad",
+    "lang": "TypeScript",
+    "layer": "A"
+  },
+  {
+    "name": "turboquant_plus",
+    "full_name": "TheTom/turboquant_plus",
+    "url": "https://github.com/TheTom/turboquant_plus",
+    "lang": "TypeScript",
+    "layer": "A"
+  },
+  {
+    "name": "cadence",
+    "full_name": "cadence-workflow/cadence",
+    "url": "https://github.com/cadence-workflow/cadence",
+    "lang": "TypeScript",
+    "layer": "A"
+  },
+  {
+    "name": "t3code",
+    "full_name": "pingdotgg/t3code",
+    "url": "https://github.com/pingdotgg/t3code",
+    "lang": "TypeScript",
+    "layer": "A"
+  }
+]
