@@ -2,13 +2,19 @@
 AGQ Enhanced Metrics — product-ready extensions to base AGQ.
 
 Addresses limitations discovered in 235-repo cross-language benchmark:
-  1. AGQ-z       : language-normalized score (z-score per language)
-  2. Fingerprint : architectural pattern classification
-  3. CycleSeverity: % of nodes in cycles (not just binary acy < 1)
-  4. ChurnRisk   : composite predictor for uneven change distribution
-  5. AGQ-adj     : size-adjusted score (normalized to 500-node baseline)
+  1. AGQ-z          : language-normalized score (z-score per language)
+  2. Fingerprint    : architectural pattern classification
+  3. CycleSeverity  : % of nodes in cycles (not just binary acy < 1)
+  4. ChurnRisk      : composite predictor for uneven change distribution
+  5. AGQ-adj        : size-adjusted score (normalized to 500-node baseline)
 
-All derived from base AGQ metrics — no additional scanning required.
+New in perplexity/experiment_total (iter 1-2, 14-repo Python OSS pilot):
+  6. GraphDensityScore : 1 - min(1, density/0.020)  r=+0.881 vs bug_lead_time
+  7. SCCEntropyScore   : H_SCC / log2(n)             r=-0.640 vs hotspot_ratio
+  8. HubScore          : 1 - hub_ratio               r=+0.609 vs hotspot_ratio
+  9. AGQ-process       : composite of 6+7+8, weighted by empirical correlations
+
+All derived from base AGQ metrics or graph structure — no git history required.
 """
 
 from __future__ import annotations
@@ -179,16 +185,18 @@ def compute_churn_risk(acyclicity: float, stability: float,
                        modularity: float) -> Dict[str, object]:
     """Predict likelihood of uneven code churn distribution.
 
-    Based on 235-repo analysis: acyclicity and stability are
-    the strongest predictors of churn_gini (p<0.01).
+    UPDATED in perplexity/experiment_total iter-2:
+    Pilot study (n=14 Python OSS repos) identified stronger structural
+    predictors via graph-level analysis:
+      - GraphDensity: r=+0.815 vs hotspot_ratio (p=0.0004)
+      - HubRatio:     r=+0.609 vs hotspot_ratio (p=0.021)
+      - SCCEntropy:   r=-0.640 vs hotspot_ratio (p=0.014)
 
-    churn_risk = 1 - (0.5*acy + 0.3*stab + 0.2*mod)
+    churn_risk = 0.50*(1-acy) + 0.30*(1-stab) + 0.20*(1-mod)
+    [graph-level predictors available via compute_process_risk_score()]
 
-    Higher churn_risk → more likely to have hotspot files that
-    accumulate disproportionate changes (high churn_gini).
-
-    Validated: r_pearson=+0.078 with actual churn_gini (n=231).
-    Use as relative ranking, not absolute predictor.
+    Validated: r_pearson=+0.078 with churn_gini (original 235-repo).
+    For stronger prediction use ProcessRisk which includes graph-level metrics.
     """
     score = 1.0 - (0.5 * acyclicity + 0.3 * stability + 0.2 * modularity)
     score = max(0.0, min(1.0, score))
@@ -245,6 +253,125 @@ def compute_agq_size_adjusted(agq: float, n_nodes: int) -> float:
 # Composite enhanced report
 # ---------------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------------
+# 6-8. Graph-level process risk predictors
+#      Validated: perplexity/experiment_total pilot, 14 Python OSS repos
+# ---------------------------------------------------------------------------
+
+# Calibration constants (perplexity pilot iter-2, Python OSS n=14)
+DENSITY_REFERENCE     = 0.020   # p90 of pilot — above = high risk
+SCC_ENTROPY_WEIGHT    = 0.3005  # ∝ |r_s|=0.640 vs hotspot_ratio
+GRAPH_DENSITY_WEIGHT  = 0.4136  # ∝ |r_s|=0.881 vs bug_lead_time
+HUB_RATIO_WEIGHT      = 0.2859  # ∝ |r_s|=0.609 vs hotspot_ratio
+
+
+def compute_graph_density_score(graph_density: float) -> float:
+    """Normalize graph density to [0,1] quality score.
+
+    density_score = 1 - min(1, density / 0.020)
+    → 1.0 = sparse graph (best), 0.0 = very dense (worst)
+
+    Reference threshold 0.020 = p90 of 14-repo Python pilot.
+    Empirical: r=+0.881 vs bug_mean_days, r=+0.815 vs hotspot_ratio.
+    """
+    return round(max(0.0, 1.0 - min(1.0, graph_density / DENSITY_REFERENCE)), 4)
+
+
+def compute_scc_entropy_score(scc_entropy: float, n_nodes: int) -> float:
+    """Normalize SCC entropy to [0,1] quality score.
+
+    scc_entropy_score = min(1, H_SCC / log2(n_nodes))
+    → 1.0 = maximally modular (each node own SCC, DAG)
+    → 0.0 = one giant SCC (everything tangled)
+
+    Empirical: r=-0.640 vs hotspot_ratio (negative = higher entropy → fewer hotspots).
+    """
+    import math
+    if n_nodes <= 1:
+        return 1.0
+    max_h = math.log2(max(n_nodes, 2))
+    if max_h <= 0:
+        return 1.0
+    return round(min(1.0, max(0.0, scc_entropy / max_h)), 4)
+
+
+def compute_hub_score(hub_ratio: float) -> float:
+    """Normalize hub_ratio to [0,1] quality score.
+
+    hub_score = 1 - hub_ratio
+    → 1.0 = no hubs (best), 0.0 = all nodes are hubs (worst)
+
+    hub_ratio = fraction of nodes with in_degree > 2 * mean_in_degree.
+    Empirical: r=+0.609 vs hotspot_ratio.
+    """
+    return round(max(0.0, 1.0 - min(1.0, hub_ratio)), 4)
+
+
+def compute_process_risk_score(
+    graph_density: float,
+    scc_entropy: float,
+    hub_ratio: float,
+    n_nodes: int,
+) -> Dict[str, object]:
+    """Composite process risk score from graph-level structural metrics.
+
+    Validated in perplexity/experiment_total pilot (iter 1-2):
+      14 Python OSS repos, Spearman correlations vs hotspot_ratio/bug_lead_time
+
+    process_risk = 1 - (
+        w_density * density_score
+      + w_scc     * scc_entropy_score
+      + w_hub     * hub_score
+    )
+
+    Weights calibrated proportional to |r_s|:
+      w_density = 0.4136  (r_s=0.881)
+      w_scc     = 0.3005  (r_s=0.640)
+      w_hub     = 0.2859  (r_s=0.609)
+
+    Returns:
+      process_risk_score : float [0,1] — 0=low risk, 1=high risk
+      process_risk_level : str   — LOW/MEDIUM/HIGH/CRITICAL
+      density_score      : float [0,1]
+      scc_entropy_score  : float [0,1]
+      hub_score          : float [0,1]
+      message            : str
+    """
+    ds  = compute_graph_density_score(graph_density)
+    ses = compute_scc_entropy_score(scc_entropy, n_nodes)
+    hs  = compute_hub_score(hub_ratio)
+
+    quality = (
+        GRAPH_DENSITY_WEIGHT * ds
+        + SCC_ENTROPY_WEIGHT * ses
+        + HUB_RATIO_WEIGHT   * hs
+    )
+    risk = round(1.0 - quality, 4)
+
+    if risk < 0.15:
+        level = "LOW"
+        msg   = "Low process risk: sparse graph, modular SCCs, few hubs."
+    elif risk < 0.35:
+        level = "MEDIUM"
+        msg   = "Moderate risk: some structural coupling detected."
+    elif risk < 0.55:
+        level = "HIGH"
+        msg   = "High risk: dense graph or dominant hubs — likely hotspots."
+    else:
+        level = "CRITICAL"
+        msg   = "Critical: graph structure strongly predicts maintenance issues."
+
+    return {
+        "process_risk_score": risk,
+        "process_risk_level": level,
+        "density_score":      ds,
+        "scc_entropy_score":  ses,
+        "hub_score":          hs,
+        "message":            msg,
+    }
+
+
 @dataclass
 class AGQEnhanced:
     """Full enhanced AGQ report for a single repository."""
@@ -257,7 +384,7 @@ class AGQEnhanced:
     nodes: int
     language: str
 
-    # Enhanced
+    # Enhanced (original)
     agq_z: Optional[float]             # language-normalized
     agq_percentile: Optional[float]    # percentile within language
     agq_size_adjusted: float           # size-normalized
@@ -265,6 +392,9 @@ class AGQEnhanced:
     fingerprint_description: str
     cycle_severity: Dict               # detailed cycle analysis
     churn_risk: Dict                   # churn hotspot risk
+
+    # New — graph-level process risk (perplexity/experiment_total iter 1-2)
+    process_risk: Optional[Dict]       # graph density + SCC entropy + hub ratio
 
     def summary(self) -> str:
         lines = [
@@ -282,7 +412,7 @@ class AGQEnhanced:
         return "\n".join(l for l in lines if l)
 
     def to_dict(self) -> dict:
-        return {
+        d = {
             "agq_score": self.agq_score,
             "agq_z": round(self.agq_z, 4) if self.agq_z is not None else None,
             "agq_percentile": self.agq_percentile,
@@ -293,21 +423,41 @@ class AGQEnhanced:
             "language": self.language,
             "nodes": self.nodes,
         }
+        if self.process_risk is not None:
+            d["process_risk"] = self.process_risk
+        return d
 
 
-def compute_agq_enhanced(agq: float, modularity: float, acyclicity: float,
-                         stability: float, cohesion: float,
-                         nodes: int, language: str = "Python") -> AGQEnhanced:
-    """Compute all enhanced metrics from base AGQ components."""
+def compute_agq_enhanced(
+    agq: float, modularity: float, acyclicity: float,
+    stability: float, cohesion: float,
+    nodes: int, language: str = "Python",
+    # New graph-level metrics (optional — backward compatible)
+    graph_density: Optional[float] = None,
+    scc_entropy: Optional[float] = None,
+    hub_ratio: Optional[float] = None,
+) -> AGQEnhanced:
+    """Compute all enhanced metrics from base AGQ components.
+
+    graph_density, scc_entropy, hub_ratio are optional new metrics
+    validated in perplexity/experiment_total pilot (iter 1-2).
+    If not provided, process_risk is None (backward compatible).
+    """
+    fp = compute_fingerprint(modularity, acyclicity, stability, cohesion)
+
+    pr = None
+    if graph_density is not None and scc_entropy is not None and hub_ratio is not None:
+        pr = compute_process_risk_score(graph_density, scc_entropy, hub_ratio, nodes)
+
     return AGQEnhanced(
         agq_score=agq, modularity=modularity, acyclicity=acyclicity,
         stability=stability, cohesion=cohesion, nodes=nodes, language=language,
         agq_z=compute_agq_z(agq, language),
         agq_percentile=compute_agq_percentile(agq, language),
         agq_size_adjusted=compute_agq_size_adjusted(agq, nodes),
-        fingerprint=compute_fingerprint(modularity, acyclicity, stability, cohesion),
-        fingerprint_description=fingerprint_description(
-            compute_fingerprint(modularity, acyclicity, stability, cohesion)),
+        fingerprint=fp,
+        fingerprint_description=fingerprint_description(fp),
         cycle_severity=compute_cycle_severity(acyclicity),
         churn_risk=compute_churn_risk(acyclicity, stability, modularity),
+        process_risk=pr,
     )
