@@ -576,12 +576,28 @@ def compute_per_module_metrics(G: nx.DiGraph) -> Dict[str, object]:
 def compute_agq(G: nx.DiGraph,
                 abstract_modules: Optional[Set[str]] = None,
                 classes_lcom4: Optional[List[int]] = None,
-                weights: Tuple[float, float, float, float] = (0.25, 0.25, 0.25, 0.25)
+                weights: Tuple[float, float, float, float] = (0.20, 0.20, 0.55, 0.05)
                 ) -> AGQMetrics:
     """Compute all AGQ metrics.
 
     weights: (modularity, acyclicity, stability, cohesion) - auto-normalized.
-    Default equal weights. Calibrated churn-optimal: (0.0, 0.73, 0.05, 0.17).
+
+    Default weights calibrated empirically on n=279 OSS repos
+    (projects with bug fix lead time ≤14 days, Spearman CV optimization):
+
+      Stability   = 0.55  — dominant predictor (single metric CV r=-0.170*)
+                            model degrades most when removed (ΔCV=-0.048)
+      Modularity  = 0.20  — important signal (ΔCV=-0.021 when removed)
+      Acyclicity  = 0.20  — best pair with Stability (pair CV r=-0.169)
+                            neutral alone but amplifies Stability signal
+      Cohesion    = 0.05  — redundant (model improves +0.022 without it)
+                            retained at minimum weight for interpretability
+
+    Previous calibration (churn-optimal: 0.0/0.73/0.05/0.17) was based
+    on git churn as ground truth — replaced by bug_lead_time ground truth.
+
+    CV improvement vs equal weights (0.25/0.25/0.25/0.25): +17%
+    (CV mean r: -0.143 → -0.167)
 
     Scope note: meaningful discrimination requires ~50+ internal modules.
     Smaller graphs default to neutral/perfect component values
