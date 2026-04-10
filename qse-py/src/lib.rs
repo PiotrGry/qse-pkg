@@ -59,9 +59,6 @@ fn scan_to_graph_json(path: &str) -> PyResult<String> {
     let mut nodes = serde_json::json!([]);
     for ni in g.node_indices() {
         let name = &g[ni];
-        let file = result.node_index.get(name)
-            .map(|_| name.clone())
-            .unwrap_or_default();
         let is_internal = result.internal_nodes.contains(name);
         nodes.as_array_mut().unwrap().push(serde_json::json!({
             "id": name,
