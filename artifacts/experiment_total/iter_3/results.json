@@ -1,0 +1,7348 @@
+{
+  "generated_at": "2026-04-10T08:17:17.013253+00:00",
+  "iter": 3,
+  "source": "recovered_from_log",
+  "repos_ok": 389,
+  "repos_with_new_metrics": 171,
+  "agq_mean": 0.8013,
+  "agq_std": 0.1468,
+  "correlations": [
+    {
+      "predictor": "stability",
+      "target": "process_risk",
+      "r_s": 0.3296,
+      "p": 0.0,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "stability",
+      "target": "graph_density",
+      "r_s": 0.3291,
+      "p": 0.0,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "stability",
+      "target": "hub_ratio",
+      "r_s": 0.2823,
+      "p": 0.0002,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "agq_score",
+      "target": "process_risk",
+      "r_s": 0.2658,
+      "p": 0.0004,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "agq_score",
+      "target": "graph_density",
+      "r_s": 0.2609,
+      "p": 0.0006,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "agq_score",
+      "target": "hub_ratio",
+      "r_s": 0.2439,
+      "p": 0.0013,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "cohesion",
+      "target": "scc_entropy",
+      "r_s": -0.2376,
+      "p": 0.0018,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "agq_score",
+      "target": "scc_entropy",
+      "r_s": -0.1887,
+      "p": 0.0135,
+      "n": 171,
+      "sig": true
+    },
+    {
+      "predictor": "acyclicity",
+      "target": "scc_entropy",
+      "r_s": -0.1319,
+      "p": 0.0854,
+      "n": 171,
+      "sig": false
+    },
+    {
+      "predictor": "stability",
+      "target": "scc_entropy",
+      "r_s": 0.0594,
+      "p": 0.4404,
+      "n": 171,
+      "sig": false
+    },
+    {
+      "predictor": "acyclicity",
+      "target": "hub_ratio",
+      "r_s": -0.0474,
+      "p": 0.5379,
+      "n": 171,
+      "sig": false
+    },
+    {
+      "predictor": "acyclicity",
+      "target": "graph_density",
+      "r_s": -0.0469,
+      "p": 0.5423,
+      "n": 171,
+      "sig": false
+    },
+    {
+      "predictor": "acyclicity",
+      "target": "process_risk",
+      "r_s": -0.0453,
+      "p": 0.5564,
+      "n": 171,
+      "sig": false
+    },
+    {
+      "predictor": "cohesion",
+      "target": "process_risk",
+      "r_s": 0.0282,
+      "p": 0.7146,
+      "n": 171,
+      "sig": false
+    },
+    {
+      "predictor": "cohesion",
+      "target": "graph_density",
+      "r_s": 0.0281,
+      "p": 0.7153,
+      "n": 171,
+      "sig": false
+    },
+    {
+      "predictor": "cohesion",
+      "target": "hub_ratio",
+      "r_s": 0.0194,
+      "p": 0.8012,
+      "n": 171,
+      "sig": false
+    }
+  ],
+  "fingerprints": {
+    "MODERATE": 25,
+    "LAYERED": 115,
+    "CLEAN": 189,
+    "FLAT": 35,
+    "LOW_COHESION": 25
+  },
+  "by_lang": {
+    "Python": 257,
+    "Java": 82,
+    "Go": 25,
+    "TypeScript": 25
+  },
+  "results": [
+    {
+      "idx": 1,
+      "name": "strawberry-graphql",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7341,
+        "acyclicity": 0.969,
+        "stability": 0.653,
+        "cohesion": 0.735
+      },
+      "new_metrics": {
+        "graph_density": 0.00244,
+        "scc_entropy": 9.443,
+        "hub_ratio": 0.095,
+        "process_risk": 0.078
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 2,
+      "name": "litestar",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7728,
+        "acyclicity": 1.0,
+        "stability": 0.991,
+        "cohesion": 0.64
+      },
+      "new_metrics": {
+        "graph_density": 0.0027,
+        "scc_entropy": 9.723,
+        "hub_ratio": 0.077,
+        "process_risk": 0.078
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 3,
+      "name": "robyn",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7981,
+        "acyclicity": 1.0,
+        "stability": 0.873,
+        "cohesion": 0.737
+      },
+      "new_metrics": {
+        "graph_density": 0.01436,
+        "scc_entropy": 6.426,
+        "hub_ratio": 0.128,
+        "process_risk": 0.334
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 4,
+      "name": "granian",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7661,
+        "acyclicity": 1.0,
+        "stability": 0.908,
+        "cohesion": 0.543
+      },
+      "new_metrics": {
+        "graph_density": 0.00399,
+        "scc_entropy": 5.585,
+        "hub_ratio": 0.104,
+        "process_risk": 0.112
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 5,
+      "name": "faststream",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7864,
+        "acyclicity": 1.0,
+        "stability": 0.992,
+        "cohesion": 0.669
+      },
+      "new_metrics": {
+        "graph_density": 0.00169,
+        "scc_entropy": 9.775,
+        "hub_ratio": 0.051,
+        "process_risk": 0.05
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 6,
+      "name": "transformers",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8425,
+        "acyclicity": 1.0,
+        "stability": 0.916,
+        "cohesion": 0.862
+      },
+      "new_metrics": {
+        "graph_density": 0.00156,
+        "scc_entropy": 9.89,
+        "hub_ratio": 0.032,
+        "process_risk": 0.041
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 7,
+      "name": "pytorch",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7643,
+        "acyclicity": 0.949,
+        "stability": 0.809,
+        "cohesion": 0.677
+      },
+      "new_metrics": {
+        "graph_density": 0.00227,
+        "scc_entropy": 10.469,
+        "hub_ratio": 0.069,
+        "process_risk": 0.067
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 8,
+      "name": "tensorflow",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5946,
+        "acyclicity": 1.0,
+        "stability": 0.274,
+        "cohesion": 0.695
+      },
+      "new_metrics": {
+        "graph_density": 0.00345,
+        "scc_entropy": 9.884,
+        "hub_ratio": 0.039,
+        "process_risk": 0.083
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 9,
+      "name": "langchain",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5634,
+        "acyclicity": 1.0,
+        "stability": 0.069,
+        "cohesion": 0.548
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 9.644,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 10,
+      "name": "llama-index",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6014,
+        "acyclicity": 1.0,
+        "stability": 0.208,
+        "cohesion": 0.519
+      },
+      "new_metrics": {
+        "graph_density": 0.00075,
+        "scc_entropy": 10.253,
+        "hub_ratio": 0.054,
+        "process_risk": 0.031
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 11,
+      "name": "openai-python",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7481,
+        "acyclicity": 1.0,
+        "stability": 0.787,
+        "cohesion": 0.567
+      },
+      "new_metrics": {
+        "graph_density": 7e-05,
+        "scc_entropy": 9.644,
+        "hub_ratio": 0.001,
+        "process_risk": 0.002
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 12,
+      "name": "anthropic-sdk",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7422,
+        "acyclicity": 1.0,
+        "stability": 0.827,
+        "cohesion": 0.513
+      },
+      "new_metrics": {
+        "graph_density": 3e-05,
+        "scc_entropy": 9.644,
+        "hub_ratio": 0.001,
+        "process_risk": 0.001
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 13,
+      "name": "litellm",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7479,
+        "acyclicity": 1.0,
+        "stability": 0.922,
+        "cohesion": 0.448
+      },
+      "new_metrics": {
+        "graph_density": 0.00089,
+        "scc_entropy": 10.375,
+        "hub_ratio": 0.057,
+        "process_risk": 0.035
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 14,
+      "name": "outlines",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7322,
+        "acyclicity": 1.0,
+        "stability": 0.91,
+        "cohesion": 0.516
+      },
+      "new_metrics": {
+        "graph_density": 0.01671,
+        "scc_entropy": 6.966,
+        "hub_ratio": 0.104,
+        "process_risk": 0.375
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 15,
+      "name": "guidance",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7911,
+        "acyclicity": 1.0,
+        "stability": 0.891,
+        "cohesion": 0.736
+      },
+      "new_metrics": {
+        "graph_density": 0.00331,
+        "scc_entropy": 7.267,
+        "hub_ratio": 0.065,
+        "process_risk": 0.087
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 16,
+      "name": "axolotl",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7761,
+        "acyclicity": 1.0,
+        "stability": 0.936,
+        "cohesion": 0.747
+      },
+      "new_metrics": {
+        "graph_density": 0.00148,
+        "scc_entropy": 9.721,
+        "hub_ratio": 0.071,
+        "process_risk": 0.051
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 17,
+      "name": "unsloth",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7451,
+        "acyclicity": 1.0,
+        "stability": 0.713,
+        "cohesion": 0.737
+      },
+      "new_metrics": {
+        "graph_density": 0.00145,
+        "scc_entropy": 8.119,
+        "hub_ratio": 0.119,
+        "process_risk": 0.064
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 18,
+      "name": "polars",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5552,
+        "acyclicity": 1.0,
+        "stability": 0.165,
+        "cohesion": 0.608
+      },
+      "new_metrics": {
+        "graph_density": 0.00219,
+        "scc_entropy": 9.866,
+        "hub_ratio": 0.048,
+        "process_risk": 0.059
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 19,
+      "name": "great-expectations",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6882,
+        "acyclicity": 0.968,
+        "stability": 0.494,
+        "cohesion": 0.662
+      },
+      "new_metrics": {
+        "graph_density": 0.00236,
+        "scc_entropy": 9.901,
+        "hub_ratio": 0.06,
+        "process_risk": 0.066
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 20,
+      "name": "dbt-core",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6255,
+        "acyclicity": 1.0,
+        "stability": 0.171,
+        "cohesion": 0.68
+      },
+      "new_metrics": {
+        "graph_density": 0.00039,
+        "scc_entropy": 9.317,
+        "hub_ratio": 0.099,
+        "process_risk": 0.036
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 21,
+      "name": "pyspark",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7235,
+        "acyclicity": 1.0,
+        "stability": 0.426,
+        "cohesion": 0.66
+      },
+      "new_metrics": {
+        "graph_density": 0.00222,
+        "scc_entropy": 10.187,
+        "hub_ratio": 0.075,
+        "process_risk": 0.067
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 22,
+      "name": "dagster",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6378,
+        "acyclicity": 1.0,
+        "stability": 0.189,
+        "cohesion": 0.672
+      },
+      "new_metrics": {
+        "graph_density": 0.00151,
+        "scc_entropy": 10.059,
+        "hub_ratio": 0.083,
+        "process_risk": 0.055
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 23,
+      "name": "feast",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7515,
+        "acyclicity": 1.0,
+        "stability": 0.169,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.00218,
+        "scc_entropy": 10.102,
+        "hub_ratio": 0.098,
+        "process_risk": 0.073
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 24,
+      "name": "copilot-cli",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7161,
+        "acyclicity": 1.0,
+        "stability": 0.293,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 25,
+      "name": "localstack",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6182,
+        "acyclicity": 1.0,
+        "stability": 0.123,
+        "cohesion": 0.593
+      },
+      "new_metrics": {
+        "graph_density": 0.00199,
+        "scc_entropy": 10.061,
+        "hub_ratio": 0.072,
+        "process_risk": 0.062
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 26,
+      "name": "checkov",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8233,
+        "acyclicity": 1.0,
+        "stability": 0.983,
+        "cohesion": 0.623
+      },
+      "new_metrics": {
+        "graph_density": 0.00101,
+        "scc_entropy": 10.457,
+        "hub_ratio": 0.042,
+        "process_risk": 0.033
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 27,
+      "name": "detectron2",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7882,
+        "acyclicity": 1.0,
+        "stability": 0.983,
+        "cohesion": 0.716
+      },
+      "new_metrics": {
+        "graph_density": 0.00345,
+        "scc_entropy": 9.031,
+        "hub_ratio": 0.075,
+        "process_risk": 0.093
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 28,
+      "name": "ward",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7052,
+        "acyclicity": 1.0,
+        "stability": 0.614,
+        "cohesion": 0.658
+      },
+      "new_metrics": {
+        "graph_density": 0.05758,
+        "scc_entropy": 5.492,
+        "hub_ratio": 0.133,
+        "process_risk": 0.452
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 29,
+      "name": "freezegun",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6863,
+        "acyclicity": 1.0,
+        "stability": 0.438,
+        "cohesion": 0.611
+      },
+      "new_metrics": {
+        "graph_density": 0.03846,
+        "scc_entropy": 4.7,
+        "hub_ratio": 0.115,
+        "process_risk": 0.447
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 30,
+      "name": "dirty-equals",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.8843,
+        "acyclicity": 1.0,
+        "stability": 0.966,
+        "cohesion": 0.851
+      },
+      "new_metrics": {
+        "graph_density": 0.01692,
+        "scc_entropy": 4.7,
+        "hub_ratio": 0.077,
+        "process_risk": 0.372
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 31,
+      "name": "respx",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7582,
+        "acyclicity": 1.0,
+        "stability": 0.754,
+        "cohesion": 0.642
+      },
+      "new_metrics": {
+        "graph_density": 0.03561,
+        "scc_entropy": 4.755,
+        "hub_ratio": 0.185,
+        "process_risk": 0.467
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 32,
+      "name": "polyfactory",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7836,
+        "acyclicity": 1.0,
+        "stability": 0.89,
+        "cohesion": 0.694
+      },
+      "new_metrics": {
+        "graph_density": 0.01085,
+        "scc_entropy": 7.322,
+        "hub_ratio": 0.119,
+        "process_risk": 0.258
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 33,
+      "name": "typer-cloup",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7595,
+        "acyclicity": 1.0,
+        "stability": 0.883,
+        "cohesion": 0.654
+      },
+      "new_metrics": {
+        "graph_density": 0.02322,
+        "scc_entropy": 5.931,
+        "hub_ratio": 0.131,
+        "process_risk": 0.451
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 34,
+      "name": "prompt-toolkit",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7761,
+        "acyclicity": 1.0,
+        "stability": 0.768,
+        "cohesion": 0.741
+      },
+      "new_metrics": {
+        "graph_density": 0.00579,
+        "scc_entropy": 8.607,
+        "hub_ratio": 0.103,
+        "process_risk": 0.149
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 35,
+      "name": "tqdm",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7995,
+        "acyclicity": 1.0,
+        "stability": 0.915,
+        "cohesion": 0.558
+      },
+      "new_metrics": {
+        "graph_density": 0.00746,
+        "scc_entropy": 6.109,
+        "hub_ratio": 0.101,
+        "process_risk": 0.183
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 36,
+      "name": "alive-progress",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7745,
+        "acyclicity": 1.0,
+        "stability": 0.635,
+        "cohesion": 0.95
+      },
+      "new_metrics": {
+        "graph_density": 0.00842,
+        "scc_entropy": 5.585,
+        "hub_ratio": 0.25,
+        "process_risk": 0.246
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 37,
+      "name": "questionary",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7544,
+        "acyclicity": 1.0,
+        "stability": 0.923,
+        "cohesion": 0.722
+      },
+      "new_metrics": {
+        "graph_density": 0.03029,
+        "scc_entropy": 6.022,
+        "hub_ratio": 0.123,
+        "process_risk": 0.449
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 38,
+      "name": "trio",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7591,
+        "acyclicity": 1.0,
+        "stability": 0.979,
+        "cohesion": 0.701
+      },
+      "new_metrics": {
+        "graph_density": 0.00389,
+        "scc_entropy": 7.484,
+        "hub_ratio": 0.056,
+        "process_risk": 0.097
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 39,
+      "name": "anyio",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7174,
+        "acyclicity": 1.0,
+        "stability": 0.919,
+        "cohesion": 0.585
+      },
+      "new_metrics": {
+        "graph_density": 0.00882,
+        "scc_entropy": 6.443,
+        "hub_ratio": 0.092,
+        "process_risk": 0.209
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 40,
+      "name": "websockets",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7758,
+        "acyclicity": 1.0,
+        "stability": 0.975,
+        "cohesion": 0.632
+      },
+      "new_metrics": {
+        "graph_density": 0.00467,
+        "scc_entropy": 7.762,
+        "hub_ratio": 0.092,
+        "process_risk": 0.123
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 41,
+      "name": "httpx-ws",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6828,
+        "acyclicity": 1.0,
+        "stability": 0.561,
+        "cohesion": 0.643
+      },
+      "new_metrics": {
+        "graph_density": 0.04444,
+        "scc_entropy": 3.322,
+        "hub_ratio": 0.3,
+        "process_risk": 0.499
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 42,
+      "name": "stamina",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.8362,
+        "acyclicity": 1.0,
+        "stability": 0.806,
+        "cohesion": 0.788
+      },
+      "new_metrics": {
+        "graph_density": 0.01984,
+        "scc_entropy": 4.807,
+        "hub_ratio": 0.107,
+        "process_risk": 0.441
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 43,
+      "name": "tortoise-orm",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7774,
+        "acyclicity": 0.965,
+        "stability": 0.891,
+        "cohesion": 0.667
+      },
+      "new_metrics": {
+        "graph_density": 0.0055,
+        "scc_entropy": 8.873,
+        "hub_ratio": 0.092,
+        "process_risk": 0.14
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 44,
+      "name": "databases",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7284,
+        "acyclicity": 1.0,
+        "stability": 0.761,
+        "cohesion": 0.638
+      },
+      "new_metrics": {
+        "graph_density": 0.05167,
+        "scc_entropy": 4.644,
+        "hub_ratio": 0.16,
+        "process_risk": 0.459
+      }
+    },
+    {
+      "idx": 45,
+      "name": "sqlmodel",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7494,
+        "acyclicity": 1.0,
+        "stability": 0.776,
+        "cohesion": 0.6
+      },
+      "new_metrics": {
+        "graph_density": 0.00225,
+        "scc_entropy": 8.313,
+        "hub_ratio": 0.013,
+        "process_risk": 0.05
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 46,
+      "name": "piccolo",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7737,
+        "acyclicity": 1.0,
+        "stability": 0.977,
+        "cohesion": 0.587
+      },
+      "new_metrics": {
+        "graph_density": 0.00587,
+        "scc_entropy": 8.626,
+        "hub_ratio": 0.101,
+        "process_risk": 0.15
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 47,
+      "name": "ormar",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7294,
+        "acyclicity": 1.0,
+        "stability": 0.963,
+        "cohesion": 0.551
+      },
+      "new_metrics": {
+        "graph_density": 0.00702,
+        "scc_entropy": 8.322,
+        "hub_ratio": 0.047,
+        "process_risk": 0.159
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 48,
+      "name": "cattrs",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7752,
+        "acyclicity": 1.0,
+        "stability": 0.981,
+        "cohesion": 0.693
+      },
+      "new_metrics": {
+        "graph_density": 0.00694,
+        "scc_entropy": 7.19,
+        "hub_ratio": 0.075,
+        "process_risk": 0.165
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 49,
+      "name": "msgspec",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.8457,
+        "acyclicity": 1.0,
+        "stability": 0.677,
+        "cohesion": 0.938
+      },
+      "new_metrics": {
+        "graph_density": 0.00703,
+        "scc_entropy": 6.109,
+        "hub_ratio": 0.087,
+        "process_risk": 0.17
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 50,
+      "name": "dacite",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.8237,
+        "acyclicity": 1.0,
+        "stability": 0.886,
+        "cohesion": 0.9
+      },
+      "new_metrics": {
+        "graph_density": 0.03387,
+        "scc_entropy": 5.088,
+        "hub_ratio": 0.147,
+        "process_risk": 0.456
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 51,
+      "name": "schematics",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.799,
+        "acyclicity": 1.0,
+        "stability": 0.898,
+        "cohesion": 0.623
+      },
+      "new_metrics": {
+        "graph_density": 0.02378,
+        "scc_entropy": 6.19,
+        "hub_ratio": 0.11,
+        "process_risk": 0.445
+      }
+    },
+    {
+      "idx": 52,
+      "name": "voluptuous",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.803,
+        "acyclicity": 1.0,
+        "stability": 0.656,
+        "cohesion": 0.89
+      },
+      "new_metrics": {
+        "graph_density": 0.18889,
+        "scc_entropy": 3.322,
+        "hub_ratio": 0.3,
+        "process_risk": 0.499
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 53,
+      "name": "dynaconf",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7576,
+        "acyclicity": 1.0,
+        "stability": 0.779,
+        "cohesion": 0.726
+      },
+      "new_metrics": {
+        "graph_density": 0.00153,
+        "scc_entropy": 8.94,
+        "hub_ratio": 0.057,
+        "process_risk": 0.048
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 54,
+      "name": "python-decouple",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7688,
+        "acyclicity": 1.0,
+        "stability": 0.885,
+        "cohesion": 0.781
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.459,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      }
+    },
+    {
+      "idx": 55,
+      "name": "confuse",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7395,
+        "acyclicity": 1.0,
+        "stability": 0.73,
+        "cohesion": 0.652
+      },
+      "new_metrics": {
+        "graph_density": 0.03095,
+        "scc_entropy": 4.392,
+        "hub_ratio": 0.048,
+        "process_risk": 0.427
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 56,
+      "name": "arq",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7678,
+        "acyclicity": 1.0,
+        "stability": 0.61,
+        "cohesion": 0.864
+      },
+      "new_metrics": {
+        "graph_density": 0.04536,
+        "scc_entropy": 5.0,
+        "hub_ratio": 0.156,
+        "process_risk": 0.458
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 57,
+      "name": "rq",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7149,
+        "acyclicity": 1.0,
+        "stability": 0.854,
+        "cohesion": 0.552
+      },
+      "new_metrics": {
+        "graph_density": 0.03519,
+        "scc_entropy": 6.34,
+        "hub_ratio": 0.136,
+        "process_risk": 0.452
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 58,
+      "name": "procrastinate",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7252,
+        "acyclicity": 1.0,
+        "stability": 0.838,
+        "cohesion": 0.531
+      },
+      "new_metrics": {
+        "graph_density": 0.00354,
+        "scc_entropy": 7.679,
+        "hub_ratio": 0.063,
+        "process_risk": 0.091
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 59,
+      "name": "bandit",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7718,
+        "acyclicity": 1.0,
+        "stability": 0.968,
+        "cohesion": 0.55
+      },
+      "new_metrics": {
+        "graph_density": 0.00369,
+        "scc_entropy": 7.658,
+        "hub_ratio": 0.04,
+        "process_risk": 0.088
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 60,
+      "name": "safety",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7688,
+        "acyclicity": 1.0,
+        "stability": 0.957,
+        "cohesion": 0.678
+      },
+      "new_metrics": {
+        "graph_density": 0.00613,
+        "scc_entropy": 8.05,
+        "hub_ratio": 0.124,
+        "process_risk": 0.162
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 61,
+      "name": "semgrep",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.651,
+        "acyclicity": 1.0,
+        "stability": 0.326,
+        "cohesion": 0.625
+      },
+      "new_metrics": {
+        "graph_density": 0.00103,
+        "scc_entropy": 9.806,
+        "hub_ratio": 0.074,
+        "process_risk": 0.042
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 62,
+      "name": "opentelemetry-python",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7516,
+        "acyclicity": 1.0,
+        "stability": 0.691,
+        "cohesion": 0.746
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 9.375,
+        "hub_ratio": 0.002,
+        "process_risk": 0.001
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 63,
+      "name": "sentry-python",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6409,
+        "acyclicity": 0.991,
+        "stability": 0.396,
+        "cohesion": 0.731
+      },
+      "new_metrics": {
+        "graph_density": 0.00531,
+        "scc_entropy": 8.923,
+        "hub_ratio": 0.059,
+        "process_risk": 0.127
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 64,
+      "name": "structlog",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7974,
+        "acyclicity": 1.0,
+        "stability": 0.806,
+        "cohesion": 0.83
+      },
+      "new_metrics": {
+        "graph_density": 0.01843,
+        "scc_entropy": 5.977,
+        "hub_ratio": 0.127,
+        "process_risk": 0.417
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 65,
+      "name": "zipline",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7858,
+        "acyclicity": 1.0,
+        "stability": 0.952,
+        "cohesion": 0.707
+      },
+      "new_metrics": {
+        "graph_density": 0.0098,
+        "scc_entropy": 8.322,
+        "hub_ratio": 0.122,
+        "process_risk": 0.237
+      }
+    },
+    {
+      "idx": 66,
+      "name": "bt",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7893,
+        "acyclicity": 1.0,
+        "stability": 0.556,
+        "cohesion": 0.907
+      },
+      "new_metrics": {
+        "graph_density": 0.03595,
+        "scc_entropy": 4.17,
+        "hub_ratio": 0.111,
+        "process_risk": 0.445
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 67,
+      "name": "vectorbt",
+      "lang": "Python",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7634,
+        "acyclicity": 1.0,
+        "stability": 0.988,
+        "cohesion": 0.617
+      },
+      "new_metrics": {
+        "graph_density": 0.03332,
+        "scc_entropy": 6.883,
+        "hub_ratio": 0.119,
+        "process_risk": 0.448
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 68,
+      "name": "whenever",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.747,
+        "acyclicity": 1.0,
+        "stability": 0.902,
+        "cohesion": 0.406
+      },
+      "new_metrics": {
+        "graph_density": 0.00845,
+        "scc_entropy": 5.977,
+        "hub_ratio": 0.048,
+        "process_risk": 0.188
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 69,
+      "name": "python-dateutil",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.6927,
+        "acyclicity": 1.0,
+        "stability": 0.763,
+        "cohesion": 0.481
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.248,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 70,
+      "name": "result",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.6224,
+        "acyclicity": 1.0,
+        "stability": 0.49,
+        "cohesion": 0.5
+      },
+      "new_metrics": {
+        "graph_density": 0.07143,
+        "scc_entropy": 2.807,
+        "hub_ratio": 0.143,
+        "process_risk": 0.455
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 71,
+      "name": "returns",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.7602,
+        "acyclicity": 1.0,
+        "stability": 0.939,
+        "cohesion": 0.598
+      },
+      "new_metrics": {
+        "graph_density": 0.0112,
+        "scc_entropy": 7.7,
+        "hub_ratio": 0.086,
+        "process_risk": 0.256
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 72,
+      "name": "expression",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.718,
+        "acyclicity": 1.0,
+        "stability": 0.937,
+        "cohesion": 0.494
+      },
+      "new_metrics": {
+        "graph_density": 0.01166,
+        "scc_entropy": 6.285,
+        "hub_ratio": 0.103,
+        "process_risk": 0.27
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 73,
+      "name": "beartype",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.8417,
+        "acyclicity": 1.0,
+        "stability": 0.974,
+        "cohesion": 0.806
+      },
+      "new_metrics": {
+        "graph_density": 0.00203,
+        "scc_entropy": 9.754,
+        "hub_ratio": 0.104,
+        "process_risk": 0.072
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 74,
+      "name": "typeguard",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.7071,
+        "acyclicity": 1.0,
+        "stability": 0.728,
+        "cohesion": 0.589
+      },
+      "new_metrics": {
+        "graph_density": 0.01687,
+        "scc_entropy": 5.285,
+        "hub_ratio": 0.103,
+        "process_risk": 0.378
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 75,
+      "name": "injector",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 76,
+      "name": "lagom",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.8209,
+        "acyclicity": 1.0,
+        "stability": 0.902,
+        "cohesion": 0.781
+      },
+      "new_metrics": {
+        "graph_density": 0.0119,
+        "scc_entropy": 6.555,
+        "hub_ratio": 0.053,
+        "process_risk": 0.261
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 77,
+      "name": "punq",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.875,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.05417,
+        "scc_entropy": 4.0,
+        "hub_ratio": 0.125,
+        "process_risk": 0.449
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 78,
+      "name": "dependency-injector",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.6917,
+        "acyclicity": 1.0,
+        "stability": 0.326,
+        "cohesion": 0.866
+      },
+      "new_metrics": {
+        "graph_density": 0.00168,
+        "scc_entropy": 8.748,
+        "hub_ratio": 0.014,
+        "process_risk": 0.039
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 79,
+      "name": "wireup",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.7942,
+        "acyclicity": 1.0,
+        "stability": 0.934,
+        "cohesion": 0.844
+      },
+      "new_metrics": {
+        "graph_density": 0.0103,
+        "scc_entropy": 7.524,
+        "hub_ratio": 0.114,
+        "process_risk": 0.246
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 80,
+      "name": "taskiq",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.762,
+        "acyclicity": 1.0,
+        "stability": 0.937,
+        "cohesion": 0.632
+      },
+      "new_metrics": {
+        "graph_density": 0.01065,
+        "scc_entropy": 7.435,
+        "hub_ratio": 0.156,
+        "process_risk": 0.265
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 81,
+      "name": "litequeue",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.5856,
+        "acyclicity": 1.0,
+        "stability": 0.574,
+        "cohesion": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 82,
+      "name": "apscheduler",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.7565,
+        "acyclicity": 1.0,
+        "stability": 0.9,
+        "cohesion": 0.625
+      },
+      "new_metrics": {
+        "graph_density": 0.00987,
+        "scc_entropy": 6.585,
+        "hub_ratio": 0.115,
+        "process_risk": 0.237
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 83,
+      "name": "schedule",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 84,
+      "name": "tenacity",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.8467,
+        "acyclicity": 1.0,
+        "stability": 0.947,
+        "cohesion": 0.899
+      },
+      "new_metrics": {
+        "graph_density": 0.0368,
+        "scc_entropy": 4.459,
+        "hub_ratio": 0.045,
+        "process_risk": 0.427
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 85,
+      "name": "backoff",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.9035,
+        "acyclicity": 1.0,
+        "stability": 0.782,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.05263,
+        "scc_entropy": 4.248,
+        "hub_ratio": 0.21,
+        "process_risk": 0.474
+      }
+    },
+    {
+      "idx": 86,
+      "name": "limits",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.6932,
+        "acyclicity": 1.0,
+        "stability": 0.748,
+        "cohesion": 0.449
+      },
+      "new_metrics": {
+        "graph_density": 0.03127,
+        "scc_entropy": 5.883,
+        "hub_ratio": 0.203,
+        "process_risk": 0.472
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 87,
+      "name": "slowapi",
+      "lang": "Python",
+      "layer": "C",
+      "agq": {
+        "agq_score": 0.7904,
+        "acyclicity": 1.0,
+        "stability": 0.556,
+        "cohesion": 0.857
+      },
+      "new_metrics": {
+        "graph_density": 0.06818,
+        "scc_entropy": 3.585,
+        "hub_ratio": 0.167,
+        "process_risk": 0.461
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 88,
+      "name": "odoo",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7587,
+        "acyclicity": 1.0,
+        "stability": 0.925,
+        "cohesion": 0.681
+      },
+      "new_metrics": {
+        "graph_density": 0.00198,
+        "scc_entropy": 9.738,
+        "hub_ratio": 0.043,
+        "process_risk": 0.053
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 89,
+      "name": "mitmproxy",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7853,
+        "acyclicity": 1.0,
+        "stability": 0.978,
+        "cohesion": 0.71
+      },
+      "new_metrics": {
+        "graph_density": 0.00319,
+        "scc_entropy": 9.26,
+        "hub_ratio": 0.085,
+        "process_risk": 0.09
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 90,
+      "name": "calibre",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7863,
+        "acyclicity": 1.0,
+        "stability": 0.966,
+        "cohesion": 0.646
+      },
+      "new_metrics": {
+        "graph_density": 0.00164,
+        "scc_entropy": 10.195,
+        "hub_ratio": 0.095,
+        "process_risk": 0.061
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 91,
+      "name": "spacy",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7766,
+        "acyclicity": 1.0,
+        "stability": 0.828,
+        "cohesion": 0.653
+      },
+      "new_metrics": {
+        "graph_density": 0.00067,
+        "scc_entropy": 9.768,
+        "hub_ratio": 0.051,
+        "process_risk": 0.028
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 92,
+      "name": "nltk",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7767,
+        "acyclicity": 1.0,
+        "stability": 0.929,
+        "cohesion": 0.618
+      },
+      "new_metrics": {
+        "graph_density": 0.00584,
+        "scc_entropy": 8.618,
+        "hub_ratio": 0.086,
+        "process_risk": 0.145
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 93,
+      "name": "gcloud-aio",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.6821,
+        "acyclicity": 1.0,
+        "stability": 0.708,
+        "cohesion": 0.493
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 6.781,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 94,
+      "name": "invoke",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7741,
+        "acyclicity": 1.0,
+        "stability": 0.78,
+        "cohesion": 0.706
+      },
+      "new_metrics": {
+        "graph_density": 0.00515,
+        "scc_entropy": 7.098,
+        "hub_ratio": 0.066,
+        "process_risk": 0.125
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 96,
+      "name": "sh",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.6596,
+        "acyclicity": 1.0,
+        "stability": 0.291,
+        "cohesion": 0.692
+      },
+      "new_metrics": {
+        "graph_density": 0.05,
+        "scc_entropy": 2.322,
+        "hub_ratio": 0.2,
+        "process_risk": 0.471
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 97,
+      "name": "cerberus",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7631,
+        "acyclicity": 1.0,
+        "stability": 0.898,
+        "cohesion": 0.604
+      },
+      "new_metrics": {
+        "graph_density": 0.06769,
+        "scc_entropy": 4.7,
+        "hub_ratio": 0.154,
+        "process_risk": 0.458
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 98,
+      "name": "wtforms",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.8376,
+        "acyclicity": 1.0,
+        "stability": 0.934,
+        "cohesion": 0.791
+      },
+      "new_metrics": {
+        "graph_density": 0.01901,
+        "scc_entropy": 6.6,
+        "hub_ratio": 0.072,
+        "process_risk": 0.414
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 99,
+      "name": "deform",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.8574,
+        "acyclicity": 1.0,
+        "stability": 0.889,
+        "cohesion": 0.759
+      },
+      "new_metrics": {
+        "graph_density": 0.00997,
+        "scc_entropy": 4.755,
+        "hub_ratio": 0.185,
+        "process_risk": 0.259
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 100,
+      "name": "colander",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.9375,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75
+      },
+      "new_metrics": {
+        "graph_density": 0.02222,
+        "scc_entropy": 3.322,
+        "hub_ratio": 0.2,
+        "process_risk": 0.471
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 101,
+      "name": "cornice",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.829,
+        "acyclicity": 1.0,
+        "stability": 0.75,
+        "cohesion": 0.75
+      },
+      "new_metrics": {
+        "graph_density": 0.025,
+        "scc_entropy": 5.322,
+        "hub_ratio": 0.2,
+        "process_risk": 0.471
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 102,
+      "name": "pyramid",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7549,
+        "acyclicity": 1.0,
+        "stability": 0.928,
+        "cohesion": 0.708
+      },
+      "new_metrics": {
+        "graph_density": 0.00173,
+        "scc_entropy": 9.238,
+        "hub_ratio": 0.053,
+        "process_risk": 0.051
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 103,
+      "name": "zope-interface",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.6521,
+        "acyclicity": 1.0,
+        "stability": 0.426,
+        "cohesion": 0.641
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.728,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 104,
+      "name": "twisted",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.765,
+        "acyclicity": 1.0,
+        "stability": 0.876,
+        "cohesion": 0.734
+      },
+      "new_metrics": {
+        "graph_density": 0.00228,
+        "scc_entropy": 10.008,
+        "hub_ratio": 0.074,
+        "process_risk": 0.068
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 105,
+      "name": "gevent",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7643,
+        "acyclicity": 1.0,
+        "stability": 0.914,
+        "cohesion": 0.734
+      },
+      "new_metrics": {
+        "graph_density": 0.00281,
+        "scc_entropy": 8.839,
+        "hub_ratio": 0.079,
+        "process_risk": 0.081
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 106,
+      "name": "eventlet",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7732,
+        "acyclicity": 1.0,
+        "stability": 0.968,
+        "cohesion": 0.583
+      },
+      "new_metrics": {
+        "graph_density": 0.00608,
+        "scc_entropy": 7.883,
+        "hub_ratio": 0.072,
+        "process_risk": 0.146
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 107,
+      "name": "cherrypy",
+      "lang": "Python",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7953,
+        "acyclicity": 1.0,
+        "stability": 0.995,
+        "cohesion": 0.697
+      },
+      "new_metrics": {
+        "graph_density": 0.01587,
+        "scc_entropy": 6.846,
+        "hub_ratio": 0.043,
+        "process_risk": 0.341
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 108,
+      "name": "spring-security",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.771,
+        "acyclicity": 0.988,
+        "stability": 0.881,
+        "cohesion": 0.504
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 109,
+      "name": "spring-data-jpa",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 110,
+      "name": "spring-batch",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 111,
+      "name": "spring-cloud",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 112,
+      "name": "assertj",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.616,
+        "acyclicity": 0.991,
+        "stability": 0.298,
+        "cohesion": 0.394
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 113,
+      "name": "truth",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 114,
+      "name": "wiremock",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7259,
+        "acyclicity": 1.0,
+        "stability": 0.695,
+        "cohesion": 0.333
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 115,
+      "name": "testcontainers",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.5262,
+        "acyclicity": 0.987,
+        "stability": 0.232,
+        "cohesion": 0.379
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 116,
+      "name": "flyway",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.5081,
+        "acyclicity": 0.915,
+        "stability": 0.091,
+        "cohesion": 0.382
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 117,
+      "name": "liquibase",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.5676,
+        "acyclicity": 0.857,
+        "stability": 0.518,
+        "cohesion": 0.271
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 118,
+      "name": "jdbi",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.5567,
+        "acyclicity": 0.941,
+        "stability": 0.136,
+        "cohesion": 0.467
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 119,
+      "name": "querydsl",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.5019,
+        "acyclicity": 0.999,
+        "stability": 0.109,
+        "cohesion": 0.24
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 120,
+      "name": "jackson-databind",
+      "lang": "Java",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.4594,
+        "acyclicity": 0.84,
+        "stability": 0.263,
+        "cohesion": 0.163
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 121,
+      "name": "moshi",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7223,
+        "acyclicity": 1.0,
+        "stability": 0.5,
+        "cohesion": 0.717
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 122,
+      "name": "avro",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.5685,
+        "acyclicity": 1.0,
+        "stability": 0.111,
+        "cohesion": 0.641
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 123,
+      "name": "helidon",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.668,
+        "acyclicity": 0.999,
+        "stability": 0.617,
+        "cohesion": 0.325
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 124,
+      "name": "armeria",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6625,
+        "acyclicity": 0.963,
+        "stability": 0.85,
+        "cohesion": 0.264
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 125,
+      "name": "javalin",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7433,
+        "acyclicity": 1.0,
+        "stability": 0.469,
+        "cohesion": 0.661
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 126,
+      "name": "spark-java",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6308,
+        "acyclicity": 1.0,
+        "stability": 0.46,
+        "cohesion": 0.387
+      }
+    },
+    {
+      "idx": 127,
+      "name": "struts",
+      "lang": "Java",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.5682,
+        "acyclicity": 0.959,
+        "stability": 0.212,
+        "cohesion": 0.401
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 128,
+      "name": "jsf-impl",
+      "lang": "Java",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.5014,
+        "acyclicity": 0.955,
+        "stability": 0.138,
+        "cohesion": 0.344
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 129,
+      "name": "freemarker",
+      "lang": "Java",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.5803,
+        "acyclicity": 0.883,
+        "stability": 0.496,
+        "cohesion": 0.367
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 130,
+      "name": "velocity",
+      "lang": "Java",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.504,
+        "acyclicity": 0.92,
+        "stability": 0.249,
+        "cohesion": 0.22
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 131,
+      "name": "commons-lang",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.546,
+        "acyclicity": 0.955,
+        "stability": 0.331,
+        "cohesion": 0.282
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 132,
+      "name": "commons-io",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.5188,
+        "acyclicity": 0.949,
+        "stability": 0.36,
+        "cohesion": 0.201
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 133,
+      "name": "commons-collections",
+      "lang": "Java",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.5265,
+        "acyclicity": 0.987,
+        "stability": 0.438,
+        "cohesion": 0.151
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 134,
+      "name": "ehcache",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6145,
+        "acyclicity": 0.998,
+        "stability": 0.444,
+        "cohesion": 0.347
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 135,
+      "name": "caffeine",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5914,
+        "acyclicity": 0.992,
+        "stability": 0.301,
+        "cohesion": 0.247
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 136,
+      "name": "bucket4j",
+      "lang": "Java",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6918,
+        "acyclicity": 0.975,
+        "stability": 0.76,
+        "cohesion": 0.272
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 137,
+      "name": "temporal",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8494,
+        "acyclicity": 1.0,
+        "stability": 0.884,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 138,
+      "name": "argo",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7981,
+        "acyclicity": 1.0,
+        "stability": 0.652,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 139,
+      "name": "istio",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7358,
+        "acyclicity": 1.0,
+        "stability": 0.238,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 140,
+      "name": "helm",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7347,
+        "acyclicity": 1.0,
+        "stability": 0.468,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 141,
+      "name": "skaffold",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7229,
+        "acyclicity": 1.0,
+        "stability": 0.226,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 142,
+      "name": "kustomize",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8689,
+        "acyclicity": 1.0,
+        "stability": 0.937,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 143,
+      "name": "flux",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6842,
+        "acyclicity": 1.0,
+        "stability": 0.249,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 144,
+      "name": "crossplane",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7221,
+        "acyclicity": 1.0,
+        "stability": 0.352,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 145,
+      "name": "cilium",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7666,
+        "acyclicity": 1.0,
+        "stability": 0.29,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 146,
+      "name": "containerd",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7931,
+        "acyclicity": 1.0,
+        "stability": 0.62,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 147,
+      "name": "cri-o",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7414,
+        "acyclicity": 1.0,
+        "stability": 0.448,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 148,
+      "name": "buildkit",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.7808,
+        "acyclicity": 1.0,
+        "stability": 0.556,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 149,
+      "name": "buf",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.6956,
+        "acyclicity": 1.0,
+        "stability": 0.069,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 150,
+      "name": "mockery",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.8754,
+        "acyclicity": 1.0,
+        "stability": 0.821,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 151,
+      "name": "gotestsum",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.83,
+        "acyclicity": 1.0,
+        "stability": 0.861,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 152,
+      "name": "golangci-lint",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7266,
+        "acyclicity": 1.0,
+        "stability": 0.228,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 153,
+      "name": "goreleaser",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7998,
+        "acyclicity": 1.0,
+        "stability": 0.579,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 154,
+      "name": "air",
+      "lang": "Go",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8062,
+        "acyclicity": 1.0,
+        "stability": 0.889,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 155,
+      "name": "evans",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.8645,
+        "acyclicity": 1.0,
+        "stability": 0.948,
+        "cohesion": 1.0
+      }
+    },
+    {
+      "idx": 156,
+      "name": "ghz",
+      "lang": "Go",
+      "layer": "B",
+      "agq": {
+        "agq_score": 0.867,
+        "acyclicity": 1.0,
+        "stability": 0.878,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 157,
+      "name": "influxdb",
+      "lang": "Go",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7474,
+        "acyclicity": 1.0,
+        "stability": 0.49,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 158,
+      "name": "gitea",
+      "lang": "Go",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.8815,
+        "acyclicity": 1.0,
+        "stability": 0.96,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 159,
+      "name": "gogs",
+      "lang": "Go",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.7977,
+        "acyclicity": 1.0,
+        "stability": 0.599,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 160,
+      "name": "cockroach",
+      "lang": "Go",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.8172,
+        "acyclicity": 1.0,
+        "stability": 0.566,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 161,
+      "name": "tidb",
+      "lang": "Go",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.6972,
+        "acyclicity": 1.0,
+        "stability": 0.28,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 162,
+      "name": "nextjs",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.785,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 163,
+      "name": "nestjs",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 164,
+      "name": "trpc",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 165,
+      "name": "hono",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 166,
+      "name": "elysia",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 167,
+      "name": "remix",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 168,
+      "name": "astro",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 169,
+      "name": "zustand",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 170,
+      "name": "jotai",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 171,
+      "name": "xstate",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 172,
+      "name": "biome",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 173,
+      "name": "oxc",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 174,
+      "name": "vitest",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 175,
+      "name": "playwright",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7118,
+        "acyclicity": 1.0,
+        "stability": 0.556,
+        "cohesion": 0.625
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 176,
+      "name": "storybook",
+      "lang": "TypeScript",
+      "layer": "D",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 177,
+      "name": "vercel-ai",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7655,
+        "acyclicity": 1.0,
+        "stability": 0.36,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 178,
+      "name": "mastra",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 179,
+      "name": "llamafile",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6248,
+        "acyclicity": 1.0,
+        "stability": 0.234,
+        "cohesion": 0.633
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 180,
+      "name": "elizaos",
+      "lang": "TypeScript",
+      "layer": "D",
+      "agq": {
+        "agq_score": 0.6568,
+        "acyclicity": 1.0,
+        "stability": 0.331,
+        "cohesion": 0.509
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 181,
+      "name": "openai-node",
+      "lang": "TypeScript",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 182,
+      "name": "typeorm",
+      "lang": "TypeScript",
+      "layer": "D",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 183,
+      "name": "sequelize",
+      "lang": "TypeScript",
+      "layer": "D",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 184,
+      "name": "mongoose",
+      "lang": "TypeScript",
+      "layer": "D",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 185,
+      "name": "socket.io",
+      "lang": "TypeScript",
+      "layer": "D",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 186,
+      "name": "express",
+      "lang": "TypeScript",
+      "layer": "D",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 187,
+      "name": "freecodecamp",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 188,
+      "name": "openclaw",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7351,
+        "acyclicity": 1.0,
+        "stability": 0.473,
+        "cohesion": 0.917
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.17,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 189,
+      "name": "996.icu",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7515,
+        "acyclicity": 1.0,
+        "stability": 0.395,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 190,
+      "name": "react",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 191,
+      "name": "linux",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6931,
+        "acyclicity": 1.0,
+        "stability": 0.43,
+        "cohesion": 0.741
+      },
+      "new_metrics": {
+        "graph_density": 0.00053,
+        "scc_entropy": 8.492,
+        "hub_ratio": 0.017,
+        "process_risk": 0.016
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 192,
+      "name": "the-book-of-secret-knowledge",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 193,
+      "name": "vue",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 194,
+      "name": "computer-science",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 195,
+      "name": "ohmyzsh",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6608,
+        "acyclicity": 1.0,
+        "stability": 0.852,
+        "cohesion": 0.25
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.0,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 196,
+      "name": "you-dont-know-js",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 197,
+      "name": "cs-notes",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      }
+    },
+    {
+      "idx": 198,
+      "name": "vscode",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.793,
+        "acyclicity": 1.0,
+        "stability": 0.284,
+        "cohesion": 0.888
+      },
+      "new_metrics": {
+        "graph_density": 0.00036,
+        "scc_entropy": 6.229,
+        "hub_ratio": 0.013,
+        "process_risk": 0.011
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 199,
+      "name": "autogpt",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5389,
+        "acyclicity": 1.0,
+        "stability": 0.057,
+        "cohesion": 0.51
+      },
+      "new_metrics": {
+        "graph_density": 5e-05,
+        "scc_entropy": 9.665,
+        "hub_ratio": 0.015,
+        "process_risk": 0.005
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 200,
+      "name": "n8n",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5875,
+        "acyclicity": 1.0,
+        "stability": 0.114,
+        "cohesion": 0.645
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.977,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 201,
+      "name": "python-100-days",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.9045,
+        "acyclicity": 1.0,
+        "stability": 0.889,
+        "cohesion": 0.889
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.931,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 202,
+      "name": "claw-code",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8242,
+        "acyclicity": 1.0,
+        "stability": 0.644,
+        "cohesion": 0.87
+      },
+      "new_metrics": {
+        "graph_density": 0.00704,
+        "scc_entropy": 6.129,
+        "hub_ratio": 0.086,
+        "process_risk": 0.17
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 203,
+      "name": "flutter",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5729,
+        "acyclicity": 1.0,
+        "stability": 0.051,
+        "cohesion": 0.9
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 6.7,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 204,
+      "name": "bootstrap",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 205,
+      "name": "gitignore",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 206,
+      "name": "microsoft-activation-scripts",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 207,
+      "name": "ollama",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.875,
+        "acyclicity": 1.0,
+        "stability": 0.982,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 208,
+      "name": "stable-diffusion-webui",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7635,
+        "acyclicity": 0.988,
+        "stability": 0.863,
+        "cohesion": 0.747
+      },
+      "new_metrics": {
+        "graph_density": 0.00767,
+        "scc_entropy": 7.775,
+        "hub_ratio": 0.073,
+        "process_risk": 0.179
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 209,
+      "name": "the-art-of-command-line",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      }
+    },
+    {
+      "idx": 210,
+      "name": "prompts.chat",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 211,
+      "name": "freedomain",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8125,
+        "acyclicity": 1.0,
+        "stability": 0.75,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 212,
+      "name": "javaguide",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 213,
+      "name": "hellogithub",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8454,
+        "acyclicity": 1.0,
+        "stability": 0.595,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 214,
+      "name": "everything-claude-code",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5577,
+        "acyclicity": 1.0,
+        "stability": 0.388,
+        "cohesion": 0.25
+      },
+      "new_metrics": {
+        "graph_density": 0.03167,
+        "scc_entropy": 4.644,
+        "hub_ratio": 0.16,
+        "process_risk": 0.459
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 215,
+      "name": "javascript",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 216,
+      "name": "langflow",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.57,
+        "acyclicity": 1.0,
+        "stability": 0.122,
+        "cohesion": 0.489
+      },
+      "new_metrics": {
+        "graph_density": 4e-05,
+        "scc_entropy": 9.674,
+        "hub_ratio": 0.021,
+        "process_risk": 0.007
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 217,
+      "name": "superpowers",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.785,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 218,
+      "name": "opencode",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 219,
+      "name": "next.js",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.785,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 220,
+      "name": "scrcpy",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5066,
+        "acyclicity": 0.991,
+        "stability": 0.222,
+        "cohesion": 0.183
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 221,
+      "name": "dify",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5916,
+        "acyclicity": 1.0,
+        "stability": 0.174,
+        "cohesion": 0.571
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 9.644,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 222,
+      "name": "system-prompts-and-models-of-ai-tools",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 223,
+      "name": "go",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7757,
+        "acyclicity": 1.0,
+        "stability": 0.626,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 224,
+      "name": "powertoys",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5923,
+        "acyclicity": 1.0,
+        "stability": 0.306,
+        "cohesion": 0.568
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 225,
+      "name": "open-webui",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5434,
+        "acyclicity": 1.0,
+        "stability": 0.054,
+        "cohesion": 0.513
+      },
+      "new_metrics": {
+        "graph_density": 0.00585,
+        "scc_entropy": 8.447,
+        "hub_ratio": 0.089,
+        "process_risk": 0.146
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 226,
+      "name": "30-seconds-of-code",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 227,
+      "name": "react-native",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6763,
+        "acyclicity": 1.0,
+        "stability": 0.154,
+        "cohesion": 0.769
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.555,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 228,
+      "name": "hello-algo",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7476,
+        "acyclicity": 1.0,
+        "stability": 0.802,
+        "cohesion": 0.8
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 8.765,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 229,
+      "name": "kubernetes",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6608,
+        "acyclicity": 1.0,
+        "stability": 0.107,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 2.807,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 230,
+      "name": "electron",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7302,
+        "acyclicity": 1.0,
+        "stability": 0.971,
+        "cohesion": 0.458
+      },
+      "new_metrics": {
+        "graph_density": 0.00902,
+        "scc_entropy": 5.672,
+        "hub_ratio": 0.098,
+        "process_risk": 0.215
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 231,
+      "name": "excalidraw",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 232,
+      "name": "free-for-dev",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 233,
+      "name": "node",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7143,
+        "acyclicity": 1.0,
+        "stability": 0.651,
+        "cohesion": 0.682
+      },
+      "new_metrics": {
+        "graph_density": 1e-05,
+        "scc_entropy": 9.134,
+        "hub_ratio": 0.002,
+        "process_risk": 0.001
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 234,
+      "name": "iptv",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 235,
+      "name": "skills",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6513,
+        "acyclicity": 1.0,
+        "stability": 0.4,
+        "cohesion": 0.575
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 6.17,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 236,
+      "name": "d3",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 237,
+      "name": "ui",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 238,
+      "name": "rust",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6905,
+        "acyclicity": 1.0,
+        "stability": 0.495,
+        "cohesion": 0.651
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.088,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 239,
+      "name": "three.js",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 240,
+      "name": "claude-code",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6671,
+        "acyclicity": 1.0,
+        "stability": 0.673,
+        "cohesion": 0.667
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.585,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 241,
+      "name": "rustdesk",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.9219,
+        "acyclicity": 1.0,
+        "stability": 0.934,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.7,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 242,
+      "name": "godot",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7316,
+        "acyclicity": 0.989,
+        "stability": 0.601,
+        "cohesion": 0.94
+      },
+      "new_metrics": {
+        "graph_density": 0.00061,
+        "scc_entropy": 7.011,
+        "hub_ratio": 0.015,
+        "process_risk": 0.017
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 243,
+      "name": "clash-verge-rev",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 244,
+      "name": "generative-ai-for-beginners",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.759,
+        "acyclicity": 1.0,
+        "stability": 0.478,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 4.7,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 245,
+      "name": "axios",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 246,
+      "name": "typescript",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 247,
+      "name": "comfyui",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.822,
+        "acyclicity": 0.99,
+        "stability": 0.837,
+        "cohesion": 0.79
+      },
+      "new_metrics": {
+        "graph_density": 0.00313,
+        "scc_entropy": 9.216,
+        "hub_ratio": 0.077,
+        "process_risk": 0.087
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 248,
+      "name": "github-chinese-top-charts",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 249,
+      "name": "deno",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 250,
+      "name": "firecrawl",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7924,
+        "acyclicity": 1.0,
+        "stability": 0.958,
+        "cohesion": 0.546
+      },
+      "new_metrics": {
+        "graph_density": 0.00412,
+        "scc_entropy": 7.443,
+        "hub_ratio": 0.081,
+        "process_risk": 0.108
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 251,
+      "name": "frp",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8203,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 252,
+      "name": "tauri",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 253,
+      "name": "nodebestpractices",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 254,
+      "name": "papers-we-love",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 255,
+      "name": "create-react-app",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 256,
+      "name": "llama.cpp",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7533,
+        "acyclicity": 1.0,
+        "stability": 0.732,
+        "cohesion": 0.668
+      },
+      "new_metrics": {
+        "graph_density": 0.00037,
+        "scc_entropy": 6.7,
+        "hub_ratio": 0.01,
+        "process_risk": 0.011
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 257,
+      "name": "terminal",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7941,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 2.322,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 258,
+      "name": "deepseek-v3",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7996,
+        "acyclicity": 1.0,
+        "stability": 0.68,
+        "cohesion": 0.958
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 2.322,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 259,
+      "name": "v2rayn",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 260,
+      "name": "gemini-cli",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 261,
+      "name": "supabase",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7617,
+        "acyclicity": 1.0,
+        "stability": 0.38,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 2.322,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 262,
+      "name": "angular",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 263,
+      "name": "howtocook",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 264,
+      "name": "every-programmer-should-know",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 265,
+      "name": "neovim",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.88,
+        "acyclicity": 1.0,
+        "stability": 0.673,
+        "cohesion": 0.917
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.0,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 266,
+      "name": "material-ui",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 267,
+      "name": "ant-design",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 268,
+      "name": "whisper",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7919,
+        "acyclicity": 1.0,
+        "stability": 0.726,
+        "cohesion": 0.844
+      },
+      "new_metrics": {
+        "graph_density": 0.01515,
+        "scc_entropy": 4.459,
+        "hub_ratio": 0.273,
+        "process_risk": 0.391
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 269,
+      "name": "immich",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6054,
+        "acyclicity": 1.0,
+        "stability": 0.293,
+        "cohesion": 0.571
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 4.954,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 270,
+      "name": "markitdown",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5308,
+        "acyclicity": 1.0,
+        "stability": 0.177,
+        "cohesion": 0.448
+      },
+      "new_metrics": {
+        "graph_density": 0.0053,
+        "scc_entropy": 6.267,
+        "hub_ratio": 0.104,
+        "process_risk": 0.139
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 271,
+      "name": "web-dev-for-beginners",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8097,
+        "acyclicity": 1.0,
+        "stability": 0.49,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 2.322,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 272,
+      "name": "tailwindcss",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 273,
+      "name": "clean-code-javascript",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      }
+    },
+    {
+      "idx": 274,
+      "name": "puppeteer",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 275,
+      "name": "java-design-patterns",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7234,
+        "acyclicity": 0.995,
+        "stability": 0.576,
+        "cohesion": 0.629
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 276,
+      "name": "nvm",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 277,
+      "name": "app-ideas",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 278,
+      "name": "deepseek-r1",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 279,
+      "name": "llms-from-scratch",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8607,
+        "acyclicity": 1.0,
+        "stability": 0.844,
+        "cohesion": 0.957
+      },
+      "new_metrics": {
+        "graph_density": 0.00295,
+        "scc_entropy": 7.229,
+        "hub_ratio": 0.127,
+        "process_risk": 0.097
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 280,
+      "name": "vue-element-admin",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 281,
+      "name": "deep-live-cam",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7195,
+        "acyclicity": 0.959,
+        "stability": 0.532,
+        "cohesion": 0.917
+      },
+      "new_metrics": {
+        "graph_density": 0.06559,
+        "scc_entropy": 4.954,
+        "hub_ratio": 0.226,
+        "process_risk": 0.478
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 282,
+      "name": "bun",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.691,
+        "acyclicity": 1.0,
+        "stability": 0.621,
+        "cohesion": 0.344
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.459,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 283,
+      "name": "bitcoin",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.692,
+        "acyclicity": 1.0,
+        "stability": 0.605,
+        "cohesion": 0.586
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 8.508,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 284,
+      "name": "weekly",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 285,
+      "name": "nextchat",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 286,
+      "name": "mermaid",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 287,
+      "name": "opencv",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7077,
+        "acyclicity": 1.0,
+        "stability": 0.545,
+        "cohesion": 0.753
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 288,
+      "name": "browser-use",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6625,
+        "acyclicity": 0.989,
+        "stability": 0.505,
+        "cohesion": 0.486
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 289,
+      "name": "spec-kit",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6761,
+        "acyclicity": 1.0,
+        "stability": 0.808,
+        "cohesion": 0.351
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 290,
+      "name": "svelte",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 291,
+      "name": "core",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5795,
+        "acyclicity": 1.0,
+        "stability": 0.076,
+        "cohesion": 0.711
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 292,
+      "name": "manim",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6331,
+        "acyclicity": 0.955,
+        "stability": 0.39,
+        "cohesion": 0.772
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 293,
+      "name": "ml-for-beginners",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7997,
+        "acyclicity": 1.0,
+        "stability": 0.889,
+        "cohesion": 0.5
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 294,
+      "name": "uptime-kuma",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8319,
+        "acyclicity": 1.0,
+        "stability": 0.75,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 295,
+      "name": "laravel",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 296,
+      "name": "mall",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.4673,
+        "acyclicity": 1.0,
+        "stability": 0.108,
+        "cohesion": 0.183
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 297,
+      "name": "servers",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6576,
+        "acyclicity": 1.0,
+        "stability": 0.36,
+        "cohesion": 0.556
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 298,
+      "name": "realworld",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 299,
+      "name": "uv",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7802,
+        "acyclicity": 1.0,
+        "stability": 0.855,
+        "cohesion": 0.683
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 300,
+      "name": "animate.css",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      }
+    },
+    {
+      "idx": 301,
+      "name": "syncthing",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8214,
+        "acyclicity": 1.0,
+        "stability": 0.814,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 302,
+      "name": "firacode",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7914,
+        "acyclicity": 1.0,
+        "stability": 0.595,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 303,
+      "name": "sherlock",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7764,
+        "acyclicity": 1.0,
+        "stability": 0.772,
+        "cohesion": 0.725
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 304,
+      "name": "funnlp",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      }
+    },
+    {
+      "idx": 305,
+      "name": "vite",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 306,
+      "name": "fzf",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8575,
+        "acyclicity": 1.0,
+        "stability": 0.99,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 307,
+      "name": "github-readme-stats",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 308,
+      "name": "advanced-java",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 309,
+      "name": "hoppscotch",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6945,
+        "acyclicity": 1.0,
+        "stability": 0.138,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 310,
+      "name": "zed",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7721,
+        "acyclicity": 1.0,
+        "stability": 0.845,
+        "cohesion": 0.688
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 311,
+      "name": "netdata",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6391,
+        "acyclicity": 1.0,
+        "stability": 0.308,
+        "cohesion": 0.689
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 312,
+      "name": "localsend",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 313,
+      "name": "models",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6585,
+        "acyclicity": 1.0,
+        "stability": 0.311,
+        "cohesion": 0.753
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 314,
+      "name": "ragflow",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6661,
+        "acyclicity": 0.989,
+        "stability": 0.328,
+        "cohesion": 0.628
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 315,
+      "name": "gpt4all",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6195,
+        "acyclicity": 1.0,
+        "stability": 0.539,
+        "cohesion": 0.3
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 316,
+      "name": "code-server",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 317,
+      "name": "d2l-zh",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7255,
+        "acyclicity": 1.0,
+        "stability": 0.539,
+        "cohesion": 0.932
+      }
+    },
+    {
+      "idx": 318,
+      "name": "agency-agents",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 319,
+      "name": "payloadsallthethings",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8545,
+        "acyclicity": 1.0,
+        "stability": 0.716,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 320,
+      "name": "stirling-pdf",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5382,
+        "acyclicity": 0.999,
+        "stability": 0.113,
+        "cohesion": 0.352
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 321,
+      "name": "lazygit",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7254,
+        "acyclicity": 1.0,
+        "stability": 0.324,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 322,
+      "name": "best-websites-a-programmer-should-visit",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 323,
+      "name": "vllm",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8378,
+        "acyclicity": 1.0,
+        "stability": 0.974,
+        "cohesion": 0.66
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 324,
+      "name": "ventoy",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7431,
+        "acyclicity": 1.0,
+        "stability": 0.889,
+        "cohesion": 0.583
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 325,
+      "name": "json-server",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 326,
+      "name": "paddleocr",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7338,
+        "acyclicity": 1.0,
+        "stability": 0.603,
+        "cohesion": 0.517
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 327,
+      "name": "nest",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 328,
+      "name": "lobehub",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 329,
+      "name": "union",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7575,
+        "acyclicity": 1.0,
+        "stability": 0.307,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 330,
+      "name": "codex",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7046,
+        "acyclicity": 1.0,
+        "stability": 0.495,
+        "cohesion": 0.737
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 331,
+      "name": "redis",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6709,
+        "acyclicity": 1.0,
+        "stability": 0.49,
+        "cohesion": 0.587
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 332,
+      "name": "tesseract",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8472,
+        "acyclicity": 1.0,
+        "stability": 0.889,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 333,
+      "name": "grafana",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6737,
+        "acyclicity": 1.0,
+        "stability": 0.159,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 334,
+      "name": "prompt-engineering-guide",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 335,
+      "name": "stable-diffusion",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7536,
+        "acyclicity": 1.0,
+        "stability": 0.548,
+        "cohesion": 0.838
+      }
+    },
+    {
+      "idx": 336,
+      "name": "openai-cookbook",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6722,
+        "acyclicity": 1.0,
+        "stability": 0.32,
+        "cohesion": 0.754
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 337,
+      "name": "imgui",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.775,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.6
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 338,
+      "name": "front-end-checklist",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 339,
+      "name": "superset",
+      "lang": "Java",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8297,
+        "acyclicity": 1.0,
+        "stability": 0.981,
+        "cohesion": 0.746
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 340,
+      "name": "arduino-esp32",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7155,
+        "acyclicity": 1.0,
+        "stability": 0.741,
+        "cohesion": 0.4
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.524,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 341,
+      "name": "sentry",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.787,
+        "acyclicity": 1.0,
+        "stability": 0.787,
+        "cohesion": 0.693
+      },
+      "new_metrics": {
+        "graph_density": 0.0015,
+        "scc_entropy": 10.74,
+        "hub_ratio": 0.083,
+        "process_risk": 0.055
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 342,
+      "name": "convex-backend",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8317,
+        "acyclicity": 1.0,
+        "stability": 0.673,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.0,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 343,
+      "name": "nixpkgs",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5878,
+        "acyclicity": 1.0,
+        "stability": 0.238,
+        "cohesion": 0.716
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 8.124,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 344,
+      "name": "gradle",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6879,
+        "acyclicity": 0.996,
+        "stability": 0.695,
+        "cohesion": 0.414
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 345,
+      "name": "mise",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6734,
+        "acyclicity": 1.0,
+        "stability": 0.49,
+        "cohesion": 0.75
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 346,
+      "name": "nemoclaw",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6193,
+        "acyclicity": 1.0,
+        "stability": 0.521,
+        "cohesion": 0.375
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 4.459,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 347,
+      "name": "kilocode",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.875,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 348,
+      "name": "chromium",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6976,
+        "acyclicity": 1.0,
+        "stability": 0.651,
+        "cohesion": 0.714
+      },
+      "new_metrics": {
+        "graph_density": 5e-05,
+        "scc_entropy": 9.656,
+        "hub_ratio": 0.021,
+        "process_risk": 0.007
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 349,
+      "name": "inquirer.js",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 350,
+      "name": "sdk",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.749,
+        "acyclicity": 1.0,
+        "stability": 0.838,
+        "cohesion": 0.642
+      },
+      "new_metrics": {
+        "graph_density": 0.00129,
+        "scc_entropy": 7.18,
+        "hub_ratio": 0.007,
+        "process_risk": 0.029
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 351,
+      "name": "nx",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 352,
+      "name": "abseil-cpp",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6901,
+        "acyclicity": 1.0,
+        "stability": 0.746,
+        "cohesion": 0.083
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 2.585,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 353,
+      "name": "clickhouse",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6324,
+        "acyclicity": 1.0,
+        "stability": 0.309,
+        "cohesion": 0.607
+      },
+      "new_metrics": {
+        "graph_density": 1e-05,
+        "scc_entropy": 9.651,
+        "hub_ratio": 0.006,
+        "process_risk": 0.002
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 354,
+      "name": "fiftyone",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7966,
+        "acyclicity": 1.0,
+        "stability": 0.969,
+        "cohesion": 0.631
+      },
+      "new_metrics": {
+        "graph_density": 0.00486,
+        "scc_entropy": 9.093,
+        "hub_ratio": 0.091,
+        "process_risk": 0.127
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 355,
+      "name": "vlc",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7446,
+        "acyclicity": 1.0,
+        "stability": 0.773,
+        "cohesion": 0.675
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 4.322,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 356,
+      "name": "llvm-project",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6813,
+        "acyclicity": 1.0,
+        "stability": 0.576,
+        "cohesion": 0.779
+      },
+      "new_metrics": {
+        "graph_density": 0.00048,
+        "scc_entropy": 9.664,
+        "hub_ratio": 0.014,
+        "process_risk": 0.014
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 357,
+      "name": "summer2026-internships",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7723,
+        "acyclicity": 1.0,
+        "stability": 0.628,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.22727,
+        "scc_entropy": 3.459,
+        "hub_ratio": 0.091,
+        "process_risk": 0.44
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 358,
+      "name": "servo",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.605,
+        "acyclicity": 1.0,
+        "stability": 0.194,
+        "cohesion": 0.644
+      },
+      "new_metrics": {
+        "graph_density": 0.00013,
+        "scc_entropy": 9.681,
+        "hub_ratio": 0.029,
+        "process_risk": 0.011
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 359,
+      "name": "termux-packages",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.9433,
+        "acyclicity": 1.0,
+        "stability": 0.938,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 2.585,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 360,
+      "name": "freecad",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5925,
+        "acyclicity": 1.0,
+        "stability": 0.286,
+        "cohesion": 0.533
+      },
+      "new_metrics": {
+        "graph_density": 0.00071,
+        "scc_entropy": 9.648,
+        "hub_ratio": 0.001,
+        "process_risk": 0.015
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 361,
+      "name": "new-grad-positions",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 362,
+      "name": "linera-protocol",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 363,
+      "name": "just",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 364,
+      "name": "esphome",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7298,
+        "acyclicity": 1.0,
+        "stability": 0.723,
+        "cohesion": 0.768
+      },
+      "new_metrics": {
+        "graph_density": 0.00275,
+        "scc_entropy": 9.77,
+        "hub_ratio": 0.031,
+        "process_risk": 0.066
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 365,
+      "name": "triton",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6659,
+        "acyclicity": 1.0,
+        "stability": 0.305,
+        "cohesion": 0.709
+      },
+      "new_metrics": {
+        "graph_density": 0.00419,
+        "scc_entropy": 8.762,
+        "hub_ratio": 0.078,
+        "process_risk": 0.109
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 366,
+      "name": "quicklook",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 367,
+      "name": "definitelytyped",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 368,
+      "name": "free-servers",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 369,
+      "name": "mcp-toolbox",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8231,
+        "acyclicity": 1.0,
+        "stability": 0.505,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.459,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 370,
+      "name": "fuse",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 371,
+      "name": "kotlin",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6377,
+        "acyclicity": 0.998,
+        "stability": 0.357,
+        "cohesion": 0.358
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 372,
+      "name": "tldr",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8945,
+        "acyclicity": 1.0,
+        "stability": 0.872,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.17,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 373,
+      "name": "swift-evolution",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 374,
+      "name": "adk-python",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5642,
+        "acyclicity": 1.0,
+        "stability": 0.093,
+        "cohesion": 0.564
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 9.646,
+        "hub_ratio": 0.001,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 375,
+      "name": "postgrest",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7246,
+        "acyclicity": 1.0,
+        "stability": 0.306,
+        "cohesion": 0.938
+      },
+      "new_metrics": {
+        "graph_density": 0.02917,
+        "scc_entropy": 4.0,
+        "hub_ratio": 0.062,
+        "process_risk": 0.431
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 376,
+      "name": "quickwit",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.799,
+        "acyclicity": 1.0,
+        "stability": 0.471,
+        "cohesion": 0.833
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 377,
+      "name": "actual",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 378,
+      "name": "owncast",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.852,
+        "acyclicity": 1.0,
+        "stability": 0.88,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 379,
+      "name": "chroma",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.6424,
+        "acyclicity": 0.989,
+        "stability": 0.405,
+        "cohesion": 0.525
+      },
+      "new_metrics": {
+        "graph_density": 0.01105,
+        "scc_entropy": 8.028,
+        "hub_ratio": 0.103,
+        "process_risk": 0.258
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 380,
+      "name": "vim",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7039,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 0.424
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 5.322,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 381,
+      "name": "simdjson",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7615,
+        "acyclicity": 1.0,
+        "stability": 0.556,
+        "cohesion": 0.75
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 382,
+      "name": "appium",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7225,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 0.75
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 383,
+      "name": "unciv",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 384,
+      "name": "firefox-ios",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.7755,
+        "acyclicity": 1.0,
+        "stability": 0.608,
+        "cohesion": 0.825
+      },
+      "new_metrics": {
+        "graph_density": 0.00028,
+        "scc_entropy": 5.907,
+        "hub_ratio": 0.017,
+        "process_risk": 0.011
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 385,
+      "name": "great_expectations",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8141,
+        "acyclicity": 1.0,
+        "stability": 0.984,
+        "cohesion": 0.577
+      },
+      "new_metrics": {
+        "graph_density": 0.00236,
+        "scc_entropy": 9.901,
+        "hub_ratio": 0.06,
+        "process_risk": 0.066
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 386,
+      "name": "dagger",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.8189,
+        "acyclicity": 1.0,
+        "stability": 0.689,
+        "cohesion": 1.0
+      },
+      "new_metrics": {
+        "graph_density": 0.00485,
+        "scc_entropy": 7.721,
+        "hub_ratio": 0.062,
+        "process_risk": 0.118
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 387,
+      "name": "chainlit",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.536,
+        "acyclicity": 1.0,
+        "stability": 0.172,
+        "cohesion": 0.425
+      },
+      "new_metrics": {
+        "graph_density": 0.00833,
+        "scc_entropy": 7.735,
+        "hub_ratio": 0.103,
+        "process_risk": 0.202
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 388,
+      "name": "homebrew-core",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 389,
+      "name": "first-contributions",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 1.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    },
+    {
+      "idx": 390,
+      "name": "presto",
+      "lang": "Python",
+      "layer": "A",
+      "agq": {
+        "agq_score": 0.5073,
+        "acyclicity": 0.999,
+        "stability": 0.085,
+        "cohesion": 0.278
+      },
+      "new_metrics": {
+        "graph_density": 0.0,
+        "scc_entropy": 3.807,
+        "hub_ratio": 0.0,
+        "process_risk": 0.0
+      },
+      "churn": {
+        "churn_gini": 0.0,
+        "hotspot_ratio": 0.0
+      }
+    }
+  ]
+}
