@@ -3,7 +3,7 @@ mod acyclicity;
 mod stability;
 mod cohesion;
 
-use crate::scanner::{ScanResult, Language};
+use crate::scanner::ScanResult;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
