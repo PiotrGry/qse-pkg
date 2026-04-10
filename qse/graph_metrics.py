@@ -33,7 +33,7 @@ class AGQMetrics:
     @property
     def agq_score(self) -> float:
         """Weighted composite. Weights set by compute_agq(); defaults to equal."""
-        w = getattr(self, "_weights", (0.25, 0.25, 0.25, 0.25))
+        w = getattr(self, "_weights", (0.20, 0.20, 0.55, 0.05))
         return (w[0] * self.modularity + w[1] * self.acyclicity +
                 w[2] * self.stability + w[3] * self.cohesion)
 
@@ -616,3 +616,4 @@ def compute_agq(G: nx.DiGraph,
     m = AGQMetrics(modularity=mod, acyclicity=acy, stability=stab, cohesion=coh)
     m._weights = w  # used by agq_score property if present
     return m
+
