@@ -138,6 +138,14 @@ fn detect_language(dir: &Path) -> Option<Language> {
         }
     }
     if py == 0 && java == 0 && go == 0 { return None; }
+
+    // FIX: require minimum 5 source files to avoid misclassifying
+    // documentation/config repos that have 1-2 .py build scripts.
+    // Examples: the-book-of-secret-knowledge, gitignore, prompts.chat
+    // all have 0-2 .py files but are pure Markdown repos.
+    let max_count = py.max(java).max(go);
+    if max_count < 5 { return None; }
+
     // For mixed repos (e.g. Go project with Python build scripts):
     // trust Go/Java over Python if they have any meaningful presence
     // Python build scripts are common in non-Python projects
@@ -255,26 +263,54 @@ fn collect_recursive(dir: &Path, ext: &str, out: &mut Vec<PathBuf>) {
         let path = entry.path();
         if path.is_dir() {
             let name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            // Skip hidden dirs, build artifacts, and test directories for Java
+
+            // Skip hidden dirs, build artifacts, test directories
             if name.starts_with('.')
-                || matches!(name, "node_modules" | "target" | "__pycache__" | ".git")
+                || matches!(name, "node_modules" | "target" | "__pycache__" | ".git"
+                            | "dist" | "build" | "out" | "bin" | "gen" | "generated")
             {
                 continue;
             }
+
             // For Java: skip test source directories
-            if ext == "java" && matches!(name, "test" | "tests" | "androidTest" | "testFixtures") {
+            if ext == "java"
+                && (matches!(name, "test" | "tests" | "androidTest" | "testFixtures"
+                             | "workspace" | "it" | "integrationTest")
+                    || name.contains(".tests.")
+                    || name.contains(".test."))
+            {
                 continue;
             }
+
+            // FIX: Java multi-module optimization
+            // If this subdir has src/main/java/, recurse into that directly
+            // instead of scanning the whole subdir tree.
+            // This correctly handles: spring-cloud, spring-data, hibernate
+            // which have structure: module-name/src/main/java/...
+            if ext == "java" {
+                let smj = path.join("src").join("main").join("java");
+                if smj.is_dir() {
+                    collect_recursive(&smj, ext, out);
+                    continue; // Don't also recurse into path itself
+                }
+            }
+
             collect_recursive(&path, ext, out);
         } else if path.extension().and_then(|e| e.to_str()) == Some(ext) {
             let fname = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-            // Python: skip __init__.py only
+
+            // Python: skip __init__.py (scanner adds it separately)
             if ext == "py" && fname == "__init__.py" {
                 continue;
             }
+            // Python: skip common non-source files
+            if ext == "py" && matches!(fname, "setup.py" | "conftest.py"
+                | "manage.py" | "wsgi.py" | "asgi.py") {
+                continue;
+            }
+
             out.push(path);
         }
-        // Note: for Java, test dirs (src/test/) are skipped at dir level below
     }
 }
 
@@ -659,29 +695,46 @@ struct FileResult {
 /// Go:     repo root is typically correct
 fn find_source_root(base: &Path) -> PathBuf {
     let name = base.file_name().and_then(|n| n.to_str()).unwrap_or("");
-    // Java Maven/Gradle layout: try root src/main/java first,
-    // then scan for multi-module projects (each sub-module has own src/main/java)
+
+    // Java: try standard Maven layout first
     let java_root = base.join("src").join("main").join("java");
     if java_root.is_dir() && walkdir_shallow(&java_root, 2).iter()
         .any(|p| p.extension().and_then(|e| e.to_str()) == Some("java"))
     {
         return java_root;
     }
-    // Multi-module: if any .java files exist anywhere, use repo root
-    // (collect_files will recurse and find all src/main/java subtrees)
-    if walkdir_shallow(base, 4).iter()
+
+    // Java multi-module (FIX): projects like spring-cloud, spring-data-jpa
+    // have structure: root/module-name/src/main/java/...
+    // walkdir_shallow(base, 4) finds .java files but collect_files needs
+    // to start from base so it can find ALL submodule src/main/java trees.
+    // Previously returned base which is correct — but detect_language was
+    // returning None because shallow scan didn't find enough files.
+    // The real fix is in detect_language (minimum 5 files) + collect_recursive
+    // skipping test dirs. This path is still correct.
+    if walkdir_shallow(base, 6).iter()
         .any(|p| p.extension().and_then(|e| e.to_str()) == Some("java"))
     {
         return base.to_path_buf();
     }
-    // Python layout
+
+    // Python: try common source layouts
+    // (src/<name>/, src/, <name>/) — pip/poetry/hatch conventions
     let py_candidates = [
         base.join("src").join(name),
         base.join("src"),
         base.join(name),
+        // FIX: also try direct root — many flat Python libs live at root level
+        base.to_path_buf(),
     ];
     for c in &py_candidates {
-        if c.is_dir() && walkdir_shallow(c, 1).iter()
+        if c.is_dir() && walkdir_shallow(c, 2).iter()
+            .filter(|p| {
+                // Only count non-test, non-generated .py files
+                let s = p.to_string_lossy();
+                !s.contains("/test") && !s.contains("setup.py")
+                    && !s.contains("conftest.py")
+            })
             .any(|p| p.extension().and_then(|e| e.to_str()) == Some("py"))
         {
             return c.clone();
@@ -702,6 +755,9 @@ pub fn scan_repo(base_dir: &str) -> ScanResult {
     // Parse files in parallel using rayon — each thread gets its own Parser
     let file_results: Vec<FileResult> = files.par_iter().filter_map(|file_path| {
         let Ok(source) = std::fs::read(file_path) else { return None };
+        // Skip files >1MB (likely generated/fixture data) and non-UTF-8
+        if source.len() > 1_048_576 { return None; }
+        if std::str::from_utf8(&source).is_err() { return None; }
         let mut parser = Parser::new();
         parser.set_language(&ts_lang).ok()?;
         let tree = parser.parse(&source, None)?;
