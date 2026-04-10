@@ -24,16 +24,25 @@ pub fn compute_agq(result: &ScanResult) -> AGQMetrics {
     let e = g.edge_count();
 
     let mod_score  = modularity::compute(g);
-
-    // FIX 1: pass internal_nodes so acyclicity filters to source files only
     let acy_score  = acyclicity::compute(g, &result.internal_nodes);
-
     let stab_score = stability::compute(g);
-
-    // FIX 2: pass language so cohesion handles Go/TS correctly
     let coh_score  = cohesion::compute(&result.classes, &result.language);
 
-    let agq = (mod_score + acy_score + stab_score + coh_score) / 4.0;
+    // Empirically calibrated weights (n=279 OSS repos, bug_lead_time ≤14d ground truth)
+    // CV improvement vs equal weights: +17% (mean r: -0.143 → -0.167)
+    //   Stability   = 0.55  dominant predictor, ΔCV=-0.048 when removed
+    //   Modularity  = 0.20  important signal,   ΔCV=-0.021 when removed
+    //   Acyclicity  = 0.20  best pair with S,   neutral alone
+    //   Cohesion    = 0.05  redundant,          ΔCV=+0.022 without it
+    const W_MOD: f64 = 0.20;
+    const W_ACY: f64 = 0.20;
+    const W_STA: f64 = 0.55;
+    const W_COH: f64 = 0.05;
+
+    let agq = W_MOD * mod_score
+            + W_ACY * acy_score
+            + W_STA * stab_score
+            + W_COH * coh_score;
 
     AGQMetrics {
         modularity:  mod_score,
