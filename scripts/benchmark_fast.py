@@ -51,6 +51,29 @@ try:
 except ImportError:
     HAS_SP = False
 
+# Wykryj właściwy Python interpreter (venv jeśli dostępny)
+def _find_python() -> str:
+    """Zwraca ścieżkę do Pythona z venv lub systemowego."""
+    import sys
+    # Sprawdź czy jesteśmy w venv
+    if hasattr(sys, 'real_prefix') or (
+        hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix
+    ):
+        return sys.executable  # już jesteśmy w venv
+    # Szukaj venv w katalogu projektu i rodziców
+    here = Path(__file__).resolve().parent
+    for d in [here, here.parent, here.parent.parent]:
+        for venv in ['.venv', 'venv', 'env']:
+            py = d / venv / 'bin' / 'python'
+            if py.exists():
+                return str(py)
+            py = d / venv / 'bin' / 'python3'
+            if py.exists():
+                return str(py)
+    return sys.executable  # fallback: systemowy
+
+PYTHON = _find_python()
+
 # ── Kolory ─────────────────────────────────────────────────────────────────
 _G = '\033[0;32m'; _R = '\033[0;31m'; _Y = '\033[1;33m'
 _C = '\033[0;36m'; _B = '\033[1m';    _D = '\033[2m';   _N = '\033[0m'
@@ -126,7 +149,7 @@ def run_agq(repo_path: Path, timeout: int = 120) -> Optional[Dict]:
     try:
         t0 = time.time()
         r = subprocess.run(
-            [sys.executable, "-m", "qse", "agq", str(repo_path),
+            [PYTHON, "-m", "qse", "agq", str(repo_path),
              "--output-json", json_out, "--threshold", "0.0"],
             capture_output=True, text=True, timeout=timeout)
         ms = round((time.time() - t0) * 1000)
