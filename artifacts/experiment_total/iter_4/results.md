@@ -1,33 +1,35 @@
 # Benchmark Totalny — Iteracja 4
 
-- generated: `2026-04-10T10:25:48.946569+00:00`
-- repos_ok: **405**
+- generated: `2026-04-10T10:57:32.506396+00:00`
+- repos_ok: **558**
 - z bug lead time: 0
-- AGQ mean: `0.7699`
-- AGQ std: `0.1385`
+- AGQ mean: `0.7596`
+- AGQ std: `0.1405`
 
 ## AGQ per język
 | Język | n | mean | std | min | max |
 |---|---:|---:|---:|---:|---:|
-| Python | 253 | 0.7665 | 0.1303 | 0.4451 | 1.0000 |
-| Java | 111 | 0.7521 | 0.1614 | 0.4361 | 1.0000 |
-| Go | 23 | 0.7925 | 0.0757 | 0.6775 | 0.9375 |
-| TypeScript | 18 | 0.8986 | 0.0943 | 0.6107 | 0.9375 |
+| Python | 351 | 0.7538 | 0.1344 | 0.4451 | 1.0000 |
+| Java | 147 | 0.7433 | 0.1593 | 0.4052 | 1.0000 |
+| Go | 30 | 0.7892 | 0.0735 | 0.6775 | 0.9375 |
+| TypeScript | 30 | 0.8779 | 0.1084 | 0.6107 | 0.9375 |
 
 ## Fingerprints
 | Pattern | n | % |
 |---|---:|---:|
-| CLEAN | 184 | 45.4% |
-| LAYERED | 128 | 31.6% |
-| LOW_COHESION | 39 | 9.6% |
-| FLAT | 28 | 6.9% |
-| MODERATE | 26 | 6.4% |
+| CLEAN | 238 | 42.7% |
+| LAYERED | 164 | 29.4% |
+| LOW_COHESION | 66 | 11.8% |
+| FLAT | 47 | 8.4% |
+| MODERATE | 40 | 7.2% |
+| CYCLIC | 3 | 0.5% |
 
 ## Wyniki per repo (top 50 AGQ)
 | Repo | Lang | AGQ | Acy | Stab | Coh | Mod | Nodes | BugMedian |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | github-chinese-top-charts | Python | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1 | - |
 | advanced-java | Java | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1 | - |
+| termux-packages | Python | 0.9433 | 1.0 | 0.9375 | 1.0 | 0.8356 | 16 | - |
 | spring-cloud | Java | 0.9375 | 1.0 | 1.0 | 0.75 | 1.0 | 0 | - |
 | truth | Java | 0.9375 | 1.0 | 1.0 | 0.75 | 1.0 | 0 | - |
 | spring-data-jpa | Java | 0.9375 | 1.0 | 1.0 | 0.75 | 1.0 | 0 | - |
@@ -75,4 +77,3 @@
 | howtocook | Python | 0.9375 | 1.0 | 1.0 | 0.75 | 1.0 | 0 | - |
 | every-programmer-should-know | Python | 0.9375 | 1.0 | 1.0 | 0.75 | 1.0 | 0 | - |
 | v2rayn | Python | 0.9375 | 1.0 | 1.0 | 0.75 | 1.0 | 0 | - |
-| typescript | Python | 0.9375 | 1.0 | 1.0 | 0.75 | 1.0 | 0 | - |

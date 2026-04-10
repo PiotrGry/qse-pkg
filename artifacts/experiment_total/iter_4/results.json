@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-04-10T10:25:48.943051+00:00",
+  "generated_at": "2026-04-10T10:57:32.501540+00:00",
   "iter": 4,
   "repos_total": 569,
-  "repos_ok": 405,
-  "repos_failed": 160,
+  "repos_ok": 558,
+  "repos_failed": 9,
   "repos_with_bug_lt": 0,
-  "agq_mean": 0.7699,
-  "agq_std": 0.1385,
+  "agq_mean": 0.7596,
+  "agq_std": 0.1405,
   "correlations": [],
   "results": [
     {
@@ -10861,6 +10861,4132 @@
         "mean_churn": 3.812
       },
       "clone_ms": 4132,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "langchain",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "langchain-ai/langchain",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5163,
+        "language": "Python",
+        "nodes": 3169,
+        "edges": 9715,
+        "modularity": 0.5782,
+        "acyclicity": 1.0,
+        "stability": 0.0689,
+        "cohesion": 0.4179,
+        "runtime_ms": 681
+      },
+      "churn": {
+        "hotspot_ratio": 0.1059,
+        "churn_gini": 0.5425,
+        "n_files": 321,
+        "mean_churn": 4.006
+      },
+      "clone_ms": 4569,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "polars",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "pola-rs/polars",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5171,
+        "language": "Python",
+        "nodes": 972,
+        "edges": 4695,
+        "modularity": 0.4119,
+        "acyclicity": 1.0,
+        "stability": 0.1648,
+        "cohesion": 0.4916,
+        "runtime_ms": 530
+      },
+      "churn": {
+        "hotspot_ratio": 0.1063,
+        "churn_gini": 0.4488,
+        "n_files": 931,
+        "mean_churn": 2.333
+      },
+      "clone_ms": 4545,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "pyspark",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "apache/spark",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7132,
+        "language": "Python",
+        "nodes": 2117,
+        "edges": 9177,
+        "modularity": 0.8284,
+        "acyclicity": 1.0,
+        "stability": 0.4296,
+        "cohesion": 0.5949,
+        "runtime_ms": 504
+      },
+      "churn": {
+        "hotspot_ratio": 0.1053,
+        "churn_gini": 0.3939,
+        "n_files": 1016,
+        "mean_churn": 1.924
+      },
+      "clone_ms": 17746,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "litellm",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "BerriAI/litellm",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6089,
+        "language": "Python",
+        "nodes": 3827,
+        "edges": 24371,
+        "modularity": 0.4661,
+        "acyclicity": 0.8815,
+        "stability": 0.7304,
+        "cohesion": 0.3576,
+        "runtime_ms": 871
+      },
+      "churn": {
+        "hotspot_ratio": 0.0507,
+        "churn_gini": 0.3154,
+        "n_files": 986,
+        "mean_churn": 1.837
+      },
+      "clone_ms": 23481,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "pytorch",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "pytorch/pytorch",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7313,
+        "language": "Python",
+        "nodes": 4952,
+        "edges": 31805,
+        "modularity": 0.5832,
+        "acyclicity": 0.934,
+        "stability": 0.8088,
+        "cohesion": 0.5993,
+        "runtime_ms": 1950
+      },
+      "churn": {
+        "hotspot_ratio": 0.1194,
+        "churn_gini": 0.4207,
+        "n_files": 804,
+        "mean_churn": 2.195
+      },
+      "clone_ms": 19219,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "dagster",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "dagster-io/dagster",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5859,
+        "language": "Python",
+        "nodes": 7573,
+        "edges": 31054,
+        "modularity": 0.6715,
+        "acyclicity": 1.0,
+        "stability": 0.1891,
+        "cohesion": 0.4829,
+        "runtime_ms": 1364
+      },
+      "churn": {
+        "hotspot_ratio": 0.0685,
+        "churn_gini": 0.2322,
+        "n_files": 5518,
+        "mean_churn": 1.392
+      },
+      "clone_ms": 16772,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "tensorflow",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "tensorflow/tensorflow",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5871,
+        "language": "Python",
+        "nodes": 3577,
+        "edges": 18896,
+        "modularity": 0.4419,
+        "acyclicity": 1.0,
+        "stability": 0.2735,
+        "cohesion": 0.6328,
+        "runtime_ms": 992
+      },
+      "churn": {
+        "hotspot_ratio": 0.0709,
+        "churn_gini": 0.3211,
+        "n_files": 1184,
+        "mean_churn": 1.655
+      },
+      "clone_ms": 26900,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "beartype",
+      "lang": "Python",
+      "layer": "C",
+      "full_name": "beartype/beartype",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5931,
+        "language": "Python",
+        "nodes": 757,
+        "edges": 3470,
+        "modularity": 0.5381,
+        "acyclicity": 0.7566,
+        "stability": 0.3745,
+        "cohesion": 0.7033,
+        "runtime_ms": 209
+      },
+      "churn": {
+        "hotspot_ratio": 0.128,
+        "churn_gini": 0.5586,
+        "n_files": 953,
+        "mean_churn": 5.579
+      },
+      "clone_ms": 2276,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "jackson-databind",
+      "lang": "Java",
+      "layer": "D",
+      "full_name": "FasterXML/jackson-databind",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.4265,
+        "language": "Java",
+        "nodes": 870,
+        "edges": 4014,
+        "modularity": 0.5594,
+        "acyclicity": 0.7574,
+        "stability": 0.263,
+        "cohesion": 0.1263,
+        "runtime_ms": 300
+      },
+      "churn": {
+        "hotspot_ratio": 0.0366,
+        "churn_gini": 0.5822,
+        "n_files": 246,
+        "mean_churn": 3.533
+      },
+      "clone_ms": 2914,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "gitea",
+      "lang": "Go",
+      "layer": "D",
+      "full_name": "go-gitea/gitea",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8886,
+        "language": "Go",
+        "nodes": 3575,
+        "edges": 20875,
+        "modularity": 0.5944,
+        "acyclicity": 1.0,
+        "stability": 0.9601,
+        "cohesion": 1.0,
+        "runtime_ms": 538
+      },
+      "churn": {
+        "hotspot_ratio": 0.0908,
+        "churn_gini": 0.416,
+        "n_files": 1663,
+        "mean_churn": 2.235
+      },
+      "clone_ms": 5359,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "cilium",
+      "lang": "Go",
+      "layer": "A",
+      "full_name": "cilium/cilium",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7661,
+        "language": "Go",
+        "nodes": 23123,
+        "edges": 91987,
+        "modularity": 0.7741,
+        "acyclicity": 1.0,
+        "stability": 0.2903,
+        "cohesion": 1.0,
+        "runtime_ms": 5095
+      },
+      "churn": {
+        "hotspot_ratio": 0.1035,
+        "churn_gini": 0.2868,
+        "n_files": 3489,
+        "mean_churn": 1.466
+      },
+      "clone_ms": 16157,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "cri-o",
+      "lang": "Go",
+      "layer": "B",
+      "full_name": "cri-o/cri-o",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7319,
+        "language": "Go",
+        "nodes": 10030,
+        "edges": 30228,
+        "modularity": 0.4798,
+        "acyclicity": 1.0,
+        "stability": 0.4479,
+        "cohesion": 1.0,
+        "runtime_ms": 1712
+      },
+      "churn": {
+        "hotspot_ratio": 0.0745,
+        "churn_gini": 0.273,
+        "n_files": 5406,
+        "mean_churn": 1.464
+      },
+      "clone_ms": 8209,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "odoo",
+      "lang": "Python",
+      "layer": "D",
+      "full_name": "odoo/odoo",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7103,
+        "language": "Python",
+        "nodes": 7296,
+        "edges": 20120,
+        "modularity": 0.3764,
+        "acyclicity": 0.9997,
+        "stability": 0.885,
+        "cohesion": 0.58,
+        "runtime_ms": 1550
+      },
+      "churn": {
+        "hotspot_ratio": 0.0568,
+        "churn_gini": 0.1949,
+        "n_files": 3378,
+        "mean_churn": 1.341
+      },
+      "clone_ms": 31391,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "tidb",
+      "lang": "Go",
+      "layer": "D",
+      "full_name": "pingcap/tidb",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7072,
+        "language": "Go",
+        "nodes": 5145,
+        "edges": 42455,
+        "modularity": 0.5486,
+        "acyclicity": 1.0,
+        "stability": 0.2801,
+        "cohesion": 1.0,
+        "runtime_ms": 3552
+      },
+      "churn": {
+        "hotspot_ratio": 0.0802,
+        "churn_gini": 0.4108,
+        "n_files": 1110,
+        "mean_churn": 2.1
+      },
+      "clone_ms": 10407,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "nextjs",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "vercel/next.js",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.785,
+        "language": "Python",
+        "nodes": 5,
+        "edges": 4,
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 1.0,
+        "runtime_ms": 388
+      },
+      "churn": {
+        "hotspot_ratio": 0.09,
+        "churn_gini": 0.5855,
+        "n_files": 1289,
+        "mean_churn": 3.116
+      },
+      "clone_ms": 13244,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "cockroach",
+      "lang": "Go",
+      "layer": "D",
+      "full_name": "cockroachdb/cockroach",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8246,
+        "language": "Python",
+        "nodes": 50,
+        "edges": 62,
+        "modularity": 0.732,
+        "acyclicity": 1.0,
+        "stability": 0.5663,
+        "cohesion": 1.0,
+        "runtime_ms": 234
+      },
+      "churn": {
+        "hotspot_ratio": 0.0913,
+        "churn_gini": 0.2381,
+        "n_files": 668,
+        "mean_churn": 1.38
+      },
+      "clone_ms": 24813,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "oxc",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "oxc-project/oxc",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 222
+      },
+      "churn": {
+        "hotspot_ratio": 0.0952,
+        "churn_gini": 0.4411,
+        "n_files": 1323,
+        "mean_churn": 2.09
+      },
+      "clone_ms": 6451,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "biome",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "biomejs/biome",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 263
+      },
+      "churn": {
+        "hotspot_ratio": 0.0749,
+        "churn_gini": 0.5018,
+        "n_files": 1602,
+        "mean_churn": 2.735
+      },
+      "clone_ms": 9363,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "astro",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "withastro/astro",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 196
+      },
+      "churn": {
+        "hotspot_ratio": 0.0752,
+        "churn_gini": 0.523,
+        "n_files": 1210,
+        "mean_churn": 3.203
+      },
+      "clone_ms": 4756,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "storybook",
+      "lang": "TypeScript",
+      "layer": "D",
+      "full_name": "storybookjs/storybook",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 195
+      },
+      "churn": {
+        "hotspot_ratio": 0.0701,
+        "churn_gini": 0.3249,
+        "n_files": 2239,
+        "mean_churn": 1.653
+      },
+      "clone_ms": 7279,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "remix",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "remix-run/remix",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 215
+      },
+      "churn": {
+        "hotspot_ratio": 0.0928,
+        "churn_gini": 0.4616,
+        "n_files": 1574,
+        "mean_churn": 3.102
+      },
+      "clone_ms": 2531,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "vercel-ai",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "vercel/ai",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7655,
+        "language": "Python",
+        "nodes": 13,
+        "edges": 13,
+        "modularity": 0.7022,
+        "acyclicity": 1.0,
+        "stability": 0.36,
+        "cohesion": 1.0,
+        "runtime_ms": 201
+      },
+      "churn": {
+        "hotspot_ratio": 0.0541,
+        "churn_gini": 0.6825,
+        "n_files": 3029,
+        "mean_churn": 3.741
+      },
+      "clone_ms": 4874,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "playwright",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "microsoft/playwright",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6181,
+        "language": "Java",
+        "nodes": 17,
+        "edges": 16,
+        "modularity": 0.6667,
+        "acyclicity": 1.0,
+        "stability": 0.5556,
+        "cohesion": 0.25,
+        "runtime_ms": 163
+      },
+      "churn": {
+        "hotspot_ratio": 0.1112,
+        "churn_gini": 0.5107,
+        "n_files": 1142,
+        "mean_churn": 3.331
+      },
+      "clone_ms": 4319,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "elizaos",
+      "lang": "TypeScript",
+      "layer": "D",
+      "full_name": "elizaOS/eliza",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6292,
+        "language": "Python",
+        "nodes": 321,
+        "edges": 872,
+        "modularity": 0.7697,
+        "acyclicity": 1.0,
+        "stability": 0.3306,
+        "cohesion": 0.4167,
+        "runtime_ms": 216
+      },
+      "churn": {
+        "hotspot_ratio": 0.0701,
+        "churn_gini": 0.3104,
+        "n_files": 12353,
+        "mean_churn": 1.498
+      },
+      "clone_ms": 2747,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "mastra",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "mastra-ai/mastra",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 223
+      },
+      "churn": {
+        "hotspot_ratio": 0.0514,
+        "churn_gini": 0.5445,
+        "n_files": 3149,
+        "mean_churn": 2.714
+      },
+      "clone_ms": 10259,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "freecodecamp",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "freeCodeCamp/freeCodeCamp",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 270
+      },
+      "churn": {
+        "hotspot_ratio": 0.0596,
+        "churn_gini": 0.2777,
+        "n_files": 3357,
+        "mean_churn": 1.491
+      },
+      "clone_ms": 7639,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "openclaw",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "openclaw/openclaw",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7361,
+        "language": "Python",
+        "nodes": 28,
+        "edges": 40,
+        "modularity": 0.555,
+        "acyclicity": 1.0,
+        "stability": 0.4726,
+        "cohesion": 0.9167,
+        "runtime_ms": 200
+      },
+      "churn": {
+        "hotspot_ratio": 0.0758,
+        "churn_gini": 0.3431,
+        "n_files": 1306,
+        "mean_churn": 1.654
+      },
+      "clone_ms": 6927,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "react",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "facebook/react",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 206
+      },
+      "churn": {
+        "hotspot_ratio": 0.0781,
+        "churn_gini": 0.3863,
+        "n_files": 2152,
+        "mean_churn": 1.914
+      },
+      "clone_ms": 5079,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "flyway",
+      "lang": "Java",
+      "layer": "B",
+      "full_name": "flyway/flyway",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.4495,
+        "language": "Java",
+        "nodes": 1202,
+        "edges": 5344,
+        "modularity": 0.5981,
+        "acyclicity": 0.8629,
+        "stability": 0.0909,
+        "cohesion": 0.2461,
+        "runtime_ms": 341
+      },
+      "churn": {
+        "hotspot_ratio": 0.0917,
+        "churn_gini": 0.6043,
+        "n_files": 3305,
+        "mean_churn": 5.743
+      },
+      "clone_ms": 2693,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "opencode",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "anomalyco/opencode",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 188
+      },
+      "churn": {
+        "hotspot_ratio": 0.0947,
+        "churn_gini": 0.5413,
+        "n_files": 771,
+        "mean_churn": 3.279
+      },
+      "clone_ms": 6265,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "vscode",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "microsoft/vscode",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7471,
+        "language": "Python",
+        "nodes": 105,
+        "edges": 55,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 0.284,
+        "cohesion": 0.7045,
+        "runtime_ms": 206
+      },
+      "churn": {
+        "hotspot_ratio": 0.1058,
+        "churn_gini": 0.4098,
+        "n_files": 690,
+        "mean_churn": 2.174
+      },
+      "clone_ms": 11670,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "flutter",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "flutter/flutter",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5649,
+        "language": "Python",
+        "nodes": 178,
+        "edges": 523,
+        "modularity": 0.3416,
+        "acyclicity": 1.0,
+        "stability": 0.0513,
+        "cohesion": 0.8667,
+        "runtime_ms": 293
+      },
+      "churn": {
+        "hotspot_ratio": 0.0274,
+        "churn_gini": 0.333,
+        "n_files": 1276,
+        "mean_churn": 1.629
+      },
+      "clone_ms": 14608,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "n8n",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "n8n-io/n8n",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5404,
+        "language": "Python",
+        "nodes": 131,
+        "edges": 226,
+        "modularity": 0.6209,
+        "acyclicity": 1.0,
+        "stability": 0.1142,
+        "cohesion": 0.4265,
+        "runtime_ms": 263
+      },
+      "churn": {
+        "hotspot_ratio": 0.0541,
+        "churn_gini": 0.2877,
+        "n_files": 3233,
+        "mean_churn": 1.531
+      },
+      "clone_ms": 9536,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "autogpt",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "Significant-Gravitas/AutoGPT",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5201,
+        "language": "Python",
+        "nodes": 1690,
+        "edges": 6551,
+        "modularity": 0.6013,
+        "acyclicity": 1.0,
+        "stability": 0.057,
+        "cohesion": 0.4223,
+        "runtime_ms": 447
+      },
+      "churn": {
+        "hotspot_ratio": 0.0576,
+        "churn_gini": 0.327,
+        "n_files": 4096,
+        "mean_churn": 1.552
+      },
+      "clone_ms": 6112,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "langflow",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "langflow-ai/langflow",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.55,
+        "language": "Python",
+        "nodes": 2605,
+        "edges": 9346,
+        "modularity": 0.7325,
+        "acyclicity": 1.0,
+        "stability": 0.1217,
+        "cohesion": 0.3459,
+        "runtime_ms": 398
+      },
+      "churn": {
+        "hotspot_ratio": 0.0701,
+        "churn_gini": 0.5573,
+        "n_files": 1469,
+        "mean_churn": 3.119
+      },
+      "clone_ms": 10216,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "next.js",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "vercel/next.js",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.785,
+        "language": "Python",
+        "nodes": 5,
+        "edges": 4,
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 1.0,
+        "runtime_ms": 359
+      },
+      "churn": {
+        "hotspot_ratio": 0.09,
+        "churn_gini": 0.5855,
+        "n_files": 1289,
+        "mean_churn": 3.116
+      },
+      "clone_ms": 12416,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "go",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "golang/go",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7763,
+        "language": "Go",
+        "nodes": 11994,
+        "edges": 29730,
+        "modularity": 0.4794,
+        "acyclicity": 1.0,
+        "stability": 0.6258,
+        "cohesion": 1.0,
+        "runtime_ms": 2298
+      },
+      "churn": {
+        "hotspot_ratio": 0.0655,
+        "churn_gini": 0.3185,
+        "n_files": 885,
+        "mean_churn": 1.606
+      },
+      "clone_ms": 10918,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "react-native",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "facebook/react-native",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6739,
+        "language": "Python",
+        "nodes": 66,
+        "edges": 75,
+        "modularity": 0.8148,
+        "acyclicity": 1.0,
+        "stability": 0.1536,
+        "cohesion": 0.7273,
+        "runtime_ms": 216
+      },
+      "churn": {
+        "hotspot_ratio": 0.0685,
+        "churn_gini": 0.4124,
+        "n_files": 1328,
+        "mean_churn": 1.858
+      },
+      "clone_ms": 6686,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "kubernetes",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "kubernetes/kubernetes",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6547,
+        "language": "Go",
+        "nodes": 20552,
+        "edges": 103719,
+        "modularity": 0.5122,
+        "acyclicity": 1.0,
+        "stability": 0.1067,
+        "cohesion": 1.0,
+        "runtime_ms": 4735
+      },
+      "churn": {
+        "hotspot_ratio": 0.1161,
+        "churn_gini": 0.2804,
+        "n_files": 1318,
+        "mean_churn": 1.47
+      },
+      "clone_ms": 16547,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "dify",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "langgenius/dify",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5459,
+        "language": "Python",
+        "nodes": 3952,
+        "edges": 19140,
+        "modularity": 0.6323,
+        "acyclicity": 1.0,
+        "stability": 0.1738,
+        "cohesion": 0.3775,
+        "runtime_ms": 969
+      },
+      "churn": {
+        "hotspot_ratio": 0.0487,
+        "churn_gini": 0.28,
+        "n_files": 3942,
+        "mean_churn": 1.526
+      },
+      "clone_ms": 8925,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "rust",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "rust-lang/rust",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6654,
+        "language": "Python",
+        "nodes": 100,
+        "edges": 176,
+        "modularity": 0.5433,
+        "acyclicity": 1.0,
+        "stability": 0.4952,
+        "cohesion": 0.623,
+        "runtime_ms": 339
+      },
+      "churn": {
+        "hotspot_ratio": 0.0601,
+        "churn_gini": 0.2841,
+        "n_files": 566,
+        "mean_churn": 1.549
+      },
+      "clone_ms": 20900,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "deno",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "denoland/deno",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 265
+      },
+      "churn": {
+        "hotspot_ratio": 0.1152,
+        "churn_gini": 0.5175,
+        "n_files": 1172,
+        "mean_churn": 2.769
+      },
+      "clone_ms": 9984,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "gemini-cli",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "google-gemini/gemini-cli",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 189
+      },
+      "churn": {
+        "hotspot_ratio": 0.0935,
+        "churn_gini": 0.4666,
+        "n_files": 1391,
+        "mean_churn": 2.664
+      },
+      "clone_ms": 4454,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "godot",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "godotengine/godot",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7062,
+        "language": "Python",
+        "nodes": 190,
+        "edges": 326,
+        "modularity": 0.3897,
+        "acyclicity": 0.9843,
+        "stability": 0.5967,
+        "cohesion": 0.8542,
+        "runtime_ms": 219
+      },
+      "churn": {
+        "hotspot_ratio": 0.0332,
+        "churn_gini": 0.1323,
+        "n_files": 1895,
+        "mean_churn": 1.166
+      },
+      "clone_ms": 26303,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "immich",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "immich-app/immich",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5587,
+        "language": "Python",
+        "nodes": 122,
+        "edges": 238,
+        "modularity": 0.5421,
+        "acyclicity": 1.0,
+        "stability": 0.2929,
+        "cohesion": 0.4,
+        "runtime_ms": 162
+      },
+      "churn": {
+        "hotspot_ratio": 0.0815,
+        "churn_gini": 0.4335,
+        "n_files": 1240,
+        "mean_churn": 2.152
+      },
+      "clone_ms": 7106,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "angular",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "angular/angular",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 203
+      },
+      "churn": {
+        "hotspot_ratio": 0.084,
+        "churn_gini": 0.5136,
+        "n_files": 1226,
+        "mean_churn": 2.462
+      },
+      "clone_ms": 9979,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "material-ui",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "mui/material-ui",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 328
+      },
+      "churn": {
+        "hotspot_ratio": 0.0234,
+        "churn_gini": 0.115,
+        "n_files": 26710,
+        "mean_churn": 1.134
+      },
+      "clone_ms": 20954,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "node",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "nodejs/node",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6659,
+        "language": "Python",
+        "nodes": 795,
+        "edges": 2302,
+        "modularity": 0.4166,
+        "acyclicity": 1.0,
+        "stability": 0.6513,
+        "cohesion": 0.5957,
+        "runtime_ms": 411
+      },
+      "churn": {
+        "hotspot_ratio": 0.1483,
+        "churn_gini": 0.3819,
+        "n_files": 1645,
+        "mean_churn": 2.031
+      },
+      "clone_ms": 51677,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "bun",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "oven-sh/bun",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.691,
+        "language": "Python",
+        "nodes": 32,
+        "edges": 40,
+        "modularity": 0.7983,
+        "acyclicity": 1.0,
+        "stability": 0.6213,
+        "cohesion": 0.3443,
+        "runtime_ms": 209
+      },
+      "churn": {
+        "hotspot_ratio": 0.0755,
+        "churn_gini": 0.4001,
+        "n_files": 1059,
+        "mean_churn": 2.004
+      },
+      "clone_ms": 11761,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "supabase",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "supabase/supabase",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6992,
+        "language": "Python",
+        "nodes": 12,
+        "edges": 12,
+        "modularity": 0.6667,
+        "acyclicity": 1.0,
+        "stability": 0.3802,
+        "cohesion": 0.75,
+        "runtime_ms": 253
+      },
+      "churn": {
+        "hotspot_ratio": 0.0832,
+        "churn_gini": 0.2541,
+        "n_files": 4124,
+        "mean_churn": 1.44
+      },
+      "clone_ms": 30265,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "linux",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "torvalds/linux",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6703,
+        "language": "Python",
+        "nodes": 606,
+        "edges": 1564,
+        "modularity": 0.6282,
+        "acyclicity": 1.0,
+        "stability": 0.4303,
+        "cohesion": 0.6225,
+        "runtime_ms": 1059
+      },
+      "churn": {
+        "hotspot_ratio": 0.0529,
+        "churn_gini": 0.1886,
+        "n_files": 397,
+        "mean_churn": 1.272
+      },
+      "clone_ms": 40947,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "uv",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "astral-sh/uv",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7436,
+        "language": "Python",
+        "nodes": 122,
+        "edges": 254,
+        "modularity": 0.5539,
+        "acyclicity": 1.0,
+        "stability": 0.8545,
+        "cohesion": 0.5658,
+        "runtime_ms": 208
+      },
+      "churn": {
+        "hotspot_ratio": 0.2939,
+        "churn_gini": 0.548,
+        "n_files": 507,
+        "mean_churn": 8.197
+      },
+      "clone_ms": 5001,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "puppeteer",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "puppeteer/puppeteer",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 182
+      },
+      "churn": {
+        "hotspot_ratio": 0.0038,
+        "churn_gini": 0.0537,
+        "n_files": 27923,
+        "mean_churn": 1.057
+      },
+      "clone_ms": 3338,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "core",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "home-assistant/core",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5637,
+        "language": "Python",
+        "nodes": 18070,
+        "edges": 110181,
+        "modularity": 0.5455,
+        "acyclicity": 1.0,
+        "stability": 0.0764,
+        "cohesion": 0.6329,
+        "runtime_ms": 5801
+      },
+      "churn": {
+        "hotspot_ratio": 0.066,
+        "churn_gini": 0.2958,
+        "n_files": 939,
+        "mean_churn": 1.462
+      },
+      "clone_ms": 15758,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "zed",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "zed-industries/zed",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7562,
+        "language": "Python",
+        "nodes": 36,
+        "edges": 56,
+        "modularity": 0.5967,
+        "acyclicity": 1.0,
+        "stability": 0.8448,
+        "cohesion": 0.5833,
+        "runtime_ms": 201
+      },
+      "churn": {
+        "hotspot_ratio": 0.0801,
+        "churn_gini": 0.472,
+        "n_files": 1299,
+        "mean_churn": 2.314
+      },
+      "clone_ms": 9063,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "netdata",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "netdata/netdata",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6259,
+        "language": "Python",
+        "nodes": 188,
+        "edges": 288,
+        "modularity": 0.6409,
+        "acyclicity": 1.0,
+        "stability": 0.3079,
+        "cohesion": 0.5549,
+        "runtime_ms": 233
+      },
+      "churn": {
+        "hotspot_ratio": 0.1463,
+        "churn_gini": 0.4158,
+        "n_files": 3056,
+        "mean_churn": 2.312
+      },
+      "clone_ms": 8423,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "ragflow",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "infiniflow/ragflow",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6354,
+        "language": "Python",
+        "nodes": 1116,
+        "edges": 5059,
+        "modularity": 0.7493,
+        "acyclicity": 0.9823,
+        "stability": 0.3276,
+        "cohesion": 0.4824,
+        "runtime_ms": 293
+      },
+      "churn": {
+        "hotspot_ratio": 0.1344,
+        "churn_gini": 0.4711,
+        "n_files": 1347,
+        "mean_churn": 2.48
+      },
+      "clone_ms": 6615,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "vllm",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "vllm-project/vllm",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6841,
+        "language": "Python",
+        "nodes": 3406,
+        "edges": 24031,
+        "modularity": 0.6792,
+        "acyclicity": 0.8815,
+        "stability": 0.5791,
+        "cohesion": 0.5968,
+        "runtime_ms": 1038
+      },
+      "churn": {
+        "hotspot_ratio": 0.1032,
+        "churn_gini": 0.3664,
+        "n_files": 1017,
+        "mean_churn": 1.898
+      },
+      "clone_ms": 6683,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "stirling-pdf",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "Stirling-Tools/Stirling-PDF",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5053,
+        "language": "Java",
+        "nodes": 1660,
+        "edges": 8000,
+        "modularity": 0.7045,
+        "acyclicity": 0.9968,
+        "stability": 0.1128,
+        "cohesion": 0.2068,
+        "runtime_ms": 291
+      },
+      "churn": {
+        "hotspot_ratio": 0.0753,
+        "churn_gini": 0.4826,
+        "n_files": 2098,
+        "mean_churn": 2.525
+      },
+      "clone_ms": 9896,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "union",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "unionlabs/union",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.757,
+        "language": "Go",
+        "nodes": 378,
+        "edges": 918,
+        "modularity": 0.721,
+        "acyclicity": 1.0,
+        "stability": 0.3072,
+        "cohesion": 1.0,
+        "runtime_ms": 257
+      },
+      "churn": {
+        "hotspot_ratio": 0.088,
+        "churn_gini": 0.4184,
+        "n_files": 1079,
+        "mean_churn": 2.148
+      },
+      "clone_ms": 5068,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "lobehub",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "lobehub/lobehub",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 229
+      },
+      "churn": {
+        "hotspot_ratio": 0.087,
+        "churn_gini": 0.3824,
+        "n_files": 3908,
+        "mean_churn": 1.932
+      },
+      "clone_ms": 7698,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "superset",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "apache/superset",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6094,
+        "language": "Python",
+        "nodes": 2053,
+        "edges": 12325,
+        "modularity": 0.5678,
+        "acyclicity": 0.9518,
+        "stability": 0.4249,
+        "cohesion": 0.493,
+        "runtime_ms": 831
+      },
+      "churn": {
+        "hotspot_ratio": 0.0476,
+        "churn_gini": 0.3388,
+        "n_files": 1997,
+        "mean_churn": 1.6
+      },
+      "clone_ms": 15531,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "codex",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "openai/codex",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7094,
+        "language": "Python",
+        "nodes": 143,
+        "edges": 398,
+        "modularity": 0.7274,
+        "acyclicity": 1.0,
+        "stability": 0.4947,
+        "cohesion": 0.6154,
+        "runtime_ms": 178
+      },
+      "churn": {
+        "hotspot_ratio": 0.0662,
+        "churn_gini": 0.4261,
+        "n_files": 2431,
+        "mean_churn": 2.531
+      },
+      "clone_ms": 4939,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "grafana",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "grafana/grafana",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6739,
+        "language": "Go",
+        "nodes": 7587,
+        "edges": 44057,
+        "modularity": 0.5368,
+        "acyclicity": 1.0,
+        "stability": 0.1587,
+        "cohesion": 1.0,
+        "runtime_ms": 1172
+      },
+      "churn": {
+        "hotspot_ratio": 0.064,
+        "churn_gini": 0.3488,
+        "n_files": 1905,
+        "mean_churn": 1.677
+      },
+      "clone_ms": 15684,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "convex-backend",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "get-convex/convex-backend",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8015,
+        "language": "Python",
+        "nodes": 30,
+        "edges": 43,
+        "modularity": 0.7824,
+        "acyclicity": 1.0,
+        "stability": 0.6735,
+        "cohesion": 0.75,
+        "runtime_ms": 189
+      },
+      "churn": {
+        "hotspot_ratio": 0.0798,
+        "churn_gini": 0.3543,
+        "n_files": 2030,
+        "mean_churn": 1.749
+      },
+      "clone_ms": 9951,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "kilocode",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "Kilo-Org/kilocode",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.825,
+        "language": "Python",
+        "nodes": 4,
+        "edges": 1,
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.8,
+        "cohesion": 1.0,
+        "runtime_ms": 153
+      },
+      "churn": {
+        "hotspot_ratio": 0.1286,
+        "churn_gini": 0.509,
+        "n_files": 490,
+        "mean_churn": 2.767
+      },
+      "clone_ms": 16241,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "sentry",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "getsentry/sentry",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6302,
+        "language": "Python",
+        "nodes": 10619,
+        "edges": 62508,
+        "modularity": 0.6731,
+        "acyclicity": 1.0,
+        "stability": 0.2219,
+        "cohesion": 0.626,
+        "runtime_ms": 1591
+      },
+      "churn": {
+        "hotspot_ratio": 0.0815,
+        "churn_gini": 0.2382,
+        "n_files": 2183,
+        "mean_churn": 1.387
+      },
+      "clone_ms": 16442,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "gradle",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "gradle/gradle",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6532,
+        "language": "Java",
+        "nodes": 13422,
+        "edges": 73943,
+        "modularity": 0.6423,
+        "acyclicity": 0.9954,
+        "stability": 0.6946,
+        "cohesion": 0.2805,
+        "runtime_ms": 2126
+      },
+      "churn": {
+        "hotspot_ratio": 0.0449,
+        "churn_gini": 0.1782,
+        "n_files": 1581,
+        "mean_churn": 1.245
+      },
+      "clone_ms": 14592,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "web-dev-for-beginners",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "microsoft/Web-Dev-For-Beginners",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8097,
+        "language": "Python",
+        "nodes": 17,
+        "edges": 18,
+        "modularity": 0.749,
+        "acyclicity": 1.0,
+        "stability": 0.4898,
+        "cohesion": 1.0,
+        "runtime_ms": 278
+      },
+      "churn": {
+        "hotspot_ratio": 0.061,
+        "churn_gini": 0.2721,
+        "n_files": 29368,
+        "mean_churn": 1.619
+      },
+      "clone_ms": 50745,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "ml-for-beginners",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "microsoft/ML-For-Beginners",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7997,
+        "language": "Python",
+        "nodes": 28,
+        "edges": 53,
+        "modularity": 0.8098,
+        "acyclicity": 1.0,
+        "stability": 0.8889,
+        "cohesion": 0.5,
+        "runtime_ms": 240
+      },
+      "churn": {
+        "hotspot_ratio": 0.0529,
+        "churn_gini": 0.2234,
+        "n_files": 35491,
+        "mean_churn": 1.866
+      },
+      "clone_ms": 36943,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "nx",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "nrwl/nx",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 263
+      },
+      "churn": {
+        "hotspot_ratio": 0.0753,
+        "churn_gini": 0.2581,
+        "n_files": 3318,
+        "mean_churn": 1.398
+      },
+      "clone_ms": 24414,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "sdk",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "dart-lang/sdk",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6884,
+        "language": "Python",
+        "nodes": 290,
+        "edges": 781,
+        "modularity": 0.4049,
+        "acyclicity": 1.0,
+        "stability": 0.8382,
+        "cohesion": 0.5105,
+        "runtime_ms": 296
+      },
+      "churn": {
+        "hotspot_ratio": 0.0566,
+        "churn_gini": 0.2043,
+        "n_files": 4431,
+        "mean_churn": 1.295
+      },
+      "clone_ms": 25652,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "termux-packages",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "termux/termux-packages",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9433,
+        "language": "Python",
+        "nodes": 16,
+        "edges": 15,
+        "modularity": 0.8356,
+        "acyclicity": 1.0,
+        "stability": 0.9375,
+        "cohesion": 1.0,
+        "runtime_ms": 244
+      },
+      "churn": {
+        "hotspot_ratio": 0.0651,
+        "churn_gini": 0.2242,
+        "n_files": 461,
+        "mean_churn": 1.334
+      },
+      "clone_ms": 3374,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "nixpkgs",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "NixOS/nixpkgs",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5407,
+        "language": "Python",
+        "nodes": 503,
+        "edges": 1562,
+        "modularity": 0.3318,
+        "acyclicity": 1.0,
+        "stability": 0.2378,
+        "cohesion": 0.5931,
+        "runtime_ms": 642
+      },
+      "churn": {
+        "hotspot_ratio": 0.0453,
+        "churn_gini": 0.2213,
+        "n_files": 243,
+        "mean_churn": 1.309
+      },
+      "clone_ms": 12169,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "adk-python",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "google/adk-python",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5431,
+        "language": "Python",
+        "nodes": 1735,
+        "edges": 6260,
+        "modularity": 0.6416,
+        "acyclicity": 1.0,
+        "stability": 0.0933,
+        "cohesion": 0.4373,
+        "runtime_ms": 350
+      },
+      "churn": {
+        "hotspot_ratio": 0.0776,
+        "churn_gini": 0.4099,
+        "n_files": 1018,
+        "mean_churn": 2.016
+      },
+      "clone_ms": 4612,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "fiftyone",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "voxel51/fiftyone",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6469,
+        "language": "Python",
+        "nodes": 760,
+        "edges": 3487,
+        "modularity": 0.6658,
+        "acyclicity": 0.9957,
+        "stability": 0.3653,
+        "cohesion": 0.5607,
+        "runtime_ms": 402
+      },
+      "churn": {
+        "hotspot_ratio": 0.1154,
+        "churn_gini": 0.4302,
+        "n_files": 615,
+        "mean_churn": 2.483
+      },
+      "clone_ms": 50212,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "chroma",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "chroma-core/chroma",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5876,
+        "language": "Python",
+        "nodes": 349,
+        "edges": 1544,
+        "modularity": 0.6061,
+        "acyclicity": 0.9798,
+        "stability": 0.4046,
+        "cohesion": 0.3601,
+        "runtime_ms": 237
+      },
+      "churn": {
+        "hotspot_ratio": 0.0897,
+        "churn_gini": 0.432,
+        "n_files": 1617,
+        "mean_churn": 2.964
+      },
+      "clone_ms": 5640,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "servo",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "servo/servo",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5833,
+        "language": "Python",
+        "nodes": 3443,
+        "edges": 8302,
+        "modularity": 0.5837,
+        "acyclicity": 1.0,
+        "stability": 0.1935,
+        "cohesion": 0.5557,
+        "runtime_ms": 822
+      },
+      "churn": {
+        "hotspot_ratio": 0.0992,
+        "churn_gini": 0.4848,
+        "n_files": 1028,
+        "mean_churn": 2.589
+      },
+      "clone_ms": 42762,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "actual",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "actualbudget/actual",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 180
+      },
+      "churn": {
+        "hotspot_ratio": 0.0964,
+        "churn_gini": 0.4004,
+        "n_files": 3443,
+        "mean_churn": 2.26
+      },
+      "clone_ms": 5357,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "llvm-project",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "llvm/llvm-project",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6611,
+        "language": "Python",
+        "nodes": 3251,
+        "edges": 10341,
+        "modularity": 0.3709,
+        "acyclicity": 1.0,
+        "stability": 0.5762,
+        "cohesion": 0.6972,
+        "runtime_ms": 718
+      },
+      "churn": {
+        "hotspot_ratio": 0.0924,
+        "churn_gini": 0.2222,
+        "n_files": 1006,
+        "mean_churn": 1.343
+      },
+      "clone_ms": 48536,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "owncast",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "owncast/owncast",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8365,
+        "language": "Go",
+        "nodes": 460,
+        "edges": 1522,
+        "modularity": 0.466,
+        "acyclicity": 1.0,
+        "stability": 0.88,
+        "cohesion": 1.0,
+        "runtime_ms": 224
+      },
+      "churn": {
+        "hotspot_ratio": 0.0422,
+        "churn_gini": 0.8313,
+        "n_files": 782,
+        "mean_churn": 8.026
+      },
+      "clone_ms": 5763,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "firefox-ios",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "mozilla-mobile/firefox-ios",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7541,
+        "language": "Python",
+        "nodes": 132,
+        "edges": 214,
+        "modularity": 0.6588,
+        "acyclicity": 1.0,
+        "stability": 0.6077,
+        "cohesion": 0.75,
+        "runtime_ms": 199
+      },
+      "churn": {
+        "hotspot_ratio": 0.0939,
+        "churn_gini": 0.3867,
+        "n_files": 2130,
+        "mean_churn": 1.885
+      },
+      "clone_ms": 14578,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "dagger",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "dagger/dagger",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8372,
+        "language": "Go",
+        "nodes": 2290,
+        "edges": 10811,
+        "modularity": 0.6596,
+        "acyclicity": 1.0,
+        "stability": 0.6894,
+        "cohesion": 1.0,
+        "runtime_ms": 467
+      },
+      "churn": {
+        "hotspot_ratio": 0.1182,
+        "churn_gini": 0.5118,
+        "n_files": 1785,
+        "mean_churn": 3.161
+      },
+      "clone_ms": 6629,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "presto",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "prestodb/presto",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.4936,
+        "language": "Java",
+        "nodes": 15608,
+        "edges": 97379,
+        "modularity": 0.6767,
+        "acyclicity": 0.997,
+        "stability": 0.0846,
+        "cohesion": 0.216,
+        "runtime_ms": 2650
+      },
+      "churn": {
+        "hotspot_ratio": 0.1005,
+        "churn_gini": 0.4468,
+        "n_files": 1214,
+        "mean_churn": 2.339
+      },
+      "clone_ms": 11952,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "appwrite",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "appwrite/appwrite",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 172
+      },
+      "churn": {
+        "hotspot_ratio": 0.118,
+        "churn_gini": 0.4777,
+        "n_files": 339,
+        "mean_churn": 2.932
+      },
+      "clone_ms": 6638,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "kotlin",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "JetBrains/kotlin",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5813,
+        "language": "Java",
+        "nodes": 4426,
+        "edges": 7589,
+        "modularity": 0.7777,
+        "acyclicity": 0.9979,
+        "stability": 0.357,
+        "cohesion": 0.1927,
+        "runtime_ms": 938
+      },
+      "churn": {
+        "hotspot_ratio": 0.0122,
+        "churn_gini": 0.1314,
+        "n_files": 14353,
+        "mean_churn": 1.179
+      },
+      "clone_ms": 38281,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "onyx",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "onyx-dot-app/onyx",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6925,
+        "language": "Go",
+        "nodes": 172,
+        "edges": 523,
+        "modularity": 0.5887,
+        "acyclicity": 1.0,
+        "stability": 0.1814,
+        "cohesion": 1.0,
+        "runtime_ms": 258
+      },
+      "churn": {
+        "hotspot_ratio": 0.0782,
+        "churn_gini": 0.3878,
+        "n_files": 1457,
+        "mean_churn": 2.027
+      },
+      "clone_ms": 6975,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "ghost",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "TryGhost/Ghost",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 179
+      },
+      "churn": {
+        "hotspot_ratio": 0.1056,
+        "churn_gini": 0.4518,
+        "n_files": 1316,
+        "mean_churn": 2.307
+      },
+      "clone_ms": 6190,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "clickhouse",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "ClickHouse/ClickHouse",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6191,
+        "language": "Python",
+        "nodes": 1641,
+        "edges": 6498,
+        "modularity": 0.6224,
+        "acyclicity": 1.0,
+        "stability": 0.3094,
+        "cohesion": 0.5445,
+        "runtime_ms": 619
+      },
+      "churn": null,
+      "clone_ms": 24492,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "mlflow",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "mlflow/mlflow",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7067,
+        "language": "Python",
+        "nodes": 4846,
+        "edges": 33049,
+        "modularity": 0.5925,
+        "acyclicity": 0.9578,
+        "stability": 0.7242,
+        "cohesion": 0.5524,
+        "runtime_ms": 921
+      },
+      "churn": {
+        "hotspot_ratio": 0.0812,
+        "churn_gini": 0.3738,
+        "n_files": 1158,
+        "mean_churn": 1.826
+      },
+      "clone_ms": 19873,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "mongo",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "mongodb/mongo",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7433,
+        "language": "Python",
+        "nodes": 2418,
+        "edges": 8977,
+        "modularity": 0.6668,
+        "acyclicity": 0.9978,
+        "stability": 0.6375,
+        "cohesion": 0.6713,
+        "runtime_ms": 702
+      },
+      "churn": {
+        "hotspot_ratio": 0.0882,
+        "churn_gini": 0.2443,
+        "n_files": 2562,
+        "mean_churn": 1.393
+      },
+      "clone_ms": 45410,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "metabase",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "metabase/metabase",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.4974,
+        "language": "Python",
+        "nodes": 8,
+        "edges": 7,
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.4898,
+        "cohesion": 0.0,
+        "runtime_ms": 257
+      },
+      "churn": {
+        "hotspot_ratio": 0.0978,
+        "churn_gini": 0.2495,
+        "n_files": 5379,
+        "mean_churn": 1.451
+      },
+      "clone_ms": 16946,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "spacetimedb",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "clockworklabs/SpacetimeDB",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7366,
+        "language": "Python",
+        "nodes": 76,
+        "edges": 111,
+        "modularity": 0.4672,
+        "acyclicity": 1.0,
+        "stability": 0.7615,
+        "cohesion": 0.7177,
+        "runtime_ms": 204
+      },
+      "churn": {
+        "hotspot_ratio": 0.085,
+        "churn_gini": 0.4306,
+        "n_files": 3365,
+        "mean_churn": 2.226
+      },
+      "clone_ms": 5965,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "teleport",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "gravitational/teleport",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.719,
+        "language": "Go",
+        "nodes": 7336,
+        "edges": 54274,
+        "modularity": 0.477,
+        "acyclicity": 1.0,
+        "stability": 0.3992,
+        "cohesion": 1.0,
+        "runtime_ms": 1995
+      },
+      "churn": {
+        "hotspot_ratio": 0.0611,
+        "churn_gini": 0.3275,
+        "n_files": 1949,
+        "mean_churn": 1.626
+      },
+      "clone_ms": 18145,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "goose",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "aaif-goose/goose",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7616,
+        "language": "Python",
+        "nodes": 60,
+        "edges": 94,
+        "modularity": 0.6703,
+        "acyclicity": 1.0,
+        "stability": 0.6488,
+        "cohesion": 0.7273,
+        "runtime_ms": 180
+      },
+      "churn": {
+        "hotspot_ratio": 0.1045,
+        "churn_gini": 0.4484,
+        "n_files": 1139,
+        "mean_churn": 2.435
+      },
+      "clone_ms": 29813,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "twenty",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "twentyhq/twenty",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5421,
+        "language": "Python",
+        "nodes": 59,
+        "edges": 104,
+        "modularity": 0.5686,
+        "acyclicity": 1.0,
+        "stability": 0.0999,
+        "cohesion": 0.5,
+        "runtime_ms": 302
+      },
+      "churn": {
+        "hotspot_ratio": 0.0494,
+        "churn_gini": 0.5619,
+        "n_files": 4478,
+        "mean_churn": 2.597
+      },
+      "clone_ms": 16060,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "opensearch",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "opensearch-project/OpenSearch",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6849,
+        "language": "Python",
+        "nodes": 7,
+        "edges": 6,
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.4898,
+        "cohesion": 0.75,
+        "runtime_ms": 192
+      },
+      "churn": {
+        "hotspot_ratio": 0.033,
+        "churn_gini": 0.3042,
+        "n_files": 2697,
+        "mean_churn": 1.61
+      },
+      "clone_ms": 13483,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "social-app",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "bluesky-social/social-app",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6778,
+        "language": "Go",
+        "nodes": 58,
+        "edges": 111,
+        "modularity": 0.4675,
+        "acyclicity": 1.0,
+        "stability": 0.2439,
+        "cohesion": 1.0,
+        "runtime_ms": 159
+      },
+      "churn": {
+        "hotspot_ratio": 0.098,
+        "churn_gini": 0.4914,
+        "n_files": 1490,
+        "mean_churn": 2.748
+      },
+      "clone_ms": 7347,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "payload",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "payloadcms/payload",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 249
+      },
+      "churn": {
+        "hotspot_ratio": 0.107,
+        "churn_gini": 0.477,
+        "n_files": 1421,
+        "mean_churn": 2.284
+      },
+      "clone_ms": 5711,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "plane",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "makeplane/plane",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5502,
+        "language": "Python",
+        "nodes": 842,
+        "edges": 2785,
+        "modularity": 0.7031,
+        "acyclicity": 1.0,
+        "stability": 0.0294,
+        "cohesion": 0.4683,
+        "runtime_ms": 249
+      },
+      "churn": {
+        "hotspot_ratio": 0.1017,
+        "churn_gini": 0.4216,
+        "n_files": 5327,
+        "mean_churn": 3.075
+      },
+      "clone_ms": 5340,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "agno",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "agno-agi/agno",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5543,
+        "language": "Python",
+        "nodes": 4445,
+        "edges": 18900,
+        "modularity": 0.6449,
+        "acyclicity": 1.0,
+        "stability": 0.1547,
+        "cohesion": 0.4174,
+        "runtime_ms": 956
+      },
+      "churn": {
+        "hotspot_ratio": 0.0468,
+        "churn_gini": 0.2833,
+        "n_files": 5644,
+        "mean_churn": 1.796
+      },
+      "clone_ms": 3693,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "promptfoo",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "promptfoo/promptfoo",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8054,
+        "language": "Go",
+        "nodes": 20,
+        "edges": 24,
+        "modularity": 0.6123,
+        "acyclicity": 1.0,
+        "stability": 0.6094,
+        "cohesion": 1.0,
+        "runtime_ms": 201
+      },
+      "churn": {
+        "hotspot_ratio": 0.0523,
+        "churn_gini": 0.3598,
+        "n_files": 1681,
+        "mean_churn": 1.722
+      },
+      "clone_ms": 11216,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "screenpipe",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "screenpipe/screenpipe",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7847,
+        "language": "Python",
+        "nodes": 3,
+        "edges": 2,
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.8889,
+        "cohesion": 0.75,
+        "runtime_ms": 164
+      },
+      "churn": {
+        "hotspot_ratio": 0.1066,
+        "churn_gini": 0.5705,
+        "n_files": 347,
+        "mean_churn": 3.602
+      },
+      "clone_ms": 3410,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "selenium",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "SeleniumHQ/selenium",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6527,
+        "language": "Python",
+        "nodes": 436,
+        "edges": 1082,
+        "modularity": 0.4235,
+        "acyclicity": 1.0,
+        "stability": 0.6052,
+        "cohesion": 0.5819,
+        "runtime_ms": 364
+      },
+      "churn": {
+        "hotspot_ratio": 0.0736,
+        "churn_gini": 0.4181,
+        "n_files": 1468,
+        "mean_churn": 2.044
+      },
+      "clone_ms": 6374,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "runtime",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "dotnet/runtime",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6262,
+        "language": "Python",
+        "nodes": 130,
+        "edges": 363,
+        "modularity": 0.5247,
+        "acyclicity": 1.0,
+        "stability": 0.3385,
+        "cohesion": 0.6417,
+        "runtime_ms": 475
+      },
+      "churn": {
+        "hotspot_ratio": 0.0959,
+        "churn_gini": 0.2637,
+        "n_files": 1824,
+        "mean_churn": 1.463
+      },
+      "clone_ms": 57259,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "loki",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "grafana/loki",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7016,
+        "language": "Go",
+        "nodes": 16784,
+        "edges": 67570,
+        "modularity": 0.6153,
+        "acyclicity": 1.0,
+        "stability": 0.1912,
+        "cohesion": 1.0,
+        "runtime_ms": 8311
+      },
+      "churn": {
+        "hotspot_ratio": 0.0344,
+        "churn_gini": 0.1834,
+        "n_files": 8816,
+        "mean_churn": 1.25
+      },
+      "clone_ms": 20620,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "logseq",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "logseq/logseq",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 174
+      },
+      "churn": {
+        "hotspot_ratio": 0.1042,
+        "churn_gini": 0.5669,
+        "n_files": 384,
+        "mean_churn": 4.232
+      },
+      "clone_ms": 4011,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "slint",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "slint-ui/slint",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6778,
+        "language": "Python",
+        "nodes": 66,
+        "edges": 117,
+        "modularity": 0.4996,
+        "acyclicity": 1.0,
+        "stability": 0.595,
+        "cohesion": 0.6167,
+        "runtime_ms": 182
+      },
+      "churn": {
+        "hotspot_ratio": 0.112,
+        "churn_gini": 0.4865,
+        "n_files": 732,
+        "mean_churn": 2.701
+      },
+      "clone_ms": 3621,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "langfuse",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "langfuse/langfuse",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 180
+      },
+      "churn": {
+        "hotspot_ratio": 0.0716,
+        "churn_gini": 0.406,
+        "n_files": 1718,
+        "mean_churn": 2.051
+      },
+      "clone_ms": 3749,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "openhands",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "OpenHands/OpenHands",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5651,
+        "language": "Python",
+        "nodes": 1641,
+        "edges": 8539,
+        "modularity": 0.6501,
+        "acyclicity": 0.9955,
+        "stability": 0.2263,
+        "cohesion": 0.3885,
+        "runtime_ms": 368
+      },
+      "churn": {
+        "hotspot_ratio": 0.0825,
+        "churn_gini": 0.4086,
+        "n_files": 1431,
+        "mean_churn": 1.901
+      },
+      "clone_ms": 3962,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "mattermost",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "mattermost/mattermost",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6265,
+        "language": "Go",
+        "nodes": 2589,
+        "edges": 11771,
+        "modularity": 0.385,
+        "acyclicity": 1.0,
+        "stability": 0.121,
+        "cohesion": 1.0,
+        "runtime_ms": 846
+      },
+      "churn": {
+        "hotspot_ratio": 0.0677,
+        "churn_gini": 0.3473,
+        "n_files": 2955,
+        "mean_churn": 1.682
+      },
+      "clone_ms": 15131,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "super-productivity",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "super-productivity/super-productivity",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 197
+      },
+      "churn": {
+        "hotspot_ratio": 0.0989,
+        "churn_gini": 0.4328,
+        "n_files": 1143,
+        "mean_churn": 2.236
+      },
+      "clone_ms": 4435,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "sim",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "simstudioai/sim",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7829,
+        "language": "Python",
+        "nodes": 17,
+        "edges": 15,
+        "modularity": 0.8919,
+        "acyclicity": 1.0,
+        "stability": 0.4898,
+        "cohesion": 0.75,
+        "runtime_ms": 210
+      },
+      "churn": {
+        "hotspot_ratio": 0.1061,
+        "churn_gini": 0.3901,
+        "n_files": 4193,
+        "mean_churn": 1.986
+      },
+      "clone_ms": 8803,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "pipedream",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "PipedreamHQ/pipedream",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 559
+      },
+      "churn": {
+        "hotspot_ratio": 0.0969,
+        "churn_gini": 0.3412,
+        "n_files": 3953,
+        "mean_churn": 1.72
+      },
+      "clone_ms": 10838,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "bazel",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "bazelbuild/bazel",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6952,
+        "language": "Java",
+        "nodes": 7109,
+        "edges": 45683,
+        "modularity": 0.6673,
+        "acyclicity": 0.999,
+        "stability": 0.9036,
+        "cohesion": 0.211,
+        "runtime_ms": 1384
+      },
+      "churn": {
+        "hotspot_ratio": 0.0657,
+        "churn_gini": 0.3061,
+        "n_files": 3747,
+        "mean_churn": 1.784
+      },
+      "clone_ms": 9681,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "grpc",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "grpc/grpc",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7575,
+        "language": "Python",
+        "nodes": 2361,
+        "edges": 7619,
+        "modularity": 0.9906,
+        "acyclicity": 1.0,
+        "stability": 0.4265,
+        "cohesion": 0.613,
+        "runtime_ms": 363
+      },
+      "churn": {
+        "hotspot_ratio": 0.0415,
+        "churn_gini": 0.3366,
+        "n_files": 3180,
+        "mean_churn": 1.578
+      },
+      "clone_ms": 9067,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "elasticsearch",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "elastic/elasticsearch",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7298,
+        "language": "Python",
+        "nodes": 22,
+        "edges": 28,
+        "modularity": 0.6981,
+        "acyclicity": 1.0,
+        "stability": 0.4711,
+        "cohesion": 0.75,
+        "runtime_ms": 249
+      },
+      "churn": {
+        "hotspot_ratio": 0.05,
+        "churn_gini": 0.2473,
+        "n_files": 1899,
+        "mean_churn": 1.368
+      },
+      "clone_ms": 30860,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "posthog",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "PostHog/posthog",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6433,
+        "language": "Python",
+        "nodes": 7345,
+        "edges": 42581,
+        "modularity": 0.6488,
+        "acyclicity": 0.9153,
+        "stability": 0.4609,
+        "cohesion": 0.5483,
+        "runtime_ms": 2102
+      },
+      "churn": {
+        "hotspot_ratio": 0.0629,
+        "churn_gini": 0.248,
+        "n_files": 2084,
+        "mean_churn": 1.405
+      },
+      "clone_ms": 31111,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "gcc",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "gcc-mirror/gcc",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8412,
+        "language": "Python",
+        "nodes": 226,
+        "edges": 480,
+        "modularity": 0.7192,
+        "acyclicity": 1.0,
+        "stability": 0.9286,
+        "cohesion": 0.717,
+        "runtime_ms": 410
+      },
+      "churn": {
+        "hotspot_ratio": 0.0638,
+        "churn_gini": 0.2698,
+        "n_files": 1662,
+        "mean_churn": 1.419
+      },
+      "clone_ms": 74618,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "kibana",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "elastic/kibana",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6535,
+        "language": "Python",
+        "nodes": 11,
+        "edges": 16,
+        "modularity": 0.4688,
+        "acyclicity": 1.0,
+        "stability": 0.3951,
+        "cohesion": 0.75,
+        "runtime_ms": 615
+      },
+      "churn": {
+        "hotspot_ratio": 0.1613,
+        "churn_gini": 0.4284,
+        "n_files": 6461,
+        "mean_churn": 2.118
+      },
+      "clone_ms": 74888,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "better-auth",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "better-auth/better-auth",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 138
+      },
+      "churn": {
+        "hotspot_ratio": 0.0749,
+        "churn_gini": 0.4422,
+        "n_files": 1322,
+        "mean_churn": 2.218
+      },
+      "clone_ms": 4291,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "pipecat",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "pipecat-ai/pipecat",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7788,
+        "language": "Python",
+        "nodes": 1177,
+        "edges": 9333,
+        "modularity": 0.7231,
+        "acyclicity": 1.0,
+        "stability": 0.8644,
+        "cohesion": 0.5276,
+        "runtime_ms": 267
+      },
+      "churn": {
+        "hotspot_ratio": 0.0522,
+        "churn_gini": 0.2463,
+        "n_files": 1780,
+        "mean_churn": 1.39
+      },
+      "clone_ms": 4449,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "metamask-extension",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "MetaMask/metamask-extension",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 230
+      },
+      "churn": {
+        "hotspot_ratio": 0.0852,
+        "churn_gini": 0.4141,
+        "n_files": 2312,
+        "mean_churn": 1.905
+      },
+      "clone_ms": 9852,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "novu",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "novuhq/novu",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6067,
+        "language": "Python",
+        "nodes": 56,
+        "edges": 52,
+        "modularity": 0.8767,
+        "acyclicity": 1.0,
+        "stability": 0.0999,
+        "cohesion": 0.45,
+        "runtime_ms": 208
+      },
+      "churn": {
+        "hotspot_ratio": 0.0419,
+        "churn_gini": 0.2882,
+        "n_files": 4562,
+        "mean_churn": 1.518
+      },
+      "clone_ms": 4973,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "crewai",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "crewAIInc/crewAI",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.4958,
+        "language": "Python",
+        "nodes": 1587,
+        "edges": 5631,
+        "modularity": 0.4843,
+        "acyclicity": 1.0,
+        "stability": 0.0651,
+        "cohesion": 0.4337,
+        "runtime_ms": 310
+      },
+      "churn": {
+        "hotspot_ratio": 0.0522,
+        "churn_gini": 0.5034,
+        "n_files": 1687,
+        "mean_churn": 2.726
+      },
+      "clone_ms": 8859,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "coder",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "coder/coder",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8764,
+        "language": "Go",
+        "nodes": 2638,
+        "edges": 20143,
+        "modularity": 0.522,
+        "acyclicity": 1.0,
+        "stability": 0.9834,
+        "cohesion": 1.0,
+        "runtime_ms": 628
+      },
+      "churn": {
+        "hotspot_ratio": 0.0792,
+        "churn_gini": 0.4316,
+        "n_files": 1819,
+        "mean_churn": 2.722
+      },
+      "clone_ms": 11600,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "jdk",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "openjdk/jdk",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6472,
+        "language": "Java",
+        "nodes": 17847,
+        "edges": 93001,
+        "modularity": 0.8302,
+        "acyclicity": 0.9581,
+        "stability": 0.624,
+        "cohesion": 0.1767,
+        "runtime_ms": 3560
+      },
+      "churn": {
+        "hotspot_ratio": 0.0938,
+        "churn_gini": 0.2605,
+        "n_files": 1173,
+        "mean_churn": 1.461
+      },
+      "clone_ms": 63374,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "expo",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "expo/expo",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5936,
+        "language": "Java",
+        "nodes": 684,
+        "edges": 1507,
+        "modularity": 0.7267,
+        "acyclicity": 0.9837,
+        "stability": 0.4718,
+        "cohesion": 0.1922,
+        "runtime_ms": 257
+      },
+      "churn": {
+        "hotspot_ratio": 0.0406,
+        "churn_gini": 0.289,
+        "n_files": 5715,
+        "mean_churn": 1.569
+      },
+      "clone_ms": 22226,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "flower",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "flwrlabs/flower",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7066,
+        "language": "Python",
+        "nodes": 1842,
+        "edges": 7146,
+        "modularity": 0.6404,
+        "acyclicity": 1.0,
+        "stability": 0.5133,
+        "cohesion": 0.6726,
+        "runtime_ms": 431
+      },
+      "churn": {
+        "hotspot_ratio": 0.1177,
+        "churn_gini": 0.5072,
+        "n_files": 773,
+        "mean_churn": 3.114
+      },
+      "clone_ms": 7006,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "dynamo",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "ai-dynamo/dynamo",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6306,
+        "language": "Python",
+        "nodes": 1280,
+        "edges": 4576,
+        "modularity": 0.5974,
+        "acyclicity": 0.9969,
+        "stability": 0.3962,
+        "cohesion": 0.5317,
+        "runtime_ms": 358
+      },
+      "churn": {
+        "hotspot_ratio": 0.0986,
+        "churn_gini": 0.4075,
+        "n_files": 1622,
+        "mean_churn": 2.266
+      },
+      "clone_ms": 5761,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "anytype-ts",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "anyproto/anytype-ts",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7165,
+        "language": "Go",
+        "nodes": 19,
+        "edges": 18,
+        "modularity": 0.6667,
+        "acyclicity": 1.0,
+        "stability": 0.1994,
+        "cohesion": 1.0,
+        "runtime_ms": 184
+      },
+      "churn": {
+        "hotspot_ratio": 0.1563,
+        "churn_gini": 0.504,
+        "n_files": 1107,
+        "mean_churn": 2.988
+      },
+      "clone_ms": 6917,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "meshery",
+      "lang": "Python",
+      "layer": "A",
+      "full_name": "meshery/meshery",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7036,
+        "language": "Go",
+        "nodes": 767,
+        "edges": 3299,
+        "modularity": 0.5836,
+        "acyclicity": 1.0,
+        "stability": 0.2306,
+        "cohesion": 1.0,
+        "runtime_ms": 1257
+      },
+      "churn": {
+        "hotspot_ratio": 0.0094,
+        "churn_gini": 0.08,
+        "n_files": 24585,
+        "mean_churn": 1.093
+      },
+      "clone_ms": 40729,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "podman-desktop",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "podman-desktop/podman-desktop",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 206
+      },
+      "churn": {
+        "hotspot_ratio": 0.0485,
+        "churn_gini": 0.496,
+        "n_files": 970,
+        "mean_churn": 2.196
+      },
+      "clone_ms": 8944,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "airi",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "moeru-ai/airi",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 203
+      },
+      "churn": {
+        "hotspot_ratio": 0.0695,
+        "churn_gini": 0.5266,
+        "n_files": 1900,
+        "mean_churn": 2.557
+      },
+      "clone_ms": 14433,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "gephi",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "gephi/gephi",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7226,
+        "language": "Java",
+        "nodes": 2789,
+        "edges": 12115,
+        "modularity": 0.7646,
+        "acyclicity": 0.9985,
+        "stability": 0.954,
+        "cohesion": 0.1734,
+        "runtime_ms": 546
+      },
+      "churn": {
+        "hotspot_ratio": 0.0852,
+        "churn_gini": 0.3738,
+        "n_files": 939,
+        "mean_churn": 1.827
+      },
+      "clone_ms": 3261,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "fleet",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "fleetdm/fleet",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7696,
+        "language": "Go",
+        "nodes": 3727,
+        "edges": 19070,
+        "modularity": 0.6127,
+        "acyclicity": 1.0,
+        "stability": 0.4656,
+        "cohesion": 1.0,
+        "runtime_ms": 1135
+      },
+      "churn": {
+        "hotspot_ratio": 0.1041,
+        "churn_gini": 0.3441,
+        "n_files": 1767,
+        "mean_churn": 1.776
+      },
+      "clone_ms": 23165,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "rallly",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "lukevella/rallly",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 193
+      },
+      "churn": {
+        "hotspot_ratio": 0.0922,
+        "churn_gini": 0.4794,
+        "n_files": 987,
+        "mean_churn": 3.053
+      },
+      "clone_ms": 3622,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "stack-auth",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "stack-auth/stack-auth",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7225,
+        "language": "Python",
+        "nodes": 5,
+        "edges": 4,
+        "modularity": 0.5,
+        "acyclicity": 1.0,
+        "stability": 0.64,
+        "cohesion": 0.75,
+        "runtime_ms": 204
+      },
+      "churn": {
+        "hotspot_ratio": 0.0818,
+        "churn_gini": 0.5006,
+        "n_files": 1798,
+        "mean_churn": 2.735
+      },
+      "clone_ms": 3221,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "androidx",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "androidx/androidx",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7716,
+        "language": "Python",
+        "nodes": 78,
+        "edges": 165,
+        "modularity": 0.4171,
+        "acyclicity": 1.0,
+        "stability": 0.9931,
+        "cohesion": 0.6765,
+        "runtime_ms": 346
+      },
+      "churn": {
+        "hotspot_ratio": 0.0386,
+        "churn_gini": 0.1915,
+        "n_files": 1581,
+        "mean_churn": 1.311
+      },
+      "clone_ms": 34140,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "perfetto",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "google/perfetto",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7763,
+        "language": "Python",
+        "nodes": 744,
+        "edges": 1342,
+        "modularity": 0.8723,
+        "acyclicity": 0.9954,
+        "stability": 0.9017,
+        "cohesion": 0.3357,
+        "runtime_ms": 394
+      },
+      "churn": {
+        "hotspot_ratio": 0.1091,
+        "churn_gini": 0.38,
+        "n_files": 1412,
+        "mean_churn": 1.926
+      },
+      "clone_ms": 7926,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "openmetadata",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "open-metadata/OpenMetadata",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5688,
+        "language": "Python",
+        "nodes": 3668,
+        "edges": 17048,
+        "modularity": 0.6456,
+        "acyclicity": 1.0,
+        "stability": 0.2261,
+        "cohesion": 0.4036,
+        "runtime_ms": 771
+      },
+      "churn": {
+        "hotspot_ratio": 0.0711,
+        "churn_gini": 0.3959,
+        "n_files": 3095,
+        "mean_churn": 2.039
+      },
+      "clone_ms": 15100,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "osmand",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "osmandapp/OsmAnd",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.4052,
+        "language": "Java",
+        "nodes": 6835,
+        "edges": 51364,
+        "modularity": 0.5878,
+        "acyclicity": 0.676,
+        "stability": 0.2493,
+        "cohesion": 0.1076,
+        "runtime_ms": 1877
+      },
+      "churn": {
+        "hotspot_ratio": 0.0865,
+        "churn_gini": 0.3953,
+        "n_files": 416,
+        "mean_churn": 2.144
+      },
+      "clone_ms": 13157,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "civitai",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "civitai/civitai",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 214
+      },
+      "churn": {
+        "hotspot_ratio": 0.0828,
+        "churn_gini": 0.4575,
+        "n_files": 664,
+        "mean_churn": 2.215
+      },
+      "clone_ms": 7971,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "vike",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "vikejs/vike",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 213
+      },
+      "churn": {
+        "hotspot_ratio": 0.0884,
+        "churn_gini": 0.4918,
+        "n_files": 1131,
+        "mean_churn": 2.686
+      },
+      "clone_ms": 2220,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "terragrunt",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "gruntwork-io/terragrunt",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8458,
+        "language": "Go",
+        "nodes": 1020,
+        "edges": 5135,
+        "modularity": 0.5805,
+        "acyclicity": 1.0,
+        "stability": 0.8028,
+        "cohesion": 1.0,
+        "runtime_ms": 318
+      },
+      "churn": {
+        "hotspot_ratio": 0.0983,
+        "churn_gini": 0.4704,
+        "n_files": 1791,
+        "mean_churn": 2.288
+      },
+      "clone_ms": 4296,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "pumpkin",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "Pumpkin-MC/Pumpkin",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 169
+      },
+      "churn": {
+        "hotspot_ratio": 0.0877,
+        "churn_gini": 0.4718,
+        "n_files": 1573,
+        "mean_churn": 3.669
+      },
+      "clone_ms": 9090,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "sui",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "MystenLabs/sui",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8149,
+        "language": "Python",
+        "nodes": 49,
+        "edges": 92,
+        "modularity": 0.5966,
+        "acyclicity": 1.0,
+        "stability": 0.8594,
+        "cohesion": 0.8036,
+        "runtime_ms": 237
+      },
+      "churn": {
+        "hotspot_ratio": 0.1023,
+        "churn_gini": 0.3779,
+        "n_files": 2023,
+        "mean_churn": 1.892
+      },
+      "clone_ms": 12532,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "typespec",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "microsoft/typespec",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.6233,
+        "language": "Java",
+        "nodes": 4225,
+        "edges": 47611,
+        "modularity": 0.8645,
+        "acyclicity": 0.9813,
+        "stability": 0.3884,
+        "cohesion": 0.259,
+        "runtime_ms": 642
+      },
+      "churn": {
+        "hotspot_ratio": 0.0756,
+        "churn_gini": 0.3372,
+        "n_files": 4113,
+        "mean_churn": 1.718
+      },
+      "clone_ms": 6654,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "cadence",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "cadence-workflow/cadence",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8003,
+        "language": "Go",
+        "nodes": 2673,
+        "edges": 16311,
+        "modularity": 0.4414,
+        "acyclicity": 1.0,
+        "stability": 0.7598,
+        "cohesion": 1.0,
+        "runtime_ms": 602
+      },
+      "churn": {
+        "hotspot_ratio": 0.1,
+        "churn_gini": 0.4886,
+        "n_files": 740,
+        "mean_churn": 3.003
+      },
+      "clone_ms": 4935,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "opa",
+      "lang": "Go",
+      "layer": "A",
+      "full_name": "open-policy-agent/opa",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.8269,
+        "language": "Go",
+        "nodes": 1333,
+        "edges": 5533,
+        "modularity": 0.373,
+        "acyclicity": 1.0,
+        "stability": 0.9345,
+        "cohesion": 1.0,
+        "runtime_ms": 485
+      },
+      "churn": {
+        "hotspot_ratio": 0.0258,
+        "churn_gini": 0.2744,
+        "n_files": 4997,
+        "mean_churn": 1.538
+      },
+      "clone_ms": 5524,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "t3code",
+      "lang": "TypeScript",
+      "layer": "A",
+      "full_name": "pingdotgg/t3code",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.9375,
+        "language": "Python",
+        "nodes": 0,
+        "edges": 0,
+        "modularity": 1.0,
+        "acyclicity": 1.0,
+        "stability": 1.0,
+        "cohesion": 0.75,
+        "runtime_ms": 160
+      },
+      "churn": {
+        "hotspot_ratio": 0.1252,
+        "churn_gini": 0.5708,
+        "n_files": 783,
+        "mean_churn": 4.464
+      },
+      "clone_ms": 3193,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "kreuzberg",
+      "lang": "Java",
+      "layer": "A",
+      "full_name": "kreuzberg-dev/kreuzberg",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.5941,
+        "language": "Python",
+        "nodes": 171,
+        "edges": 428,
+        "modularity": 0.5282,
+        "acyclicity": 1.0,
+        "stability": 0.529,
+        "cohesion": 0.319,
+        "runtime_ms": 205
+      },
+      "churn": {
+        "hotspot_ratio": 0.0648,
+        "churn_gini": 0.3918,
+        "n_files": 8288,
+        "mean_churn": 1.759
+      },
+      "clone_ms": 26344,
+      "bug_lead_time": null,
+      "meta": null
+    },
+    {
+      "name": "gradio",
+      "lang": "Go",
+      "layer": "A",
+      "full_name": "gradio-app/gradio",
+      "status": "ok",
+      "agq": {
+        "agq_score": 0.7031,
+        "language": "Python",
+        "nodes": 1000,
+        "edges": 3265,
+        "modularity": 0.5546,
+        "acyclicity": 0.9726,
+        "stability": 0.8748,
+        "cohesion": 0.4106,
+        "runtime_ms": 274
+      },
+      "churn": {
+        "hotspot_ratio": 0.095,
+        "churn_gini": 0.4847,
+        "n_files": 2652,
+        "mean_churn": 2.85
+      },
+      "clone_ms": 7732,
       "bug_lead_time": null,
       "meta": null
     }
