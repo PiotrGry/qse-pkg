@@ -251,41 +251,61 @@ def get_churn(repo_path: Path) -> Optional[Dict]:
     }
 
 
+# Warianty etykiety "bug" spotykane w OSS
+# Zebrane empirycznie z benchmarku 536 repo
+_BUG_LABELS = [
+    "bug", "type: bug", "type/bug", "defect",
+    "kind/bug", "bug report", "bugreport",
+]
+
 def get_bug_lead_time(full_name: str) -> Optional[Dict]:
-    r = subprocess.run(
-        ["gh", "api", f"repos/{full_name}/issues",
-         "-X", "GET", "-f", "state=closed", "-f", "labels=bug",
-         "-f", "per_page=100",
-         "--jq", "[.[] | select(.pull_request==null) | "
-                 "{c:.created_at,cl:.closed_at}]"],
-        capture_output=True, text=True, timeout=25)
-    if r.returncode != 0 or not r.stdout.strip():
-        return None
-    try:
-        issues = json.loads(r.stdout)
-    except Exception:
-        return None
-    if not issues:
-        return None
+    """Pobiera bug fix lead time z GitHub Issues.
+
+    Próbuje wielu wariantów etykiety bug bo OSS nie ma standardu:
+      bug, type: bug, type/bug, defect, kind/bug...
+    Zatrzymuje się przy pierwszym który zwróci wyniki.
+    """
     from datetime import datetime as _dt
     fmt = "%Y-%m-%dT%H:%M:%SZ"
-    lt = []
-    for i in issues:
+
+    for label in _BUG_LABELS:
+        r = subprocess.run(
+            ["gh", "api", f"repos/{full_name}/issues",
+             "-X", "GET", "-f", "state=closed",
+             "-f", f"labels={label}",
+             "-f", "per_page=100",
+             "--jq", "[.[] | select(.pull_request==null) | "
+                     "{c:.created_at,cl:.closed_at}]"],
+            capture_output=True, text=True, timeout=20)
+        if r.returncode != 0 or not r.stdout.strip():
+            continue
         try:
-            lt.append((_dt.strptime(i["cl"], fmt) -
-                       _dt.strptime(i["c"], fmt)).days)
+            issues = json.loads(r.stdout)
         except Exception:
-            pass
-    if not lt:
-        return None
-    lt = sorted(lt)
-    n = len(lt)
-    return {
-        "n_bugs":           n,
-        "mean_lead_days":   round(statistics.mean(lt), 1),
-        "median_lead_days": round(statistics.median(lt), 1),
-        "p90_lead_days":    round(lt[min(int(n * .9), n-1)], 1),
-    }
+            continue
+        if not issues:
+            continue
+
+        lt = []
+        for i in issues:
+            try:
+                lt.append((_dt.strptime(i["cl"], fmt) -
+                           _dt.strptime(i["c"], fmt)).days)
+            except Exception:
+                pass
+        if not lt:
+            continue
+
+        lt = sorted(lt)
+        n = len(lt)
+        return {
+            "n_bugs":           n,
+            "label_used":       label,
+            "mean_lead_days":   round(statistics.mean(lt), 1),
+            "median_lead_days": round(statistics.median(lt), 1),
+            "p90_lead_days":    round(lt[min(int(n*.9), n-1)], 1),
+        }
+    return None
 
 
 def get_repo_meta(full_name: str) -> Optional[Dict]:
@@ -540,8 +560,7 @@ def scanner_worker(
                     "churn": None, "bug_lead_time": None, "meta": None,
                 })
                 _p(f"  {_R}✗{_N} [W{worker_id}] {name} clone FAIL ({clone_ms}ms)")
-                scan_queue.task_done()
-                continue
+                continue  # task_done() w finally
 
             # ── AGQ scan ───────────────────────────────────────────────────
             agq = run_agq(dest_code)
@@ -557,8 +576,7 @@ def scanner_worker(
                     "churn": None, "bug_lead_time": None, "meta": None,
                 })
                 _p(f"  {_R}✗{_N} [W{worker_id}] {_B}{name:25}{_N} AGQ FAIL")
-                scan_queue.task_done()
-                continue
+                continue  # task_done() w finally
 
             # ── Klon 2: historia → churn (równolegle z bug_lead_time) ──────
             # --no-checkout --filter=tree:0: tylko historia, ~2-20MB
