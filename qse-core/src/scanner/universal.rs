@@ -77,102 +77,65 @@ fn walkdir_rec(dir: &Path, depth: usize, out: &mut Vec<PathBuf>) {
     }
 }
 
-fn detect_language(dir: &Path) -> Option<Language> {
-    let mut py = 0usize;
-    let mut java = 0usize;
-    let mut go = 0usize;
+/// Walk directory until N source files of given extension are found.
+/// No depth limit — stops as soon as enough files are found.
+/// Skips hidden dirs, build artifacts, and test directories.
+/// Much faster than walkdir_shallow for deep projects because it stops early.
+fn walkdir_until_found(dir: &Path, ext: &str, need: usize) -> usize {
+    let mut count = 0usize;
+    let mut stack: Vec<std::path::PathBuf> = vec![dir.to_path_buf()];
 
-    if let Ok(entries) = std::fs::read_dir(dir) {
-        for e in entries.flatten().take(200) {
-            match e.path().extension().and_then(|s| s.to_str()) {
-                Some("py")   => py   += 1,
-                Some("java") => java += 1,
-                Some("go")   => go   += 1,
-                _ => {}
-            }
-        }
-    }
-    // Recurse one level
-    if let Ok(entries) = std::fs::read_dir(dir) {
-        for e in entries.flatten() {
-            if e.path().is_dir() {
-                if let Ok(sub) = std::fs::read_dir(e.path()) {
-                    for f in sub.flatten().take(50) {
-                        match f.path().extension().and_then(|s| s.to_str()) {
-                            Some("py")   => py   += 1,
-                            Some("java") => java += 1,
-                            Some("go")   => go   += 1,
-                            _ => {}
-                        }
-                    }
+    while let Some(current) = stack.pop() {
+        let Ok(entries) = std::fs::read_dir(&current) else { continue };
+
+        for entry in entries.flatten() {
+            let path = entry.path();
+
+            if path.is_dir() {
+                let name = path.file_name()
+                    .and_then(|n| n.to_str())
+                    .unwrap_or("");
+
+                // Skip dirs that never contain source files
+                if name.starts_with('.')
+                    || matches!(name, "target" | "__pycache__" | "node_modules"
+                                | "dist" | "build" | "out" | "bin" | ".git"
+                                | "test" | "tests" | "androidTest" | "testFixtures"
+                                | "it" | "integrationTest")
+                {
+                    continue;
+                }
+
+                stack.push(path);
+            } else if path.extension().and_then(|e| e.to_str()) == Some(ext) {
+                count += 1;
+                if count >= need {
+                    return count;
                 }
             }
         }
     }
+    count
+}
 
-    // Deep scan fallback — skip test directories to find main sources
-    // FIX: depth=10 required for Java multi-module (spring-cloud pattern):
-    //   module-name/src/main/java/org/company/pkg/File.java = 8 levels deep
-    //   walkdir_shallow(depth=8) would miss files at exactly depth=8
-    if py == 0 && java == 0 && go == 0 {
-        for entry in walkdir_shallow(dir, 10) {
-            let path_str = entry.to_string_lossy();
-            // Skip test paths
-            if path_str.contains("/test/") || path_str.contains("/tests/")
-                || path_str.contains("/androidTest/")
-            {
-                continue;
-            }
-            match entry.extension().and_then(|s| s.to_str()) {
-                Some("py")   => py   += 1,
-                Some("java") => java += 1,
-                Some("go")   => go   += 1,
-                _ => {}
-            }
-            if py + java + go > 20 { break; }
-        }
-    }
+fn detect_language(dir: &Path) -> Option<Language> {
+    // Use walkdir_until_found: no depth limit, stops as soon as 5 files found.
+    // Correctly handles any project layout regardless of nesting depth.
+    let py   = walkdir_until_found(dir, "py",   5);
+    let java = walkdir_until_found(dir, "java",  5);
+    let go   = walkdir_until_found(dir, "go",    5);
 
-    // FIX: Java multi-module targeted scan
-    // Specifically looks for /src/main/java/ pattern at depth up to 10
-    if java == 0 {
-        for entry in walkdir_shallow(dir, 10) {
-            let path_str = entry.to_string_lossy();
-            if path_str.contains("/src/main/java/")
-                && entry.extension().and_then(|s| s.to_str()) == Some("java")
-            {
-                java += 1;
-                if java > 5 { break; }
-            }
-        }
-    }
 
-    // Last resort: count all Java files including tests
-    if py == 0 && java == 0 && go == 0 {
-        for entry in walkdir_shallow(dir, 10) {
-            match entry.extension().and_then(|s| s.to_str()) {
-                Some("java") => java += 1,
-                _ => {}
-            }
-            if java > 5 { break; }
-        }
-    }
-    if py == 0 && java == 0 && go == 0 { return None; }
+    // Require minimum 5 source files — avoids misclassifying documentation repos
+    // (the-book-of-secret-knowledge, gitignore etc. have 1-2 .py build scripts)
+    if py < 5 && java < 5 && go < 5 { return None; }
 
-    // FIX: require minimum 5 source files to avoid misclassifying
-    // documentation/config repos that have 1-2 .py build scripts.
-    // Examples: the-book-of-secret-knowledge, gitignore, prompts.chat
-    // all have 0-2 .py files but are pure Markdown repos.
-    let max_count = py.max(java).max(go);
-    if max_count < 5 { return None; }
-
-    // For mixed repos (e.g. Go project with Python build scripts):
-    // trust Go/Java over Python if they have any meaningful presence
-    // Python build scripts are common in non-Python projects
-    if go > 0 && py > 0 && go >= py / 4 { return Some(Language::Go); }
-    if java > 0 && py > 0 && java >= py / 4 { return Some(Language::Java); }
+    // Language priority for mixed repos
+    // Go/Java take precedence over Python (Python build scripts are common in non-Python projects)
+    if go >= 5 && go >= py / 4 { return Some(Language::Go); }
+    if java >= 5 && java >= py / 4 { return Some(Language::Java); }
     if java >= py && java >= go { return Some(Language::Java); }
-    if go   >= py && go   >= java { return Some(Language::Go); }
+    if go >= py && go >= java { return Some(Language::Go); }
     Some(Language::Python)
 }
 
