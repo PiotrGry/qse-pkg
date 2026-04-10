@@ -112,19 +112,25 @@ def clone_for_scan(url: str, dest: Path, timeout: int = 90) -> bool:
 
 
 def clone_for_churn(url: str, dest: Path, timeout: int = 120) -> bool:
-    """Klonuje TYLKO historię git (bez żadnych plików) — dla churn.
+    """Klonuje historię git bez plików — dla churn.
 
-    --no-checkout + --filter=tree:0: pobiera tylko obiekty commit/tree,
-    pomija wszystkie blobs (pliki). Rozmiar: ~2-20MB zamiast ~50-500MB.
-    git log --name-only działa normalnie bo odczytuje tree objects.
+    --no-checkout + --filter=blob:none:
+      - pobiera commit objects i tree objects (potrzebne dla git log --name-only)
+      - NIE pobiera blob objects (zawartości plików)
+      - Rozmiar: ~2-10MB zamiast ~50-500MB
+      - git log --name-only działa od razu (tree objects są dostępne)
+
+    Uwaga: --filter=tree:0 (lazy tree fetch) powoduje timeout na git log
+    bo tree objects są pobierane leniwie podczas traversal historii.
+    --filter=blob:none jest poprawnym wyborem dla dostępu do historii.
     """
     if dest.exists():
         shutil.rmtree(dest, ignore_errors=True)
     try:
         r = subprocess.run(
             ["git", "clone",
-             "--no-checkout",        # nie pobieraj plików
-             "--filter=tree:0",      # pomiń tree objects (tylko commits)
+             "--no-checkout",        # nie checkout plików do working tree
+             "--filter=blob:none",   # pobierz tree ale nie blob (pliki)
              "--no-tags",
              url, str(dest)],
             capture_output=True, timeout=timeout)
