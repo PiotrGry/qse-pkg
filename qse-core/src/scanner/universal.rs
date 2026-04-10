@@ -111,10 +111,11 @@ fn detect_language(dir: &Path) -> Option<Language> {
     }
 
     // Deep scan fallback — skip test directories to find main sources
-    // FIX: also runs when counts are low (< 5) to catch Java multi-module projects
-    // where src files are at depth 4+ (module/src/main/java/...)
+    // FIX: depth=10 required for Java multi-module (spring-cloud pattern):
+    //   module-name/src/main/java/org/company/pkg/File.java = 8 levels deep
+    //   walkdir_shallow(depth=8) would miss files at exactly depth=8
     if py == 0 && java == 0 && go == 0 {
-        for entry in walkdir_shallow(dir, 8) {
+        for entry in walkdir_shallow(dir, 10) {
             let path_str = entry.to_string_lossy();
             // Skip test paths
             if path_str.contains("/test/") || path_str.contains("/tests/")
@@ -132,12 +133,10 @@ fn detect_language(dir: &Path) -> Option<Language> {
         }
     }
 
-    // FIX: Java multi-module projects (spring-cloud, spring-data, etc.)
-    // have .java files at depth 4+ (module-name/src/main/java/pkg/...)
-    // The shallow scan above may miss them. Run a targeted deeper scan
-    // specifically looking for src/main/java directories.
+    // FIX: Java multi-module targeted scan
+    // Specifically looks for /src/main/java/ pattern at depth up to 10
     if java == 0 {
-        for entry in walkdir_shallow(dir, 6) {
+        for entry in walkdir_shallow(dir, 10) {
             let path_str = entry.to_string_lossy();
             if path_str.contains("/src/main/java/")
                 && entry.extension().and_then(|s| s.to_str()) == Some("java")
@@ -150,7 +149,7 @@ fn detect_language(dir: &Path) -> Option<Language> {
 
     // Last resort: count all Java files including tests
     if py == 0 && java == 0 && go == 0 {
-        for entry in walkdir_shallow(dir, 8) {
+        for entry in walkdir_shallow(dir, 10) {
             match entry.extension().and_then(|s| s.to_str()) {
                 Some("java") => java += 1,
                 _ => {}
