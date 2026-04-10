@@ -1,0 +1,130 @@
+[
+  {
+    "predictor": "stability",
+    "target": "process_risk",
+    "r_s": 0.3296,
+    "p": 0.0,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "stability",
+    "target": "graph_density",
+    "r_s": 0.3291,
+    "p": 0.0,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "stability",
+    "target": "hub_ratio",
+    "r_s": 0.2823,
+    "p": 0.0002,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "agq_score",
+    "target": "process_risk",
+    "r_s": 0.2658,
+    "p": 0.0004,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "agq_score",
+    "target": "graph_density",
+    "r_s": 0.2609,
+    "p": 0.0006,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "agq_score",
+    "target": "hub_ratio",
+    "r_s": 0.2439,
+    "p": 0.0013,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "cohesion",
+    "target": "scc_entropy",
+    "r_s": -0.2376,
+    "p": 0.0018,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "agq_score",
+    "target": "scc_entropy",
+    "r_s": -0.1887,
+    "p": 0.0135,
+    "n": 171,
+    "sig": true
+  },
+  {
+    "predictor": "acyclicity",
+    "target": "scc_entropy",
+    "r_s": -0.1319,
+    "p": 0.0854,
+    "n": 171,
+    "sig": false
+  },
+  {
+    "predictor": "stability",
+    "target": "scc_entropy",
+    "r_s": 0.0594,
+    "p": 0.4404,
+    "n": 171,
+    "sig": false
+  },
+  {
+    "predictor": "acyclicity",
+    "target": "hub_ratio",
+    "r_s": -0.0474,
+    "p": 0.5379,
+    "n": 171,
+    "sig": false
+  },
+  {
+    "predictor": "acyclicity",
+    "target": "graph_density",
+    "r_s": -0.0469,
+    "p": 0.5423,
+    "n": 171,
+    "sig": false
+  },
+  {
+    "predictor": "acyclicity",
+    "target": "process_risk",
+    "r_s": -0.0453,
+    "p": 0.5564,
+    "n": 171,
+    "sig": false
+  },
+  {
+    "predictor": "cohesion",
+    "target": "process_risk",
+    "r_s": 0.0282,
+    "p": 0.7146,
+    "n": 171,
+    "sig": false
+  },
+  {
+    "predictor": "cohesion",
+    "target": "graph_density",
+    "r_s": 0.0281,
+    "p": 0.7153,
+    "n": 171,
+    "sig": false
+  },
+  {
+    "predictor": "cohesion",
+    "target": "hub_ratio",
+    "r_s": 0.0194,
+    "p": 0.8012,
+    "n": 171,
+    "sig": false
+  }
+]
