@@ -215,10 +215,10 @@ def get_churn(repo_path: Path) -> Optional[Dict]:
     """
     r = subprocess.run(
         ["git", "-C", str(repo_path), "log",
-         "--since", "2 years ago",
+         "-n", "500",
          "--name-only",
          "--pretty=format:--C--"],
-        capture_output=True, text=True, timeout=60)
+        capture_output=True, text=True, timeout=120)
     if r.returncode != 0:
         return None
 
