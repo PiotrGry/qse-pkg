@@ -1,5 +1,5 @@
 """
-AGQ Graph Metrics — architecture-agnostic, Level 1.
+AGQ Graph Metrics - architecture-agnostic, Level 1.
 
 Modularity (Q):  Newman's modularity via Louvain on import graph
 Acyclicity (A):  1 - (largest_SCC / internal_nodes) via Tarjan SCC
@@ -7,7 +7,7 @@ Stability (St):  package-level instability variance (layering quality)
 Cohesion (Co):   1 - mean(LCOM4) per class (connected components in method-attribute graph)
 
 Additional metrics:
-  hierarchical_modularity: M-score inspired — density ratio within vs between
+  hierarchical_modularity: M-score inspired - density ratio within vs between
                            second-level packages. Fixes leaf-module size bias
                            in Newman Q (Pisch et al. ESEM 2024).
   boundary_crossing_ratio: fraction of cross-package edges vs total internal edges.
@@ -39,7 +39,7 @@ class AGQMetrics:
 
 
 # ---------------------------------------------------------------------------
-# Modularity — Newman's Q via Louvain
+# Modularity - Newman's Q via Louvain
 # ---------------------------------------------------------------------------
 
 def compute_modularity(G: nx.DiGraph) -> float:
@@ -80,7 +80,7 @@ def compute_modularity(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Acyclicity — Tarjan SCC
+# Acyclicity - Tarjan SCC
 # ---------------------------------------------------------------------------
 
 def compute_acyclicity(G: nx.DiGraph) -> float:
@@ -122,7 +122,7 @@ def compute_acyclicity(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Stability — Martin's Distance from Main Sequence
+# Stability - Martin's Distance from Main Sequence
 # ---------------------------------------------------------------------------
 
 def compute_stability(G: nx.DiGraph,
@@ -158,7 +158,16 @@ def compute_stability(G: nx.DiGraph,
         packages.setdefault(pkg, []).append(node)
 
     if len(packages) <= 1:
-        return 0.0  # single package: no layering structure to measure
+        # FIX: flat libraries (single package) previously got 0.0, unfairly
+        # penalizing deliberately focused libs (click, arrow, itsdangerous).
+        # Use node-level instability variance instead, scaled by 0.5 to
+        # reflect that flat structure is less informative than true layering.
+        return _compute_node_level_stability(G) * 0.5
+
+    if len(packages) == 2:
+        # Small-sample correction: two packages → unreliable variance
+        # (will be computed below and multiplied by 0.8)
+        pass
 
     instabilities = []
     for pkg, members in packages.items():
@@ -171,11 +180,15 @@ def compute_stability(G: nx.DiGraph,
 
     mean_i = sum(instabilities) / len(instabilities)
     var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
-    return min(1.0, var / 0.25)
+    raw = min(1.0, var / 0.25)
+    # Small-sample correction for 2-package repos
+    if len(packages) == 2:
+        return raw * 0.8
+    return raw
 
 
 def compute_instability_variance(G: nx.DiGraph) -> float:
-    """Per-node instability variance — kept for backward compatibility.
+    """Per-node instability variance - kept for backward compatibility.
 
     Deprecated: use compute_stability() which applies package-level grouping
     to prevent leaf-module inflation in large repos.
@@ -195,11 +208,39 @@ def compute_instability_variance(G: nx.DiGraph) -> float:
 
     mean_i = sum(instabilities) / len(instabilities)
     var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
+    raw = min(1.0, var / 0.25)
+    # Small-sample correction for 2-package repos
+    if len(packages) == 2:
+        return raw * 0.8
+    return raw
+
+
+def _compute_node_level_stability(G: nx.DiGraph) -> float:
+    """Node-level instability variance — fallback for flat single-package repos.
+
+    Used when the repo has only one package (e.g. click, arrow, itsdangerous).
+    These are deliberately flat libraries — returning 0.0 unfairly penalizes them.
+    We compute instability per node instead and scale by 0.5 to reflect that
+    flat structure is less informative than true package layering.
+    """
+    nodes = list(G.nodes())
+    n = len(nodes)
+    if n <= 1:
+        return 1.0
+    instabilities = []
+    for node in nodes:
+        ca = G.in_degree(node)
+        ce = G.out_degree(node)
+        total = ca + ce
+        I = ce / total if total > 0 else 0.5
+        instabilities.append(I)
+    mean_i = sum(instabilities) / len(instabilities)
+    var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
     return min(1.0, var / 0.25)
 
 
 # ---------------------------------------------------------------------------
-# Adaptive Package Boundary Crossing — depth-aware (D'Ambros & Lanza 2009)
+# Adaptive Package Boundary Crossing - depth-aware (D'Ambros & Lanza 2009)
 # ---------------------------------------------------------------------------
 
 def _detect_package_depth(G: nx.DiGraph) -> int:
@@ -221,9 +262,9 @@ def _detect_package_depth(G: nx.DiGraph) -> int:
     mean_depth = sum(depths) / len(depths)
 
     # Group one level above the leaves: round(mean_depth) - 1
-    # flask (mean=1.3) → 1   — group at "flask"
-    # django (mean=3.3) → 2  — group at "django.db"
-    # ansible (mean=5)  → 4  — group at "ansible.modules.cloud"
+    # flask (mean=1.3) → 1   - group at "flask"
+    # django (mean=3.3) → 2  - group at "django.db"
+    # ansible (mean=5)  → 4  - group at "ansible.modules.cloud"
     level = max(1, min(4, round(mean_depth) - 1))
     return level
 
@@ -256,7 +297,7 @@ def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
         parts = node.split(".")
         packages[node] = ".".join(parts[:depth]) if len(parts) >= depth else parts[0]
 
-    # Don't short-circuit on single package — compute normally.
+    # Don't short-circuit on single package - compute normally.
     # All edges within one package → 0 crossing → BCR = 1.0 (correct: perfectly isolated).
 
     internal = {n for n, d in G.nodes(data=True) if d.get("file")}
@@ -279,7 +320,7 @@ def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
 
 
 def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
-    """Deprecated alias — use compute_boundary_crossing_ratio() instead.
+    """Deprecated alias - use compute_boundary_crossing_ratio() instead.
 
     hierarchical_modularity was redundant with Newman modularity Q when
     package boundaries align with natural graph clusters. BCR with adaptive
@@ -289,7 +330,7 @@ def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Cohesion — LCOM4
+# Cohesion - LCOM4
 # ---------------------------------------------------------------------------
 
 def compute_lcom4(methods_attrs: List[Tuple[str, Set[str]]]) -> int:
@@ -329,20 +370,203 @@ def compute_cohesion(classes_lcom4: List[int]) -> float:
     would look fine because only the god class hits penalty=1.0.
     """
     if not classes_lcom4:
-        return 1.0
+        # FIX: returning 1.0 (perfect) when no classes found is misleading.
+        # For Python/Java: no classes = scanner likely found nothing = neutral 0.75.
+        # The caller (Rust scanner) passes [] for Go by design — Go returns 1.0
+        # at the Rust level before reaching here.
+        return 0.75
 
     penalties = []
     for lcom in classes_lcom4:
-        excess = max(0, lcom - 1)
-        # Penalty: 0 for LCOM4=1, ramps to 1.0 at LCOM4=5+
-        # Using sigmoid-like: min(1, excess / 4) gives linear ramp, cap at 4 components
+        # FIX: LCOM4=1 always for single-method classes — exclude them.
+        # They trivially satisfy cohesion but add no signal.
+        # We receive pre-computed LCOM4 values; filter out trivial ones.
+        if lcom <= 1:
+            continue  # LCOM4=1 = perfectly cohesive, no penalty, no signal
+        excess = lcom - 1
+        # Penalty ramp: 0 at LCOM4=2 (excess=1), 1.0 at LCOM4=5+ (excess=4)
         penalty = min(1.0, excess / 4.0)
         penalties.append(penalty)
 
     if not penalties:
-        return 1.0
+        return 1.0  # All classes are cohesive (LCOM4=1)
 
     return 1.0 - (sum(penalties) / len(penalties))
+
+
+# ---------------------------------------------------------------------------
+# CCD - Cumulative Component Dependency (Lakos 1996)
+# ---------------------------------------------------------------------------
+
+def compute_ccd(G: nx.DiGraph) -> Dict[str, float]:
+    """Cumulative Component Dependency - measures ripple effect.
+
+    CCD = sum of reachable nodes from each node (including self).
+    Normalized by CCD of a balanced binary tree: n * log2(n).
+
+    High CCD_norm means a change in one module propagates widely.
+
+    Returns dict with ccd_raw, ccd_norm, avg_reachable.
+    Only internal nodes (with 'file' attribute) are considered.
+    """
+    internal = [n for n, d in G.nodes(data=True) if d.get("file")]
+    nodes = internal if internal else list(G.nodes())
+    n = len(nodes)
+    if n <= 1:
+        return {"ccd_raw": 0, "ccd_norm": 0.0, "avg_reachable": 0.0}
+
+    subgraph = G.subgraph(nodes)
+
+    # For large graphs, sample to avoid O(V*(V+E)) explosion
+    import math as _math
+    sample_nodes = nodes
+    if n > 2000:
+        import random
+        random.seed(42)
+        sample_nodes = random.sample(nodes, min(500, n))
+
+    total_reachable = 0
+    for node in sample_nodes:
+        reachable = nx.descendants(subgraph, node)
+        total_reachable += len(reachable) + 1  # +1 for self
+
+    if len(sample_nodes) < n:
+        # Extrapolate from sample
+        total_reachable = int(total_reachable * n / len(sample_nodes))
+
+    # CCD of balanced binary tree = n * log2(n+1)
+    ccd_tree = n * _math.log2(n + 1) if n > 1 else 1
+    ccd_norm = min(total_reachable / ccd_tree, 10.0) if ccd_tree > 0 else 0.0
+    avg_reachable = total_reachable / n if n > 0 else 0.0
+
+    return {
+        "ccd_raw": total_reachable,
+        "ccd_norm": round(ccd_norm, 4),
+        "avg_reachable": round(avg_reachable, 2),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Indirect Coupling - Edge Strength Metric (Šora 2013, Chiricota 2003)
+# ---------------------------------------------------------------------------
+
+def compute_indirect_coupling(G: nx.DiGraph) -> Dict[str, float]:
+    """Indirect coupling via shared neighbors (Edge Strength Metric).
+
+    For each edge (u,v), ESM = |neighbors(u) ∩ neighbors(v)| / |neighbors(u) ∪ neighbors(v)|
+    High ESM means u and v share many dependencies - strongly coupled indirectly.
+
+    Returns dict with mean_ic, max_ic, ic_above_05 (fraction of edges with IC > 0.5).
+    Only internal nodes considered.
+    """
+    internal = set(n for n, d in G.nodes(data=True) if d.get("file"))
+    nodes = internal if internal else set(G.nodes())
+
+    # Use full graph for neighbor computation (including external nodes)
+    # but only measure IC for edges involving internal nodes
+    edges = [(u, v) for u, v in G.edges() if u in nodes]
+    if not edges:
+        return {"mean_ic": 0.0, "max_ic": 0.0, "ic_above_05": 0.0}
+
+    # Precompute undirected neighbor sets on full graph for ESM
+    neighbors = {}
+    undirected = G.to_undirected()
+    for node in G.nodes():
+        neighbors[node] = set(undirected.neighbors(node))
+
+    esm_values = []
+    for u, v in edges:
+        if u not in neighbors or v not in neighbors:
+            continue
+        nu, nv = neighbors[u], neighbors[v]
+        union = nu | nv
+        if not union:
+            continue
+        intersection = nu & nv
+        esm = len(intersection) / len(union)
+        esm_values.append(esm)
+
+    if not esm_values:
+        return {"mean_ic": 0.0, "max_ic": 0.0, "ic_above_05": 0.0}
+
+    mean_ic = sum(esm_values) / len(esm_values)
+    max_ic = max(esm_values)
+    ic_above_05 = sum(1 for v in esm_values if v > 0.5) / len(esm_values)
+
+    return {
+        "mean_ic": round(mean_ic, 4),
+        "max_ic": round(max_ic, 4),
+        "ic_above_05": round(ic_above_05, 4),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Per-module metrics (fan-in, fan-out, SCC membership)
+# ---------------------------------------------------------------------------
+
+def compute_per_module_metrics(G: nx.DiGraph) -> Dict[str, object]:
+    """Per-module breakdown: fan-in, fan-out, instability, SCC membership.
+
+    Returns dict with:
+      - summary: avg/max/variance stats
+      - modules: list of per-module dicts (sorted by fan_out desc)
+      - scc_modules: list of module names in cycles
+    """
+    internal = [n for n, d in G.nodes(data=True) if d.get("file")]
+    nodes = internal if internal else list(G.nodes())
+    if not nodes:
+        return {"summary": {}, "modules": [], "scc_modules": []}
+
+    node_set = set(nodes)
+    subgraph = G.subgraph(nodes)
+
+    # SCC membership
+    scc_nodes = set()
+    for scc in nx.strongly_connected_components(subgraph):
+        if len(scc) > 1:
+            scc_nodes.update(scc)
+
+    modules = []
+    fan_ins, fan_outs = [], []
+
+    for node in nodes:
+        # Fan-in: all predecessors (internal + external imports of this module)
+        fi = G.in_degree(node)
+        # Fan-out: all successors (what this module imports, including external)
+        fo = G.out_degree(node)
+        instability = fo / (fi + fo) if (fi + fo) > 0 else 0.5
+
+        fan_ins.append(fi)
+        fan_outs.append(fo)
+
+        modules.append({
+            "name": node,
+            "fan_in": fi,
+            "fan_out": fo,
+            "instability": round(instability, 3),
+            "in_scc": node in scc_nodes,
+        })
+
+    # Sort by fan_out descending (hotspot ranking)
+    modules.sort(key=lambda m: -m["fan_out"])
+
+    import statistics as _stats
+    summary = {
+        "n_modules": len(nodes),
+        "avg_fan_in": round(sum(fan_ins) / len(fan_ins), 2) if fan_ins else 0,
+        "max_fan_in": max(fan_ins) if fan_ins else 0,
+        "avg_fan_out": round(sum(fan_outs) / len(fan_outs), 2) if fan_outs else 0,
+        "max_fan_out": max(fan_outs) if fan_outs else 0,
+        "fan_out_std": round(_stats.stdev(fan_outs), 3) if len(fan_outs) > 1 else 0,
+        "n_in_scc": len(scc_nodes),
+        "scc_fraction": round(len(scc_nodes) / len(nodes), 4) if nodes else 0,
+    }
+
+    return {
+        "summary": summary,
+        "modules": modules[:50],  # top 50 by fan-out
+        "scc_modules": sorted(scc_nodes),
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -356,7 +580,7 @@ def compute_agq(G: nx.DiGraph,
                 ) -> AGQMetrics:
     """Compute all AGQ metrics.
 
-    weights: (modularity, acyclicity, stability, cohesion) — auto-normalized.
+    weights: (modularity, acyclicity, stability, cohesion) - auto-normalized.
     Default equal weights. Calibrated churn-optimal: (0.0, 0.73, 0.05, 0.17).
 
     Scope note: meaningful discrimination requires ~50+ internal modules.
@@ -375,166 +599,4 @@ def compute_agq(G: nx.DiGraph,
 
     m = AGQMetrics(modularity=mod, acyclicity=acy, stability=stab, cohesion=coh)
     m._weights = w  # used by agq_score property if present
-    return m
-
-
-# ---------------------------------------------------------------------------
-# NEW METRICS — validated in perplexity/experiment_total pilot (iter 1-2)
-# Empirical basis: 14-repo Python pilot, Spearman correlations:
-#   GraphDensity  → bug_mean_days    r=+0.881 p=0.004 (STRONG)
-#   GraphDensity  → hotspot_ratio    r=+0.815 p=0.0004 (STRONG)
-#   SCCEntropy    → hotspot_ratio    r=-0.640 p=0.014 (moderate)
-#   HubRatio      → hotspot_ratio    r=+0.609 p=0.021 (moderate)
-# ---------------------------------------------------------------------------
-
-
-def compute_graph_density(G: nx.DiGraph) -> float:
-    """Graph density — fraction of possible edges that exist.
-
-    density = |E| / (|V| * (|V| - 1))
-
-    Empirically validated as the strongest predictor of:
-      - bug fix lead time (r=+0.881, p=0.004, n=14 Python OSS repos)
-      - hotspot_ratio     (r=+0.815, p=0.0004, n=14)
-
-    Lower density = better architecture (fewer tangled dependencies).
-    Dense graphs are harder to reason about and slower to fix bugs in.
-
-    Normalized score (0=worst, 1=best):
-      density_score = 1 - min(1, density / DENSITY_REFERENCE)
-    where DENSITY_REFERENCE=0.020 (p90 of 14-repo Python pilot).
-
-    Note: differs from modularity — modularity measures clustering,
-    density measures overall edge concentration.
-    """
-    n = G.number_of_nodes()
-    e = G.number_of_edges()
-    if n <= 1:
-        return 0.0
-    return round(e / (n * (n - 1)), 6)
-
-
-# Reference threshold for density score normalization.
-# Calibrated on 14-repo Python pilot (p90 = 0.026, conservatively 0.020).
-# Projects above this threshold get density_score → 0.0.
-DENSITY_REFERENCE = 0.020
-
-
-def compute_density_score(density: float) -> float:
-    """Normalize graph_density to [0, 1] where 1 = best (lowest density).
-
-    density_score = 1 - min(1, density / DENSITY_REFERENCE)
-    """
-    return round(max(0.0, 1.0 - min(1.0, density / DENSITY_REFERENCE)), 4)
-
-
-def compute_scc_entropy(G: nx.DiGraph) -> float:
-    """Information entropy of the SCC (Strongly Connected Component) distribution.
-
-    H_SCC = -Σ p_k * log2(p_k)
-    where p_k = |SCC_k| / |V|
-
-    Empirically validated:
-      SCCEntropy → hotspot_ratio  r=-0.640 p=0.014 (n=14 Python OSS repos)
-
-    Higher entropy = more, smaller SCCs = more modular decomposition.
-    Lower entropy = one dominant SCC = tangled, harder to change.
-
-    DAG (no cycles): each node is its own SCC → H_SCC = log2(n) [maximum]
-    Full cycle:      one SCC of size n         → H_SCC = 0 [minimum]
-
-    Normalized score (0=worst, 1=best):
-      scc_entropy_score = H_SCC / log2(n)   [fraction of maximum entropy]
-    """
-    n = G.number_of_nodes()
-    if n <= 1:
-        return 0.0
-    sccs = list(nx.strongly_connected_components(G))
-    probs = [len(scc) / n for scc in sccs if len(scc) > 0]
-    import math as _math
-    entropy = -sum(p * _math.log2(p) for p in probs if p > 0)
-    return round(entropy, 4)
-
-
-def compute_scc_entropy_score(G: nx.DiGraph) -> float:
-    """Normalize scc_entropy to [0, 1] where 1 = best (most modular).
-
-    scc_entropy_score = H_SCC / log2(n)
-    """
-    import math as _math
-    n = G.number_of_nodes()
-    if n <= 1:
-        return 1.0
-    h = compute_scc_entropy(G)
-    max_h = _math.log2(n)
-    if max_h <= 0:
-        return 1.0
-    return round(min(1.0, h / max_h), 4)
-
-
-def compute_hub_ratio(G: nx.DiGraph) -> float:
-    """Fraction of nodes with in_degree > 2 * mean_in_degree (hubs).
-
-    hub_ratio = |{v : in_degree(v) > 2 * mean_in_degree}| / |V|
-
-    Empirically validated:
-      HubRatio → hotspot_ratio  r=+0.609 p=0.021 (n=14 Python OSS repos)
-
-    High hub_ratio means a few modules attract most dependencies — these
-    become hotspots: hard to change without touching many other modules.
-
-    hub_score = 1 - hub_ratio  (lower ratio = better architecture)
-    """
-    n = G.number_of_nodes()
-    if n <= 1:
-        return 0.0
-    in_degrees = [d for _, d in G.in_degree()]
-    mean_in = sum(in_degrees) / n if n > 0 else 0.0
-    hub_count = sum(1 for d in in_degrees if d > 2 * mean_in)
-    return round(hub_count / n, 4)
-
-
-def compute_hub_score(hub_ratio: float) -> float:
-    """Normalize hub_ratio to [0, 1] where 1 = best (no hubs).
-
-    hub_score = 1 - hub_ratio
-    """
-    return round(max(0.0, 1.0 - hub_ratio), 4)
-
-
-# ---------------------------------------------------------------------------
-# Extended AGQMetrics — backward compatible
-# ---------------------------------------------------------------------------
-
-def compute_agq_extended(
-    G: nx.DiGraph,
-    abstract_modules: Optional[Set[str]] = None,
-    classes_lcom4: Optional[List[int]] = None,
-    weights: Tuple[float, float, float, float] = (0.25, 0.25, 0.25, 0.25),
-) -> "AGQMetrics":
-    """Compute AGQ + new structural descriptors validated in pilot experiments.
-
-    Returns the same AGQMetrics as compute_agq() but with additional
-    attributes injected: graph_density, scc_entropy, hub_ratio, and their
-    normalized scores.
-
-    The composite AGQ score remains unchanged (backward compatible).
-    New metrics are available as extra attributes on the returned object:
-      m.graph_density      float  — raw density
-      m.density_score      float  — normalized [0,1], 1=best
-      m.scc_entropy        float  — raw Shannon entropy of SCC distribution
-      m.scc_entropy_score  float  — normalized [0,1], 1=best
-      m.hub_ratio          float  — raw fraction of hub nodes
-      m.hub_score          float  — normalized [0,1], 1=best
-    """
-    m = compute_agq(G, abstract_modules, classes_lcom4, weights)
-
-    # Inject new metrics
-    m.graph_density     = compute_graph_density(G)
-    m.density_score     = compute_density_score(m.graph_density)
-    m.scc_entropy       = compute_scc_entropy(G)
-    m.scc_entropy_score = compute_scc_entropy_score(G)
-    m.hub_ratio         = compute_hub_ratio(G)
-    m.hub_score         = compute_hub_score(m.hub_ratio)
-
     return m
