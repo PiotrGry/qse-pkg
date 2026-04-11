@@ -400,3 +400,58 @@ Mann-Whitney nonDDD vs NEG: p=0.024 * → CD odróżnia non-DDD od negatywnych
 **Wniosek:** CD nie jest biased na DDD. non-DDD pozytywne (hexagonal, CQRS-lite,
 layered) mają podobny ratio jak DDD (mean 2.32 vs 2.62, p=0.40 ns).
 AGQ_v2 zachowuje p<0.05 po kontroli rozmiaru — wynik jest generyczny, nie DDD-specyficzny.
+
+---
+
+## flat_score — metryka Python-specific (E6, kwiecień 2026)
+
+```
+flat_score = 1 - flat_ratio
+flat_ratio = (liczba węzłów z depth <= 2) / (wszystkie węzły wewnętrzne)
+depth = liczba segmentów pakietu (bez nazwy klasy)
+
+Zakres:  [0.0, 1.0]  — wyższy = lepszy (więcej hierarchii)
+Java:    zawsze ~1.0 (konwencja com.company.app.domain.model = depth≥4)
+Python:  różnicuje — flat spaghetti → 0.0, dobrze warstwowe → 0.7-0.9
+```
+
+**Empiryczna walidacja (Python GT n=23, kwiecień 2026):**
+- pos_mean=0.665  neg_mean=0.311  Δ=+0.354
+- Mann-Whitney p=0.017 *
+- Spearman r=+0.549 p=0.007 **
+- Partial Spearman | nodes: r=+0.443 p=0.034 *
+
+**Wzorce:**
+- youtube-dl: flat_score=0.000 (895/895 węzłów w depth≤2) — FLAT SPAGHETTI
+- saleor:     flat_score=0.936 (64/3763 węzłów w depth≤2) — DOBRZE WARSTWOWE
+- buildbot:   flat_score=0.946 ALE panel=2.75 — LEGACY MONOLITH (flat_score nie wykrywa!)
+
+**Ograniczenie:** wykrywa brak hierarchii namespace, ale nie wykrywa złej architektury
+z głęboką hierarchią (buildbot, Medusa). Dwa różne typy złej architektury Pythonowej.
+
+## Stan algorytmu AGQ — kwiecień 2026 (aktualizacja finalna)
+
+### Formuły
+
+```
+AGQ_v1  = 0.20·M + 0.20·A + 0.55·S + 0.05·C                       [baseline]
+AGQ_v2  = 0.20·M + 0.20·A + 0.35·S + 0.05·C + 0.20·CD             [E2, kwiecień 2026]
+AGQ_v3c (Java)   = 0.20·M + 0.20·A + 0.20·S + 0.20·C + 0.20·CD   [PCA equal weights]
+AGQ_v3c (Python) = 0.15·M + 0.05·A + 0.20·S + 0.10·C + 0.15·CD + 0.35·flat_score
+```
+
+### Walidacja końcowa (GT Java n=14, Python n=23)
+
+| Metryka | Java MW p | Java partial r | Python MW p | Python partial r | Zgodność |
+|---|---|---|---|---|---|
+| AGQ_v2  | 0.001 ** | +0.675 ** | 0.077 ns | −0.284 ns | ODWROTNY ✗ |
+| AGQ_v3c | 0.001 ** | +0.675 ** | 0.045 *  | +0.460 *  | ZGODNY ✓ |
+| flat_score | — (brak wariancji) | — | 0.017 * | +0.443 * | Python only |
+
+### Otwarte problemy
+
+1. **Legacy monolith bez flat namespace** (buildbot, Medusa) — niewidoczny dla żadnej metryki
+2. **Go** — brak GT, brak walidacji wag
+3. **n zbyt małe** — Java n=14, Python n=23 → wyniki kierunkowe, nie ostateczne (cel: n≥30 per język)
+4. **flat_score brak wariancji dla Javy** — potrzeba innej metryki hierarchii dla Javy
+   (NS_depth jest kandydatem: partial r=+0.698** Java)
