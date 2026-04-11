@@ -371,3 +371,32 @@ Filtr obowiązkowy: `BLT > 0`.
 `agq_weight_calibration.json` w artefaktach ma A=0.73 (churn-optimal).  
 Churn nie koreluje z architekturą (r≈0, wszystkie ns, n=74).  
 → Ten artefakt jest historyczny — nie używaj do kalibracji.
+
+---
+
+## AGQ v2 — walidacja na n=13 (DDD + non-DDD, kwiecień 2026)
+
+### Wyniki z rozszerzonym GT (4 DDD-pos + 3 nonDDD-pos + 6 neg)
+
+| Metryka | r_raw | p | r_partial\|nodes | p_partial |
+|---|---|---|---|---|
+| **AGQ_v2** | +0.723 | 0.005 ** | **+0.599** | **0.031 \*** |
+| AGQ_v1 | +0.588 | 0.035 * | +0.341 | 0.255 ns |
+| CD (coupling density) | +0.623 | 0.023 * | **+0.604** | **0.029 \*** |
+| S (stability) | +0.409 | 0.165 ns | +0.165 | 0.590 ns |
+| ratio (edges/nodes) | −0.623 | 0.023 * | −0.604 | 0.029 * |
+
+### Test biasu CD względem DDD
+
+```
+DDD-pos ratio:    mean=2.62  [2.08–2.89]
+nonDDD-pos ratio: mean=2.32  [1.60–2.71]
+NEG ratio:        mean=3.89  [3.23–4.82]
+
+Mann-Whitney DDD vs nonDDD: p=0.400 → brak istotnego biasu CD na DDD
+Mann-Whitney nonDDD vs NEG: p=0.024 * → CD odróżnia non-DDD od negatywnych
+```
+
+**Wniosek:** CD nie jest biased na DDD. non-DDD pozytywne (hexagonal, CQRS-lite,
+layered) mają podobny ratio jak DDD (mean 2.32 vs 2.62, p=0.40 ns).
+AGQ_v2 zachowuje p<0.05 po kontroli rozmiaru — wynik jest generyczny, nie DDD-specyficzny.

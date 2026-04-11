@@ -29,13 +29,38 @@ class AGQMetrics:
     acyclicity: float    # 1 - fraction of nodes in cycles
     stability: float     # 1 - mean distance from main sequence
     cohesion: float      # 1 - mean(LCOM4 - 1) / max_lcom4
+    coupling_density: float = 0.0  # E2: 1 - normalized(edges/nodes); lower ratio = better
 
     @property
     def agq_score(self) -> float:
-        """Weighted composite. Weights set by compute_agq(); defaults to equal."""
+        """Weighted composite (v1). Weights set by compute_agq(); defaults to equal."""
         w = getattr(self, "_weights", (0.20, 0.20, 0.55, 0.05))
         return (w[0] * self.modularity + w[1] * self.acyclicity +
                 w[2] * self.stability + w[3] * self.cohesion)
+
+    @property
+    def agq_v2(self) -> float:
+        """AGQ v2: includes coupling_density (E2 experiment, April 2026).
+
+        Formula: 0.20*M + 0.20*A + 0.35*S + 0.05*C + 0.20*CD
+        Rationale:
+          - coupling_density (CD) = 1 - clip(edges/nodes / CD_REF, 0, 1)
+          - CD_REF = 6.0 (empirical: 95th pct of Java OSS iter6 = 5.8)
+          - Lower edges/nodes ratio = fewer tangled dependencies = better
+          - S weight reduced 0.55->0.35 to compensate (S blind to DDD hierarchy)
+          - CD weight 0.20 = same as M and A (same evidence level: p<0.05 on GT n=10)
+
+        Empirical basis (GT dataset n=10 certain, April 2026):
+          r(edges/nodes, Panel) = -0.787**  p=0.007 (raw, n=10 original)
+          r(edges/nodes, Panel) = -0.697*   p<0.05  (partial | nodes)
+          Mann-Whitney pos vs neg: p=0.010 **
+        """
+        w_v2 = getattr(self, "_weights_v2", (0.20, 0.20, 0.35, 0.05, 0.20))
+        return (w_v2[0] * self.modularity +
+                w_v2[1] * self.acyclicity +
+                w_v2[2] * self.stability +
+                w_v2[3] * self.cohesion +
+                w_v2[4] * self.coupling_density)
 
 
 # ---------------------------------------------------------------------------
@@ -613,7 +638,20 @@ def compute_agq(G: nx.DiGraph,
     total = sum(weights)
     w = tuple(v / total for v in weights) if total > 0 else (0.25, 0.25, 0.25, 0.25)
 
-    m = AGQMetrics(modularity=mod, acyclicity=acy, stability=stab, cohesion=coh)
+    # E2: coupling_density = 1 - clip(edges/nodes / CD_REF, 0, 1)
+    # CD_REF=6.0: empirical 95th percentile of Java OSS repos (iter6, n=147)
+    # Low ratio -> sparse deps -> high coupling_density score (good)
+    # High ratio -> tangled deps -> low coupling_density score (bad)
+    CD_REF = 6.0
+    n_nodes = G.number_of_nodes()
+    n_edges = G.number_of_edges()
+    raw_ratio = (n_edges / n_nodes) if n_nodes > 0 else 0.0
+    cd = max(0.0, 1.0 - min(raw_ratio / CD_REF, 1.0))
+
+    m = AGQMetrics(modularity=mod, acyclicity=acy, stability=stab, cohesion=coh,
+                   coupling_density=cd)
     m._weights = w  # used by agq_score property if present
+    m._weights_v2 = (0.20, 0.20, 0.35, 0.05, 0.20)  # AGQ v2 weights
+    m._raw_ratio = raw_ratio  # store for diagnostics
     return m
 
