@@ -39,6 +39,44 @@ class AGQMetrics:
                 w[2] * self.stability + w[3] * self.cohesion)
 
     @property
+    def flat_score(self) -> float:
+        """E6: 1 - flat_ratio. Fraction of nodes NOT in shallow namespaces (depth<=2).
+        Python-specific signal: flat spaghetti (youtube-dl) -> flat_score~0.0.
+        Well-layered Python apps -> flat_score~0.7-0.9.
+        Java: always ~1.0 (deep package convention) — not useful for Java.
+        Set externally by compute_agq() after scan_to_graph_json() call.
+        """
+        return getattr(self, "_flat_score", 1.0)
+
+    @property
+    def agq_v3c(self) -> float:
+        """AGQ v3c — language-aware formula (April 2026).
+
+        Java:   0.20*M + 0.20*A + 0.20*S + 0.20*C + 0.20*CD  [PCA equal weights]
+        Python: 0.15*M + 0.05*A + 0.20*S + 0.10*C + 0.15*CD + 0.35*flat_score
+
+        flat_score = 1 - flat_ratio (fraction of nodes NOT in depth<=2 namespaces)
+        Rationale:
+          - Java flat_score always ~1.0 (no information) -> use PCA equal weights
+          - Python flat_score separates POS/NEG: MW p=0.004**, partial|nodes r=+0.670**
+          - AGQ_v3c Python: MW p=0.045*, partial|nodes r=+0.460*
+            vs AGQ_v2 Python: MW p=0.066 ns, partial|nodes r=-0.309 ns (INVERTED!)
+          - AGQ_v3c Java: identical to v2 (partial|nodes r=+0.675**)
+
+        Empirical basis (GT n=14 Java + n=19 Python, April 2026):
+          Java  AGQ_v3c: pos=0.564 neg=0.458 MW p=0.001*** partial r=+0.675**
+          Python AGQ_v3c: pos=0.565 neg=0.453 MW p=0.045*   partial r=+0.460*
+        """
+        lang = getattr(self, "_language", "Java")
+        fs   = getattr(self, "_flat_score", 1.0)
+        M, A, S, C, CD = (self.modularity, self.acyclicity,
+                          self.stability, self.cohesion, self.coupling_density)
+        if lang == "Python":
+            return (0.15*M + 0.05*A + 0.20*S + 0.10*C + 0.15*CD + 0.35*fs)
+        else:  # Java, Go, COBOL — PCA equal weights (no flat_score signal)
+            return (0.20*M + 0.20*A + 0.20*S + 0.20*C + 0.20*CD)
+
+    @property
     def agq_v2(self) -> float:
         """AGQ v2: includes coupling_density (E2 experiment, April 2026).
 
@@ -653,5 +691,9 @@ def compute_agq(G: nx.DiGraph,
     m._weights = w  # used by agq_score property if present
     m._weights_v2 = (0.20, 0.20, 0.35, 0.05, 0.20)  # AGQ v2 weights
     m._raw_ratio = raw_ratio  # store for diagnostics
+    # v3c: language and flat_score set externally (requires scan_to_graph_json)
+    # Default: Java-like (flat_score=1.0 -> PCA equal weights used)
+    m._flat_score = 1.0
+    m._language   = "Java"
     return m
 
