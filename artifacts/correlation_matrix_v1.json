@@ -1,0 +1,68 @@
+{
+  "pearson_all_n357": {
+    "M": {
+      "M": 1.0,
+      "A": 0.015,
+      "S": -0.203,
+      "C": -0.254,
+      "cd": 0.18,
+      "agq_v2": 0.088
+    },
+    "A": {
+      "M": 0.015,
+      "A": 1.0,
+      "S": 0.094,
+      "C": 0.258,
+      "cd": 0.267,
+      "agq_v2": 0.309
+    },
+    "S": {
+      "M": -0.203,
+      "A": 0.094,
+      "S": 1.0,
+      "C": 0.096,
+      "cd": 0.127,
+      "agq_v2": 0.852
+    },
+    "C": {
+      "M": -0.254,
+      "A": 0.258,
+      "S": 0.096,
+      "C": 1.0,
+      "cd": -0.078,
+      "agq_v2": 0.139
+    },
+    "cd": {
+      "M": 0.18,
+      "A": 0.267,
+      "S": 0.127,
+      "C": -0.078,
+      "cd": 1.0,
+      "agq_v2": 0.571
+    },
+    "agq_v2": {
+      "M": 0.088,
+      "A": 0.309,
+      "S": 0.852,
+      "C": 0.139,
+      "cd": 0.571,
+      "agq_v2": 1.0
+    }
+  },
+  "key_findings": {
+    "r_S_AGQv2": 0.852,
+    "r_A_CD": 0.333,
+    "r_M_S": -0.203,
+    "independent_pairs": [
+      "M-S",
+      "M-C",
+      "S-C",
+      "M-A"
+    ],
+    "redundant_pairs": [
+      "A-CD (r=0.333)",
+      "S-AGQ_v2 (r=0.852 tautology)"
+    ],
+    "note": "AGQ_v2 VIF nieobliczalne (jest kombinacja liniowa skladowych \u2014 perfect multicollinearity by design)"
+  }
+}
