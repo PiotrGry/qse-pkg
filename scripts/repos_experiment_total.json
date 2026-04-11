@@ -3981,5 +3981,2495 @@
     "url": "https://github.com/pingdotgg/t3code",
     "lang": "TypeScript",
     "layer": "A"
+  },
+  {
+    "name": "PlaceholderAPI",
+    "url": "https://github.com/PlaceholderAPI/PlaceholderAPI",
+    "stars": 948,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "PlaceholderAPI/PlaceholderAPI",
+    "created_at": "2018-03-20T20:50:06Z",
+    "open_issues": 17
+  },
+  {
+    "name": "DS-Algo-Point",
+    "url": "https://github.com/sukritishah15/DS-Algo-Point",
+    "stars": 949,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "sukritishah15/DS-Algo-Point",
+    "created_at": "2020-09-28T14:09:43Z",
+    "open_issues": 159
+  },
+  {
+    "name": "spring-data-rest",
+    "url": "https://github.com/spring-projects/spring-data-rest",
+    "stars": 950,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "spring-projects/spring-data-rest",
+    "created_at": "2012-03-08T21:55:39Z",
+    "open_issues": 804
+  },
+  {
+    "name": "Leaf",
+    "url": "https://github.com/Winds-Studio/Leaf",
+    "stars": 950,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Winds-Studio/Leaf",
+    "created_at": "2022-06-02T15:06:59Z",
+    "open_issues": 53
+  },
+  {
+    "name": "dom4j",
+    "url": "https://github.com/dom4j/dom4j",
+    "stars": 951,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "dom4j/dom4j",
+    "created_at": "2015-07-02T09:23:15Z",
+    "open_issues": 68
+  },
+  {
+    "name": "rome",
+    "url": "https://github.com/rometools/rome",
+    "stars": 952,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "rometools/rome",
+    "created_at": "2013-09-23T16:35:35Z",
+    "open_issues": 29
+  },
+  {
+    "name": "datasketches-java",
+    "url": "https://github.com/apache/datasketches-java",
+    "stars": 952,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/datasketches-java",
+    "created_at": "2015-06-30T01:05:21Z",
+    "open_issues": 10
+  },
+  {
+    "name": "android-justifiedtextview",
+    "url": "https://github.com/ufo22940268/android-justifiedtextview",
+    "stars": 953,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ufo22940268/android-justifiedtextview",
+    "created_at": "2014-03-21T07:42:30Z",
+    "open_issues": 30
+  },
+  {
+    "name": "openjob",
+    "url": "https://github.com/open-job/openjob",
+    "stars": 953,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "open-job/openjob",
+    "created_at": "2022-06-13T13:37:19Z",
+    "open_issues": 21
+  },
+  {
+    "name": "InstaEclipse",
+    "url": "https://github.com/ReSo7200/InstaEclipse",
+    "stars": 954,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ReSo7200/InstaEclipse",
+    "created_at": "2024-12-25T15:05:45Z",
+    "open_issues": 18
+  },
+  {
+    "name": "GSYRecordWave",
+    "url": "https://github.com/CarGuo/GSYRecordWave",
+    "stars": 954,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "CarGuo/GSYRecordWave",
+    "created_at": "2016-11-15T07:35:42Z",
+    "open_issues": 7
+  },
+  {
+    "name": "Sudachi",
+    "url": "https://github.com/WorksApplications/Sudachi",
+    "stars": 955,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "WorksApplications/Sudachi",
+    "created_at": "2017-08-21T06:51:56Z",
+    "open_issues": 28
+  },
+  {
+    "name": "JustEnoughItems",
+    "url": "https://github.com/mezz/JustEnoughItems",
+    "stars": 956,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "mezz/JustEnoughItems",
+    "created_at": "2014-09-30T22:26:10Z",
+    "open_issues": 206
+  },
+  {
+    "name": "Much-Assembly-Required",
+    "url": "https://github.com/simon987/Much-Assembly-Required",
+    "stars": 957,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "simon987/Much-Assembly-Required",
+    "created_at": "2017-11-03T01:50:01Z",
+    "open_issues": 31
+  },
+  {
+    "name": "spring-tools",
+    "url": "https://github.com/spring-projects/spring-tools",
+    "stars": 958,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "spring-projects/spring-tools",
+    "created_at": "2016-08-16T15:04:50Z",
+    "open_issues": 150
+  },
+  {
+    "name": "spatial4j",
+    "url": "https://github.com/locationtech/spatial4j",
+    "stars": 958,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "locationtech/spatial4j",
+    "created_at": "2012-02-27T21:22:30Z",
+    "open_issues": 75
+  },
+  {
+    "name": "carina",
+    "url": "https://github.com/zebrunner/carina",
+    "stars": 961,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "zebrunner/carina",
+    "created_at": "2013-10-29T20:46:25Z",
+    "open_issues": 22
+  },
+  {
+    "name": "xxl-api",
+    "url": "https://github.com/xuxueli/xxl-api",
+    "stars": 961,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "xuxueli/xxl-api",
+    "created_at": "2017-03-29T09:49:31Z",
+    "open_issues": 22
+  },
+  {
+    "name": "Lynxe",
+    "url": "https://github.com/spring-ai-alibaba/Lynxe",
+    "stars": 961,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "spring-ai-alibaba/Lynxe",
+    "created_at": "2025-09-12T09:28:02Z",
+    "open_issues": 36
+  },
+  {
+    "name": "brooklin",
+    "url": "https://github.com/linkedin/brooklin",
+    "stars": 961,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "linkedin/brooklin",
+    "created_at": "2015-08-10T22:58:33Z",
+    "open_issues": 34
+  },
+  {
+    "name": "Ninja",
+    "url": "https://github.com/mthli/Ninja",
+    "stars": 964,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "mthli/Ninja",
+    "created_at": "2015-03-16T08:56:30Z",
+    "open_issues": 15
+  },
+  {
+    "name": "BottomBarLayout",
+    "url": "https://github.com/chaychan/BottomBarLayout",
+    "stars": 964,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "chaychan/BottomBarLayout",
+    "created_at": "2017-06-25T01:58:12Z",
+    "open_issues": 6
+  },
+  {
+    "name": "java-dns-cache-manipulator",
+    "url": "https://github.com/alibaba/java-dns-cache-manipulator",
+    "stars": 965,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "alibaba/java-dns-cache-manipulator",
+    "created_at": "2015-03-26T18:11:56Z",
+    "open_issues": 7
+  },
+  {
+    "name": "TestFX",
+    "url": "https://github.com/TestFX/TestFX",
+    "stars": 968,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "TestFX/TestFX",
+    "created_at": "2013-07-15T13:49:09Z",
+    "open_issues": 160
+  },
+  {
+    "name": "nakadi",
+    "url": "https://github.com/zalando/nakadi",
+    "stars": 968,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "zalando/nakadi",
+    "created_at": "2015-10-14T08:30:17Z",
+    "open_issues": 46
+  },
+  {
+    "name": "pwm",
+    "url": "https://github.com/pwm-project/pwm",
+    "stars": 968,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "pwm-project/pwm",
+    "created_at": "2015-10-19T21:38:14Z",
+    "open_issues": 168
+  },
+  {
+    "name": "stripe-java",
+    "url": "https://github.com/stripe/stripe-java",
+    "stars": 969,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "stripe/stripe-java",
+    "created_at": "2011-08-09T00:06:31Z",
+    "open_issues": 24
+  },
+  {
+    "name": "aws-saas-boost",
+    "url": "https://github.com/awslabs/aws-saas-boost",
+    "stars": 970,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "awslabs/aws-saas-boost",
+    "created_at": "2021-04-12T22:38:41Z",
+    "open_issues": 81
+  },
+  {
+    "name": "pigeon-pod",
+    "url": "https://github.com/aizhimou/pigeon-pod",
+    "stars": 971,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "aizhimou/pigeon-pod",
+    "created_at": "2025-08-23T05:28:12Z",
+    "open_issues": 15
+  },
+  {
+    "name": "AIAS",
+    "url": "https://github.com/mymagicpower/AIAS",
+    "stars": 972,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "mymagicpower/AIAS",
+    "created_at": "2021-06-04T06:13:06Z",
+    "open_issues": 29
+  },
+  {
+    "name": "Android-Image-Slider",
+    "url": "https://github.com/smarteist/Android-Image-Slider",
+    "stars": 973,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "smarteist/Android-Image-Slider",
+    "created_at": "2018-03-12T10:05:01Z",
+    "open_issues": 132
+  },
+  {
+    "name": "mbassador",
+    "url": "https://github.com/bennidi/mbassador",
+    "stars": 974,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "bennidi/mbassador",
+    "created_at": "2012-10-23T07:27:32Z",
+    "open_issues": 17
+  },
+  {
+    "name": "stormcrawler",
+    "url": "https://github.com/apache/stormcrawler",
+    "stars": 975,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/stormcrawler",
+    "created_at": "2013-04-12T14:13:30Z",
+    "open_issues": 22
+  },
+  {
+    "name": "junit-quickcheck",
+    "url": "https://github.com/pholser/junit-quickcheck",
+    "stars": 977,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "pholser/junit-quickcheck",
+    "created_at": "2010-10-18T22:33:36Z",
+    "open_issues": 39
+  },
+  {
+    "name": "product-apim",
+    "url": "https://github.com/wso2/product-apim",
+    "stars": 977,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "wso2/product-apim",
+    "created_at": "2014-06-11T08:05:00Z",
+    "open_issues": 667
+  },
+  {
+    "name": "react-native-restart",
+    "url": "https://github.com/avishayil/react-native-restart",
+    "stars": 978,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "avishayil/react-native-restart",
+    "created_at": "2016-07-17T06:11:54Z",
+    "open_issues": 21
+  },
+  {
+    "name": "starlight",
+    "url": "https://github.com/baidu/starlight",
+    "stars": 978,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "baidu/starlight",
+    "created_at": "2018-12-20T08:24:32Z",
+    "open_issues": 17
+  },
+  {
+    "name": "E-commerce-project-springBoot",
+    "url": "https://github.com/jaygajera17/E-commerce-project-springBoot",
+    "stars": 980,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "jaygajera17/E-commerce-project-springBoot",
+    "created_at": "2022-03-12T10:42:29Z",
+    "open_issues": 54
+  },
+  {
+    "name": "VinylMusicPlayer",
+    "url": "https://github.com/VinylMusicPlayer/VinylMusicPlayer",
+    "stars": 981,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "VinylMusicPlayer/VinylMusicPlayer",
+    "created_at": "2017-12-27T15:32:23Z",
+    "open_issues": 235
+  },
+  {
+    "name": "hilla",
+    "url": "https://github.com/vaadin/hilla",
+    "stars": 982,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "vaadin/hilla",
+    "created_at": "2021-04-27T13:25:07Z",
+    "open_issues": 435
+  },
+  {
+    "name": "android-testdpc",
+    "url": "https://github.com/googlesamples/android-testdpc",
+    "stars": 983,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "googlesamples/android-testdpc",
+    "created_at": "2015-05-22T02:46:28Z",
+    "open_issues": 38
+  },
+  {
+    "name": "VolleyPlus",
+    "url": "https://github.com/DWorkS/VolleyPlus",
+    "stars": 983,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "DWorkS/VolleyPlus",
+    "created_at": "2014-02-15T13:20:21Z",
+    "open_issues": 37
+  },
+  {
+    "name": "layering-cache",
+    "url": "https://github.com/xiaolyuh/layering-cache",
+    "stars": 983,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "xiaolyuh/layering-cache",
+    "created_at": "2018-04-23T15:47:13Z",
+    "open_issues": 10
+  },
+  {
+    "name": "DialogUtil",
+    "url": "https://github.com/hss01248/DialogUtil",
+    "stars": 985,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "hss01248/DialogUtil",
+    "created_at": "2016-09-23T06:01:21Z",
+    "open_issues": 24
+  },
+  {
+    "name": "athenz",
+    "url": "https://github.com/AthenZ/athenz",
+    "stars": 986,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "AthenZ/athenz",
+    "created_at": "2016-11-16T18:23:08Z",
+    "open_issues": 53
+  },
+  {
+    "name": "rebuild",
+    "url": "https://github.com/getrebuild/rebuild",
+    "stars": 986,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "getrebuild/rebuild",
+    "created_at": "2018-05-18T03:44:32Z",
+    "open_issues": 8
+  },
+  {
+    "name": "activej",
+    "url": "https://github.com/activej/activej",
+    "stars": 987,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "activej/activej",
+    "created_at": "2020-05-28T14:58:00Z",
+    "open_issues": 48
+  },
+  {
+    "name": "JsonUnit",
+    "url": "https://github.com/lukas-krecan/JsonUnit",
+    "stars": 987,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "lukas-krecan/JsonUnit",
+    "created_at": "2012-01-29T08:33:07Z",
+    "open_issues": 16
+  },
+  {
+    "name": "spring-cloud-stream-samples",
+    "url": "https://github.com/spring-cloud/spring-cloud-stream-samples",
+    "stars": 989,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "spring-cloud/spring-cloud-stream-samples",
+    "created_at": "2016-02-19T14:32:27Z",
+    "open_issues": 43
+  },
+  {
+    "name": "usergrid",
+    "url": "https://github.com/apache/usergrid",
+    "stars": 990,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/usergrid",
+    "created_at": "2013-11-05T08:00:14Z",
+    "open_issues": 30
+  },
+  {
+    "name": "PhotonCamera",
+    "url": "https://github.com/eszdman/PhotonCamera",
+    "stars": 990,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "eszdman/PhotonCamera",
+    "created_at": "2019-09-07T22:03:02Z",
+    "open_issues": 61
+  },
+  {
+    "name": "MediathekView",
+    "url": "https://github.com/mediathekview/MediathekView",
+    "stars": 990,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "mediathekview/MediathekView",
+    "created_at": "2014-08-16T13:55:41Z",
+    "open_issues": 27
+  },
+  {
+    "name": "tray",
+    "url": "https://github.com/qzind/tray",
+    "stars": 990,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "qzind/tray",
+    "created_at": "2016-02-18T05:10:28Z",
+    "open_issues": 137
+  },
+  {
+    "name": "cloudsim",
+    "url": "https://github.com/Cloudslab/cloudsim",
+    "stars": 990,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Cloudslab/cloudsim",
+    "created_at": "2015-03-18T08:42:04Z",
+    "open_issues": 87
+  },
+  {
+    "name": "home-assistant-floor-plan",
+    "url": "https://github.com/shmuelzon/home-assistant-floor-plan",
+    "stars": 991,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "shmuelzon/home-assistant-floor-plan",
+    "created_at": "2024-02-03T14:33:06Z",
+    "open_issues": 13
+  },
+  {
+    "name": "modbus4j",
+    "url": "https://github.com/MangoAutomation/modbus4j",
+    "stars": 991,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "MangoAutomation/modbus4j",
+    "created_at": "2014-06-10T23:10:27Z",
+    "open_issues": 48
+  },
+  {
+    "name": "cbioportal",
+    "url": "https://github.com/cBioPortal/cbioportal",
+    "stars": 993,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "cBioPortal/cbioportal",
+    "created_at": "2015-03-18T20:09:09Z",
+    "open_issues": 335
+  },
+  {
+    "name": "WeYueReader",
+    "url": "https://github.com/LiangLuDev/WeYueReader",
+    "stars": 994,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "LiangLuDev/WeYueReader",
+    "created_at": "2018-02-27T01:24:29Z",
+    "open_issues": 24
+  },
+  {
+    "name": "Plan",
+    "url": "https://github.com/plan-player-analytics/Plan",
+    "stars": 994,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "plan-player-analytics/Plan",
+    "created_at": "2016-12-08T17:34:11Z",
+    "open_issues": 125
+  },
+  {
+    "name": "redis-replicator",
+    "url": "https://github.com/leonchen83/redis-replicator",
+    "stars": 995,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "leonchen83/redis-replicator",
+    "created_at": "2016-08-13T16:20:35Z",
+    "open_issues": 8
+  },
+  {
+    "name": "ReplayMod",
+    "url": "https://github.com/ReplayMod/ReplayMod",
+    "stars": 996,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ReplayMod/ReplayMod",
+    "created_at": "2016-11-11T18:29:33Z",
+    "open_issues": 407
+  },
+  {
+    "name": "Modelio",
+    "url": "https://github.com/ModelioOpenSource/Modelio",
+    "stars": 996,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ModelioOpenSource/Modelio",
+    "created_at": "2020-09-03T09:57:05Z",
+    "open_issues": 78
+  },
+  {
+    "name": "spring-boot-student",
+    "url": "https://github.com/wyh-spring-ecosystem-student/spring-boot-student",
+    "stars": 996,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "wyh-spring-ecosystem-student/spring-boot-student",
+    "created_at": "2017-05-24T08:38:38Z",
+    "open_issues": 41
+  },
+  {
+    "name": "No-Chat-Reports",
+    "url": "https://github.com/Aizistral-Studios/No-Chat-Reports",
+    "stars": 996,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Aizistral-Studios/No-Chat-Reports",
+    "created_at": "2022-06-17T12:43:38Z",
+    "open_issues": 52
+  },
+  {
+    "name": "SwipeBackLayout",
+    "url": "https://github.com/gongwen/SwipeBackLayout",
+    "stars": 997,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "gongwen/SwipeBackLayout",
+    "created_at": "2017-08-26T05:26:47Z",
+    "open_issues": 14
+  },
+  {
+    "name": "pdf-bookmark",
+    "url": "https://github.com/ifnoelse/pdf-bookmark",
+    "stars": 998,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ifnoelse/pdf-bookmark",
+    "created_at": "2017-02-26T18:45:51Z",
+    "open_issues": 22
+  },
+  {
+    "name": "warehouse",
+    "url": "https://github.com/yeqifu/warehouse",
+    "stars": 998,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "yeqifu/warehouse",
+    "created_at": "2019-11-21T15:15:36Z",
+    "open_issues": 57
+  },
+  {
+    "name": "AdoBot",
+    "url": "https://github.com/adonespitogo/AdoBot",
+    "stars": 999,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "adonespitogo/AdoBot",
+    "created_at": "2017-02-17T16:14:24Z",
+    "open_issues": 23
+  },
+  {
+    "name": "flink-kubernetes-operator",
+    "url": "https://github.com/apache/flink-kubernetes-operator",
+    "stars": 1000,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/flink-kubernetes-operator",
+    "created_at": "2022-02-10T05:00:35Z",
+    "open_issues": 24
+  },
+  {
+    "name": "TencentKona-8",
+    "url": "https://github.com/Tencent/TencentKona-8",
+    "stars": 1000,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Tencent/TencentKona-8",
+    "created_at": "2019-11-01T05:02:09Z",
+    "open_issues": 18
+  },
+  {
+    "name": "fastjson2",
+    "url": "https://github.com/alibaba/fastjson2",
+    "stars": 4288,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "alibaba/fastjson2",
+    "created_at": "2022-04-17T04:27:24Z",
+    "open_issues": 645
+  },
+  {
+    "name": "fory",
+    "url": "https://github.com/apache/fory",
+    "stars": 4288,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/fory",
+    "created_at": "2023-04-28T03:57:00Z",
+    "open_issues": 145
+  },
+  {
+    "name": "BGARefreshLayout-Android",
+    "url": "https://github.com/bingoogolapple/BGARefreshLayout-Android",
+    "stars": 4298,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "bingoogolapple/BGARefreshLayout-Android",
+    "created_at": "2015-05-28T16:17:00Z",
+    "open_issues": 96
+  },
+  {
+    "name": "streampark",
+    "url": "https://github.com/apache/streampark",
+    "stars": 4304,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/streampark",
+    "created_at": "2019-05-27T05:56:03Z",
+    "open_issues": 297
+  },
+  {
+    "name": "open-location-code",
+    "url": "https://github.com/google/open-location-code",
+    "stars": 4308,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "google/open-location-code",
+    "created_at": "2014-09-30T18:26:35Z",
+    "open_issues": 52
+  },
+  {
+    "name": "jabref",
+    "url": "https://github.com/JabRef/jabref",
+    "stars": 4311,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "JabRef/jabref",
+    "created_at": "2014-03-11T14:48:42Z",
+    "open_issues": 524
+  },
+  {
+    "name": "geoserver",
+    "url": "https://github.com/geoserver/geoserver",
+    "stars": 4317,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "geoserver/geoserver",
+    "created_at": "2011-11-10T19:56:06Z",
+    "open_issues": 25
+  },
+  {
+    "name": "jitsi",
+    "url": "https://github.com/jitsi/jitsi",
+    "stars": 4321,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "jitsi/jitsi",
+    "created_at": "2013-04-24T17:37:20Z",
+    "open_issues": 221
+  },
+  {
+    "name": "dragonwell8",
+    "url": "https://github.com/dragonwell-project/dragonwell8",
+    "stars": 4321,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "dragonwell-project/dragonwell8",
+    "created_at": "2019-03-07T02:57:45Z",
+    "open_issues": 172
+  },
+  {
+    "name": "zotfile",
+    "url": "https://github.com/jlegewie/zotfile",
+    "stars": 4322,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "jlegewie/zotfile",
+    "created_at": "2011-12-30T14:47:42Z",
+    "open_issues": 298
+  },
+  {
+    "name": "LSPosed_mod",
+    "url": "https://github.com/mywalkb/LSPosed_mod",
+    "stars": 4325,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "mywalkb/LSPosed_mod",
+    "created_at": "2022-03-28T08:05:38Z",
+    "open_issues": 55
+  },
+  {
+    "name": "pdfsam",
+    "url": "https://github.com/torakiki/pdfsam",
+    "stars": 4346,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "torakiki/pdfsam",
+    "created_at": "2013-09-24T11:06:13Z",
+    "open_issues": 126
+  },
+  {
+    "name": "frontend-maven-plugin",
+    "url": "https://github.com/eirslett/frontend-maven-plugin",
+    "stars": 4355,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "eirslett/frontend-maven-plugin",
+    "created_at": "2013-08-30T14:44:38Z",
+    "open_issues": 307
+  },
+  {
+    "name": "serve",
+    "url": "https://github.com/pytorch/serve",
+    "stars": 4361,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "pytorch/serve",
+    "created_at": "2019-10-03T03:17:43Z",
+    "open_issues": 445
+  },
+  {
+    "name": "OpenHub",
+    "url": "https://github.com/ThirtyDegreesRay/OpenHub",
+    "stars": 4366,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ThirtyDegreesRay/OpenHub",
+    "created_at": "2017-07-11T13:29:51Z",
+    "open_issues": 246
+  },
+  {
+    "name": "cyberduck",
+    "url": "https://github.com/iterate-ch/cyberduck",
+    "stars": 4380,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "iterate-ch/cyberduck",
+    "created_at": "2017-01-20T14:16:34Z",
+    "open_issues": 507
+  },
+  {
+    "name": "crate",
+    "url": "https://github.com/crate/crate",
+    "stars": 4382,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "crate/crate",
+    "created_at": "2013-04-10T09:17:16Z",
+    "open_issues": 316
+  },
+  {
+    "name": "mcaselector",
+    "url": "https://github.com/Querz/mcaselector",
+    "stars": 4401,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Querz/mcaselector",
+    "created_at": "2018-04-22T22:23:26Z",
+    "open_issues": 227
+  },
+  {
+    "name": "guide-rpc-framework",
+    "url": "https://github.com/Snailclimb/guide-rpc-framework",
+    "stars": 4402,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Snailclimb/guide-rpc-framework",
+    "created_at": "2020-05-10T13:24:42Z",
+    "open_issues": 23
+  },
+  {
+    "name": "signal-cli",
+    "url": "https://github.com/AsamK/signal-cli",
+    "stars": 4427,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "AsamK/signal-cli",
+    "created_at": "2015-05-11T10:49:42Z",
+    "open_issues": 95
+  },
+  {
+    "name": "moco",
+    "url": "https://github.com/dreamhead/moco",
+    "stars": 4429,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "dreamhead/moco",
+    "created_at": "2012-10-18T09:09:51Z",
+    "open_issues": 144
+  },
+  {
+    "name": "android-mvp-architecture",
+    "url": "https://github.com/janishar/android-mvp-architecture",
+    "stars": 4431,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "janishar/android-mvp-architecture",
+    "created_at": "2017-01-27T08:39:06Z",
+    "open_issues": 40
+  },
+  {
+    "name": "shiro",
+    "url": "https://github.com/apache/shiro",
+    "stars": 4437,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/shiro",
+    "created_at": "2009-08-29T08:00:17Z",
+    "open_issues": 6
+  },
+  {
+    "name": "flutter-webrtc",
+    "url": "https://github.com/flutter-webrtc/flutter-webrtc",
+    "stars": 4455,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "flutter-webrtc/flutter-webrtc",
+    "created_at": "2018-03-07T02:26:03Z",
+    "open_issues": 702
+  },
+  {
+    "name": "flink-recommandSystem-demo",
+    "url": "https://github.com/water8394/flink-recommandSystem-demo",
+    "stars": 4474,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "water8394/flink-recommandSystem-demo",
+    "created_at": "2019-05-15T07:55:35Z",
+    "open_issues": 18
+  },
+  {
+    "name": "Gadgetbridge",
+    "url": "https://github.com/Freeyourgadget/Gadgetbridge",
+    "stars": 4495,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Freeyourgadget/Gadgetbridge",
+    "created_at": "2015-01-05T23:19:03Z",
+    "open_issues": 461
+  },
+  {
+    "name": "azkaban",
+    "url": "https://github.com/azkaban/azkaban",
+    "stars": 4513,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "azkaban/azkaban",
+    "created_at": "2012-10-18T01:34:53Z",
+    "open_issues": 802
+  },
+  {
+    "name": "jacoco",
+    "url": "https://github.com/jacoco/jacoco",
+    "stars": 4528,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "jacoco/jacoco",
+    "created_at": "2012-07-08T21:45:13Z",
+    "open_issues": 220
+  },
+  {
+    "name": "Depth-LIB-Android-",
+    "url": "https://github.com/danielzeller/Depth-LIB-Android-",
+    "stars": 4539,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "danielzeller/Depth-LIB-Android-",
+    "created_at": "2016-04-27T09:37:28Z",
+    "open_issues": 11
+  },
+  {
+    "name": "novel-plus",
+    "url": "https://github.com/201206030/novel-plus",
+    "stars": 4540,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "201206030/novel-plus",
+    "created_at": "2020-05-02T07:15:43Z",
+    "open_issues": 76
+  },
+  {
+    "name": "quasar",
+    "url": "https://github.com/puniverse/quasar",
+    "stars": 4563,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "puniverse/quasar",
+    "created_at": "2013-03-27T14:51:24Z",
+    "open_issues": 101
+  },
+  {
+    "name": "h2database",
+    "url": "https://github.com/h2database/h2database",
+    "stars": 4590,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "h2database/h2database",
+    "created_at": "2015-04-10T19:09:09Z",
+    "open_issues": 427
+  },
+  {
+    "name": "objectbox-java",
+    "url": "https://github.com/objectbox/objectbox-java",
+    "stars": 4606,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "objectbox/objectbox-java",
+    "created_at": "2017-01-24T10:29:48Z",
+    "open_issues": 147
+  },
+  {
+    "name": "AndroidHttpCapture",
+    "url": "https://github.com/JZ-Darkal/AndroidHttpCapture",
+    "stars": 4611,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "JZ-Darkal/AndroidHttpCapture",
+    "created_at": "2016-10-15T19:48:00Z",
+    "open_issues": 42
+  },
+  {
+    "name": "ribbon",
+    "url": "https://github.com/Netflix/ribbon",
+    "stars": 4615,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Netflix/ribbon",
+    "created_at": "2013-01-15T01:08:04Z",
+    "open_issues": 216
+  },
+  {
+    "name": "concurrent",
+    "url": "https://github.com/RedSpider1/concurrent",
+    "stars": 4616,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "RedSpider1/concurrent",
+    "created_at": "2018-11-03T13:49:36Z",
+    "open_issues": 13
+  },
+  {
+    "name": "rocketmq-externals",
+    "url": "https://github.com/apache/rocketmq-externals",
+    "stars": 4617,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "apache/rocketmq-externals",
+    "created_at": "2017-03-14T07:00:06Z",
+    "open_issues": 116
+  },
+  {
+    "name": "PageIndicatorView",
+    "url": "https://github.com/romandanylyk/PageIndicatorView",
+    "stars": 4628,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "romandanylyk/PageIndicatorView",
+    "created_at": "2016-08-20T19:25:32Z",
+    "open_issues": 57
+  },
+  {
+    "name": "aurora",
+    "url": "https://github.com/linhaojun857/aurora",
+    "stars": 4632,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "linhaojun857/aurora",
+    "created_at": "2022-08-19T13:39:16Z",
+    "open_issues": 20
+  },
+  {
+    "name": "MallChat",
+    "url": "https://github.com/zongzibinbin/MallChat",
+    "stars": 4633,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "zongzibinbin/MallChat",
+    "created_at": "2023-03-16T15:04:35Z",
+    "open_issues": 53
+  },
+  {
+    "name": "GCViewer",
+    "url": "https://github.com/chewiebug/GCViewer",
+    "stars": 4635,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "chewiebug/GCViewer",
+    "created_at": "2011-10-23T09:01:04Z",
+    "open_issues": 84
+  },
+  {
+    "name": "WePush",
+    "url": "https://github.com/rememberber/WePush",
+    "stars": 4638,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "rememberber/WePush",
+    "created_at": "2017-06-23T09:03:36Z",
+    "open_issues": 34
+  },
+  {
+    "name": "HyperCeiler",
+    "url": "https://github.com/ReChronoRain/HyperCeiler",
+    "stars": 4651,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ReChronoRain/HyperCeiler",
+    "created_at": "2023-10-27T17:17:42Z",
+    "open_issues": 161
+  },
+  {
+    "name": "JDA",
+    "url": "https://github.com/discord-jda/JDA",
+    "stars": 4654,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "discord-jda/JDA",
+    "created_at": "2015-12-12T13:57:32Z",
+    "open_issues": 78
+  },
+  {
+    "name": "Ant-Media-Server",
+    "url": "https://github.com/ant-media/Ant-Media-Server",
+    "stars": 4658,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "ant-media/Ant-Media-Server",
+    "created_at": "2017-03-01T08:21:13Z",
+    "open_issues": 1378
+  },
+  {
+    "name": "BilibiliDown",
+    "url": "https://github.com/nICEnnnnnnnLee/BilibiliDown",
+    "stars": 4671,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "nICEnnnnnnnLee/BilibiliDown",
+    "created_at": "2019-01-23T06:56:46Z",
+    "open_issues": 9
+  },
+  {
+    "name": "--",
+    "url": "https://github.com/981011512/--",
+    "stars": 4683,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "981011512/--",
+    "created_at": "2020-06-18T22:47:21Z",
+    "open_issues": 32
+  },
+  {
+    "name": "oblivion",
+    "url": "https://github.com/bepass-org/oblivion",
+    "stars": 4684,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "bepass-org/oblivion",
+    "created_at": "2024-02-08T05:50:09Z",
+    "open_issues": 206
+  },
+  {
+    "name": "javacpp",
+    "url": "https://github.com/bytedeco/javacpp",
+    "stars": 4686,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "bytedeco/javacpp",
+    "created_at": "2014-04-21T12:47:21Z",
+    "open_issues": 111
+  },
+  {
+    "name": "esProc",
+    "url": "https://github.com/SPLWare/esProc",
+    "stars": 4691,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "SPLWare/esProc",
+    "created_at": "2021-11-09T15:41:25Z",
+    "open_issues": 50
+  },
+  {
+    "name": "libsvm",
+    "url": "https://github.com/cjlin1/libsvm",
+    "stars": 4697,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "cjlin1/libsvm",
+    "created_at": "2013-09-10T14:32:07Z",
+    "open_issues": 112
+  },
+  {
+    "name": "AndroRAT",
+    "url": "https://github.com/karma9874/AndroRAT",
+    "stars": 4703,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "karma9874/AndroRAT",
+    "created_at": "2020-03-22T09:31:28Z",
+    "open_issues": 18
+  },
+  {
+    "name": "JSON-java",
+    "url": "https://github.com/stleary/JSON-java",
+    "stars": 4715,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "stleary/JSON-java",
+    "created_at": "2010-12-21T17:46:09Z",
+    "open_issues": 26
+  },
+  {
+    "name": "ForestBlog",
+    "url": "https://github.com/saysky/ForestBlog",
+    "stars": 4720,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "saysky/ForestBlog",
+    "created_at": "2017-10-08T15:27:47Z",
+    "open_issues": 45
+  },
+  {
+    "name": "microservices-platform",
+    "url": "https://github.com/zlt2000/microservices-platform",
+    "stars": 4744,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "zlt2000/microservices-platform",
+    "created_at": "2019-03-07T07:13:37Z",
+    "open_issues": 16
+  },
+  {
+    "name": "blog_demos",
+    "url": "https://github.com/zq2599/blog_demos",
+    "stars": 4761,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "zq2599/blog_demos",
+    "created_at": "2017-04-09T04:51:56Z",
+    "open_issues": 153
+  },
+  {
+    "name": "dynamic-tp",
+    "url": "https://github.com/dromara/dynamic-tp",
+    "stars": 4762,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "dromara/dynamic-tp",
+    "created_at": "2022-01-07T16:35:27Z",
+    "open_issues": 25
+  },
+  {
+    "name": "grobid",
+    "url": "https://github.com/grobidOrg/grobid",
+    "stars": 4776,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "grobidOrg/grobid",
+    "created_at": "2012-09-13T15:48:54Z",
+    "open_issues": 333
+  },
+  {
+    "name": "supersonic",
+    "url": "https://github.com/tencentmusic/supersonic",
+    "stars": 4786,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "tencentmusic/supersonic",
+    "created_at": "2023-06-12T07:23:28Z",
+    "open_issues": 327
+  },
+  {
+    "name": "opengrok",
+    "url": "https://github.com/oracle/opengrok",
+    "stars": 4790,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "oracle/opengrok",
+    "created_at": "2013-01-07T11:49:18Z",
+    "open_issues": 544
+  },
+  {
+    "name": "djl",
+    "url": "https://github.com/deepjavalibrary/djl",
+    "stars": 4795,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "deepjavalibrary/djl",
+    "created_at": "2019-10-29T22:38:54Z",
+    "open_issues": 227
+  },
+  {
+    "name": "micrometer",
+    "url": "https://github.com/micrometer-metrics/micrometer",
+    "stars": 4833,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "micrometer-metrics/micrometer",
+    "created_at": "2017-04-10T21:36:51Z",
+    "open_issues": 295
+  },
+  {
+    "name": "spring-cloud-gateway",
+    "url": "https://github.com/spring-cloud/spring-cloud-gateway",
+    "stars": 4853,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "spring-cloud/spring-cloud-gateway",
+    "created_at": "2016-11-16T21:42:51Z",
+    "open_issues": 508
+  },
+  {
+    "name": "mockserver",
+    "url": "https://github.com/mock-server/mockserver",
+    "stars": 4862,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "mock-server/mockserver",
+    "created_at": "2013-02-26T06:09:52Z",
+    "open_issues": 321
+  },
+  {
+    "name": "cglib",
+    "url": "https://github.com/cglib/cglib",
+    "stars": 4897,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "cglib/cglib",
+    "created_at": "2014-03-29T13:48:30Z",
+    "open_issues": 96
+  },
+  {
+    "name": "unidbg",
+    "url": "https://github.com/zhkl0228/unidbg",
+    "stars": 4898,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "zhkl0228/unidbg",
+    "created_at": "2019-02-26T09:32:15Z",
+    "open_issues": 416
+  },
+  {
+    "name": "java-faker",
+    "url": "https://github.com/DiUS/java-faker",
+    "stars": 4917,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "DiUS/java-faker",
+    "created_at": "2011-06-06T01:01:21Z",
+    "open_issues": 226
+  },
+  {
+    "name": "ipscan",
+    "url": "https://github.com/angryip/ipscan",
+    "stars": 4921,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "angryip/ipscan",
+    "created_at": "2011-06-28T20:58:48Z",
+    "open_issues": 185
+  },
+  {
+    "name": "react-native-webrtc",
+    "url": "https://github.com/react-native-webrtc/react-native-webrtc",
+    "stars": 4948,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "react-native-webrtc/react-native-webrtc",
+    "created_at": "2015-09-27T10:57:30Z",
+    "open_issues": 38
+  },
+  {
+    "name": "react-native-config",
+    "url": "https://github.com/react-native-config/react-native-config",
+    "stars": 4951,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "react-native-config/react-native-config",
+    "created_at": "2016-02-23T00:19:11Z",
+    "open_issues": 377
+  },
+  {
+    "name": "orientdb",
+    "url": "https://github.com/orientechnologies/orientdb",
+    "stars": 4951,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "orientechnologies/orientdb",
+    "created_at": "2012-12-09T20:33:47Z",
+    "open_issues": 344
+  },
+  {
+    "name": "spring-cloud-netflix",
+    "url": "https://github.com/spring-cloud/spring-cloud-netflix",
+    "stars": 4960,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "spring-cloud/spring-cloud-netflix",
+    "created_at": "2014-07-11T15:46:12Z",
+    "open_issues": 94
+  },
+  {
+    "name": "rstudio",
+    "url": "https://github.com/rstudio/rstudio",
+    "stars": 4982,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "rstudio/rstudio",
+    "created_at": "2010-12-07T19:10:25Z",
+    "open_issues": 1372
+  },
+  {
+    "name": "joda-time",
+    "url": "https://github.com/JodaOrg/joda-time",
+    "stars": 4987,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "JodaOrg/joda-time",
+    "created_at": "2011-05-16T16:49:57Z",
+    "open_issues": 37
+  },
+  {
+    "name": "APIJSON",
+    "url": "https://github.com/Tencent/APIJSON",
+    "stars": 18400,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "Tencent/APIJSON",
+    "created_at": "2016-11-21T12:03:29Z",
+    "open_issues": 239
+  },
+  {
+    "name": "Algorithms",
+    "url": "https://github.com/williamfiset/Algorithms",
+    "stars": 18564,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "williamfiset/Algorithms",
+    "created_at": "2017-03-18T02:50:46Z",
+    "open_issues": 49
+  },
+  {
+    "name": "Sa-Token",
+    "url": "https://github.com/dromara/Sa-Token",
+    "stars": 18742,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "dromara/Sa-Token",
+    "created_at": "2020-02-03T10:34:29Z",
+    "open_issues": 102
+  },
+  {
+    "name": "antlr4",
+    "url": "https://github.com/antlr/antlr4",
+    "stars": 18811,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "antlr/antlr4",
+    "created_at": "2010-02-04T01:36:28Z",
+    "open_issues": 1056
+  },
+  {
+    "name": "cat",
+    "url": "https://github.com/dianping/cat",
+    "stars": 18966,
+    "layer": "A",
+    "lang": "Java",
+    "full_name": "dianping/cat",
+    "created_at": "2012-12-05T02:31:48Z",
+    "open_issues": 215
+  },
+  {
+    "name": "jira",
+    "url": "https://github.com/go-jira/jira",
+    "stars": 2738,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "go-jira/jira",
+    "created_at": "2015-02-10T23:57:33Z",
+    "open_issues": 176
+  },
+  {
+    "name": "firecracker-containerd",
+    "url": "https://github.com/firecracker-microvm/firecracker-containerd",
+    "stars": 2747,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "firecracker-microvm/firecracker-containerd",
+    "created_at": "2018-11-15T22:36:30Z",
+    "open_issues": 95
+  },
+  {
+    "name": "one-hub",
+    "url": "https://github.com/MartialBE/one-hub",
+    "stars": 2748,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "MartialBE/one-hub",
+    "created_at": "2023-09-09T05:40:25Z",
+    "open_issues": 137
+  },
+  {
+    "name": "router7",
+    "url": "https://github.com/rtr7/router7",
+    "stars": 2752,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "rtr7/router7",
+    "created_at": "2018-07-14T12:29:39Z",
+    "open_issues": 14
+  },
+  {
+    "name": "cli",
+    "url": "https://github.com/create-go-app/cli",
+    "stars": 2755,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "create-go-app/cli",
+    "created_at": "2019-12-30T22:08:38Z",
+    "open_issues": 13
+  },
+  {
+    "name": "kcp",
+    "url": "https://github.com/kcp-dev/kcp",
+    "stars": 2756,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "kcp-dev/kcp",
+    "created_at": "2021-03-31T13:20:20Z",
+    "open_issues": 145
+  },
+  {
+    "name": "vibium",
+    "url": "https://github.com/VibiumDev/vibium",
+    "stars": 2760,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "VibiumDev/vibium",
+    "created_at": "2025-12-12T00:56:53Z",
+    "open_issues": 31
+  },
+  {
+    "name": "pitaya",
+    "url": "https://github.com/topfreegames/pitaya",
+    "stars": 2763,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "topfreegames/pitaya",
+    "created_at": "2018-03-19T19:40:36Z",
+    "open_issues": 55
+  },
+  {
+    "name": "list",
+    "url": "https://github.com/publicsuffix/list",
+    "stars": 2766,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "publicsuffix/list",
+    "created_at": "2015-05-19T15:12:26Z",
+    "open_issues": 35
+  },
+  {
+    "name": "gateway-api",
+    "url": "https://github.com/kubernetes-sigs/gateway-api",
+    "stars": 2770,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "kubernetes-sigs/gateway-api",
+    "created_at": "2019-11-01T20:33:32Z",
+    "open_issues": 212
+  },
+  {
+    "name": "Gaea",
+    "url": "https://github.com/XiaoMi/Gaea",
+    "stars": 2771,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "XiaoMi/Gaea",
+    "created_at": "2019-05-22T08:39:57Z",
+    "open_issues": 67
+  },
+  {
+    "name": "rustdesk-api",
+    "url": "https://github.com/lejianwen/rustdesk-api",
+    "stars": 2772,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "lejianwen/rustdesk-api",
+    "created_at": "2024-09-13T06:32:21Z",
+    "open_issues": 94
+  },
+  {
+    "name": "mcp-grafana",
+    "url": "https://github.com/grafana/mcp-grafana",
+    "stars": 2778,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "grafana/mcp-grafana",
+    "created_at": "2024-12-24T15:44:23Z",
+    "open_issues": 76
+  },
+  {
+    "name": "nof0",
+    "url": "https://github.com/wquguru/nof0",
+    "stars": 2778,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "wquguru/nof0",
+    "created_at": "2025-10-22T16:30:45Z",
+    "open_issues": 15
+  },
+  {
+    "name": "franz-go",
+    "url": "https://github.com/twmb/franz-go",
+    "stars": 2778,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "twmb/franz-go",
+    "created_at": "2019-03-25T20:30:30Z",
+    "open_issues": 25
+  },
+  {
+    "name": "liftbridge",
+    "url": "https://github.com/liftbridge-io/liftbridge",
+    "stars": 2782,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "liftbridge-io/liftbridge",
+    "created_at": "2017-10-13T19:50:26Z",
+    "open_issues": 38
+  },
+  {
+    "name": "skydive",
+    "url": "https://github.com/skydive-project/skydive",
+    "stars": 2785,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "skydive-project/skydive",
+    "created_at": "2015-10-20T14:02:21Z",
+    "open_issues": 119
+  },
+  {
+    "name": "convoy",
+    "url": "https://github.com/frain-dev/convoy",
+    "stars": 2786,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "frain-dev/convoy",
+    "created_at": "2021-04-17T17:37:17Z",
+    "open_issues": 61
+  },
+  {
+    "name": "docker-agent",
+    "url": "https://github.com/docker/docker-agent",
+    "stars": 2789,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "docker/docker-agent",
+    "created_at": "2025-09-01T12:14:45Z",
+    "open_issues": 59
+  },
+  {
+    "name": "subtrace",
+    "url": "https://github.com/subtrace/subtrace",
+    "stars": 2790,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "subtrace/subtrace",
+    "created_at": "2024-05-14T17:44:49Z",
+    "open_issues": 14
+  },
+  {
+    "name": "CHAOS",
+    "url": "https://github.com/tiagorlampert/CHAOS",
+    "stars": 2792,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "tiagorlampert/CHAOS",
+    "created_at": "2017-07-11T06:54:56Z",
+    "open_issues": 38
+  },
+  {
+    "name": "aptly",
+    "url": "https://github.com/aptly-dev/aptly",
+    "stars": 2800,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "aptly-dev/aptly",
+    "created_at": "2013-12-13T19:14:53Z",
+    "open_issues": 235
+  },
+  {
+    "name": "kube-vip",
+    "url": "https://github.com/kube-vip/kube-vip",
+    "stars": 2801,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "kube-vip/kube-vip",
+    "created_at": "2020-02-02T13:54:01Z",
+    "open_issues": 62
+  },
+  {
+    "name": "gse",
+    "url": "https://github.com/go-ego/gse",
+    "stars": 2801,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "go-ego/gse",
+    "created_at": "2017-06-23T15:42:35Z",
+    "open_issues": 14
+  },
+  {
+    "name": "kubekey",
+    "url": "https://github.com/kubesphere/kubekey",
+    "stars": 2808,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "kubesphere/kubekey",
+    "created_at": "2020-03-19T01:53:08Z",
+    "open_issues": 312
+  },
+  {
+    "name": "webtty",
+    "url": "https://github.com/maxmcd/webtty",
+    "stars": 2810,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "maxmcd/webtty",
+    "created_at": "2018-11-05T00:06:08Z",
+    "open_issues": 18
+  },
+  {
+    "name": "sponge",
+    "url": "https://github.com/go-dev-frame/sponge",
+    "stars": 2811,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "go-dev-frame/sponge",
+    "created_at": "2022-09-19T15:18:07Z",
+    "open_issues": 40
+  },
+  {
+    "name": "glauth",
+    "url": "https://github.com/glauth/glauth",
+    "stars": 2813,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "glauth/glauth",
+    "created_at": "2018-04-25T00:20:14Z",
+    "open_issues": 88
+  },
+  {
+    "name": "gofeed",
+    "url": "https://github.com/mmcdole/gofeed",
+    "stars": 2823,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "mmcdole/gofeed",
+    "created_at": "2016-01-23T02:44:34Z",
+    "open_issues": 55
+  },
+  {
+    "name": "local-path-provisioner",
+    "url": "https://github.com/rancher/local-path-provisioner",
+    "stars": 2823,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "rancher/local-path-provisioner",
+    "created_at": "2018-09-26T17:58:00Z",
+    "open_issues": 34
+  },
+  {
+    "name": "multus-cni",
+    "url": "https://github.com/k8snetworkplumbingwg/multus-cni",
+    "stars": 2827,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "k8snetworkplumbingwg/multus-cni",
+    "created_at": "2016-12-13T14:40:51Z",
+    "open_issues": 29
+  },
+  {
+    "name": "gin-admin",
+    "url": "https://github.com/LyricTian/gin-admin",
+    "stars": 2839,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "LyricTian/gin-admin",
+    "created_at": "2018-09-26T14:33:38Z",
+    "open_issues": 63
+  },
+  {
+    "name": "cloud-on-k8s",
+    "url": "https://github.com/elastic/cloud-on-k8s",
+    "stars": 2841,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "elastic/cloud-on-k8s",
+    "created_at": "2018-10-30T10:43:58Z",
+    "open_issues": 477
+  },
+  {
+    "name": "sei-chain",
+    "url": "https://github.com/sei-protocol/sei-chain",
+    "stars": 2842,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "sei-protocol/sei-chain",
+    "created_at": "2022-05-17T22:17:39Z",
+    "open_issues": 57
+  },
+  {
+    "name": "kro",
+    "url": "https://github.com/kubernetes-sigs/kro",
+    "stars": 2842,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "kubernetes-sigs/kro",
+    "created_at": "2024-09-12T17:34:32Z",
+    "open_issues": 101
+  },
+  {
+    "name": "janus",
+    "url": "https://github.com/motiv-labs/janus",
+    "stars": 2845,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "motiv-labs/janus",
+    "created_at": "2016-07-11T12:54:21Z",
+    "open_issues": 48
+  },
+  {
+    "name": "gocache",
+    "url": "https://github.com/eko/gocache",
+    "stars": 2847,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "eko/gocache",
+    "created_at": "2019-10-05T08:13:54Z",
+    "open_issues": 39
+  },
+  {
+    "name": "picoshare",
+    "url": "https://github.com/mtlynch/picoshare",
+    "stars": 2863,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "mtlynch/picoshare",
+    "created_at": "2022-02-14T02:33:38Z",
+    "open_issues": 28
+  },
+  {
+    "name": "roaring",
+    "url": "https://github.com/RoaringBitmap/roaring",
+    "stars": 2866,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "RoaringBitmap/roaring",
+    "created_at": "2014-07-10T20:14:34Z",
+    "open_issues": 67
+  },
+  {
+    "name": "joe",
+    "url": "https://github.com/karan/joe",
+    "stars": 2869,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "karan/joe",
+    "created_at": "2015-01-11T08:02:17Z",
+    "open_issues": 33
+  },
+  {
+    "name": "Surge",
+    "url": "https://github.com/SurgeDM/Surge",
+    "stars": 2870,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "SurgeDM/Surge",
+    "created_at": "2025-10-29T05:00:15Z",
+    "open_issues": 33
+  },
+  {
+    "name": "terraform-provider-proxmox",
+    "url": "https://github.com/Telmate/terraform-provider-proxmox",
+    "stars": 2874,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "Telmate/terraform-provider-proxmox",
+    "created_at": "2017-02-09T04:52:35Z",
+    "open_issues": 128
+  },
+  {
+    "name": "cloudpods",
+    "url": "https://github.com/yunionio/cloudpods",
+    "stars": 2877,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "yunionio/cloudpods",
+    "created_at": "2018-07-27T07:15:33Z",
+    "open_issues": 192
+  },
+  {
+    "name": "powerline-go",
+    "url": "https://github.com/justjanne/powerline-go",
+    "stars": 2878,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "justjanne/powerline-go",
+    "created_at": "2017-08-21T17:02:24Z",
+    "open_issues": 84
+  },
+  {
+    "name": "git-chglog",
+    "url": "https://github.com/git-chglog/git-chglog",
+    "stars": 2878,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "git-chglog/git-chglog",
+    "created_at": "2018-02-02T13:57:20Z",
+    "open_issues": 112
+  },
+  {
+    "name": "gopdf",
+    "url": "https://github.com/signintech/gopdf",
+    "stars": 2888,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "signintech/gopdf",
+    "created_at": "2013-02-26T05:01:18Z",
+    "open_issues": 127
+  },
+  {
+    "name": "uncover",
+    "url": "https://github.com/projectdiscovery/uncover",
+    "stars": 2891,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "projectdiscovery/uncover",
+    "created_at": "2022-03-02T14:40:44Z",
+    "open_issues": 5
+  },
+  {
+    "name": "controller-runtime",
+    "url": "https://github.com/kubernetes-sigs/controller-runtime",
+    "stars": 2894,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "kubernetes-sigs/controller-runtime",
+    "created_at": "2018-06-07T15:08:03Z",
+    "open_issues": 77
+  },
+  {
+    "name": "pack",
+    "url": "https://github.com/buildpacks/pack",
+    "stars": 2902,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "buildpacks/pack",
+    "created_at": "2018-06-25T04:41:23Z",
+    "open_issues": 150
+  },
+  {
+    "name": "gospider",
+    "url": "https://github.com/jaeles-project/gospider",
+    "stars": 2906,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "jaeles-project/gospider",
+    "created_at": "2020-01-22T05:13:57Z",
+    "open_issues": 55
+  },
+  {
+    "name": "XrayR",
+    "url": "https://github.com/XrayR-project/XrayR",
+    "stars": 2910,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "XrayR-project/XrayR",
+    "created_at": "2022-04-27T03:57:58Z",
+    "open_issues": 10
+  },
+  {
+    "name": "cronsun",
+    "url": "https://github.com/shunfei/cronsun",
+    "stars": 2920,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "shunfei/cronsun",
+    "created_at": "2017-05-09T07:24:57Z",
+    "open_issues": 87
+  },
+  {
+    "name": "minio-go",
+    "url": "https://github.com/minio/minio-go",
+    "stars": 2926,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "minio/minio-go",
+    "created_at": "2015-05-02T02:36:46Z",
+    "open_issues": 29
+  },
+  {
+    "name": "gochat",
+    "url": "https://github.com/LockGit/gochat",
+    "stars": 2926,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "LockGit/gochat",
+    "created_at": "2019-10-31T07:13:30Z",
+    "open_issues": 32
+  },
+  {
+    "name": "rueidis",
+    "url": "https://github.com/redis/rueidis",
+    "stars": 2928,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "redis/rueidis",
+    "created_at": "2021-09-18T10:38:58Z",
+    "open_issues": 18
+  },
+  {
+    "name": "cel-go",
+    "url": "https://github.com/google/cel-go",
+    "stars": 2931,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "google/cel-go",
+    "created_at": "2018-03-09T22:57:58Z",
+    "open_issues": 64
+  },
+  {
+    "name": "godoxy",
+    "url": "https://github.com/yusing/godoxy",
+    "stars": 2939,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "yusing/godoxy",
+    "created_at": "2024-02-29T03:52:35Z",
+    "open_issues": 14
+  },
+  {
+    "name": "go-guerrilla",
+    "url": "https://github.com/flashmob/go-guerrilla",
+    "stars": 2941,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "flashmob/go-guerrilla",
+    "created_at": "2012-11-13T10:03:26Z",
+    "open_issues": 53
+  },
+  {
+    "name": "KubePi",
+    "url": "https://github.com/1Panel-dev/KubePi",
+    "stars": 2944,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "1Panel-dev/KubePi",
+    "created_at": "2021-05-20T02:57:47Z",
+    "open_issues": 53
+  },
+  {
+    "name": "BloodHound",
+    "url": "https://github.com/SpecterOps/BloodHound",
+    "stars": 2948,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "SpecterOps/BloodHound",
+    "created_at": "2023-08-03T19:20:06Z",
+    "open_issues": 96
+  },
+  {
+    "name": "plot",
+    "url": "https://github.com/gonum/plot",
+    "stars": 2948,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "gonum/plot",
+    "created_at": "2013-07-23T07:01:13Z",
+    "open_issues": 91
+  },
+  {
+    "name": "sentinel-golang",
+    "url": "https://github.com/alibaba/sentinel-golang",
+    "stars": 2948,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "alibaba/sentinel-golang",
+    "created_at": "2019-04-10T13:56:19Z",
+    "open_issues": 126
+  },
+  {
+    "name": "wasmer-go",
+    "url": "https://github.com/wasmerio/wasmer-go",
+    "stars": 2952,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "wasmerio/wasmer-go",
+    "created_at": "2019-05-01T13:21:28Z",
+    "open_issues": 79
+  },
+  {
+    "name": "modd",
+    "url": "https://github.com/cortesi/modd",
+    "stars": 2953,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "cortesi/modd",
+    "created_at": "2015-11-25T20:25:45Z",
+    "open_issues": 52
+  },
+  {
+    "name": "gin-jwt",
+    "url": "https://github.com/appleboy/gin-jwt",
+    "stars": 2957,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "appleboy/gin-jwt",
+    "created_at": "2016-03-17T03:18:36Z",
+    "open_issues": 22
+  },
+  {
+    "name": "avo",
+    "url": "https://github.com/mmcloughlin/avo",
+    "stars": 2959,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "mmcloughlin/avo",
+    "created_at": "2018-11-04T17:44:21Z",
+    "open_issues": 93
+  },
+  {
+    "name": "ddns-updater",
+    "url": "https://github.com/qdm12/ddns-updater",
+    "stars": 2962,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "qdm12/ddns-updater",
+    "created_at": "2018-10-09T18:00:05Z",
+    "open_issues": 229
+  },
+  {
+    "name": "mangle",
+    "url": "https://github.com/google/mangle",
+    "stars": 2973,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "google/mangle",
+    "created_at": "2022-11-24T13:22:28Z",
+    "open_issues": 10
+  },
+  {
+    "name": "incubator-devlake",
+    "url": "https://github.com/apache/incubator-devlake",
+    "stars": 2980,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "apache/incubator-devlake",
+    "created_at": "2021-07-08T12:06:09Z",
+    "open_issues": 45
+  },
+  {
+    "name": "kubeconform",
+    "url": "https://github.com/yannh/kubeconform",
+    "stars": 2986,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "yannh/kubeconform",
+    "created_at": "2020-05-30T05:28:20Z",
+    "open_issues": 85
+  },
+  {
+    "name": "termdash",
+    "url": "https://github.com/mum4k/termdash",
+    "stars": 2988,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "mum4k/termdash",
+    "created_at": "2018-03-24T12:01:49Z",
+    "open_issues": 47
+  },
+  {
+    "name": "net",
+    "url": "https://github.com/golang/net",
+    "stars": 2993,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "golang/net",
+    "created_at": "2014-12-04T04:03:57Z",
+    "open_issues": 55
+  },
+  {
+    "name": "lotus",
+    "url": "https://github.com/filecoin-project/lotus",
+    "stars": 2996,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "filecoin-project/lotus",
+    "created_at": "2019-06-25T09:52:07Z",
+    "open_issues": 612
+  },
+  {
+    "name": "algernon",
+    "url": "https://github.com/xyproto/algernon",
+    "stars": 2998,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "xyproto/algernon",
+    "created_at": "2015-03-10T11:25:30Z",
+    "open_issues": 29
+  },
+  {
+    "name": "homebox",
+    "url": "https://github.com/hay-kot/homebox",
+    "stars": 2998,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "hay-kot/homebox",
+    "created_at": "2022-08-30T02:30:35Z",
+    "open_issues": 146
+  },
+  {
+    "name": "hermes",
+    "url": "https://github.com/matcornic/hermes",
+    "stars": 3000,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "matcornic/hermes",
+    "created_at": "2017-03-25T18:25:36Z",
+    "open_issues": 20
+  },
+  {
+    "name": "colly",
+    "url": "https://github.com/gocolly/colly",
+    "stars": 25231,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "gocolly/colly",
+    "created_at": "2017-09-29T14:08:49Z",
+    "open_issues": 187
+  },
+  {
+    "name": "asdf",
+    "url": "https://github.com/asdf-vm/asdf",
+    "stars": 25254,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "asdf-vm/asdf",
+    "created_at": "2014-11-29T04:41:43Z",
+    "open_issues": 176
+  },
+  {
+    "name": "rancher",
+    "url": "https://github.com/rancher/rancher",
+    "stars": 25493,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "rancher/rancher",
+    "created_at": "2014-11-07T20:49:31Z",
+    "open_issues": 3302
+  },
+  {
+    "name": "kratos",
+    "url": "https://github.com/go-kratos/kratos",
+    "stars": 25593,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "go-kratos/kratos",
+    "created_at": "2019-01-10T10:42:31Z",
+    "open_issues": 68
+  },
+  {
+    "name": "iris",
+    "url": "https://github.com/kataras/iris",
+    "stars": 25601,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "kataras/iris",
+    "created_at": "2016-01-30T04:36:48Z",
+    "open_issues": 144
+  },
+  {
+    "name": "trufflehog",
+    "url": "https://github.com/trufflesecurity/trufflehog",
+    "stars": 25662,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "trufflesecurity/trufflehog",
+    "created_at": "2016-12-31T05:08:12Z",
+    "open_issues": 415
+  },
+  {
+    "name": "logrus",
+    "url": "https://github.com/sirupsen/logrus",
+    "stars": 25707,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "sirupsen/logrus",
+    "created_at": "2013-10-16T19:08:55Z",
+    "open_issues": 55
+  },
+  {
+    "name": "nsq",
+    "url": "https://github.com/nsqio/nsq",
+    "stars": 25789,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "nsqio/nsq",
+    "created_at": "2012-05-12T14:37:08Z",
+    "open_issues": 72
+  },
+  {
+    "name": "gitleaks",
+    "url": "https://github.com/gitleaks/gitleaks",
+    "stars": 25893,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "gitleaks/gitleaks",
+    "created_at": "2018-01-27T18:19:31Z",
+    "open_issues": 356
+  },
+  {
+    "name": "testify",
+    "url": "https://github.com/stretchr/testify",
+    "stars": 25914,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "stretchr/testify",
+    "created_at": "2012-10-16T16:43:17Z",
+    "open_issues": 377
+  },
+  {
+    "name": "new-api",
+    "url": "https://github.com/QuantumNous/new-api",
+    "stars": 26088,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "QuantumNous/new-api",
+    "created_at": "2023-11-10T19:33:36Z",
+    "open_issues": 578
+  },
+  {
+    "name": "faas",
+    "url": "https://github.com/openfaas/faas",
+    "stars": 26132,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "openfaas/faas",
+    "created_at": "2016-12-22T12:51:39Z",
+    "open_issues": 31
+  },
+  {
+    "name": "Wox",
+    "url": "https://github.com/Wox-launcher/Wox",
+    "stars": 26661,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "Wox-launcher/Wox",
+    "created_at": "2013-12-19T15:49:32Z",
+    "open_issues": 7
+  },
+  {
+    "name": "cloudreve",
+    "url": "https://github.com/cloudreve/cloudreve",
+    "stars": 27338,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "cloudreve/cloudreve",
+    "created_at": "2018-02-04T04:56:38Z",
+    "open_issues": 181
+  },
+  {
+    "name": "authelia",
+    "url": "https://github.com/authelia/authelia",
+    "stars": 27465,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "authelia/authelia",
+    "created_at": "2016-12-07T00:56:57Z",
+    "open_issues": 113
+  },
+  {
+    "name": "kit",
+    "url": "https://github.com/go-kit/kit",
+    "stars": 27472,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "go-kit/kit",
+    "created_at": "2015-02-03T00:01:19Z",
+    "open_issues": 56
+  },
+  {
+    "name": "nuclei",
+    "url": "https://github.com/projectdiscovery/nuclei",
+    "stars": 27853,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "projectdiscovery/nuclei",
+    "created_at": "2020-04-03T18:47:11Z",
+    "open_issues": 144
+  },
+  {
+    "name": "fyne",
+    "url": "https://github.com/fyne-io/fyne",
+    "stars": 28098,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "fyne-io/fyne",
+    "created_at": "2018-02-04T22:07:16Z",
+    "open_issues": 740
+  },
+  {
+    "name": "colima",
+    "url": "https://github.com/abiosoft/colima",
+    "stars": 28165,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "abiosoft/colima",
+    "created_at": "2021-09-04T09:52:22Z",
+    "open_issues": 362
+  },
+  {
+    "name": "harbor",
+    "url": "https://github.com/goharbor/harbor",
+    "stars": 28233,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "goharbor/harbor",
+    "created_at": "2016-01-28T21:10:28Z",
+    "open_issues": 835
+  },
+  {
+    "name": "opentofu",
+    "url": "https://github.com/opentofu/opentofu",
+    "stars": 28341,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "opentofu/opentofu",
+    "created_at": "2023-08-16T20:01:36Z",
+    "open_issues": 326
+  },
+  {
+    "name": "micro",
+    "url": "https://github.com/micro-editor/micro",
+    "stars": 28394,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "micro-editor/micro",
+    "created_at": "2016-03-11T02:06:28Z",
+    "open_issues": 1001
+  },
+  {
+    "name": "github-mcp-server",
+    "url": "https://github.com/github/github-mcp-server",
+    "stars": 28756,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "github/github-mcp-server",
+    "created_at": "2025-03-04T16:42:04Z",
+    "open_issues": 335
+  },
+  {
+    "name": "ntfy",
+    "url": "https://github.com/binwiederhier/ntfy",
+    "stars": 29667,
+    "layer": "A",
+    "lang": "Go",
+    "full_name": "binwiederhier/ntfy",
+    "created_at": "2021-10-23T19:25:32Z",
+    "open_issues": 347
   }
 ]
