@@ -1,0 +1,29 @@
+{
+  "agq_v3a": {
+    "formula": "0.20*M + 0.20*A + 0.20*S + 0.20*C + 0.20*CD",
+    "method": "PCA equal weights (eigenvalues nearly equal, n=357)",
+    "java_gt": {
+      "MW_p": 0.001,
+      "spearman_r": 0.629,
+      "partial_r": 0.675,
+      "partial_p": 0.008
+    },
+    "python_gt": {
+      "MW_p": 0.24,
+      "spearman_r": -0.024,
+      "verdict": "ns, still inverted"
+    },
+    "r_with_v2": 0.8737,
+    "S_dominance_reduction": "46.6% (r2 from 72.6% to 38.8%)"
+  },
+  "agq_v3b": {
+    "formula": "0.20*M + 0.20*S + 0.20*C + 0.20*CD + 0.20*NS_depth",
+    "method": "PCA equal weights, A replaced by NS_depth (n=28)",
+    "java_gt": {
+      "partial_r": 0.698,
+      "partial_p": 0.008
+    },
+    "note": "NS_depth has correct direction Java+Python but weak in Python"
+  },
+  "pca_finding": "All 5 eigenvalues nearly equal \u2014 PCA yields uniform 0.20 weights. No dominant dimension in feature space. This means no combination of M/A/S/C/CD dominates in pure variance terms."
+}
