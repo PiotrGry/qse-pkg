@@ -1,0 +1,162 @@
+[
+  {
+    "repo": "saleor/saleor",
+    "stars": 22788,
+    "domain": "e-commerce platform",
+    "arch_notes": "GraphQL API, wyra\u017ane warstwy: core/product/order/account, plugins pattern, dobra separacja",
+    "expected_panel": 7.0,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "netbox-community/netbox",
+    "stars": 20193,
+    "domain": "IT infrastructure management",
+    "arch_notes": "Django apps per domena (dcim/ipam/circuits/virtualization), ka\u017cda z w\u0142asnymi models/views/api",
+    "expected_panel": 7.5,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "pretix/pretix",
+    "stars": 2363,
+    "domain": "ticket sales platform",
+    "arch_notes": "Plugin architecture, wyra\u017ane warstwy: base/control/presale, event-driven, dobra modularno\u015b\u0107",
+    "expected_panel": 7.5,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "inventree/InvenTree",
+    "stars": 6783,
+    "domain": "inventory management",
+    "arch_notes": "Django REST, wyra\u017ane modu\u0142y domenowe: part/stock/order/build/company",
+    "expected_panel": 7.0,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "zulip/zulip",
+    "stars": 25010,
+    "domain": "team chat application",
+    "arch_notes": "Dobrze zorganizowane: zerver/ jako core domain, analytics/, corporate/, dobra separacja",
+    "expected_panel": 7.0,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "paperless-ngx/paperless-ngx",
+    "stars": 37987,
+    "domain": "document management",
+    "arch_notes": "Wyra\u017ane modu\u0142y: documents/classifier/consumer, Clean layering",
+    "expected_panel": 6.5,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "healthchecks/healthchecks",
+    "stars": 9956,
+    "domain": "cron job monitoring",
+    "arch_notes": "Ma\u0142y ale dobrze zaprojektowany: api/accounts/front, clean Django structure",
+    "expected_panel": 6.5,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "kiwitcms/Kiwi",
+    "stars": 1179,
+    "domain": "test management system",
+    "arch_notes": "Django apps: testcases/testruns/management, modu\u0142owa struktura domenowa",
+    "expected_panel": 6.5,
+    "expected_cat": "POS"
+  },
+  {
+    "repo": "PrefectHQ/prefect",
+    "stars": 22145,
+    "domain": "workflow orchestration",
+    "arch_notes": "Bogata domena ale du\u017cy i z\u0142o\u017cony, niekt\u00f3re modu\u0142y mieszane",
+    "expected_panel": 6.0,
+    "expected_cat": "MID"
+  },
+  {
+    "repo": "spotify/luigi",
+    "stars": 18701,
+    "domain": "data pipeline orchestration",
+    "arch_notes": "Flat structure wewn\u0105trz luigi/, brak wyra\u017anych warstw domenowych",
+    "expected_panel": 5.0,
+    "expected_cat": "MID"
+  },
+  {
+    "repo": "bookwyrm-social/bookwyrm",
+    "stars": 2683,
+    "domain": "social reading platform",
+    "arch_notes": "Django monolith, bookwyrm/ flat, brak separacji domeny od infrastruktury",
+    "expected_panel": 5.0,
+    "expected_cat": "MID"
+  },
+  {
+    "repo": "searxng/searxng",
+    "stars": 28109,
+    "domain": "metasearch engine",
+    "arch_notes": "searx/engines + search + webapp \u2014 pewna separacja ale nie formalna architektura",
+    "expected_panel": 5.5,
+    "expected_cat": "MID"
+  },
+  {
+    "repo": "ansible/ansible",
+    "stars": 68348,
+    "domain": "IT automation platform",
+    "arch_notes": "Ogromny monorepo, lib/ansible/ flat z dziesi\u0105tkami modu\u0142\u00f3w, brak architektury domenowej",
+    "expected_panel": 3.0,
+    "expected_cat": "NEG"
+  },
+  {
+    "repo": "ytdl-org/youtube-dl",
+    "stars": 140020,
+    "domain": "video downloader",
+    "arch_notes": "Prawie wszystko w youtube_dl/ flat, extractor per site to 1800+ plik\u00f3w bez struktury",
+    "expected_panel": 2.0,
+    "expected_cat": "NEG"
+  },
+  {
+    "repo": "apache/airflow",
+    "stars": 45004,
+    "domain": "workflow orchestration",
+    "arch_notes": "Bardzo du\u017cy, airflow/ z mieszanymi odpowiedzialno\u015bciami, historical tech debt",
+    "expected_panel": 3.5,
+    "expected_cat": "NEG"
+  },
+  {
+    "repo": "fail2ban/fail2ban",
+    "stars": 17465,
+    "domain": "intrusion prevention",
+    "arch_notes": "fail2ban/ flat: server/client/filter w jednym namespace, brak warstw",
+    "expected_panel": 3.0,
+    "expected_cat": "NEG"
+  },
+  {
+    "repo": "archivebox/archivebox",
+    "stars": 27211,
+    "domain": "web archiving",
+    "arch_notes": "Flat archivebox/ \u2014 parsers/extractors/index razem, brak domeny",
+    "expected_panel": 3.5,
+    "expected_cat": "NEG"
+  },
+  {
+    "repo": "taigaio/taiga-back",
+    "stars": 818,
+    "domain": "project management",
+    "arch_notes": "Django per-feature apps ale mieszane concerns, legacy code",
+    "expected_panel": 4.0,
+    "expected_cat": "NEG"
+  },
+  {
+    "repo": "modoboa/modoboa",
+    "stars": 3474,
+    "domain": "mail hosting platform",
+    "arch_notes": "Django plugin-based ale core flat, mail logic miesza si\u0119 z UI",
+    "expected_panel": 4.0,
+    "expected_cat": "NEG"
+  },
+  {
+    "repo": "mitmproxy/mitmproxy",
+    "stars": 41000,
+    "domain": "HTTP proxy / security tool",
+    "arch_notes": "Dobrze zorganizowany: net/proxy/io/addons separacja \u2014 dobry przyk\u0142ad technicznej architektury bez DDD",
+    "expected_panel": 6.0,
+    "expected_cat": "MID"
+  }
+]
