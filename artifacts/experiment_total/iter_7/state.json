@@ -12,17 +12,17 @@
     "flyway/flyway",
     "liquibase/liquibase",
     "jdbi/jdbi",
-    "querydsl/querydsl",
-    "FasterXML/jackson-databind",
-    "square/moshi",
-    "apache/avro",
-    "helidon-io/helidon",
-    "line/armeria",
-    "javalin/javalin",
-    "perwendel/spark"
+    "temporalio/temporal",
+    "argoproj/argo-workflows",
+    "istio/istio",
+    "helm/helm",
+    "GoogleContainerTools/skaffold",
+    "kubernetes-sigs/kustomize",
+    "fluxcd/flux2",
+    "crossplane/crossplane"
   ],
   "n_ok": 19,
   "n_fail": 0,
   "started_at": "2026-04-11T07:16:23.909666+00:00",
-  "last_window": "2026-04-11T07:19:54.729124+00:00"
+  "last_window": "2026-04-11T07:20:23.325086+00:00"
 }
