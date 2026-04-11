@@ -1,0 +1,17 @@
+{
+  "iter": 7,
+  "lang": "Go",
+  "processed": [
+    "temporalio/temporal",
+    "argoproj/argo-workflows",
+    "istio/istio",
+    "helm/helm",
+    "GoogleContainerTools/skaffold",
+    "kubernetes-sigs/kustomize",
+    "fluxcd/flux2",
+    "crossplane/crossplane"
+  ],
+  "n_ok": 8,
+  "n_fail": 0,
+  "last_window": "2026-04-11T09:18:00Z"
+}
