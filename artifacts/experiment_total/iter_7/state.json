@@ -1,0 +1,12 @@
+{
+  "iter": 7,
+  "processed": [
+    "spring-projects/spring-security",
+    "spring-projects/spring-data-jpa",
+    "spring-projects/spring-batch"
+  ],
+  "n_ok": 3,
+  "n_fail": 0,
+  "started_at": "2026-04-11T07:16:23.909666+00:00",
+  "last_window": "2026-04-11T07:16:44.591100+00:00"
+}
