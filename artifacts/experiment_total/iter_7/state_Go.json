@@ -9,9 +9,17 @@
     "GoogleContainerTools/skaffold",
     "kubernetes-sigs/kustomize",
     "fluxcd/flux2",
-    "crossplane/crossplane"
+    "crossplane/crossplane",
+    "cilium/cilium",
+    "containerd/containerd",
+    "cri-o/cri-o",
+    "moby/buildkit",
+    "bufbuild/buf",
+    "vektra/mockery",
+    "gotestyourself/gotestsum",
+    "golangci/golangci-lint"
   ],
-  "n_ok": 8,
+  "n_ok": 16,
   "n_fail": 0,
-  "last_window": "2026-04-11T09:18:00Z"
+  "last_window": "2026-04-11T07:23:17.035414+00:00"
 }
