@@ -1,8 +1,13 @@
 # QSE/AGQ Memory
 
-## Aktualny stan projektu (2026-03-06)
+## Aktualny stan projektu (2026-04-12, post Java-S experiment)
 
 - **TRL 3 potwierdzone eksperymentalnie** (4 eksperymenty, 23 testy, 21 PASS / 2 known limitations)
+- **Java-S experiment COMPLETE** (kwiecień 2026): 3 iteracje, 13 wariantów
+  - S = najsilniejszy prediktor jakości Java (partial_r=0.570, p=0.001)
+  - AGQ v3c (equal 0.20 weights) = current best balanced formula
+  - Jolak cross-validation: 3/5 confirmed, 0 refuted
+  - gt_java_final_fixed.json — poprawiony GT (4 repos ze starymi wartościami)
 - AGQ metryki grafowe ZAIMPLEMENTOWANE: `qse/graph_metrics.py`
   - Modularity (Louvain), Acyclicity (Tarjan), Stability (Martin + abstractness), Cohesion (LCOM4)
 - Detekcja klas abstrakcyjnych: ABC, Protocol, @abstractmethod — w `qse/scanner.py`
@@ -19,6 +24,8 @@
 - Level 1 = zero-config, czyste metryki grafowe, bez zaloszen o architekturze
 - LLM NIGDY w scoring path (AI pre-scoring: classifier, post-scoring: rekomendacje)
 - Stability wymaga wykrywania klas abstrakcyjnych (ABC, Protocol) — zaimplementowane
+- **S mechanism (Java):** Martin's Stability Index mapuje na hierarchię pakietów Java.
+  POS: S≈0.38, NEG: S≈0.13. Bez S partial_r spada do 0.274 (ns).
 - Constraints v1: tylko typ `forbidden`, glob na sciezkach
 - **Rust core engine** (WP2): tree-sitter + petgraph + PyO3 — 25-30× szybszy od Pythona
 - **HPC** do benchmarku (WP1/WP3): 100+ repo × historia git, kalibracja wag, embarrassingly parallel

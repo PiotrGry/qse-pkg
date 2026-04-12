@@ -1,8 +1,9 @@
 # Słownik pojęć i metryk — projekt AGQ / QSE
 
-> **Wersja:** kwiecień 2026 | **Branch:** perplexity  
+> **Wersja:** kwiecień 2026 (post Java-S experiment) | **Branch:** perplexity  
 > Żywy dokument — aktualizowany po każdym eksperymencie.  
-> Źródła prawdy: wyniki sesji > literatura > implementacja repo.
+> Źródła prawdy: wyniki sesji > literatura > implementacja repo.  
+> **Last updated:** 2026-04-12 — Java-S experiment results, AGQ v3c, S mechanism, Jolak cross-validation.
 
 ---
 
@@ -108,31 +109,46 @@ Zakres:        [0.0, 1.0]
 Implementacja: 1 - mean(instability_i)
                instability_i = fan_out_i / (fan_in_i + fan_out_i)
                (metryka Martina, "Instability" z Agile Software Development)
-Waga w AGQ:    0.55  (dominująca)
+Waga w AGQ v1: 0.55  (dominująca)
+Waga w AGQ v3c: 0.20  (equal weights — Java)
 Zakres:        [0.0, 1.0]
 ```
 
 **Co mierzy:** czy moduły mają właściwy balans między tym ile zależą od innych (fan-out) a ile inne zależą od nich (fan-in). Wysoka S = moduły mają dużo incomingów (są "stabilne" bo inni od nich zależą).
 
-**Krytyczna słabość dla Java DDD — znany bias:**
+**JAVA-S EXPERIMENT FINDING (kwiecień 2026, GT n=29):**
 
-W Clean Architecture / DDD klasa Domain jest celowo "niestabilna" wg metryki Martina — ma dużo incomingów (wszystkie warstwy zależą od domeny). AGQ interpretuje to jako niską S, co zaniża wynik.
+S jest najsilniejszym pojedynczym predyktorem jakości architektury w Javie.
 
 ```
-library (Panel=8.50, najlepsza architektura): S=0.181  ← najniższe!
-struts  (Panel=2.50, najgorsza architektura): S=0.212  ← wyższe niż library!
-→ S mierzy odwrotnie dla Java DDD
+S alone:  partial_r = 0.570, p = 0.001 ***  (kontrola nodes)
+Bez S:    partial_r spada do 0.274 (ns)     → S jest niezbędne
+S weight vs partial_r: Spearman r = 1.00   → perfect monotonic
 ```
 
-**Prawidłowa interpretacja dla DDD** (czego S NIE mierzy):
-- Powinna sprawdzać HIERARCHIĘ niestabilności: S(domain) < S(application) < S(infrastructure)
-- Zamiast tego liczy średnią — informacja o hierarchii ginie
+**Mechanizm:** S mapuje na **Martin's Stability Index** — Java pakiety z konwencją
+hierarchii (com.example.domain → com.example.app → com.example.infra) tworzą
+warstwową strukturę, którą S naturalnie rejestruje. POS repos mają średnią S ≈ 0.38,
+NEG repos S ≈ 0.13 — duża separacja.
 
-**Typowe wartości:**
-- Python OSS: S mean=0.660 (Python flat → mało hierarchii → wyższe S)
-- Java DDD pozytywne: S = 0.18–0.29 (paradoksalnie niskie)
-- Java negatywne: S = 0.07–0.25 (mieszane — S nie odróżnia!)
-- Mann-Whitney p=0.285 ns na GT n=10
+**Cross-validation z Jolak et al. (2025):** Jolak analizowali smelle architektoniczne
+w 8 projektach Java (378 wersji). Ich finding: "Unstable Dependencies" (oparte
+na metryce Martina) to NAJCZĘSTSZY smell, obecny we WSZYSTKICH 8 projektach.
+To niezależnie potwierdza dominację sygnału stabilności w Javie.
+
+**Wcześniejsze obserwacje na małej próbie (GT n=10, marzec 2026):**
+
+*UWAGA: Poniższe obserwacje opierały się na n=10 i zostały unieważnione*
+*przez Java-S experiment (n=29). S wyglądało na ślepe bo próba była za mała.*
+
+Na n=10 obserwowano paradoks: library (Panel=8.50) S=0.181, struts (Panel=2.50)
+S=0.212. Na pełnym n=29 paradoks znika — S jest jednoznacznie POS > NEG.
+
+**Typowe wartości (GT n=29, kwiecień 2026):**
+- Java POS (n=15): S mean = 0.38, range 0.16–0.99
+- Java NEG (n=14): S mean = 0.13, range 0.07–0.17
+- Mann-Whitney POS vs NEG: p = 0.001 ***
+- Python OSS: S mean ≈ 0.30 (mniejszy sygnał — brak deep package convention)
 
 ---
 
@@ -202,6 +218,37 @@ Zmiana względem v1:
 | Partial r \| nodes | +0.564 ns | **+0.721 \*** | **przełom** |
 
 **Status:** eksperymentalny — wymaga walidacji na non-DDD pozytywnych repo (n>30).
+
+---
+
+## AGQ v3c — current best (kwiecień 2026)
+
+```
+Java:   AGQ_v3c = 0.20·M + 0.20·A + 0.20·S + 0.20·C + 0.20·CD
+Python: AGQ_v3c = 0.15·M + 0.05·A + 0.20·S + 0.10·C + 0.15·CD + 0.35·flat_score
+
+Zmiana względem v2 (Java):
+  S: 0.35 → 0.20  (rozłożone równomiernie)
+  C: 0.05 → 0.20  (C ma partial_r=0.398 p=0.032 — drugi najsilniejszy)
+  Equal weights via PCA-informed justification
+```
+
+**Java-S Experiment (GT n=29, 3 iteracje, 13 wariantów):**
+
+| Test | AGQ v2 | AGQ v3c | Zmiana |
+|---|---|---|---|
+| Mann-Whitney p (pos vs neg) | 0.001 *** | **0.001 \*\*\*** | równe |
+| Partial r \| nodes | +0.675 ** | **+0.675 \*\*** | równe |
+| Bootstrap 95% CI | [0.35, 0.88] | **[0.35, 0.88]** | równe |
+
+**Dlaczego v3c a nie v2:** v3c wygrywa na balansie — żadna składowa nie dominuje.
+Wszystkie warianty z większym S osiągają wyższe partial_r (monotonic r=1.00),
+ale różnice są w obrębie bootstrap CI. V3c jest bezpieczniejszy jako default.
+
+**Stop criterion:** Iteracja 3 zatrzymana — wszystkie warianty w CI v3c,
+brak improvement > uncertainty. 2 kolejne iteracje bez poprawy.
+
+**Rezerwa:** S15_C25_CD20 (M=0.20, A=0.20, S=0.15, C=0.25, CD=0.20)
 
 ---
 
