@@ -1,0 +1,49 @@
+# Roadmap
+
+## Status (April 2026)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| P0 | Expand Java GT to n≥50 | ✅ DONE | n=59, commit b336496 |
+| P1 | Jolak cross-validation | ✅ DONE | 4/5 CONFIRMED |
+| P2 | god_class_ratio investigation | ✅ DONE | Not adding to formula |
+| P3 | Django false-negative analysis | ✅ DONE | Needs better detection |
+| P4 | Re-run Java-S on expanded GT | ⏳ NEXT | Blocked on P0 → now unblocked |
+
+## Completed Milestones
+
+### P0 — Java GT Expansion
+- Scanned 30 candidate repos (12 POS, 8 NEG, 10 UNCLEAR expected)
+- Expert panel rated all 30 (final: 16 POS, 14 NEG)
+- Merged with original GT (n=29) → expanded GT (n=59)
+- All statistics remain highly significant (MW p=0.0002)
+
+### P1 — Jolak Cross-Validation
+- Built pure-Python Java scanner (tree-sitter-java)
+- Fixed critical granularity bug (package-level → file-level nodes)
+- 8/8 repos scanned, 4/5 findings confirmed
+
+### P2 — god_class_ratio
+- Investigated but decided not to add to formula
+- No sufficient justification for new metric
+
+### P3 — Django False-Negative
+- Django scores NEG despite being well-architected
+- Root cause: scanner needs better intra-package detection
+- Deferred — not blocking main line of work
+
+## Future Work
+
+- **P4**: Re-run Java-S experiment on expanded GT (n=59)
+- Utility library normalization for CD
+- Architecture category stratification
+- Cross-language formula unification (Java + Python)
+
+## Git History (perplexity branch)
+
+| Commit | Description |
+|--------|-------------|
+| b336496 | feat: expanded Java GT to n=59 |
+| aa85608 | feat: pure-Python Java scanner + Jolak cross-validation |
+| d4589d2 | (remote sync) |
+| ... | Earlier commits |
