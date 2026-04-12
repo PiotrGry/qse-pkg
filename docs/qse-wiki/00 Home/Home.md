@@ -9,11 +9,11 @@ Witamy w polskojęzycznej wiki projektu **QSE – Quality Score Engine**.
 
 Ta przestrzeń łączy:
 
-- [[QSE Podrecznik]] – główny podręcznik wprowadzający (PL),
-- [[QSE Canon]] – kanoniczny opis projektu (ang, do tłumaczenia),
-- [[QSE_FORMULA]] – referencję wzorów AGQ (ang, do tłumaczenia),
-- [[QSE_GLOSSARY]] – słownik terminów (ang, do tłumaczenia),
-- [[QSE_HYPOTHESES]] – rejestr hipotez badawczych (ang, do tłumaczenia),
+- [[QSE Podrecznik]] – główny podręcznik wprowadzający,
+- [[QSE Canon]] – kanoniczny opis projektu,
+- [[AGQ Formulas]] – referencja wzorów AGQ,
+- [[Glossary]] – słownik terminów,
+- [[Hypotheses Register]] – rejestr hipotez badawczych,
 - [[Research Brief PL]] – krótki brief badawczy (PL),
 - [[DOCUMENT_MAP]] – mapa dokumentów,
 - [[References]] – bibliografia.
@@ -24,8 +24,8 @@ Ta przestrzeń łączy:
    - [[QSE Podrecznik]]
    - [[Research Brief PL]]
 2. Pełne definicje metryk i wzorów:
-   - [[QSE_FORMULA]]
-   - [[QSE_GLOSSARY]]
+   - [[AGQ Formulas]]
+   - [[Glossary]]
 3. Walidacja naukowa:
-   - [[QSE_HYPOTHESES]]
+   - [[Hypotheses Register]]
    - [[References]]
