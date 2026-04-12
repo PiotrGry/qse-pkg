@@ -1,0 +1,1822 @@
+{
+  "metadata": {
+    "n_repos": 30,
+    "n_scanned": 30,
+    "n_failed": 0,
+    "n_pos": 13,
+    "n_neg": 17
+  },
+  "scan_results": [
+    {
+      "repo": "netbox-community/netbox",
+      "cat": "POS",
+      "panel": 8.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1709,
+      "n_nodes_gt": 1573,
+      "n_edges_scanned": 6089,
+      "n_classes": 4251,
+      "n_god_classes": 69,
+      "god_class_ratio": 0.0162,
+      "mean_methods": 0.9,
+      "max_methods": 36,
+      "p90_methods": 3.0,
+      "mean_depth": 2.212,
+      "max_depth": 5,
+      "shallow_ratio": 0.2844,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 1,
+      "abstract_ratio": 0.0002,
+      "flat_score_gt": 0.7983,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "DynamicFilterLookupExpressionTest",
+          "n_methods": 36,
+          "penalty": 1.0,
+          "file": "netbox/utilities/tests/test_filters.py"
+        },
+        {
+          "name": "LegacyCablePathTests",
+          "n_methods": 35,
+          "penalty": 1.0,
+          "file": "netbox/dcim/tests/test_cablepaths.py"
+        },
+        {
+          "name": "BaseScript",
+          "n_methods": 30,
+          "penalty": 1.0,
+          "file": "netbox/extras/scripts.py"
+        },
+        {
+          "name": "PluginTest",
+          "n_methods": 23,
+          "penalty": 1.0,
+          "file": "netbox/netbox/tests/test_plugins.py"
+        },
+        {
+          "name": "Prefix",
+          "n_methods": 21,
+          "penalty": 1.0,
+          "file": "netbox/ipam/models/ip.py"
+        }
+      ],
+      "flat_score_adj": 0.7983,
+      "agq_v3c_adj": 0.5915,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "saleor/saleor",
+      "cat": "POS",
+      "panel": 7.5,
+      "scan_status": "ok",
+      "n_nodes_scanned": 5077,
+      "n_nodes_gt": 4100,
+      "n_edges_scanned": 23862,
+      "n_classes": 2323,
+      "n_god_classes": 74,
+      "god_class_ratio": 0.0319,
+      "mean_methods": 1.59,
+      "max_methods": 209,
+      "p90_methods": 4.0,
+      "mean_depth": 3.038,
+      "max_depth": 6,
+      "shallow_ratio": 0.181,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 3,
+      "abstract_ratio": 0.0013,
+      "flat_score_gt": 0.9365,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "PluginsManager",
+          "n_methods": 209,
+          "penalty": 1.0,
+          "file": "saleor/plugins/manager.py"
+        },
+        {
+          "name": "WebhookPlugin",
+          "n_methods": 204,
+          "penalty": 1.0,
+          "file": "saleor/plugins/webhook/plugin.py"
+        },
+        {
+          "name": "Shop",
+          "n_methods": 48,
+          "penalty": 1.0,
+          "file": "saleor/graphql/shop/types.py"
+        },
+        {
+          "name": "PluginSample",
+          "n_methods": 44,
+          "penalty": 1.0,
+          "file": "saleor/plugins/tests/sample_plugins.py"
+        },
+        {
+          "name": "Checkout",
+          "n_methods": 39,
+          "penalty": 1.0,
+          "file": "saleor/graphql/checkout/types.py"
+        }
+      ],
+      "flat_score_adj": 0.9365,
+      "agq_v3c_adj": 0.6945,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "pretix/pretix",
+      "cat": "POS",
+      "panel": 6.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1950,
+      "n_nodes_gt": 1537,
+      "n_edges_scanned": 8070,
+      "n_classes": 1786,
+      "n_god_classes": 144,
+      "god_class_ratio": 0.0806,
+      "mean_methods": 3.75,
+      "max_methods": 156,
+      "p90_methods": 7.0,
+      "mean_depth": 2.862,
+      "max_depth": 6,
+      "shallow_ratio": 0.1867,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 2,
+      "abstract_ratio": 0.0011,
+      "flat_score_gt": 0.7325,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "CheckoutTestCase",
+          "n_methods": 156,
+          "penalty": 1.0,
+          "file": "src/tests/presale/test_checkout.py"
+        },
+        {
+          "name": "OrderChangeManagerTests",
+          "n_methods": 143,
+          "penalty": 1.0,
+          "file": "src/tests/base/test_orders.py"
+        },
+        {
+          "name": "CartTest",
+          "n_methods": 140,
+          "penalty": 1.0,
+          "file": "src/tests/presale/test_cart.py"
+        },
+        {
+          "name": "OrdersTest",
+          "n_methods": 74,
+          "penalty": 1.0,
+          "file": "src/tests/presale/test_orders.py"
+        },
+        {
+          "name": "VoucherFormTest",
+          "n_methods": 67,
+          "penalty": 1.0,
+          "file": "src/tests/control/test_vouchers.py"
+        }
+      ],
+      "flat_score_adj": 0.7325,
+      "agq_v3c_adj": 0.5353,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "inventree/InvenTree",
+      "cat": "POS",
+      "panel": 7.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1504,
+      "n_nodes_gt": 1387,
+      "n_edges_scanned": 4751,
+      "n_classes": 1375,
+      "n_god_classes": 95,
+      "god_class_ratio": 0.0691,
+      "mean_methods": 2.52,
+      "max_methods": 97,
+      "p90_methods": 6.0,
+      "mean_depth": 3.65,
+      "max_depth": 6,
+      "shallow_ratio": 0.2314,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 0,
+      "abstract_ratio": 0.0,
+      "flat_score_gt": 0.9935,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "Part",
+          "n_methods": 97,
+          "penalty": 1.0,
+          "file": "src/backend/InvenTree/part/models.py"
+        },
+        {
+          "name": "StockItem",
+          "n_methods": 71,
+          "penalty": 1.0,
+          "file": "src/backend/InvenTree/stock/models.py"
+        },
+        {
+          "name": "Build",
+          "n_methods": 63,
+          "penalty": 1.0,
+          "file": "src/backend/InvenTree/build/models.py"
+        },
+        {
+          "name": "BaseInvenTreeSetting",
+          "n_methods": 53,
+          "penalty": 1.0,
+          "file": "src/backend/InvenTree/common/models.py"
+        },
+        {
+          "name": "SalesOrder",
+          "n_methods": 44,
+          "penalty": 1.0,
+          "file": "src/backend/InvenTree/order/models.py"
+        }
+      ],
+      "flat_score_adj": 0.9935,
+      "agq_v3c_adj": 0.6415,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "zulip/zulip",
+      "cat": "POS",
+      "panel": 6.5,
+      "scan_status": "ok",
+      "n_nodes_scanned": 2317,
+      "n_nodes_gt": 2289,
+      "n_edges_scanned": 12853,
+      "n_classes": 1693,
+      "n_god_classes": 225,
+      "god_class_ratio": 0.1329,
+      "mean_methods": 4.49,
+      "max_methods": 140,
+      "p90_methods": 10.8,
+      "mean_depth": 1.944,
+      "max_depth": 5,
+      "shallow_ratio": 0.1532,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 21,
+      "abstract_ratio": 0.0124,
+      "flat_score_gt": 0.1716,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "GitHubWebhookTest",
+          "n_methods": 140,
+          "penalty": 1.0,
+          "file": "zerver/webhooks/github/tests.py"
+        },
+        {
+          "name": "NormalActionsTest",
+          "n_methods": 133,
+          "penalty": 1.0,
+          "file": "zerver/tests/test_events.py"
+        },
+        {
+          "name": "ZulipTestCaseMixin",
+          "n_methods": 121,
+          "penalty": 1.0,
+          "file": "zerver/lib/test_classes.py"
+        },
+        {
+          "name": "GitlabHookTests",
+          "n_methods": 105,
+          "penalty": 1.0,
+          "file": "zerver/webhooks/gitlab/tests.py"
+        },
+        {
+          "name": "BillingSession",
+          "n_methods": 100,
+          "penalty": 1.0,
+          "file": "corporate/lib/stripe.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.5085,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "paperless-ngx/paperless-ngx",
+      "cat": "POS",
+      "panel": 6.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 691,
+      "n_nodes_gt": 549,
+      "n_edges_scanned": 2418,
+      "n_classes": 692,
+      "n_god_classes": 71,
+      "god_class_ratio": 0.1026,
+      "mean_methods": 3.97,
+      "max_methods": 104,
+      "p90_methods": 9.0,
+      "mean_depth": 1.86,
+      "max_depth": 5,
+      "shallow_ratio": 0.4124,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 3,
+      "abstract_ratio": 0.0043,
+      "flat_score_gt": 0.176,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "TestDocumentApi",
+          "n_methods": 104,
+          "penalty": 1.0,
+          "file": "src/documents/tests/test_api_documents.py"
+        },
+        {
+          "name": "TestWorkflows",
+          "n_methods": 87,
+          "penalty": 1.0,
+          "file": "src/documents/tests/test_workflows.py"
+        },
+        {
+          "name": "TestBulkEditAPI",
+          "n_methods": 61,
+          "penalty": 1.0,
+          "file": "src/documents/tests/test_api_bulk_edit.py"
+        },
+        {
+          "name": "TestConsumer",
+          "n_methods": 43,
+          "penalty": 1.0,
+          "file": "src/documents/tests/test_consumer.py"
+        },
+        {
+          "name": "TestCustomFieldsSearch",
+          "n_methods": 39,
+          "penalty": 1.0,
+          "file": "src/documents/tests/test_api_filter_by_custom_fields.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.5097,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "healthchecks/healthchecks",
+      "cat": "POS",
+      "panel": 6.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 721,
+      "n_nodes_gt": 715,
+      "n_edges_scanned": 2694,
+      "n_classes": 407,
+      "n_god_classes": 82,
+      "god_class_ratio": 0.2015,
+      "mean_methods": 5.39,
+      "max_methods": 56,
+      "p90_methods": 12.0,
+      "mean_depth": 2.663,
+      "max_depth": 4,
+      "shallow_ratio": 0.1304,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 1,
+      "abstract_ratio": 0.0025,
+      "flat_score_gt": 0.9128,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "CreateCheckTestCase",
+          "n_methods": 56,
+          "penalty": 1.0,
+          "file": "hc/api/tests/test_create_check.py"
+        },
+        {
+          "name": "PingTestCase",
+          "n_methods": 50,
+          "penalty": 1.0,
+          "file": "hc/api/tests/test_ping.py"
+        },
+        {
+          "name": "UpdateCheckTestCase",
+          "n_methods": 44,
+          "penalty": 1.0,
+          "file": "hc/api/tests/test_update_check.py"
+        },
+        {
+          "name": "Channel",
+          "n_methods": 34,
+          "penalty": 1.0,
+          "file": "hc/api/models.py"
+        },
+        {
+          "name": "ProjectTestCase",
+          "n_methods": 33,
+          "penalty": 1.0,
+          "file": "hc/accounts/tests/test_project.py"
+        }
+      ],
+      "flat_score_adj": 0.9128,
+      "agq_v3c_adj": 0.69,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "kiwitcms/Kiwi",
+      "cat": "POS",
+      "panel": 7.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 485,
+      "n_nodes_gt": 476,
+      "n_edges_scanned": 1425,
+      "n_classes": 465,
+      "n_god_classes": 13,
+      "god_class_ratio": 0.028,
+      "mean_methods": 2.49,
+      "max_methods": 19,
+      "p90_methods": 5.0,
+      "mean_depth": 2.078,
+      "max_depth": 5,
+      "shallow_ratio": 0.3072,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 0,
+      "abstract_ratio": 0.0,
+      "flat_score_gt": 0.6722,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "TestExecutionUpdate",
+          "n_methods": 19,
+          "penalty": 1.0,
+          "file": "tcms/rpc/tests/test_testexecution.py"
+        },
+        {
+          "name": "IssueTrackerType",
+          "n_methods": 16,
+          "penalty": 1.0,
+          "file": "tcms/issuetracker/base.py"
+        },
+        {
+          "name": "TestPlan",
+          "n_methods": 13,
+          "penalty": 0.993,
+          "file": "tcms/testplans/models.py"
+        },
+        {
+          "name": "TestUserField",
+          "n_methods": 12,
+          "penalty": 0.982,
+          "file": "tcms/core/tests/test_forms.py"
+        },
+        {
+          "name": "KiwiUserAdmin",
+          "n_methods": 12,
+          "penalty": 0.982,
+          "file": "tcms/kiwi_auth/admin.py"
+        }
+      ],
+      "flat_score_adj": 0.6722,
+      "agq_v3c_adj": 0.6727,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "getsentry/sentry",
+      "cat": "POS",
+      "panel": 6.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 11032,
+      "n_nodes_gt": 4863,
+      "n_edges_scanned": 65856,
+      "n_classes": 11249,
+      "n_god_classes": 1331,
+      "god_class_ratio": 0.1183,
+      "mean_methods": 3.82,
+      "max_methods": 181,
+      "p90_methods": 9.0,
+      "mean_depth": 3.396,
+      "max_depth": 7,
+      "shallow_ratio": 0.0762,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 328,
+      "abstract_ratio": 0.0292,
+      "flat_score_gt": 0.7283,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "OrganizationEventsEndpointTest",
+          "n_methods": 181,
+          "penalty": 1.0,
+          "file": "tests/snuba/api/endpoints/test_organization_events.py"
+        },
+        {
+          "name": "OrganizationEventsSpansEndpointTest",
+          "n_methods": 175,
+          "penalty": 1.0,
+          "file": "tests/snuba/api/endpoints/test_organization_events_span_indexed.py"
+        },
+        {
+          "name": "Fixtures",
+          "n_methods": 151,
+          "penalty": 1.0,
+          "file": "src/sentry/testutils/fixtures.py"
+        },
+        {
+          "name": "Factories",
+          "n_methods": 131,
+          "penalty": 1.0,
+          "file": "src/sentry/testutils/factories.py"
+        },
+        {
+          "name": "OrganizationDashboardDetailsPutTest",
+          "n_methods": 110,
+          "penalty": 1.0,
+          "file": "tests/sentry/dashboards/endpoints/test_organization_dashboard_details.py"
+        }
+      ],
+      "flat_score_adj": 0.7283,
+      "agq_v3c_adj": 0.5591,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "WeblateOrg/weblate",
+      "cat": "POS",
+      "panel": 6.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1276,
+      "n_nodes_gt": 1209,
+      "n_edges_scanned": 6741,
+      "n_classes": 2044,
+      "n_god_classes": 228,
+      "god_class_ratio": 0.1115,
+      "mean_methods": 4.19,
+      "max_methods": 201,
+      "p90_methods": 9.0,
+      "mean_depth": 2.024,
+      "max_depth": 4,
+      "shallow_ratio": 0.2633,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 5,
+      "abstract_ratio": 0.0024,
+      "flat_score_gt": 0.53,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "Component",
+          "n_methods": 201,
+          "penalty": 1.0,
+          "file": "weblate/trans/models/component.py"
+        },
+        {
+          "name": "GettextAddonTest",
+          "n_methods": 111,
+          "penalty": 1.0,
+          "file": "weblate/addons/tests.py"
+        },
+        {
+          "name": "Translation",
+          "n_methods": 86,
+          "penalty": 1.0,
+          "file": "weblate/trans/models/translation.py"
+        },
+        {
+          "name": "Unit",
+          "n_methods": 80,
+          "penalty": 1.0,
+          "file": "weblate/trans/models/unit.py"
+        },
+        {
+          "name": "Repository",
+          "n_methods": 79,
+          "penalty": 1.0,
+          "file": "weblate/vcs/base.py"
+        }
+      ],
+      "flat_score_adj": 0.53,
+      "agq_v3c_adj": 0.4739,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "ytdl-org/youtube-dl",
+      "cat": "NEG",
+      "panel": 2.25,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1836,
+      "n_nodes_gt": 997,
+      "n_edges_scanned": 5109,
+      "n_classes": 1670,
+      "n_god_classes": 31,
+      "god_class_ratio": 0.0186,
+      "mean_methods": 1.85,
+      "max_methods": 99,
+      "p90_methods": 3.0,
+      "mean_depth": 0.96,
+      "max_depth": 2,
+      "shallow_ratio": 0.5452,
+      "has_django": false,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 0,
+      "abstract_ratio": 0.0,
+      "flat_score_gt": 0.0,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "TestUtil",
+          "n_methods": 99,
+          "penalty": 1.0,
+          "file": "test/test_utils.py"
+        },
+        {
+          "name": "YoutubeDL",
+          "n_methods": 67,
+          "penalty": 1.0,
+          "file": "youtube_dl/YoutubeDL.py"
+        },
+        {
+          "name": "TestJSInterpreter",
+          "n_methods": 62,
+          "penalty": 1.0,
+          "file": "test/test_jsinterp.py"
+        },
+        {
+          "name": "FileDownloader",
+          "n_methods": 36,
+          "penalty": 1.0,
+          "file": "youtube_dl/downloader/common.py"
+        },
+        {
+          "name": "YoutubeIE",
+          "n_methods": 34,
+          "penalty": 1.0,
+          "file": "youtube_dl/extractor/youtube.py"
+        }
+      ],
+      "flat_score_adj": 0.0,
+      "agq_v3c_adj": 0.5136,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "archivebox/archivebox",
+      "cat": "NEG",
+      "panel": 3.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 464,
+      "n_nodes_gt": 430,
+      "n_edges_scanned": 1842,
+      "n_classes": 269,
+      "n_god_classes": 24,
+      "god_class_ratio": 0.0892,
+      "mean_methods": 3.94,
+      "max_methods": 84,
+      "p90_methods": 8.0,
+      "mean_depth": 1.545,
+      "max_depth": 4,
+      "shallow_ratio": 0.3793,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 0,
+      "abstract_ratio": 0.0,
+      "flat_score_gt": 0.2208,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "Snapshot",
+          "n_methods": 84,
+          "penalty": 1.0,
+          "file": "archivebox/core/models.py"
+        },
+        {
+          "name": "Process",
+          "n_methods": 52,
+          "penalty": 1.0,
+          "file": "archivebox/machine/models.py"
+        },
+        {
+          "name": "ArchiveResult",
+          "n_methods": 39,
+          "penalty": 1.0,
+          "file": "archivebox/core/models.py"
+        },
+        {
+          "name": "SnapshotAdmin",
+          "n_methods": 38,
+          "penalty": 1.0,
+          "file": "archivebox/core/admin_snapshots.py"
+        },
+        {
+          "name": "Crawl",
+          "n_methods": 27,
+          "penalty": 1.0,
+          "file": "archivebox/crawls/models.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.4758,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "modoboa/modoboa",
+      "cat": "NEG",
+      "panel": 3.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 771,
+      "n_nodes_gt": 734,
+      "n_edges_scanned": 2054,
+      "n_classes": 627,
+      "n_god_classes": 42,
+      "god_class_ratio": 0.067,
+      "mean_methods": 2.51,
+      "max_methods": 36,
+      "p90_methods": 6.0,
+      "mean_depth": 2.13,
+      "max_depth": 5,
+      "shallow_ratio": 0.2659,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 0,
+      "abstract_ratio": 0.0,
+      "flat_score_gt": 0.5873,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "IMAPconnector",
+          "n_methods": 36,
+          "penalty": 1.0,
+          "file": "modoboa/webmail/lib/imaputils.py"
+        },
+        {
+          "name": "Domain",
+          "n_methods": 32,
+          "penalty": 1.0,
+          "file": "modoboa/admin/models/domain.py"
+        },
+        {
+          "name": "User",
+          "n_methods": 25,
+          "penalty": 1.0,
+          "file": "modoboa/core/models.py"
+        },
+        {
+          "name": "AccountAPITestCase",
+          "n_methods": 22,
+          "penalty": 1.0,
+          "file": "modoboa/admin/api/v1/tests.py"
+        },
+        {
+          "name": "Mailbox",
+          "n_methods": 20,
+          "penalty": 1.0,
+          "file": "modoboa/admin/models/mailbox.py"
+        }
+      ],
+      "flat_score_adj": 0.5873,
+      "agq_v3c_adj": 0.5552,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "taigaio/taiga-back",
+      "cat": "NEG",
+      "panel": 4.25,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1102,
+      "n_nodes_gt": 1040,
+      "n_edges_scanned": 3972,
+      "n_classes": 1043,
+      "n_god_classes": 37,
+      "god_class_ratio": 0.0355,
+      "mean_methods": 1.58,
+      "max_methods": 38,
+      "p90_methods": 4.0,
+      "mean_depth": 2.382,
+      "max_depth": 5,
+      "shallow_ratio": 0.1906,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 2,
+      "abstract_ratio": 0.0019,
+      "flat_score_gt": 0.7116,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "ProjectViewSet",
+          "n_methods": 38,
+          "penalty": 1.0,
+          "file": "taiga/projects/api.py"
+        },
+        {
+          "name": "APIView",
+          "n_methods": 31,
+          "penalty": 1.0,
+          "file": "taiga/base/api/views.py"
+        },
+        {
+          "name": "TokenUser",
+          "n_methods": 24,
+          "penalty": 1.0,
+          "file": "taiga/auth/models.py"
+        },
+        {
+          "name": "UsersViewSet",
+          "n_methods": 24,
+          "penalty": 1.0,
+          "file": "taiga/users/api.py"
+        },
+        {
+          "name": "Request",
+          "n_methods": 21,
+          "penalty": 1.0,
+          "file": "taiga/base/api/request.py"
+        }
+      ],
+      "flat_score_adj": 0.7116,
+      "agq_v3c_adj": 0.616,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "scrapy/scrapy",
+      "cat": "NEG",
+      "panel": 3.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 662,
+      "n_nodes_gt": 638,
+      "n_edges_scanned": 3746,
+      "n_classes": 1098,
+      "n_god_classes": 113,
+      "god_class_ratio": 0.1029,
+      "mean_methods": 3.49,
+      "max_methods": 68,
+      "p90_methods": 9.0,
+      "mean_depth": 1.35,
+      "max_depth": 4,
+      "shallow_ratio": 0.5529,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 36,
+      "abstract_ratio": 0.0328,
+      "flat_score_gt": 0.0891,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "TestFormRequest",
+          "n_methods": 68,
+          "penalty": 1.0,
+          "file": "tests/test_http_request_form.py"
+        },
+        {
+          "name": "TestHttpCompression",
+          "n_methods": 65,
+          "penalty": 1.0,
+          "file": "tests/test_downloadermiddleware_httpcompression.py"
+        },
+        {
+          "name": "TestCookiesMiddleware",
+          "n_methods": 48,
+          "penalty": 1.0,
+          "file": "tests/test_downloadermiddleware_cookies.py"
+        },
+        {
+          "name": "TestFeedExport",
+          "n_methods": 41,
+          "penalty": 1.0,
+          "file": "tests/test_feedexport.py"
+        },
+        {
+          "name": "TestHttps2ClientProtocol",
+          "n_methods": 38,
+          "penalty": 1.0,
+          "file": "tests/test_http2_client_protocol.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.5422,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "PyGithub/PyGithub",
+      "cat": "NEG",
+      "panel": 2.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 393,
+      "n_nodes_gt": 382,
+      "n_edges_scanned": 1580,
+      "n_classes": 328,
+      "n_god_classes": 80,
+      "god_class_ratio": 0.2439,
+      "mean_methods": 7.15,
+      "max_methods": 149,
+      "p90_methods": 14.0,
+      "mean_depth": 0.858,
+      "max_depth": 1,
+      "shallow_ratio": 1.0,
+      "has_django": false,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 9,
+      "abstract_ratio": 0.0274,
+      "flat_score_gt": 0.0,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "Repository",
+          "n_methods": 149,
+          "penalty": 1.0,
+          "file": "tests/Repository.py"
+        },
+        {
+          "name": "Organization",
+          "n_methods": 84,
+          "penalty": 1.0,
+          "file": "tests/Organization.py"
+        },
+        {
+          "name": "AuthenticatedUser",
+          "n_methods": 46,
+          "penalty": 1.0,
+          "file": "tests/AuthenticatedUser.py"
+        },
+        {
+          "name": "PullRequest",
+          "n_methods": 42,
+          "penalty": 1.0,
+          "file": "tests/PullRequest.py"
+        },
+        {
+          "name": "PaginatedList",
+          "n_methods": 37,
+          "penalty": 1.0,
+          "file": "tests/PaginatedList.py"
+        }
+      ],
+      "flat_score_adj": 0.0,
+      "agq_v3c_adj": 0.3064,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "joke2k/faker",
+      "cat": "NEG",
+      "panel": 2.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 462,
+      "n_nodes_gt": 410,
+      "n_edges_scanned": 658,
+      "n_classes": 210,
+      "n_god_classes": 32,
+      "god_class_ratio": 0.1524,
+      "mean_methods": 5.33,
+      "max_methods": 48,
+      "p90_methods": 10.1,
+      "mean_depth": 2.355,
+      "max_depth": 4,
+      "shallow_ratio": 0.1926,
+      "has_django": false,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 0,
+      "abstract_ratio": 0.0,
+      "flat_score_gt": 0.1053,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "TestMiscProvider",
+          "n_methods": 48,
+          "penalty": 1.0,
+          "file": "tests/providers/test_misc.py"
+        },
+        {
+          "name": "TestDateTime",
+          "n_methods": 40,
+          "penalty": 1.0,
+          "file": "tests/providers/test_date_time.py"
+        },
+        {
+          "name": "TestFakerProxyClass",
+          "n_methods": 34,
+          "penalty": 1.0,
+          "file": "tests/test_proxy.py"
+        },
+        {
+          "name": "TestPydecimal",
+          "n_methods": 27,
+          "penalty": 1.0,
+          "file": "tests/providers/test_python.py"
+        },
+        {
+          "name": "TestInternetProvider",
+          "n_methods": 26,
+          "penalty": 1.0,
+          "file": "tests/providers/test_internet.py"
+        }
+      ],
+      "flat_score_adj": 0.1053,
+      "agq_v3c_adj": 0.5192,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "searxng/searxng",
+      "cat": "NEG",
+      "panel": 3.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 496,
+      "n_nodes_gt": 479,
+      "n_edges_scanned": 1881,
+      "n_classes": 190,
+      "n_god_classes": 19,
+      "god_class_ratio": 0.1,
+      "mean_methods": 3.71,
+      "max_methods": 27,
+      "p90_methods": 8.1,
+      "mean_depth": 1.45,
+      "max_depth": 3,
+      "shallow_ratio": 0.3589,
+      "has_django": true,
+      "has_flask": true,
+      "has_fastapi": false,
+      "n_abstract": 7,
+      "abstract_ratio": 0.0368,
+      "flat_score_gt": 0.0318,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "ViewsTestCase",
+          "n_methods": 27,
+          "penalty": 1.0,
+          "file": "tests/unit/test_webapp.py"
+        },
+        {
+          "name": "Network",
+          "n_methods": 18,
+          "penalty": 1.0,
+          "file": "searx/network/network.py"
+        },
+        {
+          "name": "TestSettings",
+          "n_methods": 18,
+          "penalty": 1.0,
+          "file": "tests/unit/test_preferences.py"
+        },
+        {
+          "name": "ExpireCacheSQLite",
+          "n_methods": 13,
+          "penalty": 0.993,
+          "file": "searx/cache.py"
+        },
+        {
+          "name": "Config",
+          "n_methods": 11,
+          "penalty": 0.953,
+          "file": "searx/botdetection/config.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.5287,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "spotify/luigi",
+      "cat": "NEG",
+      "panel": 3.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 438,
+      "n_nodes_gt": 422,
+      "n_edges_scanned": 1688,
+      "n_classes": 1110,
+      "n_god_classes": 116,
+      "god_class_ratio": 0.1045,
+      "mean_methods": 3.72,
+      "max_methods": 207,
+      "p90_methods": 9.0,
+      "mean_depth": 1.057,
+      "max_depth": 4,
+      "shallow_ratio": 0.71,
+      "has_django": false,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 25,
+      "abstract_ratio": 0.0225,
+      "flat_score_gt": 0.0526,
+      "agq_v3c_gt": null,
+      "top_god_classes": [
+        {
+          "name": "SchedulerApiTest",
+          "n_methods": 207,
+          "penalty": 1.0,
+          "file": "test/scheduler_api_test.py"
+        },
+        {
+          "name": "Scheduler",
+          "n_methods": 61,
+          "penalty": 1.0,
+          "file": "luigi/scheduler.py"
+        },
+        {
+          "name": "TestParamWithDefaultFromConfig",
+          "n_methods": 54,
+          "penalty": 1.0,
+          "file": "test/parameter_test.py"
+        },
+        {
+          "name": "TestS3Client",
+          "n_methods": 51,
+          "penalty": 1.0,
+          "file": "test/contrib/s3_test.py"
+        },
+        {
+          "name": "SalesforceAPI",
+          "n_methods": 45,
+          "penalty": 1.0,
+          "file": "luigi/contrib/salesforce.py"
+        }
+      ],
+      "flat_score_adj": 0.0526,
+      "agq_v3c_adj": 0.426,
+      "agq_v3c_orig": null
+    },
+    {
+      "repo": "pymedusa/Medusa",
+      "cat": "NEG",
+      "panel": 1.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 3318,
+      "n_nodes_gt": 2975,
+      "n_edges_scanned": 10877,
+      "n_classes": 4904,
+      "n_god_classes": 552,
+      "god_class_ratio": 0.1126,
+      "mean_methods": 4.0,
+      "max_methods": 205,
+      "p90_methods": 9.0,
+      "mean_depth": 1.948,
+      "max_depth": 6,
+      "shallow_ratio": 0.3469,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 37,
+      "abstract_ratio": 0.0075,
+      "flat_score_gt": 0.5518,
+      "agq_v3c_gt": 0.5856,
+      "top_god_classes": [
+        {
+          "name": "Repository",
+          "n_methods": 205,
+          "penalty": 1.0,
+          "file": "ext/github/Repository.py"
+        },
+        {
+          "name": "Series",
+          "n_methods": 131,
+          "penalty": 1.0,
+          "file": "medusa/tv/series.py"
+        },
+        {
+          "name": "EC2Connection",
+          "n_methods": 112,
+          "penalty": 1.0,
+          "file": "lib/boto/ec2/connection.py"
+        },
+        {
+          "name": "MWSConnection",
+          "n_methods": 104,
+          "penalty": 1.0,
+          "file": "lib/boto/mws/connection.py"
+        },
+        {
+          "name": "IAMConnection",
+          "n_methods": 94,
+          "penalty": 1.0,
+          "file": "lib/boto/iam/connection.py"
+        }
+      ],
+      "flat_score_adj": 0.5518,
+      "agq_v3c_adj": 0.5856,
+      "agq_v3c_orig": 0.5856,
+      "agq_v3c_gcr": 0.5658
+    },
+    {
+      "repo": "SickChill/SickChill",
+      "cat": "NEG",
+      "panel": 1.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 514,
+      "n_nodes_gt": 465,
+      "n_edges_scanned": 1974,
+      "n_classes": 511,
+      "n_god_classes": 61,
+      "god_class_ratio": 0.1194,
+      "mean_methods": 3.9,
+      "max_methods": 83,
+      "p90_methods": 10.0,
+      "mean_depth": 1.527,
+      "max_depth": 4,
+      "shallow_ratio": 0.4903,
+      "has_django": true,
+      "has_flask": true,
+      "has_fastapi": false,
+      "n_abstract": 3,
+      "abstract_ratio": 0.0059,
+      "flat_score_gt": 0.5724,
+      "agq_v3c_gt": 0.5523,
+      "top_god_classes": [
+        {
+          "name": "Home",
+          "n_methods": 83,
+          "penalty": 1.0,
+          "file": "sickchill/views/home.py"
+        },
+        {
+          "name": "GenericMetadata",
+          "n_methods": 54,
+          "penalty": 1.0,
+          "file": "sickchill/providers/metadata/generic.py"
+        },
+        {
+          "name": "TVShow",
+          "n_methods": 53,
+          "penalty": 1.0,
+          "file": "sickchill/tv.py"
+        },
+        {
+          "name": "GenericProvider",
+          "n_methods": 41,
+          "penalty": 1.0,
+          "file": "sickchill/providers/GenericProvider.py"
+        },
+        {
+          "name": "TVEpisode",
+          "n_methods": 39,
+          "penalty": 1.0,
+          "file": "sickchill/tv.py"
+        }
+      ],
+      "flat_score_adj": 0.5724,
+      "agq_v3c_adj": 0.5523,
+      "agq_v3c_orig": 0.5523,
+      "agq_v3c_gcr": 0.5325
+    },
+    {
+      "repo": "buildbot/buildbot",
+      "cat": "NEG",
+      "panel": 2.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1479,
+      "n_nodes_gt": 1436,
+      "n_edges_scanned": 8516,
+      "n_classes": 1947,
+      "n_god_classes": 339,
+      "god_class_ratio": 0.1741,
+      "mean_methods": 5.31,
+      "max_methods": 127,
+      "p90_methods": 12.0,
+      "mean_depth": 2.874,
+      "max_depth": 6,
+      "shallow_ratio": 0.1853,
+      "has_django": false,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 17,
+      "abstract_ratio": 0.0087,
+      "flat_score_gt": 0.946,
+      "agq_v3c_gt": 0.5614,
+      "top_god_classes": [
+        {
+          "name": "TestGit",
+          "n_methods": 127,
+          "penalty": 1.0,
+          "file": "master/buildbot/test/unit/steps/test_source_git.py"
+        },
+        {
+          "name": "MasterConfig_loaders",
+          "n_methods": 112,
+          "penalty": 1.0,
+          "file": "master/buildbot/test/unit/config/test_master.py"
+        },
+        {
+          "name": "TestContact",
+          "n_methods": 83,
+          "penalty": 1.0,
+          "file": "master/buildbot/test/unit/reporters/test_words.py"
+        },
+        {
+          "name": "TestTelegramContact",
+          "n_methods": 56,
+          "penalty": 1.0,
+          "file": "master/buildbot/test/unit/reporters/test_telegram.py"
+        },
+        {
+          "name": "FakeUpdates",
+          "n_methods": 55,
+          "penalty": 1.0,
+          "file": "master/buildbot/test/fake/fakedata.py"
+        }
+      ],
+      "flat_score_adj": 0.946,
+      "agq_v3c_adj": 0.5614,
+      "agq_v3c_orig": 0.5614,
+      "agq_v3c_gcr": 0.5321
+    },
+    {
+      "repo": "nicolargo/glances",
+      "cat": "NEG",
+      "panel": 2.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 230,
+      "n_nodes_gt": 223,
+      "n_edges_scanned": 638,
+      "n_classes": 255,
+      "n_god_classes": 34,
+      "god_class_ratio": 0.1333,
+      "mean_methods": 5.49,
+      "max_methods": 89,
+      "p90_methods": 10.0,
+      "mean_depth": 1.104,
+      "max_depth": 4,
+      "shallow_ratio": 0.713,
+      "has_django": false,
+      "has_flask": false,
+      "has_fastapi": true,
+      "n_abstract": 1,
+      "abstract_ratio": 0.0039,
+      "flat_score_gt": 0.1795,
+      "agq_v3c_gt": 0.472,
+      "top_god_classes": [
+        {
+          "name": "GlancesPluginModel",
+          "n_methods": 89,
+          "penalty": 1.0,
+          "file": "glances/plugins/plugin/model.py"
+        },
+        {
+          "name": "_GlancesCurses",
+          "n_methods": 69,
+          "penalty": 1.0,
+          "file": "glances/outputs/glances_curses.py"
+        },
+        {
+          "name": "GlancesProcesses",
+          "n_methods": 59,
+          "penalty": 1.0,
+          "file": "glances/processes.py"
+        },
+        {
+          "name": "GlancesRestfulApi",
+          "n_methods": 51,
+          "penalty": 1.0,
+          "file": "glances/outputs/glances_restful_api.py"
+        },
+        {
+          "name": "GlancesStats",
+          "n_methods": 26,
+          "penalty": 1.0,
+          "file": "glances/stats.py"
+        }
+      ],
+      "flat_score_adj": 0.1795,
+      "agq_v3c_adj": 0.472,
+      "agq_v3c_orig": 0.472,
+      "agq_v3c_gcr": 0.4531
+    },
+    {
+      "repo": "astropy/astropy",
+      "cat": "POS",
+      "panel": 7.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 1365,
+      "n_nodes_gt": 1123,
+      "n_edges_scanned": 6423,
+      "n_classes": 2067,
+      "n_god_classes": 308,
+      "god_class_ratio": 0.149,
+      "mean_methods": 4.84,
+      "max_methods": 141,
+      "p90_methods": 12.0,
+      "mean_depth": 2.193,
+      "max_depth": 6,
+      "shallow_ratio": 0.326,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 36,
+      "abstract_ratio": 0.0174,
+      "flat_score_gt": 0.7726,
+      "agq_v3c_gt": 0.5383,
+      "top_god_classes": [
+        {
+          "name": "TestHeaderFunctions",
+          "n_methods": 141,
+          "penalty": 1.0,
+          "file": "astropy/io/fits/tests/test_header.py"
+        },
+        {
+          "name": "Table",
+          "n_methods": 105,
+          "penalty": 1.0,
+          "file": "astropy/table/table.py"
+        },
+        {
+          "name": "Model",
+          "n_methods": 99,
+          "penalty": 1.0,
+          "file": "astropy/modeling/core.py"
+        },
+        {
+          "name": "Quantity",
+          "n_methods": 88,
+          "penalty": 1.0,
+          "file": "astropy/units/quantity.py"
+        },
+        {
+          "name": "TestTableFunctions",
+          "n_methods": 79,
+          "penalty": 1.0,
+          "file": "astropy/io/fits/tests/test_table.py"
+        }
+      ],
+      "flat_score_adj": 0.7726,
+      "agq_v3c_adj": 0.5383,
+      "agq_v3c_orig": 0.5383,
+      "agq_v3c_gcr": 0.5142
+    },
+    {
+      "repo": "kedro-org/kedro",
+      "cat": "POS",
+      "panel": 6.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 284,
+      "n_nodes_gt": 257,
+      "n_edges_scanned": 1113,
+      "n_classes": 279,
+      "n_god_classes": 47,
+      "god_class_ratio": 0.1685,
+      "mean_methods": 5.28,
+      "max_methods": 62,
+      "p90_methods": 13.2,
+      "mean_depth": 1.799,
+      "max_depth": 9,
+      "shallow_ratio": 0.4577,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 5,
+      "abstract_ratio": 0.0179,
+      "flat_score_gt": 0.4714,
+      "agq_v3c_gt": 0.494,
+      "top_god_classes": [
+        {
+          "name": "TestOmegaConfigLoader",
+          "n_methods": 62,
+          "penalty": 1.0,
+          "file": "tests/config/test_omegaconf_config.py"
+        },
+        {
+          "name": "Pipeline",
+          "n_methods": 42,
+          "penalty": 1.0,
+          "file": "kedro/pipeline/pipeline.py"
+        },
+        {
+          "name": "Node",
+          "n_methods": 35,
+          "penalty": 1.0,
+          "file": "kedro/pipeline/node.py"
+        },
+        {
+          "name": "TestDataCatalog",
+          "n_methods": 34,
+          "penalty": 1.0,
+          "file": "tests/io/test_data_catalog.py"
+        },
+        {
+          "name": "TestKedroSession",
+          "n_methods": 33,
+          "penalty": 1.0,
+          "file": "tests/framework/session/test_session.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.504,
+      "agq_v3c_orig": 0.494,
+      "agq_v3c_gcr": 0.469
+    },
+    {
+      "repo": "bridgecrewio/checkov",
+      "cat": "POS",
+      "panel": 6.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 4289,
+      "n_nodes_gt": 4246,
+      "n_edges_scanned": 18266,
+      "n_classes": 2936,
+      "n_god_classes": 92,
+      "god_class_ratio": 0.0313,
+      "mean_methods": 2.57,
+      "max_methods": 192,
+      "p90_methods": 4.0,
+      "mean_depth": 4.195,
+      "max_depth": 7,
+      "shallow_ratio": 0.0485,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 79,
+      "abstract_ratio": 0.0269,
+      "flat_score_gt": 0.9402,
+      "agq_v3c_gt": 0.7581,
+      "top_god_classes": [
+        {
+          "name": "TestYamlPolicies",
+          "n_methods": 192,
+          "penalty": 1.0,
+          "file": "tests/terraform/graph/checks/test_yaml_policies.py"
+        },
+        {
+          "name": "TestRunnerValid",
+          "n_methods": 75,
+          "penalty": 1.0,
+          "file": "tests/terraform/runner/test_runner.py"
+        },
+        {
+          "name": "TestTerraformEvaluation",
+          "n_methods": 75,
+          "penalty": 1.0,
+          "file": "tests/terraform/graph/variable_rendering/test_string_evaluation.py"
+        },
+        {
+          "name": "BcPlatformIntegration",
+          "n_methods": 66,
+          "penalty": 1.0,
+          "file": "checkov/common/bridgecrew/platform_integration.py"
+        },
+        {
+          "name": "TerraformLocalGraph",
+          "n_methods": 41,
+          "penalty": 1.0,
+          "file": "checkov/terraform/graph_builder/local_graph.py"
+        }
+      ],
+      "flat_score_adj": 0.9402,
+      "agq_v3c_adj": 0.7581,
+      "agq_v3c_orig": 0.7581,
+      "agq_v3c_gcr": 0.751
+    },
+    {
+      "repo": "freqtrade/freqtrade",
+      "cat": "NEG",
+      "panel": 2.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 641,
+      "n_nodes_gt": 625,
+      "n_edges_scanned": 3316,
+      "n_classes": 419,
+      "n_god_classes": 46,
+      "god_class_ratio": 0.1098,
+      "mean_methods": 4.32,
+      "max_methods": 163,
+      "p90_methods": 9.0,
+      "mean_depth": 1.733,
+      "max_depth": 4,
+      "shallow_ratio": 0.3463,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": true,
+      "n_abstract": 16,
+      "abstract_ratio": 0.0382,
+      "flat_score_gt": 0.3501,
+      "agq_v3c_gt": 0.4265,
+      "top_god_classes": [
+        {
+          "name": "Exchange",
+          "n_methods": 163,
+          "penalty": 1.0,
+          "file": "freqtrade/exchange/exchange.py"
+        },
+        {
+          "name": "LocalTrade",
+          "n_methods": 71,
+          "penalty": 1.0,
+          "file": "freqtrade/persistence/trade_model.py"
+        },
+        {
+          "name": "Telegram",
+          "n_methods": 71,
+          "penalty": 1.0,
+          "file": "freqtrade/rpc/telegram.py"
+        },
+        {
+          "name": "IStrategy",
+          "n_methods": 67,
+          "penalty": 1.0,
+          "file": "freqtrade/strategy/interface.py"
+        },
+        {
+          "name": "FreqtradeBot",
+          "n_methods": 59,
+          "penalty": 1.0,
+          "file": "freqtrade/freqtradebot.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.479,
+      "agq_v3c_orig": 0.4265,
+      "agq_v3c_gcr": 0.4125
+    },
+    {
+      "repo": "locustio/locust",
+      "cat": "NEG",
+      "panel": 2.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 343,
+      "n_nodes_gt": 305,
+      "n_edges_scanned": 881,
+      "n_classes": 345,
+      "n_god_classes": 43,
+      "god_class_ratio": 0.1246,
+      "mean_methods": 3.55,
+      "max_methods": 50,
+      "p90_methods": 10.0,
+      "mean_depth": 1.003,
+      "max_depth": 5,
+      "shallow_ratio": 0.688,
+      "has_django": true,
+      "has_flask": true,
+      "has_fastapi": false,
+      "n_abstract": 6,
+      "abstract_ratio": 0.0174,
+      "flat_score_gt": 0.0071,
+      "agq_v3c_gt": 0.4322,
+      "top_god_classes": [
+        {
+          "name": "TestWebUI",
+          "n_methods": 50,
+          "penalty": 1.0,
+          "file": "locust/test/test_web.py"
+        },
+        {
+          "name": "StandaloneIntegrationTests",
+          "n_methods": 48,
+          "penalty": 1.0,
+          "file": "locust/test/test_main.py"
+        },
+        {
+          "name": "TestMasterRunner",
+          "n_methods": 39,
+          "penalty": 1.0,
+          "file": "locust/test/test_runners.py"
+        },
+        {
+          "name": "TestHttpSession",
+          "n_methods": 31,
+          "penalty": 1.0,
+          "file": "locust/test/test_http.py"
+        },
+        {
+          "name": "TestLocustRunner",
+          "n_methods": 28,
+          "penalty": 1.0,
+          "file": "locust/test/test_runners.py"
+        }
+      ],
+      "flat_score_adj": 0.5,
+      "agq_v3c_adj": 0.6047,
+      "agq_v3c_orig": 0.4322,
+      "agq_v3c_gcr": 0.416
+    },
+    {
+      "repo": "dask/dask",
+      "cat": "NEG",
+      "panel": 3.0,
+      "scan_status": "ok",
+      "n_nodes_scanned": 544,
+      "n_nodes_gt": 534,
+      "n_edges_scanned": 3724,
+      "n_classes": 652,
+      "n_god_classes": 43,
+      "god_class_ratio": 0.066,
+      "mean_methods": 3.65,
+      "max_methods": 138,
+      "p90_methods": 7.0,
+      "mean_depth": 1.864,
+      "max_depth": 5,
+      "shallow_ratio": 0.4026,
+      "has_django": false,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 7,
+      "abstract_ratio": 0.0107,
+      "flat_score_gt": 0.5719,
+      "agq_v3c_gt": 0.4508,
+      "top_god_classes": [
+        {
+          "name": "Array",
+          "n_methods": 138,
+          "penalty": 1.0,
+          "file": "dask/array/core.py"
+        },
+        {
+          "name": "FrameBase",
+          "n_methods": 121,
+          "penalty": 1.0,
+          "file": "dask/dataframe/dask_expr/_collection.py"
+        },
+        {
+          "name": "Expr",
+          "n_methods": 94,
+          "penalty": 1.0,
+          "file": "dask/dataframe/dask_expr/_expr.py"
+        },
+        {
+          "name": "DataFrame",
+          "n_methods": 70,
+          "penalty": 1.0,
+          "file": "dask/dataframe/dask_expr/_collection.py"
+        },
+        {
+          "name": "Series",
+          "n_methods": 55,
+          "penalty": 1.0,
+          "file": "dask/dataframe/dask_expr/_collection.py"
+        }
+      ],
+      "flat_score_adj": 0.5719,
+      "agq_v3c_adj": 0.4508,
+      "agq_v3c_orig": 0.4508,
+      "agq_v3c_gcr": 0.4419
+    },
+    {
+      "repo": "kovidgoyal/calibre",
+      "cat": "NEG",
+      "panel": 1.75,
+      "scan_status": "ok",
+      "n_nodes_scanned": 2727,
+      "n_nodes_gt": 1656,
+      "n_edges_scanned": 12888,
+      "n_classes": 2985,
+      "n_god_classes": 502,
+      "god_class_ratio": 0.1682,
+      "mean_methods": 5.29,
+      "max_methods": 175,
+      "p90_methods": 12.0,
+      "mean_depth": 3.079,
+      "max_depth": 6,
+      "shallow_ratio": 0.147,
+      "has_django": true,
+      "has_flask": false,
+      "has_fastapi": false,
+      "n_abstract": 2,
+      "abstract_ratio": 0.0007,
+      "flat_score_gt": 0.7377,
+      "agq_v3c_gt": 0.5242,
+      "top_god_classes": [
+        {
+          "name": "LibraryDatabase2",
+          "n_methods": 175,
+          "penalty": 1.0,
+          "file": "src/calibre/library/database2.py"
+        },
+        {
+          "name": "DB",
+          "n_methods": 152,
+          "penalty": 1.0,
+          "file": "src/calibre/db/backend.py"
+        },
+        {
+          "name": "KOBOTOUCH",
+          "n_methods": 146,
+          "penalty": 1.0,
+          "file": "src/calibre/devices/kobo/driver.py"
+        },
+        {
+          "name": "Boss",
+          "n_methods": 144,
+          "penalty": 1.0,
+          "file": "src/calibre/gui2/tweak_book/boss.py"
+        },
+        {
+          "name": "ODF2XHTML",
+          "n_methods": 116,
+          "penalty": 1.0,
+          "file": "src/odf/odf2xhtml.py"
+        }
+      ],
+      "flat_score_adj": 0.7377,
+      "agq_v3c_adj": 0.5242,
+      "agq_v3c_orig": 0.5242,
+      "agq_v3c_gcr": 0.4977
+    }
+  ]
+}
