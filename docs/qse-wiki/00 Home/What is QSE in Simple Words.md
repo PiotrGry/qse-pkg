@@ -3,23 +3,23 @@ type: explainer
 audience: beginner
 ---
 
-# What is QSE in Simple Words
+# Czym jest QSE prostymi słowami
 
-QSE means **Quality Scoring Engine**.
+QSE to skrót od **Quality Scoring Engine** (Silnik Oceny Jakości).
 
-It is a tool that looks at how a software project is **organized inside**, then gives it a score for architecture quality.
+Jest to narzędzie, które analizuje sposób **wewnętrznej organizacji** projektu oprogramowania, a następnie przyznaje mu ocenę jakości architektury.
 
-In simple terms, QSE tries to answer this question:
+Mówiąc prosto, QSE stara się odpowiedzieć na pytanie:
 
-> "Is this codebase arranged in a clean and healthy way, or is it messy and risky to maintain?"
+> „Czy ta baza kodu jest ułożona w czysty i zdrowy sposób, czy też jest chaotyczna i ryzykowna w utrzymaniu?"
 
-QSE does not read code like a human reading a story. Instead, it looks at the **structure** of the project, especially which parts depend on which other parts. See [[Dependency Graph]].
+QSE nie czyta kodu tak jak człowiek czyta tekst. Zamiast tego analizuje **strukturę** projektu – w szczególności to, które elementy zależą od których innych elementów. Zob. [[Dependency Graph]].
 
-## In one sentence
+## W jednym zdaniu
 
-QSE is a project that measures how well a software system is structured.
+QSE to projekt mierzący to, jak dobrze zorganizowany jest system oprogramowania.
 
-## Read next
+## Czytaj dalej
 
 - [[Why QSE Exists]]
 - [[How QSE Works Simply]]

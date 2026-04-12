@@ -1,10 +1,10 @@
-# How to Read Experiments
+# Jak czytać eksperymenty
 
-Each experiment note answers four simple questions:
+Każda notatka eksperymentu odpowiada na cztery proste pytania:
 
-- What idea was being tested?
-- How was it tested?
-- What happened?
-- What does that mean for QSE?
+- Jaki pomysł był testowany?
+- Jak go testowano?
+- Co się stało?
+- Co to oznacza dla QSE?
 
-If a note includes harder terms, it should link only the most important ones, not every technical word.
+Jeśli notatka zawiera trudniejsze pojęcia, powinna linkować tylko te najważniejsze, a nie każde słowo techniczne.

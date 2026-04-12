@@ -1,7 +1,7 @@
-# Ground Truth in Simple Words
+# Punkt odniesienia prostymi słowami
 
-Ground truth means the best available reference for what is actually true.
+Punkt odniesienia (ground truth) oznacza najlepsze dostępne źródło tego, co jest rzeczywiście prawdą.
 
-In QSE, the trusted ground truth is an [[Expert Panel]] that scores repositories directly.
+W QSE zaufanym punktem odniesienia jest [[Expert Panel]], który bezpośrednio ocenia repozytoria.
 
-QSE then checks whether its formulas agree with that human judgment.
+QSE sprawdza następnie, czy jego formuły zgadzają się z tą ludzką oceną.

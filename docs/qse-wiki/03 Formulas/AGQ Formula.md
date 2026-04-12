@@ -1,7 +1,7 @@
 # AGQ Formula
 
-An AGQ formula is a recipe for turning several structural signals into one score.
+Formuła AGQ to przepis na przekształcenie kilku sygnałów strukturalnych w jeden wynik.
 
-Different formulas use different weights depending on what works best for a language or validation setting.
+Różne formuły stosują różne wagi, zależnie od tego, co najlepiej sprawdza się dla danego języka lub kontekstu walidacji.
 
-See: [[AGQv1]], [[AGQv2]], [[AGQv3c Java]], [[AGQv3c Python]]
+Zobacz: [[AGQv1]], [[AGQv2]], [[AGQv3c Java]], [[AGQv3c Python]]

@@ -4,16 +4,16 @@ id:
 status: 
 ---
 
-# Experiment Title
+# Tytuł eksperymentu
 
-## In simple words
-
--
-
-## What happened
+## Prostymi słowami
 
 -
 
-## Why that matters
+## Co się wydarzyło
+
+-
+
+## Dlaczego to ważne
 
 -

@@ -7,31 +7,31 @@ components: [M, A, S, C]
 
 # AGQv1
 
-## Beginner summary
+## Podsumowanie dla początkujących
 
-AGQv1 is the **original baseline formula** in QSE.
+AGQv1 to **oryginalna formuła bazowa** w QSE.
 
-In simple terms, it is the first main recipe QSE used to turn structure signals into one architecture score.
+Mówiąc prosto, jest to pierwszy główny przepis, którego QSE używał do przekształcania sygnałów strukturalnych w jeden wynik architektury.
 
-It is still kept as an important reference point, even though later research found problems with some of its weighting choices.
+Pozostaje ważnym punktem odniesienia, choć późniejsze badania wykazały problemy z niektórymi przyjętymi wagami.
 
-## Formula
+## Wzór
 
 `0.20 M + 0.20 A + 0.55 S + 0.05 C`
 
-## What the parts mean
+## Co oznaczają składniki
 
-- [[Modularity]]: are parts clearly separated?
-- [[Acyclicity]]: are there circular dependencies?
-- [[Stability]]: are important parts dependable?
-- [[Cohesion]]: do grouped things belong together?
+- [[Modularity]]: czy części są wyraźnie rozdzielone?
+- [[Acyclicity]]: czy istnieją zależności cykliczne?
+- [[Stability]]: czy ważne elementy są niezawodne?
+- [[Cohesion]]: czy pogrupowane rzeczy naprawdę do siebie pasują?
 
-## Notes
+## Uwagi
 
-- Baseline reference formula.
-- Must never be modified.
-- Calibrated on [[BLT]], which is a refuted [[Ground Truth]].
+- Formuła bazowa – punkt odniesienia.
+- Nie może być modyfikowana.
+- Skalibrowana na [[BLT]], który jest obaloną [[Ground Truth]].
 
-## Why it still matters
+## Dlaczego to wciąż istotne
 
-Even if AGQv1 is not the best current formula, it helps compare new ideas against the original starting point.
+Nawet jeśli AGQv1 nie jest aktualnie najlepszą formułą, pomaga porównywać nowe podejścia z oryginalnym punktem startowym.

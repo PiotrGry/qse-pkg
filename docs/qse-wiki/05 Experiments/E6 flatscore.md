@@ -6,14 +6,14 @@ status: implemented
 
 # E6 flatscore
 
-## In simple words
+## Prostymi słowami
 
-This experiment tested whether [[flatscore]] can detect flat, messy Python architectures.
+Ten eksperyment sprawdzał, czy [[flatscore]] potrafi wykrywać płaskie, chaotyczne architektury Pythona.
 
-## What happened
+## Co się stało
 
-It worked for [[Type 1 Flat Spaghetti]], but not for [[Type 2 Legacy Monolith]].
+Zadziałało dla [[Type 1 Flat Spaghetti]], ale nie dla [[Type 2 Legacy Monolith]].
 
-## Why that matters
+## Dlaczego to istotne
 
-The signal is useful, but it has a known blind spot.
+Sygnał jest użyteczny, ale ma znany martwy punkt.

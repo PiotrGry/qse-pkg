@@ -1,9 +1,9 @@
 # CD
 
-CD means **Coupling Density**.
+CD oznacza **Coupling Density** (gęstość powiązań).
 
-It is a way of asking whether the project graph is too densely connected.
+Jest to sposób na ocenę, czy graf projektu nie jest zbyt gęsto połączony.
 
-In simple terms, if too many parts point to too many other parts, the structure may be too tangled.
+Mówiąc prosto: jeśli zbyt wiele części wskazuje na zbyt wiele innych części, struktura może być zbyt splątana.
 
-See also: [[Coupling]], [[edges]], [[nodes]]
+Zobacz również: [[Coupling]], [[edges]], [[nodes]]

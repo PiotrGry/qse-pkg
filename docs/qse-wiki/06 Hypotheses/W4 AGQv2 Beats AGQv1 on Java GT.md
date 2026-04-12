@@ -9,18 +9,18 @@ tested_by: E2
 
 # W4 AGQv2 Beats AGQv1 on Java GT
 
-## In simple words
+## Prostymi słowami
 
-This hypothesis asked whether [[AGQv2]] is better than [[AGQv1]] for Java when compared with trusted human judgment.
+Ta hipoteza sprawdzała, czy [[AGQv2]] jest lepszy od [[AGQv1]] dla Javy, gdy porównuje się go z wiarygodną oceną ekspercką.
 
 ## Status
 
-Credible.
+Wiarygodna.
 
-## What it means
+## Co to oznacza
 
-The newer Java formula improved on the baseline and gave stronger separation between better and worse Java architectures.
+Nowsza formuła Javy poprawiła się w stosunku do punktu bazowego i dała wyraźniejsze rozróżnienie między lepszymi a gorszymi architekturami Javy.
 
-## Why this matters
+## Dlaczego to istotne
 
-It supports the idea that adding [[CD]] and reducing the weight of [[Stability]] was a useful change for Java.
+Potwierdza to, że dodanie [[CD]] i zmniejszenie wagi [[Stability]] było użyteczną zmianą dla Javy.

@@ -1,5 +1,5 @@
 # Mann-Whitney
 
-This is a statistical test used to compare two groups.
+Jest to test statystyczny służący do porównania dwóch grup.
 
-In this wiki, you only need the big idea: it helps check whether two sets of scores are meaningfully different.
+W tym wiki wystarczy znać główną ideę: pomaga sprawdzić, czy dwa zestawy wyników różnią się od siebie w istotny sposób.

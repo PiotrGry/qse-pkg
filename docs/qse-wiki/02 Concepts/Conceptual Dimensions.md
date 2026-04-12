@@ -2,9 +2,9 @@
 type: concept
 ---
 
-# Conceptual Dimensions
+# Wymiary koncepcyjne
 
-The conceptual dimensions are the main structural qualities QSE measures.
+Wymiary koncepcyjne to główne właściwości strukturalne mierzone przez QSE.
 
 - [[Modularity]]
 - [[Acyclicity]]

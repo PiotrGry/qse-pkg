@@ -1,7 +1,7 @@
 # AGQ
 
-AGQ stands for **Architecture Graph Quality**.
+AGQ to skrót od **Architecture Graph Quality**.
 
-It is the name of the scoring family used in QSE.
+Jest to nazwa rodziny ocen stosowanych w QSE.
 
-See [[AGQ Formulas]].
+Zobacz [[AGQ Formulas]].

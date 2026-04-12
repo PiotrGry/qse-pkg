@@ -1,13 +1,13 @@
 # Repository Types
 
-QSE groups repositories into broad architecture patterns.
+QSE grupuje repozytoria według szerokich wzorców architektonicznych.
 
-Examples include:
+Przykłady:
 
-- DDD application
-- clean layered architecture
-- CRUD package-by-layer
-- flat spaghetti
-- legacy monolith
+- aplikacja DDD
+- czysta architektura warstwowa
+- CRUD z pakietami według warstwy
+- płskie spaghetti
+- monolityczny system legacy
 
-These categories help compare formulas with human judgment.
+Te kategorie pomagają porównywać formuły z oceną ekspertów.

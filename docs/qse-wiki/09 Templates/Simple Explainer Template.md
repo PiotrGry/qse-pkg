@@ -3,16 +3,16 @@ type: explainer
 audience: beginner
 ---
 
-# Topic Name
+# Nazwa tematu
 
-## In simple words
-
--
-
-## Why it matters
+## Prostymi słowami
 
 -
 
-## See also
+## Dlaczego to ważne
+
+-
+
+## Zobacz też
 
 -

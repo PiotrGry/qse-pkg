@@ -7,14 +7,14 @@ language: python
 
 # O4 Namespace Metrics for Python
 
-## In simple words
+## Prostymi słowami
 
-This open hypothesis asks whether [[NSdepth]] and [[NSgini]] can improve Python-side validation.
+Ta otwarta hipoteza pyta, czy [[NSdepth]] i [[NSgini]] mogą poprawić walidację po stronie Pythona.
 
 ## Status
 
-Open.
+Otwarta.
 
-## Why it matters
+## Dlaczego to istotne
 
-If these metrics help, QSE may gain extra signal beyond the current formula components.
+Jeśli te metryki okażą się pomocne, QSE może zyskać dodatkowy sygnał wykraczający poza obecne składniki formuły.

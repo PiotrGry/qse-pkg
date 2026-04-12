@@ -7,14 +7,14 @@ language: python
 
 # O5 Python CD Direction
 
-## In simple words
+## Prostymi słowami
 
-This open hypothesis asks why [[CD]] seems to behave in the opposite direction for Python compared with Java.
+Ta otwarta hipoteza pyta, dlaczego [[CD]] wydaje się zachowywać w odwrotnym kierunku dla Pythona w porównaniu z Javą.
 
 ## Status
 
-Open.
+Otwarta.
 
-## Why it matters
+## Dlaczego to istotne
 
-Until this is explained, CD must be interpreted carefully for Python.
+Dopóki nie zostanie to wyjaśnione, CD musi być interpretowany ostrożnie w przypadku Pythona.

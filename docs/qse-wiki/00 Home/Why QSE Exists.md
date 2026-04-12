@@ -3,16 +3,16 @@ type: explainer
 audience: beginner
 ---
 
-# Why QSE Exists
+# Dlaczego istnieje QSE
 
-Big software systems often become hard to change over time.
+Duże systemy oprogramowania często z czasem stają się trudne do modyfikacji.
 
-Sometimes the problem is not a bug in one file, but the way the whole project is arranged. Parts may be too tangled, too dependent on each other, or too flat and chaotic. See [[Architecture]] and [[Coupling]].
+Niekiedy problem nie leży w błędzie w jednym pliku, lecz w tym, jak cały projekt jest zorganizowany. Elementy mogą być zbyt splątane, zbyt od siebie zależne albo zbyt płaskie i chaotyczne. Zob. [[Architecture]] i [[Coupling]].
 
-QSE exists to measure those bigger structural problems in a consistent way.
+QSE istnieje po to, by mierzyć te głębsze problemy strukturalne w spójny sposób.
 
-## Main idea
+## Główna idea
 
-Instead of saying "this code feels messy", QSE tries to turn that judgment into measurable signals.
+Zamiast mówić „ten kod wygląda na bałagan", QSE stara się przekształcić tę ocenę w mierzalne sygnały.
 
-Those signals are combined into a score called [[AGQ]].
+Sygnały te są łączone w wynik zwany [[AGQ]].

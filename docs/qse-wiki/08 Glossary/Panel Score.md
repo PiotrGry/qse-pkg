@@ -1,5 +1,5 @@
 # Panel Score
 
-Panel Score is the combined rating given by the [[Expert Panel]] to a repository.
+Panel Score to łączna ocena przyznana repozytorium przez [[Expert Panel]].
 
-It serves as the [[Ground Truth]] in QSE validation.
+Służy jako [[Ground Truth]] w walidacji QSE.

@@ -1,7 +1,7 @@
 # Modularity
 
-Modularity asks whether the codebase is divided into clean, well-separated parts.
+Modularity (modularność) sprawdza, czy baza kodu jest podzielona na czyste, dobrze wyodrębnione części.
 
-If groups of code mostly work inside their own area and only connect where needed, modularity is usually higher.
+Jeśli grupy kodu działają głównie w obrębie własnego obszaru i łączą się z innymi tylko tam, gdzie to konieczne, modularność jest zazwyczaj wyższa.
 
-In QSE, Modularity is measured from the [[Dependency Graph]] using the [[Louvain]] method.
+W QSE Modularity jest mierzona z [[Dependency Graph|grafu zależności]] metodą [[Louvain]].

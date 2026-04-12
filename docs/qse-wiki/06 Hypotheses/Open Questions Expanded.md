@@ -1,4 +1,4 @@
-# Open Questions Expanded
+# Otwarte pytania – rozszerzone
 
 - [[O1 AGQv3c Java to Go]]
 - [[O2 Type 2 Legacy Monolith Detection]]

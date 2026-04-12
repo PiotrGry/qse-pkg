@@ -1,5 +1,5 @@
 # NSgini
 
-NSgini measures how evenly or unevenly naming depth is distributed across a project.
+NSgini mierzy, jak równomiernie lub nierównomiernie głębokość nazewnictwa jest rozłożona w projekcie.
 
-See [[E5 Namespace Metrics]].
+Zobacz [[E5 Namespace Metrics]].

@@ -8,18 +8,18 @@ language: python
 
 # O2 Type 2 Legacy Monolith Detection
 
-## In simple words
+## Prostymi słowami
 
-This open hypothesis asks how QSE can detect [[Type 2 Legacy Monolith]] projects more reliably.
+Ta otwarta hipoteza pyta, jak QSE może bardziej niezawodnie wykrywać projekty [[Type 2 Legacy Monolith]].
 
 ## Status
 
-Open.
+Otwarta.
 
-## Why it exists
+## Dlaczego istnieje
 
-Current signals such as [[flatscore]] do not catch this pattern well enough.
+Obecne sygnały, takie jak [[flatscore]], nie wychwytują tego wzorca wystarczająco dobrze.
 
-## Why this matters
+## Dlaczego to istotne
 
-This is one of the most important known blind spots in the current Python research.
+Jest to jeden z najważniejszych znanych martwych punktów w obecnych badaniach Pythona.

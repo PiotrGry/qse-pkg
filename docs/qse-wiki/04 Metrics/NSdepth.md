@@ -1,7 +1,7 @@
 # NSdepth
 
-NSdepth measures how deep the naming structure of a project goes.
+NSdepth mierzy głębokość struktury nazewnictwa projektu.
 
-A project with many nested levels of names may have a different architecture pattern than a shallow one.
+Projekt z wieloma zagnieżdżonymi poziomami nazw może mieć inny wzorzec architektury niż projekt o płytkiej strukturze.
 
-See [[E5 Namespace Metrics]].
+Zobacz [[E5 Namespace Metrics]].

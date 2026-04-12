@@ -1,7 +1,7 @@
 # Cohesion
 
-Cohesion asks whether things grouped together really belong together.
+Cohesion (spójność) sprawdza, czy rzeczy zgrupowane razem naprawdę do siebie pasują.
 
-If a package contains code that all serves a related purpose, cohesion is higher.
+Jeśli pakiet zawiera kod, który w całości służy pokrewnemu celowi, spójność jest wyższa.
 
-QSE approximates this using [[LCOM4]].
+QSE przybliża tę właściwość przy użyciu miary [[LCOM4]].

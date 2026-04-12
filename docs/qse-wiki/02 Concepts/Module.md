@@ -1,5 +1,5 @@
-# Module
+# Moduł
 
-A module is a unit of code organization.
+Moduł to jednostka organizacji kodu.
 
-In different languages it can mean slightly different things, but in this wiki it usually means one logical part of the system.
+W różnych językach może oznaczać nieco inne rzeczy, ale w tej wiki zazwyczaj oznacza jedną logiczną część systemu.

@@ -1,8 +1,8 @@
 # Glossary for Non-Technical Readers
 
-Use this page if other pages feel too technical.
+Skorzystaj z tej strony, jeśli inne strony wydają Ci się zbyt techniczne.
 
-Good starting notes:
+Dobre punkty startowe:
 
 - [[Architecture]]
 - [[Dependency Graph]]

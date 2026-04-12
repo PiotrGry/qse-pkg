@@ -4,8 +4,8 @@ type: canon
 
 # Ground Truth
 
-Ground truth is the trusted reference QSE uses to check whether its formulas are working.
+Ground truth to zaufane odniesienie, którego QSE używa do sprawdzania, czy jego formuły działają poprawnie.
 
-The current ground truth is the [[Expert Panel]] judgment.
+Obecnym ground truth jest ocena [[Expert Panel]].
 
-See also: [[Ground Truth in Simple Words]], [[BLT]]
+Zob. też: [[Ground Truth in Simple Words]], [[BLT]]

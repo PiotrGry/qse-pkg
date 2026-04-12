@@ -4,6 +4,6 @@ type: canon
 
 # QSE Canon
 
-This note defines what QSE is and what it is not.
+Ta notatka określa, czym QSE jest i czym nie jest.
 
-See [[What QSE Is Not]], [[Conceptual Dimensions]], [[AGQ Formulas]], [[Ground Truth]], [[Invariants]], [[Current Priorities]].
+Zob. [[What QSE Is Not]], [[Conceptual Dimensions]], [[AGQ Formulas]], [[Ground Truth]], [[Invariants]], [[Current Priorities]].

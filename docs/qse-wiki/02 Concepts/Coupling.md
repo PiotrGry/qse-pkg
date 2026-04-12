@@ -1,8 +1,8 @@
-# Coupling
+# Sprzężenie
 
-Coupling describes how strongly different parts of a software project depend on each other.
+Sprzężenie opisuje, jak silnie różne części projektu programistycznego zależą od siebie nawzajem.
 
-- **Low coupling** usually means the parts are more independent.
-- **High coupling** usually means changes spread more easily and create risk.
+- **Niskie sprzężenie** zazwyczaj oznacza, że części są bardziej niezależne.
+- **Wysokie sprzężenie** zazwyczaj oznacza, że zmiany rozprzestrzeniają się łatwiej i stwarzają ryzyko.
 
-QSE tries to detect unhealthy coupling patterns through notes like [[CD]] and [[Acyclicity]].
+QSE stara się wykrywać niezdrowe wzorce sprzężeń za pomocą wskaźników takich jak [[CD]] i [[Acyclicity]].

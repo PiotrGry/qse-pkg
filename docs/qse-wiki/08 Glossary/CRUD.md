@@ -1,5 +1,5 @@
 # CRUD
 
-CRUD stands for Create, Read, Update, Delete.
+CRUD to skrót od Create, Read, Update, Delete (Tworzenie, Odczyt, Aktualizacja, Usuwanie).
 
-It often describes software built mainly around basic data operations.
+Termin ten często opisuje oprogramowanie zbudowane głównie wokół podstawowych operacji na danych.

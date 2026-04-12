@@ -1,5 +1,5 @@
 # nodes
 
-A node is one item in the [[Dependency Graph]].
+Węzeł (node) to jeden element w [[Dependency Graph|grafie zależności]].
 
-In QSE, nodes are usually packages, modules, or similar structural units.
+W QSE węzłami są zazwyczaj pakiety, moduły lub podobne jednostki strukturalne.

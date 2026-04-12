@@ -1,7 +1,7 @@
-# Hypothesis
+# Hipoteza
 
-A hypothesis is a testable claim.
+Hipoteza to weryfikowalne twierdzenie.
 
-Example: "This metric helps detect good architecture."
+Przykład: „Ta metryka pomaga wykrywać dobrą architekturę."
 
-QSE tracks hypotheses and marks them as supported, refuted, wrong, doubtful, or open.
+QSE śledzi hipotezy i oznacza je jako potwierdzone, obalone, błędne, wątpliwe lub otwarte.

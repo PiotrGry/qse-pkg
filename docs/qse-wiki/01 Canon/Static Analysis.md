@@ -1,5 +1,5 @@
-# Static Analysis
+# Analiza statyczna
 
-Static analysis means examining code **without running it**.
+Analiza statyczna oznacza badanie kodu **bez jego uruchamiania**.
 
-QSE uses static analysis because it wants to study structure, not runtime behavior.
+QSE używa analizy statycznej, ponieważ interesuje go struktura, a nie zachowanie w czasie wykonania.

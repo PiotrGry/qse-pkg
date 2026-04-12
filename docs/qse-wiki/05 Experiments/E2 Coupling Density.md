@@ -6,14 +6,14 @@ status: implemented
 
 # E2 Coupling Density
 
-## In simple words
+## Prostymi słowami
 
-This experiment tested whether [[CD]] is useful.
+Ten eksperyment sprawdzał, czy [[CD]] jest użyteczny.
 
-## What happened
+## Co się stało
 
-For Java, the signal looked useful. For Python, the direction looked strange and still needs explanation.
+W przypadku Javy sygnał wyglądał obiecująco. W przypadku Pythona kierunek wydawał się dziwny i nadal wymaga wyjaśnienia.
 
-## Why that matters
+## Dlaczego to istotne
 
-It means CD is promising, but interpretation depends on the language.
+Oznacza to, że CD jest obiecujący, ale interpretacja zależy od języka programowania.

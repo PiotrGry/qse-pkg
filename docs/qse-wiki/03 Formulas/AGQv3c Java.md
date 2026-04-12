@@ -7,29 +7,29 @@ components: [M, A, S, C, CD]
 
 # AGQv3c Java
 
-## Beginner summary
+## Podsumowanie dla początkujących
 
-AGQv3c Java is the current best Java-focused formula in this wiki.
+AGQv3c Java to aktualnie najlepsza formuła zorientowana na Javę w tej wiki.
 
-Its main idea is balance: instead of letting one signal dominate too much, it gives the main structural signals equal weight.
+Jej główna idea to balans: zamiast pozwalać jednemu sygnałowi dominować, przypisuje głównym sygnałom strukturalnym równe wagi.
 
-This makes it easier to explain and potentially more robust, though more validation is still useful.
+Dzięki temu jest łatwiejsza do wyjaśnienia i potencjalnie bardziej odporna, choć dalsza walidacja byłaby cenna.
 
-## Formula
+## Wzór
 
 `0.20 M + 0.20 A + 0.20 S + 0.20 C + 0.20 CD`
 
-## Why it looks simpler
+## Dlaczego wygląda prościej
 
-This formula came from a [[PCA Weights]] result that suggested the main components were close enough to justify equal weights.
+Formuła powstała na podstawie wyniku analizy [[PCA Weights]], który sugerował, że główne składniki są na tyle zbliżone, by uzasadnić równe wagi.
 
-## Notes
+## Uwagi
 
-- PCA-derived equal weights.
-- Current best Java formula.
-- Awaiting larger GT validation.
+- Równe wagi wyprowadzone z PCA.
+- Aktualnie najlepsza formuła dla Javy.
+- Oczekuje na walidację na większym zbiorze GT (Ground Truth).
 
-## Read next
+## Czytaj dalej
 
 - [[PCA Weights]]
 - [[Ground Truth]]

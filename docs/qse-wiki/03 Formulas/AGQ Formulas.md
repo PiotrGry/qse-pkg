@@ -4,11 +4,11 @@ type: index
 
 # AGQ Formulas
 
-AGQ formulas combine structural signals into one architecture quality score.
+Formuły AGQ łączą sygnały strukturalne w jeden wynik jakości architektury.
 
-| Formula | Language | Status |
+| Formuła | Język | Status |
 |---|---|---|
-| [[AGQv1]] | any | immutable baseline |
-| [[AGQv2]] | Java | credible |
-| [[AGQv3c Java]] | Java | current best |
-| [[AGQv3c Python]] | Python | current best |
+| [[AGQv1]] | dowolny | niezmienny punkt odniesienia |
+| [[AGQv2]] | Java | wiarygodna |
+| [[AGQv3c Java]] | Java | aktualnie najlepsza |
+| [[AGQv3c Python]] | Python | aktualnie najlepsza |

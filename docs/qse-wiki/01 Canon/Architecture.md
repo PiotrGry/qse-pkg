@@ -1,9 +1,9 @@
-# Architecture
+# Architektura
 
-In this wiki, **architecture** means the overall shape of a software system.
+W tym wiki **architektura** oznacza ogólny kształt systemu oprogramowania.
 
-It is about how the parts of a project are divided, connected, and layered.
+Chodzi o to, jak elementy projektu są podzielone, połączone i ułożone w warstwy.
 
-A project can have correct code and still have poor architecture if everything depends on everything else.
+Projekt może mieć poprawny kod, a mimo to posiadać słabą architekturę – jeśli wszystko zależy od wszystkiego innego.
 
-See also: [[Modularity]], [[Coupling]], [[Hierarchy]]
+Zob. też: [[Modularity]], [[Coupling]], [[Hierarchy]]

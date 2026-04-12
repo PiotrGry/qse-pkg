@@ -1,5 +1,5 @@
 # BLT
 
-BLT was an early proxy for architecture quality based on time-based signals.
+BLT był wczesnym wskaźnikiem zastępczym jakości architektury opartym na sygnałach czasowych.
 
-It was later refuted as a reliable [[Ground Truth]] measure. See [[W1 BLT Correlation]].
+Został później obalony jako wiarygodna miara [[Ground Truth]]. Zobacz [[W1 BLT Correlation]].

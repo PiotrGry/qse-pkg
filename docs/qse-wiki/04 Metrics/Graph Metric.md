@@ -1,5 +1,5 @@
 # Graph Metric
 
-A graph metric is a measurement taken from a [[Dependency Graph]].
+Metryka grafowa to pomiar wykonany na [[Dependency Graph|grafie zależności]].
 
-QSE uses graph metrics because they describe structure in a precise, repeatable way.
+QSE używa metryk grafowych, ponieważ opisują strukturę w precyzyjny i powtarzalny sposób.

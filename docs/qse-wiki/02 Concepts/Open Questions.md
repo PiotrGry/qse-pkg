@@ -1,5 +1,5 @@
-# Open Questions
+# Otwarte pytania
 
-These are hypotheses that have not yet been answered.
+Są to hipotezy, które nie zostały jeszcze rozstrzygnięte.
 
-See [[Open Questions Expanded]] for details.
+Zobacz [[Open Questions Expanded]], aby uzyskać szczegóły.

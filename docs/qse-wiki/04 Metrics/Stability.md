@@ -1,7 +1,7 @@
 # Stability
 
-Stability asks whether important building blocks are dependable.
+Stability (stabilność) sprawdza, czy ważne elementy budulcowe są niezawodne.
 
-A stable part is something many other parts rely on, while it does not depend too much on others.
+Stabilna część to taka, na której polega wiele innych części, podczas gdy sama nie zależy nadmiernie od innych.
 
-QSE derives this idea from [[DMS Instability]].
+QSE wyprowadza tę ideę z metryki [[DMS Instability]].

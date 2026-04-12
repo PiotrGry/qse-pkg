@@ -2,12 +2,12 @@
 type: index
 ---
 
-# Experiments Index
+# Indeks Eksperymentów
 
-| Experiment | Topic | Status |
+| Eksperyment | Temat | Status |
 |---|---|---|
-| [[E1 Stability Hierarchy]] | Stability Hierarchy metric | refuted |
-| [[E2 Coupling Density]] | CD metric | implemented |
+| [[E1 Stability Hierarchy]] | Metryka Stability Hierarchy | refuted |
+| [[E2 Coupling Density]] | Metryka CD | implemented |
 | [[E5 Namespace Metrics]] | NSdepth, NSgini | in progress |
-| [[E6 flatscore]] | flatscore for Python | implemented |
-| [[PCA Weights]] | Formula weight derivation | done |
+| [[E6 flatscore]] | flatscore dla Pythona | implemented |
+| [[PCA Weights]] | Wyprowadzenie wag formuły | done |

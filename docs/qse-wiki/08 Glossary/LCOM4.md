@@ -1,7 +1,7 @@
 # LCOM4
 
-LCOM4 is a technical measure related to cohesion.
+LCOM4 jest techniczną miarą związaną z kohezją.
 
-In simple terms, it helps estimate whether things grouped in one place really belong together.
+Mówiąc prościej, pomaga ocenić, czy elementy zgrupowane w jednym miejscu rzeczywiście do siebie należą.
 
-Used in [[Cohesion]].
+Używane w [[Cohesion]].

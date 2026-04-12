@@ -9,18 +9,18 @@ tested_by: E6
 
 # W10 flatscore Predicts Python Quality
 
-## In simple words
+## Prostymi słowami
 
-This hypothesis asked whether [[flatscore]] is useful for spotting bad Python architecture.
+Ta hipoteza sprawdzała, czy [[flatscore]] jest użyteczny do wykrywania słabej architektury Pythona.
 
 ## Status
 
-Credible.
+Wiarygodna.
 
-## What it means
+## Co to oznacza
 
-flatscore turned out to be a useful Python-specific signal, especially for detecting [[Type 1 Flat Spaghetti]].
+flatscore okazał się użytecznym sygnałem specyficznym dla Pythona, szczególnie do wykrywania [[Type 1 Flat Spaghetti]].
 
-## Why this matters
+## Dlaczego to istotne
 
-It explains why flatscore receives such a large weight in [[AGQv3c Python]].
+Wyjaśnia, dlaczego flatscore otrzymuje tak dużą wagę w [[AGQv3c Python]].

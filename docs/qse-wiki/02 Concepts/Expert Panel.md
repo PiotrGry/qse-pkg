@@ -1,5 +1,5 @@
-# Expert Panel
+# Panel ekspertów
 
-An expert panel is a small group of experienced people who score repositories.
+Panel ekspertów to niewielka grupa doświadczonych osób, które oceniają repozytoria.
 
-In QSE, their combined judgment is used as [[Ground Truth]].
+W QSE ich zbiorowa ocena jest używana jako [[Ground Truth]].

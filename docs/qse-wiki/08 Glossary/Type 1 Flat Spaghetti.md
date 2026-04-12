@@ -1,5 +1,5 @@
 # Type 1 Flat Spaghetti
 
-This means a bad project shape where too much code sits at the same shallow level and the system lacks clear structure.
+Oznacza to zły kształt projektu, w którym zbyt dużo kodu znajduje się na tym samym, płytkim poziomie, a systemowi brakuje wyraźnej struktury.
 
-QSE can often detect this with [[flatscore]].
+QSE może często to wykryć za pomocą [[flatscore]].

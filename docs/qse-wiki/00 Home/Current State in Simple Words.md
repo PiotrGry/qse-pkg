@@ -3,17 +3,17 @@ type: explainer
 audience: beginner
 ---
 
-# Current State in Simple Words
+# Aktualny stan prostymi słowami
 
-QSE is not just an idea. It already has working formulas, tested hypotheses, and a research process.
+QSE to nie tylko pomysł. Ma już działające formuły, przetestowane hipotezy i wypracowany proces badawczy.
 
-Right now, the project has:
+Projekt posiada obecnie:
 
-- a stable baseline formula called [[AGQv1]],
-- an improved Java-focused formula called [[AGQv2]],
-- a newer Java formula called [[AGQv3c Java]],
-- and a Python-specific formula called [[AGQv3c Python]].
+- stabilną formułę bazową [[AGQv1]],
+- ulepszoną formułę ukierunkowaną na Javę [[AGQv2]],
+- nowszą formułę dla Javy [[AGQv3c Java]],
+- oraz formułę dedykowaną Pythonowi [[AGQv3c Python]].
 
-The project also keeps track of what has been supported, refuted, or left open through [[Hypotheses Register]] and [[Experiments Index]].
+Projekt śledzi również, które wyniki zostały potwierdzone, obalone lub pozostają otwarte, poprzez [[Hypotheses Register]] i [[Experiments Index]].
 
-Some results are already credible, while some areas still need more validation, especially around Go and some Python blind spots. See [[Current Priorities]].
+Niektóre wyniki są już wiarygodne, natomiast pewne obszary wymagają dalszej walidacji – szczególnie w przypadku Go oraz niektórych luk w pokryciu Pythona. Zob. [[Current Priorities]].

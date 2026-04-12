@@ -1,5 +1,5 @@
-# Scanner
+# Skaner
 
-The scanner is the part of QSE that reads a repository and extracts structural information from it.
+Skaner to część QSE, która odczytuje repozytorium i wydobywa z niego informacje strukturalne.
 
-It does not run the program. It uses [[Static Analysis]] to inspect the code and build a [[Dependency Graph]].
+Nie uruchamia programu. Używa [[Static Analysis]] do analizy kodu i budowania [[Dependency Graph]].

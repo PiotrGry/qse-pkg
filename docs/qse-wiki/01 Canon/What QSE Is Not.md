@@ -2,13 +2,13 @@
 type: canon
 ---
 
-# What QSE Is Not
+# Czym QSE nie jest
 
-QSE does **not**:
+QSE **nie**:
 
-- measure code quality at the line level
-- detect bugs
-- measure test coverage
-- evaluate runtime performance
+- mierzy jakości kodu na poziomie linii
+- wykrywa błędów
+- mierzy pokrycia testami
+- ocenia wydajności w czasie wykonania
 
-It only measures **structural architecture quality** from a [[Dependency Graph]].
+Mierzy wyłącznie **jakość architektury strukturalnej** na podstawie [[Dependency Graph]].

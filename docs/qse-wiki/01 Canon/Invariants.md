@@ -2,10 +2,10 @@
 type: canon
 ---
 
-# Invariants
+# Niezmienniki
 
-Invariants are rules that must never be broken.
+Niezmienniki to reguły, których nigdy nie wolno naruszać.
 
-- [[AGQv1]] must never be modified.
-- Language-specific formulas must not be applied across languages.
-- [[Ground Truth]] must come from the [[Expert Panel]], not from [[BLT]].
+- [[AGQv1]] nigdy nie może być modyfikowany.
+- Formuł specyficznych dla danego języka nie wolno stosować między językami.
+- [[Ground Truth]] musi pochodzić od [[Expert Panel]], a nie od [[BLT]].

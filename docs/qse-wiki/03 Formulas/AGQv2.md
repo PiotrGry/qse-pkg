@@ -7,30 +7,30 @@ components: [M, A, S, C, CD]
 
 # AGQv2
 
-## Beginner summary
+## Podsumowanie dla początkujących
 
-AGQv2 is a newer formula that improved on AGQv1 by adding one more signal: [[CD]].
+AGQv2 to nowsza formuła, która ulepszyła AGQv1 poprzez dodanie jednego sygnału: [[CD]].
 
-In simple words, the goal was to better capture how tangled the project structure is.
+Mówiąc prosto, celem było lepsze uchwycenie stopnia splątania struktury projektu.
 
-This formula works credibly for Java, but it should not be treated as a universal formula for every language.
+Formuła działa wiarygodnie dla Javy, ale nie powinna być traktowana jako formuła uniwersalna dla każdego języka.
 
-## Formula
+## Wzór
 
 `0.20 M + 0.20 A + 0.35 S + 0.05 C + 0.20 CD`
 
-## What changed from AGQv1
+## Co zmieniło się w stosunku do AGQv1
 
-- [[Stability]] got a smaller weight.
-- [[CD]] was added.
-- The formula became better at separating better and worse Java architectures.
+- [[Stability]] otrzymała mniejszą wagę.
+- Dodano [[CD]].
+- Formuła lepiej odróżnia architektury Javy wyższej i niższej jakości.
 
-## Notes
+## Uwagi
 
-- Valid for Java.
-- Not a cross-language metric.
+- Ważna dla Javy.
+- Nie jest metryką wielojęzykową.
 
-## Read next
+## Czytaj dalej
 
 - [[E2 Coupling Density]]
 - [[W4 AGQv2 Beats AGQv1 on Java GT]]

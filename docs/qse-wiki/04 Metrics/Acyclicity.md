@@ -1,9 +1,9 @@
 # Acyclicity
 
-Acyclicity means the project avoids circular dependencies.
+Acyclicity (acykliczność) oznacza, że projekt unika zależności cyklicznych.
 
-A circular dependency happens when part A depends on part B, and part B eventually depends back on part A.
+Zależność cykliczna powstaje, gdy część A zależy od części B, a część B ostatecznie zależy z powrotem od części A.
 
-Those loops can make a system harder to change and reason about.
+Takie pętle mogą utrudniać modyfikację systemu i rozumowanie o nim.
 
-QSE detects such loops using [[Tarjan SCC]].
+QSE wykrywa takie pętle przy użyciu algorytmu [[Tarjan SCC]].

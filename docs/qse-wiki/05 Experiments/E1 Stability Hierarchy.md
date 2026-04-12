@@ -6,16 +6,16 @@ status: refuted
 
 # E1 Stability Hierarchy
 
-## In simple words
+## Prostymi słowami
 
-This experiment tested whether a score called **Stability Hierarchy** could tell good architecture from bad architecture.
+Ten eksperyment sprawdzał, czy wskaźnik zwany **Stability Hierarchy** potrafi odróżnić dobrą architekturę od złej.
 
-## What happened
+## Co się stało
 
-It did **not** work well enough. A simple CRUD-style project could score just as well as a more carefully designed project.
+Wynik **nie** był wystarczająco dobry. Prosty projekt w stylu CRUD mógł uzyskać równie wysoki wynik, co projekt zaprojektowany z większą starannością.
 
-## Why that matters
+## Dlaczego to istotne
 
-This means the metric was not trustworthy for judging architecture quality.
+Oznacza to, że metryka nie była wiarygodna do oceny jakości architektury.
 
-See also: [[W7 Stability Hierarchy Score]], [[Stability]]
+Zobacz też: [[W7 Stability Hierarchy Score]], [[Stability]]

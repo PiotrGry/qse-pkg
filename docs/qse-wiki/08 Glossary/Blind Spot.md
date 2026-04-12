@@ -1,5 +1,5 @@
 # Blind Spot
 
-A blind spot is something a method fails to notice.
+Ślepa plamka to coś, czego metoda nie jest w stanie wykryć.
 
-For QSE, an important blind spot is that [[flatscore]] does not detect [[Type 2 Legacy Monolith]].
+W QSE ważną ślepą plamką jest to, że [[flatscore]] nie wykrywa [[Type 2 Legacy Monolith]].

@@ -7,14 +7,14 @@ language: go
 
 # O1 AGQv3c Java to Go
 
-## In simple words
+## Prostymi słowami
 
-This open hypothesis asks whether the Java version of AGQv3c could also work well for Go projects.
+Ta otwarta hipoteza pyta, czy wersja Javy AGQv3c mogłaby dobrze działać również dla projektów Go.
 
 ## Status
 
-Open.
+Otwarta.
 
-## Why it matters
+## Dlaczego to istotne
 
-Right now there is not enough Go ground truth to answer this confidently.
+Obecnie nie ma wystarczającego ground truth dla Go, aby odpowiedzieć na to pytanie z pewnością.

@@ -1,5 +1,5 @@
 # edges
 
-An edge is a connection in the [[Dependency Graph]].
+Krawędź (edge) to połączenie w [[Dependency Graph|grafie zależności]].
 
-It means one part of the project depends on another part.
+Oznacza, że jedna część projektu zależy od innej części.

@@ -8,18 +8,18 @@ language: python
 
 # W9 AGQv3c Python Discriminates Quality
 
-## In simple words
+## Prostymi słowami
 
-This hypothesis asked whether the Python-specific formula can tell better Python architecture from worse Python architecture.
+Ta hipoteza sprawdzała, czy formuła specyficzna dla Pythona potrafi odróżnić lepszą architekturę Pythona od gorszej.
 
 ## Status
 
-Credible.
+Wiarygodna.
 
-## What it means
+## Co to oznacza
 
-The formula showed a meaningful positive signal, so QSE now has a Python formula that works better than simply reusing the Java-oriented approach.
+Formuła wykazała znaczący pozytywny sygnał, dzięki czemu QSE dysponuje teraz formułą Pythona, która działa lepiej niż zwykłe ponowne wykorzystanie podejścia zorientowanego na Javę.
 
-## Why this matters
+## Dlaczego to istotne
 
-It confirms that Python needs its own treatment rather than borrowing a Java formula unchanged.
+Potwierdza to, że Python wymaga osobnego traktowania, a nie zapożyczania niezmienionej formuły Javy.

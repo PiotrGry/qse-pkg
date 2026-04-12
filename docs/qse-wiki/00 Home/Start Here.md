@@ -3,11 +3,11 @@ type: guide
 audience: beginner
 ---
 
-# Start Here
+# Zacznij tutaj
 
-This wiki explains the **QSE project** in plain language.
+To wiki wyjaśnia **projekt QSE** prostym językiem.
 
-If you are new, read in this order:
+Jeśli jesteś nowy, czytaj w tej kolejności:
 
 1. [[What is QSE in Simple Words]]
 2. [[Why QSE Exists]]
@@ -16,8 +16,8 @@ If you are new, read in this order:
 5. [[AGQ Formulas]]
 6. [[Hypotheses Register]]
 
-## Good to know
+## Warto wiedzieć
 
-- You do **not** need a programming background to follow the first notes.
-- When a page uses a harder term, it usually links to a simpler explanation note.
-- This wiki tries to explain things clearly without turning every sentence into a wall of links.
+- Do przeczytania pierwszych notatek **nie jest potrzebne** zaplecze programistyczne.
+- Gdy strona używa trudniejszego terminu, zazwyczaj zawiera link do prostszej notatki wyjaśniającej.
+- To wiki stara się wyjaśniać rzeczy przejrzyście, bez zamieniania każdego zdania w ścianę linków.

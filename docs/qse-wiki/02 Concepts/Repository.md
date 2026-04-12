@@ -1,5 +1,5 @@
-# Repository
+# Repozytorium
 
-A repository is a project folder tracked with Git.
+Repozytorium to folder projektu śledzony przy użyciu Git.
 
-It usually contains source code, history, and related files.
+Zazwyczaj zawiera kod źródłowy, historię zmian oraz powiązane pliki.

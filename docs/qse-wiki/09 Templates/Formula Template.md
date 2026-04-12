@@ -5,16 +5,16 @@ languages: []
 components: []
 ---
 
-# Formula Name
+# Nazwa formuły
 
-## Beginner summary
+## Podsumowanie dla początkujących
 
 -
 
-## Formula
+## Formuła
 
 `...`
 
-## Notes
+## Uwagi
 
 -

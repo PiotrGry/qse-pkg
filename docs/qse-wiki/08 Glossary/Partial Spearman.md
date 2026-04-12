@@ -1,5 +1,5 @@
 # Partial Spearman
 
-This is a way to measure whether two things move together while controlling for a third factor.
+Jest to metoda pomiaru tego, czy dwie rzeczy zmieniają się razem, przy jednoczesnym kontrolowaniu wpływu trzeciego czynnika.
 
-In QSE, the third factor is usually project size, measured by [[nodes]].
+W QSE tym trzecim czynnikiem jest zazwyczaj rozmiar projektu, mierzony przez [[nodes]].

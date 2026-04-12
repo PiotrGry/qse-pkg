@@ -1,5 +1,5 @@
 # DDD
 
-DDD means **Domain-Driven Design**.
+DDD oznacza **Domain-Driven Design** (Projektowanie Sterowane Dziedziną).
 
-In simple terms, it is a style of software design that tries to organize code around the real problem domain, not just around database tables or technical layers.
+Mówiąc prościej, jest to styl projektowania oprogramowania, który stara się organizować kod wokół rzeczywistej dziedziny problemu, a nie jedynie wokół tabel bazy danych czy warstw technicznych.

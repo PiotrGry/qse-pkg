@@ -1,5 +1,5 @@
-# Package
+# Pakiet
 
-A package is a group of related code files.
+Pakiet to zbiór powiązanych plików z kodem.
 
-You can think of it as a labeled box that holds code for one area of responsibility.
+Można go postrzegać jako oznaczone pudełko, które przechowuje kod odpowiedzialny za jeden obszar funkcjonalny.

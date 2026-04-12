@@ -5,6 +5,6 @@ status: done
 
 # PCA Weights
 
-PCA stands for Principal Component Analysis. In simple terms, it is a mathematical method that finds which signals tend to move together.
+PCA to skrót od Principal Component Analysis (analiza głównych składowych). Mówiąc prosto, jest to metoda matematyczna, która wykrywa, które sygnały mają tendencję do wspólnego zmieniania się.
 
-QSE used PCA to discover that the main metrics contributed roughly equally, which led to the equal-weight design of [[AGQv3c Java]].
+QSE zastosowało PCA, aby odkryć, że główne metryki wnosiły mniej więcej równy wkład, co doprowadziło do projektu z równymi wagami w [[AGQv3c Java]].

@@ -1,5 +1,5 @@
 # Layer
 
-A layer is one level in a software system.
+Warstwa to jeden poziom w systemie oprogramowania.
 
-For example, a project might have a user interface layer, a business logic layer, and a data layer.
+Na przykład projekt może mieć warstwę interfejsu użytkownika, warstwę logiki biznesowej oraz warstwę danych.

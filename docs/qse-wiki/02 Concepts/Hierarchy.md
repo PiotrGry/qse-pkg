@@ -1,7 +1,7 @@
-# Hierarchy
+# Hierarchia
 
-Hierarchy means a project has clear levels or layers.
+Hierarchia oznacza, że projekt ma wyraźne poziomy lub warstwy.
 
-For example, one part may sit at the top and depend on lower-level parts, while the lower parts do not point back upward.
+Na przykład jedna część może znajdować się na szczycie i zależeć od części niżej, podczas gdy te niższe części nie wskazują z powrotem ku górze.
 
-A healthy hierarchy often makes software easier to understand and change.
+Zdrowa hierarchia często sprawia, że oprogramowanie jest łatwiejsze do zrozumienia i modyfikacji.

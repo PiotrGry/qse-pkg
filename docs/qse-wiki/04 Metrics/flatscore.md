@@ -1,7 +1,7 @@
 # flatscore
 
-flatscore is a Python-focused metric.
+flatscore to metryka zorientowana na Pythona.
 
-It tries to detect a bad pattern where too much of the project sits at a shallow level, creating a flat and spaghetti-like shape.
+Stara się wykryć zły wzorzec, w którym zbyt duża część projektu znajduje się na płytkim poziomie, tworząc płaską, spaghetti-podobną strukturę.
 
-It helps detect [[Type 1 Flat Spaghetti]], but it does not catch [[Type 2 Legacy Monolith]].
+Pomaga wykryć [[Type 1 Flat Spaghetti]], ale nie wykrywa [[Type 2 Legacy Monolith]].

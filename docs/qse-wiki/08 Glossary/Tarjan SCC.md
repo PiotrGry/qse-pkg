@@ -1,5 +1,5 @@
 # Tarjan SCC
 
-Tarjan SCC is an algorithm used to find strongly connected components.
+Tarjan SCC jest algorytmem służącym do znajdowania silnie spójnych składowych.
 
-In plain words, it helps detect loops in a graph, which is useful for [[Acyclicity]].
+Mówiąc prościej, pomaga wykrywać pętle w grafie, co jest użyteczne przy ocenie [[Acyclicity]].

@@ -7,31 +7,31 @@ components: [M, A, S, C, CD, flatscore]
 
 # AGQv3c Python
 
-## Beginner summary
+## Podsumowanie dla początkujących
 
-AGQv3c Python is the current best Python-focused formula in this wiki.
+AGQv3c Python to aktualnie najlepsza formuła zorientowana na Pythona w tej wiki.
 
-It differs from the Java formula because Python projects showed different patterns in the research.
+Różni się od formuły javowej, ponieważ projekty w Pythonie wykazały odmienne wzorce w badaniach.
 
-Most importantly, it gives strong importance to [[flatscore]], because that signal helped detect one important kind of bad Python architecture.
+Co najważniejsze, przypisuje dużą wagę metryce [[flatscore]], ponieważ ten sygnał pomógł wykryć jeden ważny rodzaj złej architektury w Pythonie.
 
-## Formula
+## Wzór
 
 `0.15 M + 0.05 A + 0.20 S + 0.10 C + 0.15 CD + 0.35 flatscore`
 
-## Why it is different
+## Dlaczego jest inaczej
 
-- Python had different behavior from Java.
-- [[Acyclicity]] had little useful variation in Python.
-- [[flatscore]] became very important.
+- Python wykazywał inne zachowanie niż Java.
+- [[Acyclicity]] miała małą użyteczną zmienność w Pythonie.
+- [[flatscore]] stał się bardzo ważny.
 
-## Notes
+## Uwagi
 
-- Current best Python formula.
-- flatscore has the largest weight.
-- Do not apply to Java repositories.
+- Aktualnie najlepsza formuła dla Pythona.
+- flatscore ma największą wagę.
+- Nie stosować do repozytoriów w Javie.
 
-## Read next
+## Czytaj dalej
 
 - [[E6 flatscore]]
 - [[W9 AGQv3c Python Discriminates Quality]]

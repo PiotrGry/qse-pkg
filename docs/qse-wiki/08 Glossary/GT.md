@@ -1,5 +1,5 @@
 # GT
 
-GT means **Ground Truth**.
+GT oznacza **Ground Truth** (Prawda Bazowa).
 
-See [[Ground Truth]] and [[Ground Truth in Simple Words]].
+Zobacz [[Ground Truth]] oraz [[Ground Truth in Simple Words]].

@@ -7,18 +7,18 @@ topic: BLT
 
 # W1 BLT Correlation
 
-## In simple words
+## Prostymi słowami
 
-This hypothesis asked whether QSE scores matched [[BLT]], a time-based measure that had once been used as a quality proxy.
+Ta hipoteza sprawdzała, czy wyniki QSE korelują z [[BLT]] – miarą opartą na czasie, która kiedyś była używana jako proxy jakości.
 
 ## Status
 
-Refuted.
+Obalona.
 
-## What it means
+## Co to oznacza
 
-BLT turned out to be a bad choice for [[Ground Truth]]. That means it should not be used to train or justify QSE formulas.
+BLT okazał się złym wyborem dla [[Ground Truth]]. Oznacza to, że nie powinien być używany do trenowania ani uzasadniania formuł QSE.
 
-## Why this matters
+## Dlaczego to istotne
 
-This result forced the project to rely on a better reference: the [[Expert Panel]].
+Ten wynik zmusił projekt do oparcia się na lepszym punkcie odniesienia: [[Expert Panel]].

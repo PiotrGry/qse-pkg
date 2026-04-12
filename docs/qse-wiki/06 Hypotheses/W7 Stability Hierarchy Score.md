@@ -6,14 +6,14 @@ status: refuted
 
 # W7 Stability Hierarchy Score
 
-## In simple words
+## Prostymi słowami
 
-This hypothesis claimed that a score called Stability Hierarchy could tell better architecture from worse architecture.
+Ta hipoteza twierdziła, że wskaźnik zwany Stability Hierarchy potrafi odróżnić lepszą architekturę od gorszej.
 
 ## Status
 
-Refuted.
+Obalona.
 
-## What it means
+## Co to oznacza
 
-The corresponding [[E1 Stability Hierarchy]] showed that the score did not separate the important repository types reliably.
+Odpowiadający eksperyment [[E1 Stability Hierarchy]] wykazał, że wskaźnik nie rozróżnia wiarygodnie ważnych typów repozytoriów.

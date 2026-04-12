@@ -1,5 +1,5 @@
 # Type 2 Legacy Monolith
 
-This means an old, deep, complicated system that may look structured from the outside, but still mixes too many concerns internally.
+Oznacza to stary, głęboki i skomplikowany system, który z zewnątrz może wyglądać na ustrukturyzowany, ale wewnątrz nadal miesza zbyt wiele odpowiedzialności.
 
-This is a known blind spot for [[flatscore]].
+Jest to znana ślepa plamka dla [[flatscore]].

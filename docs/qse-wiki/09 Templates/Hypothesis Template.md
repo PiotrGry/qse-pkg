@@ -6,16 +6,16 @@ language:
 tested_by: 
 ---
 
-# Hypothesis Title
+# Tytuł hipotezy
 
-## In simple words
+## Prostymi słowami
 
 -
 
 ## Status
 
-Open.
+Otwarta.
 
-## Why it matters
+## Dlaczego to ważne
 
 -

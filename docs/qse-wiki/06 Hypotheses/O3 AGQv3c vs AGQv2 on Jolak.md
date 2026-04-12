@@ -6,14 +6,14 @@ status: open
 
 # O3 AGQv3c vs AGQv2 on Jolak
 
-## In simple words
+## Prostymi słowami
 
-This open hypothesis asks whether AGQv3c performs better than AGQv2 on an external validation dataset called Jolak.
+Ta otwarta hipoteza pyta, czy AGQv3c działa lepiej niż AGQv2 na zewnętrznym zbiorze walidacyjnym o nazwie Jolak.
 
 ## Status
 
-Open.
+Otwarta.
 
-## Why it matters
+## Dlaczego to istotne
 
-If AGQv3c wins on external data too, confidence in the newer formula family becomes stronger.
+Jeśli AGQv3c wygrywa również na danych zewnętrznych, zaufanie do nowszej rodziny formuł staje się silniejsze.

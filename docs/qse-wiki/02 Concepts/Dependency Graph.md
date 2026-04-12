@@ -1,10 +1,10 @@
-# Dependency Graph
+# Graf zależności
 
-A dependency graph is a map showing which parts of a project depend on other parts.
+Graf zależności to mapa pokazująca, które części projektu zależą od innych części.
 
-- A **node** is one part of the system, such as a [[Package]] or [[Module]].
-- An **edge** is a connection showing that one part depends on another.
+- **Węzeł** to jedna część systemu, na przykład [[Package]] lub [[Module]].
+- **Krawędź** to połączenie wskazujące, że jedna część zależy od drugiej.
 
-QSE uses this graph as the main source of truth for scoring structure.
+QSE używa tego grafu jako głównego źródła prawdy przy ocenie struktury.
 
-See also: [[nodes]], [[edges]]
+Zobacz też: [[nodes]], [[edges]]

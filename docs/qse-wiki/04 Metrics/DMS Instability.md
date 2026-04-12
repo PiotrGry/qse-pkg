@@ -1,7 +1,7 @@
 # DMS Instability
 
-This is a measure inspired by Robert Martin's work.
+Jest to miara inspirowana pracami Roberta Martina.
 
-It compares how much a package depends on others versus how much others depend on it.
+Porównuje, jak bardzo dany pakiet zależy od innych, w stosunku do tego, jak bardzo inne zależą od niego.
 
-QSE uses the complement of that idea when building [[Stability]].
+QSE używa dopełnienia tej idei przy budowaniu metryki [[Stability]].
