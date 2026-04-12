@@ -1,24 +1,31 @@
 ---
 type: home
+language: pl
 ---
 
-# QSE Wiki
+# QSE Wiki (PL)
 
-Welcome to the QSE knowledge base.
+Witamy w polskojęzycznej wiki projektu **QSE – Quality Score Engine**.
 
-## Main areas
+Ta przestrzeń łączy:
 
-- [[Start Here]]
-- [[What is QSE in Simple Words]]
-- [[Current State in Simple Words]]
+- [[QSE Podrecznik]] – główny podręcznik wprowadzający (PL),
+- [[QSE Canon]] – kanoniczny opis projektu (ang, do tłumaczenia),
+- [[QSE_FORMULA]] – referencję wzorów AGQ (ang, do tłumaczenia),
+- [[QSE_GLOSSARY]] – słownik terminów (ang, do tłumaczenia),
+- [[QSE_HYPOTHESES]] – rejestr hipotez badawczych (ang, do tłumaczenia),
+- [[Research Brief PL]] – krótki brief badawczy (PL),
+- [[DOCUMENT_MAP]] – mapa dokumentów,
+- [[References]] – bibliografia.
 
-- [[QSE Canon]]
-- [[What QSE Is Not]]
-- [[Conceptual Dimensions]]
-- [[AGQ Formulas]]
-- [[Metrics Index]]
-- [[Hypotheses Register]]
-- [[Experiments Index]]
-- [[Invariants]]
-- [[Glossary]]
-- [[Open Questions]]
+## Jak czytać wiki
+
+1. Jeśli dopiero poznajesz temat:
+   - [[QSE Podrecznik]]
+   - [[Research Brief PL]]
+2. Pełne definicje metryk i wzorów:
+   - [[QSE_FORMULA]]
+   - [[QSE_GLOSSARY]]
+3. Walidacja naukowa:
+   - [[QSE_HYPOTHESES]]
+   - [[References]]
