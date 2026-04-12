@@ -1,0 +1,468 @@
+{
+  "metadata": {
+    "dataset": "gt_python_v3.json",
+    "n_repos": 30,
+    "n_pos": 13,
+    "n_neg": 17
+  },
+  "task1_descriptive_stats": {
+    "flat_score": {
+      "POS": {
+        "n": 13,
+        "mean": 0.6796846153846154,
+        "median": 0.7325,
+        "std": 0.27267093062931447,
+        "min": 0.1716,
+        "max": 0.9935
+      },
+      "NEG": {
+        "n": 17,
+        "mean": 0.3361764705882353,
+        "median": 0.2208,
+        "std": 0.3117247815169091,
+        "min": 0.0,
+        "max": 0.946
+      }
+    },
+    "flat_ratio": {
+      "POS": {
+        "n": 10,
+        "mean": 0.33483,
+        "median": 0.2696,
+        "std": 0.29253726847094963,
+        "min": 0.0065,
+        "max": 0.8284,
+        "note": "10 of 13 POS repos have flat_ratio (7 newer records missing it)"
+      },
+      "NEG": {
+        "n": 13,
+        "mean": 0.6885999999999999,
+        "median": 0.8205,
+        "std": 0.31904873713379067,
+        "min": 0.054,
+        "max": 1.0,
+        "note": "13 of 17 NEG repos have flat_ratio"
+      }
+    }
+  },
+  "task2_mannwhitney_flat_score": {
+    "U": 175.0,
+    "Z": 2.6994379797487476,
+    "p": 0.007388428356930323,
+    "r_effect": 0.4928476913648543
+  },
+  "task3_partial_spearman_flat_score_vs_panel_controlling_nodes": {
+    "spearman_r": 0.48598337216309334,
+    "spearman_p": 0.006474083532007448,
+    "partial_r": 0.380941619317262,
+    "partial_p": 0.03781191506585976
+  },
+  "task4_god_class_ratio": {
+    "in_gt_file": false,
+    "note": "god_class_ratio not present in gt_python_v3.json. The detector exists as detect_god_class() in qse/detectors.py but was not computed for this GT dataset."
+  },
+  "task5_component_analysis": {
+    "M": {
+      "spearman_r": 0.2513427470374322,
+      "spearman_p": 0.18031370109074704,
+      "partial_r": 0.13837893792209988,
+      "partial_p": 0.46585085755620576,
+      "mw_stat": 155.0,
+      "mw_p": 0.0655516775995184
+    },
+    "A": {
+      "spearman_r": 0.12874991144233955,
+      "spearman_p": 0.49773479037411844,
+      "partial_r": 0.16458335217183712,
+      "partial_p": 0.384790092486289,
+      "mw_stat": 103.0,
+      "mw_p": 0.7638675586920064
+    },
+    "S": {
+      "spearman_r": -0.32775094213681155,
+      "spearman_p": 0.07704545126957132,
+      "partial_r": -0.2480930872425443,
+      "partial_p": 0.18620157850438215,
+      "mw_stat": 75.0,
+      "mw_p": 0.1429724061556742
+    },
+    "C": {
+      "spearman_r": 0.04043825530113353,
+      "spearman_p": 0.8319786609570716,
+      "partial_r": -0.033398405158508546,
+      "partial_p": 0.8609176128093109,
+      "mw_stat": 117.0,
+      "mw_p": 0.8017286705896025
+    },
+    "cd": {
+      "spearman_r": -0.03397431767925028,
+      "spearman_p": 0.8585430247492686,
+      "partial_r": 0.08677016287439732,
+      "partial_p": 0.6484426027350813,
+      "mw_stat": 95.0,
+      "mw_p": 0.5299673977970993
+    },
+    "flat_score": {
+      "spearman_r": 0.48598337216309334,
+      "spearman_p": 0.006474083532007448,
+      "partial_r": 0.380941619317262,
+      "partial_p": 0.03781191506585976,
+      "mw_stat": 175.0,
+      "mw_p": 0.007388428356930323
+    }
+  },
+  "task6_agq_comparison": {
+    "v2": {
+      "spearman_r": -0.18699900379584955,
+      "spearman_p": 0.32242906163365853,
+      "partial_r": -0.09746848113984156,
+      "partial_p": 0.6083743997581617,
+      "mw_p": 0.2954254113869633
+    },
+    "v3c": {
+      "spearman_r": 0.3686360289882339,
+      "spearman_p": 0.045013071854581414,
+      "partial_r": 0.24082879740547683,
+      "partial_p": 0.19984570661718018,
+      "mw_p": 0.029533501777734634
+    },
+    "formula": "0.15*M + 0.05*A + 0.20*S + 0.10*C + 0.15*cd + 0.35*flat_score",
+    "n_stored_v3c": 11,
+    "max_deviation_from_stored": 4.0000000000040004e-05
+  },
+  "task7_bootstrap_agq_v3c_partial_r": {
+    "observed_partial_r": 0.24082879740547683,
+    "boot_mean": 0.23062187242011686,
+    "boot_se": 0.19173051527489593,
+    "ci_95_lo": -0.183722171075637,
+    "ci_95_hi": 0.5586425632722175,
+    "n_boot": 5000,
+    "n_valid_boot": 5000
+  },
+  "task8_misclassified_repos": {
+    "false_positives_neg_high_agq": [
+      {
+        "rank": 1,
+        "repo": "taigaio/taiga-back",
+        "cat": "NEG",
+        "agq_v3c": 0.61601,
+        "panel": 4.25,
+        "issue": "high AGQ despite NEG label"
+      },
+      {
+        "rank": 2,
+        "repo": "pymedusa/Medusa",
+        "cat": "NEG",
+        "agq_v3c": 0.5856049999999999,
+        "panel": 1.75,
+        "issue": "high AGQ despite NEG label"
+      },
+      {
+        "rank": 3,
+        "repo": "buildbot/buildbot",
+        "cat": "NEG",
+        "agq_v3c": 0.561375,
+        "panel": 2.75,
+        "issue": "high AGQ despite NEG label"
+      }
+    ],
+    "false_negatives_pos_low_agq": [
+      {
+        "rank": 1,
+        "repo": "zulip/zulip",
+        "cat": "POS",
+        "agq_v3c": 0.39360500000000004,
+        "panel": 6.5,
+        "issue": "low AGQ despite POS label"
+      },
+      {
+        "rank": 2,
+        "repo": "paperless-ngx/paperless-ngx",
+        "cat": "POS",
+        "agq_v3c": 0.39626500000000003,
+        "panel": 6.75,
+        "issue": "low AGQ despite POS label"
+      },
+      {
+        "rank": 3,
+        "repo": "WeblateOrg/weblate",
+        "cat": "POS",
+        "agq_v3c": 0.47392500000000004,
+        "panel": 6.0,
+        "issue": "low AGQ despite POS label"
+      }
+    ]
+  },
+  "repo_table": [
+    {
+      "repo": "netbox-community/netbox",
+      "cat": "POS",
+      "nodes": 1573,
+      "panel": 8.0,
+      "flat_score": 0.7983,
+      "agq_v2": 0.5064,
+      "agq_v3c": 0.5915
+    },
+    {
+      "repo": "saleor/saleor",
+      "cat": "POS",
+      "nodes": 4100,
+      "panel": 7.5,
+      "flat_score": 0.9365,
+      "agq_v2": 0.6236,
+      "agq_v3c": 0.6945
+    },
+    {
+      "repo": "pretix/pretix",
+      "cat": "POS",
+      "nodes": 1537,
+      "panel": 6.75,
+      "flat_score": 0.7325,
+      "agq_v2": 0.484,
+      "agq_v3c": 0.5353
+    },
+    {
+      "repo": "inventree/InvenTree",
+      "cat": "POS",
+      "nodes": 1387,
+      "panel": 7.0,
+      "flat_score": 0.9935,
+      "agq_v2": 0.4812,
+      "agq_v3c": 0.6415
+    },
+    {
+      "repo": "zulip/zulip",
+      "cat": "POS",
+      "nodes": 2289,
+      "panel": 6.5,
+      "flat_score": 0.1716,
+      "agq_v2": 0.539,
+      "agq_v3c": 0.3936
+    },
+    {
+      "repo": "paperless-ngx/paperless-ngx",
+      "cat": "POS",
+      "nodes": 549,
+      "panel": 6.75,
+      "flat_score": 0.176,
+      "agq_v2": 0.5744,
+      "agq_v3c": 0.3963
+    },
+    {
+      "repo": "healthchecks/healthchecks",
+      "cat": "POS",
+      "nodes": 715,
+      "panel": 6.75,
+      "flat_score": 0.9128,
+      "agq_v2": 0.5803,
+      "agq_v3c": 0.69
+    },
+    {
+      "repo": "kiwitcms/Kiwi",
+      "cat": "POS",
+      "nodes": 476,
+      "panel": 7.0,
+      "flat_score": 0.6722,
+      "agq_v2": 0.7234,
+      "agq_v3c": 0.6727
+    },
+    {
+      "repo": "getsentry/sentry",
+      "cat": "POS",
+      "nodes": 4863,
+      "panel": 6.0,
+      "flat_score": 0.7283,
+      "agq_v2": 0.5238,
+      "agq_v3c": 0.5591
+    },
+    {
+      "repo": "WeblateOrg/weblate",
+      "cat": "POS",
+      "nodes": 1209,
+      "panel": 6.0,
+      "flat_score": 0.53,
+      "agq_v2": 0.4908,
+      "agq_v3c": 0.4739
+    },
+    {
+      "repo": "ytdl-org/youtube-dl",
+      "cat": "NEG",
+      "nodes": 997,
+      "panel": 2.25,
+      "flat_score": 0.0,
+      "agq_v2": 0.8355,
+      "agq_v3c": 0.5136
+    },
+    {
+      "repo": "archivebox/archivebox",
+      "cat": "NEG",
+      "nodes": 430,
+      "panel": 3.0,
+      "flat_score": 0.2208,
+      "agq_v2": 0.5038,
+      "agq_v3c": 0.3781
+    },
+    {
+      "repo": "modoboa/modoboa",
+      "cat": "NEG",
+      "nodes": 734,
+      "panel": 3.75,
+      "flat_score": 0.5873,
+      "agq_v2": 0.5858,
+      "agq_v3c": 0.5552
+    },
+    {
+      "repo": "taigaio/taiga-back",
+      "cat": "NEG",
+      "nodes": 1040,
+      "panel": 4.25,
+      "flat_score": 0.7116,
+      "agq_v2": 0.6159,
+      "agq_v3c": 0.616
+    },
+    {
+      "repo": "scrapy/scrapy",
+      "cat": "NEG",
+      "nodes": 638,
+      "panel": 3.75,
+      "flat_score": 0.0891,
+      "agq_v2": 0.6487,
+      "agq_v3c": 0.3984
+    },
+    {
+      "repo": "PyGithub/PyGithub",
+      "cat": "NEG",
+      "nodes": 382,
+      "panel": 2.0,
+      "flat_score": 0.0,
+      "agq_v2": 0.4992,
+      "agq_v3c": 0.3064
+    },
+    {
+      "repo": "joke2k/faker",
+      "cat": "NEG",
+      "nodes": 410,
+      "panel": 2.0,
+      "flat_score": 0.1053,
+      "agq_v2": 0.8037,
+      "agq_v3c": 0.5192
+    },
+    {
+      "repo": "searxng/searxng",
+      "cat": "NEG",
+      "nodes": 479,
+      "panel": 3.75,
+      "flat_score": 0.0318,
+      "agq_v2": 0.5926,
+      "agq_v3c": 0.3648
+    },
+    {
+      "repo": "spotify/luigi",
+      "cat": "NEG",
+      "nodes": 422,
+      "panel": 3.0,
+      "flat_score": 0.0526,
+      "agq_v2": 0.7009,
+      "agq_v3c": 0.426
+    },
+    {
+      "repo": "pymedusa/Medusa",
+      "cat": "NEG",
+      "nodes": 2975,
+      "panel": 1.75,
+      "flat_score": 0.5518,
+      "agq_v2": 0.6501,
+      "agq_v3c": 0.5856
+    },
+    {
+      "repo": "SickChill/SickChill",
+      "cat": "NEG",
+      "nodes": 465,
+      "panel": 1.75,
+      "flat_score": 0.5724,
+      "agq_v2": 0.5996,
+      "agq_v3c": 0.5523
+    },
+    {
+      "repo": "buildbot/buildbot",
+      "cat": "NEG",
+      "nodes": 1436,
+      "panel": 2.75,
+      "flat_score": 0.946,
+      "agq_v2": 0.3984,
+      "agq_v3c": 0.5614
+    },
+    {
+      "repo": "nicolargo/glances",
+      "cat": "NEG",
+      "nodes": 223,
+      "panel": 2.75,
+      "flat_score": 0.1795,
+      "agq_v2": 0.7047,
+      "agq_v3c": 0.472
+    },
+    {
+      "repo": "astropy/astropy",
+      "cat": "POS",
+      "nodes": 1123,
+      "panel": 7.0,
+      "flat_score": 0.7726,
+      "agq_v2": 0.4749,
+      "agq_v3c": 0.5383
+    },
+    {
+      "repo": "kedro-org/kedro",
+      "cat": "POS",
+      "nodes": 257,
+      "panel": 6.75,
+      "flat_score": 0.4714,
+      "agq_v2": 0.5901,
+      "agq_v3c": 0.494
+    },
+    {
+      "repo": "bridgecrewio/checkov",
+      "cat": "POS",
+      "nodes": 4246,
+      "panel": 6.0,
+      "flat_score": 0.9402,
+      "agq_v2": 0.7154,
+      "agq_v3c": 0.7581
+    },
+    {
+      "repo": "freqtrade/freqtrade",
+      "cat": "NEG",
+      "nodes": 625,
+      "panel": 2.75,
+      "flat_score": 0.3501,
+      "agq_v2": 0.5536,
+      "agq_v3c": 0.4265
+    },
+    {
+      "repo": "locustio/locust",
+      "cat": "NEG",
+      "nodes": 305,
+      "panel": 2.0,
+      "flat_score": 0.0071,
+      "agq_v2": 0.7185,
+      "agq_v3c": 0.4322
+    },
+    {
+      "repo": "dask/dask",
+      "cat": "NEG",
+      "nodes": 534,
+      "panel": 3.0,
+      "flat_score": 0.5719,
+      "agq_v2": 0.4288,
+      "agq_v3c": 0.4508
+    },
+    {
+      "repo": "kovidgoyal/calibre",
+      "cat": "NEG",
+      "nodes": 1656,
+      "panel": 1.75,
+      "flat_score": 0.7377,
+      "agq_v2": 0.4358,
+      "agq_v3c": 0.5242
+    }
+  ]
+}
