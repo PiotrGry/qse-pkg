@@ -1,0 +1,107 @@
+[
+  {
+    "name": "pallets/flask",
+    "github_url": "https://github.com/pallets/flask",
+    "expected_quality": "POS",
+    "category": "web_framework",
+    "rationale": "Clean, well-architected micro-framework. Extension pattern, clear separation."
+  },
+  {
+    "name": "tiangolo/fastapi",
+    "github_url": "https://github.com/tiangolo/fastapi",
+    "expected_quality": "POS",
+    "category": "web_framework",
+    "rationale": "Modern async framework, clean dependency injection, well-structured."
+  },
+  {
+    "name": "encode/httpx",
+    "github_url": "https://github.com/encode/httpx",
+    "expected_quality": "POS",
+    "category": "http_client",
+    "rationale": "Clean async HTTP client, well-layered transport/client separation."
+  },
+  {
+    "name": "pydantic/pydantic",
+    "github_url": "https://github.com/pydantic/pydantic",
+    "expected_quality": "POS",
+    "category": "validation",
+    "rationale": "Data validation library, clean type-driven architecture."
+  },
+  {
+    "name": "encode/starlette",
+    "github_url": "https://github.com/encode/starlette",
+    "expected_quality": "POS",
+    "category": "web_framework",
+    "rationale": "ASGI toolkit, clean middleware/routing design."
+  },
+  {
+    "name": "sqlalchemy/sqlalchemy",
+    "github_url": "https://github.com/sqlalchemy/sqlalchemy",
+    "expected_quality": "UNCLEAR",
+    "category": "orm",
+    "rationale": "Massive but well-structured ORM. Core/ORM layer separation."
+  },
+  {
+    "name": "mitmproxy/mitmproxy",
+    "github_url": "https://github.com/mitmproxy/mitmproxy",
+    "expected_quality": "POS",
+    "category": "proxy",
+    "rationale": "Well-structured proxy tool with clean addon system."
+  },
+  {
+    "name": "cookiecutter/cookiecutter",
+    "github_url": "https://github.com/cookiecutter/cookiecutter",
+    "expected_quality": "UNCLEAR",
+    "category": "cli_tool",
+    "rationale": "Template engine, relatively flat but clean API."
+  },
+  {
+    "name": "saltstack/salt",
+    "github_url": "https://github.com/saltstack/salt",
+    "expected_quality": "NEG",
+    "category": "infra",
+    "rationale": "Massive legacy codebase, organic growth, god modules."
+  },
+  {
+    "name": "Rapptz/discord.py",
+    "github_url": "https://github.com/Rapptz/discord.py",
+    "expected_quality": "UNCLEAR",
+    "category": "api_client",
+    "rationale": "Discord API wrapper, event-driven architecture."
+  },
+  {
+    "name": "scrapy/scrapy",
+    "github_url": "https://github.com/scrapy/scrapy",
+    "expected_quality": "POS",
+    "category": "framework",
+    "rationale": "Well-designed crawling framework with clean middleware/pipeline pattern."
+  },
+  {
+    "name": "sanic-org/sanic",
+    "github_url": "https://github.com/sanic-org/sanic",
+    "expected_quality": "UNCLEAR",
+    "category": "web_framework",
+    "rationale": "Async web framework, mixed reputation on code quality."
+  },
+  {
+    "name": "OctoPrint/OctoPrint",
+    "github_url": "https://github.com/OctoPrint/OctoPrint",
+    "expected_quality": "NEG",
+    "category": "application",
+    "rationale": "3D printer controller, organic monolith growth, likely god modules."
+  },
+  {
+    "name": "openstack/nova",
+    "github_url": "https://github.com/openstack/nova",
+    "expected_quality": "NEG",
+    "category": "infra",
+    "rationale": "Massive legacy compute service, complex coupling."
+  },
+  {
+    "name": "matplotlib/matplotlib",
+    "github_url": "https://github.com/matplotlib/matplotlib",
+    "expected_quality": "NEG",
+    "category": "visualization",
+    "rationale": "Large legacy plotting library, complex god classes, organic growth."
+  }
+]
