@@ -8,7 +8,7 @@
 | P1 | Jolak cross-validation | ✅ DONE | 4/5 CONFIRMED |
 | P2 | god_class_ratio investigation | ✅ DONE | Not adding to formula |
 | P3 | Django false-negative analysis | ✅ DONE | Needs better detection |
-| P4 | Re-run Java-S on expanded GT | ⏳ NEXT | Blocked on P0 → now unblocked |
+| P4 | Re-run Java-S on expanded GT | ✅ DONE | v3c confirmed, S-monotonicity broken |
 
 ## Completed Milestones
 
@@ -32,17 +32,27 @@
 - Root cause: scanner needs better intra-package detection
 - Deferred — not blocking main line of work
 
+### P4 — Re-run Java-S on Expanded GT
+- 18 weight variants tested on n=59 GT
+- v3c (equal 0.20 weights) CONFIRMED as winner
+- S-weight monotonicity broken: inverted-U curve, peak at S=0.20
+- Original ρ=1.00 was small-sample artifact (n=29), now ρ=0.00 (n=59)
+- Split-half instability: all variants unstable — landscape is flat
+- Recommendation: close weight optimization
+
 ## Future Work
 
-- **P4**: Re-run Java-S experiment on expanded GT (n=59)
 - Utility library normalization for CD
 - Architecture category stratification
 - Cross-language formula unification (Java + Python)
+- GT expansion to n>200 (if weight discrimination needed)
+- Explore 6th component with novel discriminative power
 
 ## Git History (perplexity branch)
 
 | Commit | Description |
 |--------|-------------|
+| (new) | feat: P4 Java-S experiment results |
 | b336496 | feat: expanded Java GT to n=59 |
 | aa85608 | feat: pure-Python Java scanner + Jolak cross-validation |
 | d4589d2 | (remote sync) |

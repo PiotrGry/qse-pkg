@@ -1,0 +1,20 @@
+{
+  "experiment": "P4_Java_S_expanded_GT",
+  "verdict": "v3c CONFIRMED \u2014 stronger than before",
+  "winner": "v3c (0.20/0.20/0.20/0.20/0.20)",
+  "reserve": "S15_C25_CD20 (0.20/0.20/0.15/0.25/0.20)",
+  "key_findings": [
+    "CI narrowed 40% (0.55\u21920.33) but still too wide for variant discrimination",
+    "S monotonicity BROKEN: inverted-U curve, peak at S=0.20 (v3c)",
+    "Original 'more S = better' was a small-sample artifact (n=29)",
+    "Split-half: ALL variants unstable (\u0394>0.15) \u2014 partial_r landscape is flat",
+    "v3c wins by Occam's razor: equal weights, no data-driven tuning needed",
+    "Best alternative M10_A10_S20_C30_CD30 (pr=0.484) is within CI and unstable"
+  ],
+  "recommendation": "Stop weight optimization. Focus on GT expansion (n>200) or new components if improvement needed.",
+  "stop_criteria_triggered": [
+    "CIs overlap (no significant improvement)",
+    "Split-half instability detected"
+  ],
+  "iterations_used": "1 of 5 (stopped early \u2014 improvement within uncertainty)"
+}
