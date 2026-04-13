@@ -1,0 +1,79 @@
+{
+  "experiment": "E11_deep_analysis",
+  "date": "2026-04-13",
+  "breakthrough": {
+    "formula": "rank(C) + rank(S)",
+    "cross_repo_rho": 0.41,
+    "cross_repo_p": 0.0025,
+    "cross_repo_auc": 0.757,
+    "bootstrap_95ci_rho": [
+      0.169,
+      0.6
+    ],
+    "bootstrap_95ci_auc": [
+      0.611,
+      0.882
+    ],
+    "improvement_vs_AGQ": "+51% (0.410 vs 0.272)",
+    "bonferroni_corrected_p": "~0.075 (30 tests)"
+  },
+  "root_cause_of_tension": {
+    "C_within_repo_delta": 0.0,
+    "S_within_repo_delta": 0.0,
+    "M_within_repo_delta": "non-zero in 5/5 repos",
+    "explanation": "C (LCOM4) and S (instability variance) are class-level and package-topology metrics that don't change with package-level refactoring. M (Louvain modularity) detects community structure shifts."
+  },
+  "resolution": {
+    "approach": "Dual-purpose framework (not dual-formula AGQ)",
+    "ranking_score": {
+      "formula": "rank(C) + rank(S) within GT benchmark",
+      "use_case": "Cross-repo comparison, benchmarking, grading",
+      "evidence": "\u03c1=0.410**, AUC=0.757, best ever tested"
+    },
+    "tracking_score": {
+      "formula": "M + violation counts (PCA, dip_violations, largest_scc)",
+      "use_case": "Within-repo refactoring impact monitoring",
+      "evidence": "M: \u03c1=0.426*, only significant within-repo metric"
+    },
+    "diagnostic": {
+      "purpose": "Identifying specific architectural problems",
+      "components": [
+        "C",
+        "S",
+        "M",
+        "PCA",
+        "LVR",
+        "CD",
+        "violation counts"
+      ]
+    }
+  },
+  "key_insight": "rank-based aggregation (Borda count) eliminates scale differences between metrics, giving each equal voice. Raw averaging lets S (range 0.03-0.92) dominate over C (range 0.22-0.75).",
+  "comparison": {
+    "rank(C)+rank(S)": {
+      "rho": 0.41,
+      "p": 0.0025,
+      "auc": 0.757
+    },
+    "0.5*C+0.5*S (raw)": {
+      "rho": 0.362,
+      "p": 0.0083,
+      "auc": 0.693
+    },
+    "AGQ(M,A,S,C)": {
+      "rho": 0.272,
+      "p": 0.0513,
+      "auc": 0.67
+    },
+    "C alone": {
+      "rho": 0.309,
+      "p": 0.0257,
+      "auc": 0.743
+    },
+    "AGQ_v3c": {
+      "rho": 0.206,
+      "p": 0.1436,
+      "auc": 0.673
+    }
+  }
+}
