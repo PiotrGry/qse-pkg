@@ -8,7 +8,7 @@ language: pl
 
 ## Prostymi słowami
 
-QSE jest w fazie wdrożenia i pilotażu. Formuła AGQv3c Java jest potwierdzona eksperymentalnie. Pierwsze pilotaże na żywych repozytoriach są zakończone — wynik: narzędzie CLI działa, CI/CD integracja gotowa, ale zidentyfikowano istotny blind spot (projekt z kiepską architekturą dostaje GREEN) i niską czułość na refactoring (delta AGQ w granicach szumu po istotnych zmianach architektonicznych).
+QSE jest w fazie pilotażu z krytycznym odkryciem. Formuła AGQv3c Java działa poprawnie wewnątrz GT (n=59), ale multi-repo scan na 15 repozytoriach spoza GT ujawnił **"efekt archipelagu"**: kolekcje tutorialów i algorytmów dostają wyższe AGQ niż dobrze zaprojektowane frameworki. AGQ jest odwrócone poza GT. Potrzebna pre-filtracja (detekcja archipelagów) lub rozszerzenie GT.
 
 ---
 
@@ -144,7 +144,7 @@ Zaostrzone filtry: panel≥7.0/≤3.5, σ<2.0, 100≤nodes≤5000
 
 ## Stan aktualny w jednym zdaniu
 
-> QSE ma potwierdzoną formułę (v3c, 18 wariantów testowanych), działające narzędzie CLI (qse-archtest), i pierwszy pilotaż zakończony. Kluczowy finding: AGQ ma blind spot na "fake layering" (interface/impl bez realnej separacji) — wymaga investigacji nowej metryki dependency-direction.
+> QSE ma potwierdzoną formułę (v3c) działającą w GT i działające narzędzie CLI (qse-archtest). Pilotaż na 15 repos spoza GT ujawnił krytyczny problem: "efekt archipelagu" — AGQ jest odwrócone dla kolektji/tutoriali. Następny krok: detekcja archipelagów + rozszerzenie GT.
 
 ---
 

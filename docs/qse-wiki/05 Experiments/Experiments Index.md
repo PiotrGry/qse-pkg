@@ -26,6 +26,7 @@ Eksperymenty QSE mają ściśle określony protokół: maksymalnie 5 iteracji, s
 | [[PCA Weights\|PCA]] | Wagi PCA (równe eigenvalues) | **zakończony** | Wszystkie eigenvalues prawie równe → uniform 0.20; brak naturalnej hierarchii wymiarów | — |
 | [[E7 P4 Java-S Expanded\|E7]] | **P4 Java-S na expanded GT** | **zakończony** | v3c POTWIERDZONE na n=59. S monotonicity ZŁAMANA (ρ=0.00). Krajobraz płaski. Zamknięta optymalizacja wag. | — |
 | [[Pilot OSS\|Pilot-1]] | **Pilot Before/After refactoring** | **zakończony** | AGQ delta=+0.002 (szum). S=0.19 niezmienione. Blind spot (GREEN vs NEG) nierozwiązany. CI/CD działa. | — |
+| [[Pilot Multi-Repo Scan\|Pilot-2]] | **Multi-repo scan (15 repos)** | **zakończony** | **KRYTYCZNE**: AGQ odwrócone — BAD repos (kolekcje) dostały wyższe AGQ niż GOOD repos (frameworki). 5/5 blind spots. "Efekt archipelagu." | — |
 
 ### Chronologia
 
@@ -42,6 +43,7 @@ timeline
     Turn 38-41 : PCA weights — equal 0.20
     2026-04 : E7 P4 Java-S — v3c confirmed, S monotonicity broken
     2026-04 : Pilot-1 Before/After — delta +0.002 (szum), blind spot nierozwiązany
+    2026-04 : Pilot-2 Multi-repo — AGQ odwrócone, efekt archipelagu
 ```
 
 ### Związki między eksperymentami
@@ -76,3 +78,4 @@ Protokół falsyfikacji eksperymentów QSE:
 - [[Hypotheses Register]] — powiązane hipotezy
 - [[E7 P4 Java-S Expanded]] — najnowszy eksperyment
 - [[Pilot OSS]] — pilotaż before/after refactoring
+- [[Pilot Multi-Repo Scan]] — multi-repo scan (15 repos, krytyczne wyniki)

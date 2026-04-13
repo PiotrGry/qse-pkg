@@ -114,10 +114,22 @@ To jest lista „co robimy teraz i co jest następne". Priorytety P0–P4 zosta�
 - Kluczowy wniosek: S nie reaguje na zmianę kierunków zależności, blind spot nierozwiązany
 - Szczegóły: [[Pilot OSS]]
 
-**Następne kroki pilotażu:**
-1. Multi-repo scan na repozytoriach spoza GT (rozkład statusów, false positive rate)
-2. Investigation: alternatywna metryka dependency-direction dla S
-3. Investigation: detection of "fake layering" (interface/impl without real separation)
+**Pilot 2 — Multi-repo scan (15 repos)** ✅ ZAKOŃCZONY (kwiecień 2026):
+- 15 repos: 5 expected-GOOD, 5 MIXED, 5 expected-BAD
+- **KRYTYCZNY WYNIK: AGQ jest odwrócone!** BAD repos (kolekcje, tutoriale) dostały wyższe AGQ niż GOOD repos (frameworki)
+- Blind spot rate: **5/5 = 100%** (wszystkie BAD = GREEN)
+- False positive rate: 1/5 = 20% (AxonFramework = RED)
+- Mean AGQ: GOOD=0.475, BAD=0.630 → inverted
+- Root cause: **"Efekt archipelagu"** — kolekcje luzno połączonych modułów wyglądają jak świetna modularność
+- 3/5 komponentów odwróconych: M (+0.176), S (+0.179), CD (+0.391)
+- Korelacja E/N vs AGQ: ρ=−0.900 (p<0.0001)
+- Szczegóły: [[Pilot Multi-Repo Scan]]
+
+**Następne kroki (priorytet):**
+1. ⚠️ Detekcja archipelagów: pre-filter (connected component ratio lub E/N threshold)
+2. Rozszerzenie GT o archipelagi żeby formuła mogła się nauczyć
+3. Aktualizacja Claims & Evidence — dodanie caveatu
+4. Investigation: inter-package connectivity metric
 
 ---
 
