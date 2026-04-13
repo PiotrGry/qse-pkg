@@ -909,28 +909,38 @@ def compute_qse_rank(
 ) -> float:
     """QSE-Rank: benchmark-relative quality score using rank aggregation.
 
+    Formula: 2 * rank(C) + rank(S)
+
     Computes percentile rank of cohesion (C) and stability (S) against
-    a reference benchmark distribution, then sums them (Borda count).
+    a reference benchmark distribution. C gets double weight because it
+    is the only metric with consistent positive signal across all three
+    validation datasets (GT, E12, E13). S contributes but at half the
+    relative influence to prevent noise when S direction is unstable.
 
-    Result in [0, 2]: higher = better architecture quality.
-    - 2.0: better than all benchmark repos on both C and S
-    - 1.0: median on both (or mixed)
-    - 0.0: worse than all benchmark repos on both
+    Result in [0, 3]: higher = better architecture quality.
+    - 3.0: top on both C (x2) and S
+    - 1.5: median on both
+    - 0.0: bottom on both
 
-    Empirical validation (E11/E12b, n=52 GT dataset):
-      - In-sample ρ = +0.410, p = 0.0025**
-      - LOOCV ρ = +0.414 (no overfitting)
-      - 50/50 split mean ρ = +0.406, 88.2% of splits significant
-      - Permutation p = 0.0018
-      - AUC = 0.760 (POS vs NEG separation)
-      - 51% better than AGQ (ρ = 0.272)
+    Empirical validation (E13b, combined n=77 dataset):
+      - rpb = +0.368, p = 0.0010**
+      - AUC = 0.710
+      - Stable across all three datasets (GT/E12/E13 all positive rpb)
+      - Combined dataset improvement vs equal rank(C)+rank(S): +6.4%
 
-    Rank aggregation eliminates scale bias:
-      C range [0.22, 0.75], S range [0.03, 0.92] → both normalized to [0, 1].
+    Cross-dataset stability (average rpb across GT/E12/E13):
+      2*rank(C)+rank(S):     +0.295 (stable: all 3 positive)
+      rank(C)+rank(S):       +0.271 (stable but E13 near zero: +0.081)
+      rank(C)+rank(S)+rank(M): +0.304 (stable but lower combined)
+
+    Root cause of S instability: S measures instability variance
+    (distance from main sequence). Framework-heavy repos (Axon, Camunda)
+    have low S despite good architecture because they expose many
+    abstract APIs. S is directionally correct on GT but inverts on
+    some new data profiles. Double C weight compensates.
 
     Intended use: cross-repo benchmarking ("how good is this repo?").
-    Not suitable for within-repo monitoring (C and S are class-level metrics
-    that don't change with package refactoring). Use compute_qse_track() instead.
+    Not suitable for within-repo monitoring. Use compute_qse_track().
 
     Args:
         metrics: AGQMetrics from compute_agq()
@@ -938,7 +948,7 @@ def compute_qse_rank(
         benchmark_S: list of stability values from reference repos
 
     Returns:
-        QSE-Rank score in [0, 2]
+        QSE-Rank score in [0, 3]
     """
     import numpy as np
 
@@ -946,7 +956,7 @@ def compute_qse_rank(
     bench_s = np.array(benchmark_S)
     c_pct = float(np.mean(bench_c <= metrics.cohesion))
     s_pct = float(np.mean(bench_s <= metrics.stability))
-    score = c_pct + s_pct
+    score = 2.0 * c_pct + s_pct
     metrics.qse_rank = score
     return score
 

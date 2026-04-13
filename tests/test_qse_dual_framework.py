@@ -21,10 +21,10 @@ class TestQSERank:
     """Test compute_qse_rank behavior, not specific values."""
 
     def test_high_c_high_s_scores_high(self):
-        """A repo with top C and S should rank near 2.0."""
+        """A repo with top C and S should rank high (formula: 2*rank(C)+rank(S), max=3)."""
         m = AGQMetrics(modularity=0.5, acyclicity=0.9, stability=0.95, cohesion=0.8)
         score = compute_qse_rank(m, GT_BENCHMARK_C, GT_BENCHMARK_S)
-        assert score > 1.5, f"Top C+S should score >1.5, got {score}"
+        assert score > 2.0, f"Top C+S should score >2.0 (max=3), got {score}"
 
     def test_low_c_low_s_scores_low(self):
         """A repo with bottom C and S should rank near 0.0."""
@@ -33,10 +33,10 @@ class TestQSERank:
         assert score < 0.5, f"Bottom C+S should score <0.5, got {score}"
 
     def test_result_in_valid_range(self):
-        """QSE-Rank must be in [0, 2]."""
+        """QSE-Rank must be in [0, 3] (formula: 2*rank(C)+rank(S))."""
         m = AGQMetrics(modularity=0.5, acyclicity=0.5, stability=0.5, cohesion=0.5)
         score = compute_qse_rank(m, GT_BENCHMARK_C, GT_BENCHMARK_S)
-        assert 0.0 <= score <= 2.0
+        assert 0.0 <= score <= 3.0
 
     def test_stores_on_metrics_object(self):
         """compute_qse_rank should set metrics.qse_rank."""
@@ -66,7 +66,19 @@ class TestQSERank:
         custom_C = [0.3, 0.4, 0.6]
         custom_S = [0.2, 0.5, 0.8]
         score = compute_qse_rank(m, custom_C, custom_S)
-        assert 0.0 <= score <= 2.0
+        assert 0.0 <= score <= 3.0
+
+    def test_c_weight_dominates(self):
+        """With 2*rank(C)+rank(S), changing C should have more impact than changing S."""
+        base = AGQMetrics(modularity=0.5, acyclicity=0.5, stability=0.15, cohesion=0.35)
+        high_c = AGQMetrics(modularity=0.5, acyclicity=0.5, stability=0.15, cohesion=0.65)
+        high_s = AGQMetrics(modularity=0.5, acyclicity=0.5, stability=0.75, cohesion=0.35)
+        s_base = compute_qse_rank(base, GT_BENCHMARK_C, GT_BENCHMARK_S)
+        s_high_c = compute_qse_rank(high_c, GT_BENCHMARK_C, GT_BENCHMARK_S)
+        s_high_s = compute_qse_rank(high_s, GT_BENCHMARK_C, GT_BENCHMARK_S)
+        delta_c = s_high_c - s_base
+        delta_s = s_high_s - s_base
+        assert delta_c > delta_s, f"C delta ({delta_c:.3f}) should exceed S delta ({delta_s:.3f})"
 
     def test_empty_benchmark_handles_gracefully(self):
         """Empty benchmark should not crash."""
