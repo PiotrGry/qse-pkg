@@ -125,11 +125,18 @@ To jest lista „co robimy teraz i co jest następne". Priorytety P0–P4 zosta�
 - Korelacja E/N vs AGQ: ρ=−0.900 (p<0.0001)
 - Szczegóły: [[Pilot Multi-Repo Scan]]
 
+**Archipelago Detector** ✅ ZREALIZOWANY (kwiecień 2026):
+- Detektor w archtest.py: cc_ratio > 0.08 → archipelago warning
+- Walidacja na 22 repos: 0 false positives, łapie ekstremalnych archipelagów
+- Metryki połączeniowe (n_cc, lcc_ratio, en_ratio) zawsze w raporcie
+- 4 repozytoria-kolekcje wykluczone z GT (EXCL) — patrz [[Ground Truth#Wykluczone repozytoria (EXCL)]]
+- GT accuracy: 67.8% → 65.5% (uczciwy spadek), AUC: 0.767 → 0.733
+- Szczegóły: [[Pilot Multi-Repo Scan#Zrealizowane rozwiązania]]
+
 **Następne kroki (priorytet):**
-1. ⚠️ Detekcja archipelagów: pre-filter (connected component ratio lub E/N threshold)
-2. Rozszerzenie GT o archipelagi żeby formuła mogła się nauczyć
-3. Aktualizacja Claims & Evidence — dodanie caveatu
-4. Investigation: inter-package connectivity metric
+1. Badanie czułości S (Martin I variance vs kierunek zależności)
+2. Aktualizacja Claims & Evidence — dodanie caveatu o archipelagach
+3. Investigation: inter-package connectivity metric
 
 ---
 
@@ -154,9 +161,11 @@ To jest lista „co robimy teraz i co jest następne". Priorytety P0–P4 zosta�
 Stan walidacji AGQ (kwiecień 2026):
 
 Java v3c:
-  n=59 · MW p=0.000221 · AUC=0.767 · Jolak 4/5 ✓
+  n=55 active (27 POS, 28 NEG) + 4 EXCL = 59 total
+  MW p=0.00157 · AUC=0.733 · Jolak 4/5 ✓
   P4 complete: v3c confirmed, S monotonicity broken
-  Strict GT (n=38): partial_r=0.507, MW p=0.0004
+  Strict GT (n=36 active): partial_r=0.507, MW p=0.0004
+  Archipelago detector: cc_ratio > 0.08, 0 FP
   Status: WYSOKA ISTOTNOŚĆ STATYSTYCZNA, FORMUŁA ZAMROŻONA
 
 Python v3c:

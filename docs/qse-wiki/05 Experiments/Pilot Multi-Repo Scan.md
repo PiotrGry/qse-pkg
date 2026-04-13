@@ -127,14 +127,40 @@ W GT (n=59) korelacja E/N vs panel jest ρ=−0.230 (p=0.08) — słaba i nieist
 3. **GT wymaga rozszerzenia o archipelagi** — żeby formuła mogła się nauczyć tej różnicy
 4. **Claims & Evidence wymagają aktualizacji** — claim "AGQ discriminates architecture quality" musi mieć caveat "within single-project repositories"
 
-### Potencjalne rozwiązania
+### Zrealizowane rozwiązania (kwiecień 2026)
+
+**1. Archipelago Detector w archtest.py** (zrealizowane)
+
+Dodano detekcję archipelagu do pipeline'u skanowania. Detektor oblicza metryki połączeniowe (connected components) z grafu NetworkX i emituje ostrzeżenie gdy cc_ratio > 0.08 (>8% węzłów poza największą składową spójną).
+
+| Próg | Wartość | Opis |
+|---|---|---|
+| cc_ratio > 0.08 | HIGH | Prawdopodobna kolekcja — AGQ niemoarodajne |
+
+Walidacja na 22 repozytoriach:
+- **0 false positives** na POS/GOOD repos
+- Wyłapuje ekstremalnych archipelagów (TheAlgorithms, JCSprout, java-design-patterns)
+- Zawsze emituje metryki połączeniowe w raporcie (nawet bez ostrzeżenia)
+
+Testowane próg T2 (E/N < 3.0 + cc_ratio) zostało odrzucone — generowało false positives na małych, dobrze zaprojektowanych repos (spring-petclinic, buckpal).
+
+**2. GT EXCL — wykluczenie kolekcji** (zrealizowane)
+
+4 repozytoria-kolekcje przeniesione z POS do EXCL:
+- iluwatar/java-design-patterns (300 niezależnych demo)
+- camunda/camunda-bpm-examples
+- javaee-samples/javaee7-samples
+- quarkusio/quarkus-quickstarts
+
+Uzasadnienie: nie są pojedynczymi systemami z architekturą. Metryki grafowe nie mają sensownej interpretacji.
+Wpływ: accuracy 67.8% → 65.5%, AUC 0.767 → 0.733 (uczciwy spadek).
+Szczegóły: [[Ground Truth#Wykluczone repozytoria (EXCL)]]
+
+### Potencjalne dalsze rozwiązania (niezrealizowane)
 
 | Rozwiązanie | Trudność | Opis |
 |---|---|---|
-| Pre-filter: connected component ratio | Niska | Jeśli >X% nodes w disconnected components → flag |
-| Pre-filter: E/N threshold | Niska | Jeśli E/N < 2.0 → "archipelago warning" |
 | Nowa metryka: inter-package connectivity | Średnia | % edges crossing package boundaries |
-| GT extension: dodanie archipelagów | Średnia | Dodać 10-15 kolekcji do GT z etykietą NEG |
 | Normalizacja CD przez project-type | Wysoka | Klasyfikacja: single-app vs collection vs library |
 
 ---

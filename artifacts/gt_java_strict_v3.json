@@ -280,14 +280,16 @@
     "ratio": 2.44,
     "panel": 7.75,
     "sigma": 0.43,
-    "cat": "POS",
+    "cat": "EXCL",
     "issues": [],
     "gt_certain": true,
     "agq_v3c": 0.6103,
     "flat_score": 1.0,
     "lang": "Java",
     "gt_version": "strict_v3",
-    "protocol_compliant": true
+    "protocol_compliant": true,
+    "excl_reason": "collection-not-architecture",
+    "excl_prev_cat": "POS"
   },
   {
     "repo": "google/guava",
@@ -396,14 +398,16 @@
     "ratio": 2.53,
     "panel": 7.75,
     "sigma": 0.83,
-    "cat": "POS",
+    "cat": "EXCL",
     "issues": [],
     "gt_certain": true,
     "agq_v3c": 0.7338,
     "flat_score": 1.0,
     "lang": "Java",
     "gt_version": "strict_v3",
-    "protocol_compliant": true
+    "protocol_compliant": true,
+    "excl_reason": "collection-not-architecture",
+    "excl_prev_cat": "POS"
   },
   {
     "repo": "SvenWoltmann/hexagonal-architecture-java",

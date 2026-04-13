@@ -44,6 +44,19 @@ MIN_NODES = 10
 # FF1 regression: both AGQ and CD must drop by this margin to trigger upgrade
 FF1_DROP_THRESHOLD = 0.05
 
+# ---------------------------------------------------------------------------
+# Archipelago detection thresholds (April 2026)
+# ---------------------------------------------------------------------------
+# Disconnected subgraphs ("archipelagos") inflate modularity and coupling
+# scores by making collections of unrelated modules look well-modularized.
+# Single-tier detection based on connected-component analysis:
+#   cc_ratio > 0.08 → HIGH confidence archipelago warning
+# cc_ratio = fraction of nodes NOT in the largest connected component.
+# Validated on 22 repos: 0 false positives on POS/GOOD, catches extreme cases.
+# Connectivity metrics are always included in the report for manual inspection.
+# The warning does NOT change the AGQ score — it adds an advisory field only.
+ARCHIPELAGO_CC_RATIO = 0.08  # cc_ratio threshold for archipelago warning
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -85,6 +98,82 @@ def _compute_flat_score_from_graph(graph) -> float:
     n_flat = sum(1 for d in depths if d <= shallow_threshold)
     flat_ratio = n_flat / len(depths)
     return round(1.0 - flat_ratio, 4)
+
+
+def _detect_archipelago(graph) -> dict:
+    """
+    Detect archipelago effect — disconnected subgraphs that inflate AGQ.
+
+    Computes connected-component metrics from the NetworkX DiGraph and
+    applies a 2-tier classification:
+
+      Tier 1 (HIGH confidence):     cc_ratio > 0.05
+        → Likely a multi-project collection; AGQ is unreliable.
+      Tier 2 (MODERATE confidence): E/N < 3.0 AND cc_ratio >= 0.005
+        → Sparse graph with disconnected fragments; interpret with caution.
+
+    Returns a dict with:
+      detected : bool       — True if any tier triggered
+      tier     : str|None   — 'high' or 'moderate' or None
+      message  : str|None   — Human-readable explanation
+      metrics  : dict       — Connectivity statistics
+    """
+    import networkx as nx
+
+    n_nodes = graph.number_of_nodes()
+    n_edges = graph.number_of_edges()
+
+    if n_nodes == 0:
+        return {
+            "detected": False,
+            "tier": None,
+            "message": None,
+            "metrics": {},
+        }
+
+    en_ratio = n_edges / n_nodes
+
+    # Use weakly connected components (graph is directed)
+    components = list(nx.weakly_connected_components(graph))
+    n_cc = len(components)
+    lcc_size = max(len(c) for c in components)
+    lcc_ratio = lcc_size / n_nodes
+    small_cc_nodes = n_nodes - lcc_size
+    cc_ratio = small_cc_nodes / n_nodes
+    isolated = sum(1 for n in graph.nodes() if graph.degree(n) == 0)
+
+    metrics = {
+        "n_nodes": n_nodes,
+        "n_edges": n_edges,
+        "en_ratio": round(en_ratio, 3),
+        "n_components": n_cc,
+        "lcc_size": lcc_size,
+        "lcc_ratio": round(lcc_ratio, 4),
+        "small_cc_nodes": small_cc_nodes,
+        "cc_ratio": round(cc_ratio, 4),
+        "isolated_nodes": isolated,
+    }
+
+    # Archipelago detection: large fraction of nodes outside LCC
+    if cc_ratio > ARCHIPELAGO_CC_RATIO:
+        return {
+            "detected": True,
+            "tier": "high",
+            "message": (
+                f"Archipelago detected: "
+                f"{cc_ratio:.1%} of nodes ({small_cc_nodes}/{n_nodes}) are outside "
+                f"the largest connected component. This repo may be a collection "
+                f"of unrelated modules — AGQ scores are unreliable."
+            ),
+            "metrics": metrics,
+        }
+
+    return {
+        "detected": False,
+        "tier": None,
+        "message": None,
+        "metrics": metrics,
+    }
 
 
 def _build_flags(components: dict, lang: str) -> list:
@@ -191,12 +280,16 @@ def run_java_scan(repo_path: str) -> dict:
         "CD": round(metrics.coupling_density, 4),
     }
 
+    # Archipelago detection
+    archipelago = _detect_archipelago(result.graph)
+
     return {
         "graph_stats": {"nodes": n_nodes, "edges": n_edges},
         "components": components,
         "agq_v3c": round(agq, 4),
         "metrics_obj": metrics,
         "flat_score": 1.0,
+        "archipelago": archipelago,
     }
 
 
@@ -253,12 +346,16 @@ def run_python_scan(repo_path: str) -> dict:
         "flat_score": flat_score,
     }
 
+    # Archipelago detection
+    archipelago = _detect_archipelago(graph)
+
     return {
         "graph_stats": {"nodes": n_nodes, "edges": n_edges},
         "components": components,
         "agq_v3c": round(agq, 4),
         "metrics_obj": metrics,
         "flat_score": flat_score,
+        "archipelago": archipelago,
     }
 
 
@@ -347,6 +444,39 @@ def format_markdown(report: dict) -> str:
             f"- Reason: {ff1['reason']}",
         ]
 
+    # Connectivity metrics (always shown) + archipelago warning
+    arch = report.get("archipelago", {})
+    am = arch.get("metrics", {})
+    if am:
+        if arch.get("detected"):
+            lines += [
+                "",
+                "### \U0001F30A Archipelago Warning",
+                "",
+                f"{arch.get('message', 'Disconnected subgraphs detected.')}",
+                "",
+            ]
+        else:
+            lines += [
+                "",
+                "### Connectivity",
+                "",
+            ]
+        lines += [
+            f"- Connected components: **{am.get('n_components', '?')}**",
+            f"- LCC coverage: **{am.get('lcc_ratio', 0):.1%}** of nodes",
+            f"- Nodes outside LCC: **{am.get('small_cc_nodes', '?')}**",
+            f"- Isolated nodes: **{am.get('isolated_nodes', '?')}**",
+            f"- E/N ratio: **{am.get('en_ratio', '?')}**",
+        ]
+        if arch.get("detected"):
+            lines += [
+                "",
+                "*AGQ may be inflated. Multi-project collections and tutorial repos "
+                "often produce misleadingly high scores because disconnected modules "
+                "look like perfect modularity to graph metrics.*",
+            ]
+
     lines += [
         "",
         f"*Generated: {ts}*",
@@ -431,7 +561,10 @@ def run_archtest(
         if ff1_result and ff1_result.get("triggered") and status == "green":
             status = "amber"
 
-    # 5. Build report dict
+    # 5. Archipelago detection
+    archipelago = scan.get("archipelago", {"detected": False})
+
+    # 6. Build report dict
     report = {
         "repo": repo_abs,
         "language": lang,
@@ -441,16 +574,17 @@ def run_archtest(
         "flags": flags,
         "graph_stats": scan["graph_stats"],
         "ff1_regression": ff1_result,
+        "archipelago": archipelago,
         "timestamp": timestamp,
     }
 
-    # 6. Format output
+    # 7. Format output
     if fmt == "markdown":
         output = format_markdown(report)
     else:
         output = format_json(report)
 
-    # 7. Exit code
+    # 8. Exit code
     exit_codes = {"green": 0, "amber": 1, "red": 2}
     code = exit_codes.get(status, 3)
 

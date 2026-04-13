@@ -29,24 +29,26 @@ Panel składa się z 4 symulowanych recenzentów, każdy z inną perspektywą:
 
 ---
 
-## Java Ground Truth (n=59)
+## Java Ground Truth (n=59, active=55)
 
 ### Kluczowe statystyki
 
 | Właściwość | Wartość |
 |---|---|
 | Łączna liczba repozytoriów | 59 |
-| Pozytywne (POS) | 31 |
+| Pozytywne (POS) | 27 |
 | Negatywne (NEG) | 28 |
-| Śr. AGQ v3c dla POS | 0.571 |
+| Wykluczone (EXCL) | 4 |
+| **Aktywne (POS+NEG)** | **55** |
+| Śr. AGQ v3c dla POS | 0.560 |
 | Śr. AGQ v3c dla NEG | 0.486 |
-| Gap (POS − NEG) | 0.085 |
-| **Mann-Whitney U p-value** | **0.000221** |
-| **Spearman ρ** | **0.380 (p=0.003)** |
-| Partial r (kontrola rozmiaru) | 0.447 (p=0.0004) |
-| **AUC-ROC** | **0.767** |
+| Gap (POS − NEG) | 0.074 |
+| **Mann-Whitney U p-value** | **0.00157** |
+| **Spearman ρ** | **0.403 (p=0.002)** |
+| Partial r (kontrola rozmiaru) | 0.308 (p=0.022) |
+| **AUC-ROC** | **0.733** |
 
-> **Interpretacja AUC=0.767:** Model losowy ma AUC=0.500. AUC=0.767 oznacza, że w 76.7% przypadków gdy losowo wybierzemy jedno POS i jedno NEG repozytorium, AGQ poprawnie je uszereguje (POS > NEG). To solidny wynik dla metryki architektonicznej.
+> **Interpretacja AUC=0.733:** Model losowy ma AUC=0.500. AUC=0.733 oznacza, że w 73.3% przypadków gdy losowo wybierzemy jedno POS i jedno NEG repozytorium, AGQ poprawnie je uszereguje (POS > NEG). To solidny wynik dla metryki architektonicznej. (Przed wykluczeniem kolekcji: AUC=0.767.)
 
 ### Skład GT
 
@@ -58,12 +60,29 @@ Original GT (n=29)          Expansion batch (n=30)
                             ↓ merged (commit b336496, kwiecień 2026)
                             
 Expanded GT (n=59) — gt_java_expanded.json
-  31 POS, 28 NEG
-  Gap: 0.115 → 0.085 (zawężenie oczekiwane z większą różnorodnością)
-  Wszystkie testy istotności: p<0.01 ✓
+  27 POS, 28 NEG, 4 EXCL
+  Gap: 0.115 → 0.074 (po wykluczeniu kolekcji)
+  Wszystkie testy istotności: p<0.05 ✓
 ```
 
-### Strict Protocol GT (n=38)
+### Wykluczone repozytoria (EXCL)
+
+4 repozytoria zostały wykluczone z aktywnego GT po odkryciu "efektu archipelagu" (kwiecień 2026). Są to kolekcje niezależnych programów, nie pojedyncze systemy z architekturą. Metryki grafowe (M, S, CD) nie mają sensownej interpretacji dla kolekcji.
+
+| Repo | Panel | AGQ | Powód wykluczenia |
+|---|---|---|---|
+| iluwatar/java-design-patterns | 7.75 | 0.734 | 300 niezależnych demo wzorców |
+| camunda/camunda-bpm-examples | 6.75 | 0.615 | Kolekcja niezwiązanych przykładów Camunda |
+| javaee-samples/javaee7-samples | 6.25 | 0.625 | Kolekcja niezwiązanych sample'ów JavaEE |
+| quarkusio/quarkus-quickstarts | 7.75 | 0.610 | Kolekcja niezależnych quickstartów |
+
+**Uzasadnienie metodologiczne:** Panel ekspertów oceniał jakość kodu/designu poszczególnych próbek — to poprawna ocena z perspektywy kodu. Ale AGQ mierzy architekturę na poziomie repozytorium: zależności między modułami, warstwowość, cykliczność. Kolekcja 300 niezwiązanych programów nie ma architektury do zmierzenia. Włączenie ich do POS zawyżało accuracy (dawały GREEN, ale z niewłaściwych powodów — efekt archipelagu, nie dobra architektura).
+
+**Wpływ na statystyki:** Accuracy spadło z 67.8% → 65.5%, AUC z 0.767 → 0.733. To spadek jest uczciwy — usunęliśmy sztuczne zawyżenie.
+
+**Poprzednia etykieta zachowana:** W JSON pole `excl_prev_cat: "POS"` + `excl_reason: "collection-not-architecture"` dla pełnej śledzialności.
+
+### Strict Protocol GT (n=38, active=36)
 
 Zaostrzone filtry panelowe eliminujące „szarą strefę" (repos z panel score bliskim progu 6.0):
 
@@ -73,7 +92,7 @@ Zaostrzone filtry panelowe eliminujące „szarą strefę" (repos z panel score 
 | Panel score NEG | ≤ 3.5 |
 | Sigma (zgodność panelu) | < 2.0 |
 | Zakres nodes | 100–5000 |
-| **Wynik:** | **n=38 (20 POS, 18 NEG)** |
+| **Wynik:** | **n=38 (18 POS, 18 NEG, 2 EXCL)** |
 
 Wyniki na strict GT:
 
