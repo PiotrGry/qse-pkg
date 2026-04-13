@@ -1,0 +1,266 @@
+{
+  "experiment": "E13e_shopizer_pilot",
+  "date": "2026-04-13T17:15:13.031284+00:00",
+  "repo": "shopizer-ecommerce/shopizer",
+  "baseline": {
+    "label": "baseline",
+    "repo_path": "/home/user/workspace/shopizer",
+    "graph": {
+      "nodes": 1858,
+      "edges": 11770,
+      "internal": 1204,
+      "packages": 336
+    },
+    "agq": {
+      "M": 0.6193,
+      "A": 0.993,
+      "S": 0.0754,
+      "C": 0.4058,
+      "CD": 0.0,
+      "agq_v3c": 0.3843
+    },
+    "qse_rank": 1.1923,
+    "qse_track": {
+      "M": 0.6193,
+      "PCA": 0.9482,
+      "dip_violations": 0,
+      "largest_scc": 17
+    },
+    "qse_diagnostic": {
+      "C": 0.4058,
+      "C_percentile": 0.558,
+      "S": 0.0754,
+      "S_percentile": 0.077,
+      "M": 0.6193,
+      "A": 0.993,
+      "CD": 0.0,
+      "PCA": 0.9482,
+      "LVR": 1.0,
+      "dip_violations": 0,
+      "largest_scc": 17,
+      "problems": [
+        "LOW_STABILITY",
+        "HIGH_COUPLING_DENSITY"
+      ]
+    },
+    "structural_health": {
+      "pca": 0.9482,
+      "lvr": 1.0,
+      "combined": 0.9737
+    }
+  },
+  "iterations": [
+    {
+      "label": "after_iter1",
+      "changes": 16,
+      "description": "God class decomposition (3 facades split) + SCC cycle breaking (entity/refs moved) + service cycle breaking",
+      "scan": {
+        "label": "after_iter1",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1864,
+          "edges": 11776,
+          "internal": 1210,
+          "packages": 347
+        },
+        "agq": {
+          "M": 0.6188,
+          "A": 0.993,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3841
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.6188,
+          "PCA": 0.9528,
+          "dip_violations": 0,
+          "largest_scc": 16
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6188,
+          "A": 0.993,
+          "CD": 0.0,
+          "PCA": 0.9528,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 16,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9528,
+          "lvr": 1.0,
+          "combined": 0.9761
+        }
+      },
+      "deltas": {
+        "track_M": -0.0005,
+        "track_PCA": 0.0046,
+        "track_dip": 0,
+        "track_scc": -1,
+        "agq_M": -0.0005,
+        "agq_A": 0.0,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": -0.0002,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0024
+      }
+    },
+    {
+      "label": "after_iter2",
+      "changes": 8,
+      "description": "Deeper god class decomposition (5 more) + core.model cycle breaking (Billing/Delivery moved) + API controller decomposition",
+      "scan": {
+        "label": "after_iter2",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1870,
+          "edges": 11782,
+          "internal": 1216,
+          "packages": 354
+        },
+        "agq": {
+          "M": 0.6245,
+          "A": 0.993,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3853
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.6245,
+          "PCA": 0.9538,
+          "dip_violations": 0,
+          "largest_scc": 16
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6245,
+          "A": 0.993,
+          "CD": 0.0,
+          "PCA": 0.9538,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 16,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9538,
+          "lvr": 1.0,
+          "combined": 0.9766
+        }
+      },
+      "deltas_vs_baseline": {
+        "track_M": 0.0052,
+        "track_PCA": 0.0056,
+        "track_dip": 0,
+        "track_scc": -1,
+        "agq_M": 0.0052,
+        "agq_A": 0.0,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.001,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0029
+      },
+      "deltas_vs_iter1": {
+        "track_M": 0.0057,
+        "track_PCA": 0.001,
+        "track_dip": 0,
+        "track_scc": 0,
+        "agq_M": 0.0057,
+        "agq_A": 0.0,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.0012,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0005
+      }
+    },
+    {
+      "label": "after_iter3",
+      "changes": 18,
+      "description": "Radical god class elimination: 12 god classes split with domain-specific helpers + model cycle breaking (tax, order shared types)",
+      "scan": {
+        "label": "after_iter3",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1884,
+          "edges": 11796,
+          "internal": 1230,
+          "packages": 363
+        },
+        "agq": {
+          "M": 0.6254,
+          "A": 0.9931,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3855
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.6254,
+          "PCA": 0.9549,
+          "dip_violations": 0,
+          "largest_scc": 16
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6254,
+          "A": 0.9931,
+          "CD": 0.0,
+          "PCA": 0.9549,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 16,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9549,
+          "lvr": 1.0,
+          "combined": 0.9772
+        }
+      },
+      "deltas_vs_baseline": {
+        "track_M": 0.0061,
+        "track_PCA": 0.0067,
+        "track_dip": 0,
+        "track_scc": -1,
+        "agq_M": 0.0061,
+        "agq_A": 0.0001,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.0012,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0035
+      }
+    }
+  ]
+}
