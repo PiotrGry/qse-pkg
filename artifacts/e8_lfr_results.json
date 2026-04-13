@@ -1,0 +1,1499 @@
+{
+  "experiment": "E8_LFR_S_Replacement",
+  "date": "2026-04-13T14:17:04.958503+00:00",
+  "phase1_candidates": [
+    {
+      "name": "monolith-enterprise",
+      "agq_v3c": 0.5775,
+      "components": {
+        "M": 0.7058,
+        "A": 1.0,
+        "S": 0.19,
+        "C": 0.5147,
+        "CD": 0.4768
+      },
+      "graph_stats": {
+        "nodes": 194,
+        "edges": 609
+      },
+      "lfr": {
+        "lfr": 0.8786,
+        "lfr_score": 0.7571,
+        "n_correct": 369,
+        "n_total": 420,
+        "n_cross_pkg_edges": 420,
+        "n_packages": 20,
+        "n_layers_effective": 4,
+        "pr_gini": 0.2587
+      },
+      "dip": {
+        "dip": 1.0,
+        "dip_score": 1.0,
+        "n_correct": 420,
+        "n_total": 420
+      },
+      "url": "https://github.com/colinbut/monolith-enterprise-application",
+      "refactoring_type": "DIP: extract port/adapter interfaces",
+      "notes": "Already done in previous pilot \u2014 include as reference"
+    },
+    {
+      "name": "mall-learning",
+      "agq_v3c": 0.5734,
+      "components": {
+        "M": 0.7803,
+        "A": 1.0,
+        "S": 0.0975,
+        "C": 0.3793,
+        "CD": 0.6098
+      },
+      "graph_stats": {
+        "nodes": 413,
+        "edges": 967
+      },
+      "lfr": {
+        "lfr": 0.8496,
+        "lfr_score": 0.6992,
+        "n_correct": 661,
+        "n_total": 778,
+        "n_cross_pkg_edges": 778,
+        "n_packages": 40,
+        "n_layers_effective": 4,
+        "pr_gini": 0.2074
+      },
+      "dip": {
+        "dip": 1.0,
+        "dip_score": 1.0,
+        "n_correct": 778,
+        "n_total": 778
+      },
+      "url": "https://github.com/macrozheng/mall-learning",
+      "refactoring_type": "Break god packages, extract domain layer",
+      "notes": "E-commerce tutorial project, likely flat structure"
+    },
+    {
+      "name": "Java-WebSocket",
+      "agq_v3c": 0.6088,
+      "components": {
+        "M": 0.5334,
+        "A": 0.991,
+        "S": 0.9131,
+        "C": 0.3065,
+        "CD": 0.2997
+      },
+      "graph_stats": {
+        "nodes": 332,
+        "edges": 1395
+      },
+      "lfr": {
+        "lfr": 0.6993,
+        "lfr_score": 0.3987,
+        "n_correct": 635,
+        "n_total": 908,
+        "n_cross_pkg_edges": 908,
+        "n_packages": 35,
+        "n_layers_effective": 3,
+        "pr_gini": 0.2475
+      },
+      "dip": {
+        "dip": 1.0,
+        "dip_score": 1.0,
+        "n_correct": 908,
+        "n_total": 908
+      },
+      "url": "https://github.com/TooTallNate/Java-WebSocket",
+      "refactoring_type": "Extract protocol layer from transport",
+      "notes": "Library with mixed concerns"
+    },
+    {
+      "name": "conductor",
+      "agq_v3c": 0.4675,
+      "components": {
+        "M": 0.6322,
+        "A": 0.9987,
+        "S": 0.1888,
+        "C": 0.3505,
+        "CD": 0.1674
+      },
+      "graph_stats": {
+        "nodes": 2385,
+        "edges": 11915
+      },
+      "lfr": {
+        "lfr": 0.8976,
+        "lfr_score": 0.7952,
+        "n_correct": 7853,
+        "n_total": 8749,
+        "n_cross_pkg_edges": 8749,
+        "n_packages": 96,
+        "n_layers_effective": 4,
+        "pr_gini": 0.2642
+      },
+      "dip": {
+        "dip": 0.9962,
+        "dip_score": 0.9925,
+        "n_correct": 8716,
+        "n_total": 8749
+      },
+      "url": "https://github.com/conductor-oss/conductor",
+      "refactoring_type": "DIP: core\u2192persistence boundary",
+      "notes": "Workflow orchestrator, Netflix origin"
+    },
+    {
+      "name": "javalin",
+      "agq_v3c": 0.6045,
+      "components": {
+        "M": 0.7346,
+        "A": 1.0,
+        "S": 0.263,
+        "C": 0.3,
+        "CD": 0.7251
+      },
+      "graph_stats": {
+        "nodes": 214,
+        "edges": 353
+      },
+      "lfr": {
+        "lfr": 0.7308,
+        "lfr_score": 0.4615,
+        "n_correct": 114,
+        "n_total": 156,
+        "n_cross_pkg_edges": 156,
+        "n_packages": 17,
+        "n_layers_effective": 4,
+        "pr_gini": 0.1517
+      },
+      "dip": {
+        "dip": 1.0,
+        "dip_score": 1.0,
+        "n_correct": 156,
+        "n_total": 156
+      },
+      "url": "https://github.com/javalin/javalin",
+      "refactoring_type": "Extract plugin interfaces from core",
+      "notes": "Web framework, compact"
+    },
+    {
+      "name": "jhipster-sample-app",
+      "agq_v3c": 0.6049,
+      "components": {
+        "M": 0.8088,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6084
+      },
+      "graph_stats": {
+        "nodes": 541,
+        "edges": 1271
+      },
+      "lfr": {
+        "lfr": 0.9461,
+        "lfr_score": 0.8921,
+        "n_correct": 1035,
+        "n_total": 1094,
+        "n_cross_pkg_edges": 1094,
+        "n_packages": 41,
+        "n_layers_effective": 4,
+        "pr_gini": 0.1137
+      },
+      "dip": {
+        "dip": 1.0,
+        "dip_score": 1.0,
+        "n_correct": 1094,
+        "n_total": 1094
+      },
+      "url": "https://github.com/jhipster/jhipster-sample-app",
+      "refactoring_type": "DIP: domain\u2192infrastructure separation",
+      "notes": "Generated app, typical enterprise layering issues"
+    },
+    {
+      "name": "piggymetrics",
+      "agq_v3c": 0.5916,
+      "components": {
+        "M": 0.7389,
+        "A": 1.0,
+        "S": 0.1736,
+        "C": 0.5221,
+        "CD": 0.5233
+      },
+      "graph_stats": {
+        "nodes": 265,
+        "edges": 758
+      },
+      "lfr": {
+        "lfr": 0.979,
+        "lfr_score": 0.9579,
+        "n_correct": 605,
+        "n_total": 618,
+        "n_cross_pkg_edges": 618,
+        "n_packages": 22,
+        "n_layers_effective": 4,
+        "pr_gini": 0.1733
+      },
+      "dip": {
+        "dip": 1.0,
+        "dip_score": 1.0,
+        "n_correct": 618,
+        "n_total": 618
+      },
+      "url": "https://github.com/sqshq/piggymetrics",
+      "refactoring_type": "Extract shared kernel, break circular deps",
+      "notes": "Microservices demo, known circular dependencies"
+    },
+    {
+      "name": "spring-petclinic",
+      "agq_v3c": 0.6736,
+      "components": {
+        "M": 0.8572,
+        "A": 1.0,
+        "S": 0.2344,
+        "C": 0.587,
+        "CD": 0.6892
+      },
+      "graph_stats": {
+        "nodes": 229,
+        "edges": 427
+      },
+      "lfr": {
+        "lfr": 0.845,
+        "lfr_score": 0.69,
+        "n_correct": 169,
+        "n_total": 200,
+        "n_cross_pkg_edges": 200,
+        "n_packages": 16,
+        "n_layers_effective": 4,
+        "pr_gini": 0.0862
+      },
+      "dip": {
+        "dip": 1.0,
+        "dip_score": 1.0,
+        "n_correct": 200,
+        "n_total": 200
+      },
+      "url": "https://github.com/spring-projects/spring-petclinic",
+      "refactoring_type": "Extract repository interfaces",
+      "notes": "Small but canonical \u2014 may be too small"
+    }
+  ],
+  "phase2_gt_results": [
+    {
+      "repo": "citerus/dddsample-core",
+      "cat": "POS",
+      "panel": 8.25,
+      "S_gt": 0.288,
+      "S_rescan": 0.2353,
+      "lfr": 0.6745,
+      "lfr_score": 0.349,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2447,
+      "n_packages": 26,
+      "n_cross_pkg": 682,
+      "nodes": 350,
+      "agq_v3c": 0.5461,
+      "components": {
+        "M": 0.5848,
+        "A": 1.0,
+        "S": 0.2353,
+        "C": 0.4643,
+        "CD": 0.4462
+      }
+    },
+    {
+      "repo": "VaughnVernon/IDDD_Samples",
+      "cat": "POS",
+      "panel": 7.75,
+      "S_gt": 0.21,
+      "S_rescan": 0.1814,
+      "lfr": 0.8114,
+      "lfr_score": 0.6228,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.4119,
+      "n_packages": 21,
+      "n_cross_pkg": 753,
+      "nodes": 642,
+      "agq_v3c": 0.5296,
+      "components": {
+        "M": 0.7672,
+        "A": 0.9922,
+        "S": 0.1814,
+        "C": 0.2884,
+        "CD": 0.419
+      }
+    },
+    {
+      "repo": "microservices-patterns/ftgo",
+      "cat": "POS",
+      "panel": 7.75,
+      "S": 0.228,
+      "error": "clone_failed"
+    },
+    {
+      "repo": "ddd-by-examples/library",
+      "cat": "POS",
+      "panel": 8.5,
+      "S_gt": 0.181,
+      "S_rescan": 0.1736,
+      "lfr": 0.6868,
+      "lfr_score": 0.3736,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2116,
+      "n_packages": 22,
+      "n_cross_pkg": 447,
+      "nodes": 274,
+      "agq_v3c": 0.5734,
+      "components": {
+        "M": 0.6515,
+        "A": 1.0,
+        "S": 0.1736,
+        "C": 0.4865,
+        "CD": 0.5554
+      }
+    },
+    {
+      "repo": "gothinkster/realworld",
+      "cat": "POS",
+      "panel": 7.5,
+      "S": 0.154,
+      "error": "'n_packages'"
+    },
+    {
+      "repo": "spring-petclinic/petclinic-rest",
+      "cat": "POS",
+      "panel": 7.0,
+      "S": 0.199,
+      "error": "clone_failed"
+    },
+    {
+      "repo": "spring-projects/spring-petclinic",
+      "cat": "POS",
+      "panel": 6.5,
+      "S_gt": 0.395,
+      "S_rescan": 0.2344,
+      "lfr": 0.845,
+      "lfr_score": 0.69,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.0862,
+      "n_packages": 16,
+      "n_cross_pkg": 200,
+      "nodes": 229,
+      "agq_v3c": 0.6736,
+      "components": {
+        "M": 0.8572,
+        "A": 1.0,
+        "S": 0.2344,
+        "C": 0.587,
+        "CD": 0.6892
+      }
+    },
+    {
+      "repo": "apache/struts",
+      "cat": "NEG",
+      "panel": 2.5,
+      "S_gt": 0.212,
+      "S_rescan": 0.255,
+      "lfr": 0.8754,
+      "lfr_score": 0.7509,
+      "dip": 0.9999,
+      "dip_score": 0.9997,
+      "pr_gini": 0.4032,
+      "n_packages": 76,
+      "n_cross_pkg": 7883,
+      "nodes": 3141,
+      "agq_v3c": 0.4927,
+      "components": {
+        "M": 0.6603,
+        "A": 0.9723,
+        "S": 0.255,
+        "C": 0.4002,
+        "CD": 0.1757
+      }
+    },
+    {
+      "repo": "macrozheng/mall",
+      "cat": "NEG",
+      "panel": 2.0,
+      "S_gt": 0.108,
+      "S_rescan": 0.1052,
+      "lfr": 0.9533,
+      "lfr_score": 0.9066,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3453,
+      "n_packages": 37,
+      "n_cross_pkg": 2034,
+      "nodes": 810,
+      "agq_v3c": 0.5055,
+      "components": {
+        "M": 0.6777,
+        "A": 1.0,
+        "S": 0.1052,
+        "C": 0.3479,
+        "CD": 0.3965
+      }
+    },
+    {
+      "repo": "apache/velocity-engine",
+      "cat": "NEG",
+      "panel": 3.25,
+      "S_gt": 0.249,
+      "S_rescan": 0.25,
+      "lfr": 0.9025,
+      "lfr_score": 0.8049,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.419,
+      "n_packages": 18,
+      "n_cross_pkg": 974,
+      "nodes": 564,
+      "agq_v3c": 0.5057,
+      "components": {
+        "M": 0.6127,
+        "A": 0.9486,
+        "S": 0.25,
+        "C": 0.3985,
+        "CD": 0.3186
+      }
+    },
+    {
+      "repo": "Stirling-Tools/Stirling-PDF",
+      "cat": "NEG",
+      "panel": 3.0,
+      "S_gt": 0.113,
+      "S_rescan": 0.1226,
+      "lfr": 0.9657,
+      "lfr_score": 0.9314,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2419,
+      "n_packages": 85,
+      "n_cross_pkg": 9628,
+      "nodes": 2059,
+      "agq_v3c": 0.4171,
+      "components": {
+        "M": 0.6152,
+        "A": 0.999,
+        "S": 0.1226,
+        "C": 0.307,
+        "CD": 0.0417
+      }
+    },
+    {
+      "repo": "elunez/eladmin",
+      "cat": "NEG",
+      "panel": 2.0,
+      "S_gt": 0.073,
+      "S_rescan": 0.0714,
+      "lfr": 0.9185,
+      "lfr_score": 0.8371,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2274,
+      "n_packages": 55,
+      "n_cross_pkg": 1743,
+      "nodes": 679,
+      "agq_v3c": 0.497,
+      "components": {
+        "M": 0.662,
+        "A": 0.9971,
+        "S": 0.0714,
+        "C": 0.3511,
+        "CD": 0.4035
+      }
+    },
+    {
+      "repo": "newbee-ltd/newbee-mall",
+      "cat": "NEG",
+      "panel": 2.5,
+      "S_gt": 0.21,
+      "S_rescan": 0.2099,
+      "lfr": 0.9693,
+      "lfr_score": 0.9386,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2524,
+      "n_packages": 18,
+      "n_cross_pkg": 293,
+      "nodes": 164,
+      "agq_v3c": 0.5084,
+      "components": {
+        "M": 0.5797,
+        "A": 1.0,
+        "S": 0.2099,
+        "C": 0.2909,
+        "CD": 0.4614
+      }
+    },
+    {
+      "repo": "spring-projects/spring-security",
+      "cat": "POS",
+      "panel": 6.5,
+      "S_gt": 0.8984,
+      "S_rescan": 0.5813,
+      "lfr": 0.9108,
+      "lfr_score": 0.8216,
+      "dip": 0.9999,
+      "dip_score": 0.9998,
+      "pr_gini": 0.3883,
+      "n_packages": 106,
+      "n_cross_pkg": 24434,
+      "nodes": 6445,
+      "agq_v3c": 0.5209,
+      "components": {
+        "M": 0.6107,
+        "A": 0.9927,
+        "S": 0.5813,
+        "C": 0.4199,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "ttulka/ddd-example-ecommerce",
+      "cat": "POS",
+      "panel": 6.75,
+      "S_gt": 0.2489,
+      "S_rescan": 0.1814,
+      "lfr": 0.8985,
+      "lfr_score": 0.7969,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3183,
+      "n_packages": 21,
+      "n_cross_pkg": 916,
+      "nodes": 300,
+      "agq_v3c": 0.483,
+      "components": {
+        "M": 0.5438,
+        "A": 1.0,
+        "S": 0.1814,
+        "C": 0.4795,
+        "CD": 0.2106
+      }
+    },
+    {
+      "repo": "spring-projects/spring-modulith",
+      "cat": "POS",
+      "panel": 7.25,
+      "S_gt": 0.513,
+      "S_rescan": 0.6424,
+      "lfr": 0.8148,
+      "lfr_score": 0.6297,
+      "dip": 0.9741,
+      "dip_score": 0.9481,
+      "pr_gini": 0.2224,
+      "n_packages": 96,
+      "n_cross_pkg": 2236,
+      "nodes": 1305,
+      "agq_v3c": 0.6396,
+      "components": {
+        "M": 0.6754,
+        "A": 0.9969,
+        "S": 0.6424,
+        "C": 0.3975,
+        "CD": 0.4857
+      }
+    },
+    {
+      "repo": "odrotbohm/spring-restbucks",
+      "cat": "POS",
+      "panel": 7.25,
+      "S_gt": 0.399,
+      "S_rescan": 0.1142,
+      "lfr": 0.9287,
+      "lfr_score": 0.8575,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.1036,
+      "n_packages": 34,
+      "n_cross_pkg": 463,
+      "nodes": 307,
+      "agq_v3c": 0.6274,
+      "components": {
+        "M": 0.7693,
+        "A": 1.0,
+        "S": 0.1142,
+        "C": 0.575,
+        "CD": 0.6786
+      }
+    },
+    {
+      "repo": "shopizer-ecommerce/shopizer",
+      "cat": "NEG",
+      "panel": 3.25,
+      "S_gt": 0.165,
+      "S_rescan": 0.0754,
+      "lfr": 0.9192,
+      "lfr_score": 0.8385,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3581,
+      "n_packages": 52,
+      "n_cross_pkg": 6265,
+      "nodes": 1858,
+      "agq_v3c": 0.418,
+      "components": {
+        "M": 0.6158,
+        "A": 0.993,
+        "S": 0.0754,
+        "C": 0.4058,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "linlinjava/litemall",
+      "cat": "NEG",
+      "panel": 1.75,
+      "S_gt": 0.1175,
+      "S_rescan": 0.111,
+      "lfr": 0.962,
+      "lfr_score": 0.924,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2674,
+      "n_packages": 35,
+      "n_cross_pkg": 1921,
+      "nodes": 653,
+      "agq_v3c": 0.4877,
+      "components": {
+        "M": 0.6651,
+        "A": 0.9969,
+        "S": 0.111,
+        "C": 0.3446,
+        "CD": 0.3208
+      }
+    },
+    {
+      "repo": "macrozheng/mall-swarm",
+      "cat": "NEG",
+      "panel": 2.0,
+      "S_gt": 0.1025,
+      "S_rescan": 0.0999,
+      "lfr": 0.9403,
+      "lfr_score": 0.8806,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3519,
+      "n_packages": 39,
+      "n_cross_pkg": 1959,
+      "nodes": 795,
+      "agq_v3c": 0.5087,
+      "components": {
+        "M": 0.6758,
+        "A": 1.0,
+        "S": 0.0999,
+        "C": 0.3634,
+        "CD": 0.4044
+      }
+    },
+    {
+      "repo": "merikbest/twitter-spring-reactjs",
+      "cat": "NEG",
+      "panel": 2.25,
+      "S_gt": 0.0975,
+      "S_rescan": 0.093,
+      "lfr": 0.9796,
+      "lfr_score": 0.9591,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3272,
+      "n_packages": 42,
+      "n_cross_pkg": 2789,
+      "nodes": 822,
+      "agq_v3c": 0.4161,
+      "components": {
+        "M": 0.6404,
+        "A": 1.0,
+        "S": 0.093,
+        "C": 0.318,
+        "CD": 0.029
+      }
+    },
+    {
+      "repo": "jhipster/jhipster-sample-app",
+      "cat": "NEG",
+      "panel": 2.0,
+      "S_gt": 0.1175,
+      "S_rescan": 0.1856,
+      "lfr": 0.9461,
+      "lfr_score": 0.8921,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.1137,
+      "n_packages": 41,
+      "n_cross_pkg": 1094,
+      "nodes": 541,
+      "agq_v3c": 0.6049,
+      "components": {
+        "M": 0.8088,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6084
+      }
+    },
+    {
+      "repo": "hoangtien2k3/ecommerce-microservices",
+      "cat": "NEG",
+      "panel": 1.75,
+      "S_gt": 0.1699,
+      "S_rescan": 0.1479,
+      "lfr": 0.9487,
+      "lfr_score": 0.8974,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2499,
+      "n_packages": 52,
+      "n_cross_pkg": 2262,
+      "nodes": 845,
+      "agq_v3c": 0.575,
+      "components": {
+        "M": 0.817,
+        "A": 0.9976,
+        "S": 0.1479,
+        "C": 0.4634,
+        "CD": 0.4491
+      }
+    },
+    {
+      "repo": "merikbest/ecommerce-spring-reactjs",
+      "cat": "NEG",
+      "panel": 2.75,
+      "S_gt": 0.1332,
+      "S_rescan": 0.1211,
+      "lfr": 0.8861,
+      "lfr_score": 0.7722,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.1616,
+      "n_packages": 32,
+      "n_cross_pkg": 676,
+      "nodes": 316,
+      "agq_v3c": 0.5537,
+      "components": {
+        "M": 0.7015,
+        "A": 1.0,
+        "S": 0.1211,
+        "C": 0.447,
+        "CD": 0.4989
+      }
+    },
+    {
+      "repo": "resilience4j/resilience4j",
+      "cat": "POS",
+      "panel": 7.0,
+      "S_gt": 0.9943,
+      "S_rescan": 0.0952,
+      "lfr": 0.9891,
+      "lfr_score": 0.9782,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3705,
+      "n_packages": 41,
+      "n_cross_pkg": 7689,
+      "nodes": 2096,
+      "agq_v3c": 0.443,
+      "components": {
+        "M": 0.6833,
+        "A": 0.9967,
+        "S": 0.0952,
+        "C": 0.4227,
+        "CD": 0.0173
+      }
+    },
+    {
+      "repo": "zalando/problem",
+      "cat": "POS",
+      "panel": 6.25,
+      "S_gt": 0.5136,
+      "S_rescan": 0.5778,
+      "lfr": 0.8451,
+      "lfr_score": 0.6902,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2113,
+      "n_packages": 17,
+      "n_cross_pkg": 439,
+      "nodes": 209,
+      "agq_v3c": 0.6357,
+      "components": {
+        "M": 0.6807,
+        "A": 1.0,
+        "S": 0.5778,
+        "C": 0.3667,
+        "CD": 0.5534
+      }
+    },
+    {
+      "repo": "DozerMapper/dozer",
+      "cat": "NEG",
+      "panel": 3.75,
+      "S_gt": 0.1671,
+      "S_rescan": 0.1247,
+      "lfr": 0.9426,
+      "lfr_score": 0.8852,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3296,
+      "n_packages": 31,
+      "n_cross_pkg": 2091,
+      "nodes": 1129,
+      "agq_v3c": 0.5294,
+      "components": {
+        "M": 0.6596,
+        "A": 0.9894,
+        "S": 0.1247,
+        "C": 0.4203,
+        "CD": 0.4529
+      }
+    },
+    {
+      "repo": "CodelyTV/java-ddd-example",
+      "cat": "POS",
+      "panel": 8.0,
+      "S_gt": 0.1664,
+      "S_rescan": 0.1664,
+      "lfr": 0.5383,
+      "lfr_score": 0.0767,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3231,
+      "n_packages": 23,
+      "n_cross_pkg": 574,
+      "nodes": 443,
+      "agq_v3c": 0.6184,
+      "components": {
+        "M": 0.7831,
+        "A": 1.0,
+        "S": 0.1664,
+        "C": 0.5731,
+        "CD": 0.5692
+      }
+    },
+    {
+      "repo": "thombergs/buckpal",
+      "cat": "POS",
+      "panel": 8.25,
+      "S_gt": 0.1814,
+      "S_rescan": 0.1814,
+      "lfr": 0.5932,
+      "lfr_score": 0.1864,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.1775,
+      "n_packages": 21,
+      "n_cross_pkg": 177,
+      "nodes": 136,
+      "agq_v3c": 0.6105,
+      "components": {
+        "M": 0.768,
+        "A": 1.0,
+        "S": 0.1814,
+        "C": 0.4265,
+        "CD": 0.6765
+      }
+    },
+    {
+      "repo": "anton-liauchuk/educational-platform",
+      "cat": "POS",
+      "panel": 7.25,
+      "S_gt": 0.19,
+      "S_rescan": 0.19,
+      "lfr": 0.9866,
+      "lfr_score": 0.9732,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2466,
+      "n_packages": 20,
+      "n_cross_pkg": 1271,
+      "nodes": 435,
+      "agq_v3c": 0.5441,
+      "components": {
+        "M": 0.6025,
+        "A": 1.0,
+        "S": 0.19,
+        "C": 0.6081,
+        "CD": 0.3199
+      }
+    },
+    {
+      "repo": "piomin/sample-spring-microservices-new",
+      "cat": "POS",
+      "panel": 6.5,
+      "S_gt": 0.36,
+      "S_rescan": 0.36,
+      "lfr": 0.9556,
+      "lfr_score": 0.9111,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.1536,
+      "n_packages": 10,
+      "n_cross_pkg": 135,
+      "nodes": 76,
+      "agq_v3c": 0.6919,
+      "components": {
+        "M": 0.7221,
+        "A": 1.0,
+        "S": 0.36,
+        "C": 0.75,
+        "CD": 0.6272
+      }
+    },
+    {
+      "repo": "google/guava",
+      "cat": "POS",
+      "panel": 8.0,
+      "S_gt": 0.2177,
+      "S_rescan": 0.2177,
+      "lfr": 0.9601,
+      "lfr_score": 0.9202,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3223,
+      "n_packages": 21,
+      "n_cross_pkg": 10069,
+      "nodes": 3168,
+      "agq_v3c": 0.3966,
+      "components": {
+        "M": 0.5481,
+        "A": 1.0,
+        "S": 0.2177,
+        "C": 0.2172,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "FasterXML/jackson-databind",
+      "cat": "NEG",
+      "panel": 5.0,
+      "S_gt": 0.9147,
+      "S_rescan": 0.9147,
+      "lfr": 0.9671,
+      "lfr_score": 0.9342,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.4259,
+      "n_packages": 45,
+      "n_cross_pkg": 4891,
+      "nodes": 1793,
+      "agq_v3c": 0.5335,
+      "components": {
+        "M": 0.5279,
+        "A": 0.9225,
+        "S": 0.9147,
+        "C": 0.3024,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "apache/camel",
+      "cat": "NEG",
+      "panel": 5.5,
+      "S_gt": 0.4119,
+      "S_rescan": 0.4119,
+      "lfr": 0.8119,
+      "lfr_score": 0.6238,
+      "dip": 0.9999,
+      "dip_score": 0.9998,
+      "pr_gini": 0.4353,
+      "n_packages": 395,
+      "n_cross_pkg": 109707,
+      "nodes": 37468,
+      "agq_v3c": 0.5115,
+      "components": {
+        "M": 0.6925,
+        "A": 0.9991,
+        "S": 0.4119,
+        "C": 0.4177,
+        "CD": 0.0363
+      }
+    },
+    {
+      "repo": "apache/commons-lang",
+      "cat": "POS",
+      "panel": 7.25,
+      "S_gt": 0.1736,
+      "S_rescan": 0.1736,
+      "lfr": 0.961,
+      "lfr_score": 0.9221,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2962,
+      "n_packages": 22,
+      "n_cross_pkg": 2977,
+      "nodes": 879,
+      "agq_v3c": 0.4575,
+      "components": {
+        "M": 0.5875,
+        "A": 0.9761,
+        "S": 0.1736,
+        "C": 0.2401,
+        "CD": 0.3104
+      }
+    },
+    {
+      "repo": "apache/commons-collections",
+      "cat": "POS",
+      "panel": 6.75,
+      "S_gt": 0.2489,
+      "S_rescan": 0.2489,
+      "lfr": 0.9833,
+      "lfr_score": 0.9667,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3653,
+      "n_packages": 15,
+      "n_cross_pkg": 3421,
+      "nodes": 858,
+      "agq_v3c": 0.418,
+      "components": {
+        "M": 0.489,
+        "A": 0.993,
+        "S": 0.2489,
+        "C": 0.2328,
+        "CD": 0.1263
+      }
+    },
+    {
+      "repo": "apache/tomcat",
+      "cat": "NEG",
+      "panel": 5.75,
+      "S_gt": 0.8427,
+      "S_rescan": 0.8427,
+      "lfr": 0.9779,
+      "lfr_score": 0.9557,
+      "dip": 0.992,
+      "dip_score": 0.9841,
+      "pr_gini": 0.3896,
+      "n_packages": 96,
+      "n_cross_pkg": 15593,
+      "nodes": 3742,
+      "agq_v3c": 0.5549,
+      "components": {
+        "M": 0.605,
+        "A": 0.9928,
+        "S": 0.8427,
+        "C": 0.3341,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "apache/wicket",
+      "cat": "NEG",
+      "panel": 5.0,
+      "S_gt": 0.3314,
+      "S_rescan": 0.3314,
+      "lfr": 0.8652,
+      "lfr_score": 0.7305,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.5339,
+      "n_packages": 59,
+      "n_cross_pkg": 7257,
+      "nodes": 4113,
+      "agq_v3c": 0.4876,
+      "components": {
+        "M": 0.6059,
+        "A": 0.9453,
+        "S": 0.3314,
+        "C": 0.3998,
+        "CD": 0.1556
+      }
+    },
+    {
+      "repo": "spring-projects/spring-batch",
+      "cat": "POS",
+      "panel": 7.25,
+      "S_gt": 0.0689,
+      "S_rescan": 0.0689,
+      "lfr": 0.9228,
+      "lfr_score": 0.8456,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3554,
+      "n_packages": 57,
+      "n_cross_pkg": 6100,
+      "nodes": 2634,
+      "agq_v3c": 0.4231,
+      "components": {
+        "M": 0.5814,
+        "A": 0.9992,
+        "S": 0.0689,
+        "C": 0.4301,
+        "CD": 0.0358
+      }
+    },
+    {
+      "repo": "spring-projects/spring-framework",
+      "cat": "POS",
+      "panel": 6.25,
+      "S_gt": 0.1294,
+      "S_rescan": 0.1294,
+      "lfr": 0.9265,
+      "lfr_score": 0.8529,
+      "dip": 0.9989,
+      "dip_score": 0.9978,
+      "pr_gini": 0.4277,
+      "n_packages": 148,
+      "n_cross_pkg": 45862,
+      "nodes": 12530,
+      "agq_v3c": 0.4191,
+      "components": {
+        "M": 0.6168,
+        "A": 0.9995,
+        "S": 0.1294,
+        "C": 0.3498,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "igniterealtime/Openfire",
+      "cat": "NEG",
+      "panel": 3.5,
+      "S_gt": 0.2095,
+      "S_rescan": 0.2095,
+      "lfr": 0.8992,
+      "lfr_score": 0.7983,
+      "dip": 0.9998,
+      "dip_score": 0.9997,
+      "pr_gini": 0.2905,
+      "n_packages": 54,
+      "n_cross_pkg": 6366,
+      "nodes": 1764,
+      "agq_v3c": 0.4186,
+      "components": {
+        "M": 0.5726,
+        "A": 0.9127,
+        "S": 0.2095,
+        "C": 0.2839,
+        "CD": 0.1141
+      }
+    },
+    {
+      "repo": "openmrs/openmrs-core",
+      "cat": "NEG",
+      "panel": 3.5,
+      "S_gt": 0.098,
+      "S_rescan": 0.098,
+      "lfr": 0.8083,
+      "lfr_score": 0.6166,
+      "dip": 0.9999,
+      "dip_score": 0.9998,
+      "pr_gini": 0.3104,
+      "n_packages": 79,
+      "n_cross_pkg": 9443,
+      "nodes": 2536,
+      "agq_v3c": 0.3971,
+      "components": {
+        "M": 0.5827,
+        "A": 0.9294,
+        "S": 0.098,
+        "C": 0.3042,
+        "CD": 0.0713
+      }
+    },
+    {
+      "repo": "javaparser/javaparser",
+      "cat": "NEG",
+      "panel": 5.75,
+      "S_gt": 0.4327,
+      "S_rescan": 0.4327,
+      "lfr": 0.9201,
+      "lfr_score": 0.8402,
+      "dip": 0.9998,
+      "dip_score": 0.9995,
+      "pr_gini": 0.4304,
+      "n_packages": 147,
+      "n_cross_pkg": 4042,
+      "nodes": 2465,
+      "agq_v3c": 0.4583,
+      "components": {
+        "M": 0.664,
+        "A": 0.8897,
+        "S": 0.4327,
+        "C": 0.3051,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "remkop/picocli",
+      "cat": "POS",
+      "panel": 7.5,
+      "S_gt": 0.5034,
+      "S_rescan": 0.5034,
+      "lfr": 0.9947,
+      "lfr_score": 0.9894,
+      "dip": 0.9963,
+      "dip_score": 0.9926,
+      "pr_gini": 0.2449,
+      "n_packages": 190,
+      "n_cross_pkg": 3770,
+      "nodes": 861,
+      "agq_v3c": 0.5316,
+      "components": {
+        "M": 0.5432,
+        "A": 1.0,
+        "S": 0.5034,
+        "C": 0.3536,
+        "CD": 0.258
+      }
+    },
+    {
+      "repo": "BroadleafCommerce/BroadleafCommerce",
+      "cat": "NEG",
+      "panel": 3.5,
+      "S_gt": 0.1175,
+      "S_rescan": 0.1175,
+      "lfr": 0.9731,
+      "lfr_score": 0.9461,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.3939,
+      "n_packages": 66,
+      "n_cross_pkg": 14699,
+      "nodes": 4175,
+      "agq_v3c": 0.427,
+      "components": {
+        "M": 0.7042,
+        "A": 0.9871,
+        "S": 0.1175,
+        "C": 0.3264,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "shashirajraja/shopping-cart",
+      "cat": "NEG",
+      "panel": 2.5,
+      "S_gt": 0.3951,
+      "S_rescan": 0.3951,
+      "lfr": 0.9886,
+      "lfr_score": 0.9773,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2148,
+      "n_packages": 9,
+      "n_cross_pkg": 176,
+      "nodes": 77,
+      "agq_v3c": 0.5823,
+      "components": {
+        "M": 0.6183,
+        "A": 1.0,
+        "S": 0.3951,
+        "C": 0.4091,
+        "CD": 0.4892
+      }
+    },
+    {
+      "repo": "yangzongzhuan/RuoYi-Vue",
+      "cat": "NEG",
+      "panel": 3.25,
+      "S_gt": 0.1253,
+      "S_rescan": 0.1253,
+      "lfr": 0.4666,
+      "lfr_score": 0.0,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2108,
+      "n_packages": 38,
+      "n_cross_pkg": 1331,
+      "nodes": 681,
+      "agq_v3c": 0.52,
+      "components": {
+        "M": 0.7089,
+        "A": 0.9956,
+        "S": 0.1253,
+        "C": 0.2883,
+        "CD": 0.4819
+      }
+    },
+    {
+      "repo": "sourcegraph/training-java-monolith-refactor",
+      "cat": "NEG",
+      "panel": 2.25,
+      "S_gt": 0.3951,
+      "S_rescan": 0.3951,
+      "lfr": 0.8654,
+      "lfr_score": 0.7308,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.1463,
+      "n_packages": 9,
+      "n_cross_pkg": 52,
+      "nodes": 38,
+      "agq_v3c": 0.5698,
+      "components": {
+        "M": 0.5375,
+        "A": 1.0,
+        "S": 0.3951,
+        "C": 0.25,
+        "CD": 0.6667
+      }
+    },
+    {
+      "repo": "Netflix/Hystrix",
+      "cat": "POS",
+      "panel": 6.0,
+      "S_gt": 0.076,
+      "S_rescan": 0.076,
+      "lfr": 0.7844,
+      "lfr_score": 0.5687,
+      "dip": 0.999,
+      "dip_score": 0.9981,
+      "pr_gini": 0.2876,
+      "n_packages": 58,
+      "n_cross_pkg": 2059,
+      "nodes": 822,
+      "agq_v3c": 0.4689,
+      "components": {
+        "M": 0.6586,
+        "A": 0.9465,
+        "S": 0.076,
+        "C": 0.3811,
+        "CD": 0.2822
+      }
+    },
+    {
+      "repo": "colinbut/monolith-enterprise-application",
+      "cat": "NEG",
+      "panel": 3.75,
+      "S_gt": 0.19,
+      "S_rescan": 0.19,
+      "lfr": 0.8786,
+      "lfr_score": 0.7571,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2587,
+      "n_packages": 20,
+      "n_cross_pkg": 420,
+      "nodes": 194,
+      "agq_v3c": 0.5775,
+      "components": {
+        "M": 0.7058,
+        "A": 1.0,
+        "S": 0.19,
+        "C": 0.5147,
+        "CD": 0.4768
+      }
+    },
+    {
+      "repo": "kbastani/spring-cloud-microservice-example",
+      "cat": "POS",
+      "panel": 6.5,
+      "S_gt": 0.9239,
+      "S_rescan": 0.9239,
+      "lfr": 0.8271,
+      "lfr_score": 0.6542,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.135,
+      "n_packages": 30,
+      "n_cross_pkg": 214,
+      "nodes": 136,
+      "agq_v3c": 0.8254,
+      "components": {
+        "M": 0.9188,
+        "A": 0.9853,
+        "S": 0.9239,
+        "C": 0.575,
+        "CD": 0.7243
+      }
+    },
+    {
+      "repo": "SvenWoltmann/hexagonal-architecture-java",
+      "cat": "POS",
+      "panel": 7.5,
+      "S_gt": 0.2099,
+      "S_rescan": 0.2099,
+      "lfr": 0.6223,
+      "lfr_score": 0.2446,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2258,
+      "n_packages": 18,
+      "n_cross_pkg": 233,
+      "nodes": 156,
+      "agq_v3c": 0.5977,
+      "components": {
+        "M": 0.6393,
+        "A": 1.0,
+        "S": 0.2099,
+        "C": 0.5952,
+        "CD": 0.5438
+      }
+    },
+    {
+      "repo": "mattia-battiston/clean-architecture-example",
+      "cat": "POS",
+      "panel": 7.25,
+      "S_gt": 0.2215,
+      "S_rescan": 0.2215,
+      "lfr": 0.815,
+      "lfr_score": 0.6299,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.1751,
+      "n_packages": 17,
+      "n_cross_pkg": 254,
+      "nodes": 163,
+      "agq_v3c": 0.5724,
+      "components": {
+        "M": 0.6514,
+        "A": 0.9877,
+        "S": 0.2215,
+        "C": 0.4276,
+        "CD": 0.5736
+      }
+    },
+    {
+      "repo": "thingsboard/thingsboard",
+      "cat": "NEG",
+      "panel": 4.5,
+      "S_gt": 0.0331,
+      "S_rescan": 0.0331,
+      "lfr": 0.9014,
+      "lfr_score": 0.8029,
+      "dip": 1.0,
+      "dip_score": 0.9999,
+      "pr_gini": 0.3387,
+      "n_packages": 120,
+      "n_cross_pkg": 29638,
+      "nodes": 8502,
+      "agq_v3c": 0.3978,
+      "components": {
+        "M": 0.6069,
+        "A": 0.9976,
+        "S": 0.0331,
+        "C": 0.3514,
+        "CD": 0.0
+      }
+    },
+    {
+      "repo": "la-team/light-admin",
+      "cat": "NEG",
+      "panel": 3.25,
+      "S_gt": 0.1211,
+      "S_rescan": 0.1211,
+      "lfr": 0.4625,
+      "lfr_score": 0.0,
+      "dip": 1.0,
+      "dip_score": 1.0,
+      "pr_gini": 0.2246,
+      "n_packages": 32,
+      "n_cross_pkg": 1518,
+      "nodes": 982,
+      "agq_v3c": 0.5746,
+      "components": {
+        "M": 0.8307,
+        "A": 1.0,
+        "S": 0.1211,
+        "C": 0.3541,
+        "CD": 0.5674
+      }
+    }
+  ],
+  "phase2_successful": 52,
+  "phase2_total": 55
+}

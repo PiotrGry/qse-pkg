@@ -633,6 +633,199 @@ def compute_per_module_metrics(G: nx.DiGraph) -> Dict[str, object]:
 
 
 # ---------------------------------------------------------------------------
+# Package-level structural metrics (E10, April 2026)
+# ---------------------------------------------------------------------------
+
+def _build_package_map(G: nx.DiGraph,
+                       internal_nodes: Optional[Set[str]] = None,
+                       packages: Optional[Set[str]] = None
+                       ) -> Dict[str, str]:
+    """Map each internal node to its package.
+
+    If *packages* is provided, uses longest-prefix matching.
+    Otherwise derives packages by stripping the last dotted segment
+    from each fully-qualified node name.
+
+    Returns dict  node -> package_name.
+    """
+    nodes = internal_nodes if internal_nodes else set(G.nodes())
+    pkg_map: Dict[str, str] = {}
+
+    if packages:
+        sorted_pkgs = sorted(packages, key=len, reverse=True)
+        for n in nodes:
+            if n not in G:
+                continue
+            for p in sorted_pkgs:
+                if n.startswith(p + "."):
+                    pkg_map[n] = p
+                    break
+            else:
+                # fallback: strip last segment
+                if "." in n:
+                    pkg_map[n] = n.rsplit(".", 1)[0]
+    else:
+        for n in nodes:
+            if n not in G:
+                continue
+            if "." in n:
+                pkg_map[n] = n.rsplit(".", 1)[0]
+            else:
+                pkg_map[n] = ""
+
+    return pkg_map
+
+
+def compute_package_acyclicity(G: nx.DiGraph,
+                               internal_nodes: Optional[Set[str]] = None,
+                               packages: Optional[Set[str]] = None
+                               ) -> float:
+    """Package-level acyclicity (PCA).
+
+    Builds a package-level dependency graph from cross-package edges,
+    then measures: PCA = 1 - (largest_pkg_SCC / total_packages).
+
+    Unlike class-level acyclicity (A), this catches architectural
+    layer violations that create package-level cycles even when
+    no class-level cycle exists.
+
+    Returns float in [0, 1] where 1.0 = no package cycles.
+    """
+    pkg_map = _build_package_map(G, internal_nodes, packages)
+    if len(set(pkg_map.values())) <= 1:
+        return 1.0
+
+    # Build package-level digraph
+    pkg_graph = nx.DiGraph()
+    for u, v in G.edges():
+        if u in pkg_map and v in pkg_map:
+            pu, pv = pkg_map[u], pkg_map[v]
+            if pu != pv:
+                pkg_graph.add_edge(pu, pv)
+
+    if pkg_graph.number_of_nodes() <= 1:
+        return 1.0
+
+    # Largest SCC (package-level)
+    largest_scc = 0
+    for scc in nx.strongly_connected_components(pkg_graph):
+        if len(scc) > 1:
+            largest_scc = max(largest_scc, len(scc))
+
+    total_pkgs = pkg_graph.number_of_nodes()
+    if largest_scc == 0:
+        return 1.0
+
+    return 1.0 - (largest_scc / total_pkgs)
+
+
+def compute_layer_violation_ratio(G: nx.DiGraph,
+                                  internal_nodes: Optional[Set[str]] = None,
+                                  packages: Optional[Set[str]] = None
+                                  ) -> float:
+    """Layer Violation Ratio (LVR) — DIP + layer-bypass score.
+
+    Classifies each package into a layer heuristically:
+      - DOMAIN:  package name contains 'domain', 'model', 'entity', 'core'
+      - SERVICE: package name contains 'service', 'usecase', 'application'
+      - INFRA:   package name contains 'repository', 'persistence', 'config',
+                 'security', 'web', 'rest', 'controller', 'api', 'gateway',
+                 'adapter', 'infrastructure'
+      - OTHER:   everything else
+
+    Violations counted:
+      1. DIP violation: DOMAIN -> INFRA edge  (domain must not know infra)
+      2. DIP violation: DOMAIN -> SERVICE edge (domain must not know service in strict DDD)
+      3. Layer bypass:  INFRA -> DOMAIN edge that skips SERVICE (direct repo access from controller)
+         Specifically: controller/web/rest -> repository/persistence (bypasses service)
+
+    LVR = 1 - (violation_edges / total_cross_pkg_edges)
+    Returns float in [0, 1] where 1.0 = no violations.
+    """
+    pkg_map = _build_package_map(G, internal_nodes, packages)
+
+    # Classify packages into layers
+    DOMAIN_KEYWORDS = {'domain', 'model', 'entity', 'core', 'aggregate'}
+    SERVICE_KEYWORDS = {'service', 'usecase', 'application', 'interactor'}
+    INFRA_KEYWORDS = {'repository', 'persistence', 'config', 'configuration',
+                      'security', 'web', 'rest', 'controller', 'api', 'gateway',
+                      'adapter', 'infrastructure', 'filter', 'handler', 'client'}
+    # Higher-layer infra that should not be accessed by lower infra
+    PRESENTATION_KEYWORDS = {'web', 'rest', 'controller', 'api', 'gateway'}
+    PERSISTENCE_KEYWORDS = {'repository', 'persistence', 'dao'}
+
+    def classify_package(pkg: str) -> str:
+        segments = set(pkg.lower().split('.'))
+        if segments & DOMAIN_KEYWORDS:
+            return 'DOMAIN'
+        if segments & SERVICE_KEYWORDS:
+            return 'SERVICE'
+        if segments & INFRA_KEYWORDS:
+            return 'INFRA'
+        return 'OTHER'
+
+    def is_presentation(pkg: str) -> bool:
+        segments = set(pkg.lower().split('.'))
+        return bool(segments & PRESENTATION_KEYWORDS)
+
+    def is_persistence(pkg: str) -> bool:
+        segments = set(pkg.lower().split('.'))
+        return bool(segments & PERSISTENCE_KEYWORDS)
+
+    # Count cross-package edges and violations
+    total_cross = 0
+    violations = 0
+
+    for u, v in G.edges():
+        if u not in pkg_map or v not in pkg_map:
+            continue
+        pu, pv = pkg_map[u], pkg_map[v]
+        if pu == pv:
+            continue
+
+        total_cross += 1
+        lu = classify_package(pu)
+        lv = classify_package(pv)
+
+        # DIP violation: domain depends on infra
+        if lu == 'DOMAIN' and lv == 'INFRA':
+            violations += 1
+        # DIP violation: domain depends on service (strict DDD)
+        elif lu == 'DOMAIN' and lv == 'SERVICE':
+            violations += 1
+        # Layer bypass: presentation -> persistence (skips service)
+        elif is_presentation(pu) and is_persistence(pv):
+            violations += 1
+
+    if total_cross == 0:
+        return 1.0
+
+    return 1.0 - (violations / total_cross)
+
+
+def compute_structural_health(G: nx.DiGraph,
+                              internal_nodes: Optional[Set[str]] = None,
+                              packages: Optional[Set[str]] = None
+                              ) -> Dict[str, float]:
+    """Compute all three new structural metrics.
+
+    Returns dict with:
+      - pca: Package-level acyclicity [0,1]
+      - lvr: Layer violation ratio [0,1]
+      - combined: geometric mean of pca and lvr [0,1]
+    """
+    pca = compute_package_acyclicity(G, internal_nodes, packages)
+    lvr = compute_layer_violation_ratio(G, internal_nodes, packages)
+    combined = (pca * lvr) ** 0.5  # geometric mean
+
+    return {
+        'pca': round(pca, 4),
+        'lvr': round(lvr, 4),
+        'combined': round(combined, 4),
+    }
+
+
+# ---------------------------------------------------------------------------
 # Composite
 # ---------------------------------------------------------------------------
 

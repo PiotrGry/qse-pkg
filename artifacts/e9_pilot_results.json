@@ -1,0 +1,181 @@
+{
+  "experiment": "E9_Pilot_Battery",
+  "date": "2026-04-13T14:30:58.622250+00:00",
+  "pilots": [
+    {
+      "name": "jhipster",
+      "refactoring_type": "DIP: break domain\u2192config dependency",
+      "description": "Domain package imports from config (DIP violation). Extract domain port interfaces and move infrastructure coupling to a new 'infrastructure' package.",
+      "before": {
+        "agq_v3c": 0.6055,
+        "M": 0.8114,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6084,
+        "nodes": 541,
+        "edges": 1271,
+        "n_packages": 18
+      },
+      "after": {
+        "agq_v3c": 0.6043,
+        "M": 0.8041,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.61,
+        "nodes": 544,
+        "edges": 1273,
+        "n_packages": 20
+      },
+      "deltas": {
+        "agq_v3c": -0.0012,
+        "M": -0.0073,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0016
+      }
+    },
+    {
+      "name": "piggymetrics",
+      "refactoring_type": "Extract shared kernel",
+      "description": "Multiple services share similar domain concepts. Extract common DTOs/interfaces into a shared kernel package.",
+      "before": {
+        "agq_v3c": 0.5877,
+        "M": 0.7196,
+        "A": 1.0,
+        "S": 0.1736,
+        "C": 0.5221,
+        "CD": 0.5233,
+        "nodes": 265,
+        "edges": 758,
+        "n_packages": 38
+      },
+      "after": {
+        "agq_v3c": 0.5924,
+        "M": 0.735,
+        "A": 1.0,
+        "S": 0.1736,
+        "C": 0.5286,
+        "CD": 0.5251,
+        "nodes": 266,
+        "edges": 758,
+        "n_packages": 39
+      },
+      "deltas": {
+        "agq_v3c": 0.0047,
+        "M": 0.0154,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0065,
+        "CD": 0.0018
+      }
+    },
+    {
+      "name": "mall-learning",
+      "refactoring_type": "Break god packages, extract domain layer",
+      "description": "Controller imports directly from model (bypasses service). impl package depends on 6+ other packages (god package). Extract domain.model and domain.repository packages.",
+      "before": {
+        "agq_v3c": 0.5718,
+        "M": 0.7724,
+        "A": 1.0,
+        "S": 0.0975,
+        "C": 0.3793,
+        "CD": 0.6098,
+        "nodes": 413,
+        "edges": 967,
+        "n_packages": 33
+      },
+      "after": {
+        "agq_v3c": 0.5756,
+        "M": 0.7786,
+        "A": 1.0,
+        "S": 0.0975,
+        "C": 0.3893,
+        "CD": 0.6123,
+        "nodes": 417,
+        "edges": 970,
+        "n_packages": 35
+      },
+      "deltas": {
+        "agq_v3c": 0.0038,
+        "M": 0.0062,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.01,
+        "CD": 0.0025
+      }
+    },
+    {
+      "name": "javalin",
+      "refactoring_type": "Extract plugin interfaces from core",
+      "description": "Core package depends on apibuilder, http, testing, websocket. Extract Plugin/Extension interfaces so core defines contracts, not implementations.",
+      "before": {
+        "agq_v3c": 0.607,
+        "M": 0.747,
+        "A": 1.0,
+        "S": 0.263,
+        "C": 0.3,
+        "CD": 0.7251,
+        "nodes": 214,
+        "edges": 353,
+        "n_packages": 14
+      },
+      "after": {
+        "agq_v3c": 0.6159,
+        "M": 0.7407,
+        "A": 1.0,
+        "S": 0.263,
+        "C": 0.3482,
+        "CD": 0.7276,
+        "nodes": 216,
+        "edges": 353,
+        "n_packages": 16
+      },
+      "deltas": {
+        "agq_v3c": 0.0089,
+        "M": -0.0063,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0482,
+        "CD": 0.0025
+      }
+    },
+    {
+      "name": "eladmin",
+      "refactoring_type": "Extract service boundary interfaces",
+      "description": "Rest depends directly on impl. Multiple cross-cutting deps. Extract service interfaces between rest\u2192impl, create utility abstractions.",
+      "before": {
+        "agq_v3c": 0.4966,
+        "M": 0.6601,
+        "A": 0.9971,
+        "S": 0.0714,
+        "C": 0.3511,
+        "CD": 0.4035,
+        "nodes": 679,
+        "edges": 2430,
+        "n_packages": 55
+      },
+      "after": {
+        "agq_v3c": 0.5045,
+        "M": 0.6756,
+        "A": 0.9971,
+        "S": 0.0714,
+        "C": 0.3667,
+        "CD": 0.4116,
+        "nodes": 679,
+        "edges": 2397,
+        "n_packages": 55
+      },
+      "deltas": {
+        "agq_v3c": 0.0079,
+        "M": 0.0155,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0156,
+        "CD": 0.0081
+      }
+    }
+  ]
+}

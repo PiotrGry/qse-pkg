@@ -1,0 +1,207 @@
+{
+  "experiment": "E9b_Iterative_Pilot",
+  "repo": "jhipster/jhipster-sample-app",
+  "date": "2026-04-13T14:37:52.160107+00:00",
+  "iterations": [
+    {
+      "id": 1,
+      "problem": "CYKL domain->web.rest",
+      "description": "Move TestUtil from web.rest to test package — breaks domain->web.rest cycle (root cause of ~60 pkg cycles)",
+      "blind_score": 5,
+      "metrics_after": {
+        "agq_v3c": 0.6059,
+        "M": 0.8135,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6084,
+        "nodes": 541,
+        "edges": 1271,
+        "n_packages": 19,
+        "n_pkg_cycles": 13,
+        "dip_violations": 5,
+        "layer_bypasses": 16,
+        "god_packages": 3
+      },
+      "delta_vs_prev": {
+        "agq_v3c": 0.002,
+        "M": 0.0098,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0
+      },
+      "delta_vs_baseline": {
+        "agq_v3c": 0.002,
+        "M": 0.0098,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "problem": "DIP: domain->config",
+      "description": "Move Constants from config to domain — eliminates domain->config DIP violation",
+      "blind_score": 4,
+      "metrics_after": {
+        "agq_v3c": 0.6024,
+        "M": 0.796,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6084,
+        "nodes": 541,
+        "edges": 1271,
+        "n_packages": 19,
+        "n_pkg_cycles": 5,
+        "dip_violations": 4,
+        "layer_bypasses": 16,
+        "god_packages": 2
+      },
+      "delta_vs_prev": {
+        "agq_v3c": -0.0035,
+        "M": -0.0175,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0
+      },
+      "delta_vs_baseline": {
+        "agq_v3c": -0.0015,
+        "M": -0.0077,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "problem": "LAYER BYPASS: web.rest->repository",
+      "description": "Route REST controllers through service layer — fixed 6 controllers, eliminates web.rest->repository bypass",
+      "blind_score": 5,
+      "metrics_after": {
+        "agq_v3c": 0.6055,
+        "M": 0.8107,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6095,
+        "nodes": 545,
+        "edges": 1277,
+        "n_packages": 19,
+        "n_pkg_cycles": 5,
+        "dip_violations": 4,
+        "layer_bypasses": 10,
+        "god_packages": 2
+      },
+      "delta_vs_prev": {
+        "agq_v3c": 0.0031,
+        "M": 0.0147,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0011
+      },
+      "delta_vs_baseline": {
+        "agq_v3c": 0.0016,
+        "M": 0.007,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0011
+      }
+    },
+    {
+      "id": 4,
+      "problem": "GOD PKG: web.rest fan-out=10",
+      "description": "Split web.rest god package into web.rest.account and web.rest.admin",
+      "blind_score": 3,
+      "metrics_after": {
+        "agq_v3c": 0.6056,
+        "M": 0.8112,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6095,
+        "nodes": 545,
+        "edges": 1277,
+        "n_packages": 21,
+        "n_pkg_cycles": 5,
+        "dip_violations": 4,
+        "layer_bypasses": 10,
+        "god_packages": 4
+      },
+      "delta_vs_prev": {
+        "agq_v3c": 0.0001,
+        "M": 0.0005,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0
+      },
+      "delta_vs_baseline": {
+        "agq_v3c": 0.0017,
+        "M": 0.0075,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0,
+        "CD": 0.0011
+      }
+    },
+    {
+      "id": 5,
+      "problem": "PORTS: service->security/config",
+      "description": "Extract SecurityPort and ConfigPort interfaces — service layer no longer depends directly on security/config",
+      "blind_score": 3,
+      "metrics_after": {
+        "agq_v3c": 0.6117,
+        "M": 0.8204,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4412,
+        "CD": 0.6114,
+        "nodes": 549,
+        "edges": 1280,
+        "n_packages": 22,
+        "n_pkg_cycles": 4,
+        "dip_violations": 4,
+        "layer_bypasses": 10,
+        "god_packages": 6
+      },
+      "delta_vs_prev": {
+        "agq_v3c": 0.0061,
+        "M": 0.0092,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0193,
+        "CD": 0.0019
+      },
+      "delta_vs_baseline": {
+        "agq_v3c": 0.0078,
+        "M": 0.0167,
+        "A": 0.0,
+        "S": 0.0,
+        "C": 0.0193,
+        "CD": 0.003
+      }
+    }
+  ],
+  "baseline": {
+    "agq_v3c": 0.6039,
+    "M": 0.8037,
+    "A": 1.0,
+    "S": 0.1856,
+    "C": 0.4219,
+    "CD": 0.6084,
+    "nodes": 541,
+    "edges": 1271,
+    "n_packages": 18,
+    "n_pkg_cycles": 67,
+    "dip_violations": 5,
+    "layer_bypasses": 16,
+    "god_packages": 3
+  }
+}
