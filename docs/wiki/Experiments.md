@@ -70,3 +70,20 @@
 - Split-half instability: all variants Δ>0.15 between halves
 - Recommendation: close weight optimization, focus on GT expansion or new components
 - Commit: (P4 results committed)
+
+## E13e: Shopizer QSE-Track Pilot ✅
+
+**Goal**: Validate QSE-Track by refactoring Shopizer (1204 classes, 336 packages) until metrics show measurable change.
+
+**Results** (April 2026):
+- 9 iterations, ~480 structural changes (cycle-breaking, package consolidation, god class analysis)
+- PCA: 0.948 → 1.000 (Δ+0.052) — **target >0.03 met**
+- SCC: 17 → 0 — **target <10 met**
+- SH: 0.974 → 1.000 (perfect structural health)
+- Panel: 4.0 → 4.8/10 (+0.8)
+- **M removed from QSE-Track**: Louvain variance (σ=0.005, range=0.028) > refactoring signal (mean Δ=+0.007)
+- Commit: f71b8ff
+
+## E13f: Pilot 2 — QSE Fix + Panel (in progress)
+
+**Goal**: Find a structurally weak Java project, fix it, measure QSE-Track response + architect panel delta.

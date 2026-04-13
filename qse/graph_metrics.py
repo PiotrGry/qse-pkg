@@ -972,14 +972,21 @@ def compute_qse_track(
     intended for CI/CD pipelines and before/after comparison.
 
     Tracked signals:
-      - M (modularity):  only significant within-repo metric (ρ = 0.426*, E10b)
       - PCA (package acyclicity): reacts to cycle-breaking
       - dip_violations:  count of DIP/layer-bypass edges
       - largest_scc:     size of largest package-level strongly connected component
 
+    Removed (E13e): M (modularity) was dropped because Louvain community
+    detection variance (σ=0.005, range=0.028 across seeds) exceeds the
+    typical within-repo refactoring signal (mean Δ=+0.007).  External
+    dependency nodes (e.g. java.util, javax.persistence) create shared
+    hubs that dominate community structure, making M insensitive to
+    package-level changes.  M remains in QSE-Rank (Layer 1) where it
+    works well for cross-repo comparison.
+
     Root cause (E11): C and S are class-level aggregates with literally
     zero delta (Δ = 0.0) across package refactoring iterations in all 5
-    tested repos. Only M and structure-level metrics respond.
+    tested repos.  Only structure-level metrics respond.
 
     NOT suitable for cross-repo benchmarking (use compute_qse_rank).
 
@@ -989,10 +996,8 @@ def compute_qse_track(
         packages: set of package prefixes (optional filter)
 
     Returns:
-        dict with keys: M, PCA, dip_violations, largest_scc
+        dict with keys: PCA, dip_violations, largest_scc
     """
-    m = compute_modularity(G)
-
     # PCA + largest SCC
     pca = compute_package_acyclicity(G, internal_nodes, packages)
     largest_scc = _compute_largest_pkg_scc(G, internal_nodes, packages)
@@ -1001,7 +1006,6 @@ def compute_qse_track(
     dip = _count_dip_violations(G, internal_nodes, packages)
 
     return {
-        "M": round(m, 4),
         "PCA": round(float(pca), 4),
         "dip_violations": int(dip),
         "largest_scc": int(largest_scc),

@@ -98,7 +98,7 @@ def full_scan(repo_path: str, label: str = "scan") -> dict:
     # Print summary
     print(f"\n  === QSE Three-Layer Results ===")
     print(f"  Layer 1 — QSE-Rank:  {qse_rank:.4f} / 3.0")
-    print(f"  Layer 2 — QSE-Track: M={track['M']:.4f}  PCA={track['PCA']:.4f}  "
+    print(f"  Layer 2 — QSE-Track: PCA={track['PCA']:.4f}  "
           f"dip={track['dip_violations']}  scc={track['largest_scc']}")
     print(f"  Layer 3 — Diagnostic:")
     print(f"    C={diag['C']:.4f} (p{diag['C_percentile']:.0%})  "
@@ -116,8 +116,8 @@ def compute_deltas(before: dict, after: dict) -> dict:
     """Compute deltas between two scan results."""
     deltas = {}
 
-    # QSE-Track deltas
-    for key in ["M", "PCA"]:
+    # QSE-Track deltas (M removed in E13e — Louvain variance > signal)
+    for key in ["PCA"]:
         deltas[f"track_{key}"] = round(after["qse_track"][key] - before["qse_track"][key], 4)
     deltas["track_dip"] = after["qse_track"]["dip_violations"] - before["qse_track"]["dip_violations"]
     deltas["track_scc"] = after["qse_track"]["largest_scc"] - before["qse_track"]["largest_scc"]

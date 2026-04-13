@@ -118,19 +118,13 @@ class TestQSETrack:
     """Test compute_qse_track behavior."""
 
     def test_returns_required_keys(self):
-        """Must return M, PCA, dip_violations, largest_scc."""
+        """Must return PCA, dip_violations, largest_scc (M removed in E13e)."""
         G = _make_layered_graph()
         result = compute_qse_track(G)
-        assert "M" in result
         assert "PCA" in result
         assert "dip_violations" in result
         assert "largest_scc" in result
-
-    def test_m_in_valid_range(self):
-        """Modularity should be in [0, 1]."""
-        G = _make_layered_graph()
-        result = compute_qse_track(G)
-        assert 0.0 <= result["M"] <= 1.0
+        assert "M" not in result, "M was removed from QSE-Track in E13e"
 
     def test_acyclic_graph_no_scc(self):
         """Acyclic graph should have largest_scc = 0."""
