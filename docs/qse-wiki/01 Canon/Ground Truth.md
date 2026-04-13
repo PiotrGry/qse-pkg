@@ -63,6 +63,31 @@ Expanded GT (n=59) — gt_java_expanded.json
   Wszystkie testy istotności: p<0.01 ✓
 ```
 
+### Strict Protocol GT (n=38)
+
+Zaostrzone filtry panelowe eliminujące „szarą strefę" (repos z panel score bliskim progu 6.0):
+
+| Filtr | Wartość |
+|---|---|
+| Panel score POS | ≥ 7.0 |
+| Panel score NEG | ≤ 3.5 |
+| Sigma (zgodność panelu) | < 2.0 |
+| Zakres nodes | 100–5000 |
+| **Wynik:** | **n=38 (20 POS, 18 NEG)** |
+
+Wyniki na strict GT:
+
+| Statystyka | Strict GT (n=38) | Full GT (n=59) |
+|---|---|---|
+| Partial r | **0.507** (p=0.001) | 0.447 (p=0.0004) |
+| MW p-value | **0.0004** | 0.000221 |
+| C partial r | **0.571** (p=0.0002) | — |
+| S partial r | **0.410** (p=0.011) | — |
+
+**Kluczowy wniosek:** Strict GT daje silniejsze wyniki (partial_r=0.507 vs 0.447), potwierdzając że „szara strefa" repos (panel 3.5–7.0) rozmywa sygnał. C jest najsilniejszą pojedynczą składową (partial_r=0.571).
+
+Plik: `artifacts/gt_java_strict_v3.json`
+
 ### Per-komponent dyskryminacja (GT n=59)
 
 | Składowa | Śr. POS | Śr. NEG | Δ | MW p | Istotność |
@@ -117,8 +142,8 @@ saleor:     239/3763 węzłów na depth≤2 → flat_score = 0.936 (dobra hierar
 
 flat_score jest **jedynym sygnałem dla Pythona który nie jest odwrócony**:
 - MW p=0.007 (dwustronna istotność)
-- Partial r = +0.414 (p=0.023, po kontroli rozmiaru)
-- Partial r = +0.443 (p=0.017, szerszy zbiór)
+- Partial r = +0.484 (p=0.007, po kontroli rozmiaru) — **zaktualizowane na większym zbiorze**
+- Kierunek poprawny: POS repos mają wyższy flat_score
 
 ```
 AGQ_v3c (Python) = 0.15·M + 0.05·A + 0.20·S + 0.10·C + 0.15·CD + 0.35·flat_score
@@ -132,6 +157,14 @@ AGQ_v3c (Python) = 0.15·M + 0.05·A + 0.20·S + 0.10·C + 0.15·CD + 0.35·flat
 | Typ B: Legacy monolith z hierarchią | buildbot, Medusa, SickChill | ≈ 0.950 | < 3.0 | ❌ Nie |
 
 buildbot (panel=2.75) ma flat_ratio=0.054 — lepszy niż większość POS repozytoriów. Zbudowany na Twisted (2005) z głęboką hierarchią pakietów, ale fatalną architekturą wewnętrzną (god modules, mixed concerns). flat_score go nie wykrywa — potrzeba metryki semantycznej (rozmiar pliku, fan-out god modules).
+
+### God-module metryki (Type E — kwiecień 2026)
+
+Zbadano metryki god-module dla Pythona: god_ratio, max_fan_out, avg_file_size. Wynik:
+- **Kierunek poprawny** (POS < NEG, zgodnie z oczekiwaniem)
+- **Żadna nie osiąga istotności statystycznej** (p > 0.10)
+- **buildbot false negative potwierdzona** (flat_score=0.946)
+- Rekomendacja: god-module metryki jako eksperymentalna flaga, **nie** jako składowa formuły
 
 ---
 

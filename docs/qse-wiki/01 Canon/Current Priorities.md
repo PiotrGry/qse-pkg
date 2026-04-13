@@ -7,13 +7,13 @@ language: pl
 
 ## Prostymi słowami
 
-To jest lista „co robimy teraz i co jest następne". Priorytety są numerowane P0–P4 — P0 to było najważniejsze (już zrobione), P4 to następny konkretny krok. Poza nimi jest lista planowanych badań bez terminu.
+To jest lista „co robimy teraz i co jest następne". Priorytety P0–P4 zostały wszystkie ukończone. Obecna faza to wdrożenie: mamy działające narzędzie CLI (qse-archtest), specyfikację testów architektury, i pilotaż na prawdziwych repozytoriach.
 
 ---
 
 ## Szczegółowy opis
 
-### Status zadań P0–P4 (kwiecień 2026)
+### Status zadań P0–P4 (kwiecień 2026) — WSZYSTKIE UKOŃCZONE
 
 | ID | Zadanie | Status | Szczegóły |
 |---|---|---|---|
@@ -21,7 +21,7 @@ To jest lista „co robimy teraz i co jest następne". Priorytety są numerowane
 | **P1** | Jolak cross-validation | ✅ ZROBIONE | 4/5 POTWIERDZONE |
 | **P2** | Badanie god_class_ratio | ✅ ZROBIONE | Nie dodajemy do formuły |
 | **P3** | Analiza false-negative Django | ✅ ZROBIONE | Potrzeba lepszego wykrywania, deferred |
-| **P4** | Re-run Java-S na rozszerzonym GT | ⏳ NASTĘPNY KROK | Odblokowany przez P0 |
+| **P4** | Re-run Java-S na rozszerzonym GT | ✅ ZROBIONE | v3c POTWIERDZONE, S monotonicity broken |
 
 ---
 
@@ -67,22 +67,57 @@ To jest lista „co robimy teraz i co jest następne". Priorytety są numerowane
 - Django używa głęboko zagnieżdżonych `__init__.py` jako fasad — skaner nie śledzi tych zależności
 - Deferred — nie blokuje głównej linii badań
 
+### P4 — Re-run Java-S na rozszerzonym GT ✅
+
+**Cel:** Sprawdzić, czy wagi v3c (equal 0.20) są optymalne na rozszerzonym GT (n=59).
+
+**Wykonane:**
+- Przetestowano 18 wariantów wag na expanded GT (n=59)
+- **v3c (equal 0.20) POTWIERDZONE jako zwycięzca** — żaden wariant nie wychodzi poza bootstrap CI
+- **S monotonicity ZŁAMANA** na n=59: ρ=0.00 (była 1.00 na n=29)
+- Krzywa S ma kształt odwróconego U — peak przy S=0.20
+- Split-half: WSZYSTKIE warianty niestabilne (Δ>0.15) — krajobraz płaski [0.40, 0.49]
+- CI zawężone 40% (0.55→0.33) ale zbyt szerokie do rozróżnienia wariantów
+- Rekomendacja: **zamknąć optymalizację wag, v3c jest wystarczająco dobre**
+- Wariant rezerwowy: C_boost (M10/A10/S20/C30/CD30) — partial_r=0.484, w CI v3c
+
+**Commit:** 5566912
+
+**Dodatkowe odkrycia (Strict Protocol GT n=38):**
+- Filtry: panel≥7.0/≤3.5, σ<2.0, 100≤nodes≤5000 → n=38 (20 POS, 18 NEG)
+- Silniejsze wyniki: partial_r=0.507 (p=0.001), MW p=0.0004
+- C najsilniejsza: partial_r=0.571 (p=0.0002)
+- S istotna na strict GT: partial_r=0.410 (p=0.011)
+
 ---
 
-## P4 — Re-run Java-S na rozszerzonym GT (NASTĘPNY KROK)
+## Obecna faza: wdrożenie i pilotaż
 
-**Cel:** Sprawdzić, czy konfiguracja wag z eksperymentu Java-S (znaleziona na n=29) jest optymalna też na n=59. Możliwe że rozszerzone GT ujawni lepszy wariant wag lub potwierdzi v3c z równymi wagami 0.20.
+### Ukończone deliverables (kwiecień 2026)
 
-**Status:** ⏳ Zablokowany przez P0 → teraz odblokowany
+| Deliverable | Status | Opis |
+|---|---|---|
+| Test Architecture v1 Spec | ✅ | Specyfikacja systemu testów: progi, fitness functions, pipeline |
+| qse-archtest CLI | ✅ | Narzędzie CLI: skan → AGQ → green/amber/red + insights |
+| GitHub Action | ✅ | Reusable action + 6 wzorców użycia |
+| Pilot Plan Template | ✅ | Szablon pilotażu: OSS + internal |
+| Claims & Evidence v3.0 | ✅ | 14 claims z kwalifikacjami i dowodami |
+| Threats to Validity v3.0 | ✅ | Nowe: IV-06 (S monotonicity), SC-07 (strict protocol) |
 
-**Protokół:**
-- Maksymalnie 5 iteracji (niezmiennik N7)
-- Stop po 2 kolejnych iteracjach bez poprawy
-- Walidacja na Jolak (niezależny zbiór) po każdej iteracji
-- Brak modeli nieliniowych (niezmiennik N5)
-- Brak brute-force (niezmiennik N6)
+### Aktualny priorytet: pilotaż qse-archtest
 
-**Konfiguracja startowa:** v3c z równymi wagami 0.20 (M, A, S, C, CD) — wygrała na n=29.
+**Pilot 1 — Before/After refactoring** ✅ ZAKOŃCZONY (kwiecień 2026):
+- Repo: `colinbut/monolith-enterprise-application` (fork → `PiotrGry/qse-pilot-enterprise`)
+- Baseline: AGQ=0.574 GREEN, Expert Panel=3.0/10 (NEG) → **BLIND SPOT**
+- Refactoring: 19 plików, +451/-129 linii (clean DIP, port/adapter, god class→composition)
+- Po refactoringu: AGQ=0.576 GREEN → **delta = +0.002 (w granicach szumu)**
+- Kluczowy wniosek: S nie reaguje na zmianę kierunków zależności, blind spot nierozwiązany
+- Szczegóły: [[Pilot OSS]]
+
+**Następne kroki pilotażu:**
+1. Multi-repo scan na repozytoriach spoza GT (rozkład statusów, false positive rate)
+2. Investigation: alternatywna metryka dependency-direction dla S
+3. Investigation: detection of "fake layering" (interface/impl without real separation)
 
 ---
 
@@ -95,7 +130,6 @@ To jest lista „co robimy teraz i co jest następne". Priorytety są numerowane
 | **Walidacja na projektach przemysłowych** | Czy wyniki z OSS generalizują się na closed-source? | Cały benchmark to open-source. Potrzeba dostępu do projektów komercyjnych. |
 | **Expert labeling** | Ocena projektów przez prawdziwych architektów oprogramowania | Pilotaż planowany. |
 | **Temporal AGQ** | Analiza driftu architektury przez historię git, per commit | Wymaga parsowania historii commitów. |
-| **Cykl życia naruszenia** | Jak długo żyje naruszenie architektoniczne zanim zostanie naprawione? | Wymaga longitudinalnego badania na dużym zbiorze. |
 | **Normalizacja kategorii projektu** | Osobne normy dla utility libraries, aplikacji, platform | Utility libraries (Guava) mają inną „właściwą" architekturę niż aplikacje domenowe. |
 
 > 🔴 **Warstwa Predictor nie istnieje w obecnej wersji systemu.** To planowany kierunek badawczy, nie zaplanowana funkcja do wdrożenia w konkretnym terminie.
@@ -109,10 +143,13 @@ Stan walidacji AGQ (kwiecień 2026):
 
 Java v3c:
   n=59 · MW p=0.000221 · AUC=0.767 · Jolak 4/5 ✓
-  Status: WYSOKA ISTOTNOŚĆ STATYSTYCZNA
+  P4 complete: v3c confirmed, S monotonicity broken
+  Strict GT (n=38): partial_r=0.507, MW p=0.0004
+  Status: WYSOKA ISTOTNOŚĆ STATYSTYCZNA, FORMUŁA ZAMROŻONA
 
 Python v3c:
   n=30 · flat_score dominuje (waga 0.35)
+  God-module metryki: kierunek poprawny, ns (p>0.10)
   Status: WSTĘPNA WALIDACJA — wymaga rozszerzenia
 
 Go:

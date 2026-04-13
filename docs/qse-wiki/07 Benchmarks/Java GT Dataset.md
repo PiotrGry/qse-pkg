@@ -29,6 +29,24 @@ Zbiór składa się z:
 
 ---
 
+## Strict Protocol GT (n=38) — NOWE
+
+Zaostrzone filtry panelowe eliminujące repos z „szarej strefy":
+
+| Parametr | Wartość |
+|---|---|
+| Plik źródłowy | `gt_java_strict_v3.json` |
+| Filtry | panel≥7.0 (POS), ≤3.5 (NEG), σ<2.0, 100≤nodes≤5000 |
+| Łączna liczba repo | **38** |
+| POS | **20** |
+| NEG | **18** |
+| Partial r | **0.507** (p=0.001) |
+| MW p-value | **0.0004** |
+
+Strict GT daje silniejsze wyniki — 19 repos z „szarej strefy" (panel 3.5–7.0) zostało wyeliminowanych, co zmniejsza szum w danych.
+
+---
+
 ## Dyskryminacja per komponent
 
 | Komponent | Średnia POS | Średnia NEG | Δ | MW p | Istotność |
@@ -40,6 +58,10 @@ Zbiór składa się z:
 | Coupling Density (CD) | 0.454 | 0.299 | +0.155 | 0.004 | ** |
 
 **Kluczowy wniosek:** C i CD są najsilniejszymi indywidualnymi dyskryminatorami. M (Modularity) samodzielnie nie jest istotna statystycznie.
+
+**Na Strict GT (n=38):**
+- C partial_r = 0.571 (p=0.0002) — najsilniejsza
+- S partial_r = 0.410 (p=0.011) — istotna (na full GT borderline)
 
 ---
 
@@ -114,6 +136,10 @@ timeline
             : +30 repo (16 POS, 14 NEG)
             : n=59, MW p=0.000221
             : commit b336496
+    2026-04 : P4 Java-S Expanded
+            : v3c CONFIRMED na n=59
+            : S monotonicity BROKEN
+            : Strict GT n=38: partial_r=0.507
 ```
 
 Gap zmniejszył się z 0.115 do 0.085 przy rozszerzeniu GT (oczekiwane — większa różnorodność corpus). Wszystkie testy istotności pozostają p<0.01.
@@ -126,7 +152,7 @@ Gap zmniejszył się z 0.115 do 0.085 przy rozszerzeniu GT (oczekiwane — więk
 AGQ_v3c (Java) = 0.20·M + 0.20·A + 0.20·S + 0.20·C + 0.20·CD
 ```
 
-Wagi v3c (equal 0.20) wyłonione jako najlepszy wynik eksperymentu Java-S (3 iteracje, 13 wariantów). Wariant rezerwowy: v2 (0.30/0.20/0.15/0.15/0.20).
+Wagi v3c (equal 0.20) wyłonione jako najlepszy wynik eksperymentu Java-S (3 iteracje, 13 wariantów). Potwierdzone eksperymentem P4 na expanded GT (n=59, 18 wariantów). Wariant rezerwowy: C_boost (0.10/0.10/0.20/0.30/0.30). Wagi zamrożone.
 
 ---
 
@@ -138,4 +164,4 @@ Wagi v3c (equal 0.20) wyłonione jako najlepszy wynik eksperymentu Java-S (3 ite
 - [[08 Glossary/GT|GT]] — metodologia ground truth
 - [[08 Glossary/Panel Score|Panel Score]] — jak działa ocena panelowa
 - [[08 Glossary/Mann-Whitney|Mann-Whitney]] — użyty test statystyczny
-- [[05 Experiments/E1 Stability Hierarchy|E1 Stability Hierarchy]] — eksperymenty na GT Java
+- [[05 Experiments/E7 P4 Java-S Expanded|E7 P4 Java-S Expanded]] — eksperyment P4

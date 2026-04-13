@@ -8,7 +8,7 @@ language: pl
 
 ## Prostymi słowami
 
-QSE to nie tylko pomysł. Ma już działające formuły, przetestowane hipotezy i udowodnione wyniki na 558 repozytoriach. Niektóre pytania są już rozstrzygnięte z solidnymi danymi. Inne są nadal otwarte i czekają na kolejne eksperymenty. Ta strona mówi wprost, co jest gdzie.
+QSE jest w fazie wdrożenia i pilotażu. Formuła AGQv3c Java jest potwierdzona eksperymentalnie. Pierwsze pilotaże na żywych repozytoriach są zakończone — wynik: narzędzie CLI działa, CI/CD integracja gotowa, ale zidentyfikowano istotny blind spot (projekt z kiepską architekturą dostaje GREEN) i niską czułość na refactoring (delta AGQ w granicach szumu po istotnych zmianach architektonicznych).
 
 ---
 
@@ -23,6 +23,8 @@ QSE to nie tylko pomysł. Ma już działające formuły, przetestowane hipotezy 
 | Skaner Rust (Python, Java, Go) | ✅ Działający, 7–46× szybszy | `qse-core/` |
 | Skaner Python/Java (czysty Python, tree-sitter) | ✅ Działający | `qse/scanner.py`, `qse/java_scanner.py` |
 | CLI: `qse agq`, `qse discover` | ✅ Działają | `qse/cli.py` |
+| **qse-archtest CLI** | ✅ **NOWE** | `qse/archtest.py` — skan → AGQ → green/amber/red + insights |
+| **GitHub Action** | ✅ **NOWE** | `.github/workflows/archtest.yml` — reusable action |
 | QSE_test (metryki jakości testów) | ✅ Zaimplementowany | `qse/test_quality.py` |
 | Pre-commit / CI/CD integracja | ✅ Dostępna przez CLI | — |
 | flat_score dla Pythona | ✅ Zaimplementowany | `qse/flat_metrics.py` |
@@ -43,7 +45,27 @@ Java GT — expanded (n=59, 31 POS / 28 NEG)
   AUC-ROC        = 0.767
 ```
 
-Metodologia: 4 symulowanych ekspertów ocenia repozytoria w skali 1–10. Panel score = średnia 4 ocen. σ ≤ 2.0 (wymóg zgodności). Label: panel ≥ 6.0 → POS.
+#### P4 — v3c POTWIERDZONE (kwiecień 2026)
+
+```
+Eksperyment P4 na expanded GT (n=59):
+  18 wariantów wag testowanych
+  v3c (equal 0.20) = ZWYCIĘZCA
+  Żaden wariant nie poza bootstrap CI
+  S monotonicity ZŁAMANA (ρ=0.00, była 1.00 na n=29)
+  Krajobraz wag płaski [0.40, 0.49]
+  → WAGI ZAMROŻONE
+```
+
+#### Strict Protocol GT (n=38)
+
+```
+Zaostrzone filtry: panel≥7.0/≤3.5, σ<2.0, 100≤nodes≤5000
+  n=38 (20 POS, 18 NEG)
+  Partial r = 0.507 (p=0.001)  ← silniejsze niż full GT
+  MW p = 0.0004
+  C partial_r = 0.571 (p=0.0002) ← najsilniejsza składowa
+```
 
 #### Jolak cross-validation (8 repozytoriów)
 
@@ -59,15 +81,32 @@ Metodologia: 4 symulowanych ekspertów ocenia repozytoria w skali 1–10. Panel 
 - Language bias: Go cohesion=1.0 zawsze (strukturalne), Java cohesion=0.38 średnio
 - Go: 0% projektów z cyklami; Java: 71% projektów z cyklami; Python: 4%
 
-### Aktualne priorytety — tabela P0–P4
+#### Python Type E — god-module metryki
 
-| ID | Zadanie | Status | Szczegóły |
-|---|---|---|---|
-| **P0** | Rozszerzenie Java GT do n≥50 | ✅ ZROBIONE | n=59, commit b336496 |
-| **P1** | Jolak cross-validation | ✅ ZROBIONE | 4/5 POTWIERDZONE |
-| **P2** | Badanie god_class_ratio | ✅ ZROBIONE | Nie dodajemy do formuły |
-| **P3** | Analiza false-negative Django | ✅ ZROBIONE | Potrzeba lepszego wykrywania |
-| **P4** | Re-run Java-S na rozszerzonym GT | ⏳ NASTĘPNY KROK | Odblokowany przez P0 |
+- God-module metryki (god_ratio, max_fan_out, avg_file_size): kierunek poprawny, ale ns (p>0.10)
+- buildbot false negative potwierdzona (flat_score=0.946)
+- Rekomendacja: flaga eksperymentalna, nie składowa formuły
+
+### Wszystkie priorytety P0–P4 ukończone
+
+| ID | Zadanie | Status |
+|---|---|---|
+| **P0** | Rozszerzenie Java GT do n≥50 | ✅ n=59 |
+| **P1** | Jolak cross-validation | ✅ 4/5 POTWIERDZONE |
+| **P2** | Badanie god_class_ratio | ✅ Nie dodajemy |
+| **P3** | Analiza false-negative Django | ✅ Deferred |
+| **P4** | Re-run Java-S na expanded GT | ✅ v3c confirmed |
+
+### Obecna faza: wdrożenie i pilotaż
+
+| Deliverable | Status |
+|---|---|
+| Test Architecture v1 Spec | ✅ gotowy |
+| qse-archtest CLI (green/amber/red) | ✅ gotowy |
+| GitHub Action (reusable) | ✅ gotowy |
+| Pilot Plan Template | ✅ gotowy |
+| Claims & Evidence v3.0 | ✅ 14 claims |
+| Threats to Validity v3.0 | ✅ zaktualizowane |
 
 ### Co jest planowane badawczo (jeszcze nie istnieje)
 
@@ -79,13 +118,11 @@ Metodologia: 4 symulowanych ekspertów ocenia repozytoria w skali 1–10. Panel 
 | Expert labeling z prawdziwymi architektami | Pilotaż w planie |
 | Temporal AGQ (analiza driftu przez git) | Wymaga analizy historii commitów |
 
-> 🔴 **Warstwa Predictor nie istnieje w obecnej wersji systemu.** AGQ jest narzędziem *diagnostycznym*, nie predykcyjnym. To planowany kierunek badawczy, nie zaplanowana funkcja do wdrożenia w konkretnym terminie.
+> 🔴 **Warstwa Predictor nie istnieje w obecnej wersji systemu.** AGQ jest narzędziem diagnostycznym, nie predykcyjnym. To planowany kierunek badawczy, nie zaplanowana funkcja do wdrożenia w konkretnym terminie.
 
 ---
 
 ## Definicja formalna — wyniki per-komponent (Java GT n=59)
-
-Tabela dyskryminacji per komponent — które składowe AGQ najlepiej oddzielają POS od NEG:
 
 | Składowa | Śr. POS | Śr. NEG | Δ | MW p | Istotność |
 |---|---|---|---|---|---|
@@ -107,9 +144,9 @@ Tabela dyskryminacji per komponent — które składowe AGQ najlepiej oddzielaj�
 
 ## Stan aktualny w jednym zdaniu
 
-> QSE ma działające narzędzia, empirycznie zwalidowany Ground Truth dla Javy (n=59, p<0.001) i potwierdzenie przez Jolak cross-validation (4/5). Następnym krokiem jest P4: re-run eksperymentu Java-S na rozszerzonym GT.
+> QSE ma potwierdzoną formułę (v3c, 18 wariantów testowanych), działające narzędzie CLI (qse-archtest), i pierwszy pilotaż zakończony. Kluczowy finding: AGQ ma blind spot na "fake layering" (interface/impl bez realnej separacji) — wymaga investigacji nowej metryki dependency-direction.
 
 ---
 
 ## Zobacz też
-[[Current Priorities]] · [[Ground Truth]] · [[Hypotheses Register]] · [[Experiments Index]] · [[Roadmap]]
+[[Current Priorities]] · [[Ground Truth]] · [[Hypotheses Register]] · [[Experiments Index]] · [[E7 P4 Java-S Expanded]] · [[Pilot OSS]]

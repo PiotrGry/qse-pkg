@@ -24,6 +24,8 @@ Eksperymenty QSE mają ściśle określony protokół: maksymalnie 5 iteracji, s
 | [[E5 Namespace Metrics\|E5]] | NSdepth i NSgini | **częściowy** | NSdepth partial r=+0.698 p=0.008 dla Javy (silny), dla Pythona r=+0.433 ns (słaby); NSgini = brak sygnału | [[O4 Namespace Metrics for Python\|O4]] |
 | [[E6 flatscore\|E6]] | flatscore dla Pythona | **potwierdzony** | partial r=+0.670 p<0.01, MW p=0.004; wchodzi do AGQ v3c Python z wagą 0.35 | [[W10 flatscore Predicts Python Quality\|W10]] |
 | [[PCA Weights\|PCA]] | Wagi PCA (równe eigenvalues) | **zakończony** | Wszystkie eigenvalues prawie równe → uniform 0.20; brak naturalnej hierarchii wymiarów | — |
+| [[E7 P4 Java-S Expanded\|E7]] | **P4 Java-S na expanded GT** | **zakończony** | v3c POTWIERDZONE na n=59. S monotonicity ZŁAMANA (ρ=0.00). Krajobraz płaski. Zamknięta optymalizacja wag. | — |
+| [[Pilot OSS\|Pilot-1]] | **Pilot Before/After refactoring** | **zakończony** | AGQ delta=+0.002 (szum). S=0.19 niezmienione. Blind spot (GREEN vs NEG) nierozwiązany. CI/CD działa. | — |
 
 ### Chronologia
 
@@ -38,6 +40,8 @@ timeline
     Turn 35-36 : E5 NSdepth / NSgini
     Turn 39 : E6 flatscore — odkrycie dla Pythona
     Turn 38-41 : PCA weights — equal 0.20
+    2026-04 : E7 P4 Java-S — v3c confirmed, S monotonicity broken
+    2026-04 : Pilot-1 Before/After — delta +0.002 (szum), blind spot nierozwiązany
 ```
 
 ### Związki między eksperymentami
@@ -50,6 +54,9 @@ graph TD
     E6["E6: flatscore"] --> AGQv3c["AGQ v3c Python\n(flat_score × 0.35)"]
     PCA["PCA Weights\n(equal 0.20)"] --> AGQv3a["AGQ v3a = v3c Java\n(równe wagi)"]
     E4["E4: GT panel n=14"] --> W4["W4: AGQv2 > AGQv1"]
+    E7["E7: P4 Java-S\n(v3c CONFIRMED)"] --> v3cFinal["v3c Java ★\n(wagi zamrożone)"]
+    PCA --> v3cFinal
+    E4 --> v3cFinal
 ```
 
 ## Definicja formalna
@@ -67,3 +74,5 @@ Protokół falsyfikacji eksperymentów QSE:
 - [[W1 BLT Correlation]] — dlaczego BLT jest złym GT
 - [[W4 AGQv2 Beats AGQv1 on Java GT]] — główny wynik potwierdzony
 - [[Hypotheses Register]] — powiązane hipotezy
+- [[E7 P4 Java-S Expanded]] — najnowszy eksperyment
+- [[Pilot OSS]] — pilotaż before/after refactoring
