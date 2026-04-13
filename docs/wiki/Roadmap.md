@@ -40,19 +40,32 @@
 - Split-half instability: all variants unstable — landscape is flat
 - Recommendation: close weight optimization
 
+### Full Plan Execution (April 2026)
+- Strict GT created: n=38 (20 POS, 18 NEG) with protocol-compliant filters
+- Java-S variants on strict GT: v3c confirmed, C_boost best but within CI
+- Python Type E: god-module metrics correct direction but ns
+- Updated Claims & Evidence (v3.0) + Threats to Validity (v3.0)
+- Test Architecture v1 spec written (thresholds, FF1-FF3)
+- qse-archtest CLI built + GitHub Action workflows
+- Pilot plan template created (OSS + internal)
+- Python GT candidates (15 repos) identified for expansion
+
 ## Future Work
 
+- Expand Python GT beyond n=30 (15 candidates ready)
 - Utility library normalization for CD
 - Architecture category stratification
 - Cross-language formula unification (Java + Python)
 - GT expansion to n>200 (if weight discrimination needed)
 - Explore 6th component with novel discriminative power
+- Run OSS + internal pilots with qse-archtest
 
 ## Git History (perplexity branch)
 
 | Commit | Description |
 |--------|-------------|
-| (new) | feat: P4 Java-S experiment results |
+| 3cb9713 | feat: full plan — docs, CLI, Action, strict GT, pilot template |
+| (prev) | feat: P4 Java-S experiment results |
 | b336496 | feat: expanded Java GT to n=59 |
 | aa85608 | feat: pure-Python Java scanner + Jolak cross-validation |
 | d4589d2 | (remote sync) |
