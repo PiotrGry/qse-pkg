@@ -1,0 +1,28 @@
+{
+  "experiment": "E12b_LOOCV",
+  "n": 52,
+  "loocv": {
+    "QSE_Rank_LOO": {
+      "rho": 0.4145,
+      "p": 0.0023,
+      "auc": 0.76
+    },
+    "AGQ": {
+      "rho": 0.2718,
+      "p": 0.0513,
+      "auc": 0.67
+    }
+  },
+  "kfold": {
+    "QSE_Rank_5fold_mean_rho": 0.417,
+    "AGQ_5fold_mean_rho": 0.2718
+  },
+  "split_50_50": {
+    "QSE_Rank_mean_rho": 0.4065,
+    "AGQ_mean_rho": 0.2663
+  },
+  "permutation": {
+    "QSE_Rank_perm_p": 0.0018,
+    "AGQ_perm_p": 0.0268
+  }
+}
