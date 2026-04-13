@@ -282,14 +282,17 @@ class TestCohesionGolden:
         assert compute_cohesion([5]) == pytest.approx(0.0)
 
     def test_mixed_cohesion(self):
-        """Mix of good and bad classes."""
-        score = compute_cohesion([1, 1, 1, 5])
+        """Mix of moderate and bad classes yields intermediate score.
+        Uses LCOM4 > 1 (non-trivial classes that aren't skipped)
+        and < 5 (not capped) to test the scoring gradient."""
+        score = compute_cohesion([2, 2, 3, 4])
         assert 0.0 < score < 1.0
 
     def test_worse_with_more_god_classes(self):
-        """More god classes = lower cohesion."""
-        score_one_bad = compute_cohesion([1, 1, 1, 1, 5])
-        score_two_bad = compute_cohesion([1, 1, 5, 5, 5])
+        """More god classes = lower cohesion.
+        Uses non-trivial LCOM4 values (> 1) so the skip filter doesn't mask the effect."""
+        score_one_bad = compute_cohesion([2, 2, 2, 2, 5])
+        score_two_bad = compute_cohesion([2, 2, 5, 5, 5])
         assert score_one_bad > score_two_bad
 
     def test_lcom4_single_method_is_perfect(self):
@@ -391,11 +394,22 @@ class TestAGQOrderingInvariants:
 # ---------------------------------------------------------------------------
 
 class TestWeightedAGQ:
-    def test_equal_weights_is_default(self):
-        """Default weights = equal mean of 4 components."""
+    def test_default_weights_applied(self):
+        """Default weights (0.20, 0.20, 0.55, 0.05) are applied correctly.
+        Tests the weighted sum, not the equal mean."""
         G = _chain(20)
         lcom = [1, 2, 1]
         m = compute_agq(G, classes_lcom4=lcom)
+        w = (0.20, 0.20, 0.55, 0.05)
+        expected = (w[0] * m.modularity + w[1] * m.acyclicity +
+                    w[2] * m.stability + w[3] * m.cohesion)
+        assert m.agq_score == pytest.approx(expected)
+
+    def test_explicit_equal_weights_gives_mean(self):
+        """Explicit equal weights → simple mean of 4 components."""
+        G = _chain(20)
+        lcom = [1, 2, 1]
+        m = compute_agq(G, classes_lcom4=lcom, weights=(0.25, 0.25, 0.25, 0.25))
         expected = (m.modularity + m.acyclicity + m.stability + m.cohesion) / 4
         assert m.agq_score == pytest.approx(expected)
 

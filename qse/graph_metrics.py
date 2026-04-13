@@ -272,8 +272,8 @@ def compute_instability_variance(G: nx.DiGraph) -> float:
     mean_i = sum(instabilities) / len(instabilities)
     var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
     raw = min(1.0, var / 0.25)
-    # Small-sample correction for 2-package repos
-    if len(packages) == 2:
+    # Small-sample correction for 2-node graphs
+    if len(nodes) == 2:
         return raw * 0.8
     return raw
 
