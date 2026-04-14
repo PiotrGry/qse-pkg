@@ -79,3 +79,10 @@ Protokół falsyfikacji eksperymentów QSE:
 - [[E7 P4 Java-S Expanded]] — najnowszy eksperyment
 - [[Pilot OSS]] — pilotaż before/after refactoring
 - [[Pilot Multi-Repo Scan]] — multi-repo scan (15 repos, krytyczne wyniki)
+
+### S Sensitivity Investigation (kwiecień 2026)
+- **Pytanie:** Dlaczego S=0.19 nie zmieniło się po naprawieniu DIP violations?
+- **Odpowiedź:** Dwa powody: (1) var(I) jest symetryczne wobec odwrócenia krawędzi, (2) grupowanie na poziomie 2 ukrywa wewnętrzne refaktoryzacje
+- **Wniosek:** S mierzy zróżnicowanie warstw, nie poprawność kierunku zależności
+- **Status:** ZAKOŃCZONE — udokumentowane ograniczenie, nie wymaga zmiany kodu
+- **Szczegóły:** [[S Sensitivity Investigation]]

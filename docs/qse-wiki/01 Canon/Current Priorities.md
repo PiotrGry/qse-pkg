@@ -133,10 +133,15 @@ To jest lista „co robimy teraz i co jest następne". Priorytety P0–P4 zosta�
 - GT accuracy: 67.8% → 65.5% (uczciwy spadek), AUC: 0.767 → 0.733
 - Szczegóły: [[Pilot Multi-Repo Scan#Zrealizowane rozwiązania]]
 
+**S Sensitivity Investigation** ✅ ZAKOŃCZONE (kwiecień 2026):
+- S = var(I) jest matematycznie niezmienne wobec odwrócenia krawędzi (dowód: var(1-I) = var(I))
+- Grupowanie na poz. 2 ukrywa refaktoryzacje DDD/DIP w obrębie jednego top-level package
+- Wniosek: S mierzy zróżnicowanie warstw, NIE poprawność kierunku zależności
+- Szczegóły: [[S Sensitivity Investigation]]
+
 **Następne kroki (priorytet):**
-1. Badanie czułości S (Martin I variance vs kierunek zależności)
-2. Aktualizacja Claims & Evidence — dodanie caveatu o archipelagach
-3. Investigation: inter-package connectivity metric
+1. Aktualizacja Claims & Evidence — dodanie caveatów (archipelago + S limitation)
+2. Investigation: inter-package connectivity metric (potencjalnie nowa metryka DIP)
 
 ---
 
