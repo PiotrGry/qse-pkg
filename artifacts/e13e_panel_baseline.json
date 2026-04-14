@@ -1,22 +1,22 @@
 {
   "phase": "baseline",
   "brief_summary": {
-    "classes": 1204,
-    "packages": 336,
-    "edges": 11770,
-    "density": 9.8,
-    "god_classes": 15,
-    "cycle_count": 5,
-    "largest_cycle": 17,
-    "max_fan_out": 106
+    "classes": 359,
+    "packages": 20,
+    "edges": 1890,
+    "density": 5.3,
+    "god_classes": 1,
+    "cycle_count": 1,
+    "largest_cycle": 16,
+    "max_fan_out": 55
   },
   "architects": [
     {
       "name": "Arch-1 (Enterprise)",
       "scores": {
         "package_org": 6,
-        "dep_hygiene": 2,
-        "class_resp": 2,
+        "dep_hygiene": 5,
+        "class_resp": 7,
         "arch_patterns": 5,
         "maintainability": 3
       }
@@ -25,34 +25,34 @@
       "name": "Arch-2 (Pragmatic)",
       "scores": {
         "package_org": 5,
-        "dep_hygiene": 5,
-        "class_resp": 2,
+        "dep_hygiene": 7,
+        "class_resp": 6,
         "arch_patterns": 5,
-        "maintainability": 4
+        "maintainability": 5
       }
     },
     {
       "name": "Arch-3 (DDD Specialist)",
       "scores": {
         "package_org": 6,
-        "dep_hygiene": 5,
-        "class_resp": 2,
+        "dep_hygiene": 6,
+        "class_resp": 5,
         "arch_patterns": 4,
-        "maintainability": 4
+        "maintainability": 5
       }
     }
   ],
   "panel_averages": {
     "package_org": 5.7,
-    "dep_hygiene": 4.0,
-    "class_resp": 2.0,
+    "dep_hygiene": 6.0,
+    "class_resp": 6.0,
     "arch_patterns": 4.7,
-    "maintainability": 3.7
+    "maintainability": 4.3
   },
   "individual_scores": [
-    3.6,
-    4.2,
-    4.2
+    5.2,
+    5.6,
+    5.2
   ],
-  "blind_score": 4.0
+  "blind_score": 5.3
 }

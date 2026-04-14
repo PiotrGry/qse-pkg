@@ -1,14 +1,14 @@
 {
   "phase": "final",
   "brief_summary": {
-    "classes": 360,
-    "packages": 21,
-    "edges": 1883,
-    "density": 5.2,
-    "god_classes": 1,
+    "classes": 115,
+    "packages": 14,
+    "edges": 589,
+    "density": 5.1,
+    "god_classes": 0,
     "cycle_count": 0,
     "largest_cycle": 0,
-    "max_fan_out": 55
+    "max_fan_out": 0
   },
   "architects": [
     {
