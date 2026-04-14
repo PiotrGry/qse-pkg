@@ -98,7 +98,7 @@ Wagi AGQ v2 zostały następnie zastąpione przez equal 0.20 (AGQ v3c Java, z PC
 ## Powiązane eksperymenty
 
 - [[E2 Coupling Density]] — eksperyment który dostarczył CD do formuły
-- [[E4]] (brak oddzielnej strony) — rozszerzenie GT do n=14, potwierdzenie W4
+- [[E4 GT Expansion]] — rozszerzenie GT do n=14, potwierdzenie W4
 - [[PCA Weights]] — wagi PCA = equal 0.20 = AGQ v3c Java
 
 ## Definicja formalna

@@ -376,8 +376,8 @@ AGQ = deterministyczny, interpretowalny, multi-language, zero-shot gate na pozio
 
 ## Zobacz też
 
-- [[11 Research/Research Thesis|Teza badawcza]] — pytania badawcze
-- [[11 Research/Market Analysis|Analiza rynku]] — narzędzia komercyjne
-- [[11 Research/Future Directions|Kierunki badań]] — co dalej
-- [[07 Benchmarks/Jolak Validation|Jolak Validation]] — dane z walidacji krzyżowej
-- [[08 Glossary/References|Pełna bibliografia]] — wszystkie cytowania
+- [[Research Thesis|Teza badawcza]] — pytania badawcze
+- [[Market Analysis|Analiza rynku]] — narzędzia komercyjne
+- [[Future Directions|Kierunki badań]] — co dalej
+- [[Jolak Validation|Jolak Validation]] — dane z walidacji krzyżowej
+- [[References|Pełna bibliografia]] — wszystkie cytowania

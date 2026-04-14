@@ -1,3 +1,8 @@
+---
+type: glossary
+language: pl
+---
+
 # QSE - Bibliografia / References
 
 Zebrane źródła naukowe i techniczne na potrzeby pracy doktorskiej i walidacji QSE.

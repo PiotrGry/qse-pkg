@@ -55,7 +55,7 @@ $$\text{[wzór LaTeX]}$$
 
 **Walidacja empiryczna:**
 - Statystyki: MW p=??, Spearman ρ=??, AUC=??
-- Odniesienie: [[07 Benchmarks/[nazwa]|Benchmark]]
+- Odniesienie: [[Benchmark Index|Benchmark]]
 
 ## Zobacz też
 

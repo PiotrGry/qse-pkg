@@ -107,6 +107,6 @@ Hipoteza jest **obalona** gdy \(p > \alpha\) lub gdy kierunek efektu jest odwrot
 
 - [[Experiments Index]] — rejestr eksperymentów
 - [[Hypotheses Register]] — rejestr hipotez
-- [[Open Questions]] — pytania bez odpowiedzi
+- [[Open Questions Expanded|Open Questions]] — pytania bez odpowiedzi
 - [[W1 BLT Correlation]] — przykład obalonej hipotezy
 - [[E1 Stability Hierarchy]] — przykład eksperymentu

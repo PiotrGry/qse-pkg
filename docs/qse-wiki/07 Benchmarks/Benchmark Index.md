@@ -60,7 +60,7 @@ Szczegóły: [[Jolak Validation]]
 | AGQ v3c Python | Python | GT Python, Benchmark 558 Python |
 | AGQ v3c równe wagi | Wszystkie | Benchmark 558 ogółem |
 
-Wzory: [[AGQ Formula]]
+Wzory: [[AGQ Formulas]]
 
 ---
 

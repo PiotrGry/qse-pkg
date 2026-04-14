@@ -69,6 +69,6 @@ $$\text{AGQ}_{[wersja]} = \text{[wzór LaTeX]}$$
 
 ## Zobacz też
 
-- [[AGQ Formula|Indeks formuł AGQ]]
+- [[AGQ Formulas|Indeks formuł AGQ]]
 - [[Java GT Dataset]]
 - [[Experiments Index|Eksperymenty kalibrujące]]

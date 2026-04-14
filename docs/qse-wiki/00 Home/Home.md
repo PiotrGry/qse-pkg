@@ -129,4 +129,7 @@ AGQ = 0.571  [LAYERED]  z=+0.45  60%ile Java
 ---
 
 ## Zobacz też
-[[QSE Canon]] · [[Ground Truth]] · [[AGQ Formulas]] · [[Glossary]] · [[Hypotheses Register]]
+[[QSE Canon]] · [[Ground Truth]] · [[AGQ Formulas]] · [[Glossary]] · [[Hypotheses Register]] · [[References]]
+
+### Szablony
+[[Experiment Template]] · [[Formula Template]] · [[Hypothesis Template]] · [[Simple Explainer Template]]

@@ -95,3 +95,4 @@ Hipoteza może być zamknięta (POTWIERDZONA lub OBALONA) gdy:
 - [[W9 AGQv3c Python Discriminates Quality]] — otwarta, obiecująca
 - [[W10 flatscore Predicts Python Quality]] — flat_score wchodzi do formuły
 - [[Experiments Index]] — eksperymenty powiązane z hipotezami
+- [[Open Questions Expanded|Otwarte pytania]] — pytania badawcze bez odpowiedzi

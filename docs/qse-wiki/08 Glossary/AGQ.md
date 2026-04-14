@@ -81,7 +81,7 @@ gdzie $f_i$ to znormalizowane funkcje metryk grafowych: Modularity (Newman's Q),
 
 ## Zobacz też
 
-- [[AGQ Formula|Wzór AGQ]] — pełna dokumentacja formuły
+- [[AGQ Formulas|Wzór AGQ]] — pełna dokumentacja formuły
 - [[Benchmark 558]] — dane benchmarkowe
 - [[Java GT Dataset]] — dane walidacyjne
 - [[BLT|BLT]] — cel: zastąpić architektoniczny aspekt code review

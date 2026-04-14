@@ -1,3 +1,8 @@
+---
+type: meta
+language: pl
+---
+
 # QSE-PKG - Mapa dokumentów
 **Aktualizacja:** 2026-03-23
 **Zasada:** ★★★ = source of truth | ★★☆ = pomocniczy/aktualny | ★☆☆ = archiwalny

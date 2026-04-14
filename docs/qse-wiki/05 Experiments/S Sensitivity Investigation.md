@@ -1,3 +1,10 @@
+---
+type: experiment
+id: S-sensitivity
+status: zakończony
+language: pl
+---
+
 # S Sensitivity Investigation
 
 **Data:** kwiecień 2026

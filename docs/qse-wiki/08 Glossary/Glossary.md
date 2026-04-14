@@ -80,4 +80,4 @@ Dla czytelnika bez tła technicznego: zacznij od [[Glossary for Non-Technical Re
 
 - [[Glossary for Non-Technical Readers|Słowniczek dla niespecjalistów]] — wszystkie pojęcia bez żargonu
 - [[Research Thesis|Teza badawcza]] — kontekst naukowy
-- [[AGQ Formula|Wzór AGQ]] — pełna specyfikacja formuły
+- [[AGQ Formulas|Wzór AGQ]] — pełna specyfikacja formuły

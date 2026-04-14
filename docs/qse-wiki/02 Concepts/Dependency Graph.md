@@ -122,3 +122,4 @@ Graf zależności projektu \(P\) to skierowany graf \(G = (V, E)\), gdzie:
 - [[Modularity]] — algorytm Louvain na grafie
 - [[Acyclicity]] — algorytm Tarjan na grafie
 - [[Graph Metric]] — klasa metryk grafowych
+- [[Repository]] — jednostka analizy QSE
