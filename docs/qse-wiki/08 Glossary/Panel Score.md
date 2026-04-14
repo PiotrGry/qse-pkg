@@ -79,7 +79,7 @@ $$L(r) = \begin{cases} POS & \text{jeśli PanelScore}(r) \geq 6.0 \text{ i } \si
 ## Zobacz też
 
 - [[GT|GT]] — Ground Truth — metodologia walidacji
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — pełne dane
-- [[07 Benchmarks/Python GT Dataset|Python GT Dataset]] — pełne dane Python
+- [[Java GT Dataset]] — pełne dane
+- [[Python GT Dataset]] — pełne dane Python
 - [[Mann-Whitney|Mann-Whitney]] — test statystyczny na etykietach GT
-- [[11 Research/Limitations|Ograniczenia]] — ograniczenia symulowanego panelu
+- [[Limitations|Ograniczenia]] — ograniczenia symulowanego panelu

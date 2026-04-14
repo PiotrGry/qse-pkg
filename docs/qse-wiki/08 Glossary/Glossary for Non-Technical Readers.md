@@ -116,5 +116,5 @@ Oprogramowanie z publicznie dostępnym kodem źródłowym. QSE waliduje się gł
 
 - [[Glossary|Słownik techniczny]] — pełne definicje formalne
 - [[AGQ|AGQ]] — szczegóły metryki
-- [[07 Benchmarks/Benchmark Index|Indeks benchmarków]] — gdzie QSE był testowany
-- [[11 Research/Research Thesis|Teza badawcza]] — naukowe pytania projektu
+- [[Benchmark Index|Indeks benchmarków]] — gdzie QSE był testowany
+- [[Research Thesis|Teza badawcza]] — naukowe pytania projektu

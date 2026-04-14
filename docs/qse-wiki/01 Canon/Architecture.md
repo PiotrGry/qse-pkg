@@ -129,6 +129,52 @@ Wynik: nie tylko globalne AGQ, ale też lista konkretnych naruszeń granic modu�
 
 ---
 
+### QSE-Track — rzeczywiste narzędzie śledzenia zmian
+
+QSE-Track to współczesne, główne wyjście systemu QSE. Jest to **warstwa 2 w trójwarstwowym frameworku E13** (QSE-Rank → QSE-Track → QSE-Diagnostic) i służy do śledzenia zmian architektonicznych w czasie na poziomie repozytorium.
+
+**Plik implementacji:** `qse/qse_track.py`
+
+#### Składowe QSE-Track
+
+| Metryka | Opis | Uwagi |
+|---|---|---|
+| **PCA** | % acyklicznych pakietów (percent acyclic) | Główna miara jakości |
+| **dip_violations** | liczba naruszeń zależności warstw | Wykrywa regres architektoniczny |
+| **largest_scc** | rozmiar największego silnie spójnego składnika | Wskazuje epicentrum cykli |
+
+> **M usunięte z QSE-Track** (commit `dcfe68e`): po eksperymencie E13e (Shopizer) odkryto, że Modularity (M) jest „inflatable” — można ją sztucznie zawyżyć poprzez zmianę struktury pakietów bez poprawy architektury. M została usunięta z QSE-Track jako nieodporna na manipulację.
+
+#### Walidacja
+
+| Eksperyment | Repozytorium | Wynik |
+|---|---|---|
+| E13d | walidacja within-repo | Potwierdzono wrażliwość PCA na refaktoryzację |
+| E13e | Shopizer | Wykryto problem z M (inflatable); M usunięte |
+| E13f | Commons Collections | Potwierdzono QSE-Track na historii commitów |
+
+#### Trzy-warstwowy framework E13
+
+```
+Warstwa 1 — QSE-Rank
+  2×rank(C) + rank(S) — ranking nieparametryczny
+  Szybkie porównanie wielu repozytoriów bez kalibracji
+
+Warstwa 2 — QSE-Track  ← to jest ta warstwa
+  PCA + dip_violations + largest_scc
+  śledzenie zmian w czasie w pojedynczym repozytorium
+
+Warstwa 3 — QSE-Diagnostic
+  Analiza per-komponent, percentyle, identyfikacja problemów
+  "co dokładnie jest nie tak i gdzie"
+```
+
+**QSE-Rank:** nieparametryczny ranking `2×rank(C) + rank(S)` — porównanie wielu repozytoriów bez potrzeby kalibracji progowej.
+
+**QSE-Diagnostic:** analiza na poziomie składowych: percentyle, identyfikacja konkretnych pakietów/klas sprawiających problemy, kontekst dla wyników QSE-Track.
+
+---
+
 ## Definicja formalna — granice architektoniczne systemu
 
 **Granice między warstwami:**

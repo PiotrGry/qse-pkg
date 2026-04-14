@@ -30,7 +30,7 @@ AGQ_v3c (Python) = 0.15·M + 0.05·A + 0.20·S + 0.10·C + 0.15·CD + 0.35·flat
 
 Waga `flat_score` = 0.35 jest największą wagą — odzwierciedla empiryczne odkrycie, że projekty Python o płaskiej strukturze (jeden duży moduł) mają odmienne charakterystyki niż hierarchiczne projekty Java.
 
-Definicja: [[04 Metrics/flatscore|flat_score]]
+Definicja: [[flatscore|flat_score]]
 
 ---
 
@@ -124,7 +124,7 @@ PCA wykazała, że wszystkie 5 eigenvalues są zbliżone — brak dominującego 
 
 - [[Benchmark Index]] — przegląd wszystkich zbiorów
 - [[Java GT Dataset]] — dobrze skalibrowany zbiór Java
-- [[04 Metrics/flatscore|flat_score]] — komponent specyficzny dla Pythona
-- [[08 Glossary/GT|GT]] — metodologia ground truth
-- [[06 Hypotheses/W9 AGQv3c Python Discriminates Quality|W9]] — hipoteza Python GT
-- [[11 Research/Limitations|Ograniczenia]] — pełna lista known limitations
+- [[flatscore|flat_score]] — komponent specyficzny dla Pythona
+- [[GT]] — metodologia ground truth
+- [[W9 AGQv3c Python Discriminates Quality|W9]] — hipoteza Python GT
+- [[Limitations|Ograniczenia]] — pełna lista known limitations

@@ -102,6 +102,6 @@ Progi mogą się różnić między wersjami QSE — powyższe są przybliżeniem
 - [[LCOM4|LCOM4]] — co mierzy spójność
 - [[CRUD|CRUD]] — typ bez złożonej architektury
 - [[DDD|DDD]] — typ z bogatą domeną
-- [[07 Benchmarks/Benchmark 558|Benchmark 558]] — rozkład Fingerprints
+- [[Benchmark 558]] — rozkład Fingerprints
 - [[Type 1 Flat Spaghetti|Typ 1 Flat Spaghetti]] — negatywny wzorzec
 - [[Type 2 Legacy Monolith|Typ 2 Legacy Monolith]] — negatywny wzorzec

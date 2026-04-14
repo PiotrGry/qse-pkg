@@ -66,18 +66,18 @@ Dla czytelnika bez tła technicznego: zacznij od [[Glossary for Non-Technical Re
 
 ### Narzędzia i konkurencja
 - [[Blind Spot]] — co narzędzia pomijają
-- [[11 Research/Market Analysis|Analiza rynku]] — pełna mapa konkurencji
+- [[Market Analysis|Analiza rynku]] — pełna mapa konkurencji
 
 ### Dane benchmarkowe
-- [[07 Benchmarks/Benchmark Index|Indeks benchmarków]] — przegląd danych
-- [[07 Benchmarks/Java GT Dataset|Java GT]] — n=59, MW p=0.000221
-- [[07 Benchmarks/Python GT Dataset|Python GT]] — n=30
-- [[07 Benchmarks/Jolak Validation|Jolak]] — walidacja krzyżowa
+- [[Benchmark Index|Indeks benchmarków]] — przegląd danych
+- [[Java GT Dataset|Java GT]] — n=59, MW p=0.000221
+- [[Python GT Dataset|Python GT]] — n=30
+- [[Jolak Validation|Jolak]] — walidacja krzyżowa
 
 ---
 
 ## Zobacz też
 
 - [[Glossary for Non-Technical Readers|Słowniczek dla niespecjalistów]] — wszystkie pojęcia bez żargonu
-- [[11 Research/Research Thesis|Teza badawcza]] — kontekst naukowy
-- [[03 Formulas/AGQ Formula|Wzór AGQ]] — pełna specyfikacja formuły
+- [[Research Thesis|Teza badawcza]] — kontekst naukowy
+- [[AGQ Formula|Wzór AGQ]] — pełna specyfikacja formuły

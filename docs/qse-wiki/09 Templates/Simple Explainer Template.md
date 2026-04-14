@@ -59,7 +59,7 @@ $$\text{[wzór LaTeX]}$$
 
 ## Zobacz też
 
-- [[08 Glossary/Glossary|Słownik]] — powiązane pojęcia
+- [[Glossary|Słownik]] — powiązane pojęcia
 - [[Powiązana metryka]] — wikilink
 - [[Powiązany benchmark]] — dane empiryczne
 - [[Powiązana hipoteza]] — jak to pojęcie jest badane

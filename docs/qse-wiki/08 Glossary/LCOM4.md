@@ -88,4 +88,4 @@ $$C_{AGQ} = 1 - \frac{1}{|K_{\text{proj}}|} \sum_{k \in K_{\text{proj}}} \text{L
 - [[Louvain|Louvain]] — analogiczny algorytm grafowy dla Modularity
 - [[Layer|Warstwa]] — strukturalny aspekt uzupełniający spójność
 - [[Type 1 Flat Spaghetti|Typ 1 Flat Spaghetti]] — wzorzec z niską spójnością
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — empiryczne dane C
+- [[Java GT Dataset]] — empiryczne dane C

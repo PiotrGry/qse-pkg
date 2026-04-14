@@ -103,7 +103,7 @@ Poprawka: węzły tworzone jako `package.ClassName` per plik `.java` — zgodnie
 
 ## Źródło
 
-Jolak et al. (2025) — badanie analizujące jakość architektoniczną 8 projektów Java OSS z ekosystemu chińskiego (Alibaba, Tencent, Sofa). Szczegóły w: [[11 Research/Literature Review|Przegląd literatury]]
+Jolak et al. (2025) — badanie analizujące jakość architektoniczną 8 projektów Java OSS z ekosystemu chińskiego (Alibaba, Tencent, Sofa). Szczegóły w: [[Literature Review|Przegląd literatury]]
 
 ---
 
@@ -111,6 +111,6 @@ Jolak et al. (2025) — badanie analizujące jakość architektoniczną 8 projek
 
 - [[Benchmark Index]] — przegląd wszystkich zbiorów
 - [[Java GT Dataset]] — główny zbiór walidacyjny Java
-- [[08 Glossary/GT|GT]] — metodologia ground truth
-- [[08 Glossary/Mann-Whitney|Mann-Whitney]] — testy statystyczne
-- [[11 Research/Literature Review|Przegląd literatury]] — Jolak et al. w kontekście
+- [[GT]] — metodologia ground truth
+- [[Mann-Whitney]] — testy statystyczne
+- [[Literature Review|Przegląd literatury]] — Jolak et al. w kontekście

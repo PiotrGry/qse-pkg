@@ -142,7 +142,7 @@ AGQ mierzy jakość architektoniczną **w danym momencie** — jest miarą staty
 - Nie nadaje się do wyznaczania momentu potrzeby refaktoryzacji
 
 ### Plan naprawy
-- Warstwa Predictor (Kierunek 4 w [[11 Research/Future Directions|Future Directions]])
+- Warstwa Predictor (Kierunek 4 w [[Future Directions]])
 - Wymaga: benchmark longitudinalny (historia AGQ per commit per repo)
 
 ---
@@ -264,8 +264,8 @@ Porównaj z wymaganiami FENG SMART B+R: projekt musi wykazać aktualny stan (TRL
 
 ## Zobacz też
 
-- [[11 Research/Future Directions|Kierunki badań]] — jak planujemy naprawić ograniczenia
-- [[11 Research/Research Thesis|Teza badawcza]] — pytania badawcze (uwzględniają ograniczenia)
-- [[07 Benchmarks/Python GT Dataset|Python GT]] — L1, L3 in action
-- [[07 Benchmarks/Benchmark 558|Benchmark 558]] — L2, L7 in action
-- [[10 Handbook/QSE Podrecznik|Podręcznik QSE]] — sekcja 10 Ograniczenia
+- [[Future Directions|Kierunki badań]] — jak planujemy naprawić ograniczenia
+- [[Research Thesis|Teza badawcza]] — pytania badawcze (uwzględniają ograniczenia)
+- [[Python GT Dataset|Python GT]] — L1, L3 in action
+- [[Benchmark 558]] — L2, L7 in action
+- [[QSE Podrecznik|Podręcznik QSE]] — sekcja 10 Ograniczenia

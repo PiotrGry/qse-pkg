@@ -93,8 +93,8 @@ ze statystycznie istotną różnicą (Mann-Whitney U, p < 0.05).
 
 ## Zobacz też
 
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — pełne dane Java GT
-- [[07 Benchmarks/Python GT Dataset|Python GT Dataset]] — pełne dane Python GT
+- [[Java GT Dataset]] — pełne dane Java GT
+- [[Python GT Dataset]] — pełne dane Python GT
 - [[Panel Score|Panel Score]] — jak obliczana jest ocena panelowa
 - [[Mann-Whitney|Mann-Whitney]] — test używany do walidacji
 - [[Partial Spearman|Partial Spearman]] — korelacja z kontrolą confounders

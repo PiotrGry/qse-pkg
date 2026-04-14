@@ -81,9 +81,9 @@ gdzie $f_i$ to znormalizowane funkcje metryk grafowych: Modularity (Newman's Q),
 
 ## Zobacz też
 
-- [[03 Formulas/AGQ Formula|Wzór AGQ]] — pełna dokumentacja formuły
-- [[07 Benchmarks/Benchmark 558|Benchmark 558]] — dane benchmarkowe
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — dane walidacyjne
+- [[AGQ Formula|Wzór AGQ]] — pełna dokumentacja formuły
+- [[Benchmark 558]] — dane benchmarkowe
+- [[Java GT Dataset]] — dane walidacyjne
 - [[BLT|BLT]] — cel: zastąpić architektoniczny aspekt code review
 - [[Louvain|Louvain]] — algorytm dla Modularity
 - [[Tarjan SCC|Tarjan SCC]] — algorytm dla Acyclicity

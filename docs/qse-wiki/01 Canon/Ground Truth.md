@@ -103,6 +103,8 @@ Wyniki na strict GT:
 | C partial r | **0.571** (p=0.0002) | — |
 | S partial r | **0.410** (p=0.011) | — |
 
+> **Uwaga:** Kolumna „Full GT" zawiera wartości pre-exclusion (n=59, 31 POS + 28 NEG). Po wykluczeniach E13d (n=55, 27 POS + 28 NEG) wartości są niższe — zob. tabela główna powyżej.
+
 **Kluczowy wniosek:** Strict GT daje silniejsze wyniki (partial_r=0.507 vs 0.447), potwierdzając że „szara strefa" repos (panel 3.5–7.0) rozmywa sygnał. C jest najsilniejszą pojedynczą składową (partial_r=0.571).
 
 Plik: `artifacts/gt_java_strict_v3.json`
@@ -247,11 +249,13 @@ AUC mierzy zdolność modelu do rozróżniania klas. Dla binarnego klasyfikatora
 Korelacja Spearmana z kontrolą zmiennej confoundingowej (rozmiar projektu w węzłach):
 
 ```
-Partial r = 0.447 (p=0.0004)
+Partial r = 0.308 (p=0.022)   ← post-exclusion (n=55, aktywne GT)
 
-Interpretacja: nawet po usunięciu efektu rozmiaru, 
-AGQ koreluje z oceną ekspertów z r=0.447
+Interpretacja: nawet po usunięciu efektu rozmiaru,
+AGQ koreluje z oceną ekspertów z r=0.308
 ```
+
+> **Wartości pre-exclusion (n=59, 31 POS + 28 NEG):** partial r = 0.447 (p=0.0004). Po wykluczeniu 4 repozytoriów-kolekcji (efekt archipelagu, zob. sekcja „Wykluczone repozytoria") wartość spada do 0.308 — jest to uczciwy wynik odzwierciedlający rzeczywistą zdolność dyskryminacyjną AGQ na architekturach monolitycznych.
 
 ---
 

@@ -107,4 +107,4 @@ W praktyce QSE: Fingerprint CYCLIC lub FLAT dla dużych projektów (n_nodes > 50
 - [[Layer|Warstwa]] — brakująca hierarchia w Legacy Monolith
 - [[Type 1 Flat Spaghetti|Typ 1 Flat Spaghetti]] — pokrewny anty-wzorzec
 - [[Repository Types|Typy repozytoriów]] — Fingerprint
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — przykłady legacy w NEG
+- [[Java GT Dataset]] — przykłady legacy w NEG

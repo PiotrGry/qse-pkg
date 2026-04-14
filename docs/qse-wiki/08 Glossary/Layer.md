@@ -116,4 +116,4 @@ Architektura jest k-warstwowa gdy graf G jest DAG-iem (A=1) i L_k jest niepusty 
 - [[DDD|DDD]] — warstwowość w Domain-Driven Design
 - [[Tarjan SCC|Tarjan SCC]] — wykrywa naruszenia (cykle)
 - [[Repository Types|Typy repozytoriów]] — LAYERED jako fingerprint
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — dane S w GT
+- [[Java GT Dataset]] — dane S w GT

@@ -57,6 +57,6 @@ language: pl
 
 ## Zobacz też
 
-- [[05 Experiments/Experiments Index|Indeks eksperymentów]]
+- [[Experiments Index|Indeks eksperymentów]]
 - [[Powiązany termin w glossary]]
 - [[Powiązany benchmark]]

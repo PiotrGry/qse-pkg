@@ -168,7 +168,7 @@ Wnioski: lukę tworzy kombinacja wymagań: multi-language + makro (graf) + CI ga
 
 ## Zobacz też
 
-- [[11 Research/Research Thesis|Teza badawcza]] — dlaczego potrzebny jest AGQ
-- [[11 Research/Literature Review|Przegląd literatury]] — naukowe potwierdzenie luki
-- [[11 Research/Future Directions|Kierunki badań]] — komercjalizacja
-- [[08 Glossary/Blind Spot|Blind Spot]] — co SonarQube pomija
+- [[Research Thesis|Teza badawcza]] — dlaczego potrzebny jest AGQ
+- [[Literature Review|Przegląd literatury]] — naukowe potwierdzenie luki
+- [[Future Directions|Kierunki badań]] — komercjalizacja
+- [[Blind Spot]] — co SonarQube pomija

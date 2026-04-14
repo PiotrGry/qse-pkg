@@ -110,4 +110,4 @@ Jeśli G jest DAG (skierowanym grafem acyklicznym): A = 1 (każdy węzeł tworzy
 - [[Louvain|Louvain]] — analogiczny algorytm dla Modularity
 - [[Layer|Warstwa]] — architektura bez cykli = możliwość warstwowania
 - [[Type 2 Legacy Monolith|Typ 2 Legacy Monolith]] — wzorzec z wysokim Acyclicity ale innymi problemami
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — dane A w GT
+- [[Java GT Dataset]] — dane A w GT

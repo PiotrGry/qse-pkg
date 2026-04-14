@@ -5,7 +5,7 @@ language: pl
 
 # Java GT Dataset — Zbiór walidacyjny Java
 
-> **Appendix** — pełne dane zbioru walidacyjnego Java GT (Ground Truth). Opis metodologii panelowej w [[08 Glossary/Panel Score|Panel Score]].
+> **Appendix** — pełne dane zbioru walidacyjnego Java GT (Ground Truth). Opis metodologii panelowej w [[Panel Score]].
 
 ## Parametry ogólne (rozszerzony GT, kwiecień 2026)
 
@@ -161,7 +161,7 @@ Wagi v3c (equal 0.20) wyłonione jako najlepszy wynik eksperymentu Java-S (3 ite
 - [[Benchmark Index]] — przegląd wszystkich zbiorów
 - [[Python GT Dataset]] — odpowiedni zbiór dla Pythona
 - [[Jolak Validation]] — niezależna walidacja krzyżowa
-- [[08 Glossary/GT|GT]] — metodologia ground truth
-- [[08 Glossary/Panel Score|Panel Score]] — jak działa ocena panelowa
-- [[08 Glossary/Mann-Whitney|Mann-Whitney]] — użyty test statystyczny
-- [[05 Experiments/E7 P4 Java-S Expanded|E7 P4 Java-S Expanded]] — eksperyment P4
+- [[GT]] — metodologia ground truth
+- [[Panel Score]] — jak działa ocena panelowa
+- [[Mann-Whitney]] — użyty test statystyczny
+- [[E7 P4 Java-S Expanded]] — eksperyment P4

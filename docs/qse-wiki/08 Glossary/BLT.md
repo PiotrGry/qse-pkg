@@ -67,7 +67,7 @@ W praktyce QSE: `median_close_time_days` = mediana (data zamknięcia issue − d
 ## Zobacz też
 
 - [[AGQ|AGQ]] — główna metryka
-- [[07 Benchmarks/Benchmark 558|Benchmark 558]] — dane benchmarkowe z BLT
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — walidacja
-- [[11 Research/Research Thesis|Teza badawcza]] — hipotezy H1-H5
+- [[Benchmark 558]] — dane benchmarkowe z BLT
+- [[Java GT Dataset]] — walidacja
+- [[Research Thesis|Teza badawcza]] — hipotezy H1-H5
 - [[Partial Spearman|Partial Spearman]] — metoda korelacji używana w analizie

@@ -207,8 +207,8 @@ Cel grantu FENG SMART B+R: TRL 3 → TRL 7–8.
 
 ## Zobacz też
 
-- [[11 Research/Research Thesis|Teza badawcza]] — pytania badawcze
-- [[11 Research/Literature Review|Przegląd literatury]] — stan wiedzy
-- [[11 Research/Limitations|Ograniczenia]] — co blokuje
-- [[07 Benchmarks/Benchmark Index|Benchmarki]] — aktualne dane
-- [[05 Experiments/Experiments Index|Eksperymenty]] — co już zrobiono
+- [[Research Thesis|Teza badawcza]] — pytania badawcze
+- [[Literature Review|Przegląd literatury]] — stan wiedzy
+- [[Limitations|Ograniczenia]] — co blokuje
+- [[Benchmark Index|Benchmarki]] — aktualne dane
+- [[Experiments Index|Eksperymenty]] — co już zrobiono

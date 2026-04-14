@@ -79,5 +79,5 @@ Kategoryzacja jest planowaną funkcją QSE (category-aware normalization), obecn
 - [[AGQ|AGQ]] — metryka zbiorcza
 - [[DDD|DDD]] — podejście do architektury dla bogatych domen
 - [[Repository Types|Typy repozytoriów]] — klasyfikacja projektów
-- [[11 Research/Limitations|Ograniczenia]] — mały projekt bias
+- [[Limitations|Ograniczenia]] — mały projekt bias
 - [[Blind Spot|Blind Spot]] — co narzędzia pomijają

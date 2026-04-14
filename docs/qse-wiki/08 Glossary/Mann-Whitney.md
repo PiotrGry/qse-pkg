@@ -75,5 +75,5 @@ W QSE: test jednostronny (POS ma wyższy AGQ niż NEG, tj. H₁: $\bar{X} > \bar
 - [[Partial Spearman|Partial Spearman]] — korelacja z kontrolą confounders
 - [[GT|GT]] — metodologia zbioru walidacyjnego
 - [[AGQ|AGQ]] — metryka poddawana testom
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — pełne wyniki testów
+- [[Java GT Dataset]] — pełne wyniki testów
 - [[Glossary for Non-Technical Readers|Statystyka prostymi słowami]]

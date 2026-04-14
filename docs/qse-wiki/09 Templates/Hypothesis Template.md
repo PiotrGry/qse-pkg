@@ -56,6 +56,6 @@ language: pl
 
 ## Zobacz też
 
-- [[06 Hypotheses/Hypotheses Register|Rejestr hipotez]]
+- [[Hypotheses Register|Rejestr hipotez]]
 - [[Powiązany eksperyment]]
 - [[Powiązana metryka w glossary]]

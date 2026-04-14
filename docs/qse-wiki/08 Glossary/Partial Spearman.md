@@ -80,5 +80,5 @@ W praktyce QSE: Z = log(n_nodes) — logarytmowana liczba węzłów jako przybli
 - [[Mann-Whitney|Mann-Whitney]] — test dla różnic między grupami
 - [[GT|GT]] — Ground Truth jako źródło Y (Panel Score)
 - [[AGQ|AGQ]] — źródło X
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — pełne wyniki
+- [[Java GT Dataset]] — pełne wyniki
 - [[Glossary for Non-Technical Readers|Statystyka prostymi słowami]] — dla niefachowców

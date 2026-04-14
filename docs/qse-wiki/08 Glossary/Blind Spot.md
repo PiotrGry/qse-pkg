@@ -74,6 +74,6 @@ W praktyce: SonarQube pokrywa D(SQ) — właściwości per-plik. QSE pokrywa D(A
 ## Zobacz też
 
 - [[AGQ|AGQ]] — co QSE mierzy
-- [[11 Research/Market Analysis|Analiza rynku]] — gdzie QSE vs SonarQube
-- [[11 Research/Research Thesis|Teza badawcza]] — uzasadnienie dla nowego wymiaru
+- [[Market Analysis|Analiza rynku]] — gdzie QSE vs SonarQube
+- [[Research Thesis|Teza badawcza]] — uzasadnienie dla nowego wymiaru
 - [[CRUD|CRUD]] — typowy blind spot narzędzi plikowych

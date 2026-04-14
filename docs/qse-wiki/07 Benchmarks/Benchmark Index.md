@@ -5,7 +5,7 @@ language: pl
 
 # Indeks Benchmarków QSE
 
-> **Appendix** — ta sekcja zawiera surowe dane benchmarkowe. Główna narracja projektu znajduje się w sekcjach [[01 Canon/QSE Canon|01 Canon]] i [[10 Handbook/QSE Podrecznik|10 Handbook]]. Tutaj trafiasz, gdy chcesz zobaczyć konkretne liczby.
+> **Appendix** — ta sekcja zawiera surowe dane benchmarkowe. Główna narracja projektu znajduje się w sekcjach [[QSE Canon|01 Canon]] i [[QSE Podrecznik|10 Handbook]]. Tutaj trafiasz, gdy chcesz zobaczyć konkretne liczby.
 
 ## Dostępne zbiory danych
 
@@ -60,13 +60,13 @@ Szczegóły: [[Jolak Validation]]
 | AGQ v3c Python | Python | GT Python, Benchmark 558 Python |
 | AGQ v3c równe wagi | Wszystkie | Benchmark 558 ogółem |
 
-Wzory: [[03 Formulas/AGQ Formula|AGQ Formula]]
+Wzory: [[AGQ Formula]]
 
 ---
 
 ## Zobacz też
 
-- [[08 Glossary/AGQ|AGQ]] — definicja głównej metryki
-- [[08 Glossary/GT|GT]] — metodologia zbioru walidacyjnego
-- [[08 Glossary/Panel Score|Panel Score]] — jak działa ocena panelowa
-- [[05 Experiments/Experiments Index|Indeks eksperymentów]]
+- [[AGQ]] — definicja głównej metryki
+- [[GT]] — metodologia zbioru walidacyjnego
+- [[Panel Score]] — jak działa ocena panelowa
+- [[Experiments Index|Indeks eksperymentów]]

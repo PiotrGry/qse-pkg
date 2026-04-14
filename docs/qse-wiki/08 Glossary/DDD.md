@@ -75,5 +75,5 @@ W notacji AGQ: poprawna architektura DDD to taka, gdzie graf G = (V, E) można p
 - [[AGQ|AGQ]] — metryka architektoniczna
 - [[Layer|Warstwa]] — hierarchia w architekturze
 - [[CRUD|CRUD]] — podejście bez domeny
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — repozytoria DDD w GT
-- [[11 Research/Research Thesis|Teza badawcza]] — DDD jako wzorzec referencyjny
+- [[Java GT Dataset]] — repozytoria DDD w GT
+- [[Research Thesis|Teza badawcza]] — DDD jako wzorzec referencyjny

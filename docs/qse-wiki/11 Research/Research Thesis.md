@@ -141,9 +141,9 @@ AGQ wypełnia tę lukę.
 
 ## Zobacz też
 
-- [[11 Research/Literature Review|Przegląd literatury]] — Sabra, Jolak, Brito i inni
-- [[11 Research/Market Analysis|Analiza rynku]] — gdzie AGQ w krajobrazie narzędzi
-- [[11 Research/Future Directions|Kierunki badań]] — co dalej
-- [[11 Research/Limitations|Ograniczenia]] — uczciwe zastrzeżenia
-- [[07 Benchmarks/Java GT Dataset|Java GT Dataset]] — empiryczne potwierdzenie AGQ
-- [[08 Glossary/Blind Spot|Blind Spot]] — co SonarQube pomija
+- [[Literature Review|Przegląd literatury]] — Sabra, Jolak, Brito i inni
+- [[Market Analysis|Analiza rynku]] — gdzie AGQ w krajobrazie narzędzi
+- [[Future Directions|Kierunki badań]] — co dalej
+- [[Limitations|Ograniczenia]] — uczciwe zastrzeżenia
+- [[Java GT Dataset]] — empiryczne potwierdzenie AGQ
+- [[Blind Spot]] — co SonarQube pomija
