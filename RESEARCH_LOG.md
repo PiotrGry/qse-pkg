@@ -1,6 +1,6 @@
 # QSE Research Log — Pełna historia badań
 
-> Ostatnia aktualizacja: 14 kwietnia 2026
+> Ostatnia aktualizacja: 14 kwietnia 2026 (v2 — pełne E1-E7 + Piloty)
 > Autor: Piotr Gryzło
 > Branch: perplexity
 
@@ -26,7 +26,7 @@ AGQ (Architecture Graph Quality) — kompozytowa metryka bazująca na grafie zal
 
 ---
 
-## 2. Faza eksploracyjna (luty–marzec 2026)
+## 2. Faza eksploracyjna — eksperymenty E1-E7 (luty–marzec 2026)
 
 ### Pierwsze eksperymenty
 - Implementacja skanera w Rust (qse-core) dla Java, Python, Go
@@ -43,12 +43,233 @@ AGQ (Architecture Graph Quality) — kompozytowa metryka bazująca na grafie zal
   - POS: Django, Flask, FastAPI, scikit-learn, Black, etc.
   - NEG: flat repos, god classes, no package structure
 
-### Kluczowe eksperymenty wczesne
-- **E1** (Stability Hierarchy): namespace_depth nie koreluje z jakością
-- **E2** (Coupling Density): CD w AGQ_v2 poprawia dyskryminację pos/neg
-- **E4** (Python GT): pierwsze 20 repo Python — AGQ_v2 działa na Python
-- **E5** (Namespace Metrics): NSdepth, NSgini — słabe predyktory
-- **E6** (flatscore): wykrywanie "Type 1 flat spaghetti" — repo z płaską strukturą
+---
+
+### E1 — Stability Hierarchy | Status: OBALONY
+
+**Hipoteza:** Jeśli projekt ma poprawną hierarchię instability (domain < application < infrastructure), to jest lepszą architekturą.
+
+**Dane:** GT Java n=13 (4 POS DDD + 3 non-DDD POS + 6 NEG)
+
+**Wynik:** Spearman r(S_hierarchy, Panel) = **−0.093**, p = 0.762 **ns**
+
+**Kluczowe odkrycie — paradoks mall vs library:**
+
+| Repo | Panel | S_hierarchy | domain_instability | Typ |
+|------|-------|-------------|-------------------|-----|
+| mall | 2.0 | **1.0** | 0.024 | CRUD (MyBatis POJO sink) |
+| ddd-by-examples/library | 8.5 | **1.0** | 0.464 | DDD (rich domain) |
+
+Oba repo mają identyczny S_hierarchy = 1.0, ale z różnych powodów:
+- **mall:** domain stabilna bo puste POJO (gettery/settery) — zero logiki → instability ≈ 0 → „poprawna hierarchia" przez przypadek
+- **library:** domain stabilna bo dobrze zaprojektowane centrum domeny — ale klasy DDD rozmawiają ze sobą → instability = 0.464
+
+**Wniosek:** Metryka Martina (fan-in/fan-out) nie odróżnia "stabilne bo dobrze zaprojektowane" od "stabilne bo puste POJO". Bez semantyki kodu (parsowanie body metod) to rozróżnienie jest niemożliwe. Hipoteza W7 definitywnie obalona.
+
+---
+
+### E2 — Coupling Density | Status: POTWIERDZONY ⭐
+
+**Hipoteza:** Projekt z niskim stosunkiem krawędzi do węzłów (edges/nodes ratio) ma lepszą architekturę.
+
+**Dane:** GT Java, iteracje n=10 → n=13 → n=14
+
+**Kluczowe wyniki:**
+
+| Metryka | Wartość | Istotność |
+|---------|---------|----------|
+| r(ratio, Panel) | **−0.787** | p = 0.007 ** |
+| partial r (kontrola nodes) | **−0.697** | p < 0.05 * |
+
+**Separacja POS vs NEG:**
+- POS (dobra arch.): średni ratio = **2.62**, CD ≈ 0.56
+- NEG (zła arch.): średni ratio = **4.25–4.9**, CD ≈ 0.35
+- Mann-Whitney p = 0.010–0.034
+
+**Porównanie AGQ v1 vs v2 (po dodaniu CD):**
+
+| Test | AGQ v1 | AGQ v2 |
+|------|--------|--------|
+| Mann-Whitney p (POS vs NEG) | 0.038 * | **0.010 \*\*** |
+| Spearman r (Panel) | +0.661 * | **+0.746 \*\*** |
+| Partial r (kontrola nodes) | +0.564 ns | **+0.721 \*\*** |
+
+AGQ v2 jako pierwsza wersja przeżywa kontrolę rozmiaru (partial r istotny). CD nie jest bias na DDD — Mann-Whitney DDD vs non-DDD: p=0.40 ns.
+
+**Formuła:** `CD = 1 − clip((edges/nodes) / 6.0, 0, 1)`, wchodzi do AGQ v2 z wagą 0.20.
+
+**Ograniczenia:** CD źle ocenia security frameworki (spring-security ratio=6.03 mimo Panel=6.50) i bardzo małe projekty (petclinic ratio=1.60 bo mały, nie bo dobry).
+
+---
+
+### E3 — Package Layer Classifier | Status: WSTRZYMANY
+
+**Cel:** Binarna klasyfikacja pakietów jako domain/infrastructure/application na podstawie FQN.
+
+**Problem:** Wymaga FQN węzłów (re-skan), a GT bazujący na BLT został obalony jako Ground Truth. Ścieżka A (GT n=13) możliwa, ale nie przeprowadzona. Eksperyment odłożony na rzecz E5/E6.
+
+---
+
+### E4 — Rozszerzenie GT do n≥30 | Status: ZAKOŃCZONY
+
+**Cel:** Rozbudowa Ground Truth panelu do minimalnej próby statystycznej.
+
+**Wyniki:**
+- Java GT rozszerzony: n=14 → n=29 → n=59 (31 POS + 28 NEG)
+- AGQ v2 partial r = +0.675, p = 0.008 — pierwsza liczba oparta na solidnych danych
+- Python GT: pierwsze 20 repo, AGQ v2 działa na Python
+- Commity: c1ee146, cfa15c8, c3a633e
+
+---
+
+### E5 — Namespace Metrics (NSdepth i NSgini) | Status: CZĘŚCIOWY
+
+**Hipoteza:** Metryki przestrzeni nazw eliminują odwrócony kierunek sygnału między Javą a Pythonem.
+
+**Dane:** Java GT n=14, Python GT n=7
+
+**Kluczowe wyniki:**
+
+| Metryka | Java partial r | Java p | Python partial r | Python p | Zgodność kierunku |
+|---------|---------------|--------|-----------------|----------|------------------|
+| AGQ v2 | — | ** | — | ns | ODWROTNY ✗ |
+| **NSdepth** | **+0.698** | **0.008** | +0.433 | 0.122 ns | ZGODNY ✓ |
+| NSgini | — | ns | — | ns | brak sygnału |
+
+**Dlaczego NSdepth działa dla Javy ale nie dla Pythona:**
+- Java konwencja głębokich pakietów: `com.company.app.domain.model` → depth=5; dobre projekty mają głębię 4-6, złe 2-3
+- Python strukturalnie płytszy: netbox (Panel=8.0) → depth=3.7, youtube-dl (Panel=2.25) → depth=3.1 — Δ=0.6 za małe
+
+**Odkrycie multikolinearności:** S i AGQ v2: r=+0.852 (tautologia, S ma wagę 0.35). Zastąpienie A przez NSdepth poprawiłoby ortogonalność.
+
+**Wniosek:** NSdepth lepsze od CD dla Javy (r=+0.698 vs r=+0.508), ale gorsze jako składowa AGQ w kombinacji. Problem Pythona wymaga dedykowanej metryki → prowadzi do E6.
+
+---
+
+### E6 — flatscore (dla Pythona) | Status: POTWIERDZONY ⭐
+
+**Hipoteza:** flatscore (odsetek węzłów zagnieżdżonych głębiej niż 2 poziomy FQN) predykuje jakość architektury Python.
+
+**Dane:** GT Python n=11 (5 POS + 6 NEG)
+
+**Kluczowe wyniki:**
+
+| Metryka | pos_mean | neg_mean | Δ | MW p | partial r |
+|---------|----------|----------|---|------|-----------|
+| **flat_score** | **0.665** | **0.200** | **+0.465** | **0.004 \*\*** | **+0.670 \*\*** |
+| AGQ v2 | 0.553 | 0.643 | −0.090 | 0.066 ns | −0.309 ns |
+| AGQ v3c | 0.565 | 0.453 | +0.112 | 0.045 * | +0.460 * |
+
+**Kluczowe przykłady:**
+- **youtube-dl:** 895/895 węzłów w depth≤2 → flat_score=0.000 (Panel=2.25, NEG) — AGQ v2 daje 0.831 (najwyższy!)
+- **netbox:** flat_score=0.936 (Panel=8.0, POS) — AGQ v2 daje 0.504
+
+**Przełom:** AGQ v3c jako pierwsza metryka kompozytowa ma **zgodny kierunek i istotność statystyczną w obu językach jednocześnie** (Java Δ=+0.107 p=0.001, Python Δ=+0.112 p=0.045).
+
+**Formuła:** `flat_score = 1 − (nodes z depth≤2) / total_nodes`
+- 0.0 = flat spaghetti (wszystko w depth≤2)
+- 1.0 = hierarchiczna struktura (wszystko głębiej)
+
+Wchodzi do AGQ v3c Python z najwyższą wagą 0.35:
+```
+AGQ v3c (Python) = 0.15·M + 0.05·A + 0.20·S + 0.10·C + 0.15·CD + 0.35·flat_score
+```
+
+---
+
+### E7 — P4 Java-S na Expanded GT (n=59) | Status: ZAKOŃCZONY ⭐
+
+**Cel:** Czy v3c z równymi wagami 0.20 jest optymalna na rozszerzonym GT?
+
+**Protokół:** 18 wariantów wag, Bootstrap CI (B=5000), split-half stability test.
+
+**Top 5 wariantów (z 18):**
+
+| # | Wariant | Wagi (M/A/S/C/CD) | Partial r | p | AUC |
+|---|---------|-------------------|-----------|---|-----|
+| 1 | C_boost | 10/10/20/30/30 | 0.484 | 0.0001 | 0.789 |
+| 2 | S10_C30_CD20 | 20/20/10/30/20 | 0.472 | 0.0002 | 0.785 |
+| ... | ... | ... | ... | ... | ... |
+| 9 | **v3c** | **20/20/20/20/20** | **0.447** | **0.0004** | **0.767** |
+
+**S Monotonicity — ZŁAMANA:**
+- Na n=29: silna monotoniczność (ρ=1.00) — im więcej S, tym lepiej
+- Na n=59: **ρ=0.00 (p=1.00)** — brak monotoniczności. Inverted-U z peakiem przy S=0.20
+- Interpretacja: S na n=29 miała artefaktycznie silny sygnał. Na n=59 S jest istotna (p=0.016) ale nie dominująca
+
+**Split-half stability:** Żaden wariant nie jest stabilny (Δ partial_r > 0.15). Krajobraz optymalizacji płaski — różnice mniejsze niż szum.
+
+**Wnioski:**
+1. v3c POTWIERDZONE — brak dowodów na lepszy wariant
+2. S monotonicity to artefakt małego zbioru
+3. C i CD kluczowe — warianty z wyższą wagą C/CD numerycznie lepsze (ale w CI)
+4. **Zamknięcie optymalizacji wag** — v3c 0.20 jest rekomendacją finalną
+
+---
+
+### Pilot-1 — Before/After Refactoring OSS | Status: ZAKOŃCZONY
+
+**Repo:** `colinbut/monolith-enterprise-application` → fork `PiotrGry/qse-pilot-enterprise`
+(84 pliki Java, 194 nodes, 609 edges, warstwowa architektura)
+
+**Refactoring (19 plików, +451/-129 linii):**
+1. Extract ClientProjectPort + ClientProjectAdapter (usunięcie RestTemplate z domain)
+2. Move 4 repository impls z domain/ → infrastructure/
+3. Fix UserServiceImpl — UserDao → UserRepository
+4. Refactor ReportingData — kompozycja zamiast agregacji
+
+**Wyniki:**
+
+| Metryka | BEFORE | AFTER | Delta |
+|---------|--------|-------|-------|
+| AGQ_v3c | 0.5739 | 0.5760 | **+0.002 (szum!)** |
+| S | 0.1900 | 0.1900 | 0.0 (bez zmian) |
+| C | 0.5147 | 0.5143 | −0.0004 |
+| Expert Panel | 3.0/10 (NEG) | — | — |
+| AGQ Status | GREEN | GREEN | **BLIND SPOT** |
+
+**Wnioski:**
+- **Sensitivity AGQ: NISKA** — +0.002 po istotnym refactoringu = szum
+- **S nie zareagowało wcale** — mimo fundamentalnej zmiany kierunków zależności
+- **Blind spot POTWIERDZONY** — AGQ=GREEN vs Expert=NEG, nie rozwiązany przez refactoring
+- **CI/CD: SUKCES** — GitHub Actions pipeline działał poprawnie (~30s scan)
+
+---
+
+### Pilot-2 — Multi-Repo Scan (15 repos) | Status: ZAKOŃCZONY, KRYTYCZNY ⚠️
+
+**Cel:** Test qse-archtest na 15 repo spoza GT (5 GOOD + 5 MIXED + 5 BAD).
+
+**KRYTYCZNY WYNIK — AGQ jest odwrócone:**
+
+| Kategoria | Przykłady | Mean AGQ | Status |
+|-----------|-----------|----------|--------|
+| Expected BAD | TheAlgorithms, Baeldung, JCSprout | **0.630** | 5/5 GREEN |
+| Expected GOOD | AxonFramework, Dropwizard, Apollo | **0.475** | 1/5 RED |
+| Expected MIXED | Dubbo, MyBatis, Redisson | 0.476 | — |
+
+**Per-komponent analiza — 3/5 odwrócone:**
+
+| Komponent | Avg GOOD | Avg BAD | Kierunek |
+|-----------|----------|---------|----------|
+| M | 0.612 | 0.789 | **INVERTED** |
+| S | 0.101 | 0.280 | **INVERTED** |
+| CD | 0.211 | 0.602 | **INVERTED** |
+| A | 0.998 | 1.000 | ≈ same |
+| C | 0.452 | 0.479 | ≈ same |
+
+**Diagnoza — "Efekt archipelagu":**
+Kolekcje tutoriali i algorytmów to "archipelagi" — wiele małych, niezależnych modułów bez wspólnej architektury. Grafowe metryki interpretują to jako doskonałą modularność. Problem nie w formule (wewnątrz GT działa), ale w tym że **GT nie zawiera archipelagów**.
+
+Korelacja E/N ratio vs AGQ: ρ = **−0.900** (p < 0.0001) — E/N ratio jest niemal idealnym negatywnym predyktorem AGQ.
+
+**Zrealizowane rozwiązania:**
+1. **Archipelago Detector** w archtest.py — cc_ratio > 0.08 = ostrzeżenie; 0 false positives na POS/GOOD repos
+2. **GT EXCL** — 4 repo-kolekcje przeniesione z POS do EXCL (java-design-patterns, camunda-examples, javaee7-samples, quarkus-quickstarts)
+
+**Implikacje:** AGQ w obecnej formie nie nadaje się do skanowania dowolnych repozytoriów bez pre-filtracji archipelagów.
+
+---
 
 ### Ewolucja formuł AGQ
 | Wersja | Wagi | Nowe metryki | Wynik |
