@@ -91,7 +91,7 @@ Chcesz zrozumieć metodologię i wyniki empiryczne:
 
 1. [[Ground Truth]] — pełne dane GT, metodologia panelu
 2. [[Hypotheses Register]] — W1–W10, co obalono, co potwierdzone
-3. [[Experiments Index]] — E1–E6, protokoły i wyniki
+3. [[Experiments Index]] — E1–E13, protokoły i wyniki
 4. [[Current Priorities]] — co jest następne
 5. [[Invariants]] — ograniczenia metodologiczne
 

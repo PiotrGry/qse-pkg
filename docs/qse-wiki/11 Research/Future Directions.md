@@ -13,8 +13,8 @@ QSE jest na etapie TRL 3 — potwierdzono empirycznie, że metryka działa. Ale 
 
 ## Status aktualny (kwiecień 2026)
 
-- **TRL 3** — potwierdzono eksperymentalnie (4 eksperymenty, 23 testy, 21 PASS / 2 known limitations)
-- Java GT: n=59, MW p=0.000221, AUC=0.767
+- **TRL 3** — potwierdzono eksperymentalnie (21 eksperymentów E1–E13g + Pilot-1/Pilot-2, 23 testy, 21 PASS / 2 known limitations + 4 nowe ograniczenia L8-L11)
+- Java GT: n=59 (27 POS, 28 NEG, 4 EXCL), MW p=0.00157, AUC=0.733
 - Benchmark: 558 repo (Python/Java/Go/TypeScript)
 - Jolak cross-validation: 4/5 wniosków potwierdzonych
 

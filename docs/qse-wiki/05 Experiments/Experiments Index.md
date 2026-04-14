@@ -27,6 +27,17 @@ Eksperymenty QSE mają ściśle określony protokół: maksymalnie 5 iteracji, s
 | [[E7 P4 Java-S Expanded\|E7]] | **P4 Java-S na expanded GT** | **zakończony** | v3c POTWIERDZONE na n=59. S monotonicity ZŁAMANA (ρ=0.00). Krajobraz płaski. Zamknięta optymalizacja wag. | — |
 | [[Pilot OSS\|Pilot-1]] | **Pilot Before/After refactoring** | **zakończony** | AGQ delta=+0.002 (szum). S=0.19 niezmienione. Blind spot (GREEN vs NEG) nierozwiązany. CI/CD działa. | — |
 | [[Pilot Multi-Repo Scan\|Pilot-2]] | **Multi-repo scan (15 repos)** | **zakończony** | **KRYTYCZNE**: AGQ odwrócone — BAD repos (kolekcje) dostały wyższe AGQ niż GOOD repos (frameworki). 5/5 blind spots. "Efekt archipelagu." | — |
+| E8 | LFR (Large-scale Feature Ranking) | **zakończony** | Ranking cech na n=29 Java GT: S dominuje, C drugie, M/A marginalne | — |
+| E9 | Pilot Battery | **zakończony** | Iteracyjne testowanie formuł na GT. AGQ_v2 lepsze od v3 na GT Java | — |
+| E10 | GT Scan + Within-repo pilots | **zakończony** | Pełny skan GT z nowymi metrykami. 5 repo × 19 iteracji (sztuczne perturbacje) | — |
+| E11 | Literature approaches (A-D) | **zakończony** | **PRZEŁOM**: rank(C) + rank(S) — prosta suma rang lepiej dyskryminuje niż kompozyt. Behavioral metrics słaba korelacja | — |
+| E12 | Blind pilot on 14 new repos | **zakończony** | LOOCV na GT. 14 repo spoza GT — walidacja "na ślepo" | — |
+| E12b | QSE dual framework | **zakończony** | **QSE-Rank**: 2×rank(C) + rank(S). **QSE-Track**: PCA, dip_violations, largest_scc | — |
+| E13 | Three-layer QSE framework | **zakończony** | Ostateczna architektura: Layer 1 (QSE-Rank), Layer 2 (QSE-Track), Layer 3 (QSE-Diagnostic) | — |
+| E13d | QSE-Track within-repo pilot | **zakończony** | 5 repo × 19 iteracji — QSE-Track reaguje na zmiany | — |
+| E13e | Shopizer pilot — cykle pakietowe | **zakończony** | SCC 17→0, PCA 0.95→1.0, Panel +0.8. Layer 1 NIE zareagował. **M usunięte z QSE-Track** (commit dcfe68e) | — |
+| E13f | Apache Commons Collections pilot | **zakończony** | PCA 0.11→1.0, SCC 16→0, Panel +0.4. Layer 1 nadal nieczuły. Potwierdza E13e | — |
+| E13g | newbee-mall — Layer 1 validation ⭐ | **zakończony** | S: +0.38 (gaming namespace!), C: +0.07, Panel formuła zawyża 8×. **Krytyczne odkrycia: S gamingowalny, M pompowalna, LCOM4 penalizuje interfejsy** | — |
 
 ### Chronologia
 
@@ -44,6 +55,13 @@ timeline
     2026-04 : E7 P4 Java-S — v3c confirmed, S monotonicity broken
     2026-04 : Pilot-1 Before/After — delta +0.002 (szum), blind spot nierozwiązany
     2026-04 : Pilot-2 Multi-repo — AGQ odwrócone, efekt archipelagu
+    2026-04 : E8-E11 — Feature ranking, pilot battery, literature approaches
+    2026-04 : E12/E12b — Blind pilot, QSE dual framework (QSE-Rank + QSE-Track)
+    2026-04 : E13 — Three-layer framework
+    2026-04 : E13d — QSE-Track within-repo pilot
+    2026-04 : E13e — Shopizer pilot (SCC 17→0, M usunięte z QSE-Track)
+    2026-04 : E13f — Commons Collections pilot (PCA 0.11→1.0)
+    2026-04 : E13g — newbee-mall pilot (S gaming +0.38, panel 8× overestimate)
 ```
 
 ### Związki między eksperymentami
@@ -59,6 +77,12 @@ graph TD
     E7["E7: P4 Java-S\n(v3c CONFIRMED)"] --> v3cFinal["v3c Java ★\n(wagi zamrożone)"]
     PCA --> v3cFinal
     E4 --> v3cFinal
+    E11["E11: Literature\nrank(C)+rank(S)"] --> E12b["E12b: QSE-Rank\nQSE-Track"]
+    E12b --> E13["E13: Three-layer\nframework"]
+    E13 --> E13e["E13e: Shopizer\nSCC 17→0"]
+    E13 --> E13f["E13f: Commons\nPCA 0.11→1.0"]
+    E13 --> E13g["E13g: newbee-mall\nS gaming +0.38 ⚠️"]
+    E13e --> MRemoved["M usunięte\nz QSE-Track"]
 ```
 
 ## Definicja formalna

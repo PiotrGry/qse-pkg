@@ -103,6 +103,25 @@ Python projekty z niską modularność:
 - falcon: M=0.417
 - fastapi: M=0.429
 
+### ⚠️ KRYTYCZNE: M jest pompowalna martwymi interfejsami (E13g)
+
+Eksperyment E13g na newbee-mall odkrył że dodanie interfejsów, których **nikt nie implementuje**, podnosi M:
+- Dodano 4 martwe interfejsy: `DataAccessObject`, `DomainEntity`, `ApiResponse`, `Pageable`
+- Żaden nie ma implementacji w kodzie
+- M: +0.02 bez realnej zmiany architektonicznej
+
+**Przyczyna:** `abstract_modules / total_modules` rośnie gdy dodajemy abstrakcje — niezależnie od tego czy są używane.
+
+**Plan naprawy:** Ważyć tylko żywotne abstrakcje (z ≥1 implementacją) — priorytet P0.
+
+### M usunięte z QSE-Track (commit dcfe68e)
+
+W ramach E13e (pilot Shopizer) stwierdzono że M nie reaguje na eliminację cykli pakietowych (ΔM ≈ 0 mimo SCC 17→0). M zostało usunięte z QSE-Track — pozostało tylko w Layer 1 (QSE-Rank / AGQ composite).
+
+QSE-Track zwraca teraz: **PCA, dip_violations, largest_scc** (bez M).
+
+---
+
 ## Definicja formalna
 
 Newman's Modularity Q dla podziału \(P = \{c_1, \ldots, c_k\}\) grafu \(G = (V, E)\):
@@ -121,6 +140,8 @@ Normalizacja QSE:
 Alokacja przez Louvain: heurystyczna maksymalizacja Q, złożoność O(n log n).
 
 **Uwaga:** Q jest miarą sieci nieskierowanych. QSE symetryzuje graf przed obliczeniem Q (krawędź skierowana A→B traktowana jako nieskierowana).
+
+- **Ryzyko gamingu: ŚREDNIE** — zob. sekcja "M jest pompowalna martwymi interfejsami"
 
 ## Zobacz też
 

@@ -172,6 +172,70 @@ Skaner QSE ma znane ograniczenia wykrywania:
 
 ---
 
+## L8 — S gamingowalny przez zmianę namespace (E13g, kwiecień 2026)
+
+### Opis
+S liczy wariancję instability po 2. poziomie FQN (`parts[:2]`). **Sama zmiana nazwy namespace — bez jakiejkolwiek zmiany kodu — produkuje S: +0.38:**
+
+| Stan | Namespace | S | Zmiana kodu |
+|------|-----------|---|-------------|
+| BEFORE | `ltd.newbee.mall.*` (1 grupa 2nd-level) | 0.21 | — |
+| AFTER | `mall.*` (6 grup 2nd-level) | 0.59 | **ZERO** |
+
+### Konsekwencje
+- AGQ można "napompować" o +0.08 (z wagą S=0.20) przez samą zmianę konwencji pakietów
+- W scenariuszu CI/CD: developer może przejść z RED do GREEN bez poprawy architektury
+- To **najwyższe ryzyko gamingu** w całym QSE
+
+### Plan naprawy
+- Dependency-based grouping zamiast naming-based — priorytet P0
+- Alternatywnie: community detection (Louvain) jako źródło grup zamiast FQN
+
+---
+
+## L9 — M pompowalna martwymi interfejsami (E13g)
+
+### Opis
+Dodanie interfejsów, których **nikt nie implementuje**, podnosi M:
+- 4 martwe interfejsy (`DataAccessObject`, `DomainEntity`, `ApiResponse`, `Pageable`) → M: +0.02
+- Żaden z nich nie ma implementacji w kodzie
+
+### Konsekwencje
+- `abstract_modules / total_modules` rośnie niezależnie od tego czy abstrakcje są używane
+- Ryzyko gamingu: średnie (efekt mniejszy niż S, ale łatwy do wykonania)
+
+### Plan naprawy
+- Ważyć tylko żywotne abstrakcje (z ≥1 implementacją) — priorytet P0
+
+---
+
+## L10 — LCOM4 penalizuje Java interfejsy
+
+### Opis
+Java interfejsy nie mają pól (atrybutów). W grafie LCOM4 każda metoda interfejsu to izolowana wyspa → LCOM4 = n_methods (maximum penalty). Dobrze zaprojektowany interfejs `Repository<T>` z 5 metodami CRUD dostaje LCOM4=5 — najgorszą ocenę.
+
+### Konsekwencje
+- Projekty DDD/hexagonal z dużą liczbą interfejsów są penalizowane za dobry wzorzec
+- C jest systematycznie zaniżone dla projektów z wieloma interfejsami
+
+### Plan naprawy
+- Wykluczyć interfejsy z obliczeń LCOM4 lub traktować jako LCOM4=1 — priorytet P1
+
+---
+
+## L11 — Panel formula zawyża delty 8× (E13g)
+
+### Opis
+Deterministyczna formuła panelu eksperckiego zawyża efekt refaktoryzacji ~8× względem rzetelnej oceny:
+- Formuła: ΔPanel = +3.2 (newbee-mall 2.5→5.7)
+- Rzetelna ocena ekspercka: ΔPanel = +0.4 (3.8→4.2)
+
+### Konsekwencje
+- Wyniki pilotów E13 prezentowane z formułą panelu wyglądają bardziej imponująco niż są w rzeczywistości
+- Konieczność kalibracji panelu na prawdziwych ekspertach (L5)
+
+---
+
 ## Podsumowanie tabelaryczne
 
 | ID | Ograniczenie | Wpływ | Status naprawy |
@@ -183,6 +247,10 @@ Skaner QSE ma znane ograniczenia wykrywania:
 | L5 | Panel symulowany | Średni | Planowana (prawdziwy panel WP5) |
 | L6 | Brak predykcji | Średni | Planowana (Predictor layer) |
 | L7 | Ograniczenia parsera | Wysoki (TS) | Aktywne (TypeScript fix) |
+| **L8** | **S gamingowalny (namespace)** | **KRYTYCZNY** | **Priorytet P0** |
+| **L9** | **M pompowalna (martwe interfejsy)** | **Wysoki** | **Priorytet P0** |
+| **L10** | **LCOM4 penalizuje interfejsy** | **Średni** | **Priorytet P1** |
+| **L11** | **Panel zawyża delty 8×** | **Wysoki** | **Wymaga kalibracji** |
 
 ---
 

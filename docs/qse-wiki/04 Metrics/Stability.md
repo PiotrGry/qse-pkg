@@ -95,6 +95,29 @@ Wcześniejsza formuła AGQ v2 miała S z wagą **0.55** — skalibrowaną na BLT
 
 Stability "jako waga=0.55" jest **obalone** (E1 refuted). Stability "jako składowa z wagą 0.20" jest istotna statystycznie i wchodzi do formuły.
 
+### ⚠️ KRYTYCZNE: S jest gamingowalny (E13g, kwiecień 2026)
+
+Eksperyment E13g na newbee-mall odkrył że **sama zmiana nazwy namespace (bez jakiejkolwiek zmiany kodu) produkuje S: +0.38**:
+
+| Stan | Namespace | S | Zmiana kodu |
+|------|-----------|---|-------------|
+| BEFORE | `ltd.newbee.mall.*` (1 grupa 2nd-level) | 0.21 | — |
+| AFTER | `mall.*` (6 grup 2nd-level) | 0.59 | **ZERO** |
+
+**Przyczyna:** S grupuje pakiety po 2. poziomie FQN (`parts[:2]`). Jeśli prefiks jest długi (`ltd.newbee`), wszystko ląduje w jednym blobie → S niska. Po skróceniu (`mall`) pakiety rozdzielają się na wiele grup → S rośnie. Nie zmienia się żadna zależność — to czysta kosmetyka.
+
+**Konsekwencja:** S w obecnej formie jest **gamingowalny** przez zmianę konwencji nazewniczej. To najwyższe ryzyko gamingu w całym QSE.
+
+**Plan naprawy:** Dependency-based grouping zamiast naming-based (priorytet P0).
+
+### S jest niezmiennicze względem odwrócenia krawędzi (S Sensitivity Investigation)
+
+Var(I) jest **matematycznie symetryczne** względem odwrócenia krawędzi: jeśli odwrócisz kierunek zależności A→B na B→A, instability jednego pakietu rośnie dokładnie tyle, ile drugiego maleje — wariancja nie zmienia się. Potwierdzone empirycznie na Apollo, Dropwizard, Canal (ΔS=0.000 we wszystkich).
+
+**Wniosek:** S mierzy zróżnicowanie warstw (layering differentiation), **nie** poprawność kierunku zależności (layering correctness). Naprawa DIP violations nie zmieni S.
+
+---
+
 ### Problemy z implementacją
 
 1. **Python Abstractness** — oryginalny wzór Martina wymaga abstrakcyjności klas \(A\). W Pythonie prawie zawsze A=0 (bez hierarchii ABClass). QSE używa wariantu *bez A* — wariancji czystej instability, co odpowiada zachowaniu w praktyce dla języków z duck typing.
@@ -119,7 +142,8 @@ Gdzie \(k\) = liczba pakietów wewnętrznych, \(0.25\) = normalizator (max waria
 
 **Walidacja statystyczna** (Java GT n=59):
 - Mann-Whitney p = 0.016 \*
-- Partial r = +0.593 (n=29, kontrola rozmiaru)
+- Partial r = +0.593 (n=29, kontrola rozmiaru) — uwaga: wartość z n=29, na n=59 partial r jest niższy
+- **Ryzyko gamingu: WYSOKIE** — zob. sekcja "S jest gamingowalny"
 
 ## Zobacz też
 

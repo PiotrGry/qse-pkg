@@ -116,9 +116,22 @@ Gdzie \(K\) = zbiór wszystkich klas projektu (z co najmniej 2 metodami).
 - Klasa z 0–1 metodą: LCOM4=1 (trywialnie spójna)
 - Klasa z metodami ale bez atrybutów: LCOM4=n (każda metoda osobna wyspa)
 
+### ⚠️ LCOM4 penalizuje Java interfejsy (E13g)
+
+Java interfejsy z natury **nie mają pól** (atrybutów) — definiują tylko sygnaturę metod. W grafie LCOM4:
+- Brak wspólnych atrybutów → brak krawędzi między metodami
+- Każda metoda to izolowana wyspa → LCOM4 = n_methods (**maximum penalty**)
+
+**Konsekwencja:** Dobrze zaprojektowane interfejsy z wieloma metodami (np. `Repository<T>` z 5 metodami CRUD) otrzymują LCOM4=5 — najgorszą możliwą ocenę. To jest **fałszywie negatywne** — interfejs nie jest "niespójny", po prostu nie ma pól.
+
+**Wpływ na C:** Projekty z dużą liczbą interfejsów (DDD, hexagonal) są **penalizowane** przez LCOM4 za cokolwiek, co jest dobrym wzorcem architektonicznym.
+
+**Plan naprawy:** Wykluczyć interfejsy z obliczeń LCOM4 lub traktować je jako LCOM4=1 (trywialnie spójne) — priorytet P1.
+
 **Walidacja statystyczna** (Java GT n=59):
 - Mann-Whitney p = 0.0002 \*\*\* (najsilniejszy dyskryminator)
-- Partial r = +0.479 (n=29, p=0.009)
+- Partial r = +0.479 (n=29, p=0.009) — na strict GT n=36: partial r = +0.571 (p=0.0002)
+- **Znany problem: LCOM4 penalizuje Java interfejsy** — zob. sekcja powyżej
 
 ## Zobacz też
 

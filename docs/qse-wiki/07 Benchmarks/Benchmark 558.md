@@ -95,7 +95,7 @@ Repozytoria Python to głównie popularny OSS: django, flask, fastapi, pandas, s
 | AGQ vs churn_gini | 74 | +0.0683 | 0.563 | +0.0116 | 0.913 |
 | AGQ vs hotspot_ratio | 74 | +0.0048 | 0.779 | +0.0014 | 0.313 |
 
-**Wniosek:** Brak istotnej korelacji AGQ z miarami churnu na surowymm benchmarku. Korelacja pojawia się po normalizacji na rozmiar projektu (AGQ-adj).
+**Wniosek:** Brak istotnej korelacji AGQ z miarami churnu na surowym benchmarku. Korelacja pojawia się po normalizacji na rozmiar projektu (AGQ-adj).
 
 ---
 
@@ -125,6 +125,8 @@ Cały benchmark oparty jest na publicznych repozytoriach open-source. Wyniki na 
 | v4 | 78 | 0.4520 | 1.0000 | 0.7450 | 0.0932 | 0.5480 |
 
 v3/v4 mają większy spread (lepiej różnicują projekty) przy zachowaniu zbliżonej średniej.
+
+> **Uwaga:** "v4" w tej tabeli to historyczna wersja z kalibracji OSS-Python (z wagami PCA). Ostateczna potwierdzona formuła to **AGQ v3c** z równymi wagami 0.20 (Java) / flat_score 0.35 (Python). Zob. [[AGQv3c Java]], [[AGQv3c Python]].
 
 ---
 

@@ -56,7 +56,7 @@ Zmiana wagi S z 0.35 (v2) na 0.20 (v3a):
 - r²(S, AGQ v2) = **72.6%** — S dominuje AGQ v2 (niemal tautologia)
 - r²(S, AGQ v3a) = **38.8%** — S tylko część formuły
 
-Redukcja S_dominance: 72.6% → 38.8% = **−46.6 pp**
+Redukcja S_dominance: 72.6% → 38.8% = **−33.8 pp**
 
 To ważne: AGQ v2 jest zdominowany przez S (r=0.852 — prawie tautologia). Równe wagi 0.20 usuwają tę dominację bez utraty moc predykcyjnej na Javie.
 
