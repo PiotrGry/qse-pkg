@@ -1,0 +1,60 @@
+{
+  "experiment": "E13g_newbee_mall_layer1_pilot",
+  "repo": "newbee-ltd/newbee-mall",
+  "purpose": "Validate that QSE Layer 1 (QSE-Rank: M, A, S, C) responds to genuine architecture improvement",
+  "baseline": {
+    "classes": 88,
+    "packages": 13,
+    "abstract_modules": 18,
+    "M": 0.5864,
+    "A": 1.0,
+    "S": 0.2099,
+    "C": 0.2909,
+    "QSE_Rank": 0.8846,
+    "AGQ_v2": 0.493,
+    "PCA": 1.0,
+    "SCC": 0,
+    "SH": 1.0,
+    "panel": 2.5,
+    "gt_label": "NEG"
+  },
+  "final": {
+    "classes": 115,
+    "packages": 14,
+    "abstract_modules": 44,
+    "M": 0.6103,
+    "A": 1.0,
+    "S": 0.5902,
+    "C": 0.3571,
+    "QSE_Rank": 1.7692,
+    "AGQ_v2": 0.6394,
+    "PCA": 1.0,
+    "SCC": 0,
+    "SH": 1.0,
+    "panel_formula": 5.7
+  },
+  "deltas": {
+    "M": 0.0239,
+    "A": 0.0,
+    "S": 0.3803,
+    "C": 0.0662,
+    "QSE_Rank": 0.8846,
+    "AGQ_v2": 0.1464
+  },
+  "refactoring_steps": [
+    "Package restructuring: ltd.newbee.mall.* -> mall.* (6 second-level packages)",
+    "Controller split: PersonalController -> AuthController + ProfileController",
+    "DAO CQRS split: 8 large Mappers -> ReadMapper + WriteMapper pairs",
+    "Service CQRS split: 3 large Services -> QueryService + CommandService pairs",
+    "Abstraction layer: ApiResponse, Pageable, DomainEntity, DataAccessObject interfaces",
+    "VO/Entity cohesion: equals/hashCode/toString added to 23 classes"
+  ],
+  "key_findings": [
+    "S responded strongly (+0.38) to package restructuring that created real layer differentiation",
+    "C responded moderately (+0.07) to VO/Entity cohesion methods and interface splitting",
+    "M showed small improvement (+0.02) from better package separation",
+    "QSE-Rank doubled (0.88 -> 1.77) moving repo from NEG to POS territory",
+    "AGQ_v2 moved from 0.49 (NEG) to 0.64 (solid POS range)",
+    "LCOM4 limitation: Java interfaces inherently have LCOM4=n_methods (no shared fields)"
+  ]
+}

@@ -1,3 +1,8 @@
+---
+type: handbook
+language: pl
+---
+
 <div align="center">
 
 # QSE

@@ -162,24 +162,47 @@ class TestLCOM4:
 # ---------------------------------------------------------------------------
 
 class TestCohesion:
-    def test_empty(self):
-        assert compute_cohesion([]) == 1.0
+    def test_empty_is_neutral(self):
+        """No classes found → neutral score (not perfect).
+        Empty input means the scanner found nothing, not that cohesion is ideal."""
+        score = compute_cohesion([])
+        assert 0.0 < score < 1.0  # neutral, not perfect
 
     def test_all_cohesive(self):
-        """All LCOM4=1 → cohesion=1.0."""
+        """All LCOM4=1 → cohesion=1.0 (trivially cohesive classes skipped, no penalties)."""
         assert compute_cohesion([1, 1, 1]) == 1.0
 
     def test_one_bad_class(self):
-        """LCOM4=5 → penalty = min(1, 4/4) = 1.0 → cohesion = 0.0 for single class."""
+        """LCOM4=5 → penalty = min(1, 4/4) = 1.0 → cohesion = 0.0 for single non-trivial class."""
         assert compute_cohesion([5]) == 0.0
 
-    def test_mixed(self):
-        """LCOM4=[1, 3] → excess=[0, 2] → penalty=[0, 0.5] → mean=0.25 → cohesion=0.75."""
-        assert compute_cohesion([1, 3]) == pytest.approx(0.75)
+    def test_mixed_worse_than_all_good(self):
+        """Adding a bad class (LCOM4=3) to good ones lowers cohesion."""
+        all_good = compute_cohesion([1, 1, 1])
+        mixed = compute_cohesion([1, 1, 3])
+        assert mixed < all_good
+
+    def test_mixed_better_than_all_bad(self):
+        """Mix of good and bad is better than all bad."""
+        mixed = compute_cohesion([1, 1, 3])
+        all_bad = compute_cohesion([5, 5, 5])
+        assert mixed > all_bad
+
+    def test_more_bad_classes_lower_score(self):
+        """More non-trivial bad classes → lower cohesion."""
+        one_bad = compute_cohesion([3])
+        three_bad = compute_cohesion([3, 4, 5])
+        assert one_bad >= three_bad
 
     def test_capped_at_five(self):
         """LCOM4=5 and LCOM4=10 both get penalty=1.0 (capped)."""
         assert compute_cohesion([5]) == compute_cohesion([10])
+
+    def test_output_range(self):
+        """Cohesion is always in [0, 1]."""
+        for lcom_list in [[], [1], [1, 1], [5], [1, 3], [2, 3, 5, 8]]:
+            score = compute_cohesion(lcom_list)
+            assert 0.0 <= score <= 1.0, f"cohesion({lcom_list})={score} out of range"
 
 
 # ---------------------------------------------------------------------------
@@ -187,23 +210,35 @@ class TestCohesion:
 # ---------------------------------------------------------------------------
 
 class TestInstabilityVariance:
+    """Tests for deprecated compute_instability_variance (node-level).
+    Tests verify behavioral invariants, not specific numeric values."""
+
     def test_single_node(self):
         G = nx.DiGraph()
         G.add_node("a")
         assert compute_instability_variance(G) == 1.0
 
-    def test_uniform_instability(self):
+    def test_uniform_instability_is_zero(self):
         """All nodes with same I → variance=0."""
         G = nx.DiGraph()
         G.add_nodes_from(["a", "b", "c"])  # No edges → all I=0.5 → var=0
         assert compute_instability_variance(G) == 0.0
 
-    def test_differentiated(self):
-        """Leaf (I=1) and root (I=0) → high variance."""
-        G = nx.DiGraph()
-        G.add_edge("leaf", "root")
-        var = compute_instability_variance(G)
-        assert var > 0.0
+    def test_differentiated_higher_than_uniform(self):
+        """Leaf (I=1) and root (I=0) → higher variance than uniform."""
+        G_diff = nx.DiGraph()
+        G_diff.add_edge("leaf", "root")
+        G_uniform = nx.DiGraph()
+        G_uniform.add_nodes_from(["a", "b", "c"])
+        assert compute_instability_variance(G_diff) > compute_instability_variance(G_uniform)
+
+    def test_output_range(self):
+        """Result is always in [0, 1]."""
+        for edges in [[], [("a", "b")], [("a", "b"), ("b", "c"), ("c", "a")]]:
+            G = nx.DiGraph()
+            G.add_edges_from(edges) if edges else G.add_nodes_from(["a", "b"])
+            val = compute_instability_variance(G)
+            assert 0.0 <= val <= 1.0, f"instability_variance={val} out of range"
 
 
 # ---------------------------------------------------------------------------
@@ -227,10 +262,21 @@ class TestComputeAGQ:
         assert 0.0 <= result.cohesion <= 1.0
         assert 0.0 <= result.agq_score <= 1.0
 
-    def test_agq_score_is_mean(self):
+    def test_agq_score_respects_weights(self):
+        """agq_score uses the default weights (0.20, 0.20, 0.55, 0.05), not equal mean."""
         G = nx.DiGraph()
         G.add_node("a")
         result = compute_agq(G)
+        w = (0.20, 0.20, 0.55, 0.05)
+        expected = (w[0] * result.modularity + w[1] * result.acyclicity +
+                    w[2] * result.stability + w[3] * result.cohesion)
+        assert result.agq_score == pytest.approx(expected)
+
+    def test_agq_score_with_equal_weights(self):
+        """Explicit equal weights → mean of 4 components."""
+        G = nx.DiGraph()
+        G.add_node("a")
+        result = compute_agq(G, weights=(0.25, 0.25, 0.25, 0.25))
         expected = (result.modularity + result.acyclicity + result.stability + result.cohesion) / 4
         assert result.agq_score == pytest.approx(expected)
 

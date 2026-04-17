@@ -1,0 +1,27 @@
+{
+  "experiment": "E8_S_Sensitivity",
+  "date": "2026-04-13",
+  "status": "investigation_complete",
+  "findings": {
+    "s_distribution": {
+      "mean": 0.28266363636363634,
+      "std": 0.232164608816195,
+      "pos_mean": 0.32937777777777777,
+      "neg_mean": 0.23761785714285716
+    },
+    "root_cause": "S measures instability VARIANCE, not dependency DIRECTION. Refactoring that reverses dependency directions (DIP) doesn't change the statistical distribution of instability values \u2014 it just reshuffles which packages are stable vs unstable.",
+    "s_monotonicity_broken": true,
+    "s_inverted_u": "S has inverted-U relationship with quality \u2014 both very low S (flat) and very high S (hub) are bad. Peak quality at S\u22480.20."
+  },
+  "proposed_replacement": {
+    "name": "Graph Flow Score (GFS)",
+    "formula": "GFS = n_correct_direction_edges / n_total_edges",
+    "rationale": "Measures fraction of edges flowing from outer to inner layers, directly capturing DIP compliance.",
+    "experiment_id": "E8a"
+  },
+  "next_steps": [
+    "E8a: Implement GFS on 15 GT repos",
+    "E8b: Fallback \u2014 Package Centrality Variance",
+    "Decide whether to replace S or add GFS as 6th component"
+  ]
+}

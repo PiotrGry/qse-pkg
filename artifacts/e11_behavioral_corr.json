@@ -1,0 +1,60 @@
+{
+  "experiment": "E11_behavioral",
+  "n": 52,
+  "results": {
+    "total_commits_year": {
+      "spearman_rho": -0.0,
+      "p_value": 0.9998,
+      "auc": 0.439,
+      "n": 52
+    },
+    "log_commits": {
+      "spearman_rho": -0.0,
+      "p_value": 0.9998,
+      "auc": 0.439,
+      "n": 52
+    },
+    "commits_per_node": {
+      "spearman_rho": -0.0,
+      "p_value": 0.9998,
+      "auc": 0.492,
+      "n": 52
+    },
+    "commit_recency": {
+      "spearman_rho": -0.0999,
+      "p_value": 0.4812,
+      "auc": 0.452,
+      "n": 52
+    },
+    "n_contributors": {
+      "spearman_rho": 0.4568,
+      "p_value": 0.1845,
+      "auc": 0.611,
+      "n": 10
+    },
+    "log_contributors": {
+      "spearman_rho": 0.4568,
+      "p_value": 0.1845,
+      "auc": 0.611,
+      "n": 10
+    },
+    "contribs_per_100nodes": {
+      "spearman_rho": -0.5047,
+      "p_value": 0.1368,
+      "auc": 0.333,
+      "n": 10
+    },
+    "bus_factor": {
+      "spearman_rho": -0.0164,
+      "p_value": 0.9641,
+      "auc": 0.722,
+      "n": 10
+    },
+    "stars": {
+      "spearman_rho": -0.0058,
+      "p_value": 0.9674,
+      "auc": 0.442,
+      "n": 52
+    }
+  }
+}

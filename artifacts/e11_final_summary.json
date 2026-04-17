@@ -1,0 +1,31 @@
+{
+  "experiment": "E11_final",
+  "approaches": {
+    "A_percentile": {
+      "verdict": "REJECTED",
+      "reason": "Monotone transform doesn't change Spearman rank correlation"
+    },
+    "B_dual_mode": {
+      "verdict": "CONCEPTUALLY_VALID_EMPIRICALLY_WEAK",
+      "reason": "AGQ-track PCA/LVR too insensitive for small refactorings"
+    },
+    "C_count_based": {
+      "verdict": "MARGINAL_IMPROVEMENT",
+      "reason": "Absolute counts slightly better within-repo, no help cross-repo"
+    },
+    "D_behavioral": {
+      "verdict": "NO_SIGNAL",
+      "reason": "Git activity metrics uncorrelated with architecture quality"
+    }
+  },
+  "key_finding": "No single metric or normalization resolves the cross-repo vs within-repo tension",
+  "recommendation": {
+    "cross_repo_ranking": "Keep AGQ(M,A,S,C) or AGQ_v3c",
+    "within_repo_tracking": "Component-level dashboard: M, PCA, violation counts",
+    "abandon": "Single unified formula for both use cases",
+    "best_individual": {
+      "cross_repo": "C (\u03c1=0.309*)",
+      "within_repo": "M (\u03c1=0.426*)"
+    }
+  }
+}

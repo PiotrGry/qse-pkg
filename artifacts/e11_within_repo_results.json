@@ -1,0 +1,1069 @@
+{
+  "experiment": "E11_within_repo",
+  "n_repos": 5,
+  "repos": [
+    "jhipster/jhipster-sample-app",
+    "thombergs/buckpal",
+    "la-team/light-admin",
+    "spring-projects/spring-batch",
+    "BroadleafCommerce/BroadleafCommerce"
+  ],
+  "results": {
+    "PCA (raw ratio)": {
+      "pooled_rho": 0.0522,
+      "pooled_p": 0.8086,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3592,
+          "p": 0.4844,
+          "n": 6,
+          "trajectory": [
+            0.2941,
+            0.3333,
+            0.3333,
+            0.3333,
+            0.3684,
+            0.6842
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 3,
+          "trajectory": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -0.7071,
+          "p": 0.1161,
+          "n": 6,
+          "trajectory": [
+            0.7407,
+            0.7317,
+            0.7317,
+            0.7317,
+            0.7349,
+            0.7349
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.7255,
+          "p": 0.1654,
+          "n": 5,
+          "trajectory": [
+            0.8187,
+            0.8144,
+            0.8144,
+            0.8103,
+            0.8093
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 0.8165,
+          "p": 0.1835,
+          "n": 4,
+          "trajectory": [
+            0.5134,
+            0.5123,
+            0.5133,
+            0.5133
+          ]
+        }
+      }
+    },
+    "PCA_pct (GT bench)": {
+      "pooled_rho": 0.0286,
+      "pooled_p": 0.8943,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": -0.02,
+          "p": 0.97,
+          "n": 6,
+          "trajectory": [
+            0.0769,
+            0.0769,
+            0.0769,
+            0.0769,
+            0.0962,
+            0.2885
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 3,
+          "trajectory": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -1.0,
+          "p": 0.0,
+          "n": 6,
+          "trajectory": [
+            0.3462,
+            0.3077,
+            0.3077,
+            0.3077,
+            0.3077,
+            0.3077
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 1.0,
+          "p": 0.0,
+          "n": 5,
+          "trajectory": [
+            0.4423,
+            0.4038,
+            0.4038,
+            0.4038,
+            0.4038
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 1.0,
+          "p": 0.0,
+          "n": 4,
+          "trajectory": [
+            0.1731,
+            0.1538,
+            0.1538,
+            0.1538
+          ]
+        }
+      }
+    },
+    "RC_approx (inv)": {
+      "pooled_rho": 0.0633,
+      "pooled_p": 0.769,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3381,
+          "p": 0.5122,
+          "n": 6,
+          "trajectory": [
+            -66.6667,
+            -63.1579,
+            -60.0,
+            -57.1429,
+            -54.5455,
+            -27.2727
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 3,
+          "trajectory": [
+            -0.0,
+            -0.0,
+            -0.0
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -0.1328,
+          "p": 0.8019,
+          "n": 6,
+          "trajectory": [
+            -25.9259,
+            -26.8293,
+            -26.506,
+            -26.1905,
+            -25.8824,
+            -25.8824
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.7071,
+          "p": 0.1817,
+          "n": 5,
+          "trajectory": [
+            -17.8571,
+            -18.2741,
+            -18.1818,
+            -18.593,
+            -18.6869
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 0.8165,
+          "p": 0.1835,
+          "n": 4,
+          "trajectory": [
+            -47.012,
+            -47.1173,
+            -47.0238,
+            -47.0238
+          ]
+        }
+      }
+    },
+    "pkgs_in_SCC (inv)": {
+      "pooled_rho": 0.294,
+      "pooled_p": 0.1632,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3098,
+          "p": 0.5501,
+          "n": 6,
+          "trajectory": [
+            -12,
+            -12,
+            -12,
+            -12,
+            -12,
+            -6
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 3,
+          "trajectory": [
+            0,
+            0,
+            0
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -1.0,
+          "p": 0.0,
+          "n": 6,
+          "trajectory": [
+            -21,
+            -22,
+            -22,
+            -22,
+            -22,
+            -22
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.7454,
+          "p": 0.1482,
+          "n": 5,
+          "trajectory": [
+            -35,
+            -36,
+            -36,
+            -37,
+            -37
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 1.0,
+          "p": 0.0,
+          "n": 4,
+          "trajectory": [
+            -236,
+            -237,
+            -237,
+            -237
+          ]
+        }
+      }
+    },
+    "LVR (raw ratio)": {
+      "pooled_rho": -0.1797,
+      "pooled_p": 0.4008,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3098,
+          "p": 0.5501,
+          "n": 6,
+          "trajectory": [
+            0.8581,
+            0.8581,
+            0.8581,
+            0.8581,
+            0.8581,
+            0.8819
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": 0.5,
+          "p": 0.6667,
+          "n": 3,
+          "trajectory": [
+            0.8382,
+            0.8382,
+            0.8281
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": 0.7746,
+          "p": 0.0705,
+          "n": 6,
+          "trajectory": [
+            0.8973,
+            0.8995,
+            0.8995,
+            0.8995,
+            0.8995,
+            0.8982
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.25,
+          "p": 0.685,
+          "n": 5,
+          "trajectory": [
+            0.9329,
+            0.9329,
+            0.9329,
+            0.9329,
+            0.9328
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 4,
+          "trajectory": [
+            0.9324,
+            0.9324,
+            0.9324,
+            0.9324
+          ]
+        }
+      }
+    },
+    "LVR_pct (GT bench)": {
+      "pooled_rho": -0.2064,
+      "pooled_p": 0.3332,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 6,
+          "trajectory": [
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0385,
+            0.0385
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": 0.5,
+          "p": 0.6667,
+          "n": 3,
+          "trajectory": [
+            0.0192,
+            0.0192,
+            0.0
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 6,
+          "trajectory": [
+            0.0577,
+            0.0577,
+            0.0577,
+            0.0577,
+            0.0577,
+            0.0577
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.25,
+          "p": 0.685,
+          "n": 5,
+          "trajectory": [
+            0.1154,
+            0.1154,
+            0.1154,
+            0.1154,
+            0.0962
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 4,
+          "trajectory": [
+            0.0962,
+            0.0962,
+            0.0962,
+            0.0962
+          ]
+        }
+      }
+    },
+    "viol_per_100n (inv)": {
+      "pooled_rho": 0.2639,
+      "pooled_p": 0.2127,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3133,
+          "p": 0.5454,
+          "n": 6,
+          "trajectory": [
+            -3.8817,
+            -3.8817,
+            -3.8745,
+            -3.8674,
+            -3.8674,
+            -3.1308
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": -1.0,
+          "p": 0.0,
+          "n": 3,
+          "trajectory": [
+            -8.0882,
+            -8.0292,
+            -8.0292
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": 0.6956,
+          "p": 0.1249,
+          "n": 6,
+          "trajectory": [
+            -9.6741,
+            -9.4705,
+            -9.4608,
+            -9.4512,
+            -9.4512,
+            -9.4512
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": -0.6124,
+          "p": 0.2722,
+          "n": 5,
+          "trajectory": [
+            -13.3257,
+            -13.3257,
+            -13.3207,
+            -13.3207,
+            -13.3207
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 4,
+          "trajectory": [
+            -18.7545,
+            -18.7545,
+            -18.7545,
+            -18.7545
+          ]
+        }
+      }
+    },
+    "violations_abs (inv)": {
+      "pooled_rho": 0.2835,
+      "pooled_p": 0.1794,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3098,
+          "p": 0.5501,
+          "n": 6,
+          "trajectory": [
+            -21,
+            -21,
+            -21,
+            -21,
+            -21,
+            -17
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 3,
+          "trajectory": [
+            -11,
+            -11,
+            -11
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": 1.0,
+          "p": 0.0,
+          "n": 6,
+          "trajectory": [
+            -95,
+            -93,
+            -93,
+            -93,
+            -93,
+            -93
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 5,
+          "trajectory": [
+            -351,
+            -351,
+            -351,
+            -351,
+            -351
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 4,
+          "trajectory": [
+            -783,
+            -783,
+            -783,
+            -783
+          ]
+        }
+      }
+    },
+    "SH (raw)": {
+      "pooled_rho": 0.0603,
+      "pooled_p": 0.7796,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3592,
+          "p": 0.4844,
+          "n": 6,
+          "trajectory": [
+            0.5024,
+            0.5348,
+            0.5348,
+            0.5348,
+            0.5623,
+            0.7768
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": 0.5,
+          "p": 0.6667,
+          "n": 3,
+          "trajectory": [
+            0.9156,
+            0.9156,
+            0.91
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -0.6956,
+          "p": 0.1249,
+          "n": 6,
+          "trajectory": [
+            0.8153,
+            0.8113,
+            0.8113,
+            0.8113,
+            0.813,
+            0.8125
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.7255,
+          "p": 0.1654,
+          "n": 5,
+          "trajectory": [
+            0.8739,
+            0.8717,
+            0.8717,
+            0.8694,
+            0.8689
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 0.8165,
+          "p": 0.1835,
+          "n": 4,
+          "trajectory": [
+            0.6919,
+            0.6912,
+            0.6918,
+            0.6918
+          ]
+        }
+      }
+    },
+    "SH_pct (GT bench)": {
+      "pooled_rho": 0.0507,
+      "pooled_p": 0.814,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3098,
+          "p": 0.5501,
+          "n": 6,
+          "trajectory": [
+            0.0769,
+            0.0769,
+            0.0769,
+            0.0769,
+            0.0769,
+            0.25
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": 0.5,
+          "p": 0.6667,
+          "n": 3,
+          "trajectory": [
+            0.4808,
+            0.4808,
+            0.4615
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -1.0,
+          "p": 0.0,
+          "n": 6,
+          "trajectory": [
+            0.2885,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 1.0,
+          "p": 0.0,
+          "n": 5,
+          "trajectory": [
+            0.3846,
+            0.3654,
+            0.3654,
+            0.3654,
+            0.3654
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 1.0,
+          "p": 0.0,
+          "n": 4,
+          "trajectory": [
+            0.1538,
+            0.1346,
+            0.1346,
+            0.1346
+          ]
+        }
+      }
+    },
+    "S (raw)": {
+      "pooled_rho": 0.2415,
+      "pooled_p": 0.2556,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 6,
+          "trajectory": [
+            0.1856,
+            0.1856,
+            0.1856,
+            0.1856,
+            0.1856,
+            0.1856
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 3,
+          "trajectory": [
+            0.1814,
+            0.1814,
+            0.1814
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 6,
+          "trajectory": [
+            0.1211,
+            0.1211,
+            0.1211,
+            0.1211,
+            0.1211,
+            0.1211
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 5,
+          "trajectory": [
+            0.0689,
+            0.0689,
+            0.0689,
+            0.0689,
+            0.0689
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 4,
+          "trajectory": [
+            0.1175,
+            0.1175,
+            0.1175,
+            0.1175
+          ]
+        }
+      }
+    },
+    "C (raw)": {
+      "pooled_rho": -0.0822,
+      "pooled_p": 0.7024,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 6,
+          "trajectory": [
+            0.4219,
+            0.4219,
+            0.4219,
+            0.4219,
+            0.4219,
+            0.4219
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 3,
+          "trajectory": [
+            0.4265,
+            0.4265,
+            0.4265
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 6,
+          "trajectory": [
+            0.3541,
+            0.3541,
+            0.3541,
+            0.3541,
+            0.3541,
+            0.3541
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 5,
+          "trajectory": [
+            0.4301,
+            0.4301,
+            0.4301,
+            0.4301,
+            0.4301
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": NaN,
+          "p": NaN,
+          "n": 4,
+          "trajectory": [
+            0.3264,
+            0.3264,
+            0.3264,
+            0.3264
+          ]
+        }
+      }
+    },
+    "M (raw)": {
+      "pooled_rho": 0.4265,
+      "pooled_p": 0.0377,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": -0.0676,
+          "p": 0.8987,
+          "n": 6,
+          "trajectory": [
+            0.8147,
+            0.8196,
+            0.8207,
+            0.8189,
+            0.821,
+            0.8121
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": -1.0,
+          "p": 0.0,
+          "n": 3,
+          "trajectory": [
+            0.7545,
+            0.7601,
+            0.7601
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -0.1309,
+          "p": 0.8047,
+          "n": 6,
+          "trajectory": [
+            0.8359,
+            0.8277,
+            0.8406,
+            0.8287,
+            0.836,
+            0.834
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.0,
+          "p": 1.0,
+          "n": 5,
+          "trajectory": [
+            0.5915,
+            0.5891,
+            0.5875,
+            0.5964,
+            0.609
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 0.7746,
+          "p": 0.2254,
+          "n": 4,
+          "trajectory": [
+            0.7092,
+            0.7034,
+            0.7052,
+            0.7082
+          ]
+        }
+      }
+    },
+    "AGQ-track(PCA,LVR,C)": {
+      "pooled_rho": 0.0603,
+      "pooled_p": 0.7796,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": 0.3592,
+          "p": 0.4844,
+          "n": 6,
+          "trajectory": [
+            0.5247,
+            0.5378,
+            0.5378,
+            0.5378,
+            0.5495,
+            0.6627
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": 0.5,
+          "p": 0.6667,
+          "n": 3,
+          "trajectory": [
+            0.7549,
+            0.7549,
+            0.7515
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -0.6956,
+          "p": 0.1249,
+          "n": 6,
+          "trajectory": [
+            0.664,
+            0.6618,
+            0.6618,
+            0.6618,
+            0.6628,
+            0.6624
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.7255,
+          "p": 0.1654,
+          "n": 5,
+          "trajectory": [
+            0.7272,
+            0.7258,
+            0.7258,
+            0.7244,
+            0.7241
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 0.8165,
+          "p": 0.1835,
+          "n": 4,
+          "trajectory": [
+            0.5907,
+            0.5904,
+            0.5907,
+            0.5907
+          ]
+        }
+      }
+    },
+    "AGQ-bench(M,A,S,C)": {
+      "pooled_rho": 0.223,
+      "pooled_p": 0.2949,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": -0.0676,
+          "p": 0.8987,
+          "n": 6,
+          "trajectory": [
+            0.6056,
+            0.6068,
+            0.607,
+            0.6066,
+            0.6071,
+            0.6049
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": -1.0,
+          "p": 0.0,
+          "n": 3,
+          "trajectory": [
+            0.5906,
+            0.592,
+            0.592
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -0.1309,
+          "p": 0.8047,
+          "n": 6,
+          "trajectory": [
+            0.5778,
+            0.5757,
+            0.5789,
+            0.576,
+            0.5778,
+            0.5773
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.0,
+          "p": 1.0,
+          "n": 5,
+          "trajectory": [
+            0.5224,
+            0.5218,
+            0.5214,
+            0.5237,
+            0.5268
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 0.7746,
+          "p": 0.2254,
+          "n": 4,
+          "trajectory": [
+            0.5351,
+            0.5336,
+            0.534,
+            0.5348
+          ]
+        }
+      }
+    },
+    "agq_v3c": {
+      "pooled_rho": 0.2016,
+      "pooled_p": 0.3447,
+      "pooled_n": 24,
+      "per_repo": {
+        "jhipster/jhipster-sample-app": {
+          "rho": -0.0676,
+          "p": 0.8987,
+          "n": 6,
+          "trajectory": [
+            0.6061,
+            0.6071,
+            0.6075,
+            0.6072,
+            0.6077,
+            0.6059
+          ]
+        },
+        "thombergs/buckpal": {
+          "rho": -1.0,
+          "p": 0.0,
+          "n": 3,
+          "trajectory": [
+            0.6078,
+            0.6094,
+            0.6094
+          ]
+        },
+        "la-team/light-admin": {
+          "rho": -0.1309,
+          "p": 0.8047,
+          "n": 6,
+          "trajectory": [
+            0.5757,
+            0.574,
+            0.5767,
+            0.5744,
+            0.5759,
+            0.5755
+          ]
+        },
+        "spring-projects/spring-batch": {
+          "rho": 0.0,
+          "p": 1.0,
+          "n": 5,
+          "trajectory": [
+            0.4251,
+            0.4246,
+            0.4244,
+            0.4262,
+            0.4287
+          ]
+        },
+        "BroadleafCommerce/BroadleafCommerce": {
+          "rho": 0.7746,
+          "p": 0.2254,
+          "n": 4,
+          "trajectory": [
+            0.428,
+            0.4269,
+            0.4272,
+            0.4278
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,251 @@
+---
+# qse-archtest — Usage Example
+#
+# This file demonstrates how to integrate qse-archtest into a real CI pipeline.
+# Copy and adapt the patterns that match your project's needs.
+#
+# Patterns demonstrated:
+#   A. Basic: run on every PR (advisory, no failure)
+#   B. Standard: gate that fails PRs on red status
+#   C. Strict: gate that fails PRs on amber or red (protected branches)
+#   D. Ratchet: compare against main branch AGQ for FF1 regression detection
+#   E. Multi-language: scan a monorepo with both Java and Python modules
+#   F. Scheduled: nightly full scan of the main branch
+
+name: Architecture Quality Gate (example)
+
+on:
+  pull_request:
+    branches:
+      - main
+      - "release/**"
+  push:
+    branches:
+      - main
+  schedule:
+    # Nightly scan at 02:00 UTC
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  # ── Pattern A: Advisory run — never fails the build ─────────────────────
+  # Good starting point for projects adopting qse-archtest for the first time.
+  archtest-advisory:
+    name: "A. AGQ (advisory)"
+    # Only run on PRs against feature branches; skip main pushes and schedules
+    if: github.event_name == 'pull_request'
+    uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+    with:
+      repo-path: "."
+      language: "python"
+      format: "markdown"
+      fail-on-red: false      # advisory: never block the PR
+      fail-on-amber: false
+      post-pr-comment: true   # still posts results as a PR comment
+    permissions:
+      contents: read
+      pull-requests: write
+
+  # ── Pattern B: Standard gate — fail on red only ──────────────────────────
+  # Recommended for most projects. Blocks PRs with critically low AGQ scores
+  # but allows amber (needs improvement) to merge with visibility.
+  archtest-standard:
+    name: "B. AGQ Gate (standard)"
+    if: github.event_name == 'pull_request'
+    uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+    with:
+      repo-path: "."
+      language: "java"
+      format: "markdown"
+      fail-on-red: true
+      fail-on-amber: false
+      post-pr-comment: true
+    permissions:
+      contents: read
+      pull-requests: write
+
+  # ── Pattern C: Strict gate — fail on amber or red ────────────────────────
+  # For high-maturity teams or release branches where architecture quality
+  # is a hard requirement. Combine with branch protection rules.
+  archtest-strict:
+    name: "C. AGQ Gate (strict — release branches)"
+    if: >
+      github.event_name == 'pull_request' &&
+      startsWith(github.base_ref, 'release/')
+    uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+    with:
+      repo-path: "."
+      language: "java"
+      format: "markdown"
+      fail-on-red: true
+      fail-on-amber: true     # strict: amber also fails
+      post-pr-comment: true
+    permissions:
+      contents: read
+      pull-requests: write
+
+  # ── Pattern D: Ratchet / FF1 regression check ────────────────────────────
+  # Step 1: Read the main branch AGQ from the saved baseline.
+  # Step 2: Pass it to archtest as --main-branch-agq.
+  # This ensures that a PR cannot lower the AGQ by more than 0.05 even if the
+  # absolute score stays above the amber threshold.
+  read-main-agq:
+    name: "D.1 Read main branch AGQ baseline"
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      agq: ${{ steps.read.outputs.agq }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Read baseline
+        id: read
+        shell: bash
+        run: |
+          BASELINE_FILE=".qse/agq_baseline.json"
+          if [ -f "${BASELINE_FILE}" ]; then
+            AGQ=$(python3 -c "import json; print(json.load(open('${BASELINE_FILE}')).get('agq_score', ''))")
+            echo "agq=${AGQ}" >> "$GITHUB_OUTPUT"
+            echo "Main branch AGQ baseline: ${AGQ}"
+          else
+            echo "agq=" >> "$GITHUB_OUTPUT"
+            echo "No baseline file found at ${BASELINE_FILE} — FF1 check skipped"
+          fi
+
+  archtest-ratchet:
+    name: "D.2 AGQ Gate (FF1 ratchet)"
+    if: github.event_name == 'pull_request'
+    needs: read-main-agq
+    uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+    with:
+      repo-path: "."
+      language: "python"
+      format: "markdown"
+      main-branch-agq: ${{ needs.read-main-agq.outputs.agq }}
+      fail-on-red: true
+      fail-on-amber: false
+      post-pr-comment: true
+    permissions:
+      contents: read
+      pull-requests: write
+
+  # ── Save baseline on main branch pushes ──────────────────────────────────
+  # After a PR is merged to main, save the new AGQ score as the baseline.
+  # This baseline is used by the ratchet check (Pattern D) on future PRs.
+  save-agq-baseline:
+    name: "D.3 Save AGQ baseline (main push)"
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install QSE
+        run: |
+          pip install --upgrade pip
+          pip install networkx>=3.0 scipy>=1.10 numpy>=1.24 tree-sitter>=0.21 tree-sitter-java>=0.23
+          pip install git+https://github.com/PiotrGry/qse-pkg.git@perplexity
+
+      - name: Compute and save baseline
+        run: |
+          mkdir -p .qse
+          python -m qse.archtest --repo . --lang python --format json > /tmp/archtest_main.json
+          python3 -c "
+          import json
+          report = json.load(open('/tmp/archtest_main.json'))
+          baseline = {
+              'agq_score': report['agq_v3c'],
+              'status': report['status'],
+              'components': report['components'],
+              'timestamp': report['timestamp'],
+          }
+          json.dump(baseline, open('.qse/agq_baseline.json', 'w'), indent=2)
+          print('Baseline saved:', json.dumps(baseline, indent=2))
+          "
+
+      - name: Commit baseline
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(qse): update AGQ baseline [skip ci]"
+          file_pattern: ".qse/agq_baseline.json"
+
+  # ── Pattern E: Multi-language monorepo ──────────────────────────────────
+  # Scan a monorepo where the backend is Java and the tooling is Python.
+  archtest-java-backend:
+    name: "E.1 AGQ Gate (Java backend)"
+    if: github.event_name == 'pull_request'
+    uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+    with:
+      repo-path: "./backend"   # Java sub-module
+      language: "java"
+      format: "markdown"
+      fail-on-red: true
+      fail-on-amber: false
+      post-pr-comment: true
+    permissions:
+      contents: read
+      pull-requests: write
+
+  archtest-python-tooling:
+    name: "E.2 AGQ Gate (Python tooling)"
+    if: github.event_name == 'pull_request'
+    uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+    with:
+      repo-path: "./tools"     # Python sub-module
+      language: "python"
+      format: "markdown"
+      fail-on-red: true
+      fail-on-amber: false
+      post-pr-comment: true
+    permissions:
+      contents: read
+      pull-requests: write
+
+  # ── Pattern F: Nightly scheduled scan ────────────────────────────────────
+  # Run a full scan on a schedule and upload the JSON report as an artifact.
+  # Useful for tracking AGQ trends over time or for compliance reporting.
+  archtest-nightly:
+    name: "F. Nightly AGQ scan"
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+    with:
+      repo-path: "."
+      language: "java"      # change to your primary language
+      format: "markdown"
+      fail-on-red: false    # nightly scans are informational
+      fail-on-amber: false
+      post-pr-comment: false  # no PR to comment on for scheduled runs
+    permissions:
+      contents: read
+      pull-requests: write
+
+  # ── Downstream job: use archtest outputs ─────────────────────────────────
+  # Demonstrate how to consume outputs from the archtest workflow.
+  downstream:
+    name: "Use archtest outputs"
+    needs: archtest-standard
+    if: always() && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print AGQ results
+        run: |
+          echo "AGQ Score: ${{ needs.archtest-standard.outputs.agq-score }}"
+          echo "Status:    ${{ needs.archtest-standard.outputs.status }}"
+          echo "Artifact:  ${{ needs.archtest-standard.outputs.report-artifact }}"
+
+      - name: Block deploy on red architecture
+        if: needs.archtest-standard.outputs.status == 'red'
+        run: |
+          echo "::error::Deployment blocked: architecture quality is RED."
+          exit 1

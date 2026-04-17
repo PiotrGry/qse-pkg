@@ -13,6 +13,7 @@ setup(
     entry_points={
         "console_scripts": [
             "qse=qse.cli:main",
+            "qse-archtest=qse.archtest:main",
         ],
     },
     python_requires=">=3.10",

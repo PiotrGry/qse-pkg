@@ -30,6 +30,8 @@ class AGQMetrics:
     stability: float     # 1 - mean distance from main sequence
     cohesion: float      # 1 - mean(LCOM4 - 1) / max_lcom4
     coupling_density: float = 0.0  # E2: 1 - normalized(edges/nodes); lower ratio = better
+    qse_rank: Optional[float] = None  # E11: rank(C)+rank(S) percentile vs benchmark
+    qse_track_m: Optional[float] = None  # E11: M score for within-repo tracking
 
     @property
     def agq_score(self) -> float:
@@ -272,8 +274,8 @@ def compute_instability_variance(G: nx.DiGraph) -> float:
     mean_i = sum(instabilities) / len(instabilities)
     var = sum((i - mean_i) ** 2 for i in instabilities) / len(instabilities)
     raw = min(1.0, var / 0.25)
-    # Small-sample correction for 2-package repos
-    if len(packages) == 2:
+    # Small-sample correction for 2-node graphs
+    if len(nodes) == 2:
         return raw * 0.8
     return raw
 
@@ -633,6 +635,199 @@ def compute_per_module_metrics(G: nx.DiGraph) -> Dict[str, object]:
 
 
 # ---------------------------------------------------------------------------
+# Package-level structural metrics (E10, April 2026)
+# ---------------------------------------------------------------------------
+
+def _build_package_map(G: nx.DiGraph,
+                       internal_nodes: Optional[Set[str]] = None,
+                       packages: Optional[Set[str]] = None
+                       ) -> Dict[str, str]:
+    """Map each internal node to its package.
+
+    If *packages* is provided, uses longest-prefix matching.
+    Otherwise derives packages by stripping the last dotted segment
+    from each fully-qualified node name.
+
+    Returns dict  node -> package_name.
+    """
+    nodes = internal_nodes if internal_nodes else set(G.nodes())
+    pkg_map: Dict[str, str] = {}
+
+    if packages:
+        sorted_pkgs = sorted(packages, key=len, reverse=True)
+        for n in nodes:
+            if n not in G:
+                continue
+            for p in sorted_pkgs:
+                if n.startswith(p + "."):
+                    pkg_map[n] = p
+                    break
+            else:
+                # fallback: strip last segment
+                if "." in n:
+                    pkg_map[n] = n.rsplit(".", 1)[0]
+    else:
+        for n in nodes:
+            if n not in G:
+                continue
+            if "." in n:
+                pkg_map[n] = n.rsplit(".", 1)[0]
+            else:
+                pkg_map[n] = ""
+
+    return pkg_map
+
+
+def compute_package_acyclicity(G: nx.DiGraph,
+                               internal_nodes: Optional[Set[str]] = None,
+                               packages: Optional[Set[str]] = None
+                               ) -> float:
+    """Package-level acyclicity (PCA).
+
+    Builds a package-level dependency graph from cross-package edges,
+    then measures: PCA = 1 - (largest_pkg_SCC / total_packages).
+
+    Unlike class-level acyclicity (A), this catches architectural
+    layer violations that create package-level cycles even when
+    no class-level cycle exists.
+
+    Returns float in [0, 1] where 1.0 = no package cycles.
+    """
+    pkg_map = _build_package_map(G, internal_nodes, packages)
+    if len(set(pkg_map.values())) <= 1:
+        return 1.0
+
+    # Build package-level digraph
+    pkg_graph = nx.DiGraph()
+    for u, v in G.edges():
+        if u in pkg_map and v in pkg_map:
+            pu, pv = pkg_map[u], pkg_map[v]
+            if pu != pv:
+                pkg_graph.add_edge(pu, pv)
+
+    if pkg_graph.number_of_nodes() <= 1:
+        return 1.0
+
+    # Largest SCC (package-level)
+    largest_scc = 0
+    for scc in nx.strongly_connected_components(pkg_graph):
+        if len(scc) > 1:
+            largest_scc = max(largest_scc, len(scc))
+
+    total_pkgs = pkg_graph.number_of_nodes()
+    if largest_scc == 0:
+        return 1.0
+
+    return 1.0 - (largest_scc / total_pkgs)
+
+
+def compute_layer_violation_ratio(G: nx.DiGraph,
+                                  internal_nodes: Optional[Set[str]] = None,
+                                  packages: Optional[Set[str]] = None
+                                  ) -> float:
+    """Layer Violation Ratio (LVR) — DIP + layer-bypass score.
+
+    Classifies each package into a layer heuristically:
+      - DOMAIN:  package name contains 'domain', 'model', 'entity', 'core'
+      - SERVICE: package name contains 'service', 'usecase', 'application'
+      - INFRA:   package name contains 'repository', 'persistence', 'config',
+                 'security', 'web', 'rest', 'controller', 'api', 'gateway',
+                 'adapter', 'infrastructure'
+      - OTHER:   everything else
+
+    Violations counted:
+      1. DIP violation: DOMAIN -> INFRA edge  (domain must not know infra)
+      2. DIP violation: DOMAIN -> SERVICE edge (domain must not know service in strict DDD)
+      3. Layer bypass:  INFRA -> DOMAIN edge that skips SERVICE (direct repo access from controller)
+         Specifically: controller/web/rest -> repository/persistence (bypasses service)
+
+    LVR = 1 - (violation_edges / total_cross_pkg_edges)
+    Returns float in [0, 1] where 1.0 = no violations.
+    """
+    pkg_map = _build_package_map(G, internal_nodes, packages)
+
+    # Classify packages into layers
+    DOMAIN_KEYWORDS = {'domain', 'model', 'entity', 'core', 'aggregate'}
+    SERVICE_KEYWORDS = {'service', 'usecase', 'application', 'interactor'}
+    INFRA_KEYWORDS = {'repository', 'persistence', 'config', 'configuration',
+                      'security', 'web', 'rest', 'controller', 'api', 'gateway',
+                      'adapter', 'infrastructure', 'filter', 'handler', 'client'}
+    # Higher-layer infra that should not be accessed by lower infra
+    PRESENTATION_KEYWORDS = {'web', 'rest', 'controller', 'api', 'gateway'}
+    PERSISTENCE_KEYWORDS = {'repository', 'persistence', 'dao'}
+
+    def classify_package(pkg: str) -> str:
+        segments = set(pkg.lower().split('.'))
+        if segments & DOMAIN_KEYWORDS:
+            return 'DOMAIN'
+        if segments & SERVICE_KEYWORDS:
+            return 'SERVICE'
+        if segments & INFRA_KEYWORDS:
+            return 'INFRA'
+        return 'OTHER'
+
+    def is_presentation(pkg: str) -> bool:
+        segments = set(pkg.lower().split('.'))
+        return bool(segments & PRESENTATION_KEYWORDS)
+
+    def is_persistence(pkg: str) -> bool:
+        segments = set(pkg.lower().split('.'))
+        return bool(segments & PERSISTENCE_KEYWORDS)
+
+    # Count cross-package edges and violations
+    total_cross = 0
+    violations = 0
+
+    for u, v in G.edges():
+        if u not in pkg_map or v not in pkg_map:
+            continue
+        pu, pv = pkg_map[u], pkg_map[v]
+        if pu == pv:
+            continue
+
+        total_cross += 1
+        lu = classify_package(pu)
+        lv = classify_package(pv)
+
+        # DIP violation: domain depends on infra
+        if lu == 'DOMAIN' and lv == 'INFRA':
+            violations += 1
+        # DIP violation: domain depends on service (strict DDD)
+        elif lu == 'DOMAIN' and lv == 'SERVICE':
+            violations += 1
+        # Layer bypass: presentation -> persistence (skips service)
+        elif is_presentation(pu) and is_persistence(pv):
+            violations += 1
+
+    if total_cross == 0:
+        return 1.0
+
+    return 1.0 - (violations / total_cross)
+
+
+def compute_structural_health(G: nx.DiGraph,
+                              internal_nodes: Optional[Set[str]] = None,
+                              packages: Optional[Set[str]] = None
+                              ) -> Dict[str, float]:
+    """Compute all three new structural metrics.
+
+    Returns dict with:
+      - pca: Package-level acyclicity [0,1]
+      - lvr: Layer violation ratio [0,1]
+      - combined: geometric mean of pca and lvr [0,1]
+    """
+    pca = compute_package_acyclicity(G, internal_nodes, packages)
+    lvr = compute_layer_violation_ratio(G, internal_nodes, packages)
+    combined = (pca * lvr) ** 0.5  # geometric mean
+
+    return {
+        'pca': round(pca, 4),
+        'lvr': round(lvr, 4),
+        'combined': round(combined, 4),
+    }
+
+
+# ---------------------------------------------------------------------------
 # Composite
 # ---------------------------------------------------------------------------
 
@@ -696,4 +891,285 @@ def compute_agq(G: nx.DiGraph,
     m._flat_score = 1.0
     m._language   = "Java"
     return m
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# QSE Three-Layer Framework (E11/E12/E12b validated)
+#
+#   Layer 1 — QSE-Rank:       cross-repo benchmarking (rank(C)+rank(S))
+#   Layer 2 — QSE-Track:      within-repo refactoring monitoring (M, PCA, violations)
+#   Layer 3 — QSE-Diagnostic: component-level problem identification (all metrics)
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+def compute_qse_rank(
+    metrics: AGQMetrics,
+    benchmark_C: List[float],
+    benchmark_S: List[float],
+) -> float:
+    """QSE-Rank: benchmark-relative quality score using rank aggregation.
+
+    Formula: 2 * rank(C) + rank(S)
+
+    Computes percentile rank of cohesion (C) and stability (S) against
+    a reference benchmark distribution. C gets double weight because it
+    is the only metric with consistent positive signal across all three
+    validation datasets (GT, E12, E13). S contributes but at half the
+    relative influence to prevent noise when S direction is unstable.
+
+    Result in [0, 3]: higher = better architecture quality.
+    - 3.0: top on both C (x2) and S
+    - 1.5: median on both
+    - 0.0: bottom on both
+
+    Empirical validation (E13b, combined n=77 dataset):
+      - rpb = +0.368, p = 0.0010**
+      - AUC = 0.710
+      - Stable across all three datasets (GT/E12/E13 all positive rpb)
+      - Combined dataset improvement vs equal rank(C)+rank(S): +6.4%
+
+    Cross-dataset stability (average rpb across GT/E12/E13):
+      2*rank(C)+rank(S):     +0.295 (stable: all 3 positive)
+      rank(C)+rank(S):       +0.271 (stable but E13 near zero: +0.081)
+      rank(C)+rank(S)+rank(M): +0.304 (stable but lower combined)
+
+    Root cause of S instability: S measures instability variance
+    (distance from main sequence). Framework-heavy repos (Axon, Camunda)
+    have low S despite good architecture because they expose many
+    abstract APIs. S is directionally correct on GT but inverts on
+    some new data profiles. Double C weight compensates.
+
+    Intended use: cross-repo benchmarking ("how good is this repo?").
+    Not suitable for within-repo monitoring. Use compute_qse_track().
+
+    Args:
+        metrics: AGQMetrics from compute_agq()
+        benchmark_C: list of cohesion values from reference repos
+        benchmark_S: list of stability values from reference repos
+
+    Returns:
+        QSE-Rank score in [0, 3]
+    """
+    import numpy as np
+
+    bench_c = np.array(benchmark_C)
+    bench_s = np.array(benchmark_S)
+    c_pct = float(np.mean(bench_c <= metrics.cohesion))
+    s_pct = float(np.mean(bench_s <= metrics.stability))
+    score = 2.0 * c_pct + s_pct
+    metrics.qse_rank = score
+    return score
+
+
+def compute_qse_track(
+    G: nx.DiGraph,
+    internal_nodes: Optional[Set[str]] = None,
+    packages: Optional[Set[str]] = None,
+) -> Dict[str, object]:
+    """QSE-Track: within-repo architecture monitoring.
+
+    Returns metrics that respond to package-level refactoring,
+    intended for CI/CD pipelines and before/after comparison.
+
+    Tracked signals:
+      - PCA (package acyclicity): reacts to cycle-breaking
+      - dip_violations:  count of DIP/layer-bypass edges
+      - largest_scc:     size of largest package-level strongly connected component
+
+    Removed (E13e): M (modularity) was dropped because Louvain community
+    detection variance (σ=0.005, range=0.028 across seeds) exceeds the
+    typical within-repo refactoring signal (mean Δ=+0.007).  External
+    dependency nodes (e.g. java.util, javax.persistence) create shared
+    hubs that dominate community structure, making M insensitive to
+    package-level changes.  M remains in QSE-Rank (Layer 1) where it
+    works well for cross-repo comparison.
+
+    Root cause (E11): C and S are class-level aggregates with literally
+    zero delta (Δ = 0.0) across package refactoring iterations in all 5
+    tested repos.  Only structure-level metrics respond.
+
+    NOT suitable for cross-repo benchmarking (use compute_qse_rank).
+
+    Args:
+        G: directed import graph
+        internal_nodes: set of internal node names (optional filter)
+        packages: set of package prefixes (optional filter)
+
+    Returns:
+        dict with keys: PCA, dip_violations, largest_scc
+    """
+    # PCA + largest SCC
+    pca = compute_package_acyclicity(G, internal_nodes, packages)
+    largest_scc = _compute_largest_pkg_scc(G, internal_nodes, packages)
+
+    # DIP violations from LVR computation
+    dip = _count_dip_violations(G, internal_nodes, packages)
+
+    return {
+        "PCA": round(float(pca), 4),
+        "dip_violations": int(dip),
+        "largest_scc": int(largest_scc),
+    }
+
+
+def compute_qse_diagnostic(
+    G: nx.DiGraph,
+    metrics: AGQMetrics,
+    benchmark_C: Optional[List[float]] = None,
+    benchmark_S: Optional[List[float]] = None,
+    internal_nodes: Optional[Set[str]] = None,
+    packages: Optional[Set[str]] = None,
+) -> Dict[str, object]:
+    """QSE-Diagnostic: component-level problem identification.
+
+    Returns the full metric decomposition for root-cause analysis.
+    Each metric comes with its raw value AND a percentile rank against
+    the GT benchmark (if provided), so the user can see exactly which
+    dimension is weak.
+
+    Intended use: "What specifically is wrong with this architecture?"
+
+    Args:
+        G: directed import graph
+        metrics: AGQMetrics from compute_agq()
+        benchmark_C: optional reference cohesion values (default: GT_BENCHMARK_C)
+        benchmark_S: optional reference stability values (default: GT_BENCHMARK_S)
+        internal_nodes: optional filter
+        packages: optional filter
+
+    Returns:
+        dict with per-metric raw values, percentiles, and problem flags
+    """
+    import numpy as np
+
+    bench_c = np.array(benchmark_C or GT_BENCHMARK_C)
+    bench_s = np.array(benchmark_S or GT_BENCHMARK_S)
+
+    # Structural metrics
+    pca = compute_package_acyclicity(G, internal_nodes, packages)
+    lvr = compute_layer_violation_ratio(G, internal_nodes, packages)
+    dip = _count_dip_violations(G, internal_nodes, packages)
+    largest_scc = _compute_largest_pkg_scc(G, internal_nodes, packages)
+
+    # Percentiles vs benchmark
+    c_pct = float(np.mean(bench_c <= metrics.cohesion))
+    s_pct = float(np.mean(bench_s <= metrics.stability))
+
+    # Problem flags (bottom quartile = flag)
+    problems = []
+    if c_pct < 0.25:
+        problems.append("LOW_COHESION")
+    if s_pct < 0.25:
+        problems.append("LOW_STABILITY")
+    if metrics.modularity < 0.4:
+        problems.append("LOW_MODULARITY")
+    if pca < 0.8:
+        problems.append("PACKAGE_CYCLES")
+    if lvr < 0.95:
+        problems.append("DIP_VIOLATIONS")
+    if metrics.coupling_density < 0.3:
+        problems.append("HIGH_COUPLING_DENSITY")
+
+    return {
+        "C": round(metrics.cohesion, 4),
+        "C_percentile": round(c_pct, 3),
+        "S": round(metrics.stability, 4),
+        "S_percentile": round(s_pct, 3),
+        "M": round(metrics.modularity, 4),
+        "A": round(metrics.acyclicity, 4),
+        "CD": round(metrics.coupling_density, 4),
+        "PCA": round(float(pca), 4),
+        "LVR": round(float(lvr), 4),
+        "dip_violations": int(dip),
+        "largest_scc": int(largest_scc),
+        "problems": problems,
+    }
+
+
+# ── Internal helpers for QSE-Track/Diagnostic ─────────────────────────
+
+def _compute_largest_pkg_scc(
+    G: nx.DiGraph,
+    internal_nodes: Optional[Set[str]] = None,
+    packages: Optional[Set[str]] = None,
+) -> int:
+    """Return size of largest package-level SCC (>1 node means cycle)."""
+    pkg_map = _build_package_map(G, internal_nodes, packages)
+    if len(set(pkg_map.values())) <= 1:
+        return 0
+
+    pkg_graph = nx.DiGraph()
+    for u, v in G.edges():
+        if u in pkg_map and v in pkg_map:
+            pu, pv = pkg_map[u], pkg_map[v]
+            if pu != pv:
+                pkg_graph.add_edge(pu, pv)
+
+    largest = 0
+    for scc in nx.strongly_connected_components(pkg_graph):
+        if len(scc) > 1:
+            largest = max(largest, len(scc))
+    return largest
+
+
+def _count_dip_violations(
+    G: nx.DiGraph,
+    internal_nodes: Optional[Set[str]] = None,
+    packages: Optional[Set[str]] = None,
+) -> int:
+    """Count DIP violation edges (domain->infra, domain->service, presentation->persistence)."""
+    pkg_map = _build_package_map(G, internal_nodes, packages)
+
+    DOMAIN_KEYWORDS = {'domain', 'model', 'entity', 'core', 'aggregate'}
+    SERVICE_KEYWORDS = {'service', 'usecase', 'application', 'interactor'}
+    INFRA_KEYWORDS = {'repository', 'persistence', 'config', 'configuration',
+                      'security', 'web', 'rest', 'controller', 'api', 'gateway',
+                      'adapter', 'infrastructure', 'filter', 'handler', 'client'}
+    PRESENTATION_KEYWORDS = {'web', 'rest', 'controller', 'api', 'gateway'}
+    PERSISTENCE_KEYWORDS = {'repository', 'persistence', 'dao'}
+
+    def classify(pkg: str) -> str:
+        segments = set(pkg.lower().split('.'))
+        if segments & DOMAIN_KEYWORDS:
+            return 'DOMAIN'
+        if segments & SERVICE_KEYWORDS:
+            return 'SERVICE'
+        if segments & INFRA_KEYWORDS:
+            return 'INFRA'
+        return 'OTHER'
+
+    violations = 0
+    for u, v in G.edges():
+        if u not in pkg_map or v not in pkg_map:
+            continue
+        pu, pv = pkg_map[u], pkg_map[v]
+        if pu == pv:
+            continue
+        lu, lv = classify(pu), classify(pv)
+        if lu == 'DOMAIN' and lv in ('INFRA', 'SERVICE'):
+            violations += 1
+        elif (set(pu.lower().split('.')) & PRESENTATION_KEYWORDS and
+              set(pv.lower().split('.')) & PERSISTENCE_KEYWORDS):
+            violations += 1
+    return violations
+
+
+# ── Built-in GT benchmark (n=52, E10 validated, April 2026) ──────────────
+# Used as default reference for compute_qse_rank when no custom benchmark.
+GT_BENCHMARK_C = [
+    0.4643, 0.2884, 0.4865, 0.587, 0.4002, 0.3479, 0.3985, 0.307, 0.3511,
+    0.2909, 0.4199, 0.4795, 0.3975, 0.575, 0.4058, 0.3446, 0.3634, 0.318,
+    0.4219, 0.4634, 0.447, 0.4227, 0.3667, 0.4203, 0.5731, 0.4265, 0.6081,
+    0.75, 0.2172, 0.3024, 0.4177, 0.2401, 0.2328, 0.3341, 0.3998, 0.4301,
+    0.3498, 0.2839, 0.3042, 0.3051, 0.3536, 0.3264, 0.4091, 0.2883, 0.25,
+    0.3811, 0.5147, 0.575, 0.5952, 0.4276, 0.3514, 0.3541,
+]
+GT_BENCHMARK_S = [
+    0.2353, 0.1814, 0.1736, 0.2344, 0.255, 0.1052, 0.25, 0.1226, 0.0714,
+    0.2099, 0.5813, 0.1814, 0.6424, 0.1142, 0.0754, 0.111, 0.0999, 0.093,
+    0.1856, 0.1479, 0.1211, 0.0952, 0.5778, 0.1247, 0.1664, 0.1814, 0.19,
+    0.36, 0.2177, 0.9147, 0.4119, 0.1736, 0.2489, 0.8427, 0.3314, 0.0689,
+    0.1294, 0.2095, 0.098, 0.4327, 0.5034, 0.1175, 0.3951, 0.1253, 0.3951,
+    0.076, 0.19, 0.9239, 0.2099, 0.2215, 0.0331, 0.1211,
+]
 

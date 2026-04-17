@@ -1,0 +1,102 @@
+{
+  "experiment": "E11_literature_approaches",
+  "phase": "cross_repo_GT",
+  "n": 52,
+  "results": {
+    "S_raw": {
+      "spearman_rho": 0.2594,
+      "p_value": 0.0633,
+      "auc": 0.618
+    },
+    "C_raw": {
+      "spearman_rho": 0.3092,
+      "p_value": 0.0257,
+      "auc": 0.743
+    },
+    "PCA_raw": {
+      "spearman_rho": -0.0252,
+      "p_value": 0.8594,
+      "auc": 0.58
+    },
+    "LVR_raw": {
+      "spearman_rho": -0.0643,
+      "p_value": 0.6506,
+      "auc": 0.496
+    },
+    "SH_raw": {
+      "spearman_rho": -0.0873,
+      "p_value": 0.5383,
+      "auc": 0.553
+    },
+    "PCA_pct": {
+      "spearman_rho": -0.0252,
+      "p_value": 0.8594,
+      "auc": 0.58
+    },
+    "LVR_pct": {
+      "spearman_rho": -0.0643,
+      "p_value": 0.6506,
+      "auc": 0.496
+    },
+    "SH_pct": {
+      "spearman_rho": -0.0873,
+      "p_value": 0.5383,
+      "auc": 0.553
+    },
+    "S_pct": {
+      "spearman_rho": 0.2594,
+      "p_value": 0.0633,
+      "auc": 0.618
+    },
+    "RC_approx": {
+      "spearman_rho": -0.0274,
+      "p_value": 0.847,
+      "auc": 0.58
+    },
+    "viol_per_100n": {
+      "spearman_rho": -0.0643,
+      "p_value": 0.6506,
+      "auc": 0.496
+    },
+    "AGQ_current": {
+      "spearman_rho": 0.2718,
+      "p_value": 0.0513,
+      "auc": 0.67
+    },
+    "AGQ_S_pct": {
+      "spearman_rho": 0.329,
+      "p_value": 0.0172,
+      "auc": 0.693
+    },
+    "AGQ_PCA_pct": {
+      "spearman_rho": 0.0714,
+      "p_value": 0.6149,
+      "auc": 0.654
+    },
+    "AGQ_LVR_pct": {
+      "spearman_rho": 0.0402,
+      "p_value": 0.7775,
+      "auc": 0.605
+    },
+    "AGQ_SH_pct": {
+      "spearman_rho": 0.0267,
+      "p_value": 0.851,
+      "auc": 0.637
+    },
+    "AGQ_RC_norm": {
+      "spearman_rho": 0.1272,
+      "p_value": 0.3689,
+      "auc": 0.676
+    },
+    "AGQ_ViolDens": {
+      "spearman_rho": 0.1176,
+      "p_value": 0.4064,
+      "auc": 0.634
+    },
+    "AGQ_track": {
+      "spearman_rho": 0.1017,
+      "p_value": 0.473,
+      "auc": 0.654
+    }
+  }
+}

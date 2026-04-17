@@ -1,0 +1,1684 @@
+{
+  "experiment": "E10b_within_repo_pilots",
+  "date": "2026-04-13T14:59:23.367752+00:00",
+  "n_repos": 5,
+  "repos": [
+    {
+      "repo": "jhipster/jhipster-sample-app",
+      "panel": 2.0,
+      "n_iterations": 5,
+      "baseline": {
+        "agq_v3c": 0.6061,
+        "M": 0.8147,
+        "A": 1.0,
+        "S": 0.1856,
+        "C": 0.4219,
+        "CD": 0.6084,
+        "PCA": 0.2941,
+        "LVR": 0.8581,
+        "SH": 0.5024,
+        "nodes": 541,
+        "edges": 1271,
+        "n_packages": 18,
+        "n_pkg_sccs": 1,
+        "largest_scc": 12,
+        "dip_violations": 5,
+        "layer_bypasses": 16,
+        "total_cross_edges": 148,
+        "god_packages": [
+          [
+            "io.github.jhipster.sample.web.rest",
+            10
+          ],
+          [
+            "io.github.jhipster.sample.service",
+            6
+          ],
+          [
+            "io.github.jhipster.sample.security",
+            5
+          ]
+        ]
+      },
+      "iterations": [
+        {
+          "id": 1,
+          "refactoring": "break_cycle",
+          "description": "R1: Moved DomainUserDetailsServiceIT from io.github.jhipster.sample.security to io.github.jhipster.sample.shared (breaking cycle, 1 edges)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.6071,
+            "M": 0.8196,
+            "A": 1.0,
+            "S": 0.1856,
+            "C": 0.4219,
+            "CD": 0.6084,
+            "PCA": 0.3333,
+            "LVR": 0.8581,
+            "SH": 0.5348,
+            "nodes": 541,
+            "edges": 1271,
+            "n_packages": 19,
+            "n_pkg_sccs": 1,
+            "largest_scc": 12,
+            "dip_violations": 5,
+            "layer_bypasses": 16,
+            "total_cross_edges": 148,
+            "god_packages": [
+              [
+                "io.github.jhipster.sample.web.rest",
+                10
+              ],
+              [
+                "io.github.jhipster.sample.service",
+                6
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.001,
+            "M": 0.0049,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.0392,
+            "LVR": 0.0,
+            "SH": 0.0324
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.001,
+            "M": 0.0049,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.0392,
+            "LVR": 0.0,
+            "SH": 0.0324
+          }
+        },
+        {
+          "id": 2,
+          "refactoring": "fix_dip",
+          "description": "R2: Created port interface ITestUtil in io.github.jhipster.sample.port (DIP: io.github.jhipster.sample.domain->io.github.jhipster.sample.web.rest)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.6075,
+            "M": 0.8207,
+            "A": 1.0,
+            "S": 0.1856,
+            "C": 0.4219,
+            "CD": 0.6092,
+            "PCA": 0.3333,
+            "LVR": 0.8581,
+            "SH": 0.5348,
+            "nodes": 542,
+            "edges": 1271,
+            "n_packages": 20,
+            "n_pkg_sccs": 1,
+            "largest_scc": 12,
+            "dip_violations": 5,
+            "layer_bypasses": 16,
+            "total_cross_edges": 148,
+            "god_packages": [
+              [
+                "io.github.jhipster.sample.web.rest",
+                10
+              ],
+              [
+                "io.github.jhipster.sample.service",
+                6
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0004,
+            "M": 0.0011,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0008,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0014,
+            "M": 0.006,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0008,
+            "PCA": 0.0392,
+            "LVR": 0.0,
+            "SH": 0.0324
+          }
+        },
+        {
+          "id": 3,
+          "refactoring": "fix_bypass",
+          "description": "R3: Created service facade UserRepositoryFacade in io.github.jhipster.service (bypass: io.github.jhipster.sample.web.rest->io.github.jhipster.sample.repository)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.6072,
+            "M": 0.8189,
+            "A": 1.0,
+            "S": 0.1856,
+            "C": 0.4219,
+            "CD": 0.6099,
+            "PCA": 0.3333,
+            "LVR": 0.8581,
+            "SH": 0.5348,
+            "nodes": 543,
+            "edges": 1271,
+            "n_packages": 21,
+            "n_pkg_sccs": 1,
+            "largest_scc": 12,
+            "dip_violations": 5,
+            "layer_bypasses": 16,
+            "total_cross_edges": 148,
+            "god_packages": [
+              [
+                "io.github.jhipster.sample.web.rest",
+                10
+              ],
+              [
+                "io.github.jhipster.sample.service",
+                6
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0003,
+            "M": -0.0018,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0007,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0011,
+            "M": 0.0042,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0015,
+            "PCA": 0.0392,
+            "LVR": 0.0,
+            "SH": 0.0324
+          }
+        },
+        {
+          "id": 4,
+          "refactoring": "split_god",
+          "description": "R4: Moved 3 classes from io.github.jhipster.sample.web.rest to io.github.jhipster.sample.web.rest.internal (was fan-out=10)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.6077,
+            "M": 0.821,
+            "A": 1.0,
+            "S": 0.1856,
+            "C": 0.4219,
+            "CD": 0.6099,
+            "PCA": 0.3684,
+            "LVR": 0.8581,
+            "SH": 0.5623,
+            "nodes": 543,
+            "edges": 1271,
+            "n_packages": 22,
+            "n_pkg_sccs": 1,
+            "largest_scc": 12,
+            "dip_violations": 5,
+            "layer_bypasses": 16,
+            "total_cross_edges": 148,
+            "god_packages": [
+              [
+                "io.github.jhipster.sample.web.rest",
+                10
+              ],
+              [
+                "io.github.jhipster.sample.web.rest.internal",
+                7
+              ],
+              [
+                "io.github.jhipster.sample.service",
+                6
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0005,
+            "M": 0.0021,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.0351,
+            "LVR": 0.0,
+            "SH": 0.0275
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0016,
+            "M": 0.0063,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0015,
+            "PCA": 0.0743,
+            "LVR": 0.0,
+            "SH": 0.0599
+          }
+        },
+        {
+          "id": 5,
+          "refactoring": "improve_cohesion",
+          "description": "R5: Moved TestUtil from io.github.jhipster.sample.web.rest to io.github.jhipster.sample.domain (4 deps, 100% affinity)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.6059,
+            "M": 0.8121,
+            "A": 1.0,
+            "S": 0.1856,
+            "C": 0.4219,
+            "CD": 0.6099,
+            "PCA": 0.6842,
+            "LVR": 0.8819,
+            "SH": 0.7768,
+            "nodes": 543,
+            "edges": 1271,
+            "n_packages": 22,
+            "n_pkg_sccs": 1,
+            "largest_scc": 6,
+            "dip_violations": 1,
+            "layer_bypasses": 16,
+            "total_cross_edges": 144,
+            "god_packages": [
+              [
+                "io.github.jhipster.sample.web.rest",
+                10
+              ],
+              [
+                "io.github.jhipster.sample.web.rest.internal",
+                7
+              ],
+              [
+                "io.github.jhipster.sample.service",
+                6
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0018,
+            "M": -0.0089,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.3158,
+            "LVR": 0.0238,
+            "SH": 0.2145
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0002,
+            "M": -0.0026,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0015,
+            "PCA": 0.3901,
+            "LVR": 0.0238,
+            "SH": 0.2744
+          }
+        }
+      ]
+    },
+    {
+      "repo": "thombergs/buckpal",
+      "panel": 8.25,
+      "n_iterations": 2,
+      "baseline": {
+        "agq_v3c": 0.6078,
+        "M": 0.7545,
+        "A": 1.0,
+        "S": 0.1814,
+        "C": 0.4265,
+        "CD": 0.6765,
+        "PCA": 1.0,
+        "LVR": 0.8382,
+        "SH": 0.9156,
+        "nodes": 136,
+        "edges": 264,
+        "n_packages": 11,
+        "n_pkg_sccs": 0,
+        "largest_scc": 0,
+        "dip_violations": 11,
+        "layer_bypasses": 0,
+        "total_cross_edges": 68,
+        "god_packages": []
+      },
+      "iterations": [
+        {
+          "id": 1,
+          "refactoring": "fix_dip",
+          "description": "R2: Created port interface ISendMoneyCommand in io.reflectoring.buckpal.application.domain.port (DIP: io.reflectoring.buckpal.application.domain.service->io.reflectoring.buckpal.application.port.in)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.6094,
+            "M": 0.7601,
+            "A": 1.0,
+            "S": 0.1814,
+            "C": 0.4265,
+            "CD": 0.6788,
+            "PCA": 1.0,
+            "LVR": 0.8382,
+            "SH": 0.9156,
+            "nodes": 137,
+            "edges": 264,
+            "n_packages": 12,
+            "n_pkg_sccs": 0,
+            "largest_scc": 0,
+            "dip_violations": 11,
+            "layer_bypasses": 0,
+            "total_cross_edges": 68,
+            "god_packages": []
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0016,
+            "M": 0.0056,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0023,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0016,
+            "M": 0.0056,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0023,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          }
+        },
+        {
+          "id": 2,
+          "refactoring": "improve_cohesion",
+          "description": "R5: Moved AccountMapper from io.reflectoring.buckpal.adapter.out.persistence to io.reflectoring.buckpal.application.domain.model (4 deps, 100% affinity)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.6094,
+            "M": 0.7601,
+            "A": 1.0,
+            "S": 0.1814,
+            "C": 0.4265,
+            "CD": 0.6788,
+            "PCA": 1.0,
+            "LVR": 0.8281,
+            "SH": 0.91,
+            "nodes": 137,
+            "edges": 264,
+            "n_packages": 12,
+            "n_pkg_sccs": 0,
+            "largest_scc": 0,
+            "dip_violations": 11,
+            "layer_bypasses": 0,
+            "total_cross_edges": 64,
+            "god_packages": []
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0,
+            "M": 0.0,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.0,
+            "LVR": -0.0101,
+            "SH": -0.0056
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0016,
+            "M": 0.0056,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0023,
+            "PCA": 0.0,
+            "LVR": -0.0101,
+            "SH": -0.0056
+          }
+        }
+      ]
+    },
+    {
+      "repo": "la-team/light-admin",
+      "panel": 3.25,
+      "n_iterations": 5,
+      "baseline": {
+        "agq_v3c": 0.5757,
+        "M": 0.8359,
+        "A": 1.0,
+        "S": 0.1211,
+        "C": 0.3541,
+        "CD": 0.5674,
+        "PCA": 0.7407,
+        "LVR": 0.8973,
+        "SH": 0.8153,
+        "nodes": 982,
+        "edges": 2549,
+        "n_packages": 81,
+        "n_pkg_sccs": 3,
+        "largest_scc": 21,
+        "dip_violations": 88,
+        "layer_bypasses": 7,
+        "total_cross_edges": 925,
+        "god_packages": [
+          [
+            "org.lightadmin.core.config.context",
+            15
+          ],
+          [
+            "org.lightadmin.core.config.domain.unit",
+            13
+          ],
+          [
+            "org.lightadmin.core.config.bootstrap.parsing.validation",
+            11
+          ],
+          [
+            "org.lightadmin.core.view.preparer",
+            10
+          ],
+          [
+            "org.lightadmin.core.web",
+            10
+          ]
+        ]
+      },
+      "iterations": [
+        {
+          "id": 1,
+          "refactoring": "break_cycle",
+          "description": "R1: Moved ScopesConfigurationUnitBuilder from org.lightadmin.api.config.builder to org.lightadmin.shared (breaking cycle, 1 edges)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.574,
+            "M": 0.8277,
+            "A": 1.0,
+            "S": 0.1211,
+            "C": 0.3541,
+            "CD": 0.5674,
+            "PCA": 0.7317,
+            "LVR": 0.8995,
+            "SH": 0.8113,
+            "nodes": 982,
+            "edges": 2549,
+            "n_packages": 82,
+            "n_pkg_sccs": 3,
+            "largest_scc": 22,
+            "dip_violations": 86,
+            "layer_bypasses": 7,
+            "total_cross_edges": 925,
+            "god_packages": [
+              [
+                "org.lightadmin.core.config.context",
+                15
+              ],
+              [
+                "org.lightadmin.core.config.domain.unit",
+                13
+              ],
+              [
+                "org.lightadmin.core.config.bootstrap.parsing.validation",
+                11
+              ],
+              [
+                "org.lightadmin.core.view.preparer",
+                10
+              ],
+              [
+                "org.lightadmin.core.web",
+                10
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0017,
+            "M": -0.0082,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.009,
+            "LVR": 0.0022,
+            "SH": -0.004
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0017,
+            "M": -0.0082,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.009,
+            "LVR": 0.0022,
+            "SH": -0.004
+          }
+        },
+        {
+          "id": 2,
+          "refactoring": "fix_dip",
+          "description": "R2: Created port interface IScopeMetadataUtils in org.lightadmin.core.view.preparer.port (DIP: org.lightadmin.core.view.preparer->org.lightadmin.api.config.utils)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.5767,
+            "M": 0.8406,
+            "A": 1.0,
+            "S": 0.1211,
+            "C": 0.3541,
+            "CD": 0.5678,
+            "PCA": 0.7317,
+            "LVR": 0.8995,
+            "SH": 0.8113,
+            "nodes": 983,
+            "edges": 2549,
+            "n_packages": 83,
+            "n_pkg_sccs": 3,
+            "largest_scc": 22,
+            "dip_violations": 86,
+            "layer_bypasses": 7,
+            "total_cross_edges": 925,
+            "god_packages": [
+              [
+                "org.lightadmin.core.config.context",
+                15
+              ],
+              [
+                "org.lightadmin.core.config.domain.unit",
+                13
+              ],
+              [
+                "org.lightadmin.core.config.bootstrap.parsing.validation",
+                11
+              ],
+              [
+                "org.lightadmin.core.view.preparer",
+                10
+              ],
+              [
+                "org.lightadmin.core.web",
+                10
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0027,
+            "M": 0.0129,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0004,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.001,
+            "M": 0.0047,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0004,
+            "PCA": -0.009,
+            "LVR": 0.0022,
+            "SH": -0.004
+          }
+        },
+        {
+          "id": 3,
+          "refactoring": "fix_bypass",
+          "description": "R3: Created service facade DynamicRepositoryInvokerFacade in org.lightadmin.core.service (bypass: org.lightadmin.core.web->org.lightadmin.core.persistence.repository.invoker)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.5744,
+            "M": 0.8287,
+            "A": 1.0,
+            "S": 0.1211,
+            "C": 0.3541,
+            "CD": 0.5683,
+            "PCA": 0.7317,
+            "LVR": 0.8995,
+            "SH": 0.8113,
+            "nodes": 984,
+            "edges": 2549,
+            "n_packages": 84,
+            "n_pkg_sccs": 3,
+            "largest_scc": 22,
+            "dip_violations": 86,
+            "layer_bypasses": 7,
+            "total_cross_edges": 925,
+            "god_packages": [
+              [
+                "org.lightadmin.core.config.context",
+                15
+              ],
+              [
+                "org.lightadmin.core.config.domain.unit",
+                13
+              ],
+              [
+                "org.lightadmin.core.config.bootstrap.parsing.validation",
+                11
+              ],
+              [
+                "org.lightadmin.core.view.preparer",
+                10
+              ],
+              [
+                "org.lightadmin.core.web",
+                10
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0023,
+            "M": -0.0119,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0005,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0013,
+            "M": -0.0072,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0009,
+            "PCA": -0.009,
+            "LVR": 0.0022,
+            "SH": -0.004
+          }
+        },
+        {
+          "id": 4,
+          "refactoring": "split_god",
+          "description": "R4: Moved 3 classes from org.lightadmin.core.config.context to org.lightadmin.core.config.context.internal (was fan-out=15)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.5759,
+            "M": 0.836,
+            "A": 1.0,
+            "S": 0.1211,
+            "C": 0.3541,
+            "CD": 0.5683,
+            "PCA": 0.7349,
+            "LVR": 0.8995,
+            "SH": 0.813,
+            "nodes": 984,
+            "edges": 2549,
+            "n_packages": 85,
+            "n_pkg_sccs": 3,
+            "largest_scc": 22,
+            "dip_violations": 86,
+            "layer_bypasses": 7,
+            "total_cross_edges": 925,
+            "god_packages": [
+              [
+                "org.lightadmin.core.config.context",
+                14
+              ],
+              [
+                "org.lightadmin.core.config.domain.unit",
+                13
+              ],
+              [
+                "org.lightadmin.core.config.bootstrap.parsing.validation",
+                11
+              ],
+              [
+                "org.lightadmin.core.view.preparer",
+                10
+              ],
+              [
+                "org.lightadmin.core.web",
+                10
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0015,
+            "M": 0.0073,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.0032,
+            "LVR": 0.0,
+            "SH": 0.0017
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0002,
+            "M": 0.0001,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0009,
+            "PCA": -0.0058,
+            "LVR": 0.0022,
+            "SH": -0.0023
+          }
+        },
+        {
+          "id": 5,
+          "refactoring": "improve_cohesion",
+          "description": "R5: Moved AbstractEntity from org.lightadmin.demo.model to org.lightadmin.test.model (11 deps, 100% affinity)",
+          "blind_score": 4,
+          "metrics_after": {
+            "agq_v3c": 0.5755,
+            "M": 0.834,
+            "A": 1.0,
+            "S": 0.1211,
+            "C": 0.3541,
+            "CD": 0.5683,
+            "PCA": 0.7349,
+            "LVR": 0.8982,
+            "SH": 0.8125,
+            "nodes": 984,
+            "edges": 2549,
+            "n_packages": 85,
+            "n_pkg_sccs": 3,
+            "largest_scc": 22,
+            "dip_violations": 86,
+            "layer_bypasses": 7,
+            "total_cross_edges": 914,
+            "god_packages": [
+              [
+                "org.lightadmin.core.config.context",
+                14
+              ],
+              [
+                "org.lightadmin.core.config.domain.unit",
+                13
+              ],
+              [
+                "org.lightadmin.core.config.bootstrap.parsing.validation",
+                11
+              ],
+              [
+                "org.lightadmin.core.view.preparer",
+                10
+              ],
+              [
+                "org.lightadmin.core.web",
+                10
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0004,
+            "M": -0.002,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.0,
+            "LVR": -0.0013,
+            "SH": -0.0005
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0002,
+            "M": -0.0019,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0009,
+            "PCA": -0.0058,
+            "LVR": 0.0009,
+            "SH": -0.0028
+          }
+        }
+      ]
+    },
+    {
+      "repo": "spring-projects/spring-batch",
+      "panel": 7.25,
+      "n_iterations": 4,
+      "baseline": {
+        "agq_v3c": 0.4251,
+        "M": 0.5915,
+        "A": 0.9992,
+        "S": 0.0689,
+        "C": 0.4301,
+        "CD": 0.0358,
+        "PCA": 0.8187,
+        "LVR": 0.9329,
+        "SH": 0.8739,
+        "nodes": 2634,
+        "edges": 15239,
+        "n_packages": 196,
+        "n_pkg_sccs": 9,
+        "largest_scc": 35,
+        "dip_violations": 351,
+        "layer_bypasses": 0,
+        "total_cross_edges": 5233,
+        "god_packages": [
+          [
+            "org.springframework.batch.core.step.item",
+            28
+          ],
+          [
+            "org.springframework.batch.test",
+            23
+          ],
+          [
+            "org.springframework.batch.core.step.builder",
+            23
+          ],
+          [
+            "org.springframework.batch.core.configuration.support",
+            22
+          ],
+          [
+            "org.springframework.batch.core.launch.support",
+            22
+          ]
+        ]
+      },
+      "iterations": [
+        {
+          "id": 1,
+          "refactoring": "break_cycle",
+          "description": "R1: Moved JobRepository from org.springframework.batch.core.repository to org.springframework.batch.core.repository.shared (breaking cycle, 1 edges)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.4246,
+            "M": 0.5891,
+            "A": 0.9992,
+            "S": 0.0689,
+            "C": 0.4301,
+            "CD": 0.0358,
+            "PCA": 0.8144,
+            "LVR": 0.9329,
+            "SH": 0.8717,
+            "nodes": 2634,
+            "edges": 15239,
+            "n_packages": 197,
+            "n_pkg_sccs": 9,
+            "largest_scc": 36,
+            "dip_violations": 351,
+            "layer_bypasses": 0,
+            "total_cross_edges": 5233,
+            "god_packages": [
+              [
+                "org.springframework.batch.core.step.item",
+                28
+              ],
+              [
+                "org.springframework.batch.core.configuration.support",
+                23
+              ],
+              [
+                "org.springframework.batch.test",
+                23
+              ],
+              [
+                "org.springframework.batch.core.step.builder",
+                23
+              ],
+              [
+                "org.springframework.batch.core.launch.support",
+                22
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0005,
+            "M": -0.0024,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.0043,
+            "LVR": 0.0,
+            "SH": -0.0022
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0005,
+            "M": -0.0024,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.0043,
+            "LVR": 0.0,
+            "SH": -0.0022
+          }
+        },
+        {
+          "id": 2,
+          "refactoring": "fix_dip",
+          "description": "R2: Created port interface IExecutionContext in org.springframework.batch.core.job.port (DIP: org.springframework.batch.core.job->org.springframework.batch.infrastructure.item)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.4244,
+            "M": 0.5875,
+            "A": 0.9992,
+            "S": 0.0689,
+            "C": 0.4301,
+            "CD": 0.0361,
+            "PCA": 0.8144,
+            "LVR": 0.9329,
+            "SH": 0.8717,
+            "nodes": 2635,
+            "edges": 15239,
+            "n_packages": 198,
+            "n_pkg_sccs": 9,
+            "largest_scc": 36,
+            "dip_violations": 351,
+            "layer_bypasses": 0,
+            "total_cross_edges": 5233,
+            "god_packages": [
+              [
+                "org.springframework.batch.core.step.item",
+                28
+              ],
+              [
+                "org.springframework.batch.core.configuration.support",
+                23
+              ],
+              [
+                "org.springframework.batch.test",
+                23
+              ],
+              [
+                "org.springframework.batch.core.step.builder",
+                23
+              ],
+              [
+                "org.springframework.batch.core.launch.support",
+                22
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0002,
+            "M": -0.0016,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0003,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0007,
+            "M": -0.004,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0003,
+            "PCA": -0.0043,
+            "LVR": 0.0,
+            "SH": -0.0022
+          }
+        },
+        {
+          "id": 3,
+          "refactoring": "split_god",
+          "description": "R4: Moved 3 classes from org.springframework.batch.core.step.item to org.springframework.batch.core.step.item.internal (was fan-out=28)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.4262,
+            "M": 0.5964,
+            "A": 0.9992,
+            "S": 0.0689,
+            "C": 0.4301,
+            "CD": 0.0361,
+            "PCA": 0.8103,
+            "LVR": 0.9329,
+            "SH": 0.8694,
+            "nodes": 2635,
+            "edges": 15239,
+            "n_packages": 199,
+            "n_pkg_sccs": 9,
+            "largest_scc": 37,
+            "dip_violations": 351,
+            "layer_bypasses": 0,
+            "total_cross_edges": 5233,
+            "god_packages": [
+              [
+                "org.springframework.batch.core.step.item",
+                28
+              ],
+              [
+                "org.springframework.batch.core.step.builder",
+                24
+              ],
+              [
+                "org.springframework.batch.core.configuration.support",
+                23
+              ],
+              [
+                "org.springframework.batch.test",
+                23
+              ],
+              [
+                "org.springframework.batch.core.configuration.xml",
+                22
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0018,
+            "M": 0.0089,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.0041,
+            "LVR": 0.0,
+            "SH": -0.0023
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0011,
+            "M": 0.0049,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0003,
+            "PCA": -0.0084,
+            "LVR": 0.0,
+            "SH": -0.0045
+          }
+        },
+        {
+          "id": 4,
+          "refactoring": "improve_cohesion",
+          "description": "R5: Moved OrderValidator from org.springframework.batch.samples.file.patternmatching.internal.validator to org.springframework.batch.samples.file.patternmatching (6 deps, 100% affinity)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.4287,
+            "M": 0.609,
+            "A": 0.9992,
+            "S": 0.0689,
+            "C": 0.4301,
+            "CD": 0.0361,
+            "PCA": 0.8093,
+            "LVR": 0.9328,
+            "SH": 0.8689,
+            "nodes": 2635,
+            "edges": 15239,
+            "n_packages": 198,
+            "n_pkg_sccs": 9,
+            "largest_scc": 37,
+            "dip_violations": 351,
+            "layer_bypasses": 0,
+            "total_cross_edges": 5227,
+            "god_packages": [
+              [
+                "org.springframework.batch.core.step.item",
+                28
+              ],
+              [
+                "org.springframework.batch.core.step.builder",
+                24
+              ],
+              [
+                "org.springframework.batch.core.configuration.support",
+                23
+              ],
+              [
+                "org.springframework.batch.test",
+                23
+              ],
+              [
+                "org.springframework.batch.core.configuration.xml",
+                22
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0025,
+            "M": 0.0126,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.001,
+            "LVR": -0.0001,
+            "SH": -0.0005
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": 0.0036,
+            "M": 0.0175,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0003,
+            "PCA": -0.0094,
+            "LVR": -0.0001,
+            "SH": -0.005
+          }
+        }
+      ]
+    },
+    {
+      "repo": "BroadleafCommerce/BroadleafCommerce",
+      "panel": 3.5,
+      "n_iterations": 5,
+      "baseline": {
+        "agq_v3c": 0.428,
+        "M": 0.7092,
+        "A": 0.9871,
+        "S": 0.1175,
+        "C": 0.3264,
+        "CD": 0.0,
+        "PCA": 0.5134,
+        "LVR": 0.9324,
+        "SH": 0.6919,
+        "nodes": 4175,
+        "edges": 26387,
+        "n_packages": 502,
+        "n_pkg_sccs": 10,
+        "largest_scc": 236,
+        "dip_violations": 747,
+        "layer_bypasses": 36,
+        "total_cross_edges": 11489,
+        "god_packages": [
+          [
+            "org.broadleafcommerce.core.order.service",
+            39
+          ],
+          [
+            "org.broadleafcommerce.admin.server.service.handler",
+            38
+          ],
+          [
+            "org.broadleafcommerce.core.offer.service",
+            36
+          ],
+          [
+            "org.broadleafcommerce.core.catalog.domain",
+            34
+          ],
+          [
+            "org.broadleafcommerce.core.order.domain",
+            32
+          ]
+        ]
+      },
+      "iterations": [
+        {
+          "id": 1,
+          "refactoring": "break_cycle",
+          "description": "R1: Moved OfferAuditDao from org.broadleafcommerce.core.offer.dao to org.broadleafcommerce.core.offer.shared (breaking cycle, 1 edges)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.4269,
+            "M": 0.7034,
+            "A": 0.9871,
+            "S": 0.1175,
+            "C": 0.3264,
+            "CD": 0.0,
+            "PCA": 0.5123,
+            "LVR": 0.9324,
+            "SH": 0.6912,
+            "nodes": 4175,
+            "edges": 26387,
+            "n_packages": 503,
+            "n_pkg_sccs": 10,
+            "largest_scc": 237,
+            "dip_violations": 747,
+            "layer_bypasses": 36,
+            "total_cross_edges": 11489,
+            "god_packages": [
+              [
+                "org.broadleafcommerce.core.order.service",
+                39
+              ],
+              [
+                "org.broadleafcommerce.admin.server.service.handler",
+                38
+              ],
+              [
+                "org.broadleafcommerce.core.offer.service",
+                37
+              ],
+              [
+                "org.broadleafcommerce.core.catalog.domain",
+                34
+              ],
+              [
+                "org.broadleafcommerce.core.order.domain",
+                32
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": -0.0011,
+            "M": -0.0058,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.0011,
+            "LVR": 0.0,
+            "SH": -0.0007
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0011,
+            "M": -0.0058,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.0011,
+            "LVR": 0.0,
+            "SH": -0.0007
+          }
+        },
+        {
+          "id": 4,
+          "refactoring": "split_god",
+          "description": "R4: Moved 3 classes from org.broadleafcommerce.core.order.service to org.broadleafcommerce.core.order.service.internal (was fan-out=39)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.4272,
+            "M": 0.7052,
+            "A": 0.9871,
+            "S": 0.1175,
+            "C": 0.3264,
+            "CD": 0.0,
+            "PCA": 0.5133,
+            "LVR": 0.9324,
+            "SH": 0.6918,
+            "nodes": 4175,
+            "edges": 26387,
+            "n_packages": 504,
+            "n_pkg_sccs": 10,
+            "largest_scc": 237,
+            "dip_violations": 747,
+            "layer_bypasses": 36,
+            "total_cross_edges": 11489,
+            "god_packages": [
+              [
+                "org.broadleafcommerce.admin.server.service.handler",
+                38
+              ],
+              [
+                "org.broadleafcommerce.core.offer.service",
+                37
+              ],
+              [
+                "org.broadleafcommerce.core.catalog.domain",
+                34
+              ],
+              [
+                "org.broadleafcommerce.core.order.domain",
+                32
+              ],
+              [
+                "org.broadleafcommerce.core.order.service",
+                32
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0003,
+            "M": 0.0018,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.001,
+            "LVR": 0.0,
+            "SH": 0.0006
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0008,
+            "M": -0.004,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.0001,
+            "LVR": 0.0,
+            "SH": -0.0001
+          }
+        },
+        {
+          "id": 5,
+          "refactoring": "improve_cohesion",
+          "description": "R5: Moved BroadleafTemplateViewResolverExtensionHandler from org.broadleafcommerce.common.web to org.broadleafcommerce.common.extension (3 deps, 100% affinity)",
+          "blind_score": 3,
+          "metrics_after": {
+            "agq_v3c": 0.4278,
+            "M": 0.7082,
+            "A": 0.9871,
+            "S": 0.1175,
+            "C": 0.3264,
+            "CD": 0.0,
+            "PCA": 0.5133,
+            "LVR": 0.9324,
+            "SH": 0.6918,
+            "nodes": 4175,
+            "edges": 26387,
+            "n_packages": 504,
+            "n_pkg_sccs": 10,
+            "largest_scc": 237,
+            "dip_violations": 747,
+            "layer_bypasses": 36,
+            "total_cross_edges": 11486,
+            "god_packages": [
+              [
+                "org.broadleafcommerce.admin.server.service.handler",
+                38
+              ],
+              [
+                "org.broadleafcommerce.core.offer.service",
+                37
+              ],
+              [
+                "org.broadleafcommerce.core.catalog.domain",
+                34
+              ],
+              [
+                "org.broadleafcommerce.core.order.domain",
+                32
+              ],
+              [
+                "org.broadleafcommerce.core.order.service",
+                32
+              ]
+            ]
+          },
+          "delta_vs_prev": {
+            "agq_v3c": 0.0006,
+            "M": 0.003,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": 0.0,
+            "LVR": 0.0,
+            "SH": 0.0
+          },
+          "delta_vs_baseline": {
+            "agq_v3c": -0.0002,
+            "M": -0.001,
+            "A": 0.0,
+            "S": 0.0,
+            "C": 0.0,
+            "CD": 0.0,
+            "PCA": -0.0001,
+            "LVR": 0.0,
+            "SH": -0.0001
+          }
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "per_repo": {
+      "jhipster/jhipster-sample-app": {
+        "n_iters": 5,
+        "correlations": {
+          "agq_v3c": {
+            "rho": -0.7071,
+            "p": 0.1817
+          },
+          "M": {
+            "rho": -0.7071,
+            "p": 0.1817
+          },
+          "A": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "S": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "C": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "CD": {
+            "rho": -0.3953,
+            "p": 0.5101
+          },
+          "PCA": {
+            "rho": -0.3953,
+            "p": 0.5101
+          },
+          "LVR": {
+            "rho": 0.25,
+            "p": 0.685
+          },
+          "SH": {
+            "rho": -0.3953,
+            "p": 0.5101
+          }
+        }
+      },
+      "thombergs/buckpal": {
+        "n_iters": 2,
+        "note": "too few"
+      },
+      "la-team/light-admin": {
+        "n_iters": 5,
+        "correlations": {
+          "agq_v3c": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "M": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "A": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "S": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "C": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "CD": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "PCA": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "LVR": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "SH": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          }
+        }
+      },
+      "spring-projects/spring-batch": {
+        "n_iters": 4,
+        "correlations": {
+          "agq_v3c": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "M": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "A": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "S": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "C": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "CD": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "PCA": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "LVR": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "SH": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          }
+        }
+      },
+      "BroadleafCommerce/BroadleafCommerce": {
+        "n_iters": 3,
+        "correlations": {
+          "agq_v3c": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "M": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "A": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "S": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "C": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "CD": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "PCA": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          },
+          "LVR": {
+            "rho": null,
+            "p": null,
+            "note": "zero variance"
+          },
+          "SH": {
+            "rho": null,
+            "p": null,
+            "note": "constant blind"
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "agq_v3c": {
+        "rho": null,
+        "p": null,
+        "note": "error"
+      },
+      "M": {
+        "rho": null,
+        "p": null,
+        "note": "error"
+      },
+      "A": {
+        "rho": null,
+        "p": null,
+        "note": "zero variance"
+      },
+      "S": {
+        "rho": null,
+        "p": null,
+        "note": "zero variance"
+      },
+      "C": {
+        "rho": null,
+        "p": null,
+        "note": "zero variance"
+      },
+      "CD": {
+        "rho": null,
+        "p": null,
+        "note": "error"
+      },
+      "PCA": {
+        "rho": null,
+        "p": null,
+        "note": "error"
+      },
+      "LVR": {
+        "rho": null,
+        "p": null,
+        "note": "error"
+      },
+      "SH": {
+        "rho": null,
+        "p": null,
+        "note": "error"
+      }
+    }
+  }
+}

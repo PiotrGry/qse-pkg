@@ -1,0 +1,479 @@
+{
+  "experiment": "E13e_shopizer_pilot",
+  "date": "2026-04-13T17:38:26.856616+00:00",
+  "repo": "shopizer-ecommerce/shopizer",
+  "baseline": {
+    "label": "baseline",
+    "repo_path": "/home/user/workspace/shopizer",
+    "graph": {
+      "nodes": 1858,
+      "edges": 11770,
+      "internal": 1204,
+      "packages": 336
+    },
+    "agq": {
+      "M": 0.6193,
+      "A": 0.993,
+      "S": 0.0754,
+      "C": 0.4058,
+      "CD": 0.0,
+      "agq_v3c": 0.3843
+    },
+    "qse_rank": 1.1923,
+    "qse_track": {
+      "M": 0.6193,
+      "PCA": 0.9482,
+      "dip_violations": 0,
+      "largest_scc": 17
+    },
+    "qse_diagnostic": {
+      "C": 0.4058,
+      "C_percentile": 0.558,
+      "S": 0.0754,
+      "S_percentile": 0.077,
+      "M": 0.6193,
+      "A": 0.993,
+      "CD": 0.0,
+      "PCA": 0.9482,
+      "LVR": 1.0,
+      "dip_violations": 0,
+      "largest_scc": 17,
+      "problems": [
+        "LOW_STABILITY",
+        "HIGH_COUPLING_DENSITY"
+      ]
+    },
+    "structural_health": {
+      "pca": 0.9482,
+      "lvr": 1.0,
+      "combined": 0.9737
+    }
+  },
+  "iterations": [
+    {
+      "label": "after_iter1",
+      "changes": 16,
+      "description": "God class decomposition (3 facades split) + SCC cycle breaking (entity/refs moved) + service cycle breaking",
+      "scan": {
+        "label": "after_iter1",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1864,
+          "edges": 11776,
+          "internal": 1210,
+          "packages": 347
+        },
+        "agq": {
+          "M": 0.6188,
+          "A": 0.993,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3841
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.6188,
+          "PCA": 0.9528,
+          "dip_violations": 0,
+          "largest_scc": 16
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6188,
+          "A": 0.993,
+          "CD": 0.0,
+          "PCA": 0.9528,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 16,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9528,
+          "lvr": 1.0,
+          "combined": 0.9761
+        }
+      },
+      "deltas": {
+        "track_M": -0.0005,
+        "track_PCA": 0.0046,
+        "track_dip": 0,
+        "track_scc": -1,
+        "agq_M": -0.0005,
+        "agq_A": 0.0,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": -0.0002,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0024
+      }
+    },
+    {
+      "label": "after_iter2",
+      "changes": 8,
+      "description": "Deeper god class decomposition (5 more) + core.model cycle breaking (Billing/Delivery moved) + API controller decomposition",
+      "scan": {
+        "label": "after_iter2",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1870,
+          "edges": 11782,
+          "internal": 1216,
+          "packages": 354
+        },
+        "agq": {
+          "M": 0.6245,
+          "A": 0.993,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3853
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.6245,
+          "PCA": 0.9538,
+          "dip_violations": 0,
+          "largest_scc": 16
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6245,
+          "A": 0.993,
+          "CD": 0.0,
+          "PCA": 0.9538,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 16,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9538,
+          "lvr": 1.0,
+          "combined": 0.9766
+        }
+      },
+      "deltas_vs_baseline": {
+        "track_M": 0.0052,
+        "track_PCA": 0.0056,
+        "track_dip": 0,
+        "track_scc": -1,
+        "agq_M": 0.0052,
+        "agq_A": 0.0,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.001,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0029
+      },
+      "deltas_vs_iter1": {
+        "track_M": 0.0057,
+        "track_PCA": 0.001,
+        "track_dip": 0,
+        "track_scc": 0,
+        "agq_M": 0.0057,
+        "agq_A": 0.0,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.0012,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0005
+      }
+    },
+    {
+      "label": "after_iter3",
+      "changes": 18,
+      "description": "Radical god class elimination: 12 god classes split with domain-specific helpers + model cycle breaking (tax, order shared types)",
+      "scan": {
+        "label": "after_iter3",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1884,
+          "edges": 11796,
+          "internal": 1230,
+          "packages": 363
+        },
+        "agq": {
+          "M": 0.6254,
+          "A": 0.9931,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3855
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.6254,
+          "PCA": 0.9549,
+          "dip_violations": 0,
+          "largest_scc": 16
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6254,
+          "A": 0.9931,
+          "CD": 0.0,
+          "PCA": 0.9549,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 16,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9549,
+          "lvr": 1.0,
+          "combined": 0.9772
+        }
+      },
+      "deltas_vs_baseline": {
+        "track_M": 0.0061,
+        "track_PCA": 0.0067,
+        "track_dip": 0,
+        "track_scc": -1,
+        "agq_M": 0.0061,
+        "agq_A": 0.0001,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.0012,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0035
+      }
+    },
+    {
+      "label": "after_surgical",
+      "changes": 26,
+      "description": "Surgical cycle-breaking: 26 targeted moves breaking all 10 SCCs (min feedback arc set approach)",
+      "scan": {
+        "label": "after_surgical",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1910,
+          "edges": 11796,
+          "internal": 1233,
+          "packages": 374
+        },
+        "agq": {
+          "M": 0.6204,
+          "A": 0.9932,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3845
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.6204,
+          "PCA": 0.9725,
+          "dip_violations": 0,
+          "largest_scc": 10
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6204,
+          "A": 0.9932,
+          "CD": 0.0,
+          "PCA": 0.9725,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 10,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9725,
+          "lvr": 1.0,
+          "combined": 0.9861
+        }
+      },
+      "deltas_vs_baseline": {
+        "track_M": 0.0011,
+        "track_PCA": 0.0243,
+        "track_dip": 0,
+        "track_scc": -7,
+        "agq_M": 0.0011,
+        "agq_A": 0.0002,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.0002,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0124
+      }
+    },
+    {
+      "label": "after_iter5",
+      "changes": 29,
+      "description": "Breaking remaining 8 SCCs + consolidating mapper packages + order/attribute/geozone consolidation",
+      "scan": {
+        "label": "after_iter5",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1923,
+          "edges": 11796,
+          "internal": 1235,
+          "packages": 372
+        },
+        "agq": {
+          "M": 0.626,
+          "A": 0.9943,
+          "S": 0.0754,
+          "C": 0.4058,
+          "CD": 0.0,
+          "agq_v3c": 0.3858
+        },
+        "qse_rank": 1.1923,
+        "qse_track": {
+          "M": 0.626,
+          "PCA": 0.9751,
+          "dip_violations": 0,
+          "largest_scc": 9
+        },
+        "qse_diagnostic": {
+          "C": 0.4058,
+          "C_percentile": 0.558,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.626,
+          "A": 0.9943,
+          "CD": 0.0,
+          "PCA": 0.9751,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 9,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 0.9751,
+          "lvr": 1.0,
+          "combined": 0.9875
+        }
+      },
+      "deltas_vs_baseline": {
+        "track_M": 0.0067,
+        "track_PCA": 0.0269,
+        "track_dip": 0,
+        "track_scc": -8,
+        "agq_M": 0.0067,
+        "agq_A": 0.0013,
+        "agq_S": 0.0,
+        "agq_C": 0.0,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.0015,
+        "qse_rank": 0.0,
+        "sh_combined": 0.0138
+      }
+    },
+    {
+      "label": "after_iter6_to_9_final",
+      "changes": 384,
+      "description": "Iterations 6-9: Massive package consolidation (372\u2192202 pkgs), all 17 SCCs broken to 0, unused imports removed, cross-domain dependencies severed (Product\u2192Customer, Customer\u2192Billing/Delivery relocated)",
+      "scan": {
+        "label": "final_state",
+        "repo_path": "/home/user/workspace/shopizer",
+        "graph": {
+          "nodes": 1909,
+          "edges": 11535,
+          "internal": 1228,
+          "packages": 202
+        },
+        "agq": {
+          "M": 0.6331,
+          "A": 0.9958,
+          "S": 0.0754,
+          "C": 0.406,
+          "CD": 0.0,
+          "agq_v3c": 0.3876
+        },
+        "qse_rank": 1.2308,
+        "qse_track": {
+          "M": 0.6331,
+          "PCA": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 0
+        },
+        "qse_diagnostic": {
+          "C": 0.406,
+          "C_percentile": 0.577,
+          "S": 0.0754,
+          "S_percentile": 0.077,
+          "M": 0.6331,
+          "A": 0.9958,
+          "CD": 0.0,
+          "PCA": 1.0,
+          "LVR": 1.0,
+          "dip_violations": 0,
+          "largest_scc": 0,
+          "problems": [
+            "LOW_STABILITY",
+            "HIGH_COUPLING_DENSITY"
+          ]
+        },
+        "structural_health": {
+          "pca": 1.0,
+          "lvr": 1.0,
+          "combined": 1.0
+        }
+      },
+      "deltas_vs_baseline": {
+        "track_M": 0.0138,
+        "track_PCA": 0.0518,
+        "track_dip": 0,
+        "track_scc": -17,
+        "agq_M": 0.0138,
+        "agq_A": 0.0028,
+        "agq_S": 0.0,
+        "agq_C": 0.0002,
+        "agq_CD": 0.0,
+        "agq_agq_v3c": 0.0033,
+        "qse_rank": 0.0385,
+        "sh_combined": 0.0263
+      },
+      "meta": {
+        "M_louvain_analysis": {
+          "mean_M_50seeds": 0.6267,
+          "std_M_50seeds": 0.0052,
+          "range_M_50seeds": 0.0277,
+          "mean_delta_vs_baseline": 0.0074,
+          "conclusion": "M delta +0.02 target exceeds Louvain variance \u2014 mean improvement is +0.0074, but seed-dependent range is \u00b10.014"
+        },
+        "targets_met": {
+          "PCA_gt_003": true,
+          "SCC_lt_10": true,
+          "M_gt_002": false,
+          "M_gt_002_reason": "Louvain algorithm variance (\u03c3=0.005, range=0.028) exceeds the target delta. Mean structural improvement is +0.0074."
+        }
+      }
+    }
+  ]
+}

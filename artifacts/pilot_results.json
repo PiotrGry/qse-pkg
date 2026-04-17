@@ -1,0 +1,59 @@
+{
+  "pilot_name": "monolith-enterprise-application",
+  "repo": "PiotrGry/qse-pilot-enterprise",
+  "before": {
+    "agq_v3c": 0.5739,
+    "components": {
+      "M": 0.6882,
+      "A": 1.0,
+      "S": 0.19,
+      "C": 0.5147,
+      "CD": 0.4768
+    },
+    "graph_stats": {
+      "nodes": 194,
+      "edges": 609
+    },
+    "expert_panel": 3.0,
+    "expert_status": "NEG"
+  },
+  "after": {
+    "agq_v3c": 0.576,
+    "components": {
+      "M": 0.6989,
+      "A": 1.0,
+      "S": 0.19,
+      "C": 0.5143,
+      "CD": 0.4768
+    },
+    "graph_stats": {
+      "nodes": 201,
+      "edges": 631
+    }
+  },
+  "delta": {
+    "agq_v3c": 0.0021,
+    "components": {
+      "M": 0.0107,
+      "A": 0.0,
+      "S": 0.0,
+      "C": -0.0004,
+      "CD": 0.0
+    },
+    "graph_stats": {
+      "nodes": 7,
+      "edges": 22
+    }
+  },
+  "refactoring_summary": [
+    "Extract ClientProjectPort + ClientProjectAdapter (domain\u2192infrastructure separation)",
+    "Move 4 repository impls from domain to infrastructure layer",
+    "Fix UserServiceImpl: UserDao\u2192UserRepository (eliminate DIP violation)",
+    "Refactor ReportingData god class to composition pattern",
+    "Create UserRepository interface in domain"
+  ],
+  "files_changed": 19,
+  "lines_added": 451,
+  "lines_removed": 129,
+  "timestamp": "2026-04-13"
+}

@@ -1,0 +1,59 @@
+{
+  "baseline_issues": [
+    "domain -> web.rest: 4 testy domain (LabelTest, BankAccountTest, OperationTest, AuthorityTest) importują TestUtil z web.rest",
+    "domain -> config: User.java importuje Constants z config",
+    "web.rest -> domain: 18 edge'y — kontroler REST bezpośrednio sięga do entity domain zamiast przez DTO",
+    "web.rest -> repository: 16 edge'y — kontroler bezpośrednio używa repository, pomijając warstwę service",
+    "security -> domain/repository: bezpośrednie zależności od domain i repo, zamiast przez service ports",
+    "web.rest fan-out=10 — god package, zależy od 10 innych",
+    "service -> config: service layer importuje config bezpośrednio",
+    "~60 cykli na poziomie pakietów, prawie wszystkie przez domain -> web.rest"
+  ],
+  "iterations": [
+    {
+      "id": 1,
+      "problem": "CYKL domain->web.rest (root cause ~60 cykli)",
+      "description": "Testy domain (LabelTest, BankAccountTest, etc.) importują TestUtil z web.rest. To tworzy cykl domain<->web.rest który kaskaduje ~60 cykli pakietowych.",
+      "fix": "Przenieś TestUtil do pakietu testowego domain lub shared test-utils. Usuwa cykl domain->web.rest.",
+      "arch_assessment": "Kluczowa zmiana. Testy w pakiecie domain nie powinny zależeć od web.rest. TestUtil to utility — powinien być w shared test package. Usunięcie tego jednego linku łamie rdzeń wszystkich cykli.",
+      "blind_score": 5,
+      "blind_rationale": "Usunięcie cyklu domain<->web.rest to najważniejsza zmiana — eliminuje root cause ~60 cykli. Architektonicznie fundamentalne."
+    },
+    {
+      "id": 2,
+      "problem": "DIP VIOLATION: domain->config (User.java imports Constants)",
+      "description": "User.java w pakiecie domain importuje Constants z config. Domain nie powinien zależeć od config.",
+      "fix": "Przenieś Constants do pakietu domain (to prosty plik ze stałymi, należy do domain). Albo inline'uj stałe.",
+      "arch_assessment": "Domain layer musi być niezależny od infrastruktury. Constants to proste wartości, powinny być w domain. Łatwa zmiana, ale ważna — utrzymuje czystość domain.",
+      "blind_score": 4,
+      "blind_rationale": "DIP violation w domain jest poważne ale to 1 edge, mały impact na całość. Konceptualnie ważne."
+    },
+    {
+      "id": 3,
+      "problem": "LAYER BYPASS: web.rest->repository (16 edge'y)",
+      "description": "Kontrolery REST bezpośrednio wstrzykują repozytoria zamiast przechodzić przez warstwę service. web.rest->repository to 16 edge'y.",
+      "fix": "Dodaj brakujące metody w service layer. Kontroler powinien wołać service, service woła repository.",
+      "arch_assessment": "Poważna zmiana architektoniczna. Layer bypass oznacza brak separacji prezentacji od persistence. Naprawienie wymaga dodania brakujących metod w service layer i przepięcia kontrolerów.",
+      "blind_score": 5,
+      "blind_rationale": "16 edge'y layer bypass to duży problem. Naprawienie fundamentalnie poprawia layering. Trudniejsze niż iter.1 ale równie ważne."
+    },
+    {
+      "id": 4,
+      "problem": "GOD PACKAGE: web.rest fan-out=10",
+      "description": "web.rest zależy od 10 pakietów. Robi za dużo — powinien być cienką warstwą tłumaczącą HTTP<->DTO.",
+      "fix": "Wydziel web.rest.admin i web.rest.account z web.rest. Zmniejsza fan-out każdego sub-pakietu.",
+      "arch_assessment": "Podział god package na focused sub-packages to dobra praktyka. Zmniejsza cognitive load i coupling. Umiarkowany impact.",
+      "blind_score": 3,
+      "blind_rationale": "Podział to dobre practice ale nie zmienia fundamentalnie architektury. Bardziej organizacyjne niż architektoniczne."
+    },
+    {
+      "id": 5,
+      "problem": "SERVICE->CONFIG coupling + SERVICE->SECURITY coupling",
+      "description": "Service layer importuje bezpośrednio z config i security. Powinien działać przez porty/interfejsy.",
+      "fix": "Stwórz interfejsy SecurityPort i ConfigPort w service. Config i security implementują te interfejsy.",
+      "arch_assessment": "Czysty DIP — service nie powinien znać szczegółów security i config. Port/adapter pattern jest właściwy. Umiarkowany impact — 4 edge'y.",
+      "blind_score": 3,
+      "blind_rationale": "Dobre DIP practice ale 4 edge'y to mało. Konceptualnie ważne, praktyczny impact umiarkowany."
+    }
+  ]
+}

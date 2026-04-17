@@ -1,3 +1,8 @@
+---
+type: canon
+language: pl
+---
+
 # QSE - Quality Score Engine
 ## Brief badawczy
 

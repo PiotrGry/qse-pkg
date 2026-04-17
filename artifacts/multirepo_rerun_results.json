@@ -1,0 +1,637 @@
+{
+  "experiment": "multirepo_rerun_with_detector_and_gfs",
+  "date": "2026-04-13T13:24:24.630569+00:00",
+  "n_repos": 15,
+  "results": [
+    {
+      "name": "eventuate-tram-core",
+      "expected": "GOOD",
+      "agq_v3c": 0.5392,
+      "components": {
+        "M": 0.6263,
+        "A": 1.0,
+        "S": 0.1597,
+        "C": 0.5462,
+        "CD": 0.3635
+      },
+      "graph_stats": {
+        "nodes": 607,
+        "edges": 2318
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 607,
+          "n_edges": 2318,
+          "en_ratio": 3.819,
+          "n_components": 8,
+          "lcc_size": 593,
+          "lcc_ratio": 0.9769,
+          "small_cc_nodes": 14,
+          "cc_ratio": 0.0231,
+          "isolated_nodes": 6
+        }
+      },
+      "gfs": {
+        "gfs": 0.0,
+        "n_correct": 0,
+        "n_total": 2318,
+        "n_layers": 9
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 1e-06,
+        "std_bc": 6e-06
+      }
+    },
+    {
+      "name": "dropwizard",
+      "expected": "GOOD",
+      "agq_v3c": 0.4946,
+      "components": {
+        "M": 0.6497,
+        "A": 0.9962,
+        "S": 0.115,
+        "C": 0.4487,
+        "CD": 0.2637
+      },
+      "graph_stats": {
+        "nodes": 2087,
+        "edges": 9220
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 2087,
+          "n_edges": 9220,
+          "en_ratio": 4.418,
+          "n_components": 16,
+          "lcc_size": 2072,
+          "lcc_ratio": 0.9928,
+          "small_cc_nodes": 15,
+          "cc_ratio": 0.0072,
+          "isolated_nodes": 15
+        }
+      },
+      "gfs": {
+        "gfs": 0.0024,
+        "n_correct": 22,
+        "n_total": 9220,
+        "n_layers": 12
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 3e-06
+      }
+    },
+    {
+      "name": "logbook",
+      "expected": "GOOD",
+      "agq_v3c": 0.479,
+      "components": {
+        "M": 0.6192,
+        "A": 1.0,
+        "S": 0.0506,
+        "C": 0.418,
+        "CD": 0.3071
+      },
+      "graph_stats": {
+        "nodes": 1296,
+        "edges": 5388
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 1296,
+          "n_edges": 5388,
+          "en_ratio": 4.157,
+          "n_components": 24,
+          "lcc_size": 1267,
+          "lcc_ratio": 0.9776,
+          "small_cc_nodes": 29,
+          "cc_ratio": 0.0224,
+          "isolated_nodes": 21
+        }
+      },
+      "gfs": {
+        "gfs": 0.0,
+        "n_correct": 0,
+        "n_total": 5388,
+        "n_layers": 8
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 0.0
+      }
+    },
+    {
+      "name": "axon-framework",
+      "expected": "GOOD",
+      "agq_v3c": 0.4035,
+      "components": {
+        "M": 0.5433,
+        "A": 0.9962,
+        "S": 0.074,
+        "C": 0.404,
+        "CD": 0.0
+      },
+      "graph_stats": {
+        "nodes": 3937,
+        "edges": 24436
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 3937,
+          "n_edges": 24436,
+          "en_ratio": 6.207,
+          "n_components": 78,
+          "lcc_size": 3857,
+          "lcc_ratio": 0.9797,
+          "small_cc_nodes": 80,
+          "cc_ratio": 0.0203,
+          "isolated_nodes": 75
+        }
+      },
+      "gfs": {
+        "gfs": 0.0036,
+        "n_correct": 87,
+        "n_total": 24436,
+        "n_layers": 20
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 1e-06
+      }
+    },
+    {
+      "name": "apollo",
+      "expected": "GOOD",
+      "agq_v3c": 0.458,
+      "components": {
+        "M": 0.6221,
+        "A": 0.9972,
+        "S": 0.1052,
+        "C": 0.4449,
+        "CD": 0.1208
+      },
+      "graph_stats": {
+        "nodes": 1415,
+        "edges": 7464
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 1415,
+          "n_edges": 7464,
+          "en_ratio": 5.275,
+          "n_components": 9,
+          "lcc_size": 1403,
+          "lcc_ratio": 0.9915,
+          "small_cc_nodes": 12,
+          "cc_ratio": 0.0085,
+          "isolated_nodes": 7
+        }
+      },
+      "gfs": {
+        "gfs": 0.0015,
+        "n_correct": 11,
+        "n_total": 7464,
+        "n_layers": 12
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 1e-06,
+        "std_bc": 6e-06
+      }
+    },
+    {
+      "name": "mybatis-3",
+      "expected": "MIXED",
+      "agq_v3c": 0.4924,
+      "components": {
+        "M": 0.6589,
+        "A": 0.9686,
+        "S": 0.1211,
+        "C": 0.4375,
+        "CD": 0.2759
+      },
+      "graph_stats": {
+        "nodes": 1754,
+        "edges": 7620
+      },
+      "archipelago": {
+        "detected": true,
+        "tier": "high",
+        "metrics": {
+          "n_nodes": 1754,
+          "n_edges": 7620,
+          "en_ratio": 4.344,
+          "n_components": 341,
+          "lcc_size": 1414,
+          "lcc_ratio": 0.8062,
+          "small_cc_nodes": 340,
+          "cc_ratio": 0.1938,
+          "isolated_nodes": 340
+        }
+      },
+      "gfs": {
+        "gfs": 0.0319,
+        "n_correct": 243,
+        "n_total": 7620,
+        "n_layers": 13
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 3e-06,
+        "std_bc": 1.9e-05
+      }
+    },
+    {
+      "name": "redisson",
+      "expected": "MIXED",
+      "agq_v3c": 0.4667,
+      "components": {
+        "M": 0.6346,
+        "A": 0.9867,
+        "S": 0.098,
+        "C": 0.2855,
+        "CD": 0.3285
+      },
+      "graph_stats": {
+        "nodes": 2938,
+        "edges": 11838
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 2938,
+          "n_edges": 11838,
+          "en_ratio": 4.029,
+          "n_components": 190,
+          "lcc_size": 2722,
+          "lcc_ratio": 0.9265,
+          "small_cc_nodes": 216,
+          "cc_ratio": 0.0735,
+          "isolated_nodes": 177
+        }
+      },
+      "gfs": {
+        "gfs": 0.0128,
+        "n_correct": 151,
+        "n_total": 11838,
+        "n_layers": 25
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 4e-06
+      }
+    },
+    {
+      "name": "shardingsphere",
+      "expected": "MIXED",
+      "agq_v3c": 0.4301,
+      "components": {
+        "M": 0.6271,
+        "A": 0.9972,
+        "S": 0.111,
+        "C": 0.4153,
+        "CD": 0.0
+      },
+      "graph_stats": {
+        "nodes": 12763,
+        "edges": 92841
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 12763,
+          "n_edges": 92841,
+          "en_ratio": 7.274,
+          "n_components": 19,
+          "lcc_size": 12745,
+          "lcc_ratio": 0.9986,
+          "small_cc_nodes": 18,
+          "cc_ratio": 0.0014,
+          "isolated_nodes": 18
+        }
+      },
+      "gfs": {
+        "gfs": 0.0044,
+        "n_correct": 410,
+        "n_total": 92841,
+        "n_layers": 41
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 0.0
+      }
+    },
+    {
+      "name": "dubbo",
+      "expected": "MIXED",
+      "agq_v3c": 0.4835,
+      "components": {
+        "M": 0.6345,
+        "A": 0.987,
+        "S": 0.255,
+        "C": 0.3774,
+        "CD": 0.1636
+      },
+      "graph_stats": {
+        "nodes": 7135,
+        "edges": 35807
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 7135,
+          "n_edges": 35807,
+          "en_ratio": 5.019,
+          "n_components": 170,
+          "lcc_size": 6960,
+          "lcc_ratio": 0.9755,
+          "small_cc_nodes": 175,
+          "cc_ratio": 0.0245,
+          "isolated_nodes": 166
+        }
+      },
+      "gfs": {
+        "gfs": 0.0144,
+        "n_correct": 517,
+        "n_total": 35807,
+        "n_layers": 21
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 2e-06
+      }
+    },
+    {
+      "name": "seata",
+      "expected": "MIXED",
+      "agq_v3c": 0.4884,
+      "components": {
+        "M": 0.698,
+        "A": 0.9924,
+        "S": 0.2815,
+        "C": 0.3485,
+        "CD": 0.1218
+      },
+      "graph_stats": {
+        "nodes": 4633,
+        "edges": 24413
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 4633,
+          "n_edges": 24413,
+          "en_ratio": 5.269,
+          "n_components": 97,
+          "lcc_size": 4517,
+          "lcc_ratio": 0.975,
+          "small_cc_nodes": 116,
+          "cc_ratio": 0.025,
+          "isolated_nodes": 90
+        }
+      },
+      "gfs": {
+        "gfs": 0.0085,
+        "n_correct": 207,
+        "n_total": 24413,
+        "n_layers": 16
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 1e-06
+      }
+    },
+    {
+      "name": "java-design-patterns",
+      "expected": "BAD",
+      "agq_v3c": 0.7315,
+      "components": {
+        "M": 0.8066,
+        "A": 0.9967,
+        "S": 0.7759,
+        "C": 0.5005,
+        "CD": 0.5778
+      },
+      "graph_stats": {
+        "nodes": 2447,
+        "edges": 6199
+      },
+      "archipelago": {
+        "detected": true,
+        "tier": "high",
+        "metrics": {
+          "n_nodes": 2447,
+          "n_edges": 6199,
+          "en_ratio": 2.533,
+          "n_components": 300,
+          "lcc_size": 2144,
+          "lcc_ratio": 0.8762,
+          "small_cc_nodes": 303,
+          "cc_ratio": 0.1238,
+          "isolated_nodes": 297
+        }
+      },
+      "gfs": {
+        "gfs": 0.0079,
+        "n_correct": 49,
+        "n_total": 6199,
+        "n_layers": 7
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 2e-06
+      }
+    },
+    {
+      "name": "TheAlgorithms-Java",
+      "expected": "BAD",
+      "agq_v3c": 0.565,
+      "components": {
+        "M": 0.6499,
+        "A": 1.0,
+        "S": 0.2215,
+        "C": 0.3606,
+        "CD": 0.5929
+      },
+      "graph_stats": {
+        "nodes": 1712,
+        "edges": 4182
+      },
+      "archipelago": {
+        "detected": true,
+        "tier": "high",
+        "metrics": {
+          "n_nodes": 1712,
+          "n_edges": 4182,
+          "en_ratio": 2.443,
+          "n_components": 378,
+          "lcc_size": 1329,
+          "lcc_ratio": 0.7763,
+          "small_cc_nodes": 383,
+          "cc_ratio": 0.2237,
+          "isolated_nodes": 372
+        }
+      },
+      "gfs": {
+        "gfs": 0.0,
+        "n_correct": 0,
+        "n_total": 4182,
+        "n_layers": 3
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 0.0
+      }
+    },
+    {
+      "name": "JCSprout",
+      "expected": "BAD",
+      "agq_v3c": 0.6666,
+      "components": {
+        "M": 0.8112,
+        "A": 1.0,
+        "S": 0.2215,
+        "C": 0.5379,
+        "CD": 0.7626
+      },
+      "graph_stats": {
+        "nodes": 198,
+        "edges": 282
+      },
+      "archipelago": {
+        "detected": true,
+        "tier": "high",
+        "metrics": {
+          "n_nodes": 198,
+          "n_edges": 282,
+          "en_ratio": 1.424,
+          "n_components": 32,
+          "lcc_size": 154,
+          "lcc_ratio": 0.7778,
+          "small_cc_nodes": 44,
+          "cc_ratio": 0.2222,
+          "isolated_nodes": 23
+        }
+      },
+      "gfs": {
+        "gfs": 0.0,
+        "n_correct": 0,
+        "n_total": 282,
+        "n_layers": 4
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 1e-06
+      }
+    },
+    {
+      "name": "spring-boot-demo",
+      "expected": "BAD",
+      "agq_v3c": 0.597,
+      "components": {
+        "M": 0.8629,
+        "A": 1.0,
+        "S": 0.0555,
+        "C": 0.4927,
+        "CD": 0.5736
+      },
+      "graph_stats": {
+        "nodes": 1084,
+        "edges": 2773
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 1084,
+          "n_edges": 2773,
+          "en_ratio": 2.558,
+          "n_components": 6,
+          "lcc_size": 1079,
+          "lcc_ratio": 0.9954,
+          "small_cc_nodes": 5,
+          "cc_ratio": 0.0046,
+          "isolated_nodes": 5
+        }
+      },
+      "gfs": {
+        "gfs": 0.0,
+        "n_correct": 0,
+        "n_total": 2773,
+        "n_layers": 7
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 0.0,
+        "std_bc": 1e-06
+      }
+    },
+    {
+      "name": "spring-boot-learning",
+      "expected": "BAD",
+      "agq_v3c": 0.7475,
+      "components": {
+        "M": 0.9048,
+        "A": 1.0,
+        "S": 0.5707,
+        "C": 0.5724,
+        "CD": 0.6897
+      },
+      "graph_stats": {
+        "nodes": 319,
+        "edges": 594
+      },
+      "archipelago": {
+        "detected": false,
+        "tier": null,
+        "metrics": {
+          "n_nodes": 319,
+          "n_edges": 594,
+          "en_ratio": 1.862,
+          "n_components": 9,
+          "lcc_size": 308,
+          "lcc_ratio": 0.9655,
+          "small_cc_nodes": 11,
+          "cc_ratio": 0.0345,
+          "isolated_nodes": 7
+        }
+      },
+      "gfs": {
+        "gfs": 0.0,
+        "n_correct": 0,
+        "n_total": 594,
+        "n_layers": 5
+      },
+      "pcv": {
+        "pcv": 1.0,
+        "mean_bc": 1e-06,
+        "std_bc": 2e-06
+      }
+    }
+  ]
+}

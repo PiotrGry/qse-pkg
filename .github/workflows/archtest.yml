@@ -1,0 +1,357 @@
+---
+# qse-archtest — Reusable Architecture Quality Gate Workflow
+#
+# This workflow scans a repository for architecture quality using QSE AGQ_v3c.
+# It classifies the result as green/amber/red and posts a comment on any open PR.
+#
+# Usage (from another workflow):
+#
+#   jobs:
+#     archtest:
+#       uses: PiotrGry/qse-pkg/.github/workflows/archtest.yml@perplexity
+#       with:
+#         repo-path: .
+#         language: java
+#
+# See archtest-example.yml for a full integration example.
+
+name: qse-archtest
+
+on:
+  # ── Reusable workflow trigger (called from other pipelines) ──────────────
+  workflow_call:
+    inputs:
+      repo-path:
+        description: >
+          Path to the repository root to scan, relative to the workspace.
+          Use '.' to scan the checked-out repo root.
+        required: false
+        type: string
+        default: "."
+
+      language:
+        description: >
+          Source language to scan. Must be 'java' or 'python'.
+        required: true
+        type: string
+
+      format:
+        description: >
+          Output format for the archtest report: 'json' or 'markdown'.
+          Markdown is used for PR comments; JSON is always saved as artifact.
+        required: false
+        type: string
+        default: "markdown"
+
+      main-branch-agq:
+        description: >
+          AGQ_v3c score from the main branch (optional). When provided, an FF1
+          regression check is performed: if the current AGQ drops more than 0.05
+          from this baseline, the status is upgraded to amber even if the
+          absolute score would be green.
+        required: false
+        type: string
+        default: ""
+
+      python-version:
+        description: "Python version to use for QSE runtime."
+        required: false
+        type: string
+        default: "3.11"
+
+      fail-on-red:
+        description: >
+          When true (default), the workflow fails if the status is red.
+          Set to false to run in advisory-only mode.
+        required: false
+        type: boolean
+        default: true
+
+      fail-on-amber:
+        description: >
+          When true, the workflow fails if the status is amber or red.
+          Useful for enforcing strict quality gates on protected branches.
+        required: false
+        type: boolean
+        default: false
+
+      post-pr-comment:
+        description: >
+          When true (default), posts the Markdown report as a PR comment
+          (only when the workflow is triggered by a pull_request event).
+        required: false
+        type: boolean
+        default: true
+
+    outputs:
+      agq-score:
+        description: "AGQ_v3c score (float string, 4 decimal places)."
+        value: ${{ jobs.archtest.outputs.agq-score }}
+      status:
+        description: "Quality status: 'green', 'amber', or 'red'."
+        value: ${{ jobs.archtest.outputs.status }}
+      report-artifact:
+        description: "Name of the uploaded artifact containing the JSON report."
+        value: ${{ jobs.archtest.outputs.report-artifact }}
+
+  # ── Manual dispatch (for one-off runs and debugging) ─────────────────────
+  workflow_dispatch:
+    inputs:
+      repo-path:
+        description: "Path to repo root (use '.' for current repo)"
+        required: false
+        default: "."
+      language:
+        description: "Language: java or python"
+        required: true
+        default: "python"
+      format:
+        description: "Output format: json or markdown"
+        required: false
+        default: "markdown"
+      main-branch-agq:
+        description: "Main branch AGQ score for FF1 regression check (leave blank to skip)"
+        required: false
+        default: ""
+      python-version:
+        description: "Python version"
+        required: false
+        default: "3.11"
+      fail-on-red:
+        description: "Fail the workflow if status is red"
+        required: false
+        default: "true"
+      fail-on-amber:
+        description: "Fail the workflow if status is amber"
+        required: false
+        default: "false"
+      post-pr-comment:
+        description: "Post report as PR comment"
+        required: false
+        default: "true"
+
+jobs:
+  archtest:
+    name: "AGQ Architecture Test (${{ inputs.language }})"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    outputs:
+      agq-score: ${{ steps.run-archtest.outputs.agq-score }}
+      status: ${{ steps.run-archtest.outputs.status }}
+      report-artifact: ${{ steps.set-artifact-name.outputs.name }}
+
+    permissions:
+      contents: read       # needed to checkout the repo
+      pull-requests: write # needed to post PR comments
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Full history enables accurate instability variance across packages
+          fetch-depth: 0
+
+      # ── 2. Python setup ────────────────────────────────────────────────────
+      - name: Set up Python ${{ inputs.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+          cache: "pip"
+
+      # ── 3. Install QSE and dependencies ────────────────────────────────────
+      - name: Install QSE dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Core graph and analysis dependencies
+          pip install \
+            "networkx>=3.0" \
+            "scipy>=1.10" \
+            "numpy>=1.24" \
+            "tree-sitter>=0.21" \
+            "tree-sitter-java>=0.23"
+          # Install qse-pkg from GitHub (perplexity branch)
+          pip install \
+            "git+https://github.com/PiotrGry/qse-pkg.git@perplexity"
+
+      # ── 4. Run archtest (JSON output for artifact) ─────────────────────────
+      - name: Run qse-archtest (JSON)
+        id: run-archtest
+        shell: bash
+        run: |
+          set +e
+
+          # Build CLI arguments
+          ARCHTEST_ARGS="--repo ${{ inputs.repo-path }} --lang ${{ inputs.language }} --format json"
+
+          if [ -n "${{ inputs.main-branch-agq }}" ]; then
+            ARCHTEST_ARGS="${ARCHTEST_ARGS} --main-branch-agq ${{ inputs.main-branch-agq }}"
+          fi
+
+          # Run and capture both output and exit code
+          python -m qse.archtest ${ARCHTEST_ARGS} > /tmp/archtest_report.json 2>/tmp/archtest_stderr.txt
+          ARCHTEST_EXIT=$?
+
+          set -e
+
+          # Log stderr (scanner warnings, etc.)
+          if [ -s /tmp/archtest_stderr.txt ]; then
+            echo "=== Scanner output ==="
+            cat /tmp/archtest_stderr.txt
+          fi
+
+          # Parse key values from JSON report
+          if [ -f /tmp/archtest_report.json ]; then
+            AGQ_SCORE=$(python3 -c "import json; r=json.load(open('/tmp/archtest_report.json')); print(r.get('agq_v3c', 'N/A'))")
+            STATUS=$(python3 -c "import json; r=json.load(open('/tmp/archtest_report.json')); print(r.get('status', 'error'))")
+            echo "agq-score=${AGQ_SCORE}" >> "$GITHUB_OUTPUT"
+            echo "status=${STATUS}" >> "$GITHUB_OUTPUT"
+            echo "exit-code=${ARCHTEST_EXIT}" >> "$GITHUB_OUTPUT"
+          else
+            echo "agq-score=N/A" >> "$GITHUB_OUTPUT"
+            echo "status=error" >> "$GITHUB_OUTPUT"
+            echo "exit-code=3" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "Archtest exit code: ${ARCHTEST_EXIT}"
+
+      # ── 5. Generate Markdown report ────────────────────────────────────────
+      - name: Generate Markdown report
+        id: gen-markdown
+        if: always()
+        shell: bash
+        run: |
+          set +e
+
+          ARCHTEST_ARGS="--repo ${{ inputs.repo-path }} --lang ${{ inputs.language }} --format markdown"
+
+          if [ -n "${{ inputs.main-branch-agq }}" ]; then
+            ARCHTEST_ARGS="${ARCHTEST_ARGS} --main-branch-agq ${{ inputs.main-branch-agq }}"
+          fi
+
+          python -m qse.archtest ${ARCHTEST_ARGS} > /tmp/archtest_report.md 2>/dev/null
+
+          set -e
+
+      # ── 6. Write job summary ───────────────────────────────────────────────
+      - name: Write GitHub Step Summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f /tmp/archtest_report.md ]; then
+            cat /tmp/archtest_report.md >> "$GITHUB_STEP_SUMMARY"
+          elif [ -f /tmp/archtest_report.json ]; then
+            echo "## Architecture Quality Gate" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat /tmp/archtest_report.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## Architecture Quality Gate — ERROR" >> "$GITHUB_STEP_SUMMARY"
+            echo "No report was generated. Check the scanner step for details." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # ── 7. Post PR comment ─────────────────────────────────────────────────
+      - name: Post PR comment
+        if: >
+          always() &&
+          inputs.post-pr-comment &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Read the Markdown report
+            let body;
+            try {
+              body = fs.readFileSync('/tmp/archtest_report.md', 'utf8');
+            } catch (e) {
+              body = '## Architecture Quality Gate — ERROR\n\nFailed to generate report. Check the workflow run for details.';
+            }
+
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // Look for an existing archtest comment to update (avoid spam)
+            const comments = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number: prNumber,
+            });
+
+            const BOT_MARKER = '<!-- qse-archtest -->';
+            const existingComment = comments.data.find(
+              c => c.body.includes(BOT_MARKER)
+            );
+
+            const fullBody = `${BOT_MARKER}\n${body}`;
+
+            if (existingComment) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existingComment.id,
+                body: fullBody,
+              });
+              core.info(`Updated existing archtest comment #${existingComment.id}`);
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body: fullBody,
+              });
+              core.info(`Created new archtest comment on PR #${prNumber}`);
+            }
+
+      # ── 8. Determine artifact name ─────────────────────────────────────────
+      - name: Set artifact name
+        id: set-artifact-name
+        if: always()
+        run: |
+          TS=$(date -u +%Y%m%dT%H%M%S)
+          NAME="archtest-report-${{ inputs.language }}-${TS}"
+          echo "name=${NAME}" >> "$GITHUB_OUTPUT"
+
+      # ── 9. Save JSON report as artifact ───────────────────────────────────
+      - name: Upload JSON report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.set-artifact-name.outputs.name }}
+          path: /tmp/archtest_report.json
+          retention-days: 30
+          if-no-files-found: warn
+
+      # ── 10. Enforce quality gate ───────────────────────────────────────────
+      - name: Enforce quality gate
+        if: always()
+        shell: bash
+        env:
+          STATUS: ${{ steps.run-archtest.outputs.status }}
+          AGQ_SCORE: ${{ steps.run-archtest.outputs.agq-score }}
+          FAIL_ON_RED: ${{ inputs.fail-on-red }}
+          FAIL_ON_AMBER: ${{ inputs.fail-on-amber }}
+        run: |
+          echo "Status: ${STATUS}  AGQ: ${AGQ_SCORE}"
+
+          if [ "${STATUS}" = "error" ]; then
+            echo "::error::Architecture scan failed with an error. Check scanner output above."
+            exit 3
+          fi
+
+          if [ "${STATUS}" = "red" ] && [ "${FAIL_ON_RED}" = "true" ]; then
+            echo "::error::Architecture quality gate FAILED: status=red (AGQ=${AGQ_SCORE})"
+            exit 2
+          fi
+
+          if [ "${STATUS}" = "amber" ] && [ "${FAIL_ON_AMBER}" = "true" ]; then
+            echo "::warning::Architecture quality gate FAILED: status=amber (AGQ=${AGQ_SCORE})"
+            exit 1
+          fi
+
+          echo "Architecture quality gate passed: status=${STATUS} (AGQ=${AGQ_SCORE})"

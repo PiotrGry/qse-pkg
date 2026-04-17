@@ -1,0 +1,145 @@
+{
+  "experiment": "E13f_commons_collections_pilot",
+  "date": "2026-04-13T18:29:16.116077+00:00",
+  "repo": "apache/commons-collections",
+  "baseline": {
+    "label": "baseline",
+    "repo_path": "/home/user/workspace/commons-collections/src/main/java",
+    "graph": {
+      "nodes": 458,
+      "edges": 1890,
+      "internal": 359,
+      "packages": 20
+    },
+    "agq": {
+      "M": 0.5364,
+      "A": 0.9869,
+      "S": 0.4375,
+      "C": 0.3058,
+      "CD": 0.3122
+    },
+    "qse_rank": 1.2885,
+    "qse_track": {
+      "PCA": 0.1111,
+      "dip_violations": 0,
+      "largest_scc": 16
+    },
+    "qse_diagnostic": {
+      "C": 0.3058,
+      "C_percentile": 0.212,
+      "S": 0.4375,
+      "S_percentile": 0.865,
+      "M": 0.5364,
+      "A": 0.9869,
+      "CD": 0.3122,
+      "PCA": 0.1111,
+      "LVR": 1.0,
+      "dip_violations": 0,
+      "largest_scc": 16,
+      "problems": [
+        "LOW_COHESION",
+        "PACKAGE_CYCLES"
+      ]
+    },
+    "structural_health": {
+      "pca": 0.1111,
+      "lvr": 1.0,
+      "combined": 0.3333
+    }
+  },
+  "iterations": [
+    {
+      "label": "iter1_move_utils",
+      "description": "Moved 19 *Utils classes from root to sub-packages"
+    },
+    {
+      "label": "iter2_break_collection_deps",
+      "description": "Removed HashBag/TruePredicate/iterator deps from CollectionUtils"
+    },
+    {
+      "label": "iter3_extract_builder",
+      "description": "Extracted PredicatedCollectionBuilder to builder/ package, replaced Unmodifiable wrappers with JDK"
+    },
+    {
+      "label": "iter4_break_list_set",
+      "description": "Replaced cross-package Unmodifiable wrappers with java.util.Collections equivalents"
+    }
+  ],
+  "final": {
+    "label": "final_after_refactoring",
+    "repo_path": "/home/user/workspace/commons-collections/src/main/java",
+    "graph": {
+      "nodes": 459,
+      "edges": 1883,
+      "internal": 360,
+      "packages": 21
+    },
+    "agq": {
+      "M": 0.5451,
+      "A": 0.9913,
+      "S": 0.4375,
+      "C": 0.3074,
+      "CD": 0.3163
+    },
+    "qse_rank": 1.3269,
+    "qse_track": {
+      "PCA": 1.0,
+      "dip_violations": 0,
+      "largest_scc": 0
+    },
+    "qse_diagnostic": {
+      "C": 0.3074,
+      "C_percentile": 0.231,
+      "S": 0.4375,
+      "S_percentile": 0.865,
+      "M": 0.5451,
+      "A": 0.9913,
+      "CD": 0.3163,
+      "PCA": 1.0,
+      "LVR": 1.0,
+      "dip_violations": 0,
+      "largest_scc": 0,
+      "problems": [
+        "LOW_COHESION"
+      ]
+    },
+    "structural_health": {
+      "pca": 1.0,
+      "lvr": 1.0,
+      "combined": 1.0
+    }
+  },
+  "deltas": {
+    "track_PCA": 0.8889,
+    "track_dip": 0,
+    "track_scc": -16,
+    "agq_M": 0.0087,
+    "agq_A": 0.0044,
+    "agq_S": 0.0,
+    "agq_C": 0.0016,
+    "agq_CD": 0.0041,
+    "qse_rank": 0.0384,
+    "sh_combined": 0.6667
+  },
+  "panel_baseline": {
+    "score": 5.3,
+    "dimensions": {
+      "package_org": 5.0,
+      "dep_hygiene": 3.7,
+      "class_resp": 5.7,
+      "arch_patterns": 5.0,
+      "maintainability": 5.7
+    }
+  },
+  "panel_final": {
+    "score": 5.7,
+    "dimensions": {
+      "package_org": 5.7,
+      "dep_hygiene": 7.0,
+      "class_resp": 6.0,
+      "arch_patterns": 4.7,
+      "maintainability": 5.3
+    }
+  },
+  "panel_delta": 0.40000000000000036
+}
