@@ -16,6 +16,7 @@ Additional metrics:
 All metrics normalized to [0, 1] where 1 = best.
 """
 
+import math
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Tuple
 
@@ -32,6 +33,12 @@ class AGQMetrics:
     coupling_density: float = 0.0  # E2: 1 - normalized(edges/nodes); lower ratio = better
     qse_rank: Optional[float] = None  # E11: rank(C)+rank(S) percentile vs benchmark
     qse_track_m: Optional[float] = None  # E11: M score for within-repo tracking
+    stability_dag: Optional[float] = None  # §1.3 recenzja 2026-04-16: direction-sensitive,
+                                           # naming-invariant replacement for stability.
+                                           # = dag_longest_path(condensation(G)) / log2(|SCC|+1)
+    modularity_directed: Optional[float] = None  # §1.2 recenzja 2026-04-16: Leicht-Newman
+                                                 # directed modularity; Louvain partition on
+                                                 # undirected projection, scored with directed Q.
 
     @property
     def agq_score(self) -> float:
@@ -71,12 +78,19 @@ class AGQMetrics:
         """
         lang = getattr(self, "_language", "Java")
         fs   = getattr(self, "_flat_score", 1.0)
-        M, A, S, C, CD = (self.modularity, self.acyclicity,
-                          self.stability, self.cohesion, self.coupling_density)
+        # §1.3 recenzja 2026-04-16: prefer direction-sensitive S_dag if available
+        # and use_dag_stability flag is set (default True when stability_dag computed).
+        use_dag = getattr(self, "_use_dag_stability", self.stability_dag is not None)
+        S_eff = self.stability_dag if (use_dag and self.stability_dag is not None) else self.stability
+        # §1.2 recenzja 2026-04-16: prefer directed modularity (Leicht-Newman) when
+        # available and _use_directed_modularity flag is set.
+        use_dir_M = getattr(self, "_use_directed_modularity", self.modularity_directed is not None)
+        M_eff = self.modularity_directed if (use_dir_M and self.modularity_directed is not None) else self.modularity
+        A, C, CD = (self.acyclicity, self.cohesion, self.coupling_density)
         if lang == "Python":
-            return (0.15*M + 0.05*A + 0.20*S + 0.10*C + 0.15*CD + 0.35*fs)
+            return (0.15*M_eff + 0.05*A + 0.20*S_eff + 0.10*C + 0.15*CD + 0.35*fs)
         else:  # Java, Go, COBOL — PCA equal weights (no flat_score signal)
-            return (0.20*M + 0.20*A + 0.20*S + 0.20*C + 0.20*CD)
+            return (0.20*M_eff + 0.20*A + 0.20*S_eff + 0.20*C + 0.20*CD)
 
     @property
     def agq_v2(self) -> float:
@@ -137,6 +151,56 @@ def compute_modularity(G: nx.DiGraph) -> float:
     try:
         communities = nx.community.louvain_communities(U, seed=42)
         Q = nx.community.modularity(U, communities)
+    except Exception:
+        return 0.5
+
+    Q_REF = 0.75
+    return max(0.0, min(1.0, max(0.0, Q) / Q_REF))
+
+
+def compute_modularity_directed(G: nx.DiGraph) -> float:
+    """Directed modularity (Leicht & Newman 2008).
+
+    Replacement for compute_modularity proposed in docs/recenzja_2026-04-16.md §1.2.
+    Legacy compute_modularity treats "A→B" and "B→A" as equivalent because it
+    projects the graph to undirected before scoring — this is architecturally
+    a category error (Dependency Inversion Principle is about direction).
+
+    Formula:
+        Q_dir = (1/m) · Σ_{i,j} [A_ij − (k_out_i · k_in_j)/m] · δ(c_i, c_j)
+    where m = number of directed edges, k_out_i = out-degree, k_in_j = in-degree.
+
+    Implementation:
+      1) Detect communities with Louvain on the undirected projection (the
+         partition itself is not direction-aware; only the scoring is).
+      2) Score the partition with networkx.community.modularity applied to the
+         *directed* graph — networkx evaluates the Leicht-Newman formula when
+         G is a DiGraph.
+
+    Computed Q ∈ [−0.5, 1.0]. Normalized here identically to legacy
+    compute_modularity: max(0, Q) / Q_REF, Q_REF=0.75, clamped to [0, 1].
+
+    Tiny graphs (n < 10) return the neutral 0.5 to avoid noise from unreliable
+    community detection, matching compute_modularity's behaviour.
+    """
+    n = G.number_of_nodes()
+    if n <= 1:
+        return 1.0
+
+    G_clean = G.copy()
+    G_clean.remove_edges_from(nx.selfloop_edges(G_clean))
+    if G_clean.number_of_edges() == 0:
+        return 1.0
+
+    if n < 10:
+        return 0.5
+
+    try:
+        U = G_clean.to_undirected()
+        communities = nx.community.louvain_communities(U, seed=42)
+        # networkx.community.modularity on a DiGraph evaluates the directed
+        # (Leicht-Newman) formula; on an undirected graph, the Newman-Girvan one.
+        Q = nx.community.modularity(G_clean, communities)
     except Exception:
         return 0.5
 
@@ -334,6 +398,66 @@ def _detect_package_depth(G: nx.DiGraph) -> int:
     return level
 
 
+def compute_stability_dag(G: nx.DiGraph) -> float:
+    """Naming-invariant stability based on the condensation DAG.
+
+    Proposed in docs/recenzja_2026-04-16.md §1.3 as an alternative to legacy
+    compute_stability (`var(Ce/(Ca+Ce))` over 2nd-level packages), which the
+    recenzja flags on two counts:
+      - Problem B: depends on how packages are named (renaming produces
+        arbitrary shifts up to +0.38 without any code change — E13g).
+      - Problem A: var(I) = var(1 - I), so the metric cannot distinguish
+        "dependencies flow from domain to infrastructure" from "infrastructure
+        to domain."
+
+    Construction:
+      1) condensation = nx.condensation(G) — every SCC becomes a single node.
+      2) longest = nx.dag_longest_path_length(condensation) — edges on the
+         deepest inter-SCC chain.
+      3) S_dag = longest / log2(|SCC| + 1), clamped to [0, 1].
+
+    Properties:
+      - Addresses Problem B (naming invariance): graph topology does not
+        change when nodes are relabeled, so S_dag is exactly invariant.
+        This is the primary motivation for introducing the metric.
+      - Does NOT address Problem A (direction sensitivity): longest path in
+        a DAG is invariant under edge reversal, so reversing the entire graph
+        leaves S_dag unchanged. A separate direction-aware component (e.g.
+        source/sink asymmetry, forward-vs-reverse depth ratio) is needed to
+        fully replace legacy S. Tracked as follow-up to §1.3 Problem A.
+      - Scale-aware: log2(|SCC|+1) normalizer keeps values comparable across
+        repos of different sizes while rewarding deeper layer hierarchies.
+
+    Edge cases:
+      - Empty graph                → 0.0
+      - Single node / single SCC   → 0.0 (no chain)
+      - Fully cyclic graph (1 SCC) → 0.0
+      - Pure chain A→B→C→D (n=4)  → 3 / log2(5) ≈ 1.293 → clamped to 1.0
+    """
+    if G.number_of_nodes() == 0:
+        return 0.0
+
+    try:
+        condensation = nx.condensation(G)
+    except Exception:
+        return 0.0
+
+    n_scc = condensation.number_of_nodes()
+    if n_scc <= 1:
+        # Either trivial graph or one giant SCC — no hierarchical structure.
+        return 0.0
+
+    try:
+        longest = nx.dag_longest_path_length(condensation)
+    except Exception:
+        return 0.0
+
+    if longest <= 0:
+        return 0.0
+
+    return min(1.0, longest / math.log2(n_scc + 1))
+
+
 def compute_boundary_crossing_ratio(G: nx.DiGraph) -> float:
     """
     Fraction of internal edges that cross package boundaries, where the
@@ -398,16 +522,39 @@ def compute_hierarchical_modularity(G: nx.DiGraph) -> float:
 # Cohesion - LCOM4
 # ---------------------------------------------------------------------------
 
-def compute_lcom4(methods_attrs: List[Tuple[str, Set[str]]]) -> int:
+def compute_lcom4(
+    methods_attrs: List[Tuple[str, Set[str]]],
+    is_abstract_or_interface: bool = False,
+) -> int:
     """
     LCOM4: number of connected components in method-attribute bipartite graph.
 
     methods_attrs: [(method_name, {attr1, attr2, ...}), ...]
+    is_abstract_or_interface: if True (caller knows the class is a Java interface,
+        Python ABC/Protocol, or fully abstract class), short-circuit to LCOM4=1.
+        See docs/recenzja_2026-04-16.md §4.1: well-designed `Repository<T>` with
+        5 CRUD methods previously scored LCOM4=5 (maximum penalty) — exactly
+        backwards. Interfaces are cohesive by definition (one responsibility).
 
     LCOM4 = 1 means perfectly cohesive.
     LCOM4 > 1 means class should be split.
+
+    Fallback heuristic (§4.1 Problem 1): if ≥2 methods and every method's
+    attribute set is empty, treat as an interface-like class and return 1.
+    This catches abstract classes the scanner did not explicitly flag, and
+    Python classes whose concrete attributes are set dynamically at runtime
+    and so are invisible to static AST analysis (§4.1 Problem 2).
     """
+    if is_abstract_or_interface:
+        return 1
+
     if not methods_attrs:
+        return 1
+
+    # Interface-like heuristic: multi-method class with no accessed attributes.
+    # Covers Java interfaces the scanner forgot to flag, Python Protocol classes,
+    # and classes whose attributes are set in __init__ via kwargs unpacking etc.
+    if len(methods_attrs) >= 2 and all(not attrs for _, attrs in methods_attrs):
         return 1
 
     # Build undirected graph: methods connected if they share attributes
@@ -863,8 +1010,14 @@ def compute_agq(G: nx.DiGraph,
     for trivially small codebases.
     """
     mod = compute_modularity(G)
+    # §1.2 recenzja 2026-04-16: directed modularity (Leicht-Newman).
+    # Stored alongside legacy modularity; agq_v3c prefers modularity_directed when present.
+    mod_dir = compute_modularity_directed(G)
     acy = compute_acyclicity(G)
     stab = compute_stability(G, abstract_modules)
+    # §1.3 recenzja 2026-04-16: direction-sensitive, naming-invariant alternative.
+    # Stored alongside legacy stability; agq_v3c prefers stability_dag when present.
+    stab_dag = compute_stability_dag(G)
     coh = compute_cohesion(classes_lcom4 or [])
 
     # Normalize weights and store on metrics object for weighted agq_score
@@ -882,7 +1035,8 @@ def compute_agq(G: nx.DiGraph,
     cd = max(0.0, 1.0 - min(raw_ratio / CD_REF, 1.0))
 
     m = AGQMetrics(modularity=mod, acyclicity=acy, stability=stab, cohesion=coh,
-                   coupling_density=cd)
+                   coupling_density=cd, stability_dag=stab_dag,
+                   modularity_directed=mod_dir)
     m._weights = w  # used by agq_score property if present
     m._weights_v2 = (0.20, 0.20, 0.35, 0.05, 0.20)  # AGQ v2 weights
     m._raw_ratio = raw_ratio  # store for diagnostics

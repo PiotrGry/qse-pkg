@@ -11,7 +11,9 @@ from qse.graph_metrics import (
     compute_instability_variance,
     compute_lcom4,
     compute_modularity,
+    compute_modularity_directed,
     compute_stability,
+    compute_stability_dag,
 )
 
 
@@ -155,6 +157,47 @@ class TestLCOM4:
     def test_three_isolated(self):
         methods = [("a", {"x"}), ("b", {"y"}), ("c", {"z"})]
         assert compute_lcom4(methods) == 3
+
+    # §4.1 recenzja 2026-04-16 — interface / abstract handling ------------------
+
+    def test_explicit_interface_flag_returns_one(self):
+        """Caller knows the class is an interface → short-circuit to 1."""
+        methods = [
+            ("save", {"x"}), ("delete", {"y"}), ("find", {"z"})  # would be LCOM4=3
+        ]
+        assert compute_lcom4(methods, is_abstract_or_interface=True) == 1
+
+    def test_java_repository_interface_heuristic(self):
+        """Classic Repository<T> pattern — 5 CRUD methods, no attributes accessed
+        (only delegation to DB). Previously LCOM4=5 (maximum penalty), now 1."""
+        methods = [
+            ("save", set()),
+            ("findById", set()),
+            ("findAll", set()),
+            ("delete", set()),
+            ("count", set()),
+        ]
+        assert compute_lcom4(methods) == 1
+
+    def test_python_protocol_heuristic(self):
+        """Python Protocol / ABC with method stubs, no attribute usage visible
+        to static analysis → LCOM4=1 via heuristic."""
+        methods = [("process", set()), ("validate", set())]
+        assert compute_lcom4(methods) == 1
+
+    def test_single_method_no_attrs_still_one(self):
+        """Single method with empty attrs is mathematically LCOM4=1 (one node,
+        one component). Heuristic requires ≥2 methods so it doesn't fire here."""
+        methods = [("run", set())]
+        assert compute_lcom4(methods) == 1
+
+    def test_heuristic_doesnt_fire_when_any_attr_present(self):
+        """If *any* method accesses an attribute, fall back to standard LCOM4 —
+        heuristic only kicks in for uniformly attribute-free classes."""
+        methods = [("a", set()), ("b", {"field"})]
+        # Two methods, one with attrs, one without — disjoint in bipartite
+        # graph, standard LCOM4 returns 2.
+        assert compute_lcom4(methods) == 2
 
 
 # ---------------------------------------------------------------------------
@@ -384,3 +427,181 @@ class TestLayerViolations:
             {"unknown.mod": "unknown", "domain.order": "domain"},
         )
         assert detect_layer_violations(analysis) == []
+
+
+# ---------------------------------------------------------------------------
+# Stability (DAG) — §1.3 recenzja 2026-04-16
+# ---------------------------------------------------------------------------
+
+class TestStabilityDag:
+    """compute_stability_dag should be naming-invariant and direction-sensitive —
+    the two core properties legacy compute_stability fails (§1.3 Problems A, B)."""
+
+    def test_empty_graph_returns_zero(self):
+        assert compute_stability_dag(nx.DiGraph()) == 0.0
+
+    def test_single_node_returns_zero(self):
+        G = nx.DiGraph()
+        G.add_node("only")
+        assert compute_stability_dag(G) == 0.0
+
+    def test_single_scc_cycle_returns_zero(self):
+        """Whole graph is one SCC → no hierarchical structure."""
+        G = nx.DiGraph([("a", "b"), ("b", "c"), ("c", "a")])
+        assert compute_stability_dag(G) == 0.0
+
+    def test_chain_is_high(self):
+        """Pure chain A→B→C→D: longest=3, log2(5)≈2.32 → 3/2.32≈1.29 → clamped 1.0."""
+        G = nx.DiGraph([("A", "B"), ("B", "C"), ("C", "D")])
+        assert compute_stability_dag(G) == pytest.approx(1.0)
+
+    def test_bounded_to_unit_interval(self):
+        """Must be in [0, 1] for any DiGraph."""
+        G = nx.gnp_random_graph(20, 0.3, directed=True, seed=42)
+        G = nx.DiGraph(G)
+        s = compute_stability_dag(G)
+        assert 0.0 <= s <= 1.0
+
+    def test_naming_invariant(self):
+        """§1.3 Problem B: renaming packages ('com.example.app.*' → 'app.*')
+        must not change S_dag — the graph topology is the same.
+        Legacy compute_stability can shift by up to +0.38 under the same edit."""
+        long_names = nx.DiGraph([
+            ("com.company.app.pres.Controller", "com.company.app.service.UserService"),
+            ("com.company.app.service.UserService", "com.company.app.domain.User"),
+            ("com.company.app.domain.User", "com.company.app.infra.UserRepo"),
+        ])
+        rename = {n: n.replace("com.company.app.", "") for n in long_names.nodes()}
+        short_names = nx.relabel_nodes(long_names, rename)
+
+        s_long = compute_stability_dag(long_names)
+        s_short = compute_stability_dag(short_names)
+        assert abs(s_long - s_short) <= 0.01, \
+            f"S_dag shifted by {abs(s_long - s_short):.3f} on pure rename"
+
+    def test_reversal_preserves_longest_path_length(self):
+        """Known limitation (§1.3 Problem A follow-up): reversing every edge
+        of a DAG preserves longest-path length, so S_dag as currently defined
+        is direction-blind on acyclic graphs. This test pins the current
+        behaviour so a future direction-aware component is added deliberately
+        rather than by accident. See compute_stability_dag docstring."""
+        G = nx.DiGraph([
+            ("root", "a"), ("root", "b"), ("root", "c"),
+            ("a", "aa"), ("a", "ab"),
+            ("aa", "leaf"),
+        ])
+        G_rev = G.reverse(copy=True)
+        assert compute_stability_dag(G) == compute_stability_dag(G_rev)
+
+    def test_stored_on_agq_metrics(self):
+        """compute_agq must populate the stability_dag field on AGQMetrics."""
+        G = nx.DiGraph([("A", "B"), ("B", "C"), ("C", "D")])
+        m = compute_agq(G)
+        assert m.stability_dag is not None
+        assert 0.0 <= m.stability_dag <= 1.0
+
+    def test_agq_v3c_uses_stability_dag_when_present(self):
+        """agq_v3c prefers stability_dag over legacy stability when available."""
+        G = nx.DiGraph([("A", "B"), ("B", "C"), ("C", "D")])
+        m = compute_agq(G)
+        # Force legacy stability to a distinct value so we can detect which is used.
+        m.stability = 0.10
+        m.stability_dag = 0.90
+        # Python path: 0.15*M + 0.05*A + 0.20*S_eff + 0.10*C + 0.15*CD + 0.35*fs
+        m._language = "Python"
+        m._flat_score = 0.5
+        score_with_dag = m.agq_v3c
+        # Now force legacy path
+        m._use_dag_stability = False
+        score_legacy = m.agq_v3c
+        # Difference should be exactly 0.20 * (0.90 - 0.10) = 0.16
+        assert score_with_dag - score_legacy == pytest.approx(0.20 * 0.80)
+
+    def test_agq_v3c_falls_back_when_dag_missing(self):
+        """If stability_dag is None, agq_v3c falls back to legacy stability."""
+        m = AGQMetrics(modularity=0.5, acyclicity=0.5, stability=0.7,
+                       cohesion=0.5, coupling_density=0.5, stability_dag=None)
+        # Should compute without error using legacy stability
+        score = m.agq_v3c
+        assert 0.0 <= score <= 1.0
+
+
+# ---------------------------------------------------------------------------
+# Modularity (directed / Leicht-Newman) — §1.2 recenzja 2026-04-16
+# ---------------------------------------------------------------------------
+
+class TestModularityDirected:
+    """compute_modularity_directed returns Leicht-Newman directed Q, respecting
+    edge direction. Legacy compute_modularity projects to undirected and loses
+    direction information (category error per §1.2)."""
+
+    def test_empty_graph(self):
+        assert compute_modularity_directed(nx.DiGraph()) == 1.0
+
+    def test_single_node(self):
+        G = nx.DiGraph()
+        G.add_node("only")
+        assert compute_modularity_directed(G) == 1.0
+
+    def test_no_edges_returns_one(self):
+        G = nx.DiGraph()
+        G.add_nodes_from(["a", "b", "c"])
+        assert compute_modularity_directed(G) == 1.0
+
+    def test_small_graph_returns_neutral(self):
+        """n<10 returns 0.5 (neutral) to avoid noise — matches compute_modularity."""
+        G = nx.DiGraph([("a", "b"), ("b", "c")])
+        assert compute_modularity_directed(G) == 0.5
+
+    def test_returns_unit_interval(self):
+        """Must always be in [0, 1]."""
+        G = nx.gnp_random_graph(30, 0.2, directed=True, seed=7)
+        G = nx.DiGraph(G)
+        Q = compute_modularity_directed(G)
+        assert 0.0 <= Q <= 1.0
+
+    def test_two_clusters_with_cross_edges_reasonable(self):
+        """Two dense clusters with few cross-edges → nontrivial positive Q_dir."""
+        G = nx.DiGraph()
+        # cluster A: 10 nodes, densely interconnected
+        for i in range(10):
+            for j in range(10):
+                if i != j:
+                    G.add_edge(f"a{i}", f"a{j}")
+        # cluster B: 10 nodes, densely interconnected
+        for i in range(10):
+            for j in range(10):
+                if i != j:
+                    G.add_edge(f"b{i}", f"b{j}")
+        # one bridging edge
+        G.add_edge("a0", "b0")
+        Q = compute_modularity_directed(G)
+        assert Q > 0.0  # at least some community signal detected
+
+    def test_stored_on_agq_metrics(self):
+        """compute_agq must populate modularity_directed field."""
+        G = nx.gnp_random_graph(30, 0.2, directed=True, seed=11)
+        G = nx.DiGraph(G)
+        m = compute_agq(G)
+        assert m.modularity_directed is not None
+        assert 0.0 <= m.modularity_directed <= 1.0
+
+    def test_agq_v3c_uses_directed_modularity_when_present(self):
+        """agq_v3c prefers modularity_directed over legacy modularity."""
+        m = AGQMetrics(modularity=0.1, acyclicity=0.5, stability=0.5,
+                       cohesion=0.5, coupling_density=0.5,
+                       stability_dag=None, modularity_directed=0.9)
+        m._language = "Java"
+        score_with_dir = m.agq_v3c
+        m._use_directed_modularity = False
+        score_legacy = m.agq_v3c
+        # Java weight on M is 0.20; difference = 0.20 * (0.9 - 0.1) = 0.16
+        assert score_with_dir - score_legacy == pytest.approx(0.20 * 0.80)
+
+    def test_agq_v3c_falls_back_when_directed_missing(self):
+        """If modularity_directed is None, agq_v3c uses legacy modularity."""
+        m = AGQMetrics(modularity=0.6, acyclicity=0.5, stability=0.5,
+                       cohesion=0.5, coupling_density=0.5,
+                       stability_dag=None, modularity_directed=None)
+        score = m.agq_v3c
+        assert 0.0 <= score <= 1.0

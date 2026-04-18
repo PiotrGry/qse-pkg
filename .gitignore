@@ -34,3 +34,8 @@ artifacts/
 target/
 **/.obsidian/*
 ._*
+# SMB mount artefacts (macOS writing to Linux via SMB leaves tombstones)
+.smbdelete*
+**/.smbdelete*
+# Local Claude Code state (per-user settings, not project-wide)
+.claude/settings.local.json
