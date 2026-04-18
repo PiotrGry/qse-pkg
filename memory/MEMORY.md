@@ -55,6 +55,69 @@ Design doc: `~/.gstack/projects/PiotrGry-qse/pepus-fix-metrics-redesign-design-2
 2. **Rename-aware node identity** — file rename ≠ "removed old + added new" dla CYCLE_NEW detection.
 3. **Counterexample structural limitation** — Event Bus / CQRS saga / plugin systems mają intencjonalne cykle. Bez edge typing (T3) są structural false positives, nie QA gaps.
 
+### 11 Known Limitations (L1-L11, kwiecień 2026) — stan z `docs/qse-wiki/11 Research/Limitations.md`
+
+Pełna lista znanych ograniczeń AGQ (self-acknowledged przez zespół, poza recenzją z 2026-04-16):
+
+- **L1 Language bias** — raw AGQ incomparable cross-language (Java ≠ Python ≠ Go). Mitigation: AGQ-z percentile. Go n_GT=0.
+- **L2 Small project bias** — <50 nodes unreliable, neutral/inflated scores.
+- **L3 OSS-Python calibration bias** — wagi skalibrowane na OSS, może nie generalizować do enterprise Python.
+- **L4 No industrial validation** — nie testowane na real enterprise code. WP-BR4 ma to rozwiązać.
+- **L5 Simulated panel** — 4 persony zdefiniowane przez 1 researcher (recenzja §2.1). WP-BR1 ma rozwiązać via 3 external architects.
+- **L6 No prediction** — AGQ mierzy current state, nie forecast.
+- **L7 Parser limitations** — TypeScript 73% nodes=0 w benchmark 558 (parser bug).
+- **L8 (KRYTYCZNE, kwiecień 2026)** — **S gameable przez sam rename namespace.** newbee-mall: `ltd.newbee.mall.*` → `mall.*` dało +0.38 S bez zmiany zależności. Cosmetic repackaging pomogło label transition NEG→POS.
+- **L9 (kwiecień 2026)** — **M pompable przez martwe interfejsy.** newbee-mall: 4 nieimplementowane interfejsy = +0.02 M. 20% wagi (AGQ) na metryce z dead-pattern gaming.
+- **L10 (kwiecień 2026)** — **LCOM4 penalizuje Java interfaces.** Interface z n metodami i 0 shared state → LCOM4 = n (max). Well-designed Java interface (rich contract) scoruje gorzej niż god class. Cohesion niewiarygodne dla Javy.
+- **L11 (kwiecień 2026)** — **Panel formula zawyża delty 8×.** E13g newbee-mall: hardcoded formula dała Δ=+3.2, honest independent architect assessment Δ=+0.4. Panel to regression-fit function, nie expert consensus.
+
+### PILOT counter-evidence (`papiers/PILOT_RESULTS_FINAL.md`)
+
+12 runs (4 models × 3 feedback modes), 10 e-commerce specs per model:
+
+| Metric | QSE feedback | None | Random feedback |
+|---|---|---|---|
+| Total pass rate | **18/36 (50%)** | 22/40 (55%) | **26/39 (67%)** |
+| Convergence (improvement rate on retry) | 18/24 (75%) | 15/23 (65%) | 15/23 (65%) |
+
+- **QSE feedback UNDERPERFORMS random** w immediate pass rate (Fisher's p=0.34 NS overall)
+- **Tylko Claude Sonnet 4 pokazuje istotny sygnał** (convergence p=0.012)
+- **Qwen: 3 API errors z QSE feedback** vs 0 z None/Random (QSE prompts za długie)
+- **H3 grant ("ratchet reduces review by ≥70%") ma kontrsygnał** w tym piloci. Wymaga multi-turn refinement albo lepszego filtering violations (v2 detector ~84% precision).
+
+### E11 BREAKTHROUGH finding (docs/qse-wiki/05 Experiments/E11*.md)
+
+**`2×rank(C) + rank(S)` bije ważony AGQ composite o +51% w Spearman correlation:**
+- rank(C) + rank(S): ρ=0.41, p=0.0025, AUC=0.757 (cross-repo GT Java n=52)
+- 2×rank(C) + rank(S): ρ=0.45, p=0.0007 (E13b refinement)
+- AGQ v3c (ważony): ρ=0.27, p=0.05
+
+**Grant KPI-01 (r≥0.60) — AGQ NIE osiąga progu; rank(C)+rank(S) bliżej ale nadal poniżej.**
+
+**Wiki rekomendacja (E11 Final Comparison, April 2026):** "Use component-level dashboard, not single composite. AGQ-composite ranks weakly across repos. Use rank-based aggregation or components separately."
+
+### Fundamentalna tensja: cross-repo vs within-repo
+
+| Metryka | Cross-repo ρ | Within-repo ρ | Verdict |
+|---|---|---|---|
+| **M (Modularity)** | ns (p=0.226) | **+0.79 (p<0.001)** | dominuje w ramach repo, martwe cross-repo |
+| **C (Cohesion)** | +0.31 (p=0.03) | flat | dominuje cross-repo |
+| **S (Stability)** | +0.26 (p=0.06) | ~0.00 we wszystkich iter | cross-repo signal, martwe in-repo |
+| rank(C)+rank(S) | **+0.41** (p=0.0025) | n/a | best cross-repo ever |
+| AGQ v3c composite | +0.27 | +0.35 (p=0.15 NS) | kompromis — nigdzie nie best |
+
+**Konsekwencja dla produktu:** AGQ jako single blocker score = sub-optymalne. Rules (deterministic axiom-backed) + component dashboard (research-grade) > AGQ-as-blocker.
+
+### Archipelago effect — Pilot-2 Multi-Repo Scan findings
+
+15 repozytoriów (5 expected-GOOD, 5 MIXED, 5 expected-BAD):
+- expected-BAD mean AGQ = **0.630** (wyższe!)
+- expected-GOOD mean AGQ = **0.475**
+- ρ(AGQ, E/N ratio) = **−0.900**, p<0.0001
+- **5/5 blind spots** — AGQ failed wszystkie expected-BAD repos (TheAlgorithms, Baeldung, tutorial collections)
+
+Mitigation zaimplementowana: archipelago detector cc_ratio > 0.08 → warning, 0 false positives na 22 repos. Ale **status integracji w CLI niejasny** (wiki mówi że detector istnieje, ale czy archtest auto-flags?).
+
 ### AGQ metryki stan
 - Layer 1: Modularity (Louvain), Acyclicity (Tarjan), Stability (Martin), Cohesion (LCOM4)
 - Layer 2: PCA weights, dip_violations, largest_scc (E12b QSE Dual Framework)

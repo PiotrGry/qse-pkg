@@ -127,3 +127,79 @@ Kolejka spraw odłożonych z review/sprint planning. Nie żyje w design doc'u, n
 
 **Miesiąc 4+ (wymaga większej pracy research):**
 - T3 (edge typing) — tied z R1 MDL go/no-go
+
+---
+
+## T7: Pilot paradox resolution — QSE < Random w pass rate
+
+**What:** `papiers/PILOT_RESULTS_FINAL.md` pokazuje że **QSE feedback underperforms random feedback w immediate pass rate** (50% vs 67% overall, Fisher's p=0.34 NS). Tylko Claude Sonnet 4 pokazuje istotny sygnał w convergence (p=0.012). To jest counter-signal do H3 grantu ("ratchet reduces review by ≥70%").
+
+**Why:** Grant panel może to zakwestionować. Potrzebne: (a) research on WHY — za długie prompts? za dużo false positives w detektorach? model-specific (Sonnet-only) effect?, (b) decision: redefiniować H3, albo zmienić feedback mechanism (multi-turn vs single-shot), albo zawęzić pilot context.
+
+**Pros:** Honest communication z grant panelem. Fine-tune feedback loop przed WP-BR3 (RLHF for LLMs) gdzie ten sam mechanism jest centralny.
+
+**Cons:** Jeśli H3 wymaga redefinicji, to może wpłynąć na grant scope. Negotiacja z NCBiR.
+
+**Context:** Pilot details: 12 runs (4 models × 3 feedback modes), 10 specs each. QSE prompts za długie → Qwen API errors (3 vs 0). False positive rate w v2 symbol-map detektorze ~16% może być sufficient do miticji sygnału.
+
+**Depends on / blocked by:** Nic — research task, można zacząć równolegle z Sprint 0.
+
+---
+
+## T8: Wiki staleness cleanup (3 pages)
+
+**What:** Zaktualizować 3 pages w docs/qse-wiki/:
+1. `04 Metrics/Stability.md` — dodać sekcję "Known Limitations (April 2026)" z L8 (S gameable przez namespace) i L11 (var(I)=var(1-I) mathematical invariance).
+2. `11 Research/Limitations.md` — dodać L8-L11 do głównej listy (obecnie tylko L1-L7 visible w summary).
+3. `01 Canon/Current Priorities.md` — wyjaśnić status archipelago detector: zintegrowany w archtest CLI? post-hoc flag? czy user musi explicit enable?
+
+**Why:** Wiki jest źródłem prawdy dla wewnętrznej (zespół) i zewnętrznej (grant panel, partnerzy) komunikacji. Stale content na kluczowych stronach = niespójność narratywu. Recenzja grant panel może znaleźć rozbieżność.
+
+**Pros:** Spójność źródła prawdy. Łatwiejsze onboarding nowych osób. Transparentna komunikacja limitacji.
+
+**Cons:** Czas: ~30-60 min na każdą stronę.
+
+**Context:** Skan repo (2026-04-18, deep read via 5 subagents). Agent pokrywający wiki zidentyfikował te 3 pages jako high-priority stale.
+
+**Depends on / blocked by:** Nic — straightforward docs work.
+
+---
+
+## T9: Script sprawl verification (NIE ruszone w cleanup 2026-04-18)
+
+**What:** Przejść przez 39 scripts w scripts/ i weryfikować case-by-case:
+1. `experiment_total.py` (698 linii) — czy nadal active? Agent zgłosił jako empty ale ma treść.
+2. `benchmark_parallel.py` vs `benchmark_fast.py` — czy oba potrzebne czy merge?
+3. `e9_run_pilots.py` vs `e9_pilot_battery.py` — overlap, merge z --phase flag?
+4. `agq_churn_analysis.py`, `agq_cochange_entropy.py` — cytowane w DOCUMENT_MAP.md, ale czy dane wyjściowe są aktualnie używane? Jeśli nie — candidate dla _obsolete.
+5. `s_sensitivity_investigation.py`, `multirepo_rerun_with_detector.py` — one-offs, diagnostic. Keep as historical lub move?
+6. `trl4_gate.py` w scripts (9 linii) — już przeniesione do _obsolete/scripts/ 2026-04-18.
+
+**Why:** Agent raport miał błędy ("experiment_total.py empty" — nieprawda). Trzeba manualnie sprawdzić. 39 scripts to dużo dla maintenance.
+
+**Pros:** Cleaner scripts/. Lower onboarding friction.
+
+**Cons:** Ryzykowne — można usunąć coś co ktoś cytuje w papier/grant. Wymaga weryfikacji cytowań.
+
+**Context:** Deep read (2026-04-18) pokazał różne jakości agent inference. DOCUMENT_MAP.md references 2 "abandoned" scripts — nie są abandoned.
+
+**Depends on / blocked by:** Nic. Minimalne ryzyko jeśli każdy file weryfikowany osobno.
+
+---
+
+## T10: AGQ formula canonical discrepancy
+
+**What:** Zweryfikować i zapisać **jedną** kanoniczną formułę AGQ v3c. Deep read (2026-04-18) ujawnił discrepancy:
+- Research narrative (RESEARCH_LOG, wiki): `AGQ_v3c (Java) = 0.20·M + 0.20·A + 0.20·S + 0.20·C + 0.20·CD` (pięć metryk, CD=Coupling Density)
+- `artifacts/agq_v3_definition.json`: `AGQ_v3c = 0.25·M + 0.25·A + 0.25·S + 0.25·C` (cztery metryki, BEZ CD)
+- `qse/archtest.py` THRESHOLDS + `qse/graph_metrics.py` — zweryfikować kod
+
+**Why:** Grant panel będzie sprawdzał spójność definicji vs implementacji. Discrepancy = red flag.
+
+**Pros:** Jednoznaczna definicja, easier audit.
+
+**Cons:** Może wymagać re-kalibracji jeśli formuła używana w kodzie ≠ formuła w papierach.
+
+**Context:** Dwa subagents (Stream A + Stream B) podały różne formuły. Nie miałem czasu zweryfikować kodu głęboko.
+
+**Depends on / blocked by:** Nic — docs/code audit.
