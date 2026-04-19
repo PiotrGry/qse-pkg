@@ -1,0 +1,156 @@
+name: ai-drift-gate
+
+# AI-Drift Firewall: axiom-backed rules gate for PR diffs.
+# Reusable workflow. Run it from your repo's CI via `uses:` (see example below).
+#
+# Example caller:
+#
+#   name: CI
+#   on:
+#     pull_request:
+#   jobs:
+#     gate:
+#       uses: PiotrGry/qse-pkg/.github/workflows/ai-drift-gate.yml@main
+#       with:
+#         config:  .github/qse-gate.toml
+#         path:    .
+#         base-ref: ${{ github.base_ref }}
+#
+# Sprint 0 scope: Python only. Java/Go via qse-core in 0.5.
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: "Repo subpath to scan at HEAD"
+        required: false
+        type: string
+        default: "."
+      config:
+        description: "Path to qse-gate.toml config"
+        required: false
+        type: string
+        default: "qse-gate.toml"
+      base-ref:
+        description: "Git ref for base graph (Δ mode). Leave empty for auto-detect."
+        required: false
+        type: string
+        default: ""
+      auto-base:
+        description: "Auto-detect merge-base with the default branch (ignored if base-ref is set)"
+        required: false
+        type: boolean
+        default: true
+      python-version:
+        required: false
+        type: string
+        default: "3.11"
+      upload-artifacts:
+        description: "Upload JSON report, PR comment, and JSONL telemetry as artifacts"
+        required: false
+        type: boolean
+        default: true
+      post-pr-comment:
+        description: "Post the PR comment back to the PR (requires pull_request trigger upstream)"
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history so `git merge-base` and `git archive <ref>` work.
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Install QSE
+        run: |
+          python -m pip install --upgrade pip
+          pip install git+https://github.com/PiotrGry/qse-pkg.git
+
+      - name: Resolve override token
+        id: override
+        run: |
+          TOKEN=""
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            TOKEN="${{ github.event.pull_request.title }}"
+          fi
+          # Append the head commit message (may also contain [skip-qse]).
+          COMMIT_MSG=$(git log -1 --pretty=%B || true)
+          TOKEN="${TOKEN} ${COMMIT_MSG}"
+          # Export without leaking newlines.
+          {
+            echo "token<<__EOF__"
+            echo "${TOKEN}"
+            echo "__EOF__"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run ai-drift gate
+        id: gate
+        env:
+          QSE_OVERRIDE: ${{ steps.override.outputs.token }}
+        run: |
+          mkdir -p artifacts
+          BASE_FLAG=""
+          if [ -n "${{ inputs.base-ref }}" ]; then
+            BASE_FLAG="--base-ref ${{ inputs.base-ref }}"
+          elif [ "${{ inputs.auto-base }}" = "true" ]; then
+            BASE_FLAG="--auto-base"
+          fi
+
+          set +e
+          qse-gate "${{ inputs.path }}" \
+            --config "${{ inputs.config }}" \
+            ${BASE_FLAG} \
+            --output-json artifacts/gate-report.json \
+            --pr-comment artifacts/gate-pr-comment.md \
+            --override-token "${QSE_OVERRIDE}" \
+            --repo "${{ github.repository }}" \
+            --pr "${{ github.event.pull_request.number }}" \
+            --commit "${{ github.sha }}"
+          EXIT=$?
+          set -e
+          echo "exit=${EXIT}" >> "$GITHUB_OUTPUT"
+
+      - name: Write job summary
+        if: always()
+        run: |
+          if [ -f artifacts/gate-pr-comment.md ]; then
+            cat artifacts/gate-pr-comment.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Post PR comment
+        if: |
+          inputs.post-pr-comment &&
+          github.event_name == 'pull_request' &&
+          hashFiles('artifacts/gate-pr-comment.md') != ''
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: ai-drift-gate
+          path: artifacts/gate-pr-comment.md
+
+      - name: Upload artifacts
+        if: always() && inputs.upload-artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-drift-gate
+          path: |
+            artifacts/gate-report.json
+            artifacts/gate-pr-comment.md
+            artifacts/gate-telemetry.jsonl
+
+      - name: Gate verdict
+        if: steps.gate.outputs.exit != '0'
+        run: exit 1
