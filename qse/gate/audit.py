@@ -49,6 +49,10 @@ class ComponentRisk:
     rules_hit: List[str] = field(default_factory=list)
     reason: str = ""
     priority: str = "P3"
+    # Δ-mode annotation: whether this module was already flagged in the base graph.
+    # Only set when audit_from_gate_result is called with base_graph.
+    # Values: "new" (appears only in head), "existing" (in both), None (no base).
+    first_seen: Optional[str] = None
 
     def to_dict(self) -> dict:
         return {
@@ -58,7 +62,24 @@ class ComponentRisk:
             "in_scc": self.in_scc,
             "rules_hit": self.rules_hit,
             "reason": self.reason,
+            "first_seen": self.first_seen,
         }
+
+
+@dataclass
+class DeltaSummary:
+    """Classification of violations against a base graph.
+
+    `new` = present in head, not in base (something the latest change introduced).
+    `existing` = present in both (technical debt carried forward).
+    `resolved` = present in base, absent in head (someone cleaned up).
+    """
+    new: int = 0
+    existing: int = 0
+    resolved: int = 0
+
+    def to_dict(self) -> dict:
+        return {"new": self.new, "existing": self.existing, "resolved": self.resolved}
 
 
 @dataclass
@@ -74,6 +95,8 @@ class AuditReport:
     top_risks: List[ComponentRisk]              # ranked descending
     recommendations: List[str]                  # priority-ordered
     raw_violations: List[RuleViolation]
+    # Δ-mode: None if the audit ran without a base graph, otherwise summary counts.
+    delta: Optional[DeltaSummary] = None
 
     def to_dict(self) -> dict:
         return {
@@ -88,6 +111,7 @@ class AuditReport:
             "top_risks": [r.to_dict() for r in self.top_risks],
             "recommendations": self.recommendations,
             "raw_violations": [v.to_dict() for v in self.raw_violations],
+            "delta": self.delta.to_dict() if self.delta else None,
         }
 
 
@@ -111,18 +135,25 @@ def _component_risk(
     weighted = 0.0
     rules_hit: List[str] = []
     for v in violations:
-        if module in (v.source, v.target):
+        hit = module in (v.source, v.target) or (
+            v.scc_members and module in v.scc_members
+        )
+        if hit:
             weighted += SEVERITY_WEIGHT.get(v.rule, 1.0)
             if v.rule not in rules_hit:
                 rules_hit.append(v.rule)
 
     in_scc = any(module in scc for scc in sccs)
 
-    # Normalize: base = 20 points per weighted violation, capped via edge count.
-    # A module in a 10-node repo with 3 violations scores higher than the same
-    # in a 1000-node repo — the ratio is what matters.
+    # Normalize: pressure = fraction of a calibrated "saturated drift" threshold.
+    # Denominator has a floor (20) so tiny repos do not saturate on a single hit,
+    # and scales with repo size so a 1000-edge repo needs ~200 weighted violations
+    # before pressure hits 1.0. Rationale: earlier 0.1×edges threshold saturated
+    # at 2 violations in a 10-edge demo → reported 0/100 "severe drift", which a
+    # CTO would rightly call noise. (Codex challenge, 2026-04-19.)
     if total_edges > 0:
-        pressure = min(1.0, weighted / max(1.0, total_edges * 0.1))
+        denom = max(20.0, total_edges * 0.2)
+        pressure = min(1.0, weighted / denom)
     else:
         pressure = 0.0
     score = pressure * 80.0 + (20.0 if in_scc else 0.0)
@@ -148,11 +179,20 @@ def _component_risk(
 
 
 def _health_score(total_violations: int, total_edges: int) -> tuple[float, str]:
-    if total_edges == 0:
+    if total_edges == 0 or total_violations == 0:
         return 100.0, "green"
-    # Inverse normalization: >= 10% of edges violated → 0; 0 violations → 100.
-    ratio = min(1.0, total_violations / (total_edges * 0.1))
+    # Health inversely tracks violation density, but with two dampeners:
+    #   (a) denominator floor of 20 prevents tiny repos from reporting "severe"
+    #       on the first hit;
+    #   (b) small-count cap: fewer than 5 violations can only pull health down
+    #       to yellow (70), never past orange.
+    # Bigger numbers require more than loud demos; real triage depends on how
+    # many violations are expanding vs stable.
+    denom = max(20.0, total_edges * 0.2)
+    ratio = min(1.0, total_violations / denom)
     score = (1.0 - ratio) * 100.0
+    if total_violations < 5:
+        score = max(score, 70.0)
     if score >= 90:
         band = "green"
     elif score >= 70:
@@ -200,32 +240,93 @@ def _build_recommendations(top_risks: List[ComponentRisk]) -> List[str]:
     return recs
 
 
+def _violation_key(v: RuleViolation) -> tuple:
+    """Identity for a violation: rule + edge + SCC membership (order-independent)."""
+    return (v.rule, v.source, v.target, tuple(sorted(v.scc_members or [])))
+
+
+def _delta_classify(
+    head_violations: List[RuleViolation],
+    base_violations: List[RuleViolation],
+) -> tuple[DeltaSummary, set, set]:
+    """Return (summary, new_keys, existing_keys). Ignores resolved-key set."""
+    base_keys = {_violation_key(v) for v in base_violations}
+    head_keys = {_violation_key(v) for v in head_violations}
+    new_keys = head_keys - base_keys
+    existing_keys = head_keys & base_keys
+    resolved = len(base_keys - head_keys)
+    return (
+        DeltaSummary(new=len(new_keys), existing=len(existing_keys), resolved=resolved),
+        new_keys,
+        existing_keys,
+    )
+
+
 def audit_from_gate_result(
     repo: str,
     result: GateResult,
     head_graph: nx.DiGraph,
     top_n: int = 10,
+    base_graph: Optional[nx.DiGraph] = None,
+    base_result: Optional[GateResult] = None,
 ) -> AuditReport:
-    """Build an AuditReport from an existing GateResult + its head graph."""
+    """Build an AuditReport from an existing GateResult + its head graph.
+
+    If `base_graph` (and optionally a pre-computed `base_result`) is provided,
+    the report includes Δ classification: how many violations are NEW, EXISTING,
+    or RESOLVED versus the base. Top risks get a `first_seen` annotation so the
+    architect knows what the latest change introduced vs. inherited debt.
+    """
     violations = result.violations
     sccs = [set(c) for c in nx.strongly_connected_components(head_graph) if len(c) > 1]
     for n in head_graph.nodes():
         if head_graph.has_edge(n, n):
             sccs.append({n})
 
-    # Collect every module mentioned in any violation.
+    # Δ-mode: classify each violation against the base.
+    delta: Optional[DeltaSummary] = None
+    new_keys: set = set()
+    if base_graph is not None:
+        if base_result is None:
+            from qse.gate.rules import run_gate
+            # Use the config already baked into the head result: infer via rules evaluated.
+            # Safer approach: caller can pre-compute and pass in. Here we re-run gate
+            # on the base with the same enabled rules by reading the head result's meta.
+            # For simplicity and correctness, we require callers to pass base_result
+            # when they want full Δ semantics; otherwise we classify by key alone.
+            base_violations: List[RuleViolation] = []
+        else:
+            base_violations = base_result.violations
+        delta, new_keys, _ = _delta_classify(violations, base_violations)
+
+    # Collect every module mentioned in any violation — including ALL SCC members
+    # for CYCLE_NEW (otherwise a 50-node SCC would collapse to 2 listed modules,
+    # and downstream priority ranking would miss 48 nodes).
     mods: List[str] = []
     seen = set()
+    module_is_new: Dict[str, bool] = {}
     for v in violations:
-        for m in (v.source, v.target):
+        touched = set((v.source, v.target))
+        if v.scc_members:
+            touched.update(v.scc_members)
+        is_new_violation = base_graph is not None and _violation_key(v) in new_keys
+        for m in touched:
             if m not in seen:
                 seen.add(m)
                 mods.append(m)
+                module_is_new[m] = is_new_violation
+            elif is_new_violation:
+                # A module touched by both a new and an existing violation counts as new
+                # — the latest change is the actionable signal.
+                module_is_new[m] = True
 
     risks = [
         _component_risk(m, violations, head_graph, sccs, head_graph.number_of_edges())
         for m in mods
     ]
+    if base_graph is not None:
+        for r in risks:
+            r.first_seen = "new" if module_is_new.get(r.module, False) else "existing"
     risks.sort(key=lambda r: r.risk_score, reverse=True)
     top = risks[:top_n]
 
@@ -244,6 +345,7 @@ def audit_from_gate_result(
         top_risks=top,
         recommendations=_build_recommendations(top),
         raw_violations=violations,
+        delta=delta,
     )
 
 
@@ -286,6 +388,12 @@ def to_markdown(report: AuditReport) -> str:
     p2_count = sum(1 for r in report.top_risks if r.priority == "P2")
     p3_count = sum(1 for r in report.top_risks if r.priority == "P3")
     lines.append(f"- **Prioritized risks:** P1={p1_count}  P2={p2_count}  P3={p3_count}  (top 10 shown below)")
+    if report.delta is not None:
+        d = report.delta
+        lines.append(
+            f"- **Δ vs base:** {d.new} new, {d.existing} existing, {d.resolved} resolved "
+            f"(renewal signal = new count trend)"
+        )
     lines.append("")
 
     lines.append("## Recommendations")
@@ -297,11 +405,23 @@ def to_markdown(report: AuditReport) -> str:
     if report.top_risks:
         lines.append("## Top at-risk components")
         lines.append("")
-        lines.append("| Priority | Risk | Module | Rules | Reason |")
-        lines.append("|---|---|---|---|---|")
+        show_delta_col = any(r.first_seen is not None for r in report.top_risks)
+        if show_delta_col:
+            lines.append("| Priority | Risk | Δ | Module | Rules | Reason |")
+            lines.append("|---|---|---|---|---|---|")
+        else:
+            lines.append("| Priority | Risk | Module | Rules | Reason |")
+            lines.append("|---|---|---|---|---|")
         for r in report.top_risks:
             rules = ", ".join(r.rules_hit) or "—"
-            lines.append(f"| **{r.priority}** | {r.risk_score:.0f} | `{r.module}` | {rules} | {r.reason} |")
+            if show_delta_col:
+                seen = "🆕 new" if r.first_seen == "new" else "existing"
+                lines.append(
+                    f"| **{r.priority}** | {r.risk_score:.0f} | {seen} | "
+                    f"`{r.module}` | {rules} | {r.reason} |"
+                )
+            else:
+                lines.append(f"| **{r.priority}** | {r.risk_score:.0f} | `{r.module}` | {rules} | {r.reason} |")
         lines.append("")
 
     if report.raw_violations:

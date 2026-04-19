@@ -97,8 +97,12 @@ def test_audit_cycle_promotes_modules_to_p1():
     result = run_gate(head_graph=g, config=_cfg_all_enabled())
     report = audit_from_gate_result(repo="cycle-demo", result=result, head_graph=g)
 
+    # Post-recalibration (Codex 2026-04-19): 1 cycle violation in a 3-edge toy
+    # graph no longer screams "severe drift" — it shows up as green/yellow with
+    # the SCC still ranked P1. That's the point: the priority flag still fires,
+    # the health band reflects the small absolute impact.
     assert report.total_violations >= 1
-    assert report.health_band in {"yellow", "orange", "red"}
+    assert report.health_band in {"green", "yellow"}
     assert any(r.priority == "P1" for r in report.top_risks)
     assert any(r.in_scc for r in report.top_risks)
 
@@ -193,6 +197,119 @@ def test_health_score_monotone_with_violations():
 
 
 # ---------- CLI runner smoke ----------
+
+def test_scc_members_surface_full_cycle_as_risks():
+    """Fix #1 (Codex 2026-04-19): a 5-node cycle must rank all 5 nodes, not
+    just the SCC-representative edge's 2 endpoints."""
+    g = nx.DiGraph()
+    g.add_edges_from([
+        ("src.application.a", "src.application.b"),
+        ("src.application.b", "src.application.c"),
+        ("src.application.c", "src.application.d"),
+        ("src.application.d", "src.application.e"),
+        ("src.application.e", "src.application.a"),
+    ])
+    result = run_gate(head_graph=g, config=_cfg_all_enabled())
+    # The rule must emit scc_members
+    cycle_violations = [v for v in result.violations if v.rule == "CYCLE_NEW"]
+    assert cycle_violations, "expected at least one CYCLE_NEW"
+    assert len(cycle_violations[0].scc_members) == 5
+
+    report = audit_from_gate_result(repo="scc5", result=result, head_graph=g, top_n=10)
+    ranked = {r.module for r in report.top_risks}
+    assert ranked == {
+        "src.application.a", "src.application.b", "src.application.c",
+        "src.application.d", "src.application.e",
+    }
+    # All should be P1 (SCC auto-promotes)
+    assert all(r.priority == "P1" for r in report.top_risks)
+
+
+def test_score_calibration_small_repo_not_severe():
+    """Fix #2 (Codex 2026-04-19): 2 violations in a 10-edge graph must not
+    report 0/100 'severe drift'. Under recalibrated thresholds the small-count
+    cap keeps health >= 70 (yellow) for < 5 violations."""
+    g = nx.DiGraph()
+    g.add_edges_from([
+        ("src.domain.user", "src.infra.db"),     # LAYER_VIOLATION
+        ("src.domain.user2", "src.infra.cache"), # LAYER_VIOLATION
+    ] + [(f"n{i}", f"n{i+1}") for i in range(8)])
+    # total_edges = 10, total_violations = 2
+    result = run_gate(head_graph=g, config=_cfg_all_enabled())
+    report = audit_from_gate_result(repo="small", result=result, head_graph=g)
+    assert report.total_violations == 2
+    assert report.health_score >= 70.0
+    assert report.health_band in {"yellow", "green"}
+
+
+def test_score_calibration_many_violations_does_degrade():
+    """Sanity check: the small-count cap only applies below 5 violations.
+    At 10 violations in a 40-edge graph we should see the band drop."""
+    g = nx.DiGraph()
+    # 10 LAYER violations + some DAG edges
+    for i in range(10):
+        g.add_edge(f"src.domain.mod{i}", f"src.infra.mod{i}")
+    for i in range(30):
+        g.add_edge(f"pkg.a{i}", f"pkg.b{i}")
+    result = run_gate(head_graph=g, config=_cfg_all_enabled())
+    report = audit_from_gate_result(repo="big", result=result, head_graph=g)
+    assert report.total_violations == 10
+    assert report.health_band in {"yellow", "orange", "red"}
+
+
+def test_delta_classification_flags_only_new_violations():
+    """Fix #3 (Codex 2026-04-19): with a base graph, violations present in
+    both base and head are marked 'existing'; violations only in head are 'new'."""
+    base = nx.DiGraph()
+    base.add_edges_from([
+        ("src.domain.user", "src.infra.db"),    # LAYER_VIOLATION (already existing)
+    ])
+    head = base.copy()
+    head.add_edges_from([
+        ("src.domain.user2", "src.infra.cache"),  # NEW LAYER_VIOLATION
+    ])
+
+    cfg = _cfg_all_enabled()
+    head_result = run_gate(head_graph=head, config=cfg)
+    base_result = run_gate(head_graph=base, config=cfg)
+
+    report = audit_from_gate_result(
+        repo="delta-demo",
+        result=head_result,
+        head_graph=head,
+        base_graph=base,
+        base_result=base_result,
+    )
+    assert report.delta is not None
+    assert report.delta.new == 1
+    assert report.delta.existing == 1
+    assert report.delta.resolved == 0
+
+    # First-seen annotation on ranked components
+    first_seen_by_mod = {r.module: r.first_seen for r in report.top_risks}
+    assert first_seen_by_mod["src.domain.user2"] == "new"
+    assert first_seen_by_mod["src.domain.user"] == "existing"
+
+
+def test_delta_markdown_includes_delta_line_and_column():
+    base = nx.DiGraph()
+    base.add_edge("src.domain.user", "src.infra.db")
+    head = base.copy()
+    head.add_edge("src.domain.user2", "src.infra.cache")
+
+    cfg = _cfg_all_enabled()
+    report = audit_from_gate_result(
+        repo="delta-md",
+        result=run_gate(head_graph=head, config=cfg),
+        head_graph=head,
+        base_graph=base,
+        base_result=run_gate(head_graph=base, config=cfg),
+    )
+    md = to_markdown(report)
+    assert "Δ vs base" in md
+    assert "🆕 new" in md
+    assert "existing" in md
+
 
 def test_audit_runner_cli_on_tmp_repo(tmp_path: Path):
     """End-to-end: run qse-audit programmatically on a tmp layered repo."""

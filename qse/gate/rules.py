@@ -29,11 +29,14 @@ from qse.gate.config import GateConfig
 @dataclass
 class RuleViolation:
     rule: str                            # CYCLE_NEW | LAYER_VIOLATION | BOUNDARY_LEAK
-    source: str                          # source module / cycle node
-    target: str                          # target module / empty for cycles
+    source: str                          # source module / cycle representative
+    target: str                          # target module / cycle representative
     detail: str                          # human-readable context
     axiom: str                           # axiom citation
     fix_hint: str                        # one-line how-to-fix
+    # For CYCLE_NEW: full SCC membership so downstream tools (audit aggregator)
+    # can surface ALL affected nodes, not just the representative edge's endpoints.
+    scc_members: List[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -43,6 +46,7 @@ class RuleViolation:
             "detail": self.detail,
             "axiom": self.axiom,
             "fix_hint": self.fix_hint,
+            "scc_members": list(self.scc_members),
         }
 
 
@@ -144,6 +148,7 @@ def check_cycle_new(
             detail=f"Cycle among {len(scc_set)} modules: {cycle_path}",
             axiom="acyclicity (MDL: cycle increases graph description length; flow: bidirectional information transport blurs module boundaries)",
             fix_hint="Extract a shared interface to break the cycle, or invert one dependency via dependency injection.",
+            scc_members=sorted(scc_set),
         ))
 
     return violations

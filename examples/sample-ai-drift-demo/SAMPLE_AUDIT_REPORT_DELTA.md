@@ -1,6 +1,6 @@
 # AI-Drift Firewall — Architecture Audit
 
-**Repository:** `sample-ai-drift-demo (cycle_new overlay applied)`  
+**Repository:** `sample-ai-drift-demo (Δ vs clean base)`  
 **Generated:** 2026-04-19T20:11:35+00:00  
 **Scan:** 10 modules, 10 dependencies
 
@@ -10,6 +10,7 @@
 - **Violations:** 2 across 2 rule(s)
 - **Breakdown:** CYCLE_NEW: 1, LAYER_VIOLATION: 1
 - **Prioritized risks:** P1=2  P2=0  P3=0  (top 10 shown below)
+- **Δ vs base:** 2 new, 0 existing, 0 resolved (renewal signal = new count trend)
 
 ## Recommendations
 
@@ -17,16 +18,16 @@
 
 ## Top at-risk components
 
-| Priority | Risk | Module | Rules | Reason |
-|---|---|---|---|---|
-| **P1** | 40 | `src.application.order_service` | CYCLE_NEW, LAYER_VIOLATION | Participates in a cycle; also flagged by CYCLE_NEW, LAYER_VIOLATION. |
-| **P1** | 40 | `src.domain.order` | CYCLE_NEW, LAYER_VIOLATION | Participates in a cycle; also flagged by CYCLE_NEW, LAYER_VIOLATION. |
+| Priority | Risk | Δ | Module | Rules | Reason |
+|---|---|---|---|---|---|
+| **P1** | 40 | 🆕 new | `src.domain.order` | CYCLE_NEW, LAYER_VIOLATION | Participates in a cycle; also flagged by CYCLE_NEW, LAYER_VIOLATION. |
+| **P1** | 40 | 🆕 new | `src.application.order_service` | CYCLE_NEW, LAYER_VIOLATION | Participates in a cycle; also flagged by CYCLE_NEW, LAYER_VIOLATION. |
 
 ## Raw violations
 
 <details><summary>Expand full list</summary>
 
-- **[CYCLE_NEW]** `src.application.order_service` → `src.domain.order`  
+- **[CYCLE_NEW]** `src.domain.order` → `src.application.order_service`  
   - *Detail:* Cycle among 2 modules: src.application.order_service → src.domain.order  
   - *Axiom:* acyclicity (MDL: cycle increases graph description length; flow: bidirectional information transport blurs module boundaries)  
   - *Fix:* Extract a shared interface to break the cycle, or invert one dependency via dependency injection.

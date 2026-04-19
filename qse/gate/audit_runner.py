@@ -12,10 +12,12 @@ from pathlib import Path
 import sys
 from typing import Optional
 
+import shutil
+
 from qse.gate.audit import audit_from_gate_result, to_markdown
 from qse.gate.config import load_config
 from qse.gate.rules import run_gate
-from qse.gate.runner import _build_graph
+from qse.gate.runner import _build_graph, _resolve_base
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -34,6 +36,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
                    help="Number of top risks to include in the report (default: 10).")
     p.add_argument("--repo-label", default=None,
                    help="Override the repo label shown in the report (defaults to <path>).")
+    base_group = p.add_mutually_exclusive_group()
+    base_group.add_argument("--base-ref", default=None,
+                            help="Git ref for base graph (Δ mode). Enables NEW/EXISTING/RESOLVED classification.")
+    base_group.add_argument("--base-path", default=None,
+                            help="Pre-materialized directory as the base (Δ mode).")
+    base_group.add_argument("--auto-base", action="store_true",
+                            help="Auto-detect merge-base with the default branch.")
     return p
 
 
@@ -49,15 +58,36 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     config = load_config(args.config)
     head_graph, file_hints = _build_graph(args.path, config.language)
-    result = run_gate(head_graph=head_graph, config=config, file_hints=file_hints)
+    head_result = run_gate(head_graph=head_graph, config=config, file_hints=file_hints)
 
-    from qse.gate.audit import audit_from_gate_result
-    report = audit_from_gate_result(
-        repo=args.repo_label or args.path,
-        result=result,
-        head_graph=head_graph,
-        top_n=args.top,
-    )
+    base_graph = None
+    base_result = None
+    cleanup_dir = None
+    try:
+        resolved = _resolve_base(
+            head_path=args.path,
+            base_ref=args.base_ref,
+            base_path=args.base_path,
+            auto_base=args.auto_base,
+        )
+        if resolved is not None:
+            base_dir, cleanup_dir = resolved
+            base_graph, base_hints = _build_graph(str(base_dir), config.language)
+            base_result = run_gate(
+                head_graph=base_graph, config=config, file_hints=base_hints,
+            )
+
+        report = audit_from_gate_result(
+            repo=args.repo_label or args.path,
+            result=head_result,
+            head_graph=head_graph,
+            top_n=args.top,
+            base_graph=base_graph,
+            base_result=base_result,
+        )
+    finally:
+        if cleanup_dir is not None:
+            shutil.rmtree(cleanup_dir, ignore_errors=True)
 
     md = to_markdown(report)
     if args.output_md:
