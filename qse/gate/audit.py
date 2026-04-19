@@ -188,11 +188,20 @@ def _health_score(total_violations: int, total_edges: int) -> tuple[float, str]:
     #       to yellow (70), never past orange.
     # Bigger numbers require more than loud demos; real triage depends on how
     # many violations are expanding vs stable.
-    denom = max(20.0, total_edges * 0.2)
-    ratio = min(1.0, total_violations / denom)
-    score = (1.0 - ratio) * 100.0
-    if total_violations < 5:
-        score = max(score, 70.0)
+    # Density escape hatch: when violations exceed half the edges, the repo is
+    # structurally half-broken and the saturation floor would hide it. Bypass
+    # both the denom floor and the small-count cap in that regime.
+    # (Codex challenge, 2026-04-19.)
+    dense = total_violations >= total_edges * 0.5
+    if dense:
+        ratio = min(1.0, total_violations / max(total_edges, 1))
+        score = (1.0 - ratio) * 100.0
+    else:
+        denom = max(20.0, total_edges * 0.2)
+        ratio = min(1.0, total_violations / denom)
+        score = (1.0 - ratio) * 100.0
+        if total_violations < 5:
+            score = max(score, 70.0)
     if score >= 90:
         band = "green"
     elif score >= 70:
@@ -241,8 +250,18 @@ def _build_recommendations(top_risks: List[ComponentRisk]) -> List[str]:
 
 
 def _violation_key(v: RuleViolation) -> tuple:
-    """Identity for a violation: rule + edge + SCC membership (order-independent)."""
-    return (v.rule, v.source, v.target, tuple(sorted(v.scc_members or [])))
+    """Identity for a violation — stable across runs and graph-isomorphic rebuilds.
+
+    For CYCLE_NEW the representative source/target is derived from an edge pick
+    inside the SCC; that pick is not canonical across insertion orders, so two
+    semantically identical cycle violations can emit different (source,target)
+    pairs. We therefore key CYCLE_NEW purely on sorted SCC membership.
+    For edge-bound rules (LAYER_VIOLATION, BOUNDARY_LEAK) the edge *is* the
+    identity, so we key on (rule, source, target). (Codex challenge, 2026-04-19.)
+    """
+    if v.rule == "CYCLE_NEW":
+        return ("CYCLE_NEW", tuple(sorted(v.scc_members or [v.source, v.target])))
+    return (v.rule, v.source, v.target)
 
 
 def _delta_classify(
@@ -279,8 +298,9 @@ def audit_from_gate_result(
     """
     violations = result.violations
     sccs = [set(c) for c in nx.strongly_connected_components(head_graph) if len(c) > 1]
+    _covered = set().union(*sccs) if sccs else set()
     for n in head_graph.nodes():
-        if head_graph.has_edge(n, n):
+        if head_graph.has_edge(n, n) and n not in _covered:
             sccs.append({n})
 
     # Δ-mode: classify each violation against the base.
@@ -288,15 +308,14 @@ def audit_from_gate_result(
     new_keys: set = set()
     if base_graph is not None:
         if base_result is None:
-            from qse.gate.rules import run_gate
-            # Use the config already baked into the head result: infer via rules evaluated.
-            # Safer approach: caller can pre-compute and pass in. Here we re-run gate
-            # on the base with the same enabled rules by reading the head result's meta.
-            # For simplicity and correctness, we require callers to pass base_result
-            # when they want full Δ semantics; otherwise we classify by key alone.
-            base_violations: List[RuleViolation] = []
-        else:
-            base_violations = base_result.violations
+            # The previous silent fallback (base_violations = []) made every head
+            # violation look NEW, which is a correctness bug disguised as a
+            # feature. Make the misuse explicit. (Codex challenge, 2026-04-19.)
+            raise ValueError(
+                "audit_from_gate_result: base_graph provided without base_result. "
+                "Run qse.gate.rules.run_gate(base_graph, config) and pass the result in."
+            )
+        base_violations = base_result.violations
         delta, new_keys, _ = _delta_classify(violations, base_violations)
 
     # Collect every module mentioned in any violation — including ALL SCC members
@@ -306,11 +325,14 @@ def audit_from_gate_result(
     seen = set()
     module_is_new: Dict[str, bool] = {}
     for v in violations:
-        touched = set((v.source, v.target))
+        touched = {v.source, v.target}
         if v.scc_members:
             touched.update(v.scc_members)
         is_new_violation = base_graph is not None and _violation_key(v) in new_keys
-        for m in touched:
+        # Sort `touched` before iterating. `set` iteration order is hash-salted
+        # per process, which made equal-risk rows reorder across runs and
+        # produced flaky markdown/JSON diffs. (Codex challenge, 2026-04-19.)
+        for m in sorted(touched):
             if m not in seen:
                 seen.add(m)
                 mods.append(m)
@@ -327,7 +349,8 @@ def audit_from_gate_result(
     if base_graph is not None:
         for r in risks:
             r.first_seen = "new" if module_is_new.get(r.module, False) else "existing"
-    risks.sort(key=lambda r: r.risk_score, reverse=True)
+    # Tie-break by module name so equal-score rows do not reorder across runs.
+    risks.sort(key=lambda r: (-r.risk_score, r.module))
     top = risks[:top_n]
 
     health, band = _health_score(len(violations), head_graph.number_of_edges())
@@ -441,9 +464,11 @@ def to_markdown(report: AuditReport) -> str:
     lines.append("---")
     lines.append("")
     lines.append(
-        "*Scoring:* risk = normalized weighted violations (CYCLE_NEW=3, LAYER_VIOLATION=2, "
-        "BOUNDARY_LEAK=2.5) + 20 for SCC membership. Priority P1 at score ≥ 60 or any SCC "
-        "membership; P2 at 30–59; P3 below. Health score = 100 − (violations / (0.1 × edges)) × 100, "
-        "clipped to [0, 100]."
+        "*Scoring:* risk = pressure × 80 + 20 for SCC membership, where "
+        "pressure = min(1, Σ severity / max(20, 0.2 × edges)) and severity weights are "
+        "CYCLE_NEW=3, LAYER_VIOLATION=2, BOUNDARY_LEAK=2.5. Priority P1 at score ≥ 60 or "
+        "any SCC membership; P2 at 30–59; P3 below. Health = (1 − min(1, violations / "
+        "max(20, 0.2 × edges))) × 100; fewer than 5 violations are capped at yellow (70) "
+        "unless they exceed half the edges."
     )
     return "\n".join(lines)

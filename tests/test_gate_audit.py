@@ -348,3 +348,101 @@ def test_audit_runner_cli_on_tmp_repo(tmp_path: Path):
     data = json.loads(out_json.read_text())
     assert data["repo"] == "tmp-demo"
     assert data["total_violations"] >= 1
+
+
+# ---- Slice 4.2: Codex challenge round 2 regression tests ----
+
+
+def _cfg_cycle_only() -> GateConfig:
+    return GateConfig(
+        language="python",
+        layers={},
+        cycle_new=CycleNewRule(enabled=True, mode="any"),
+        layer_violation=LayerViolationRule(enabled=False, forbidden=[]),
+        boundary_leak=BoundaryLeakRule(enabled=False, protected=[]),
+    )
+
+
+def test_delta_cycle_key_stable_across_edge_insertion_order():
+    import networkx as nx
+    from qse.gate.audit import audit_from_gate_result
+    cfg = _cfg_cycle_only()
+    base = nx.DiGraph()
+    for e in [('c','a'),('a','b'),('b','c')]:
+        base.add_edge(*e)
+    head = nx.DiGraph()
+    for e in [('a','b'),('b','c'),('c','a')]:
+        head.add_edge(*e)
+    br = run_gate(head_graph=base, config=cfg)
+    hr = run_gate(head_graph=head, config=cfg)
+    rep = audit_from_gate_result(
+        repo="x", result=hr, head_graph=head,
+        base_graph=base, base_result=br,
+    )
+    assert rep.delta.existing == 1
+    assert rep.delta.new == 0
+    assert rep.delta.resolved == 0
+
+
+def test_cycle_self_loop_not_double_counted_when_in_multi_scc():
+    import networkx as nx
+    cfg = _cfg_cycle_only()
+    g = nx.DiGraph()
+    g.add_edge("a", "b"); g.add_edge("b", "a"); g.add_edge("a", "a")
+    result = run_gate(head_graph=g, config=cfg)
+    # Before the fix: 2 CYCLE_NEW violations (one for {a,b}, one for {a}).
+    assert len(result.violations) == 1
+
+
+def test_base_graph_without_base_result_raises():
+    import networkx as nx
+    import pytest
+    from qse.gate.audit import audit_from_gate_result
+    cfg = _cfg_cycle_only()
+    g = nx.DiGraph(); g.add_edge("a","b"); g.add_edge("b","a")
+    r = run_gate(head_graph=g, config=cfg)
+    with pytest.raises(ValueError):
+        audit_from_gate_result(
+            repo="x", result=r, head_graph=g,
+            base_graph=g, base_result=None,
+        )
+
+
+def test_top_risks_ordering_is_deterministic_for_equal_scores():
+    import networkx as nx
+    from qse.gate.audit import audit_from_gate_result
+    cfg = _cfg_cycle_only()
+    g = nx.DiGraph()
+    g.add_edges_from([('a','b'),('b','c'),('c','d'),('d','e'),('e','a')])
+    orders = set()
+    for _ in range(5):
+        rep = audit_from_gate_result(
+            repo="x", result=run_gate(head_graph=g, config=cfg),
+            head_graph=g, top_n=10,
+        )
+        orders.add(tuple(r.module for r in rep.top_risks))
+    assert len(orders) == 1
+
+
+def test_health_density_escape_hatch_flags_half_broken_repo():
+    import networkx as nx
+    from qse.gate.config import GateConfig, CycleNewRule, LayerViolationRule, BoundaryLeakRule, ForbiddenEdge
+    from qse.gate.audit import audit_from_gate_result
+    cfg = GateConfig(
+        language="python",
+        layers={"d": ["src.d.*"], "i": ["src.i.*"]},
+        cycle_new=CycleNewRule(enabled=False, mode="any"),
+        layer_violation=LayerViolationRule(
+            enabled=True,
+            forbidden=[ForbiddenEdge(from_layer="d", to_layer="i")],
+        ),
+        boundary_leak=BoundaryLeakRule(enabled=False, protected=[]),
+    )
+    g = nx.DiGraph()
+    for i in range(4):
+        g.add_edge(f"src.d.m{i}", f"src.i.m{i}")
+    rep = audit_from_gate_result(
+        repo="x", result=run_gate(head_graph=g, config=cfg), head_graph=g,
+    )
+    # Half-broken repo must not be hidden by the small-count cap.
+    assert rep.health_band == "red"

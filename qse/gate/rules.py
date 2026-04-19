@@ -109,18 +109,21 @@ def check_cycle_new(
     mode='delta' → flag SCCs whose node-set is not a subset of any base SCC.
     """
     violations: List[RuleViolation] = []
-    head_sccs = [c for c in nx.strongly_connected_components(head_graph) if len(c) > 1]
-    # Also include self-loops as size-1 cycles
-    for n in head_graph.nodes():
-        if head_graph.has_edge(n, n):
-            head_sccs.append({n})
 
-    base_sccs: List[set] = []
-    if mode == "delta" and base_graph is not None:
-        base_sccs = [set(c) for c in nx.strongly_connected_components(base_graph) if len(c) > 1]
-        for n in base_graph.nodes():
-            if base_graph.has_edge(n, n):
-                base_sccs.append({n})
+    def _collect_sccs(g: nx.DiGraph) -> List[set]:
+        multi = [set(c) for c in nx.strongly_connected_components(g) if len(c) > 1]
+        covered = set().union(*multi) if multi else set()
+        # Self-loops: only emit as standalone SCC if not already covered by a
+        # multi-node SCC. Otherwise the same cycle region gets counted twice
+        # (once as the big SCC, once as the self-loop node), which double-scores
+        # that module in the audit aggregator. (Codex challenge, 2026-04-19.)
+        for n in g.nodes():
+            if g.has_edge(n, n) and n not in covered:
+                multi.append({n})
+        return multi
+
+    head_sccs = _collect_sccs(head_graph)
+    base_sccs: List[set] = _collect_sccs(base_graph) if (mode == "delta" and base_graph is not None) else []
 
     for scc in head_sccs:
         scc_set = set(scc)
@@ -131,11 +134,15 @@ def check_cycle_new(
                 continue
 
         nodes_sorted = sorted(scc_set)
-        # Pick a representative edge inside the SCC for source/target
+        # Canonical representative: lowest-sorted node paired with itself (for
+        # singletons) or the lowest outgoing edge inside the SCC. Using
+        # `edges[0]` from the subgraph is insertion-order dependent, which made
+        # Δ-mode cycle classification unstable (same SCC, different key across
+        # runs). Canonical pick keeps scc_members-based identity stable.
         subg = head_graph.subgraph(scc_set)
-        edges = list(subg.edges())
-        if edges:
-            src, tgt = edges[0]
+        candidate_edges = sorted(subg.edges())
+        if candidate_edges:
+            src, tgt = candidate_edges[0]
         else:
             src, tgt = nodes_sorted[0], nodes_sorted[0]
 
