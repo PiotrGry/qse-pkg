@@ -33,11 +33,15 @@ from qse.gate.report import to_json, to_pr_comment, write_telemetry
 from qse.gate.rules import GateResult, run_gate
 
 
-def _build_graph_python(repo_path: str) -> Tuple[nx.DiGraph, Dict[str, str]]:
+def _build_graph_python(
+    repo_path: str,
+    include: Optional[list[str]] = None,
+    exclude: Optional[list[str]] = None,
+) -> Tuple[nx.DiGraph, Dict[str, str]]:
     """Scan a Python repo via qse.scanner and return (graph, file_hints)."""
     from qse.scanner import scan_repo
 
-    analysis = scan_repo(repo_path)
+    analysis = scan_repo(repo_path, include=include, exclude=exclude)
     file_hints: Dict[str, str] = {}
     for file_path in analysis.files:
         rel = Path(file_path).relative_to(repo_path) if Path(file_path).is_absolute() else Path(file_path)
@@ -46,9 +50,14 @@ def _build_graph_python(repo_path: str) -> Tuple[nx.DiGraph, Dict[str, str]]:
     return analysis.graph, file_hints
 
 
-def _build_graph(repo_path: str, language: str) -> Tuple[nx.DiGraph, Dict[str, str]]:
+def _build_graph(
+    repo_path: str,
+    language: str,
+    include: Optional[list[str]] = None,
+    exclude: Optional[list[str]] = None,
+) -> Tuple[nx.DiGraph, Dict[str, str]]:
     if language == "python":
-        return _build_graph_python(repo_path)
+        return _build_graph_python(repo_path, include=include, exclude=exclude)
     raise NotImplementedError(
         f"Sprint 0 supports only language='python'. Got {language!r}. "
         "Java/Go via qse-core deferred to Sprint 0.5."
@@ -247,9 +256,15 @@ def main(argv: Optional[list[str]] = None) -> int:
             config.cycle_new.mode = "any"
         if resolved is not None:
             base_dir, cleanup_dir = resolved
-            base_graph, _ = _build_graph(str(base_dir), config.language)
+            base_graph, _ = _build_graph(
+                str(base_dir), config.language,
+                include=config.scan.include, exclude=config.scan.exclude,
+            )
 
-        head_graph, file_hints = _build_graph(args.path, config.language)
+        head_graph, file_hints = _build_graph(
+            args.path, config.language,
+            include=config.scan.include, exclude=config.scan.exclude,
+        )
 
         result: GateResult = run_gate(
             head_graph=head_graph,

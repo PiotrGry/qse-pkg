@@ -75,10 +75,45 @@ class TelemetryConfig:
     webhook_url: Optional[str] = None
 
 
+DEFAULT_SCAN_EXCLUDES: list[str] = [
+    "**/.git/**",
+    "**/__pycache__/**",
+    "**/.pytest_cache/**",
+    "**/node_modules/**",
+    "**/target/**",             # Rust build output
+    "**/build/**",
+    "**/dist/**",
+    "**/_obsolete/**",
+    "**/artifacts/**",
+    "**/results/**",
+    "**/experiments/**",
+    "**/papiers/**",
+    "**/*.egg-info/**",
+    "**/venv/**",
+    "**/.venv/**",
+    "**/site-packages/**",
+]
+
+
+@dataclass
+class ScanConfig:
+    """File-scope filter for graph construction.
+
+    Default `include` matches every .py file; the default `exclude` list
+    knocks out vendored trees, build output, generated artefacts, and
+    research scratch space — the noise that makes a 200-module product
+    look like a 2500-module one. Projects with unusual layouts can
+    override both lists explicitly in `[scan]`.
+    """
+    include: list[str] = field(default_factory=lambda: ["**/*.py"])
+    exclude: list[str] = field(default_factory=lambda: list(DEFAULT_SCAN_EXCLUDES))
+
+
 @dataclass
 class GateConfig:
     language: str = "python"
     layers: dict = field(default_factory=dict)       # layer_name -> [glob]
+    scan: ScanConfig = field(default_factory=ScanConfig)
     cycle_new: CycleNewRule = field(default_factory=CycleNewRule)
     layer_violation: LayerViolationRule = field(default_factory=LayerViolationRule)
     boundary_leak: BoundaryLeakRule = field(default_factory=BoundaryLeakRule)
@@ -143,9 +178,23 @@ def load_config(path: str | Path) -> GateConfig:
         webhook_url=telemetry.get("webhook_url"),
     )
 
+    scan_raw = raw.get("scan", {})
+    include = scan_raw.get("include")
+    exclude = scan_raw.get("exclude")
+    scan_cfg = ScanConfig()
+    if include is not None:
+        if not isinstance(include, list):
+            raise ValueError("[scan].include must be a list of glob strings.")
+        scan_cfg.include = [str(g) for g in include]
+    if exclude is not None:
+        if not isinstance(exclude, list):
+            raise ValueError("[scan].exclude must be a list of glob strings.")
+        scan_cfg.exclude = [str(g) for g in exclude]
+
     return GateConfig(
         language=str(gate.get("language", "python")),
         layers=layers,
+        scan=scan_cfg,
         cycle_new=cycle,
         layer_violation=lv,
         boundary_leak=bl,

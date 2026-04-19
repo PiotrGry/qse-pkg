@@ -57,7 +57,10 @@ def main(argv: Optional[list[str]] = None) -> int:
         return 2
 
     config = load_config(args.config)
-    head_graph, file_hints = _build_graph(args.path, config.language)
+    head_graph, file_hints = _build_graph(
+        args.path, config.language,
+        include=config.scan.include, exclude=config.scan.exclude,
+    )
     head_result = run_gate(head_graph=head_graph, config=config, file_hints=file_hints)
 
     base_graph = None
@@ -72,7 +75,10 @@ def main(argv: Optional[list[str]] = None) -> int:
         )
         if resolved is not None:
             base_dir, cleanup_dir = resolved
-            base_graph, base_hints = _build_graph(str(base_dir), config.language)
+            base_graph, base_hints = _build_graph(
+                str(base_dir), config.language,
+                include=config.scan.include, exclude=config.scan.exclude,
+            )
             base_result = run_gate(
                 head_graph=base_graph, config=config, file_hints=base_hints,
             )

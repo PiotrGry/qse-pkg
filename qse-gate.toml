@@ -4,6 +4,34 @@
 [gate]
 language = "python"
 
+# Scope graph construction to product source + tests. Without this, the scanner
+# walks the whole repo (vendored Rust build output, benchmark scratch, generated
+# artefacts) and a 200-module product looks like a 2500-module one — gate takes
+# 68 s on this repo without the filter.
+[scan]
+include = [
+    "qse/**/*.py",
+    "qse-py/**/*.py",
+    "tests/**/*.py",
+    "examples/**/*.py",
+]
+exclude = [
+    "**/__pycache__/**",
+    "**/_obsolete/**",
+    "**/target/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/*.egg-info/**",
+    "**/artifacts/**",
+    "**/results/**",
+    "**/experiments/**",
+    "**/papiers/**",
+    "**/venv/**",
+    "**/.venv/**",
+    "**/.pytest_cache/**",
+    "**/tests/fixtures/gate/**",
+]
+
 # Map source-tree roots to logical layers.
 # Glob patterns are matched against either the dotted module or the relative file path.
 [layers]

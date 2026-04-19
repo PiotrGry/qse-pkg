@@ -149,18 +149,44 @@ def _extract_classes(tree: ast.AST, file_path: str,
     return classes
 
 
-def scan_repo(base_dir: str, layer_map: dict = None) -> StaticAnalysis:
+def scan_repo(
+    base_dir: str,
+    layer_map: dict = None,
+    include: Optional[List[str]] = None,
+    exclude: Optional[List[str]] = None,
+) -> StaticAnalysis:
     """
-    Perform static analysis on all .py files under base_dir.
+    Perform static analysis on .py files under base_dir.
 
-    Returns a StaticAnalysis containing:
-    - Import dependency graph (DiGraph)
-    - Per-class metadata
-    - File list
+    include: glob patterns (repo-relative). Default ["**/*.py"].
+    exclude: glob patterns (repo-relative). Default []. Excludes win
+             over includes.
 
-    layer_map: optional custom directory→layer mapping,
-               e.g. {"common": "domain", "audit": "application"}
+    `__init__.py` is now scanned — package-level `from .x import y`
+    statements are real edges in the dependency graph and must
+    participate in cycle/layer/boundary analysis.
     """
+    from fnmatch import fnmatch
+
+    include = include or ["**/*.py"]
+    exclude = exclude or []
+
+    def _match(rel_path: str, pattern: str) -> bool:
+        # fnmatch treats `**` literally, so "**/*.py" misses root-level files
+        # like "bus.py". Strip a leading "**/" and try the stripped form too.
+        if fnmatch(rel_path, pattern):
+            return True
+        if pattern.startswith("**/") and fnmatch(rel_path, pattern[3:]):
+            return True
+        return False
+
+    def _keep(rel_path: str) -> bool:
+        if not any(_match(rel_path, g) for g in include):
+            return False
+        if any(_match(rel_path, g) for g in exclude):
+            return False
+        return True
+
     graph = nx.DiGraph()
     all_classes: Dict[str, ClassInfo] = {}
     all_files: List[str] = []
@@ -168,8 +194,13 @@ def scan_repo(base_dir: str, layer_map: dict = None) -> StaticAnalysis:
     py_files = []
     for root, _dirs, files in os.walk(base_dir):
         for fname in files:
-            if fname.endswith(".py") and fname != "__init__.py":
-                py_files.append(os.path.join(root, fname))
+            if not fname.endswith(".py"):
+                continue
+            full = os.path.join(root, fname)
+            rel = os.path.relpath(full, base_dir).replace(os.sep, "/")
+            if not _keep(rel):
+                continue
+            py_files.append(full)
 
     for fpath in sorted(py_files):
         all_files.append(fpath)
