@@ -1,0 +1,33 @@
+# Gate config for the sample-ai-drift-demo service.
+# Three rules enabled; all axiom-backed.
+
+[gate]
+language = "python"
+
+[layers]
+domain         = ["src/domain/**",         "src.domain.*"]
+application    = ["src/application/**",    "src.application.*"]
+infrastructure = ["src/infrastructure/**", "src.infrastructure.*"]
+payments_api   = ["src/payments_api/**",   "src.payments_api.*"]
+
+[rules.cycle_new]
+enabled = true
+mode    = "any"          # switched to "delta" in CI — base graph comes from merge-base
+
+[rules.layer_violation]
+enabled = true
+forbidden = [
+    { from = "domain",      to = "infrastructure" },
+    { from = "domain",      to = "application"    },
+    { from = "application", to = "infrastructure" },
+]
+
+[rules.boundary_leak]
+enabled = true
+protected = [
+    { module = "src.infrastructure.payments_core*", allowed_callers = ["src.payments_api.*"] },
+]
+
+[telemetry]
+jsonl_path  = "artifacts/gate-telemetry.jsonl"
+webhook_url = ""
