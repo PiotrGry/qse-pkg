@@ -446,3 +446,43 @@ def test_health_density_escape_hatch_flags_half_broken_repo():
     )
     # Half-broken repo must not be hidden by the small-count cap.
     assert rep.health_band == "red"
+
+
+# ---- Slice 4.3: Codex challenge round 3 regression tests ----
+
+def test_cycle_new_delta_mode_without_base_raises():
+    import networkx as nx
+    import pytest
+    cfg = GateConfig(
+        language="python", layers={},
+        cycle_new=CycleNewRule(enabled=True, mode="delta"),
+        layer_violation=LayerViolationRule(enabled=False, forbidden=[]),
+        boundary_leak=BoundaryLeakRule(enabled=False, protected=[]),
+    )
+    g = nx.DiGraph(); g.add_edge("a", "b"); g.add_edge("b", "a")
+    with pytest.raises(ValueError):
+        run_gate(head_graph=g, config=cfg, base_graph=None)
+
+
+def test_cycle_representative_prefers_non_self_loop_edge():
+    import networkx as nx
+    from qse.gate.rules import check_cycle_new
+    g = nx.DiGraph()
+    g.add_edge("a", "b"); g.add_edge("b", "a"); g.add_edge("a", "a")
+    vs = check_cycle_new(g, None, "any")
+    assert len(vs) == 1
+    assert (vs[0].source, vs[0].target) != ("a", "a")
+
+
+def test_violation_key_fallback_does_not_collide_with_populated():
+    from qse.gate.rules import RuleViolation
+    from qse.gate.audit import _violation_key
+    populated = RuleViolation(
+        rule="CYCLE_NEW", source="a", target="b",
+        detail="", axiom="", fix_hint="", scc_members=["a", "b"],
+    )
+    fallback = RuleViolation(
+        rule="CYCLE_NEW", source="a", target="b",
+        detail="", axiom="", fix_hint="", scc_members=[],
+    )
+    assert _violation_key(populated) != _violation_key(fallback)

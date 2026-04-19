@@ -122,8 +122,14 @@ def check_cycle_new(
                 multi.append({n})
         return multi
 
+    if mode == "delta" and base_graph is None:
+        raise ValueError(
+            "check_cycle_new: mode='delta' requires base_graph; "
+            "pass mode='any' if no base comparison is intended."
+        )
+
     head_sccs = _collect_sccs(head_graph)
-    base_sccs: List[set] = _collect_sccs(base_graph) if (mode == "delta" and base_graph is not None) else []
+    base_sccs: List[set] = _collect_sccs(base_graph) if mode == "delta" else []
 
     for scc in head_sccs:
         scc_set = set(scc)
@@ -140,8 +146,14 @@ def check_cycle_new(
         # Δ-mode cycle classification unstable (same SCC, different key across
         # runs). Canonical pick keeps scc_members-based identity stable.
         subg = head_graph.subgraph(scc_set)
+        # Prefer a non-self-loop edge for the representative so multi-node
+        # cycles don't render as "a → a" in the report. Only fall back to a
+        # self-loop edge when the SCC truly is a singleton.
         candidate_edges = sorted(subg.edges())
-        if candidate_edges:
+        non_loop = [(s, t) for (s, t) in candidate_edges if s != t]
+        if non_loop:
+            src, tgt = non_loop[0]
+        elif candidate_edges:
             src, tgt = candidate_edges[0]
         else:
             src, tgt = nodes_sorted[0], nodes_sorted[0]

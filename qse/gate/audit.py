@@ -260,7 +260,11 @@ def _violation_key(v: RuleViolation) -> tuple:
     identity, so we key on (rule, source, target). (Codex challenge, 2026-04-19.)
     """
     if v.rule == "CYCLE_NEW":
-        return ("CYCLE_NEW", tuple(sorted(v.scc_members or [v.source, v.target])))
+        if not v.scc_members:
+            # Hand-built or pre-Slice-4.1 GateResult — fall back to the edge,
+            # tagged so it cannot collide with a populated-members key.
+            return ("CYCLE_NEW", "__fallback__", v.source, v.target)
+        return ("CYCLE_NEW", tuple(sorted(v.scc_members)))
     return (v.rule, v.source, v.target)
 
 
@@ -291,10 +295,11 @@ def audit_from_gate_result(
 ) -> AuditReport:
     """Build an AuditReport from an existing GateResult + its head graph.
 
-    If `base_graph` (and optionally a pre-computed `base_result`) is provided,
-    the report includes Δ classification: how many violations are NEW, EXISTING,
-    or RESOLVED versus the base. Top risks get a `first_seen` annotation so the
-    architect knows what the latest change introduced vs. inherited debt.
+    If `base_graph` is provided, `base_result` is required (callers must have
+    already run the gate on the base). The report then includes Δ
+    classification: how many violations are NEW, EXISTING, or RESOLVED versus
+    the base. Top risks get a `first_seen` annotation so the architect knows
+    what the latest change introduced vs. inherited debt.
     """
     violations = result.violations
     sccs = [set(c) for c in nx.strongly_connected_components(head_graph) if len(c) > 1]
@@ -468,7 +473,8 @@ def to_markdown(report: AuditReport) -> str:
         "pressure = min(1, Σ severity / max(20, 0.2 × edges)) and severity weights are "
         "CYCLE_NEW=3, LAYER_VIOLATION=2, BOUNDARY_LEAK=2.5. Priority P1 at score ≥ 60 or "
         "any SCC membership; P2 at 30–59; P3 below. Health = (1 − min(1, violations / "
-        "max(20, 0.2 × edges))) × 100; fewer than 5 violations are capped at yellow (70) "
-        "unless they exceed half the edges."
+        "max(20, 0.2 × edges))) × 100; fewer than 5 violations are capped at yellow (70). "
+        "When violations ≥ 0.5 × edges the repo is treated as structurally dense: the "
+        "floor and cap are bypassed and health = (1 − violations/edges) × 100 instead."
     )
     return "\n".join(lines)
