@@ -1,0 +1,84 @@
+"""CLI entry point for `qse-audit`.
+
+Usage:
+    qse-audit <path> --config qse-gate.toml [--output-md report.md] [--output-json report.json]
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+import sys
+from typing import Optional
+
+from qse.gate.audit import audit_from_gate_result, to_markdown
+from qse.gate.config import load_config
+from qse.gate.rules import run_gate
+from qse.gate.runner import _build_graph
+
+
+def build_arg_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(
+        prog="qse-audit",
+        description="Architecture audit report — priority-ranked risks + recommendations. "
+                    "Analysis-only; always exits 0 (not a blocker).",
+    )
+    p.add_argument("path", help="Repository path to audit.")
+    p.add_argument("--config", required=True, help="Path to qse-gate.toml config.")
+    p.add_argument("--output-md", default=None,
+                   help="Write markdown report to this file (default: stdout).")
+    p.add_argument("--output-json", default=None,
+                   help="Write structured JSON report to this file.")
+    p.add_argument("--top", type=int, default=10,
+                   help="Number of top risks to include in the report (default: 10).")
+    p.add_argument("--repo-label", default=None,
+                   help="Override the repo label shown in the report (defaults to <path>).")
+    return p
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    args = build_arg_parser().parse_args(argv)
+
+    if not Path(args.config).is_file():
+        print(f"error: config file not found: {args.config}", file=sys.stderr)
+        return 2
+    if not Path(args.path).is_dir():
+        print(f"error: repo path not found or not a directory: {args.path}", file=sys.stderr)
+        return 2
+
+    config = load_config(args.config)
+    head_graph, file_hints = _build_graph(args.path, config.language)
+    result = run_gate(head_graph=head_graph, config=config, file_hints=file_hints)
+
+    from qse.gate.audit import audit_from_gate_result
+    report = audit_from_gate_result(
+        repo=args.repo_label or args.path,
+        result=result,
+        head_graph=head_graph,
+        top_n=args.top,
+    )
+
+    md = to_markdown(report)
+    if args.output_md:
+        Path(args.output_md).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.output_md).write_text(md)
+    else:
+        print(md)
+
+    if args.output_json:
+        Path(args.output_json).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.output_json).write_text(json.dumps(report.to_dict(), indent=2))
+
+    # Short summary line to stderr so CI logs have something scannable.
+    p1 = sum(1 for r in report.top_risks if r.priority == "P1")
+    print(
+        f"qse-audit: health={report.health_score:.0f}/100 ({report.health_band})  "
+        f"violations={report.total_violations}  P1={p1}",
+        file=sys.stderr,
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

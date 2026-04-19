@@ -16,6 +16,7 @@ setup(
             "qse=qse.cli:main",
             "qse-archtest=qse.archtest:main",
             "qse-gate=qse.gate.runner:main",
+            "qse-audit=qse.gate.audit_runner:main",
         ],
     },
     python_requires=">=3.10",

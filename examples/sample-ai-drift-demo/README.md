@@ -45,8 +45,19 @@ Each rule cites its axiom in the PR comment. Overrides are logged to
 
 ```bash
 pip install -e ../..        # install qse-pkg from the repo root
-./demo.sh
+./demo.sh                   # CI-gate flow (blocks on violations)
 ```
+
+For the **Pilot Audit** flow (architect-facing, non-blocking, prioritized risks
++ recommendations), use `qse-audit`:
+
+```bash
+qse-audit src --config qse-gate.toml --output-md audit.md
+```
+
+A prebuilt sample — run against the cycle_new overlay — lives at
+[SAMPLE_AUDIT_REPORT.md](SAMPLE_AUDIT_REPORT.md). This is the artefact the
+Pilot Audit product ships to the client.
 
 You'll see five sections:
 
