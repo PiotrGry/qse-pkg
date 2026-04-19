@@ -1,0 +1,40 @@
+# qse-gate.toml — example config for the AI-Drift Firewall gate.
+# Sprint 0 scope: Python only. Java/Go via qse-core in Sprint 0.5.
+
+[gate]
+language = "python"
+
+# Map source-tree roots to logical layers.
+# Glob patterns are matched against either the dotted module or the relative file path.
+[layers]
+domain         = ["src/domain/**",         "domain/**"]
+application    = ["src/application/**",    "application/**"]
+infrastructure = ["src/infra/**",          "infra/**",          "src/infrastructure/**"]
+presentation   = ["src/presentation/**",   "presentation/**",   "src/api/**"]
+
+# CYCLE_NEW — no new strongly-connected components should appear.
+# Sprint 0: mode = "any" flags all cycles (no base graph). mode = "delta"
+# requires --base repo_path and flags only cycles not present in base.
+[rules.cycle_new]
+enabled = true
+mode    = "any"
+
+# LAYER_VIOLATION — forbid edges from `from` layer to `to` layer.
+[rules.layer_violation]
+enabled = true
+forbidden = [
+    { from = "domain",      to = "infrastructure" },
+    { from = "domain",      to = "presentation"   },
+    { from = "application", to = "presentation"   },
+]
+
+# BOUNDARY_LEAK — protected modules may only be imported from allowed_callers.
+[rules.boundary_leak]
+enabled = true
+protected = [
+    # { module = "src.payments.core.*", allowed_callers = ["src.payments.api.*"] },
+]
+
+[telemetry]
+jsonl_path  = "artifacts/gate-telemetry.jsonl"
+webhook_url = ""
