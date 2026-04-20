@@ -166,24 +166,49 @@ def scan_repo(
     statements are real edges in the dependency graph and must
     participate in cycle/layer/boundary analysis.
     """
-    from fnmatch import fnmatch
+    import re as _re
 
     include = include or ["**/*.py"]
     exclude = exclude or []
 
-    def _match(rel_path: str, pattern: str) -> bool:
-        # fnmatch treats `**` literally, so "**/*.py" misses root-level files
-        # like "bus.py". Strip a leading "**/" and try the stripped form too.
-        if fnmatch(rel_path, pattern):
-            return True
-        if pattern.startswith("**/") and fnmatch(rel_path, pattern[3:]):
-            return True
-        return False
+    def _glob_to_re(pattern: str) -> _re.Pattern:
+        """Convert a gitignore-style glob to a compiled regex.
+
+        **/   -> zero or more path components (works at start, middle, end)
+        **    -> any sequence including separators
+        *     -> any sequence excluding '/'
+        ?     -> single character excluding '/'
+        rest  -> literal (escaped)
+        """
+        regex = ""
+        i = 0
+        while i < len(pattern):
+            if pattern[i:i + 3] == "**/":
+                # Zero or more path components: "qse/**/*.py" matches "qse/foo.py"
+                # AND "qse/a/b/foo.py" — the (.+/)? form handles both.
+                regex += "(.+/)?"
+                i += 3
+            elif pattern[i:i + 2] == "**":
+                regex += ".*"
+                i += 2
+            elif pattern[i] == "*":
+                regex += "[^/]*"
+                i += 1
+            elif pattern[i] == "?":
+                regex += "[^/]"
+                i += 1
+            else:
+                regex += _re.escape(pattern[i])
+                i += 1
+        return _re.compile(r"\A" + regex + r"\Z")
+
+    _compiled_include = [(_glob_to_re(g), g) for g in include]
+    _compiled_exclude = [(_glob_to_re(g), g) for g in exclude]
 
     def _keep(rel_path: str) -> bool:
-        if not any(_match(rel_path, g) for g in include):
+        if not any(rx.match(rel_path) for rx, _ in _compiled_include):
             return False
-        if any(_match(rel_path, g) for g in exclude):
+        if any(rx.match(rel_path) for rx, _ in _compiled_exclude):
             return False
         return True
 

@@ -53,7 +53,11 @@ def _find_project_root(start: Path) -> Optional[Path]:
     """
     cur = start.resolve() if start.exists() else start
     git_top = _git_repo_root(cur)
-    stop_at = git_top.parent if git_top else Path(cur.anchor)
+    # Stop at git_top (inclusive), not at its parent — previously used
+    # git_top.parent which allowed walking one level above the repo root,
+    # enabling a rogue /home/user/qse-gate.toml to hijack the gate for
+    # any repo under /home/user/. (Codex round 4, 2026-04-20.)
+    stop_at = git_top if git_top else Path(cur.anchor)
     while True:
         if (cur / "qse-gate.toml").is_file():
             return cur
@@ -98,14 +102,18 @@ def _materialize_proposed(
 
 
 def _proposed_module_name(repo_root: Path, file_path: Path) -> Optional[str]:
-    """Best-effort mapping: src/foo/bar.py → src.foo.bar (matches scanner)."""
+    """Best-effort mapping: src/foo/bar.py → src.foo.bar (matches scanner).
+
+    __init__.py is kept as `pkg.__init__` — consistent with scanner's
+    _module_path output so the hook touching-filter can match it.
+    Previously we stripped __init__, which caused the hook to search for
+    `pkg` while the graph had `pkg.__init__`. (Codex round 4, 2026-04-20.)
+    """
     try:
         rel = file_path.resolve().relative_to(repo_root.resolve())
     except ValueError:
         return None
     parts = list(rel.with_suffix("").parts)
-    if parts and parts[-1] == "__init__":
-        parts = parts[:-1]
     return ".".join(parts) if parts else None
 
 

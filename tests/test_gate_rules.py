@@ -283,3 +283,39 @@ def test_counterexample_delta_mode_passes_when_base_equals_head(fixture_name: st
     base = analysis.graph.copy()
     cycles = check_cycle_new(head, base_graph=base, mode="delta")
     assert cycles == [], f"{fixture_name}: Δ mode incorrectly flagged pre-existing cycle"
+
+
+# ---- A2.2 glob regression tests ----
+
+def test_scanner_globstar_matches_direct_children():
+    """qse/**/*.py must match qse/scanner.py (one level, not just nested)."""
+    from qse.scanner import scan_repo
+    import pathlib
+    repo = str(pathlib.Path(".").resolve())
+    analysis = scan_repo(".", include=["qse/**/*.py"], exclude=[])
+    files_abs = {str(pathlib.Path(f).resolve()) for f in analysis.files}
+    assert repo + "/qse/scanner.py" in files_abs
+    assert repo + "/qse/__init__.py" in files_abs
+
+
+def test_scanner_globstar_matches_nested():
+    """qse/**/*.py must also match qse/gate/hook_runner.py (nested)."""
+    from qse.scanner import scan_repo
+    import pathlib
+    repo = str(pathlib.Path(".").resolve())
+    analysis = scan_repo(".", include=["qse/**/*.py"], exclude=[])
+    files_abs = {str(pathlib.Path(f).resolve()) for f in analysis.files}
+    assert repo + "/qse/gate/hook_runner.py" in files_abs
+
+
+def test_scanner_exclude_globstar():
+    """exclude ['**/__pycache__/**'] must not block real source files."""
+    from qse.scanner import scan_repo
+    import pathlib
+    repo = str(pathlib.Path(".").resolve())
+    analysis = scan_repo(
+        ".", include=["qse/**/*.py"],
+        exclude=["**/__pycache__/**", "**/target/**"],
+    )
+    files_abs = {str(pathlib.Path(f).resolve()) for f in analysis.files}
+    assert repo + "/qse/scanner.py" in files_abs
