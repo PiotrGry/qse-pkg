@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>AI-Drift Firewall — Demo Interaktywny</title>
+<link rel="stylesheet" type="text/css"
+  href="https://cdn.jsdelivr.net/npm/asciinema-player@3.7.0/dist/bundle/asciinema-player.min.css"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 900px;
+  }
+  h1 { font-size: 1.6rem; color: #58a6ff; margin-bottom: 0.4rem; }
+  .subtitle { color: #8b949e; font-size: 0.95rem; }
+  .player-wrap {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    border: 1px solid #30363d;
+  }
+  .controls-hint {
+    margin-top: 0.8rem;
+    color: #8b949e;
+    font-size: 0.82rem;
+    text-align: center;
+  }
+  .legend {
+    margin-top: 2rem;
+    max-width: 900px;
+    width: 100%;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+  }
+  .legend h2 { font-size: 1rem; color: #58a6ff; margin-bottom: 0.8rem; }
+  .legend table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .legend td { padding: 0.35rem 0.6rem; vertical-align: top; }
+  .legend tr:not(:last-child) td { border-bottom: 1px solid #21262d; }
+  .tag-blocked { color: #f85149; font-weight: 600; }
+  .tag-ok { color: #3fb950; font-weight: 600; }
+  .tag-rule { color: #d2a8ff; font-family: monospace; font-size: 0.82rem; }
+  .step-num { color: #8b949e; white-space: nowrap; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔥 AI-Drift Firewall — Agent-Time Gate</h1>
+  <p class="subtitle">Demonstracja haka PreToolUse w Claude Code · qse-pkg</p>
+</header>
+
+<div class="player-wrap" id="player"></div>
+<p class="controls-hint">
+  Spacja — pauza/wznów &nbsp;·&nbsp;
+  ← → — cofnij/przewiń 5s &nbsp;·&nbsp;
+  klik na pasek — skocz do momentu
+</p>
+
+<div class="legend">
+  <h2>Co pokazuje demo</h2>
+  <table>
+    <tr>
+      <td class="step-num">Krok 1/3</td>
+      <td>Czysty baseline — <code>domain/order.py</code> bez naruszeń.</td>
+    </tr>
+    <tr>
+      <td class="step-num">Krok 2/3</td>
+      <td>
+        AI dodaje <code>from src.infrastructure.db import save</code>.<br>
+        Hook: <span class="tag-blocked">ZABLOKOWANO</span>
+        <span class="tag-rule">CYCLE_NEW + LAYER_VIOLATION</span> — z cytatem aksjomatu i wskazówką naprawy.
+      </td>
+    </tr>
+    <tr>
+      <td class="step-num">Krok 3/3</td>
+      <td>
+        AI dodaje import w odwrotnym kierunku, zamykając cykl domain ↔ application.<br>
+        Hook: <span class="tag-blocked">ZABLOKOWANO</span>
+        <span class="tag-rule">CYCLE_NEW + LAYER_VIOLATION</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="step-num">Bonus</td>
+      <td>
+        Czysty zapis (bez zmian architektury).<br>
+        Hook: <span class="tag-ok">PRZEPUSZCZONO</span> — zero output, zero blokady.
+      </td>
+    </tr>
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.7.0/dist/bundle/asciinema-player.min.js"></script>
+<script>
+const castData = {"version": 2, "width": 90, "height": 36, "title": "AI-Drift Firewall \u2014 Agent-Time Gate", "events": [[0.004097, "o", "\u001b[H\u001b[2J\u001b[3J"], [1.006079, "o", "\u001b[1m\u001b[0;36m  AI-Drift Firewall \u2014 Agent-Time Hook\u001b[0m\r\n\u001b[2m  Wykrywanie architektury w czasie generowania kodu\u001b[0m\r\n\r\n  Platforma : Claude Code (PreToolUse hook)\r\n"], [1.006147, "o", "  Regu\u0142y    : CYCLE_NEW \u00b7 LAYER_VIOLATION \u00b7 BOUNDARY_LEAK\r\n  Latencja  : ~350ms per edit\r\n"], [4.008882, "o", "\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n"], [4.008963, "o", "\r\n\u001b[1m  Architektura serwisu (src/)\u001b[0m\r\n\r\n    domain/          \u2190 czyste value objects, zero I/O\r\n    application/     \u2190 orkiestracja, zale\u017cy od domain\r\n    infrastructure/  \u2190 adaptery bazy danych, SMTP itp.\r\n    payments_api/    \u2190 jedyna autoryzowana brama do payments_core\r\n\r\n  \u001b[2mRegu\u0142a: domain NIE mo\u017ce importowa\u0107 infrastructure\u001b[0m\r\n  \u001b[2mRegu\u0142a: domain NIE mo\u017ce tworzy\u0107 cyklu z application\u001b[0m\r\n"], [8.011805, "o", "\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n\r\n\u001b[1m  KROK 1/3 \u2014 Czysty baseline\u001b[0m\r\n\r\n\u001b[2m  $ cat src/domain/order.py\u001b[0m\r\n\r\n"], [9.516655, "o", "\"\"\"Order value object \u2014 pure domain, no infrastructure dependencies.\"\"\"\r\n\r\nfrom dataclasses import dataclass\r\n\r\n\r\n@dataclass(frozen=True)\r\nclass Order:\r\n    id: str\r\n    customer_id: str\r\n    total_cents: int\r\n\r\n    def validate(self) -> None:\r\n        if self.total_cents < 0:\r\n            raise ValueError(\"total_cents must be non-negative\")\r\n"], [12.519009, "o", "\r\n  \u001b[0;32m\u2713 Zero narusze\u0144. Czysty DAG.\u001b[0m\r\n"], [15.520406, "o", "\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n\r\n\u001b[1m  KROK 2/3 \u2014 AI agent dodaje forbidden import\u001b[0m\r\n\r\n  Scenariusz: agent \"helpfully\" optymalizuje kod\r\n  i dodaje bezpo\u015bredni import do infrastructure.db\r\n\r\n"], [18.523471, "o", "\u001b[2m  \u2500\u2500 Proponowana zmiana: \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n  \u001b[0;31m+ from src.infrastructure.db import save\u001b[0m\r\n  \u001b[0;31m+ save(self)  # persist directly from domain\u001b[0m\r\n\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n\r\n"], [21.526338, "o", "\u001b[1;33m  [PreToolUse hook] \u2192 skanowanie propozycji\u2026\u001b[0m\r\n"], [23.118577, "o", "qse-gate: blocked \u2014 this change would introduce a structural violation.\r\n\r\n  [CYCLE_NEW] src.domain.order \u2192 src.infrastructure.db\r\n    axiom: acyclicity (MDL: cycle increases graph description length; flow: bidirectional information transport blurs module boundaries)\r\n    fix:   Extract a shared interface to break the cycle, or invert one dependency via dependency injection.\r\n  [LAYER_VIOLATION] src.domain.order \u2192 src.infrastructure.db\r\n    axiom: layering (MDL: high-level layer compressed independently of low-level; flow: information must not flow inward to core)\r\n    fix:   Define a port/interface in domain that infrastructure implements. Depend on the port, not the concrete.\r\n"], [24.129965, "o", "\r\n  \u001b[0;31m\u001b[1m\u2717 ZABLOKOWANO (exit 2)\u001b[0m\r\n  \u001b[2mClaude widzi naruszenie aksjomatu i poprawia kod.\u001b[0m\r\n"], [28.132633, "o", "\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n\r\n\u001b[1m  KROK 3/3 \u2014 AI agent zamyka cykl zale\u017cno\u015bci\u001b[0m\r\n\r\n  Scenariusz: agent dodaje wygodny import w odwrotnym kierunku\r\n  domain.order \u2192 application.order_service \u2192 (powr\u00f3t do domain)\r\n\r\n"], [31.135617, "o", "\u001b[2m  \u2500\u2500 Proponowana zmiana: \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n  \u001b[0;31m+ from src.application.order_service import notify\u001b[0m\r\n\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n\r\n"], [34.138398, "o", "\u001b[1;33m  [PreToolUse hook] \u2192 skanowanie propozycji\u2026\u001b[0m\r\n"], [35.736669, "o", "qse-gate: blocked \u2014 this change would introduce a structural violation.\r\n\r\n  [CYCLE_NEW] src.application.order_service \u2192 src.domain.order\r\n    axiom: acyclicity (MDL: cycle increases graph description length; flow: bidirectional information transport blurs module boundaries)\r\n    fix:   Extract a shared interface to break the cycle, or invert one dependency via dependency injection.\r\n  [LAYER_VIOLATION] src.domain.order \u2192 src.application.order_service\r\n    axiom: layering (MDL: high-level layer compressed independently of low-level; flow: information must not flow inward to core)\r\n    fix:   Define a port/interface in domain that application implements. Depend on the port, not the concrete.\r\n"], [36.748178, "o", "\r\n  \u001b[0;31m\u001b[1m\u2717 ZABLOKOWANO (exit 2)\u001b[0m\r\n  \u001b[2mCykl wykryty. Aksjom acykliczno\u015bci naruszony.\u001b[0m\r\n"], [40.751024, "o", "\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n\r\n\u001b[1m  BONUS \u2014 Czysty zapis (brak narusze\u0144)\u001b[0m\r\n\r\n\u001b[1;33m  [PreToolUse hook] \u2192 skanowanie propozycji\u2026\u001b[0m\r\n"], [42.361428, "o", "\u001b[0;32m\u001b[1m  \u2713 PRZEPUSZCZONO \u2014 brak output, brak blokady\u001b[0m\r\n"], [46.363083, "o", "\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n\r\n\u001b[1m  Podsumowanie\u001b[0m\r\n\r\n  LAYER_VIOLATION (domain \u2192 infrastructure)   \u001b[0;31mZABLOKOWANO\u001b[0m\r\n  CYCLE_NEW (domain \u2194 application)            \u001b[0;31mZABLOKOWANO\u001b[0m\r\n  Czysty zapis                                \u001b[0;32mPRZEPUSZCZONO\u001b[0m\r\n\r\n  \u001b[2mLatencja:  ~350ms  |  Czytelno\u015b\u0107: aksjom + hint naprawy\u001b[0m\r\n  \u001b[2mHook aktywny dla ka\u017cdego Edit/Write w Claude Code\u001b[0m\r\n"], [46.363158, "o", "\u001b[2m  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u001b[0m\r\n"]]};
+
+AsciinemaPlayer.create(
+  { data: castData },
+  document.getElementById('player'),
+  {
+    cols: 90,
+    rows: 36,
+    autoPlay: false,
+    loop: false,
+    speed: 1,
+    idleTimeLimit: 3,
+    theme: 'dracula',
+    fit: 'width',
+    controls: true,
+    pauseOnMarkers: false
+  }
+);
+</script>
+</body>
+</html>
