@@ -197,6 +197,25 @@ def scan_repo(
             elif pattern[i] == "?":
                 regex += "[^/]"
                 i += 1
+            elif pattern[i] == "[":
+                # Character class — pass through verbatim until closing "]".
+                # re.escape would escape the brackets, breaking [abc] / [!abc].
+                # Convert fnmatch-style negation [!...] to re-style [^...].
+                j = i + 1
+                char_class = "["
+                if j < len(pattern) and pattern[j] == "!":
+                    char_class += "^"
+                    j += 1
+                elif j < len(pattern) and pattern[j] == "]":
+                    # Literal ] at start of class is valid in fnmatch
+                    char_class += "]"
+                    j += 1
+                while j < len(pattern) and pattern[j] != "]":
+                    char_class += pattern[j]
+                    j += 1
+                char_class += "]"
+                regex += char_class
+                i = j + 1  # skip past the closing ]
             else:
                 regex += _re.escape(pattern[i])
                 i += 1

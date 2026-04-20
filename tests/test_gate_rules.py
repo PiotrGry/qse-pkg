@@ -319,3 +319,81 @@ def test_scanner_exclude_globstar():
     )
     files_abs = {str(pathlib.Path(f).resolve()) for f in analysis.files}
     assert repo + "/qse/scanner.py" in files_abs
+
+
+def test_scanner_character_class_glob():
+    """Character-class patterns like [abc]*.py must selectively match .py files."""
+    from qse.scanner import scan_repo
+    import pathlib, tempfile, os
+    with tempfile.TemporaryDirectory() as tmp:
+        (pathlib.Path(tmp) / "alpha.py").write_text("x=1")
+        (pathlib.Path(tmp) / "beta.py").write_text("x=1")
+        (pathlib.Path(tmp) / "zeta.py").write_text("x=1")
+        # [ab]*.py matches alpha.py and beta.py but not zeta.py
+        a = scan_repo(tmp, include=["[ab]*.py"], exclude=[])
+        rels = {os.path.basename(f) for f in a.files}
+        assert "alpha.py" in rels
+        assert "beta.py" in rels
+        assert "zeta.py" not in rels
+        # [!ab]*.py should match only zeta.py
+        b = scan_repo(tmp, include=["[!ab]*.py"], exclude=[])
+        rels_b = {os.path.basename(f) for f in b.files}
+        assert "zeta.py" in rels_b
+        assert "alpha.py" not in rels_b
+
+
+def test_scanner_exclude_actually_drops_file():
+    """exclude must remove matching files, not merely not-break others."""
+    from qse.scanner import scan_repo
+    import pathlib, tempfile, os
+    with tempfile.TemporaryDirectory() as tmp:
+        (pathlib.Path(tmp) / "keep.py").write_text("x=1")
+        cache = pathlib.Path(tmp) / "__pycache__"
+        cache.mkdir()
+        (cache / "drop.py").write_text("x=1")
+        a = scan_repo(tmp, include=["**/*.py"], exclude=["**/__pycache__/**"])
+        rels = {os.path.relpath(f, tmp).replace(os.sep, "/") for f in a.files}
+        assert "keep.py" in rels
+        assert "__pycache__/drop.py" not in rels
+
+
+def test_proposed_module_name_matches_scanner_convention():
+    """_proposed_module_name must return pkg.__init__ for __init__.py."""
+    from pathlib import Path
+    from qse.gate.hook_runner import _proposed_module_name
+    from qse.scanner import _module_path
+    repo = Path(".").resolve()
+    init = repo / "qse" / "__init__.py"
+    hook_name = _proposed_module_name(repo, init)
+    scanner_name = _module_path(str(init), str(repo))
+    assert hook_name == scanner_name, (
+        f"hook says {hook_name!r}, scanner says {scanner_name!r}"
+    )
+
+
+def test_find_project_root_stays_inside_git_tree(tmp_path):
+    """_find_project_root must not walk above the git toplevel."""
+    from pathlib import Path
+    from unittest.mock import patch
+    from qse.gate.hook_runner import _find_project_root
+    # Repo root at /fake/repo, no qse-gate.toml anywhere → returns git_top.
+    with patch("qse.gate.hook_runner._git_repo_root", return_value=Path("/fake/repo")):
+        with patch("pathlib.Path.is_file", return_value=False):
+            result = _find_project_root(Path("/fake/repo/sub/dir"))
+    # Must be git_top itself, not its parent.
+    assert result == Path("/fake/repo")
+
+
+def test_find_project_root_finds_config_at_git_root(tmp_path):
+    """Config at the git root itself must be found (no off-by-one)."""
+    from pathlib import Path
+    from unittest.mock import patch
+    from qse.gate.hook_runner import _find_project_root
+
+    def fake_is_file(self):
+        return str(self) == "/fake/repo/qse-gate.toml"
+
+    with patch("qse.gate.hook_runner._git_repo_root", return_value=Path("/fake/repo")):
+        with patch("pathlib.Path.is_file", new=fake_is_file):
+            result = _find_project_root(Path("/fake/repo/sub"))
+    assert result == Path("/fake/repo")
