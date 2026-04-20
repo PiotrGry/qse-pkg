@@ -109,6 +109,17 @@ def _proposed_module_name(repo_root: Path, file_path: Path) -> Optional[str]:
     Previously we stripped __init__, which caused the hook to search for
     `pkg` while the graph had `pkg.__init__`. (Codex round 4, 2026-04-20.)
     """
+    if file_path.is_symlink():
+        # Scanner walks with lexical paths (os.walk doesn't follow symlinks by
+        # default), so scanner node = alias name, not the resolved target name.
+        # Hook resolve() would give the wrong module name. Fail-open with a
+        # warning so the user sees the gap rather than getting a silent miss.
+        print(
+            f"qse-hook: {file_path} is a symlink — touching-filter may miss "
+            "violations. Gate skipped for this edit.",
+            file=sys.stderr,
+        )
+        return None
     try:
         rel = file_path.resolve().relative_to(repo_root.resolve())
     except ValueError:
