@@ -39,6 +39,36 @@ def _staged_python_files(repo: str) -> list[str]:
     return [f for f in out.splitlines() if f.endswith(".py")]
 
 
+def _staged_diff_meta(repo: str) -> dict:
+    """Return diff geometry: new vs modified file counts + new paths.
+
+    Used by gate_check's diff-geometry rules (archipelago-bias, volume-spike).
+    Counts ALL staged files (not just Python) so the signal is honest.
+    """
+    out = _git("diff", "--cached", "--name-status", "--diff-filter=ACM", cwd=repo)
+    new_paths: list[str] = []
+    modified_paths: list[str] = []
+    for line in out.splitlines():
+        if not line.strip():
+            continue
+        parts = line.split("\t", 1)
+        if len(parts) != 2:
+            continue
+        status, path = parts
+        if status.startswith("A"):
+            new_paths.append(path)
+        elif status.startswith("M"):
+            modified_paths.append(path)
+        elif status.startswith("C"):
+            new_paths.append(path)  # Copy = new from gate's perspective
+    return {
+        "new_files":     len(new_paths),
+        "modified_files": len(modified_paths),
+        "total_changed": len(new_paths) + len(modified_paths),
+        "new_paths":     new_paths,
+    }
+
+
 def _scan_python_dir(root: str) -> nx.DiGraph:
     """Build a dependency DiGraph from a directory of Python files."""
     rootp = Path(root)
@@ -179,8 +209,13 @@ def main(argv: Optional[list[str]] = None) -> int:
         tmp_after = _materialize_after_state(repo, staged)
         G_after = _scan_python_dir(tmp_after)
 
-        # 4. Run gate_check.
-        result = gate_check(G_before, G_after, language=args.language)
+        # 4. Run gate_check (with diff geometry for archipelago/volume rules).
+        diff_meta = _staged_diff_meta(repo)
+        result = gate_check(
+            G_before, G_after,
+            language=args.language,
+            diff_meta=diff_meta,
+        )
     except Exception as e:
         print(f"qse pre-commit: error during scan ({e}); skipping.", file=sys.stderr)
         return 0  # fail-open on scan errors

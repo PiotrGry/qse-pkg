@@ -50,6 +50,17 @@ HUB_MIN_SCORE = 10      # absolute floor — hubs below this are ignored (small 
 ISOLATED_DELTA = 5.0    # % of total nodes
 
 
+# Diff-geometry rules — fire on the *shape* of the diff, not the resulting graph.
+# Captures AI-burst patterns (many new files at once) before they manifest as
+# graph topology problems. The static benchmark dataset cannot validate these
+# (it is snapshot-only, not delta), so they are calibrated by intent: AI-burst
+# tools generate scaffolding in batches, humans rarely add 5+ new modules in
+# one commit.
+ARCHIPELAGO_NEW_RATIO  = 0.6   # new_files / total_changed_files
+ARCHIPELAGO_MIN_FILES  = 5     # absolute floor — small diffs ignored
+VOLUME_NEW_FILE_LIMIT  = 15    # raw count of new files in one commit
+
+
 # ── Per-language thresholds ───────────────────────────────────────────────────
 # Calibrated from artifacts/benchmark/agq_240_{python,java,go}80.json (Apr 2026):
 #   Python: p90 of (1-acyclicity) = 0%   — most repos cycle-free, strict RC=4%
@@ -215,6 +226,7 @@ def gate_check(
     hub_spike_factor: Optional[float] = None,
     hub_min_score: Optional[int] = None,
     isolated_delta: Optional[float] = None,
+    diff_meta: Optional[dict] = None,
 ) -> GateResult:
     """Compare two dependency graphs and return architectural violations.
 
@@ -340,6 +352,43 @@ def gate_check(
                  "exclude their path via --exclude in your gate config."),
             culprits=culprits,
         ))
+
+    # 7. Diff-geometry: archipelago-bias (AI-burst signal)
+    # Only fires when caller passed diff_meta (typically pre-commit hook
+    # or gate-diff CLI which can introspect git diff).
+    if diff_meta:
+        new_count   = int(diff_meta.get("new_files", 0))
+        total       = int(diff_meta.get("total_changed", 0))
+        new_paths   = list(diff_meta.get("new_paths", []))[:8]
+
+        if total >= ARCHIPELAGO_MIN_FILES:
+            ratio = new_count / total
+            if ratio >= ARCHIPELAGO_NEW_RATIO:
+                violations.append(Violation(
+                    rule="ARCHIPELAGO_BIAS",
+                    summary=(f"diff is {ratio*100:.0f}% new files "
+                             f"({new_count}/{total} changed). Archipelago risk."),
+                    why=("AI tools generate scaffolding in batches: many new "
+                         "modules with shallow integration. Pure new-file diffs "
+                         "predict isolated_pct drift in upcoming commits."),
+                    fix=("Review the new files. If they form a coherent feature, "
+                         "ensure they wire into the existing graph. If scaffolding "
+                         "is intentional (tests, fixtures), exclude their path."),
+                    culprits=[f"new: {p}" for p in new_paths],
+                ))
+
+        if new_count > VOLUME_NEW_FILE_LIMIT:
+            violations.append(Violation(
+                rule="VOLUME_SPIKE",
+                summary=f"{new_count} new files added in one commit",
+                why=("Single-commit volume spike. AI agents often dump generated "
+                     "code in batches; reviewers cannot reason about that much "
+                     "new architecture at once."),
+                fix=("Split into smaller commits, one logical unit per commit. "
+                     "If this is intentional bulk work (refactor, codegen), "
+                     "consider --no-verify and document the rationale."),
+                culprits=[f"new: {p}" for p in new_paths],
+            ))
 
     return GateResult(
         passed=len(violations) == 0,

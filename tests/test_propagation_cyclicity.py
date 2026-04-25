@@ -315,6 +315,53 @@ class TestViolationStructure:
         assert "Fix:" in rendered
         assert "[CYCLE]" in rendered
 
+    def test_archipelago_bias_fires(self):
+        """Diff with mostly new files triggers ARCHIPELAGO_BIAS."""
+        before = self._dag()
+        after = before.copy()
+        # Doesn't affect graph topology — we test the diff_meta path
+        diff_meta = {
+            "new_files": 6,
+            "modified_files": 0,
+            "total_changed": 6,
+            "new_paths": [f"new{i}.py" for i in range(6)],
+        }
+        r = gate_check(before, after, diff_meta=diff_meta)
+        assert any(v.rule == "ARCHIPELAGO_BIAS" for v in r.violations)
+
+    def test_archipelago_skipped_for_small_diff(self):
+        """Small diffs (< MIN_FILES) don't trigger ARCHIPELAGO_BIAS."""
+        before = self._dag()
+        after = before.copy()
+        diff_meta = {
+            "new_files": 2,
+            "modified_files": 0,
+            "total_changed": 2,
+            "new_paths": ["new1.py", "new2.py"],
+        }
+        r = gate_check(before, after, diff_meta=diff_meta)
+        assert not any(v.rule == "ARCHIPELAGO_BIAS" for v in r.violations)
+
+    def test_volume_spike_fires(self):
+        """16+ new files in one commit triggers VOLUME_SPIKE."""
+        before = self._dag()
+        after = before.copy()
+        diff_meta = {
+            "new_files": 18,
+            "modified_files": 2,
+            "total_changed": 20,
+            "new_paths": [f"new{i}.py" for i in range(18)],
+        }
+        r = gate_check(before, after, diff_meta=diff_meta)
+        assert any(v.rule == "VOLUME_SPIKE" for v in r.violations)
+
+    def test_no_diff_meta_skips_diff_geometry_rules(self):
+        """When diff_meta is None, archipelago/volume rules don't fire."""
+        before = self._dag()
+        after = before.copy()
+        r = gate_check(before, after)  # no diff_meta
+        assert not any(v.rule in ("ARCHIPELAGO_BIAS", "VOLUME_SPIKE") for v in r.violations)
+
     def test_hub_violation_names_the_hub(self):
         before = nx.DiGraph()
         for i in range(15):
