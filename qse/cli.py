@@ -245,10 +245,10 @@ def _run_gate_diff(args) -> int:
         for v in result.violations:
             print(f"  {v}")
 
-        # Hotspot escalation: if any of the changed files in this diff are
-        # ranked hotspots (high churn × high centrality), surface that —
-        # changes to hot files deserve more scrutiny than the violation
-        # alone implies.
+        # Hotspot annotation (NOT an additional gate): supplemental info
+        # for reviewers. Centrality scored on G_after (the head_ref tree)
+        # so semantics align with what gate-diff actually evaluated.
+        # Does not affect exit code or JSON — opt-in advisory only.
         if args.check_hotspots:
             try:
                 changed = subprocess.run(
@@ -257,22 +257,25 @@ def _run_gate_diff(args) -> int:
                 ).stdout.splitlines()
                 changed_py = {p for p in changed if p.endswith(".py")}
                 if changed_py:
-                    from qse.hotspot import find_hotspots
-                    hs = find_hotspots(repo, since=args.hotspot_since, top=20)
+                    from qse.hotspot import (
+                        compute_change_frequency, compute_hotspot_score,
+                    )
+                    hs = compute_hotspot_score(
+                        G_after,
+                        compute_change_frequency(repo, since=args.hotspot_since),
+                    )[:20]
                     hot_files = {h.file for h in hs}
                     overlap = changed_py & hot_files
                     if overlap:
                         print()
-                        print("  🔥 HOTSPOT alert: this PR touches files that "
-                              "are top-20 architectural hotspots —")
-                        print("      changes here have outsized impact.")
+                        print("  HOTSPOT annotation (advisory): this PR touches "
+                              "files in the top-20 architectural hotspots —")
+                        print("      extra scrutiny recommended.")
                         for f in sorted(overlap):
                             entry = next(h for h in hs if h.file == f)
                             print(f"      • {f}  (rank {hs.index(entry)+1}, "
                                   f"churn={entry.frequency}, "
                                   f"centrality={entry.centrality:.3f})")
-                        print("      Consider extra reviewers. The violation "
-                              "above + hotspot status = elevated risk.")
             except Exception:
                 pass  # hotspot check is supplementary; never block gate
         return 1
@@ -716,8 +719,9 @@ def _run_hotspot(args) -> None:
               f"{e.module}")
     print()
     print("score = (commit_freq / max_freq) × (centrality / max_centrality)")
-    print("       — where centrality = eigenvector centrality on reversed")
-    print("         import graph (depended-on hubs).")
+    print("       — centrality = eigenvector centrality on the import graph")
+    print("         (edge importer→importee; central nodes have many predecessors")
+    print("         = depended-on hubs). PageRank fallback if it doesn't converge.")
 
 
 def _run_discover(args) -> None:

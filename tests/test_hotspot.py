@@ -42,7 +42,9 @@ def test_compute_hotspot_score_synthetic() -> None:
     from qse.hotspot import compute_hotspot_score
 
     G = nx.DiGraph()
-    # core depended-on by 5 things → high in-degree → high centrality on reverse
+    # 5 callers → core. Edge importer→importee; eigenvector centrality on
+    # the unreversed graph rewards nodes with many predecessors (callers
+    # pointing in) — i.e., "depended-on hubs". core wins.
     for i in range(5):
         G.add_node(f"caller_{i}", file=f"caller_{i}.py")
         G.add_edge(f"caller_{i}", "core")

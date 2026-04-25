@@ -275,16 +275,9 @@ def _hotspot_explanation(fingerprint, top_hotspot) -> str:
                 "      members get tested as one unit. Break the cycle "
                 "(extract shared interface to a new module) — then the\n"
                 "      hotspot becomes much safer to keep churning.")
-    if fp == "LAYERED":
-        return (f"  ✓ LAYERED + hotspot: '{mod}' is high-churn but the overall "
-                "architecture is well-structured. Normal evolution\n"
-                "      of a healthy codebase — no action needed unless you "
-                "see test failures correlating with the churn.")
-    if fp in ("CLEAN", "MODERATE"):
-        return (f"  ✓ {fp} + hotspot: '{mod}' churns in a well-structured "
-                "architecture. Watch the trend; intervene only if\n"
-                "      structure starts degrading (rising cycle %, dropping "
-                "modularity).")
+    # LAYERED / CLEAN / MODERATE: deliberately no message. The repo is
+    # structurally sound — high-churn here is normal evolution and "the
+    # architecture is fine" is fluff that adds no information for the dev.
     if fp == "FLAT":
         return (f"  ⚠ FLAT + hotspot: '{mod}' churns in a flat (under-modularized) "
                 "architecture. The repo lacks clear module\n"

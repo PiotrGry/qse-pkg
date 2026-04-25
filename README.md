@@ -96,11 +96,17 @@ axes are where bugs happen and refactors hurt. Score is the product
 (both normalized to [0,1]) so files high on only one axis score low —
 only the overlap matters.
 
-| Tool | Behavioral signal | Structural signal |
+| Tool | Churn signal | Structural signal |
 |---|---|---|
-| SonarQube | ✗ | ✓ (size, complexity) |
-| CodeScene (Tornhill) | ✓ (churn × LOC) | ✗ |
-| **QSE hotspot** | **✓** | **✓ (graph centrality)** |
+| SonarQube | ✗ | size + complexity per file |
+| CodeScene | churn × LOC | "Code Health" per file (internal complexity) |
+| **QSE hotspot** | churn | **import-graph centrality (transitive blast radius)** |
+
+QSE's structural axis is **graph-based** rather than file-internal:
+hotspots highlight files that are central in the dependency graph and
+churn often. CodeScene combines churn with per-file code health
+(internal complexity / nesting). The signals are different — central
+files can be small and clean inside, big ugly files can be peripheral.
 
 Output ranks files by combined score and explains the math. Wire into
 `qse health --include-hotspots` to cross-reference with the structural
