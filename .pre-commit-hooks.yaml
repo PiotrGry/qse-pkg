@@ -1,0 +1,15 @@
+- id: qse-gate
+  name: QSE architectural gate
+  description: |
+    Deterministic graph-math gate. Detects new cycles, propagation cost
+    spikes, hub-score regressions, and archipelago drift introduced by
+    staged Python changes. Vendor-neutral (works regardless of which
+    AI tool wrote the code).
+  entry: python -m qse.integrations.pre_commit
+  language: python
+  language_version: python3
+  pass_filenames: false
+  always_run: false
+  files: \.py$
+  stages: [pre-commit]
+  additional_dependencies: []
