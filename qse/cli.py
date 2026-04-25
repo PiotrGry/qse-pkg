@@ -206,9 +206,14 @@ def _run_gate_diff(args) -> int:
 
     if args.output_json:
         import json as _json
+        from dataclasses import asdict
+        from qse.gate.gate_check import Violation
         out = {
             "passed": result.passed,
-            "violations": result.violations,
+            "violations": [
+                asdict(v) if isinstance(v, Violation) else {"rule": "LEGACY", "summary": str(v)}
+                for v in result.violations
+            ],
             "metrics_before": result.metrics_before,
             "metrics_after": result.metrics_after,
             "base": base_ref,
@@ -292,11 +297,18 @@ def _run_archeology(args) -> int:
             G_cur = scan_at_ref(sha)
             r = gate_check(G_prev, G_cur, language=args.language)
             if not r.passed:
+                from dataclasses import asdict
+                from qse.gate.gate_check import Violation
                 findings.append({
                     "commit": sha,
                     "short": sha[:8],
                     "subject": subject,
-                    "violations": r.violations,
+                    "violations": [
+                        asdict(v) if isinstance(v, Violation)
+                        else {"rule": "LEGACY", "summary": str(v),
+                              "why": "", "fix": "", "culprits": []}
+                        for v in r.violations
+                    ],
                     "metrics_before": r.metrics_before,
                     "metrics_after": r.metrics_after,
                 })
@@ -340,7 +352,9 @@ def _run_archeology(args) -> int:
         for f in findings[:30]:
             print(f"\n  {f['short']}  {f['subject'][:60]}")
             for v in f["violations"]:
-                print(f"    {v.split('.')[0][:120]}")
+                rule = v.get("rule", "?") if isinstance(v, dict) else "?"
+                summary = v.get("summary", "") if isinstance(v, dict) else str(v)
+                print(f"    [{rule}] {summary[:100]}")
         if len(findings) > 30:
             print(f"\n  ... and {len(findings) - 30} more (use --output-html for full report)")
 
@@ -354,15 +368,34 @@ def _write_archeology_html(out_path: str, repo: str, rev_range: str,
     rule_counts: dict[str, int] = {}
     for f in findings:
         for v in f["violations"]:
-            rule = v.split(":", 1)[0]
+            rule = v.get("rule", "?") if isinstance(v, dict) else str(v).split(":", 1)[0]
             rule_counts[rule] = rule_counts.get(rule, 0) + 1
 
     rows = []
     for f in findings:
-        viol_html = "<br>".join(
-            f"<code>{v.split(':', 1)[0]}</code> {v.split(':', 1)[1].split('. ')[0] if ':' in v else v}"
-            for v in f["violations"]
-        )
+        viol_parts = []
+        for v in f["violations"]:
+            if isinstance(v, dict):
+                rule = v.get("rule", "?")
+                summary = v.get("summary", "")
+                why = v.get("why", "")
+                fix = v.get("fix", "")
+                culprits = v.get("culprits", [])
+                culprit_html = ""
+                if culprits:
+                    culprit_html = "<br>" + "<br>".join(
+                        f"<small>• {_html_escape(str(c))}</small>" for c in culprits[:5]
+                    )
+                viol_parts.append(
+                    f"<code>{_html_escape(rule)}</code> "
+                    f"{_html_escape(summary)}"
+                    f"{culprit_html}"
+                    f"<br><small><b>Why:</b> {_html_escape(why)}</small>"
+                    f"<br><small><b>Fix:</b> {_html_escape(fix)}</small>"
+                )
+            else:
+                viol_parts.append(_html_escape(str(v)))
+        viol_html = "<hr style='border:0;border-top:1px dashed #ddd;margin:0.5em 0'>".join(viol_parts)
         rows.append(
             f"<tr><td><code>{f['short']}</code></td>"
             f"<td>{_html_escape(f['subject'])}</td>"

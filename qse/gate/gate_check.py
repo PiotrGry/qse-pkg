@@ -125,9 +125,33 @@ def _isolated_pct(G: nx.DiGraph) -> float:
 # ── Public API ────────────────────────────────────────────────────────────────
 
 @dataclass
+class Violation:
+    """Structured violation with culprit identification and explanation."""
+    rule: str            # CYCLE, PC_HIGH, PC_DELTA, RC_HIGH, HUB_SPIKE, ISOLATED
+    summary: str         # short, one-line description (numbers + rule)
+    why: str             # 1-2 sentence explanation of why this matters
+    fix: str             # suggested action
+    culprits: list[str]  # specific nodes/edges/files involved (often empty for global rules)
+
+    def render(self) -> str:
+        lines = [f"[{self.rule}] {self.summary}"]
+        if self.culprits:
+            for c in self.culprits[:5]:
+                lines.append(f"    • {c}")
+            if len(self.culprits) > 5:
+                lines.append(f"    • ... +{len(self.culprits) - 5} more")
+        lines.append(f"    Why: {self.why}")
+        lines.append(f"    Fix: {self.fix}")
+        return "\n".join(lines)
+
+    def __str__(self) -> str:
+        return self.render()
+
+
+@dataclass
 class GateResult:
     passed: bool
-    violations: list[str]
+    violations: list                # list[Violation] OR list[str] for back-compat
     metrics_before: dict
     metrics_after: dict
 
@@ -136,8 +160,37 @@ class GateResult:
             return "gate: PASS"
         lines = ["gate: FAIL"]
         for v in self.violations:
-            lines.append(f"  {v}")
+            if isinstance(v, Violation):
+                lines.append(f"  {v.render()}")
+            else:
+                lines.append(f"  {v}")
         return "\n".join(lines)
+
+
+def _new_sccs(G_before: nx.DiGraph, G_after: nx.DiGraph) -> list[list[str]]:
+    """Return SCCs (≥2 nodes) present in G_after but not in G_before."""
+    SG_b = _internal_subgraph(G_before)
+    SG_a = _internal_subgraph(G_after)
+    before_sets = [frozenset(s) for s in nx.strongly_connected_components(SG_b) if len(s) >= 2]
+    after_sets = [frozenset(s) for s in nx.strongly_connected_components(SG_a) if len(s) >= 2]
+    return [sorted(s) for s in after_sets if s not in before_sets]
+
+
+def _hub_node(G: nx.DiGraph) -> Optional[str]:
+    """Return the node with the highest hub_score (fi×fo), or None if empty."""
+    if G.number_of_nodes() == 0:
+        return None
+    fi = dict(G.in_degree())
+    fo = dict(G.out_degree())
+    return max(G.nodes(), key=lambda v: fi[v] * fo[v], default=None)
+
+
+def _new_isolated(G_before: nx.DiGraph, G_after: nx.DiGraph) -> list[str]:
+    """Nodes isolated in G_after that were absent or non-isolated in G_before."""
+    def isolated(G):
+        return {v for v in G.nodes()
+                if G.in_degree(v) == 0 and G.out_degree(v) == 0}
+    return sorted(isolated(G_after) - isolated(G_before))
 
 
 def _snapshot(G: nx.DiGraph) -> dict:
@@ -185,61 +238,108 @@ def gate_check(
 
     before = _snapshot(G_before)
     after  = _snapshot(G_after)
-    violations: list[str] = []
+    violations: list[Violation] = []
 
     # 1. New cycle groups
-    new_sccs = after["scc_count"] - before["scc_count"]
-    if new_sccs > 0:
-        violations.append(
-            f"CYCLE: {new_sccs} new cycle group(s) introduced "
-            f"(total SCC: {before['scc_count']} → {after['scc_count']}). "
-            "Axiom: acyclicity — cycles make components impossible to reason about independently."
-        )
+    new_sccs_count = after["scc_count"] - before["scc_count"]
+    if new_sccs_count > 0:
+        new_groups = _new_sccs(G_before, G_after)
+        culprits = []
+        for grp in new_groups[:3]:
+            culprits.append(f"SCC: {' → '.join(grp[:6])}{' → ...' if len(grp) > 6 else ''}")
+        violations.append(Violation(
+            rule="CYCLE",
+            summary=(f"{new_sccs_count} new cycle group(s) introduced "
+                     f"(total SCC: {before['scc_count']} → {after['scc_count']})"),
+            why=("Cycles make modules impossible to reason about independently. "
+                 "Once introduced, cycle groups tend to grow over time (Apache "
+                 "Cassandra pattern: 450→900→1300 nodes over 3 years)."),
+            fix=("Identify the back-edge that closed the cycle (often the most "
+                 "recent import). Invert the dependency via dependency injection, "
+                 "or extract shared types to a third module."),
+            culprits=culprits,
+        ))
 
     # 2. Propagation Cost: newly crossed the absolute cap this commit
-    # Skip for small repos (n<PC_MIN_NODES) — PC is structurally high on small graphs
     _n_after = after["n"]
     if after["pc"] > pc_fail and before["pc"] <= pc_fail and _n_after >= PC_MIN_NODES:
-        violations.append(
-            f"PC_HIGH: propagation_cost crossed threshold {pc_fail} "
-            f"({before['pc']:.3f} → {after['pc']:.3f}). "
-            "A random change now ripples through >20% of the codebase on average."
-        )
-    # 3. Propagation Cost delta — rapid increase even if under absolute cap
+        violations.append(Violation(
+            rule="PC_HIGH",
+            summary=(f"propagation_cost crossed threshold {pc_fail} "
+                     f"({before['pc']:.3f} → {after['pc']:.3f})"),
+            why=("PC is the fraction of the codebase a random change can ripple "
+                 f"through. {after['pc']*100:.0f}% means refactoring one module "
+                 "touches that share of the codebase on average."),
+            fix=("Look for the new long import chains. Break tight coupling by "
+                 "introducing interfaces, or split the affected module."),
+            culprits=[],
+        ))
+    # 3. Propagation Cost delta
     elif after["pc"] - before["pc"] > pc_delta_fail and _n_after >= PC_MIN_NODES:
-        violations.append(
-            f"PC_DELTA: propagation_cost jumped +{after['pc'] - before['pc']:.3f} "
-            f"({before['pc']:.3f} → {after['pc']:.3f}) in one change. "
-            f"Threshold: +{pc_delta_fail}."
-        )
+        violations.append(Violation(
+            rule="PC_DELTA",
+            summary=(f"propagation_cost jumped +{after['pc'] - before['pc']:.3f} "
+                     f"({before['pc']:.3f} → {after['pc']:.3f}) in one change"),
+            why=("A single commit increased the codebase's coupling depth by more "
+                 f"than {pc_delta_fail}. AI tools often add this when they connect "
+                 "many modules to one new helper."),
+            fix=("Review imports added in this diff. If a single new module is "
+                 "imported by many existing modules, consider whether it should "
+                 "be split or its API narrowed."),
+            culprits=[],
+        ))
 
-    # 4. Relative Cyclicity absolute threshold — flag any commit that crosses or worsens the threshold
+    # 4. Relative Cyclicity absolute threshold
     if after["rc"] > rc_fail and (before["rc"] <= rc_fail or after["rc"] > before["rc"]):
-        violations.append(
-            f"RC_HIGH: relative_cyclicity={after['rc']:.1f}% exceeds {rc_fail}% threshold "
-            f"(before: {before['rc']:.1f}%). "
-            "Cycle groups tend to grow continuously once above threshold (Apache Cassandra pattern)."
-        )
+        violations.append(Violation(
+            rule="RC_HIGH",
+            summary=(f"relative_cyclicity={after['rc']:.1f}% exceeds {rc_fail}% threshold "
+                     f"(before: {before['rc']:.1f}%)"),
+            why=("Relative Cyclicity weighs cycle group size: large SCCs hurt "
+                 "exponentially more than small ones. Crossing the threshold "
+                 "predicts continued growth absent intervention."),
+            fix=("Use `qse archeology` to find when the largest SCC formed. "
+                 "Break it by inverting one or two key edges via interfaces."),
+            culprits=[],
+        ))
 
     # 5. Hub / god-file spike
     hub_before = before["max_hub"]
     if (hub_before > 0
             and after["max_hub"] > hub_before * hub_spike_factor
             and after["max_hub"] >= hub_min_score):
-        violations.append(
-            f"HUB_SPIKE: max_hub_score {before['max_hub']} → {after['max_hub']} "
-            f"({after['max_hub'] / hub_before:.1f}x increase). "
-            "A module is becoming a god file — high fan-in AND fan-out."
-        )
+        hub = _hub_node(G_after)
+        culprits = [f"{hub} (hub_score = {after['max_hub']})"] if hub else []
+        violations.append(Violation(
+            rule="HUB_SPIKE",
+            summary=(f"max_hub_score {before['max_hub']} → {after['max_hub']} "
+                     f"({after['max_hub'] / hub_before:.1f}x increase)"),
+            why=("hub_score = fan-in × fan-out. High values mean a module both "
+                 "depends on many things AND is depended upon by many things — "
+                 "the classic god-file shape that becomes a refactoring blocker."),
+            fix=(f"Investigate {hub or 'the top hub'}. Often a 'utils' or 'core' "
+                 "module that has accreted unrelated responsibilities. Split by "
+                 "concern, move helpers closer to their callers."),
+            culprits=culprits,
+        ))
 
     # 6. Archipelago drift — isolated files accumulating
     delta_iso = after["isolated_pct"] - before["isolated_pct"]
     if delta_iso > isolated_delta:
-        violations.append(
-            f"ISOLATED: isolated files grew +{delta_iso:.1f}pp "
-            f"({before['isolated_pct']:.1f}% → {after['isolated_pct']:.1f}% of nodes). "
-            "Dead/unreachable code accumulating."
-        )
+        new_iso = _new_isolated(G_before, G_after)
+        culprits = [f"isolated: {n}" for n in new_iso[:5]]
+        violations.append(Violation(
+            rule="ISOLATED",
+            summary=(f"isolated files grew +{delta_iso:.1f}pp "
+                     f"({before['isolated_pct']:.1f}% → {after['isolated_pct']:.1f}% of nodes)"),
+            why=("Modules with zero in-degree AND zero out-degree are unreachable. "
+                 "AI tools commonly generate scaffolding that never gets wired "
+                 "into the graph — dead code that costs maintenance forever."),
+            fix=("Remove the new isolated files, or wire them into an existing "
+                 "import chain. If they are intentional (scripts, fixtures), "
+                 "exclude their path via --exclude in your gate config."),
+            culprits=culprits,
+        ))
 
     return GateResult(
         passed=len(violations) == 0,

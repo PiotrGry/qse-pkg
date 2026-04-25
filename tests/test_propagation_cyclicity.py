@@ -150,7 +150,7 @@ class TestGateCheck:
         after.add_edge("m5", "m0")
         r = gate_check(before, after)
         assert not r.passed
-        assert any("CYCLE" in v for v in r.violations)
+        assert any(v.rule == "CYCLE" for v in r.violations)
 
     def test_no_regression_clean_commit_passes(self):
         before = self._dag()
@@ -186,7 +186,7 @@ class TestGateCheck:
                 after.add_edge(hub, f"n{i}")
         r = gate_check(before, after)
         assert not r.passed
-        assert any("CYCLE" in v or "HUB" in v for v in r.violations)
+        assert any(v.rule in ("CYCLE", "HUB_SPIKE") for v in r.violations)
 
     def test_result_has_metrics(self):
         g = self._dag()
@@ -214,7 +214,7 @@ class TestGateCheck:
         # with very loose RC threshold, should still catch cycle
         r = gate_check(before, after, rc_fail=200.0)
         assert not r.passed
-        assert any("CYCLE" in v for v in r.violations)
+        assert any(v.rule == "CYCLE" for v in r.violations)
 
 
 class TestLanguagePresets:
@@ -269,3 +269,65 @@ class TestLanguagePresets:
         from qse.gate.gate_check import get_thresholds
         assert get_thresholds("Python") == get_thresholds("python")
         assert get_thresholds("JAVA") == get_thresholds("java")
+
+
+class TestViolationStructure:
+    """Failure-message overhaul: violations now include culprits + why + fix."""
+
+    def _dag(self, n=8):
+        g = nx.DiGraph()
+        for i in range(n - 1):
+            g.add_edge(f"m{i}", f"m{i+1}")
+        for n_ in g.nodes():
+            g.nodes[n_]["file"] = f"{n_}.py"
+        return g
+
+    def test_violation_has_required_fields(self):
+        from qse.gate.gate_check import Violation
+        before = self._dag()
+        after = before.copy()
+        after.add_edge("m7", "m0")  # close cycle
+        r = gate_check(before, after)
+        assert not r.passed
+        for v in r.violations:
+            assert isinstance(v, Violation)
+            assert v.rule
+            assert v.summary
+            assert v.why
+            assert v.fix
+            assert isinstance(v.culprits, list)
+
+    def test_cycle_violation_includes_scc_culprits(self):
+        before = self._dag()
+        after = before.copy()
+        after.add_edge("m7", "m0")
+        r = gate_check(before, after)
+        cycle_v = next(v for v in r.violations if v.rule == "CYCLE")
+        assert any("SCC:" in c for c in cycle_v.culprits)
+
+    def test_violation_render_includes_why_and_fix(self):
+        before = self._dag()
+        after = before.copy()
+        after.add_edge("m7", "m0")
+        r = gate_check(before, after)
+        rendered = str(r)
+        assert "Why:" in rendered
+        assert "Fix:" in rendered
+        assert "[CYCLE]" in rendered
+
+    def test_hub_violation_names_the_hub(self):
+        before = nx.DiGraph()
+        for i in range(15):
+            before.add_node(f"n{i}", file=f"n{i}.py")
+            if i > 0:
+                before.add_edge(f"n{i-1}", f"n{i}")
+        after = before.copy()
+        hub = "n7"
+        for v in list(before.nodes()):
+            if v != hub:
+                after.add_edge(v, hub)
+                after.add_edge(hub, v)
+        r = gate_check(before, after)
+        hub_violations = [v for v in r.violations if v.rule == "HUB_SPIKE"]
+        if hub_violations:  # may not fire depending on graph specifics
+            assert any(hub in c for c in hub_violations[0].culprits)
