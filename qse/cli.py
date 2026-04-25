@@ -656,6 +656,35 @@ def _run_health(args) -> None:
         print(out)
 
 
+def _run_hotspot(args) -> None:
+    """Architectural hotspot ranking: churn × centrality."""
+    import dataclasses
+    from qse.hotspot import find_hotspots
+
+    entries = find_hotspots(args.path, since=args.since, top=args.top)
+
+    if args.json:
+        payload = [dataclasses.asdict(e) for e in entries]
+        print(json.dumps(payload, indent=2))
+        return
+
+    if not entries:
+        print(f"No hotspots found (checked {args.since}).")
+        return
+
+    print(f"Architectural Hotspots — top {len(entries)}, since {args.since}")
+    print("=" * 70)
+    print(f"{'#':<3} {'score':<7} {'freq':<5} {'cen':<6} module")
+    print("-" * 70)
+    for i, e in enumerate(entries, 1):
+        print(f"{i:<3} {e.score:.3f}   {e.frequency:<5} {e.centrality:.3f}  "
+              f"{e.module}")
+    print()
+    print("score = (commit_freq / max_freq) × (centrality / max_centrality)")
+    print("       — where centrality = eigenvector centrality on reversed")
+    print("         import graph (depended-on hubs).")
+
+
 def _run_discover(args) -> None:
     """Auto-discover architectural boundaries and propose constraints."""
     from qse.discover import discover_policies
@@ -830,6 +859,20 @@ def main() -> None:
     health.add_argument("--output", type=str, default=None, metavar="FILE",
                         help="Write report to FILE.")
 
+    # qse hotspot — hybrid behavioral × structural ranking
+    hot = sub.add_parser(
+        "hotspot",
+        help="Rank files by churn × structural centrality (architectural "
+             "hotspots — the moat metric).",
+    )
+    hot.add_argument("path", nargs="?", default=".", help="Repo root.")
+    hot.add_argument("--since", default="1 year ago", metavar="DATE",
+                     help="Git log time window (default: '1 year ago').")
+    hot.add_argument("--top", type=int, default=10, metavar="N",
+                     help="Return top-N hotspots (default: 10).")
+    hot.add_argument("--json", action="store_true",
+                     help="Emit JSON instead of human-readable text.")
+
     args = parser.parse_args()
 
     if args.command == "gate":
@@ -846,6 +889,9 @@ def main() -> None:
         return
     if args.command == "health":
         _run_health(args)
+        return
+    if args.command == "hotspot":
+        _run_hotspot(args)
         return
 
     parser.print_help()
