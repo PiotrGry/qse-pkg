@@ -109,25 +109,80 @@ def _run_gate_diff(args) -> int:
 
     base_ref = _resolve_ref(args.base)
     head_ref = _resolve_ref(args.head)
+    migration_ref = (_resolve_ref(args.migration_baseline)
+                     if args.migration_baseline else None)
 
     if not args.quiet:
-        print(f"qse gate-diff: scanning {base_ref[:8]}..{head_ref[:8]}", file=sys.stderr)
+        msg = f"qse gate-diff: scanning {base_ref[:8]}..{head_ref[:8]}"
+        if migration_ref:
+            msg += f"  (migration baseline: {migration_ref[:8]})"
+        print(msg, file=sys.stderr)
 
     try:
         G_before = _checkout_and_scan(base_ref)
         G_after  = _checkout_and_scan(head_ref)
+        G_migration = (_checkout_and_scan(migration_ref)
+                       if migration_ref else None)
     except subprocess.CalledProcessError as e:
         print(f"qse gate-diff: git error — {e}", file=sys.stderr)
         return 2
 
-    result = gate_check(
-        G_before, G_after,
+    gate_kwargs = dict(
         language=args.language,
         pc_fail=args.pc_fail,
         pc_delta_fail=args.pc_delta,
         rc_fail=args.rc_fail,
         hub_spike_factor=args.hub_spike,
     )
+    base_result = gate_check(G_before, G_after, **gate_kwargs)
+
+    # Migration mode: three-reference policy.
+    # Compare HEAD against TWO baselines:
+    #   - base_result  — gate(base, HEAD):       regression vs canonical?
+    #   - mig_result   — gate(migration, HEAD):  regression vs migration start?
+    #
+    # Policy outcomes (driving final pass/fail and banner text):
+    #   CLEAN_PASS              base PASS + migration PASS (or no migration arg)
+    #   IN_MIGRATION_PASS       base FAIL + migration PASS — improving since migration
+    #   FAIL_BOTH               base FAIL + migration FAIL — true regression
+    #   BASE_PASS_MIG_FAIL      base PASS + migration FAIL — main improved since
+    #                           migration; HEAD ≥ main but worse than migration start
+    #                           (rare; PASS but warn)
+    migration_result = None
+    policy_outcome = "CLEAN_PASS" if base_result.passed else "FAIL_BOTH"
+    final_passed = base_result.passed
+    if G_migration is not None:
+        # Sanity: warn if migration_baseline is not an ancestor of head.
+        # Mig-baseline ahead of head, or on an unrelated branch, makes the
+        # "improving since migration" framing meaningless.
+        try:
+            anc = subprocess.run(
+                ["git", "merge-base", "--is-ancestor", migration_ref, head_ref],
+                cwd=repo, capture_output=True, check=False,
+            )
+            if anc.returncode != 0:
+                print(f"qse gate-diff: warning — migration baseline "
+                      f"{migration_ref[:8]} is not an ancestor of HEAD; "
+                      "policy semantics may be nonsense.", file=sys.stderr)
+        except OSError:
+            pass
+
+        migration_result = gate_check(G_migration, G_after, **gate_kwargs)
+        if base_result.passed and migration_result.passed:
+            policy_outcome = "CLEAN_PASS"
+            final_passed = True
+        elif not base_result.passed and migration_result.passed:
+            policy_outcome = "IN_MIGRATION_PASS"
+            final_passed = True
+        elif not base_result.passed and not migration_result.passed:
+            policy_outcome = "FAIL_BOTH"
+            final_passed = False
+        else:  # base_result.passed and not migration_result.passed
+            policy_outcome = "BASE_PASS_MIG_FAIL"
+            final_passed = True
+
+    from dataclasses import replace
+    result = replace(base_result, passed=final_passed)
 
     if args.output_json:
         import json as _json
@@ -144,15 +199,49 @@ def _run_gate_diff(args) -> int:
             "base": base_ref,
             "head": head_ref,
         }
+        out["base_passed"] = base_result.passed
+        out["policy_outcome"] = policy_outcome
+        if migration_result:
+            out["migration_baseline"] = migration_ref
+            out["migration_passed"] = migration_result.passed
+            out["migration_violations"] = [
+                asdict(v) if isinstance(v, Violation) else {"rule": "LEGACY", "summary": str(v)}
+                for v in migration_result.violations
+            ]
         with open(args.output_json, "w") as f:
             _json.dump(out, f, indent=2)
 
     if result.passed:
         if not args.quiet:
-            print("qse gate-diff: PASS — no architectural regressions detected.")
+            if policy_outcome == "IN_MIGRATION_PASS":
+                print("qse gate-diff: PASS (in-migration)")
+                print(f"  vs base ({base_ref[:8]}):          FAIL — pre-existing at migration start")
+                print(f"  vs migration ({migration_ref[:8]}): PASS — no new regressions since migration")
+                print("  Vs-base violations (for reference, NOT blocking this PR):")
+                for v in result.violations:
+                    print(f"    {v}")
+                print("  These need to be fixed before final merge to base.")
+            elif policy_outcome == "BASE_PASS_MIG_FAIL":
+                print("qse gate-diff: PASS (base improved since migration)")
+                print(f"  vs base ({base_ref[:8]}):          PASS")
+                print(f"  vs migration ({migration_ref[:8]}): FAIL — base evolved during your migration")
+                print("  HEAD is fine vs current base. Migration-relative comparison flags issues "
+                      "that base no longer has — likely the base was independently improved while "
+                      "you worked. Re-baseline if helpful.")
+                if migration_result:
+                    print("  Vs-migration violations (informational):")
+                    for v in migration_result.violations:
+                        print(f"    {v}")
+            else:
+                print("qse gate-diff: PASS — no architectural regressions detected.")
         return 0
     else:
         print("qse gate-diff: FAIL")
+        if migration_result:
+            print(f"  vs base ({base_ref[:8]}):          FAIL")
+            print(f"  vs migration ({migration_ref[:8]}): FAIL")
+            print("  HEAD regresses vs BOTH baselines — real architectural debt added.")
+            print()
         for v in result.violations:
             print(f"  {v}")
         return 1
@@ -677,6 +766,13 @@ def main() -> None:
                     help="Relative Cyclicity threshold %% (overrides language preset).")
     gd.add_argument("--hub-spike", type=float, default=None, metavar="N",
                     help="Max hub_score growth factor (overrides language preset).")
+    gd.add_argument("--migration-baseline", default=None, metavar="REF",
+                    help="Long-running refactor mode: tolerate regressions vs "
+                         "base (e.g. main) IF HEAD is still better than this "
+                         "migration starting point. Use the commit where the "
+                         "refactor branch began. Pass only when the diff "
+                         "covers a multi-step refactor; ordinary feature "
+                         "branches don't need it.")
     gd.add_argument("--output-json", type=str, default=None, metavar="FILE",
                     help="Write gate result to JSON file.")
     gd.add_argument("--quiet", action="store_true",
