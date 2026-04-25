@@ -70,52 +70,14 @@ def _staged_diff_meta(repo: str) -> dict:
 
 
 def _scan_python_dir(root: str) -> nx.DiGraph:
-    """Build a dependency DiGraph from a directory of Python files."""
-    rootp = Path(root)
-    py_files = [
-        p for p in rootp.rglob("*.py")
-        if p.name != "__init__.py" and "__pycache__" not in str(p)
-    ]
-    nodes: dict[str, Path] = {}
-    for p in py_files:
-        rel = p.relative_to(rootp).with_suffix("")
-        mod = ".".join(rel.parts)
-        nodes[mod] = p
+    """Build a dependency DiGraph from a directory of Python files.
 
-    G = nx.DiGraph()
-    for mod, path in nodes.items():
-        G.add_node(mod, file=str(path))
-
-    for mod, path in nodes.items():
-        try:
-            src = path.read_text(errors="replace")
-        except OSError:
-            continue
-        try:
-            tree = ast.parse(src)
-        except SyntaxError:
-            continue
-        pkg = ".".join(mod.split(".")[:-1])
-        for node in ast.walk(tree):
-            if isinstance(node, ast.ImportFrom) and node.module:
-                if node.level == 0:
-                    dep = node.module
-                else:
-                    base_parts = pkg.split(".") if pkg else []
-                    keep = max(0, len(base_parts) - node.level + 1)
-                    base = ".".join(base_parts[:keep])
-                    dep = f"{base}.{node.module}".lstrip(".")
-                if dep in nodes:
-                    G.add_edge(mod, dep)
-                for a in node.names:
-                    full = f"{dep}.{a.name}"
-                    if full in nodes:
-                        G.add_edge(mod, full)
-            elif isinstance(node, ast.Import):
-                for a in node.names:
-                    if a.name in nodes:
-                        G.add_edge(mod, a.name)
-    return G
+    Thin wrapper over qse.scanner.scan_dependency_graph (canonical entry
+    point). Kept for backward compatibility — callers still expect this
+    name. Identical semantics to the unified scanner.
+    """
+    from qse.scanner import scan_dependency_graph
+    return scan_dependency_graph(root)
 
 
 def _materialize_after_state(repo: str, staged: list[str]) -> str:

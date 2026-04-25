@@ -13,6 +13,18 @@ import networkx as nx
 # Canonical DDD layers ordered from inner to outer
 LAYER_ORDER = {"domain": 0, "application": 1, "infrastructure": 2, "presentation": 3}
 
+# Path patterns excluded by default from health/gate-diff scans. Vendored deps,
+# build outputs, cloned third-party repos in artifacts/, hidden tooling dirs.
+# Callers that genuinely want to scan these (e.g. raw `qse agq` on a vendored
+# tree) can pass exclude=[] to override.
+DEFAULT_EXCLUDES = [
+    "**/__pycache__/**", "**/_vendor/**", "**/vendor/**",
+    "**/build/**", "**/dist/**", "**/node_modules/**",
+    "**/.tox/**", "**/.venv/**", "**/venv/**",
+    "**/.git/**", "**/.claude/**", "**/.gstack/**",
+    "**/.pytest_cache/**", "**/artifacts/**",
+]
+
 
 @dataclass
 class ClassInfo:
@@ -62,17 +74,62 @@ def _module_path(file_path: str, base_dir: str) -> str:
     return rel
 
 
-def _extract_imports(tree: ast.AST) -> List[str]:
-    """Extract all imported module strings from AST."""
+def _extract_imports(tree: ast.AST, pkg: str = "") -> List[str]:
+    """Extract all imported module strings from AST.
+
+    pkg: dotted package of the file being scanned, used to resolve relative
+    imports (`from . import x`, `from ..foo import bar`). Empty string for
+    top-level files.
+    """
     imports = []
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             for alias in node.names:
                 imports.append(alias.name)
         elif isinstance(node, ast.ImportFrom):
-            if node.module:
+            if node.level == 0 and node.module:
                 imports.append(node.module)
+            elif node.level > 0:
+                base_parts = pkg.split(".") if pkg else []
+                keep = max(0, len(base_parts) - node.level + 1)
+                base = ".".join(base_parts[:keep])
+                if node.module:
+                    dep = f"{base}.{node.module}".lstrip(".")
+                    if dep:
+                        imports.append(dep)
+                else:
+                    if base:
+                        imports.append(base)
     return imports
+
+
+def _extract_imports_with_aliases(
+    tree: ast.AST, pkg: str = "",
+) -> List[tuple[str, list[str]]]:
+    """Like _extract_imports but also returns names imported via ImportFrom.
+
+    Returns [(module_name, [name, ...]), ...] so callers can wire edges to
+    re-exported submodules: `from pkg import sub` produces edge to pkg.sub
+    when that module exists.
+    """
+    out: List[tuple[str, list[str]]] = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                out.append((alias.name, []))
+        elif isinstance(node, ast.ImportFrom):
+            if node.level == 0:
+                base = node.module or ""
+            else:
+                base_parts = pkg.split(".") if pkg else []
+                keep = max(0, len(base_parts) - node.level + 1)
+                base = ".".join(base_parts[:keep])
+                if node.module:
+                    base = f"{base}.{node.module}".lstrip(".")
+            if base:
+                names = [a.name for a in node.names]
+                out.append((base, names))
+    return out
 
 
 def _extract_classes(tree: ast.AST, file_path: str,
@@ -246,26 +303,41 @@ def scan_repo(
                 continue
             py_files.append(full)
 
+    # First pass: register all internal modules as nodes
+    parsed: Dict[str, tuple[str, str, ast.AST | None]] = {}
     for fpath in sorted(py_files):
         all_files.append(fpath)
         mod = _module_path(fpath, base_dir)
         layer = _detect_layer(fpath, base_dir, layer_map=layer_map)
         graph.add_node(mod, layer=layer, file=fpath)
-
         try:
-            with open(fpath, "r") as f:
+            with open(fpath, "r", encoding="utf-8", errors="replace") as f:
                 source = f.read()
             tree = ast.parse(source, filename=fpath)
-        except SyntaxError:
-            continue
+        except (OSError, SyntaxError):
+            tree = None
+        parsed[fpath] = (mod, layer, tree)
 
-        # Import edges
-        for imp in _extract_imports(tree):
-            graph.add_edge(mod, imp)
+    # Second pass: edges (with relative-import resolution + re-export
+    # expansion). Edges to non-internal targets are kept (matches earlier
+    # scan_repo behavior; consumers filter via _internal_subgraph).
+    for fpath in sorted(py_files):
+        mod, layer, tree = parsed[fpath]
+        if tree is None:
+            continue
+        pkg = ".".join(mod.split(".")[:-1])
+        for base, names in _extract_imports_with_aliases(tree, pkg=pkg):
+            graph.add_edge(mod, base)
+            # Re-export expansion: `from pkg import sub` → edge mod→pkg.sub
+            # if pkg.sub is itself an internal module.
+            for name in names:
+                full = f"{base}.{name}"
+                if full in graph and graph.nodes[full].get("file"):
+                    graph.add_edge(mod, full)
 
         # Class info
         for cls_info in _extract_classes(tree, fpath, layer):
-            cls_info.dependencies = _extract_imports(tree)
+            cls_info.dependencies = _extract_imports(tree, pkg=pkg)
             all_classes[cls_info.name] = cls_info
 
     return StaticAnalysis(graph=graph, classes=all_classes, files=all_files)
@@ -309,3 +381,29 @@ def detect_layer_violations(analysis: StaticAnalysis,
             violations.append((src, tgt, src_layer, tgt_layer))
 
     return violations
+
+
+# ── Canonical graph-only entry point ──────────────────────────────────────────
+# Used by health, gate-diff, pre-commit hook, archeology — any caller that
+# wants just the dependency DiGraph without class metadata. Internally
+# delegates to scan_repo() to keep import resolution + class extraction
+# identical across the product.
+
+def scan_dependency_graph(
+    base_dir: str,
+    include: Optional[List[str]] = None,
+    exclude: Optional[List[str]] = None,
+) -> nx.DiGraph:
+    """Return only the dependency graph for `base_dir`.
+
+    Identical resolution semantics as scan_repo: relative imports resolved,
+    re-exported submodules wired as edges, internal nodes carry `file=`
+    attribute. External imports become edge targets without `file=` so
+    consumers can filter via _internal_subgraph.
+    """
+    if include is None:
+        include = ["**/*.py"]
+    if exclude is None:
+        exclude = []
+    exclude = list(exclude) + [e for e in DEFAULT_EXCLUDES if e not in exclude]
+    return scan_repo(base_dir, include=include, exclude=exclude).graph

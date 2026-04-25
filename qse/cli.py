@@ -93,84 +93,8 @@ def _run_gate_diff(args) -> int:
             shutil.rmtree(tmp, ignore_errors=True)
 
     def _scan_python_dir(root: str, include: list[str], exclude: list[str]) -> nx.DiGraph:
-        import ast as _ast
-        from pathlib import Path
-        import re
-
-        def _glob_to_re(pat: str) -> str:
-            """Convert glob pattern to regex (supports **, *, ?, [...])."""
-            i, n, res = 0, len(pat), ""
-            while i < n:
-                c = pat[i]
-                if c == "*":
-                    if pat[i:i+3] == "**/":
-                        res += "(.+/)?"; i += 3; continue
-                    if pat[i:i+2] == "**":
-                        res += ".*"; i += 2; continue
-                    res += "[^/]*"
-                elif c == "?":
-                    res += "[^/]"
-                elif c == "[":
-                    j = pat.find("]", i)
-                    res += pat[i:j+1] if j != -1 else re.escape(c)
-                    i = j+1 if j != -1 else i+1; continue
-                else:
-                    res += re.escape(c)
-                i += 1
-            return res + "$"
-
-        inc_res = [re.compile(_glob_to_re(p)) for p in (include or ["**/*.py"])]
-        exc_res = [re.compile(_glob_to_re(p)) for p in (exclude or ["**/__pycache__/**"])]
-
-        def keep(rel: str) -> bool:
-            if not any(rx.match(rel) for rx in inc_res):
-                return False
-            if any(rx.match(rel) for rx in exc_res):
-                return False
-            return True
-
-        rootp = Path(root)
-        py_files = [p for p in rootp.rglob("*.py")
-                    if p.name != "__init__.py"
-                    and "__pycache__" not in str(p)
-                    and keep(str(p.relative_to(rootp)))]
-
-        nodes: dict[str, Path] = {}
-        for p in py_files:
-            rel = p.relative_to(rootp).with_suffix("")
-            mod = ".".join(rel.parts)
-            nodes[mod] = p
-
-        G = nx.DiGraph()
-        for mod in nodes:
-            G.add_node(mod, file=str(nodes[mod]))
-
-        for mod, path in nodes.items():
-            try:
-                src = path.read_text(errors="replace")
-            except OSError:
-                continue
-            try:
-                tree = _ast.parse(src)
-            except SyntaxError:
-                continue
-            pkg = ".".join(mod.split(".")[:-1])
-            for node in _ast.walk(tree):
-                if isinstance(node, _ast.ImportFrom) and node.module:
-                    dep = (node.module if node.level == 0 else (
-                        ".".join(pkg.split(".")[:max(0, len(pkg.split(".")) - node.level + 1)])
-                        + "." + node.module).lstrip("."))
-                    if dep in nodes:
-                        G.add_edge(mod, dep)
-                    for a in node.names:
-                        full = f"{dep}.{a.name}"
-                        if full in nodes:
-                            G.add_edge(mod, full)
-                elif isinstance(node, _ast.Import):
-                    for a in node.names:
-                        if a.name in nodes:
-                            G.add_edge(mod, a.name)
-        return G
+        from qse.scanner import scan_dependency_graph
+        return scan_dependency_graph(root, include=include, exclude=exclude)
 
     # Resolve refs
     def _resolve_ref(ref: str) -> str:

@@ -105,15 +105,24 @@ def compute_health(path: str, language: Optional[str] = None) -> HealthReport:
     """
     fp: Optional[str] = None
 
-    from qse.integrations.pre_commit import _scan_python_dir
-    from qse.graph_metrics import compute_agq
+    from qse.scanner import scan_repo, DEFAULT_EXCLUDES
+    from qse.graph_metrics import compute_agq, compute_lcom4
 
-    G = _scan_python_dir(path)
+    analysis = scan_repo(path, exclude=DEFAULT_EXCLUDES)
+    G = analysis.graph
     drop = [n for n in G.nodes()
             if any(p in SKIP_PARTS for p in n.split("."))]
     G.remove_nodes_from(drop)
 
-    m = compute_agq(G)
+    # Real cohesion via LCOM4 from extracted class internals (was bug:
+    # earlier path passed empty list → cohesion always 0.75 default).
+    classes_lcom4 = [
+        compute_lcom4(c.method_attrs)
+        for c in analysis.classes.values()
+        if c.method_attrs
+    ]
+    abstract = {c.name for c in analysis.classes.values() if c.is_abstract}
+    m = compute_agq(G, abstract_modules=abstract, classes_lcom4=classes_lcom4)
     metrics = {
         "agq":        m.agq_score,
         "modularity": m.modularity,
