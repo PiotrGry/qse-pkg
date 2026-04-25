@@ -1,32 +1,56 @@
 # QSE — Quality Score Engine
 
-Automatic architecture quality validator for Python codebases.
-Two-layer design: **Core AGQ** (architecture-agnostic graph metrics) + optional **DDD preset** (domain-specific detectors).
+**Algorithmic harness for AI-generated code.** A deterministic, vendor-neutral gate
+that detects architectural regressions in Python codebases — before they reach
+the repo. No AI in the enforcement path. Pure graph mathematics.
 
-## Architecture
+## Why this exists
 
-### Level 1: Core AGQ (zero-config)
+AI coding agents (Cursor, Copilot, Claude Code, raw API scripts) generate code
+at scale. The code is locally correct but globally damaging:
+- closes dependency cycles humans would notice while reading
+- creates god-files via lazy imports
+- floods codebases with isolated/dead modules
 
-Graph-based metrics computed on any Python project — no assumptions about architecture style.
+QSE sits between AI output and the codebase. Math-based. Vendor-neutral. Blocks
+structural regressions deterministically.
 
-| Metric | Algorithm | Range |
-|--------|-----------|-------|
-| **Modularity** | Louvain community detection | [0, 1] |
-| **Acyclicity** | 1 − (SCC nodes / total nodes), Tarjan | [0, 1] |
-| **Stability** | Martin DMS + abstractness detection | [0, 1] |
-| **Cohesion** | 1 − penalty(LCOM4), absolute scale | [0, 1] |
-| **Coupling variance** | Instability distribution uniformity | [0, 1] |
+## What QSE measures
 
-### Level 2: DDD Preset (opt-in via `layer_map`)
+QSE provides **architectural structural visibility** — not quality prediction.
+Metrics are deterministic, fast (46× faster than SonarQube on the same scan),
+and language-aware. Predictive validity against bug rates is under empirical
+investigation; current evidence supports structural visibility, not causal
+quality prediction.
 
-DDD-specific detectors activated when `layer_map` is configured or `domain/` directory exists.
+| Metric | What it measures | Algorithm |
+|--------|------------------|-----------|
+| **Propagation Cost (PC)** | What fraction of code a random change ripples through | CCD/n² via condensation + bitset propagation, O(n²/64) |
+| **Relative Cyclicity (RC)** | Severity of cyclic dependency groups | 100×√(Σsize²)/n |
+| **hub_score** | God-file detector: high fan-in AND fan-out | fan_in × fan_out per node |
+| **SCC count** | Cycle group count (Tarjan) | strongly connected components ≥2 |
+| **isolated_pct** | Archipelago detector: dead/disconnected modules | nodes with degree 0 |
 
-| Detector | Method | F1 (mutation study, n=900) |
-|----------|--------|---------------------------|
-| Anemic Entity | AST: class with only `__init__`, no domain methods | **1.000** |
-| Fat Service | Sigmoid: service with excessive method count | **1.000** |
-| Zombie Entity | AST symbol-map + transitive closure (v2) | **0.964** |
-| Layer Violation | Import graph: presentation → domain direct import | **0.615** |
+Source: von Zitzewitz (2022), *Software Architecture Metrics* — thresholds derived from 300+ architectural assessments.
+
+## Primary product: `qse gate-diff`
+
+Delta-based architectural CI gate. Compares dependency graphs at two git refs.
+
+```bash
+qse gate-diff --base origin/main --head HEAD
+# exit 0 = PASS, exit 1 = FAIL (violations printed), exit 2 = infra error
+```
+
+Detects:
+- New cycles (zero tolerance)
+- Propagation Cost crossing threshold
+- Relative Cyclicity exceeding threshold
+- Hub-score spikes (god-file emergence)
+- Archipelago drift (isolated modules accumulating)
+
+All checks are **delta-based** — flags regressions, not pre-existing baseline state.
+Pre-existing cycles in your codebase are tolerated; new ones are blocked.
 
 ## Installation
 
@@ -36,76 +60,56 @@ pip install git+https://github.com/PiotrGry/qse-pkg.git
 
 ## Usage
 
-### Quality gate (exits non-zero on failure)
+### CI gate (recommended primary use)
 
 ```bash
-qse gate path/to/repo --threshold 0.80 --output-json report.json
-
-# With DDD defect checks
-qse gate path/to/repo \
-  --threshold 0.80 \
-  --fail-on-defects anemic_entity,zombie_entity,layer_violation \
-  --output-json gate_report.json
-
-# TRL4 gate (QSE + constraints + ratchet)
-qse trl4 path/to/repo \
-  --config scripts/trl4_weekend_config.json \
-  --output-json trl4_gate_report.json \
-  --no-trace
+# In your GitHub Actions / GitLab CI
+qse gate-diff --base origin/main --head HEAD --output-json gate.json
 ```
 
-### Scan (report only)
+### Inspect current architecture (advisory)
 
 ```bash
-qse scan path/to/repo
-qse scan path/to/repo --format json --output-json report.json
+qse agq path/to/repo
 ```
 
-### Options
+Reports current AGQ score (modularity, acyclicity, stability, cohesion).
+Note: absolute AGQ values do not predict bug rates in current evidence.
+Use deltas via `gate-diff` for actionable signal.
 
-| Flag | Default | Description |
-|------|---------|-------------|
-| `--threshold N` | 0.80 | Minimum QSE4 score |
-| `--fail-on-defects LIST` | — | Comma-separated defect types that must be zero |
-| `--output-json FILE` | — | Write JSON report to file |
-| `--no-trace` | off | Skip dynamic tracing (faster, static only) |
-| `--config FILE` | — | JSON config with weights, layer_map, thresholds |
-
-## TRL4 Weekend Pack
-
-Integrated validation suite (constraints detection, ratchet regression block, reproducibility, benchmark snapshot):
+### Architectural boundary discovery
 
 ```bash
-python3 scripts/trl4_weekend_validation.py \
-  --config scripts/trl4_weekend_config.json \
-  --output-json artifacts/trl4/validation.json \
-  --output-md artifacts/trl4/validation.md
+qse discover path/to/repo
 ```
 
-Heavy benchmark (comparable legacy vs exp4 baseline):
+Detects natural module clusters and proposes constraints.
 
-```bash
-python3 scripts/trl4_heavy_benchmark.py \
-  --output-json artifacts/trl4/heavy_benchmark.json \
-  --output-md artifacts/trl4/heavy_benchmark.md
+## Empirical validation status
+
+| Claim | Evidence | Status |
+|-------|----------|--------|
+| Deterministic (max_score_delta < 1e-9) | `agq_thesis_oss80_v4.json` T1 | **Validated** |
+| 46× faster than SonarQube | `agq_thesis_oss80_v4.json` T4 | **Validated** |
+| Score spread = 0.548 | `agq_thesis_oss80_v4.json` T5 | **Validated** |
+| Predicts code churn hotspots | `agq_thesis_oss80_v4.json` T2 | **Falsified in v4 — under investigation** |
+| Per-language thresholds calibrated | 240-repo benchmark (Python-80, Java-79, Go-81) | **Distribution measured; predictive validity pending** |
+
+See `docs/QSE_CLAIMS_AND_EVIDENCE.md` for the full claim audit.
+
+## Architecture
+
+```
+qse/
+  graph_metrics.py          # PC, RC, AGQ components
+  scanner.py                # AST → networkx.DiGraph
+  gate/
+    gate_check.py           # delta-based gate API
+    hook_runner.py          # Claude Code PreToolUse hook (vendor-specific)
+  cli.py                    # `qse gate-diff`, `qse agq`, `qse discover`
 ```
 
-## GitHub Actions
-
-```yaml
-- name: Install QSE
-  run: pip install git+https://github.com/PiotrGry/qse-pkg.git
-
-- name: QSE gate
-  run: qse gate src/ --threshold 0.80 --output-json qse_report.json --no-trace
-```
-
-## Empirical validation (TRL 3)
-
-- **EXP1**: Smoke test on 5 OSS repos (httpx, fastapi, black, flask, pyjwt) — all produce valid AGQ scores
-- **EXP2**: Mutation testing — 4/4 mutations detected (cycle, cross-module, god class, spaghetti)
-- **EXP3**: Sensitivity analysis — 10 synthetic repos, monotonic AGQ degradation (std 0.11–0.43)
-- **EXP4**: Constraints engine — forbidden edges with glob matching, 4/4 scenarios pass
+Rust core (`qse-core/`) provides 7-46× faster scanning for Python, Java, Go.
 
 ## License
 

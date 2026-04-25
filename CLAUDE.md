@@ -1,33 +1,39 @@
 # QSE-PKG
 
-Quality Score Engine — dwuwarstwowy silnik jakości architektonicznej dla Pythona.
+**Algorytmiczny harness dla kodu generowanego przez AI.** Deterministyczny,
+vendor-neutralny gate który wykrywa regresje architektoniczne — przed mergem.
+Bez AI w ścieżce decyzyjnej. Czysta matematyka grafów.
+
+## Pozycjonowanie (soft pivot, kwiecień 2026)
+
+QSE dostarcza **architectural structural visibility**, nie predykcję jakości.
+Metryki są deterministyczne, szybkie (46× szybsze niż SonarQube), language-aware.
+Predykcyjna wartość względem bug rates jest pod empiryczną weryfikacją —
+obecne dane wspierają strukturalną widoczność, nie kauzalną predykcję jakości.
+
+Patrz: `docs/QSE_CLAIMS_AND_EVIDENCE.md` dla pełnego claim auditu.
 
 ## Architektura
 
 ```
 qse/                          # Core (architecture-agnostic)
-  scanner.py                  # AST parser: klasy, importy, abstrakcyjność
-  graph_metrics.py            # AGQ: Modularity, Acyclicity, Stability, Cohesion
-  hybrid_graph.py             # Merge static + dynamic edges
-  tracer.py                   # Dynamic tracing via sys.settrace
+  graph_metrics.py            # PC, RC, AGQ components, hub_score
+  gate/
+    gate_check.py             # delta-based gate API (PRIMARY PRODUCT)
+    hook_runner.py            # Claude Code PreToolUse hook (vendor-specific)
+  scanner.py                  # AST → networkx.DiGraph
+  cli.py                      # qse gate-diff / qse agq / qse discover
+  agq_enhanced.py             # AGQ-z, AGQ-adj, fingerprints, churn risk
+  discover.py                 # Boundary discovery
   test_quality.py             # QSE_test: assertion density, naming, isolation
-  cli.py                      # CLI entry point (qse scan / qse gate)
 
-qse/presets/ddd/              # DDD Extension (opt-in via layer_map)
-  detectors.py                # anemic, fat, zombie, layer violation
-  symbol_map.py               # Zombie v2 (AST symbol map, F1=0.964)
-  metrics.py                  # S, T_ddd, G, E, Risk
-  aggregator.py               # QSE_total weighted sum
-  calibrator.py               # Weight calibration (L-BFGS-B + LOO-CV)
-  pipeline.py                 # scan → trace → graph → metrics → defects
-  gate.py                     # Quality gate with feedback prompts
-  config.py                   # QSEConfig with layer_map
-  report.py                   # JSON/table formatters
-  generate_loop.py            # LLM code generation loop with gate
+qse/presets/ddd/              # DDD Extension (opt-in, legacy)
 ```
 
+Rust core (`qse-core/`): 7-46× szybsze skanowanie (Python, Java, Go).
+
 Pakiet: `pip install git+https://github.com/PiotrGry/qse-pkg.git`
-CLI: `qse gate <path> --threshold 0.80 --config qse.json --output-json report.json`
+CLI: `qse gate-diff --base origin/main --head HEAD`
 
 ---
 
