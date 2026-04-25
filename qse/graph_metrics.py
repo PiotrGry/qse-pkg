@@ -39,6 +39,9 @@ class AGQMetrics:
     modularity_directed: Optional[float] = None  # §1.2 recenzja 2026-04-16: Leicht-Newman
                                                  # directed modularity; Louvain partition on
                                                  # undirected projection, scored with directed Q.
+    propagation_cost: Optional[float] = None    # PC = CCD/n² ∈ [0,1]. Thresholds (von Zitzewitz):
+                                                 # >0.20 concerning (500≤n<5000), >0.10 (n≥5000)
+    relative_cyclicity: Optional[float] = None  # 100×√(Σsize²)/n. Threshold: >4% = fail
 
     @property
     def agq_score(self) -> float:
@@ -118,6 +121,89 @@ class AGQMetrics:
 
 
 # ---------------------------------------------------------------------------
+# Propagation Cost & Relative Cyclicity (von Zitzewitz / Sonargraph metrics)
+# ---------------------------------------------------------------------------
+
+def _internal_subgraph(G: nx.DiGraph) -> nx.DiGraph:
+    """Return subgraph restricted to internal nodes (those with a 'file' attribute).
+
+    The scanner attaches file= to internal modules but not to external/stdlib
+    imports. Running PC/RC on the full graph inflates n and skews thresholds.
+    Falls back to the full graph when no node carries file metadata (e.g. tests
+    that build graphs manually without node attributes).
+    """
+    internal = [n for n, d in G.nodes(data=True) if d.get("file")]
+    return G.subgraph(internal) if internal else G
+
+
+def compute_propagation_cost(G: nx.DiGraph) -> float:
+    """PC = CCD / n²  where CCD = Σ |reachable(v) ∪ {v}| for all v.
+
+    Operates on internal nodes only (nodes with 'file' attribute) to match the
+    Sonargraph definition and avoid stdlib/third-party inflation.
+    Thresholds from 300+ architectural assessments (von Zitzewitz 2022):
+      n < 500  : informational only
+      500≤n<5000: >0.20 concerning
+      n ≥ 5000 : >0.10 concerning
+
+    Algorithm: condensation + integer bitset propagation — O(n²/64) time and
+    space, ~64× faster than the naive O(n²) BFS-per-node approach.
+    Steps:
+      1. Condense SCCs into a DAG (each SCC = one super-node).
+      2. Assign each original node a bit index.
+      3. In reverse topological order, OR-propagate reachability bitsets
+         down the condensation DAG.
+      4. CCD = sum of popcount(bitset) for all nodes.
+    """
+    SG = _internal_subgraph(G)
+    n = SG.number_of_nodes()
+    if n == 0:
+        return 0.0
+
+    nodes = list(SG.nodes())
+    idx = {v: i for i, v in enumerate(nodes)}
+
+    cond = nx.condensation(SG)
+    scc_members = {s: cond.nodes[s]["members"] for s in cond.nodes()}
+    node_to_scc = {v: s for s, ms in scc_members.items() for v in ms}
+
+    # Initialise each SCC with a bitmask of its own member nodes.
+    reach: dict[int, int] = {}
+    for s, ms in scc_members.items():
+        mask = 0
+        for v in ms:
+            mask |= 1 << idx[v]
+        reach[s] = mask
+
+    # Propagate reachability from successors to predecessors (reverse topo order).
+    for s in reversed(list(nx.topological_sort(cond))):
+        for succ in cond.successors(s):
+            reach[s] |= reach[succ]
+
+    ccd = sum(bin(reach[node_to_scc[v]]).count("1") for v in nodes)
+    return ccd / (n * n)
+
+
+def compute_relative_cyclicity(G: nx.DiGraph) -> float:
+    """Relative Cyclicity = 100 × √(Σ size²) / n  (percent).
+
+    Operates on internal nodes only. Counts both multi-node SCCs and self-loops
+    (a module importing itself) as cycles, consistent with gate/rules.py.
+    Threshold (zero-tolerance): >4% for packages = fail.
+    Apache Cassandra went 450→900→1300 nodes in cycle groups over 3 years.
+    """
+    SG = _internal_subgraph(G)
+    n = SG.number_of_nodes()
+    if n == 0:
+        return 0.0
+    scc_sum = sum(
+        len(scc) ** 2
+        for scc in nx.strongly_connected_components(SG)
+        if len(scc) >= 2 or any(SG.has_edge(v, v) for v in scc)
+    )
+    return 100.0 * (scc_sum ** 0.5) / n
+
+
 # Modularity - Newman's Q via Louvain
 # ---------------------------------------------------------------------------
 
@@ -1034,9 +1120,13 @@ def compute_agq(G: nx.DiGraph,
     raw_ratio = (n_edges / n_nodes) if n_nodes > 0 else 0.0
     cd = max(0.0, 1.0 - min(raw_ratio / CD_REF, 1.0))
 
+    pc = compute_propagation_cost(G)
+    rc = compute_relative_cyclicity(G)
+
     m = AGQMetrics(modularity=mod, acyclicity=acy, stability=stab, cohesion=coh,
                    coupling_density=cd, stability_dag=stab_dag,
-                   modularity_directed=mod_dir)
+                   modularity_directed=mod_dir,
+                   propagation_cost=pc, relative_cyclicity=rc)
     m._weights = w  # used by agq_score property if present
     m._weights_v2 = (0.20, 0.20, 0.35, 0.05, 0.20)  # AGQ v2 weights
     m._raw_ratio = raw_ratio  # store for diagnostics
