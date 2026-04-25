@@ -54,6 +54,179 @@ def _detect_repo_language(path: str) -> str:
     return max(counts, key=counts.get) if any(counts.values()) else "py"
 
 
+# ── qse gate-diff ──────────────────────────────────────────────────────────────
+
+def _run_gate_diff(args) -> int:
+    """Delta-based architectural gate: compare HEAD vs base ref.
+
+    Builds the dependency graph at two git refs and runs gate_check().
+    Exit 0 = clean. Exit 1 = violations found. Exit 2 = infrastructure error.
+    """
+    import os
+    import shutil
+    import subprocess
+    import tempfile
+    import networkx as nx
+    from qse.gate.gate_check import gate_check
+
+    repo = os.path.abspath(args.path)
+
+    def _checkout_and_scan(ref: str) -> nx.DiGraph:
+        """Checkout ref into a temp dir and scan Python files."""
+        tmp = tempfile.mkdtemp(prefix="qse-gate-diff-")
+        try:
+            subprocess.run(
+                ["git", "archive", ref, "--format=tar"],
+                cwd=repo, check=True,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            )
+            result = subprocess.run(
+                ["git", "archive", ref, "--format=tar"],
+                cwd=repo, capture_output=True, check=True,
+            )
+            import tarfile, io
+            with tarfile.open(fileobj=io.BytesIO(result.stdout)) as tar:
+                tar.extractall(tmp)
+            return _scan_python_dir(tmp, args.include, args.exclude)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def _scan_python_dir(root: str, include: list[str], exclude: list[str]) -> nx.DiGraph:
+        import ast as _ast
+        from pathlib import Path
+        import re
+
+        def _glob_to_re(pat: str) -> str:
+            """Convert glob pattern to regex (supports **, *, ?, [...])."""
+            i, n, res = 0, len(pat), ""
+            while i < n:
+                c = pat[i]
+                if c == "*":
+                    if pat[i:i+3] == "**/":
+                        res += "(.+/)?"; i += 3; continue
+                    if pat[i:i+2] == "**":
+                        res += ".*"; i += 2; continue
+                    res += "[^/]*"
+                elif c == "?":
+                    res += "[^/]"
+                elif c == "[":
+                    j = pat.find("]", i)
+                    res += pat[i:j+1] if j != -1 else re.escape(c)
+                    i = j+1 if j != -1 else i+1; continue
+                else:
+                    res += re.escape(c)
+                i += 1
+            return res + "$"
+
+        inc_res = [re.compile(_glob_to_re(p)) for p in (include or ["**/*.py"])]
+        exc_res = [re.compile(_glob_to_re(p)) for p in (exclude or ["**/__pycache__/**"])]
+
+        def keep(rel: str) -> bool:
+            if not any(rx.match(rel) for rx in inc_res):
+                return False
+            if any(rx.match(rel) for rx in exc_res):
+                return False
+            return True
+
+        rootp = Path(root)
+        py_files = [p for p in rootp.rglob("*.py")
+                    if p.name != "__init__.py"
+                    and "__pycache__" not in str(p)
+                    and keep(str(p.relative_to(rootp)))]
+
+        nodes: dict[str, Path] = {}
+        for p in py_files:
+            rel = p.relative_to(rootp).with_suffix("")
+            mod = ".".join(rel.parts)
+            nodes[mod] = p
+
+        G = nx.DiGraph()
+        for mod in nodes:
+            G.add_node(mod, file=str(nodes[mod]))
+
+        for mod, path in nodes.items():
+            try:
+                src = path.read_text(errors="replace")
+            except OSError:
+                continue
+            try:
+                tree = _ast.parse(src)
+            except SyntaxError:
+                continue
+            pkg = ".".join(mod.split(".")[:-1])
+            for node in _ast.walk(tree):
+                if isinstance(node, _ast.ImportFrom) and node.module:
+                    dep = (node.module if node.level == 0 else (
+                        ".".join(pkg.split(".")[:max(0, len(pkg.split(".")) - node.level + 1)])
+                        + "." + node.module).lstrip("."))
+                    if dep in nodes:
+                        G.add_edge(mod, dep)
+                    for a in node.names:
+                        full = f"{dep}.{a.name}"
+                        if full in nodes:
+                            G.add_edge(mod, full)
+                elif isinstance(node, _ast.Import):
+                    for a in node.names:
+                        if a.name in nodes:
+                            G.add_edge(mod, a.name)
+        return G
+
+    # Resolve refs
+    def _resolve_ref(ref: str) -> str:
+        r = subprocess.run(
+            ["git", "rev-parse", "--verify", ref],
+            cwd=repo, capture_output=True, text=True,
+        )
+        if r.returncode != 0:
+            print(f"qse gate-diff: cannot resolve ref '{ref}'", file=sys.stderr)
+            sys.exit(2)
+        return r.stdout.strip()
+
+    base_ref = _resolve_ref(args.base)
+    head_ref = _resolve_ref(args.head)
+
+    if not args.quiet:
+        print(f"qse gate-diff: scanning {base_ref[:8]}..{head_ref[:8]}", file=sys.stderr)
+
+    try:
+        G_before = _checkout_and_scan(base_ref)
+        G_after  = _checkout_and_scan(head_ref)
+    except subprocess.CalledProcessError as e:
+        print(f"qse gate-diff: git error — {e}", file=sys.stderr)
+        return 2
+
+    result = gate_check(
+        G_before, G_after,
+        pc_fail=args.pc_fail,
+        pc_delta_fail=args.pc_delta,
+        rc_fail=args.rc_fail,
+        hub_spike_factor=args.hub_spike,
+    )
+
+    if args.output_json:
+        import json as _json
+        out = {
+            "passed": result.passed,
+            "violations": result.violations,
+            "metrics_before": result.metrics_before,
+            "metrics_after": result.metrics_after,
+            "base": base_ref,
+            "head": head_ref,
+        }
+        with open(args.output_json, "w") as f:
+            _json.dump(out, f, indent=2)
+
+    if result.passed:
+        if not args.quiet:
+            print("qse gate-diff: PASS — no architectural regressions detected.")
+        return 0
+    else:
+        print("qse gate-diff: FAIL")
+        for v in result.violations:
+            print(f"  {v}")
+        return 1
+
+
 # ── qse agq ────────────────────────────────────────────────────────────────────
 
 def _run_agq(args) -> None:
@@ -283,6 +456,34 @@ def main() -> None:
                      metavar="W1,W2,W3,W4",
                      help="Custom weights for mod,acy,stab,coh (auto-normalized).")
 
+    # qse gate-diff — delta-based architectural gate (CI use)
+    gd = sub.add_parser(
+        "gate-diff",
+        help="Delta-based architectural gate: compare two git refs for regressions.",
+    )
+    gd.add_argument("path", nargs="?", default=".",
+                    help="Repo root (default: current directory).")
+    gd.add_argument("--base", default="HEAD~1", metavar="REF",
+                    help="Base git ref (default: HEAD~1).")
+    gd.add_argument("--head", default="HEAD", metavar="REF",
+                    help="Head git ref (default: HEAD).")
+    gd.add_argument("--include", nargs="*", default=None, metavar="GLOB",
+                    help="File globs to include (default: **/*.py).")
+    gd.add_argument("--exclude", nargs="*", default=None, metavar="GLOB",
+                    help="File globs to exclude.")
+    gd.add_argument("--pc-fail", type=float, default=0.20, metavar="N",
+                    help="Propagation Cost threshold (default: 0.20).")
+    gd.add_argument("--pc-delta", type=float, default=0.05, metavar="N",
+                    help="Max allowed PC increase per commit (default: 0.05).")
+    gd.add_argument("--rc-fail", type=float, default=4.0, metavar="N",
+                    help="Relative Cyclicity threshold %% (default: 4.0).")
+    gd.add_argument("--hub-spike", type=float, default=3.0, metavar="N",
+                    help="Max hub_score growth factor (default: 3.0x).")
+    gd.add_argument("--output-json", type=str, default=None, metavar="FILE",
+                    help="Write gate result to JSON file.")
+    gd.add_argument("--quiet", action="store_true",
+                    help="Suppress informational output (violations still printed).")
+
     # qse discover — boundary discovery
     disc = sub.add_parser("discover",
                           help="Auto-discover architectural boundaries and propose constraints.")
@@ -300,8 +501,9 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.command == "gate":
-        # Forward everything after "gate" to the runner.
         sys.exit(_run_gate(args, args.gate_args))
+    if args.command == "gate-diff":
+        sys.exit(_run_gate_diff(args))
     if args.command == "agq":
         _run_agq(args)
         return
