@@ -215,3 +215,57 @@ class TestGateCheck:
         r = gate_check(before, after, rc_fail=200.0)
         assert not r.passed
         assert any("CYCLE" in v for v in r.violations)
+
+
+class TestLanguagePresets:
+    """Per-language threshold presets (calibrated from 240-repo benchmark)."""
+
+    def _dag(self, n=6):
+        g = nx.DiGraph()
+        for i in range(n - 1):
+            g.add_edge(f"m{i}", f"m{i+1}")
+        return g
+
+    def test_python_default(self):
+        from qse.gate.gate_check import get_thresholds
+        t = get_thresholds("python")
+        assert t["pc_fail"] == 0.20
+        assert t["rc_fail"] == 4.0
+
+    def test_java_higher_rc_tolerance(self):
+        from qse.gate.gate_check import get_thresholds
+        t = get_thresholds("java")
+        assert t["rc_fail"] == 10.0   # Java culturally more cyclic
+        assert t["pc_fail"] == 0.25
+
+    def test_go_stricter_rc(self):
+        from qse.gate.gate_check import get_thresholds
+        t = get_thresholds("go")
+        assert t["rc_fail"] == 2.0    # Go discourages cycles
+        assert t["pc_fail"] == 0.18
+
+    def test_unknown_language_falls_back_to_python(self):
+        from qse.gate.gate_check import get_thresholds
+        t = get_thresholds("rust")
+        assert t == get_thresholds("python")
+
+    def test_language_param_passes_through(self):
+        # Same DAG, language doesn't change PASS verdict for clean diff
+        g = self._dag()
+        for lang in ["python", "java", "go"]:
+            r = gate_check(g, g, language=lang)
+            assert r.passed, f"clean diff failed under {lang} preset"
+
+    def test_explicit_override_beats_language_preset(self):
+        before = self._dag()
+        after = before.copy()
+        after.add_edge("m5", "m0")  # creates cycle
+        # Java preset has rc_fail=10, but explicit override forces strict 1%
+        r = gate_check(before, after, language="java", rc_fail=1.0)
+        # Should still fail — cycle violations always fire regardless of rc
+        assert not r.passed
+
+    def test_case_insensitive_language(self):
+        from qse.gate.gate_check import get_thresholds
+        assert get_thresholds("Python") == get_thresholds("python")
+        assert get_thresholds("JAVA") == get_thresholds("java")

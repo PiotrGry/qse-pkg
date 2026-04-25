@@ -197,6 +197,7 @@ def _run_gate_diff(args) -> int:
 
     result = gate_check(
         G_before, G_after,
+        language=args.language,
         pc_fail=args.pc_fail,
         pc_delta_fail=args.pc_delta,
         rc_fail=args.rc_fail,
@@ -463,6 +464,8 @@ def main() -> None:
     )
     gd.add_argument("path", nargs="?", default=".",
                     help="Repo root (default: current directory).")
+    gd.add_argument("--language", default="python", choices=["python", "java", "go"],
+                    help="Language preset for thresholds (default: python).")
     gd.add_argument("--base", default="HEAD~1", metavar="REF",
                     help="Base git ref (default: HEAD~1).")
     gd.add_argument("--head", default="HEAD", metavar="REF",
@@ -471,14 +474,14 @@ def main() -> None:
                     help="File globs to include (default: **/*.py).")
     gd.add_argument("--exclude", nargs="*", default=None, metavar="GLOB",
                     help="File globs to exclude.")
-    gd.add_argument("--pc-fail", type=float, default=0.20, metavar="N",
-                    help="Propagation Cost threshold (default: 0.20).")
-    gd.add_argument("--pc-delta", type=float, default=0.05, metavar="N",
-                    help="Max allowed PC increase per commit (default: 0.05).")
-    gd.add_argument("--rc-fail", type=float, default=4.0, metavar="N",
-                    help="Relative Cyclicity threshold %% (default: 4.0).")
-    gd.add_argument("--hub-spike", type=float, default=3.0, metavar="N",
-                    help="Max hub_score growth factor (default: 3.0x).")
+    gd.add_argument("--pc-fail", type=float, default=None, metavar="N",
+                    help="Propagation Cost threshold (overrides language preset).")
+    gd.add_argument("--pc-delta", type=float, default=None, metavar="N",
+                    help="Max allowed PC increase per commit (overrides language preset).")
+    gd.add_argument("--rc-fail", type=float, default=None, metavar="N",
+                    help="Relative Cyclicity threshold %% (overrides language preset).")
+    gd.add_argument("--hub-spike", type=float, default=None, metavar="N",
+                    help="Max hub_score growth factor (overrides language preset).")
     gd.add_argument("--output-json", type=str, default=None, metavar="FILE",
                     help="Write gate result to JSON file.")
     gd.add_argument("--quiet", action="store_true",

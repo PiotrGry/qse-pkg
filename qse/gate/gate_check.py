@@ -30,7 +30,7 @@ from qse.graph_metrics import (
     compute_relative_cyclicity,
 )
 
-# ── Thresholds ────────────────────────────────────────────────────────────────
+# ── Thresholds (defaults; per-language overrides in LANG_THRESHOLDS) ──────────
 
 # PC: absolute cap — if after-PC exceeds this, fail regardless of delta
 PC_FAIL = 0.20          # von Zitzewitz: concerning for 500≤n<5000
@@ -48,6 +48,52 @@ HUB_MIN_SCORE = 10      # absolute floor — hubs below this are ignored (small 
 
 # ISOLATED: percentage-point increase in isolated nodes that triggers warning
 ISOLATED_DELTA = 5.0    # % of total nodes
+
+
+# ── Per-language thresholds ───────────────────────────────────────────────────
+# Calibrated from artifacts/benchmark/agq_240_{python,java,go}80.json (Apr 2026):
+#   Python: p90 of (1-acyclicity) = 0%   — most repos cycle-free, strict RC=4%
+#   Java:   p90 of (1-acyclicity) = 8.8% — culturally cyclic (frameworks), RC=10%
+#   Go:     p90 of (1-acyclicity) = 0%   — Go discourages cycles, even stricter RC=2%
+# E/N (edges/nodes) p75 per language: python=3.46, java=4.73, go=4.83 — Java/Go
+# tolerate higher PC. PC defaults preserve von Zitzewitz threshold for Python (0.20)
+# and adjust ±0.05 for Java/Go based on coupling-density distribution.
+#
+# IMPORTANT: these are starting points from STRUCTURAL distribution. Predictive
+# validity (PC/RC vs bugs) is under empirical investigation. Use deltas, not
+# absolute thresholds, for actionable signals.
+
+LANG_THRESHOLDS: dict[str, dict[str, float]] = {
+    "python": {
+        "pc_fail":           0.20,
+        "pc_delta_fail":     0.05,
+        "rc_fail":           4.0,
+        "hub_spike_factor":  3.0,
+        "hub_min_score":     10,
+        "isolated_delta":    5.0,
+    },
+    "java": {
+        "pc_fail":           0.25,   # Java has denser coupling culturally
+        "pc_delta_fail":     0.05,
+        "rc_fail":           10.0,   # 71% of Java OSS has some cycles
+        "hub_spike_factor":  3.0,
+        "hub_min_score":     10,
+        "isolated_delta":    5.0,
+    },
+    "go": {
+        "pc_fail":           0.18,   # Go encourages flatter dep trees
+        "pc_delta_fail":     0.05,
+        "rc_fail":           2.0,    # Go culturally cycle-free; even small RC alarming
+        "hub_spike_factor":  3.0,
+        "hub_min_score":     10,
+        "isolated_delta":    5.0,
+    },
+}
+
+
+def get_thresholds(language: str = "python") -> dict[str, float]:
+    """Return threshold dict for a given language; falls back to python."""
+    return LANG_THRESHOLDS.get(language.lower(), LANG_THRESHOLDS["python"])
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -109,23 +155,34 @@ def _snapshot(G: nx.DiGraph) -> dict:
 def gate_check(
     G_before: nx.DiGraph,
     G_after: nx.DiGraph,
-    pc_fail: float = PC_FAIL,
-    pc_delta_fail: float = PC_DELTA_FAIL,
-    rc_fail: float = RC_FAIL,
-    hub_spike_factor: float = HUB_SPIKE_FACTOR,
-    hub_min_score: int = HUB_MIN_SCORE,
-    isolated_delta: float = ISOLATED_DELTA,
+    language: str = "python",
+    pc_fail: Optional[float] = None,
+    pc_delta_fail: Optional[float] = None,
+    rc_fail: Optional[float] = None,
+    hub_spike_factor: Optional[float] = None,
+    hub_min_score: Optional[int] = None,
+    isolated_delta: Optional[float] = None,
 ) -> GateResult:
     """Compare two dependency graphs and return architectural violations.
 
     Args:
         G_before: graph before the proposed change (e.g. HEAD~1)
         G_after:  graph after the proposed change (e.g. HEAD)
-        Remaining args override default thresholds.
+        language: 'python' (default), 'java', or 'go' — selects threshold preset.
+        Remaining args override individual thresholds (None = use language preset).
 
     Returns:
         GateResult with passed=True if no violations, else list of strings.
     """
+    # Resolve thresholds: explicit args > language preset > module defaults
+    presets = get_thresholds(language)
+    pc_fail          = pc_fail          if pc_fail          is not None else presets["pc_fail"]
+    pc_delta_fail    = pc_delta_fail    if pc_delta_fail    is not None else presets["pc_delta_fail"]
+    rc_fail          = rc_fail          if rc_fail          is not None else presets["rc_fail"]
+    hub_spike_factor = hub_spike_factor if hub_spike_factor is not None else presets["hub_spike_factor"]
+    hub_min_score    = hub_min_score    if hub_min_score    is not None else int(presets["hub_min_score"])
+    isolated_delta   = isolated_delta   if isolated_delta   is not None else presets["isolated_delta"]
+
     before = _snapshot(G_before)
     after  = _snapshot(G_after)
     violations: list[str] = []
