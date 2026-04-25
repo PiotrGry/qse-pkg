@@ -85,6 +85,42 @@ qse discover path/to/repo
 
 Detects natural module clusters and proposes constraints.
 
+### Architectural hotspots (the moat)
+
+```bash
+qse hotspot path/to/repo --since "1 year ago" --top 10
+```
+
+Hybrid metric: **git churn × structural centrality**. Files high on both
+axes are where bugs happen and refactors hurt. Score is the product
+(both normalized to [0,1]) so files high on only one axis score low —
+only the overlap matters.
+
+| Tool | Behavioral signal | Structural signal |
+|---|---|---|
+| SonarQube | ✗ | ✓ (size, complexity) |
+| CodeScene (Tornhill) | ✓ (churn × LOC) | ✗ |
+| **QSE hotspot** | **✓** | **✓ (graph centrality)** |
+
+Output ranks files by combined score and explains the math. Wire into
+`qse health --include-hotspots` to cross-reference with the structural
+fingerprint (TANGLED + hotspot → "untangle FIRST", LOW_COHESION + hotspot
+→ "split by responsibility", etc.). Wire into `qse gate-diff
+--check-hotspots` so PRs that touch hotspots AND introduce architectural
+violations get an elevated-risk banner in CI.
+
+### Long-running refactors
+
+```bash
+qse gate-diff --base origin/main --head HEAD \
+              --migration-baseline <commit-where-refactor-started>
+```
+
+Three-reference policy: HEAD evaluated vs `main` AND vs the migration
+start. Tolerates "in-migration" intermediate states (HEAD worse than
+main but better than migration baseline → PASS) without losing strict
+mode for true regressions (HEAD worse than both → FAIL).
+
 ## Empirical validation status
 
 | Claim | Evidence | Status |
