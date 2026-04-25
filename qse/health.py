@@ -45,6 +45,7 @@ class HealthReport:
     top_hubs: list[tuple[str, int]]
     top_isolated_clusters: int
     components: dict              # individual percentiles
+    hotspots: list = None         # list[HotspotEntry] when --include-hotspots set
 
 
 def _load_bench(language: str) -> Optional[list[dict]]:
@@ -97,11 +98,20 @@ SKIP_PARTS = {"artifacts", "_vendor", "vendor", "build", "dist",
               ".claude", ".gstack", ".pytest_cache"}
 
 
-def compute_health(path: str, language: Optional[str] = None) -> HealthReport:
+def compute_health(
+    path: str,
+    language: Optional[str] = None,
+    include_hotspots: bool = False,
+    hotspot_since: str = "1 year ago",
+    hotspot_top: int = 5,
+) -> HealthReport:
     """Compute health snapshot. Python AST scanner + AGQ computation.
 
     Filters vendored / cloned / build paths from the graph so the report
     reflects the real source tree.
+
+    include_hotspots: if True, also compute top-N architectural hotspots
+    (churn × structural centrality). Adds ~2-5s on a typical repo.
     """
     fp: Optional[str] = None
 
@@ -161,7 +171,7 @@ def compute_health(path: str, language: Optional[str] = None) -> HealthReport:
     except Exception:
         fp = None
 
-    return HealthReport(
+    report = HealthReport(
         path=path,
         language=lang,
         nodes=metrics["nodes"],
@@ -180,6 +190,14 @@ def compute_health(path: str, language: Optional[str] = None) -> HealthReport:
         top_isolated_clusters=int(_isolated_pct(G) / 100 * G.number_of_nodes()),
         components=components,
     )
+    if include_hotspots:
+        try:
+            from qse.hotspot import compute_change_frequency, compute_hotspot_score
+            freq = compute_change_frequency(path, since=hotspot_since)
+            report.hotspots = compute_hotspot_score(G, freq)[:hotspot_top]
+        except Exception:
+            report.hotspots = []
+    return report
 
 
 def trend(path: str, n_commits: int = 200, step: int = 20,
@@ -275,6 +293,20 @@ def render_text(rep: HealthReport,
     if flags:
         out.append("Flags:")
         out.extend(flags)
+        out.append("")
+
+    if rep.hotspots:
+        out.append(f"Architectural Hotspots (churn × centrality, top {len(rep.hotspots)}):")
+        out.append(f"  {'score':<7} {'freq':<5} {'cen':<6} module")
+        for h in rep.hotspots:
+            out.append(f"  {h.score:.3f}   {h.frequency:<5} "
+                       f"{h.centrality:.3f}  {h.module}")
+        # Cross-reference: any hotspot with bad fingerprint?
+        if rep.fingerprint in ("TANGLED", "LOW_COHESION", "CYCLIC"):
+            top_hot = rep.hotspots[0]
+            out.append(f"  🔥 hot mess: top hotspot {top_hot.module} sits in a "
+                       f"{rep.fingerprint} architecture — high-churn AND "
+                       "structurally compromised. Refactor priority #1.")
         out.append("")
 
     if trend_data:

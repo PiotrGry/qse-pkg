@@ -635,7 +635,11 @@ def _run_health(args) -> None:
     import dataclasses
     from qse.health import compute_health, render_text, trend
 
-    rep = compute_health(args.path, language=args.language)
+    rep = compute_health(
+        args.path, language=args.language,
+        include_hotspots=args.include_hotspots,
+        hotspot_since=args.hotspot_since,
+    )
     trend_data = None
     if args.trend > 0:
         trend_data = trend(args.path, n_commits=args.trend,
@@ -858,6 +862,13 @@ def main() -> None:
                         help="Emit JSON instead of human-readable text.")
     health.add_argument("--output", type=str, default=None, metavar="FILE",
                         help="Write report to FILE.")
+    health.add_argument("--include-hotspots", action="store_true",
+                        help="Compute architectural hotspots (churn × "
+                             "centrality) and surface top 5 in the report.")
+    health.add_argument("--hotspot-since", default="1 year ago",
+                        metavar="DATE",
+                        help="Time window for hotspot churn (default: "
+                             "'1 year ago'). Honored only with --include-hotspots.")
 
     # qse hotspot — hybrid behavioral × structural ranking
     hot = sub.add_parser(
