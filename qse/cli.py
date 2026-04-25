@@ -244,6 +244,37 @@ def _run_gate_diff(args) -> int:
             print()
         for v in result.violations:
             print(f"  {v}")
+
+        # Hotspot escalation: if any of the changed files in this diff are
+        # ranked hotspots (high churn × high centrality), surface that —
+        # changes to hot files deserve more scrutiny than the violation
+        # alone implies.
+        if args.check_hotspots:
+            try:
+                changed = subprocess.run(
+                    ["git", "diff", "--name-only", base_ref, head_ref],
+                    cwd=repo, capture_output=True, text=True, check=True,
+                ).stdout.splitlines()
+                changed_py = {p for p in changed if p.endswith(".py")}
+                if changed_py:
+                    from qse.hotspot import find_hotspots
+                    hs = find_hotspots(repo, since=args.hotspot_since, top=20)
+                    hot_files = {h.file for h in hs}
+                    overlap = changed_py & hot_files
+                    if overlap:
+                        print()
+                        print("  🔥 HOTSPOT alert: this PR touches files that "
+                              "are top-20 architectural hotspots —")
+                        print("      changes here have outsized impact.")
+                        for f in sorted(overlap):
+                            entry = next(h for h in hs if h.file == f)
+                            print(f"      • {f}  (rank {hs.index(entry)+1}, "
+                                  f"churn={entry.frequency}, "
+                                  f"centrality={entry.centrality:.3f})")
+                        print("      Consider extra reviewers. The violation "
+                              "above + hotspot status = elevated risk.")
+            except Exception:
+                pass  # hotspot check is supplementary; never block gate
         return 1
 
 
@@ -799,6 +830,13 @@ def main() -> None:
                     help="Relative Cyclicity threshold %% (overrides language preset).")
     gd.add_argument("--hub-spike", type=float, default=None, metavar="N",
                     help="Max hub_score growth factor (overrides language preset).")
+    gd.add_argument("--check-hotspots", action="store_true",
+                    help="On FAIL, additionally report whether changed files "
+                         "are architectural hotspots (churn × centrality). "
+                         "Slightly slower but useful for risk-aware CI gates.")
+    gd.add_argument("--hotspot-since", default="1 year ago",
+                    metavar="DATE",
+                    help="Time window for --check-hotspots churn calc.")
     gd.add_argument("--migration-baseline", default=None, metavar="REF",
                     help="Long-running refactor mode: tolerate regressions vs "
                          "base (e.g. main) IF HEAD is still better than this "

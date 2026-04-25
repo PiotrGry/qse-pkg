@@ -246,6 +246,54 @@ def trend(path: str, n_commits: int = 200, step: int = 20,
     return list(reversed(out))  # oldest first
 
 
+def _hotspot_explanation(fingerprint, top_hotspot) -> str:
+    """Architecture-specific reasoning for the highest-ranked hotspot.
+
+    The fingerprint tells us the structural class of the repo; combining
+    that with "this file is the most-churned + most-central" produces
+    actionable advice — the kind a senior eng would write in a code
+    review when they see the same file appear in 3 PRs in a week.
+    """
+    mod = top_hotspot.module
+    if not fingerprint:
+        return ""
+    fp = fingerprint.upper()
+    if fp == "TANGLED":
+        return (f"  🔥 TANGLED + hotspot: '{mod}' churns frequently inside "
+                "a tangled architecture. Every change risks breaking unrelated\n"
+                "      parts due to high coupling. Untangle the surrounding "
+                "module graph BEFORE further work on this file —\n"
+                "      otherwise each refactor introduces new regressions.")
+    if fp == "LOW_COHESION":
+        return (f"  🔥 LOW_COHESION + hotspot: '{mod}' is doing too many things "
+                "AND changes constantly. This is the classic\n"
+                "      'utility module that ate the codebase' pattern. Split by "
+                "responsibility — let multiple teams own slices in parallel.")
+    if fp == "CYCLIC":
+        return (f"  🔥 CYCLIC + hotspot: '{mod}' churns inside an import cycle. "
+                "Bisecting bugs here is hard because cycle\n"
+                "      members get tested as one unit. Break the cycle "
+                "(extract shared interface to a new module) — then the\n"
+                "      hotspot becomes much safer to keep churning.")
+    if fp == "LAYERED":
+        return (f"  ✓ LAYERED + hotspot: '{mod}' is high-churn but the overall "
+                "architecture is well-structured. Normal evolution\n"
+                "      of a healthy codebase — no action needed unless you "
+                "see test failures correlating with the churn.")
+    if fp in ("CLEAN", "MODERATE"):
+        return (f"  ✓ {fp} + hotspot: '{mod}' churns in a well-structured "
+                "architecture. Watch the trend; intervene only if\n"
+                "      structure starts degrading (rising cycle %, dropping "
+                "modularity).")
+    if fp == "FLAT":
+        return (f"  ⚠ FLAT + hotspot: '{mod}' churns in a flat (under-modularized) "
+                "architecture. The repo lacks clear module\n"
+                "      boundaries — high churn here suggests it's becoming a "
+                "de facto god-module. Extract responsibilities now,\n"
+                "      while it's still small.")
+    return ""
+
+
 def render_text(rep: HealthReport,
                 trend_data: Optional[list[dict]] = None) -> str:
     out = []
@@ -301,12 +349,11 @@ def render_text(rep: HealthReport,
         for h in rep.hotspots:
             out.append(f"  {h.score:.3f}   {h.frequency:<5} "
                        f"{h.centrality:.3f}  {h.module}")
-        # Cross-reference: any hotspot with bad fingerprint?
-        if rep.fingerprint in ("TANGLED", "LOW_COHESION", "CYCLIC"):
-            top_hot = rep.hotspots[0]
-            out.append(f"  🔥 hot mess: top hotspot {top_hot.module} sits in a "
-                       f"{rep.fingerprint} architecture — high-churn AND "
-                       "structurally compromised. Refactor priority #1.")
+        # Architecture-specific explanation per fingerprint × top hotspot.
+        explanation = _hotspot_explanation(rep.fingerprint, rep.hotspots[0])
+        if explanation:
+            out.append("")
+            out.append(explanation)
         out.append("")
 
     if trend_data:
