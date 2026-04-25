@@ -262,7 +262,10 @@ def _run_gate_diff(args) -> int:
                     )
                     hs = compute_hotspot_score(
                         G_after,
-                        compute_change_frequency(repo, since=args.hotspot_since),
+                        compute_change_frequency(
+                            repo, since=args.hotspot_since,
+                            head_ref=head_ref,
+                        ),
                     )[:20]
                     hot_files = {h.file for h in hs}
                     overlap = changed_py & hot_files

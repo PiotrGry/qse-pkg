@@ -40,13 +40,22 @@ class HotspotEntry:
 
 def compute_change_frequency(
     repo_path: str, since: str = "1 year ago",
+    head_ref: str | None = None,
 ) -> dict[str, int]:
     """Return {repo-relative-path: commit_count} for .py files changed
     in the time window. Uses git log --name-only.
+
+    If `head_ref` is given, churn is anchored to that ref's history (so
+    commits made after head_ref do not influence the ranking). This
+    matters for gate-diff --check-hotspots when --head is not the
+    current checkout.
     """
+    cmd = ["git", "log", f"--since={since}", "--name-only",
+           "--pretty=format:%H"]
+    if head_ref:
+        cmd.append(head_ref)
     r = subprocess.run(
-        ["git", "log", f"--since={since}", "--name-only",
-         "--pretty=format:%H"],
+        cmd,
         cwd=repo_path, capture_output=True, text=True, check=True,
     )
     counts: dict[str, int] = defaultdict(int)
