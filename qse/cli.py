@@ -228,6 +228,217 @@ def _run_gate_diff(args) -> int:
         return 1
 
 
+# ── qse archeology ─────────────────────────────────────────────────────────────
+
+def _run_archeology(args) -> int:
+    """Retroactive scan: walk the last N commits, run gate_check on each step,
+    report which would have fired. The install-decision asset.
+
+    Output: HTML report (default) or JSON.
+    """
+    import json as _json
+    import os
+    import shutil
+    import subprocess
+    import tempfile
+    import networkx as nx
+    from qse.gate.gate_check import gate_check
+
+    repo = os.path.abspath(args.path)
+
+    # Discover commits to walk
+    rev_range = args.range or f"-{args.last}"
+    log = subprocess.run(
+        ["git", "log", "--reverse", "--first-parent", "--pretty=%H%x09%s",
+         rev_range],
+        cwd=repo, capture_output=True, text=True, check=True,
+    )
+    commits = []
+    for line in log.stdout.strip().split("\n"):
+        if not line.strip():
+            continue
+        sha, _, subject = line.partition("\t")
+        commits.append((sha, subject))
+
+    if len(commits) < 2:
+        print("qse archeology: need at least 2 commits to compare.", file=sys.stderr)
+        return 2
+
+    if not args.quiet:
+        print(f"qse archeology: walking {len(commits) - 1} steps "
+              f"({commits[0][0][:8]}..{commits[-1][0][:8]})", file=sys.stderr)
+
+    def scan_at_ref(ref: str) -> nx.DiGraph:
+        tmp = tempfile.mkdtemp(prefix="qse-arch-")
+        try:
+            result = subprocess.run(
+                ["git", "archive", ref, "--format=tar"],
+                cwd=repo, capture_output=True, check=True,
+            )
+            import io, tarfile
+            with tarfile.open(fileobj=io.BytesIO(result.stdout)) as tar:
+                tar.extractall(tmp)
+            from qse.integrations.pre_commit import _scan_python_dir
+            return _scan_python_dir(tmp)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    # Walk
+    findings: list[dict] = []
+    G_prev = scan_at_ref(commits[0][0])
+    for i in range(1, len(commits)):
+        sha, subject = commits[i]
+        try:
+            G_cur = scan_at_ref(sha)
+            r = gate_check(G_prev, G_cur, language=args.language)
+            if not r.passed:
+                findings.append({
+                    "commit": sha,
+                    "short": sha[:8],
+                    "subject": subject,
+                    "violations": r.violations,
+                    "metrics_before": r.metrics_before,
+                    "metrics_after": r.metrics_after,
+                })
+            G_prev = G_cur
+        except Exception as e:
+            print(f"  warn: failed at {sha[:8]}: {e}", file=sys.stderr)
+            continue
+
+        if not args.quiet and i % 10 == 0:
+            print(f"  ... {i}/{len(commits) - 1} commits", file=sys.stderr)
+
+    if not args.quiet:
+        print(f"qse archeology: scanned {len(commits) - 1} commits, "
+              f"found {len(findings)} regressions.", file=sys.stderr)
+
+    # Output
+    if args.output_json:
+        with open(args.output_json, "w") as f:
+            _json.dump({
+                "repo": repo,
+                "range": rev_range,
+                "commits_scanned": len(commits) - 1,
+                "regressions_found": len(findings),
+                "findings": findings,
+            }, f, indent=2, default=str)
+        if not args.quiet:
+            print(f"  JSON → {args.output_json}", file=sys.stderr)
+
+    if args.output_html:
+        _write_archeology_html(args.output_html, repo, rev_range, commits, findings)
+        if not args.quiet:
+            print(f"  HTML → {args.output_html}", file=sys.stderr)
+
+    if not (args.output_json or args.output_html):
+        # Default: print summary table to stdout
+        print(f"\n{'='*70}")
+        print(f"  Archeology report — {os.path.basename(repo)}")
+        print(f"  Range: {rev_range}   Commits scanned: {len(commits) - 1}")
+        print(f"  Regressions found: {len(findings)}")
+        print('='*70)
+        for f in findings[:30]:
+            print(f"\n  {f['short']}  {f['subject'][:60]}")
+            for v in f["violations"]:
+                print(f"    {v.split('.')[0][:120]}")
+        if len(findings) > 30:
+            print(f"\n  ... and {len(findings) - 30} more (use --output-html for full report)")
+
+    return 0
+
+
+def _write_archeology_html(out_path: str, repo: str, rev_range: str,
+                            commits: list, findings: list) -> None:
+    """Single-file HTML report (no external deps)."""
+    import os
+    rule_counts: dict[str, int] = {}
+    for f in findings:
+        for v in f["violations"]:
+            rule = v.split(":", 1)[0]
+            rule_counts[rule] = rule_counts.get(rule, 0) + 1
+
+    rows = []
+    for f in findings:
+        viol_html = "<br>".join(
+            f"<code>{v.split(':', 1)[0]}</code> {v.split(':', 1)[1].split('. ')[0] if ':' in v else v}"
+            for v in f["violations"]
+        )
+        rows.append(
+            f"<tr><td><code>{f['short']}</code></td>"
+            f"<td>{_html_escape(f['subject'])}</td>"
+            f"<td>{viol_html}</td></tr>"
+        )
+    rule_summary = "".join(
+        f"<li><b>{r}</b>: {c}</li>"
+        for r, c in sorted(rule_counts.items(), key=lambda x: -x[1])
+    )
+
+    html = f"""<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>QSE Archeology — {_html_escape(os.path.basename(repo))}</title>
+<style>
+body {{ font-family: -apple-system, system-ui, sans-serif; max-width: 1100px;
+        margin: 2em auto; padding: 0 1em; color: #1d1d1f; }}
+h1, h2 {{ font-weight: 600; }}
+.stat {{ display: inline-block; padding: 0.5em 1em; margin-right: 1em;
+         background: #f5f5f7; border-radius: 8px; }}
+.stat b {{ font-size: 1.5em; display: block; }}
+table {{ border-collapse: collapse; width: 100%; margin-top: 1em; font-size: 0.9em; }}
+th, td {{ padding: 0.6em; border-bottom: 1px solid #e5e5ea; text-align: left;
+         vertical-align: top; }}
+th {{ background: #fafafa; font-weight: 600; }}
+code {{ background: #f0f0f0; padding: 0.1em 0.3em; border-radius: 3px;
+        font-size: 0.85em; }}
+.banner {{ padding: 1em; background: #fff7e6; border-left: 4px solid #ff9500;
+           border-radius: 4px; }}
+</style></head><body>
+<h1>QSE Archeology Report</h1>
+<p><b>Repo:</b> <code>{_html_escape(repo)}</code><br>
+<b>Range:</b> <code>{_html_escape(rev_range)}</code><br>
+<b>Generated:</b> {_now_iso()}</p>
+
+<div class="banner">
+<p>Had QSE-Gate been installed at the start of this range, it would have flagged
+<b>{len(findings)} commit(s)</b> as architectural regressions.</p>
+</div>
+
+<h2>Summary</h2>
+<div>
+<span class="stat"><b>{len(commits) - 1}</b>commits scanned</span>
+<span class="stat"><b>{len(findings)}</b>regressions found</span>
+<span class="stat"><b>{len(findings) / max(len(commits) - 1, 1) * 100:.1f}%</b>flag rate</span>
+</div>
+
+<h2>Rule breakdown</h2>
+<ul>{rule_summary or "<li>None</li>"}</ul>
+
+<h2>Findings</h2>
+<table>
+<thead><tr><th>Commit</th><th>Subject</th><th>Violations</th></tr></thead>
+<tbody>
+{''.join(rows) or '<tr><td colspan="3"><i>No regressions in this range. Clean run.</i></td></tr>'}
+</tbody>
+</table>
+
+<p style="margin-top: 3em; color: #888; font-size: 0.85em;">
+Generated by <code>qse archeology</code>. Thresholds:
+language preset (delta-based, architecture-style agnostic). See
+<a href="https://github.com/PiotrGry/qse-pkg">qse-pkg</a>.
+</p>
+</body></html>"""
+    with open(out_path, "w") as fp:
+        fp.write(html)
+
+
+def _html_escape(s: str) -> str:
+    return (s.replace("&", "&amp;").replace("<", "&lt;")
+             .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def _now_iso() -> str:
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+
 # ── qse agq ────────────────────────────────────────────────────────────────────
 
 def _run_agq(args) -> None:
@@ -487,6 +698,26 @@ def main() -> None:
     gd.add_argument("--quiet", action="store_true",
                     help="Suppress informational output (violations still printed).")
 
+    # qse archeology — retroactive scan over commit history
+    arch = sub.add_parser(
+        "archeology",
+        help="Retroactive gate scan: walk last N commits, report what would have fired.",
+    )
+    arch.add_argument("path", nargs="?", default=".",
+                      help="Repo root (default: current directory).")
+    arch.add_argument("--last", type=int, default=200, metavar="N",
+                      help="Walk the last N commits (default: 200).")
+    arch.add_argument("--range", default=None, metavar="REV",
+                      help="Custom git rev range (e.g. main..HEAD), overrides --last.")
+    arch.add_argument("--language", default="python", choices=["python", "java", "go"],
+                      help="Threshold preset (default: python).")
+    arch.add_argument("--output-html", default=None, metavar="FILE",
+                      help="Write HTML report to file.")
+    arch.add_argument("--output-json", default=None, metavar="FILE",
+                      help="Write JSON report to file.")
+    arch.add_argument("--quiet", action="store_true",
+                      help="Suppress progress output.")
+
     # qse discover — boundary discovery
     disc = sub.add_parser("discover",
                           help="Auto-discover architectural boundaries and propose constraints.")
@@ -507,6 +738,8 @@ def main() -> None:
         sys.exit(_run_gate(args, args.gate_args))
     if args.command == "gate-diff":
         sys.exit(_run_gate_diff(args))
+    if args.command == "archeology":
+        sys.exit(_run_archeology(args))
     if args.command == "agq":
         _run_agq(args)
         return
