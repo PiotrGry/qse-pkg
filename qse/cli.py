@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from pathlib import Path
 
 
 def _load_graph_json(path: str):
@@ -616,6 +617,32 @@ def _finalize_agq_output(args, agq: float, metrics, *, nodes: int, edges: int,
 
 # ── qse discover ───────────────────────────────────────────────────────────────
 
+def _run_health(args) -> None:
+    """Snapshot health report — diagnostic, not a gate."""
+    import dataclasses
+    from qse.health import compute_health, render_text, trend
+
+    rep = compute_health(args.path, language=args.language)
+    trend_data = None
+    if args.trend > 0:
+        trend_data = trend(args.path, n_commits=args.trend,
+                           step=args.trend_step, language=args.language)
+
+    if args.json:
+        payload = dataclasses.asdict(rep)
+        if trend_data is not None:
+            payload["trend"] = trend_data
+        out = json.dumps(payload, indent=2)
+    else:
+        out = render_text(rep, trend_data=trend_data)
+
+    if args.output:
+        Path(args.output).write_text(out + "\n")
+        print(f"wrote {args.output}", file=sys.stderr)
+    else:
+        print(out)
+
+
 def _run_discover(args) -> None:
     """Auto-discover architectural boundaries and propose constraints."""
     from qse.discover import discover_policies
@@ -765,6 +792,24 @@ def main() -> None:
     disc.add_argument("--output-constraints", type=str, default=None, metavar="FILE",
                       help="Write high-confidence constraints to JSON.")
 
+    # qse health — snapshot health report vs language baseline
+    health = sub.add_parser("health",
+                            help="Snapshot health report (drift/debt diagnostic).")
+    health.add_argument("path", nargs="?", default=".",
+                        help="Repo root.")
+    health.add_argument("--language", choices=["python", "java", "go"],
+                        default=None,
+                        help="Override autodetected language.")
+    health.add_argument("--trend", type=int, default=0, metavar="N",
+                        help="Sample last N commits and show AGQ trend.")
+    health.add_argument("--trend-step", type=int, default=20, metavar="K",
+                        help="When --trend N is set, sample every K commits "
+                             "(default: 20).")
+    health.add_argument("--json", action="store_true",
+                        help="Emit JSON instead of human-readable text.")
+    health.add_argument("--output", type=str, default=None, metavar="FILE",
+                        help="Write report to FILE.")
+
     args = parser.parse_args()
 
     if args.command == "gate":
@@ -778,6 +823,9 @@ def main() -> None:
         return
     if args.command == "discover":
         _run_discover(args)
+        return
+    if args.command == "health":
+        _run_health(args)
         return
 
     parser.print_help()
