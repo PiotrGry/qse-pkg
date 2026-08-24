@@ -77,6 +77,11 @@ def scan_agq(repo_path: str) -> dict:
         return {"error": str(e)}
 
 
+def fmt_metric(value) -> str:
+    """Format an optional metric without inventing a replacement value."""
+    return "n/a" if value is None else f"{value:.3f}"
+
+
 def git_reset(repo_path: str):
     """Reset repo to clean state."""
     subprocess.run(
@@ -117,9 +122,12 @@ def run_study(repos: list, doses: list, seeds: list, output_dir: str):
 
         print(f"\n{name} ({lang}) - baseline AGQ={baseline['agq_score']:.3f} "
               f"[M={baseline['modularity']:.3f} A={baseline['acyclicity']:.3f} "
-              f"St={baseline['stability']:.3f} Co={baseline['cohesion']:.3f}]")
+              f"St={baseline['stability']:.3f} Co={fmt_metric(baseline['cohesion'])}]")
 
         for mut_name, mut_fn in MUTATIONS.items():
+            if mut_name == "cohesion_degradation" and baseline["cohesion"] is None:
+                done += len(doses) * len(seeds)
+                continue
             for dose in doses:
                 for seed in seeds:
                     git_reset(path)
@@ -210,7 +218,8 @@ def analyze(results: list, output_dir: str):
 
     for mut_name, comp in component_map.items():
         subset = [r for r in results if r["mutation"] == mut_name
-                  and r["mutations_applied"] > 0]
+                  and r["mutations_applied"] > 0
+                  and r.get(f"mutated_{comp}") is not None]
         if len(subset) < 5:
             lines.append(f"  {mut_name:<30} {comp:<15} {'N/A':>8} {'N/A':>12}")
             continue

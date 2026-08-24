@@ -1,6 +1,6 @@
-pub mod scanner;
 pub mod graph;
 pub mod metrics;
+pub mod scanner;
 
-pub use scanner::{scan_repo, ScanResult, ClassInfo, Language};
 pub use metrics::{compute_agq, AGQMetrics};
+pub use scanner::{scan_repo, ClassInfo, Language, ScanDiagnostics, ScanError, ScanResult};

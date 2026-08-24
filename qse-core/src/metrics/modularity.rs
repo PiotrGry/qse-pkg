@@ -1,109 +1,283 @@
-/// Newman modularity Q via O(m) Louvain algorithm.
-/// Normalized: max(0, Q) / 0.75, returns 0.5 neutral for n<10 with edges.
+//! Deterministic Louvain modularity on a simple undirected projection.
+
 use petgraph::graph::DiGraph;
+use std::collections::{BTreeMap, BTreeSet};
 
-pub fn compute(g: &DiGraph<String, ()>) -> f64 {
-    let n = g.node_count();
-    if n <= 1 { return 1.0; }
+const EPSILON: f64 = 1.0e-12;
 
-    // Build undirected symmetric adjacency for Louvain
-    let mut adj: Vec<Vec<usize>> = vec![Vec::new(); n];
-    let mut degree = vec![0usize; n];
+#[derive(Debug)]
+struct LevelGraph {
+    /// Symmetric weighted adjacency. Diagonal values are twice self-loop weight.
+    adjacency: Vec<BTreeMap<usize, f64>>,
+    /// Original graph nodes represented by each level node.
+    groups: Vec<Vec<usize>>,
+}
 
-    for e in g.edge_indices() {
-        let (a, b) = g.edge_endpoints(e).unwrap();
-        let ai = a.index();
-        let bi = b.index();
-        if ai == bi { continue; }
-        adj[ai].push(bi);
-        adj[bi].push(ai);
-        degree[ai] += 1;
-        degree[bi] += 1;
+pub fn compute(graph: &DiGraph<String, ()>) -> f64 {
+    let n = graph.node_count();
+    if n <= 1 {
+        return 1.0;
     }
 
-    // Deduplicate adjacency lists
-    for a in adj.iter_mut() {
-        a.sort_unstable();
-        a.dedup();
+    let edges = simple_edges(graph);
+    if edges.is_empty() {
+        return 1.0;
+    }
+    if n < 10 {
+        return 0.5;
     }
 
-    let m: usize = degree.iter().sum::<usize>() / 2;
-    if m == 0 { return 1.0; }
-    if n < 10 { return 0.5; }
+    let mut level = initial_level(n, &edges);
+    let mut best_partition: Vec<usize> = (0..n).collect();
+    let mut best_q = modularity_score(n, &edges, &best_partition);
 
-    let m_f = m as f64;
-
-    // Louvain phase 1: greedy O(m) per pass
-    let mut community: Vec<usize> = (0..n).collect();
-    // community_degree[c] = sum of degrees of nodes in community c
-    let mut comm_deg: Vec<f64> = degree.iter().map(|&d| d as f64).collect();
-    // community_internal[c] = sum of internal edges * 2
-    let mut comm_int: Vec<f64> = vec![0.0; n];
-
-    let mut improved = true;
-    let mut iters = 0;
-    while improved && iters < 50 {
-        improved = false;
-        iters += 1;
-
-        for node in 0..n {
-            let curr_c = community[node];
-            let ki = degree[node] as f64;
-
-            // Count edges to each neighbouring community
-            let mut neigh_weight: std::collections::HashMap<usize, f64> =
-                std::collections::HashMap::new();
-            for &nb in &adj[node] {
-                *neigh_weight.entry(community[nb]).or_insert(0.0) += 1.0;
+    loop {
+        let assignment = local_move(&level.adjacency);
+        let merged_groups = merge_groups(&level.groups, &assignment);
+        let mut partition = vec![0usize; n];
+        for (community, members) in merged_groups.iter().enumerate() {
+            for &member in members {
+                partition[member] = community;
             }
+        }
+        let q = modularity_score(n, &edges, &partition);
+        let improvement = q - best_q;
+        if q > best_q + EPSILON {
+            best_q = q;
+            best_partition = partition;
+        }
 
-            // ΔQ for removing node from current community
-            let ki_in_curr = *neigh_weight.get(&curr_c).unwrap_or(&0.0);
-            let dq_remove = -(ki_in_curr / m_f)
-                + (comm_deg[curr_c] - ki) * ki / (2.0 * m_f * m_f);
+        if merged_groups.len() == level.adjacency.len() || improvement <= EPSILON {
+            break;
+        }
+        level = aggregate_level(&level.adjacency, merged_groups, &assignment);
+    }
 
-            // Find best community to move to
-            let mut best_c = curr_c;
-            let mut best_dq = 0.0_f64;
+    let q = modularity_score(n, &edges, &best_partition);
+    (q.max(0.0) / 0.75).min(1.0)
+}
 
-            for (&nc, &ki_in_nc) in &neigh_weight {
-                if nc == curr_c { continue; }
-                let dq = dq_remove
-                    + (ki_in_nc / m_f)
-                    - comm_deg[nc] * ki / (2.0 * m_f * m_f);
-                if dq > best_dq {
-                    best_dq = dq;
-                    best_c = nc;
+fn simple_edges(graph: &DiGraph<String, ()>) -> Vec<(usize, usize)> {
+    let mut edges = BTreeSet::new();
+    for edge in graph.edge_indices() {
+        let Some((source, target)) = graph.edge_endpoints(edge) else {
+            continue;
+        };
+        let (a, b) = (source.index(), target.index());
+        if a != b {
+            edges.insert((a.min(b), a.max(b)));
+        }
+    }
+    edges.into_iter().collect()
+}
+
+fn initial_level(n: usize, edges: &[(usize, usize)]) -> LevelGraph {
+    let mut adjacency = vec![BTreeMap::new(); n];
+    for &(a, b) in edges {
+        *adjacency[a].entry(b).or_default() += 1.0;
+        *adjacency[b].entry(a).or_default() += 1.0;
+    }
+    LevelGraph {
+        adjacency,
+        groups: (0..n).map(|node| vec![node]).collect(),
+    }
+}
+
+fn local_move(adjacency: &[BTreeMap<usize, f64>]) -> Vec<usize> {
+    let n = adjacency.len();
+    let degree: Vec<f64> = adjacency
+        .iter()
+        .map(|neighbors| neighbors.values().sum())
+        .collect();
+    let m2 = degree.iter().sum::<f64>();
+    if m2 <= EPSILON {
+        return (0..n).collect();
+    }
+
+    let mut community: Vec<usize> = (0..n).collect();
+    let mut totals = degree.clone();
+    for _ in 0..100 {
+        let mut moved = false;
+        for node in 0..n {
+            let current = community[node];
+            let node_degree = degree[node];
+            totals[current] -= node_degree;
+
+            let mut neighbor_weights: BTreeMap<usize, f64> = BTreeMap::new();
+            for (&neighbor, &weight) in &adjacency[node] {
+                if neighbor != node {
+                    *neighbor_weights.entry(community[neighbor]).or_default() += weight;
                 }
             }
 
-            if best_c != curr_c {
-                // Move node from curr_c to best_c
-                comm_deg[curr_c] -= ki;
-                comm_int[curr_c] -= 2.0 * ki_in_curr;
-                comm_deg[best_c] += ki;
-                let ki_in_best = *neigh_weight.get(&best_c).unwrap_or(&0.0);
-                comm_int[best_c] += 2.0 * ki_in_best;
-                community[node] = best_c;
-                improved = true;
+            let mut best = current;
+            let mut best_gain = 0.0;
+            for (&candidate, &weight_in) in &neighbor_weights {
+                let gain = weight_in - totals[candidate] * node_degree / m2;
+                if gain > best_gain + EPSILON
+                    || ((gain - best_gain).abs() <= EPSILON && gain > 0.0 && candidate < best)
+                {
+                    best = candidate;
+                    best_gain = gain;
+                }
+            }
+
+            totals[best] += node_degree;
+            if best != current {
+                community[node] = best;
+                moved = true;
+            }
+        }
+        if !moved {
+            break;
+        }
+    }
+    renumber(&community)
+}
+
+fn renumber(assignment: &[usize]) -> Vec<usize> {
+    let mut mapping = BTreeMap::new();
+    let mut next = 0usize;
+    assignment
+        .iter()
+        .map(|community| {
+            *mapping.entry(*community).or_insert_with(|| {
+                let id = next;
+                next += 1;
+                id
+            })
+        })
+        .collect()
+}
+
+fn merge_groups(groups: &[Vec<usize>], assignment: &[usize]) -> Vec<Vec<usize>> {
+    let count = assignment
+        .iter()
+        .copied()
+        .max()
+        .map_or(0, |value| value + 1);
+    let mut merged = vec![Vec::new(); count];
+    for (node, &community) in assignment.iter().enumerate() {
+        merged[community].extend_from_slice(&groups[node]);
+    }
+    merged
+}
+
+fn aggregate_level(
+    adjacency: &[BTreeMap<usize, f64>],
+    groups: Vec<Vec<usize>>,
+    assignment: &[usize],
+) -> LevelGraph {
+    let mut aggregated = vec![BTreeMap::new(); groups.len()];
+    for source in 0..adjacency.len() {
+        for (&target, &weight) in &adjacency[source] {
+            if source > target {
+                continue;
+            }
+            let source_community = assignment[source];
+            let target_community = assignment[target];
+            if source == target {
+                *aggregated[source_community]
+                    .entry(source_community)
+                    .or_default() += weight;
+            } else if source_community == target_community {
+                *aggregated[source_community]
+                    .entry(source_community)
+                    .or_default() += 2.0 * weight;
+            } else {
+                *aggregated[source_community]
+                    .entry(target_community)
+                    .or_default() += weight;
+                *aggregated[target_community]
+                    .entry(source_community)
+                    .or_default() += weight;
             }
         }
     }
+    LevelGraph {
+        adjacency: aggregated,
+        groups,
+    }
+}
 
-    // Compute final Q
-    let mut q = 0.0_f64;
+fn modularity_score(n: usize, edges: &[(usize, usize)], partition: &[usize]) -> f64 {
+    let m = edges.len() as f64;
+    if m == 0.0 {
+        return 0.0;
+    }
+    let community_count = partition.iter().copied().max().map_or(0, |value| value + 1);
+    let mut degree = vec![0.0f64; n];
+    let mut internal_edges = vec![0.0f64; community_count];
+    for &(a, b) in edges {
+        degree[a] += 1.0;
+        degree[b] += 1.0;
+        if partition[a] == partition[b] {
+            internal_edges[partition[a]] += 1.0;
+        }
+    }
+    let mut community_degree = vec![0.0f64; community_count];
     for node in 0..n {
-        let c = community[node];
-        for &nb in &adj[node] {
-            if community[nb] == c {
-                let ki = degree[node] as f64;
-                let kj = degree[nb] as f64;
-                q += 1.0 - ki * kj / (2.0 * m_f);
+        community_degree[partition[node]] += degree[node];
+    }
+    (0..community_count)
+        .map(|community| {
+            internal_edges[community] / m - (community_degree[community] / (2.0 * m)).powi(2)
+        })
+        .sum()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn graph_with_nodes(n: usize) -> DiGraph<String, ()> {
+        let mut graph = DiGraph::new();
+        for node in 0..n {
+            graph.add_node(node.to_string());
+        }
+        graph
+    }
+
+    #[test]
+    fn reciprocal_edges_equal_one_undirected_edge() {
+        let mut one_way = graph_with_nodes(10);
+        let nodes: Vec<_> = one_way.node_indices().collect();
+        for i in 0..9 {
+            one_way.add_edge(nodes[i], nodes[i + 1], ());
+        }
+        let mut reciprocal = one_way.clone();
+        for i in 0..9 {
+            reciprocal.add_edge(nodes[i + 1], nodes[i], ());
+        }
+        assert_eq!(compute(&one_way), compute(&reciprocal));
+    }
+
+    #[test]
+    fn separated_cliques_have_modularity() {
+        let mut graph = graph_with_nodes(10);
+        let nodes: Vec<_> = graph.node_indices().collect();
+        for start in [0usize, 5usize] {
+            for a in start..(start + 5) {
+                for b in (a + 1)..(start + 5) {
+                    graph.add_edge(nodes[a], nodes[b], ());
+                }
             }
         }
+        graph.add_edge(nodes[4], nodes[5], ());
+        // NetworkX Louvain finds the two cliques: Q=0.45238095, normalized by 0.75.
+        assert!((compute(&graph) - 0.603_174_603_174_603_1).abs() < 1.0e-12);
     }
-    q /= 2.0 * m_f; // each edge counted twice
 
-    let q_ref = 0.75_f64;
-    (q.max(0.0) / q_ref).min(1.0)
+    #[test]
+    fn repeated_runs_are_deterministic() {
+        let mut graph = graph_with_nodes(12);
+        let nodes: Vec<_> = graph.node_indices().collect();
+        for i in 0..12 {
+            graph.add_edge(nodes[i], nodes[(i + 1) % 12], ());
+        }
+        let expected = compute(&graph);
+        for _ in 0..20 {
+            assert_eq!(compute(&graph), expected);
+        }
+    }
 }

@@ -94,11 +94,13 @@ def _load_graph_json(path: str):
 
 
 def _scan_repo(path: str):
-    """Scan repository using Rust scanner. Returns (result_dict, AGQMetrics, agq_score)."""
+    """Scan a repository and retain unavailable Rust metrics as None."""
+    from types import SimpleNamespace
     from _qse_core import scan_and_compute_agq
-    from qse.graph_metrics import AGQMetrics
     r = scan_and_compute_agq(path)
-    metrics = AGQMetrics(
+    # The Rust composite is already renormalized over measurable components.
+    # Keep unavailable metrics as None instead of substituting a perfect value.
+    metrics = SimpleNamespace(
         modularity=r["modularity"],
         acyclicity=r["acyclicity"],
         stability=r["stability"],
@@ -124,6 +126,8 @@ def _detect_repo_language(path: str) -> str:
 
 def _enhanced_str(agq, metrics, nodes, lang_name):
     """Compute enhanced metrics string (fingerprint, z-score, cycles)."""
+    if metrics.cohesion is None:
+        return ""
     try:
         from qse.agq_enhanced import compute_agq_enhanced
         enh = compute_agq_enhanced(
@@ -208,9 +212,10 @@ def _run_agq(args) -> None:
             "agq_score": round(agq, 4),
             "threshold": args.threshold,
             "language": r["language"],
-            "metrics": {k: round(r[k], 4)
+            "metrics": {k: (round(r[k], 4) if r[k] is not None else None)
                         for k in ("modularity", "acyclicity", "stability", "cohesion")},
             "graph": {"nodes": r["nodes"], "edges": r["edges"]},
+            "diagnostics": r.get("diagnostics", {}),
             "failures": failures,
         }
         if args.output_json:
@@ -228,9 +233,10 @@ def _run_agq(args) -> None:
         sys.exit(1)
 
     cs = f"  constraints={constraint_score:.2f}" if 'constraint_score' in dir() and constraint_score is not None else ""
+    cohesion_display = "n/a" if metrics.cohesion is None else f"{metrics.cohesion:.2f}"
     print(f"AGQ GATE PASS  agq={agq:.4f}  "
           f"M={metrics.modularity:.2f} A={metrics.acyclicity:.2f} "
-          f"St={metrics.stability:.2f} Co={metrics.cohesion:.2f}"
+          f"St={metrics.stability:.2f} Co={cohesion_display}"
           f"{enh}{cs}")
 
 

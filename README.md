@@ -37,7 +37,15 @@ Primary scanner is written in **Rust** (tree-sitter) with PyO3 bindings - 7-46×
 maturin develop --release -m qse-py/Cargo.toml
 ```
 
-Supported languages: Python, Java (Maven/Gradle), Go.
+Supported languages: Python, Java (Maven/Gradle), Go. Dependency nodes are
+language-specific: Python modules, Java source files/classes, and Go packages.
+Mixed repositories that cannot be classified safely must be scanned by
+language-specific subdirectory.
+
+Metrics that are not valid for a language are reported as unavailable rather
+than perfect. In particular, Go cohesion is `None`/`n/a`, and its AGQ weights
+are renormalized over the remaining measured components. Raw AGQ values should
+therefore be interpreted within a language cohort.
 
 ## Installation
 

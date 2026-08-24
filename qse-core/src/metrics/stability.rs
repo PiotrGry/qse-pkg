@@ -1,58 +1,100 @@
-/// Package-level instability variance.
-/// Groups nodes by second-level package, computes I=Ce/(Ca+Ce) per package,
-/// returns var(I)/0.25 clamped to [0,1].
-/// Mirrors Python: compute_stability() in graph_metrics.py
-use petgraph::graph::DiGraph;
-use std::collections::HashMap;
+//! Package-level instability variance with language-specific package boundaries.
 
-fn pkg(node: &str) -> &str {
-    let mut dots = 0;
-    for (i, c) in node.char_indices() {
-        if c == '.' {
-            dots += 1;
-            if dots == 2 { return &node[..i]; }
+use crate::scanner::Language;
+use petgraph::graph::{DiGraph, NodeIndex};
+use std::collections::{BTreeMap, HashSet};
+
+fn package(node: &str, language: Language) -> String {
+    match language {
+        Language::Go => node.split('/').next().unwrap_or(node).to_string(),
+        Language::Python | Language::Java => {
+            let mut parts = node.split('.');
+            match (parts.next(), parts.next()) {
+                (Some(first), Some(second)) => format!("{first}.{second}"),
+                (Some(first), None) => first.to_string(),
+                _ => node.to_string(),
+            }
         }
     }
-    node
 }
 
-pub fn compute(g: &DiGraph<String, ()>) -> f64 {
-    let n = g.node_count();
-    if n <= 1 { return 1.0; }
-
-    // Group nodes by second-level package
-    let mut packages: HashMap<&str, Vec<petgraph::graph::NodeIndex>> = HashMap::new();
-    for ni in g.node_indices() {
-        let name = &g[ni];
-        let p = pkg(name);
-        packages.entry(p).or_default().push(ni);
+pub fn compute(graph: &DiGraph<String, ()>, language: Language) -> f64 {
+    if graph.node_count() <= 1 {
+        return 1.0;
     }
 
-    if packages.len() <= 1 { return 0.0; }
-
-    let mut instabilities: Vec<f64> = Vec::new();
-
-    for members in packages.values() {
-        let member_set: std::collections::HashSet<_> = members.iter().copied().collect();
-
-        let ca = members.iter()
-            .flat_map(|&ni| g.neighbors_directed(ni, petgraph::Direction::Incoming))
-            .filter(|n| !member_set.contains(n))
-            .count();
-        let ce = members.iter()
-            .flat_map(|&ni| g.neighbors_directed(ni, petgraph::Direction::Outgoing))
-            .filter(|n| !member_set.contains(n))
-            .count();
-
-        let total = ca + ce;
-        let i = if total > 0 { ce as f64 / total as f64 } else { 0.5 };
-        instabilities.push(i);
+    let mut packages: BTreeMap<String, Vec<NodeIndex>> = BTreeMap::new();
+    for node in graph.node_indices() {
+        packages
+            .entry(package(&graph[node], language))
+            .or_default()
+            .push(node);
+    }
+    if packages.len() <= 1 {
+        return node_level(graph) * 0.5;
     }
 
-    let mean = instabilities.iter().sum::<f64>() / instabilities.len() as f64;
-    let var = instabilities.iter()
-        .map(|&i| (i - mean).powi(2))
-        .sum::<f64>() / instabilities.len() as f64;
+    let instabilities: Vec<f64> = packages
+        .values()
+        .map(|members| {
+            let member_set: HashSet<NodeIndex> = members.iter().copied().collect();
+            let afferent = members
+                .iter()
+                .flat_map(|&node| graph.neighbors_directed(node, petgraph::Direction::Incoming))
+                .filter(|node| !member_set.contains(node))
+                .count();
+            let efferent = members
+                .iter()
+                .flat_map(|&node| graph.neighbors_directed(node, petgraph::Direction::Outgoing))
+                .filter(|node| !member_set.contains(node))
+                .count();
+            let total = afferent + efferent;
+            if total == 0 {
+                0.5
+            } else {
+                efferent as f64 / total as f64
+            }
+        })
+        .collect();
 
-    (var / 0.25_f64).min(1.0)
+    let raw = normalized_variance(&instabilities);
+    if packages.len() == 2 {
+        raw * 0.8
+    } else {
+        raw
+    }
+}
+
+fn node_level(graph: &DiGraph<String, ()>) -> f64 {
+    let instabilities: Vec<f64> = graph
+        .node_indices()
+        .map(|node| {
+            let afferent = graph
+                .neighbors_directed(node, petgraph::Direction::Incoming)
+                .count();
+            let efferent = graph
+                .neighbors_directed(node, petgraph::Direction::Outgoing)
+                .count();
+            let total = afferent + efferent;
+            if total == 0 {
+                0.5
+            } else {
+                efferent as f64 / total as f64
+            }
+        })
+        .collect();
+    normalized_variance(&instabilities)
+}
+
+fn normalized_variance(values: &[f64]) -> f64 {
+    if values.len() <= 1 {
+        return 1.0;
+    }
+    let mean = values.iter().sum::<f64>() / values.len() as f64;
+    let variance = values
+        .iter()
+        .map(|value| (value - mean).powi(2))
+        .sum::<f64>()
+        / values.len() as f64;
+    (variance / 0.25).min(1.0)
 }

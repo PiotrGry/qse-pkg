@@ -6,15 +6,20 @@ use petgraph::graph::DiGraph;
 
 pub fn compute(g: &DiGraph<String, ()>) -> f64 {
     let n = g.node_count();
-    if n <= 1 { return 1.0; }
+    if n <= 1 {
+        return 1.0;
+    }
 
     let sccs = tarjan_scc(g);
-    let largest_cycle = sccs.iter()
+    let largest_cycle = sccs
+        .iter()
         .filter(|scc| scc.len() > 1)
         .map(|scc| scc.len())
         .max()
         .unwrap_or(0);
 
-    if largest_cycle == 0 { return 1.0; }
+    if largest_cycle == 0 {
+        return 1.0;
+    }
     1.0 - (largest_cycle as f64 / n as f64)
 }
